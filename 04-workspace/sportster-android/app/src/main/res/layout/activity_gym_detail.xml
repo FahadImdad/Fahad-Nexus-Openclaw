@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Hero -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gym" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🏋️"
+                android:textSize="60sp"
+                android:layout_gravity="center" />
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                android:src="@android:drawable/ic_media_previous"
+                android:background="@drawable/bg_circle_surface2"
+                android:contentDescription="Back" />
+        </FrameLayout>
+
+        <!-- Info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@color/surface">
+
+            <TextView
+                android:id="@+id/tvGymName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gym Name"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/text" />
+
+            <TextView
+                android:id="@+id/tvGymSport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location · Sports"
+                android:textSize="13sp"
+                android:textColor="@color/text2"
+                android:layout_marginTop="4dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="★ 4.9  (214 reviews)"
+                    android:textSize="13sp"
+                    android:textColor="@color/gold" />
+
+                <TextView
+                    android:id="@+id/tvGymPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rs 500/hr"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/green" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvMachineCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="32 machines"
+                android:textSize="12sp"
+                android:textColor="@color/gym"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_pill_green_light" />
+        </LinearLayout>
+
+        <!-- Amenities -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/surface">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amenities"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/text"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="🅿️ Parking" android:textSize="12sp" android:textColor="@color/text2" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="🚿 Showers" android:textSize="12sp" android:textColor="@color/text2" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="❄️ AC" android:textSize="12sp" android:textColor="@color/text2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="🥤 Protein Bar" android:textSize="12sp" android:textColor="@color/text2" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="👕 Lockers" android:textSize="12sp" android:textColor="@color/text2" />
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="🏃 Cardio Zone" android:textSize="12sp" android:textColor="@color/text2" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Equipment Accordion -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/surface">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Equipment by Muscle"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text" />
+
+                <TextView
+                    android:id="@+id/btnViewMachines"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View All →"
+                    android:textSize="13sp"
+                    android:textColor="@color/green" />
+            </LinearLayout>
+
+            <!-- Chest Section -->
+            <LinearLayout
+                android:id="@+id/sectionChest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingVertical="10dp">
+
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="💪 Chest (8 machines)"
+                    android:textSize="14sp" android:textColor="@color/text" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="▼" android:textColor="@color/text2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentChest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingBottom="8dp">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Flat Bench Press" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Incline Bench Press" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟡 Decline Bench Press" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Pec Deck / Chest Fly" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Cable Crossover" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Chest Press Machine" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟡 Smith Machine" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Push-up &amp; Dip Station" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border" />
+
+            <!-- Back Section -->
+            <LinearLayout
+                android:id="@+id/sectionBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingVertical="10dp">
+
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="🔙 Back (7 machines)"
+                    android:textSize="14sp" android:textColor="@color/text" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="▼" android:textColor="@color/text2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingBottom="8dp">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Lat Pulldown" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Seated Cable Row" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟡 T-Bar Row" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Single-Arm Cable Row" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Deadlift Platform" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Pull-up / Chin-up Station" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🔴 Hyperextension Bench" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border" />
+
+            <!-- Shoulders -->
+            <LinearLayout
+                android:id="@+id/sectionShoul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingVertical="10dp">
+
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="🤸 Shoulders (6 machines)"
+                    android:textSize="14sp" android:textColor="@color/text" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="▼" android:textColor="@color/text2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentShoul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingBottom="8dp">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Shoulder Press" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Lateral Raise" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟡 Cable Side Lateral Raise" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Barbell Overhead Press" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Cable Front Raise" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Rear Delt Fly" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border" />
+
+            <!-- Biceps -->
+            <LinearLayout
+                android:id="@+id/sectionBiceps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingVertical="10dp">
+
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="💪 Biceps (5 machines)"
+                    android:textSize="14sp" android:textColor="@color/text" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="▼" android:textColor="@color/text2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentBiceps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingBottom="8dp">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Barbell Curl" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Preacher Curl + EZ Bar" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟡 Cable Bicep Curl" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Arm Curl Machine" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Dumbbell Rack 5-50kg" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border" />
+
+            <!-- Triceps -->
+            <LinearLayout
+                android:id="@+id/sectionTri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingVertical="10dp">
+
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="🔱 Triceps (5 machines)"
+                    android:textSize="14sp" android:textColor="@color/text" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="▼" android:textColor="@color/text2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentTri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingBottom="8dp">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Tricep Pushdown" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Overhead Extension" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟡 Tricep Dip (Assisted)" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Skull Crusher Bench" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Close-Grip Bench" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="@color/border" />
+
+            <!-- Legs -->
+            <LinearLayout
+                android:id="@+id/sectionLegs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingVertical="10dp">
+
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="🦵 Legs (8 machines)"
+                    android:textSize="14sp" android:textColor="@color/text" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="▼" android:textColor="@color/text2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentLegs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingBottom="8dp">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Leg Press 45°" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Leg Extension" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟡 Leg Curl Lying" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Leg Curl Seated" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Squat Rack" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟡 Hack Squat" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Calf Raise" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🟢 Hip Abductor / Adductor" android:textSize="13sp" android:textColor="@color/text2" android:paddingVertical="3dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Book Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBookGym"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Book This Gym"
+            style="@style/Widget.Sportster.Button.Primary" />
+
+    </LinearLayout>
+</ScrollView>
