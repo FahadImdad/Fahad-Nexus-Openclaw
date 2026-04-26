@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sportster Vendor App — Tournament Creation</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #EEEEF4; display: flex; gap: 24px; padding: 24px; overflow-x: auto; min-height: 100vh; align-items: flex-start; }
+  body { font-family: 'Inter', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; background: #EEEEF4; display: flex; gap: 24px; padding: 24px; overflow-x: auto; min-height: 100vh; align-items: flex-start; }
 
   /* ── Phone Frame ── */
   .phone { width: 375px; min-width: 375px; background: #fff; border-radius: 40px; box-shadow: 0 24px 60px rgba(0,0,0,0.18); overflow: hidden; display: flex; flex-direction: column; }
@@ -129,7 +133,7 @@
   .bottom-nav { display: flex; border-top: 1px solid #F0F0F0; background: #fff; }
   .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 10px 0 6px; cursor: pointer; gap: 3px; font-size: 10px; color: #AAA; font-weight: 500; }
   .nav-item.active { color: #2E4A1A; }
-  .nav-item .ni { font-size: 22px; }
+  .nav-item .ni { font-size: 22px; display: block; line-height: 1.1; }
 
   /* ── Page labels ── */
   .page-label { text-align: center; font-size: 12px; font-weight: 700; color: #888; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
@@ -430,10 +434,10 @@
       </div>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item active"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item"><span class="ni">📋</span>Events</div>
-      <div class="nav-item"><span class="ni">📊</span>Analytics</div>
-      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+      <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
+      <div class="nav-item"><i class="ri-bar-chart-2-line ni"></i>Analytics</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
@@ -447,7 +451,7 @@
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active">
       <div class="nav">
-        <div class="back">←</div>
+        <div class="back"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
         <h2>Create Tournament</h2>
         <span class="action-btn">Save Draft</span>
       </div>
@@ -558,7 +562,7 @@
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active">
       <div class="nav">
-        <div class="back">←</div>
+        <div class="back"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
         <h2>Date, Time & Location</h2>
         <span class="action-btn">Save Draft</span>
       </div>
@@ -662,7 +666,7 @@
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active">
       <div class="nav">
-        <div class="back">←</div>
+        <div class="back"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
         <h2>Registration & Entry</h2>
         <span class="action-btn">Save Draft</span>
       </div>
@@ -761,7 +765,7 @@
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active">
       <div class="nav">
-        <div class="back">←</div>
+        <div class="back"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
         <h2>Prizes & Info</h2>
         <span class="action-btn">Save Draft</span>
       </div>
@@ -805,7 +809,7 @@
         <div style="font-size:15px;font-weight:700;color:#111;padding-top:6px;">Trophy Showcase</div>
 
         <div class="img-upload" style="padding:18px;">
-          <div class="up-icon">🏆</div>
+          <div class="up-icon"><i class="ri-image-add-line"></i></div>
           <p>Upload Trophy / Award Image</p>
           <span>Displayed on the tournament page</span>
         </div>
@@ -858,7 +862,7 @@
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="overflow-y:auto;">
       <div class="nav">
-        <div class="back">←</div>
+        <div class="back"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
         <h2>Review Tournament</h2>
         <span class="action-btn" style="color:#D32F2F;">Edit</span>
       </div>
@@ -952,16 +956,16 @@
         <div class="id-badge">Tournament ID: <span>#NBC-2024-0712</span></div>
         <div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;width:100%;">
           <button class="btn primary" style="width:100%;">📊 View Dashboard</button>
-          <button class="btn secondary" style="width:100%;">👁 Preview User View</button>
+          <button class="btn secondary" style="width:100%;"><i class="ri-eye-line" style="margin-right:4px;font-size:14px;"></i>Preview User View</button>
           <button class="btn outline" style="width:100%;margin-top:4px;">＋ Create Another</button>
         </div>
       </div>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item active"><span class="ni">📋</span>Events</div>
-      <div class="nav-item"><span class="ni">📊</span>Analytics</div>
-      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item active"><i class="ri-file-list-3-line ni"></i>Events</div>
+      <div class="nav-item"><i class="ri-bar-chart-2-line ni"></i>Analytics</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
@@ -1011,7 +1015,7 @@
 
       <!-- ── ATTENTION BANNER (pending screenshots) ── -->
       <div style="background:#FFFBEE;border-bottom:1.5px solid #EDD888;padding:10px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
-        <div style="width:32px;height:32px;background:linear-gradient(135deg,#F08A00,#FFB800);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;box-shadow:0 2px 6px rgba(240,138,0,.35);">📸</div>
+        <div style="width:32px;height:32px;background:linear-gradient(135deg,#F08A00,#FFB800);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;box-shadow:0 2px 6px rgba(240,138,0,.35);"><i class="ri-camera-line" style="color:#fff;font-size:17px;line-height:1;"></i></div>
         <div style="flex:1;min-width:0;">
           <div style="font-size:12px;font-weight:800;color:#7A5200;">4 payment screenshots need review</div>
           <div style="font-size:10px;color:#A07840;margin-top:1px;">Elite Sports · Champions Ground · oldest 2h ago</div>
@@ -1029,7 +1033,7 @@
             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">
               <div>
                 <div style="font-size:16px;font-weight:900;color:#fff;letter-spacing:-.2px;">Elite Sports Arena</div>
-                <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;">📍 DHA Phase 5, Karachi</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;"><i class="ri-map-pin-2-line" style="font-size:11px;margin-right:2px;"></i>DHA Phase 5, Karachi</div>
               </div>
               <div style="background:rgba(144,238,112,.22);border-radius:20px;padding:4px 11px;display:flex;align-items:center;gap:4px;border:1px solid rgba(144,238,112,.35);">
                 <div style="width:6px;height:6px;background:#90EE70;border-radius:50%;"></div>
@@ -1046,7 +1050,7 @@
                 <div style="width:44%;height:100%;background:linear-gradient(90deg,#90EE70,#C8FF80);border-radius:6px;"></div>
               </div>
               <div style="display:flex;justify-content:space-between;margin-top:5px;">
-                <div style="font-size:9px;color:rgba(255,255,255,.45);">6 confirmed &nbsp;·&nbsp; 2 pending 📸</div>
+                <div style="font-size:9px;color:rgba(255,255,255,.45);">6 confirmed &nbsp;·&nbsp; 2 pending <i class="ri-camera-line" style="font-size:9px;"></i></div>
                 <div style="font-size:10px;font-weight:800;color:#90EE70;">44%</div>
               </div>
             </div>
@@ -1061,7 +1065,7 @@
                 <div style="font-size:8px;color:#90C060;margin-top:1px;">↑ 12%</div>
               </div>
               <div style="background:#FFF6E8;border-radius:12px;padding:10px 10px 8px;position:relative;">
-                <div style="font-size:15px;font-weight:900;color:#BF5500;">2 <span style="font-size:13px;">📸</span></div>
+                <div style="font-size:15px;font-weight:900;color:#BF5500;">2 <i class="ri-camera-line" style="font-size:14px;vertical-align:middle;"></i></div>
                 <div style="font-size:8px;color:#BF7030;margin-top:2px;font-weight:600;">PENDING REVIEW</div>
                 <div style="font-size:8px;color:#F08A00;margin-top:1px;">Oldest: 2h ago</div>
                 <div style="position:absolute;top:8px;right:8px;width:7px;height:7px;background:#F08A00;border-radius:50%;box-shadow:0 0 0 2px #fff8ee;"></div>
@@ -1082,7 +1086,7 @@
                 </div>
                 <div style="flex:1;background:linear-gradient(145deg,#BF5500,#F08A00);border-radius:9px;padding:6px 5px;text-align:center;">
                   <div style="font-size:9px;font-weight:900;color:#fff;">2pm</div>
-                  <div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px;">📸 Zain</div>
+                  <div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px;"><i class="ri-camera-line" style="font-size:8px;"></i> Zain</div>
                 </div>
                 <div style="flex:1;background:linear-gradient(145deg,#2A6E20,#3DAA2E);border-radius:9px;padding:6px 5px;text-align:center;">
                   <div style="font-size:9px;font-weight:900;color:#fff;">4pm</div>
@@ -1096,9 +1100,9 @@
             </div>
             <!-- Action strip -->
             <div style="display:flex;border-top:1px solid #F0F0F0;margin-top:10px;">
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#2A6E20;cursor:pointer;border-right:1px solid #F0F0F0;">📅 Schedule</div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F0F0F0;position:relative;">📋 Requests<span style="position:absolute;top:8px;right:6px;width:6px;height:6px;background:#E65100;border-radius:50%;"></span></div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#1565C0;cursor:pointer;">📊 Analytics</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#2A6E20;cursor:pointer;border-right:1px solid #F0F0F0;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F0F0F0;position:relative;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests<span style="position:absolute;top:8px;right:6px;width:6px;height:6px;background:#E65100;border-radius:50%;"></span></div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#1565C0;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
             </div>
           </div>
         </div>
@@ -1109,7 +1113,7 @@
             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">
               <div>
                 <div style="font-size:16px;font-weight:900;color:#fff;letter-spacing:-.2px;">Champions Ground</div>
-                <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;">📍 Gulshan-e-Iqbal, Karachi</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;"><i class="ri-map-pin-2-line" style="font-size:11px;margin-right:2px;"></i>Gulshan-e-Iqbal, Karachi</div>
               </div>
               <div style="background:rgba(144,238,112,.22);border-radius:20px;padding:4px 11px;display:flex;align-items:center;gap:4px;border:1px solid rgba(144,238,112,.35);">
                 <div style="width:6px;height:6px;background:#90EE70;border-radius:50%;"></div>
@@ -1125,7 +1129,7 @@
                 <div style="width:39%;height:100%;background:linear-gradient(90deg,#80CCFF,#AADEFF);border-radius:6px;"></div>
               </div>
               <div style="display:flex;justify-content:space-between;margin-top:5px;">
-                <div style="font-size:9px;color:rgba(255,255,255,.45);">5 confirmed &nbsp;·&nbsp; 2 pending 📸</div>
+                <div style="font-size:9px;color:rgba(255,255,255,.45);">5 confirmed &nbsp;·&nbsp; 2 pending <i class="ri-camera-line" style="font-size:9px;"></i></div>
                 <div style="font-size:10px;font-weight:800;color:#80CCFF;">39%</div>
               </div>
             </div>
@@ -1138,7 +1142,7 @@
                 <div style="font-size:8px;color:#3A70D0;margin-top:1px;">↑ 8%</div>
               </div>
               <div style="background:#FFF6E8;border-radius:12px;padding:10px 10px 8px;position:relative;">
-                <div style="font-size:15px;font-weight:900;color:#BF5500;">2 <span style="font-size:13px;">📸</span></div>
+                <div style="font-size:15px;font-weight:900;color:#BF5500;">2 <i class="ri-camera-line" style="font-size:14px;vertical-align:middle;"></i></div>
                 <div style="font-size:8px;color:#BF7030;margin-top:2px;font-weight:600;">PENDING REVIEW</div>
                 <div style="font-size:8px;color:#F08A00;margin-top:1px;">Oldest: 4h ago</div>
                 <div style="position:absolute;top:8px;right:8px;width:7px;height:7px;background:#F08A00;border-radius:50%;box-shadow:0 0 0 2px #fff8ee;"></div>
@@ -1162,7 +1166,7 @@
                 </div>
                 <div style="flex:1;background:linear-gradient(145deg,#BF5500,#F08A00);border-radius:9px;padding:6px 5px;text-align:center;">
                   <div style="font-size:9px;font-weight:900;color:#fff;">3pm</div>
-                  <div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px;">📸 Saad</div>
+                  <div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px;"><i class="ri-camera-line" style="font-size:8px;"></i> Saad</div>
                 </div>
                 <div style="flex:1;background:#F0F9E8;border:1.5px dashed #90C850;border-radius:9px;padding:6px 5px;text-align:center;">
                   <div style="font-size:9px;font-weight:800;color:#60A030;">5pm</div>
@@ -1171,9 +1175,9 @@
               </div>
             </div>
             <div style="display:flex;border-top:1px solid #F0F0F0;margin-top:10px;">
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#2A6E20;cursor:pointer;border-right:1px solid #F0F0F0;">📅 Schedule</div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F0F0F0;position:relative;">📋 Requests<span style="position:absolute;top:8px;right:6px;width:6px;height:6px;background:#E65100;border-radius:50%;"></span></div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#1565C0;cursor:pointer;">📊 Analytics</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#2A6E20;cursor:pointer;border-right:1px solid #F0F0F0;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F0F0F0;position:relative;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests<span style="position:absolute;top:8px;right:6px;width:6px;height:6px;background:#E65100;border-radius:50%;"></span></div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#1565C0;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
             </div>
           </div>
         </div>
@@ -1184,7 +1188,7 @@
             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;">
               <div>
                 <div style="font-size:16px;font-weight:900;color:#fff;letter-spacing:-.2px;">Victory Sports Complex</div>
-                <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;">📍 North Nazimabad, Karachi</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;"><i class="ri-map-pin-2-line" style="font-size:11px;margin-right:2px;"></i>North Nazimabad, Karachi</div>
               </div>
               <div style="background:rgba(255,210,0,.2);border-radius:20px;padding:4px 11px;display:flex;align-items:center;gap:4px;border:1px solid rgba(255,210,0,.35);">
                 <div style="width:6px;height:6px;background:#FFD600;border-radius:50%;"></div>
@@ -1192,7 +1196,7 @@
               </div>
             </div>
             <div style="background:rgba(255,210,0,.15);border-radius:12px;padding:9px 12px;display:flex;align-items:center;gap:8px;border:1px solid rgba(255,210,0,.2);">
-              <div style="font-size:16px;">🔧</div>
+              <div style="font-size:16px;"><i class="ri-tools-line" style="color:#FFD600;"></i></div>
               <div>
                 <div style="font-size:11px;font-weight:800;color:#FFD600;">Reopens May 1, 2026</div>
                 <div style="font-size:9px;color:rgba(255,255,255,.45);margin-top:1px;">All slots blocked · Bookings paused</div>
@@ -1218,9 +1222,9 @@
               </div>
             </div>
             <div style="display:flex;border-top:1px solid #EEEEEE;">
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:#CCC;cursor:pointer;border-right:1px solid #EEEEEE;">📅 Schedule</div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:#CCC;cursor:pointer;border-right:1px solid #EEEEEE;">📋 Requests</div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#AA5500;cursor:pointer;">📊 Analytics</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:#CCC;cursor:pointer;border-right:1px solid #EEEEEE;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:#CCC;cursor:pointer;border-right:1px solid #EEEEEE;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#AA5500;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
             </div>
           </div>
         </div>
@@ -1249,11 +1253,11 @@
 
     </div><!-- screen -->
     <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item active"><span class="ni">🏟️</span>Arenas</div>
-      <div class="nav-item"><span class="ni">📋</span>Events</div>
-      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item active"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
@@ -1263,7 +1267,7 @@
 <div class="flow-sep">
   <div class="fs-lbl">Tap arena card</div>
   <div class="fs-arr">→</div>
-  <div class="fs-sub">📅 Schedule</div>
+  <div class="fs-sub"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
@@ -1278,12 +1282,12 @@
       <!-- Header -->
       <div style="padding:10px 16px 10px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
         <div style="display:flex; align-items:center; gap:10px;">
-          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;">←</div>
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
           <div style="flex:1;">
             <div style="font-size:15px;font-weight:800;color:#111;">Elite Sports Arena</div>
             <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5 · Hourly slots</div>
           </div>
-          <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#2E4A1A;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;">Block Slots</div>
+          <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#2E4A1A;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;"><i class="ri-calendar-close-line" style="font-size:12px;margin-right:3px;"></i>Block Slots</div>
         </div>
       </div>
 
@@ -1296,7 +1300,7 @@
         <div class="dt-day has-bkg"><div class="dd-name">FRI</div><div class="dd-num">25</div><div class="dd-tag">6 bkgs</div></div>
         <div class="dt-day today"><div class="dd-name">TODAY</div><div class="dd-num">26</div><div class="dd-tag">8 bkgs</div></div>
         <div class="dt-day has-bkg"><div class="dd-name">SUN</div><div class="dd-num">27</div><div class="dd-tag">4 bkgs</div></div>
-        <div class="dt-day has-pending"><div class="dd-name">MON</div><div class="dd-num">28</div><div class="dd-tag">2 📸</div></div>
+        <div class="dt-day has-pending"><div class="dd-name">MON</div><div class="dd-num">28</div><div class="dd-tag"><i class="ri-camera-line" style="font-size:9px;"></i>2</div></div>
         <div class="dt-day"><div class="dd-name">TUE</div><div class="dd-num">29</div><div class="dd-tag" style="color:#DDD;">—</div></div>
         <div class="dt-day"><div class="dd-name">WED</div><div class="dd-num">30</div><div class="dd-tag" style="color:#DDD;">—</div></div>
       </div>
@@ -1306,7 +1310,7 @@
         <div class="day-sum">
           <div class="ds"><div class="dv" style="color:#2E7D32;">6</div><div class="dl">Confirmed</div></div>
           <div style="width:1px;background:#EFEFEF;"></div>
-          <div class="ds"><div class="dv" style="color:#E65100;">2</div><div class="dl">📸 Pending</div></div>
+          <div class="ds"><div class="dv" style="color:#E65100;">2</div><div class="dl"><i class="ri-camera-line" style="font-size:10px;margin-right:2px;"></i>Pending</div></div>
           <div style="width:1px;background:#EFEFEF;"></div>
           <div class="ds"><div class="dv" style="color:#7AAB50;">8</div><div class="dl">Available</div></div>
           <div style="width:1px;background:#EFEFEF;"></div>
@@ -1315,7 +1319,7 @@
         <!-- Compact legend -->
         <div style="display:flex;gap:10px;padding:5px 14px 7px;flex-wrap:wrap;">
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#2A6E20,#3DAA2E);"></div>Confirmed</div>
-          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending 📸</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending <i class="ri-camera-line" style="font-size:9px;"></i></div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Available</div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#EBEBEB;"></div>Closed</div>
@@ -1351,8 +1355,8 @@
           <div class="sg-cell sg-ok"><div class="sg-hr">6pm</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
           <div class="sg-cell sg-ok"><div class="sg-hr">7pm</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
           <!-- Row 6: 8pm–11pm (blocked / available) -->
-          <div class="sg-cell sg-blk"><div class="sg-hr">8pm</div><div class="sg-ico" style="font-size:13px; margin-top:6px;">🔒</div></div>
-          <div class="sg-cell sg-blk"><div class="sg-hr">9pm</div><div class="sg-ico" style="font-size:13px; margin-top:6px;">🔒</div></div>
+          <div class="sg-cell sg-blk"><div class="sg-hr">8pm</div><div class="sg-ico" style="font-size:13px; margin-top:6px;"><i class="ri-lock-2-fill"></i></div></div>
+          <div class="sg-cell sg-blk"><div class="sg-hr">9pm</div><div class="sg-ico" style="font-size:13px; margin-top:6px;"><i class="ri-lock-2-fill"></i></div></div>
           <div class="sg-cell sg-avail"><div class="sg-hr">10pm</div></div>
           <div class="sg-cell sg-avail"><div class="sg-hr">11pm</div></div>
         </div>
@@ -1360,11 +1364,11 @@
 
     </div>
     <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item active"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item"><span class="ni">🏟️</span>Arenas</div>
-      <div class="nav-item"><span class="ni">📋</span>Events</div>
-      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item active"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
@@ -1388,12 +1392,12 @@
       <!-- Header -->
       <div style="padding:10px 16px 10px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
         <div style="display:flex; align-items:center; gap:10px;">
-          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;">←</div>
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
           <div style="flex:1;">
             <div style="font-size:15px;font-weight:800;color:#111;">Elite Sports Arena</div>
             <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5 · <b style="color:#2E4A1A;">Half-hour slots</b></div>
           </div>
-          <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#2E4A1A;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;">Block Slots</div>
+          <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#2E4A1A;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;"><i class="ri-calendar-close-line" style="font-size:12px;margin-right:3px;"></i>Block Slots</div>
         </div>
       </div>
 
@@ -1404,7 +1408,7 @@
         <div class="dt-day has-bkg"><div class="dd-name">FRI</div><div class="dd-num">25</div><div class="dd-tag">12 bkgs</div></div>
         <div class="dt-day today"><div class="dd-name">TODAY</div><div class="dd-num">26</div><div class="dd-tag">16 bkgs</div></div>
         <div class="dt-day has-bkg"><div class="dd-name">SUN</div><div class="dd-num">27</div><div class="dd-tag">8 bkgs</div></div>
-        <div class="dt-day has-pending"><div class="dd-name">MON</div><div class="dd-num">28</div><div class="dd-tag">4 📸</div></div>
+        <div class="dt-day has-pending"><div class="dd-name">MON</div><div class="dd-num">28</div><div class="dd-tag"><i class="ri-camera-line" style="font-size:9px;"></i>4</div></div>
       </div>
 
       <!-- DAY SUMMARY -->
@@ -1412,7 +1416,7 @@
         <div class="day-sum">
           <div class="ds"><div class="dv" style="color:#2E7D32;">10</div><div class="dl">Confirmed</div></div>
           <div style="width:1px;background:#EFEFEF;"></div>
-          <div class="ds"><div class="dv" style="color:#BF5500;">6</div><div class="dl">📸 Pending</div></div>
+          <div class="ds"><div class="dv" style="color:#BF5500;">6</div><div class="dl"><i class="ri-camera-line" style="font-size:10px;margin-right:2px;"></i>Pending</div></div>
           <div style="width:1px;background:#EFEFEF;"></div>
           <div class="ds"><div class="dv" style="color:#60A030;">18</div><div class="dl">Available</div></div>
           <div style="width:1px;background:#EFEFEF;"></div>
@@ -1421,7 +1425,7 @@
         <!-- Compact legend -->
         <div style="display:flex;gap:10px;padding:5px 14px 7px;flex-wrap:wrap;">
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#2A6E20,#3DAA2E);"></div>Confirmed</div>
-          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending 📸</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending <i class="ri-camera-line" style="font-size:9px;"></i></div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Available</div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#EBEBEB;"></div>Closed</div>
@@ -1482,10 +1486,10 @@
           <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:00p</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
           <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:30p</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
           <!-- Row 11: 8:00p–9:30p (blocked by vendor) -->
-          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">8:00p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;">🔒</div></div>
-          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">8:30p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;">🔒</div></div>
-          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">9:00p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;">🔒</div></div>
-          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">9:30p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;">🔒</div></div>
+          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">8:00p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;"><i class="ri-lock-2-fill"></i></div></div>
+          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">8:30p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;"><i class="ri-lock-2-fill"></i></div></div>
+          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">9:00p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;"><i class="ri-lock-2-fill"></i></div></div>
+          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">9:30p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;"><i class="ri-lock-2-fill"></i></div></div>
           <!-- Row 12: 10:00p–11:30p (available) -->
           <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:00p</div></div>
           <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:30p</div></div>
@@ -1496,11 +1500,11 @@
 
     </div>
     <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item active"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item"><span class="ni">🏟️</span>Arenas</div>
-      <div class="nav-item"><span class="ni">📋</span>Events</div>
-      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item active"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
@@ -1565,7 +1569,7 @@
 
           <!-- Slot identity pill -->
           <div style="display:flex;align-items:center;gap:8px;padding:0 16px 12px;">
-            <div style="background:#E65100;color:#fff;font-size:11px;font-weight:800;padding:5px 12px;border-radius:20px;">📸 Pending Review</div>
+            <div style="background:#E65100;color:#fff;font-size:11px;font-weight:800;padding:5px 12px;border-radius:20px;"><i class="ri-camera-line"></i> Pending Review</div>
             <div style="font-size:13px;font-weight:700;color:#333;">10:00 AM – 12:00 PM</div>
           </div>
 
@@ -1575,33 +1579,33 @@
             <div style="flex:1;">
               <div style="font-size:14px;font-weight:800;color:#111;">Ali Hassan</div>
               <div style="font-size:11px;color:#888;margin-top:2px;">⚽ Football · 2 hours · Rs 4,000</div>
-              <div style="font-size:10px;color:#E65100;font-weight:700;margin-top:3px;">📸 Screenshot submitted · 2 hours ago</div>
+              <div style="font-size:10px;color:#E65100;font-weight:700;margin-top:3px;"><i class="ri-camera-line"></i> Screenshot submitted · 2 hours ago</div>
             </div>
-            <div style="width:34px;height:34px;background:#F0F4F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;">💬</div>
+            <div style="width:34px;height:34px;background:#F0F4F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;"><i class="ri-message-3-line" style="font-size:18px;"></i></div>
           </div>
 
           <!-- Info note -->
           <div style="margin:0 16px 10px;background:#FFF8E1;border-radius:10px;padding:9px 12px;font-size:11px;color:#7A5A00;font-weight:600;line-height:1.4;">
-            📋 Review the payment screenshot and booking details before approving
+            <i class="ri-file-warning-line" style="margin-right:3px;"></i> Review the payment screenshot and booking details before approving
           </div>
 
           <!-- Single primary action -->
           <div style="padding:0 16px;">
-            <button style="width:100%;padding:14px;background:#2E4A1A;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">View Full Booking Details →</button>
+            <button style="width:100%;padding:14px;background:#2E4A1A;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">View Full Booking Details <i class="ri-arrow-right-s-line"></i></button>
           </div>
           <div style="padding:8px 16px 0;">
-            <button style="width:100%;padding:10px;background:#F0F4F0;color:#555;font-size:12px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">💬 Contact Customer</button>
+            <button style="width:100%;padding:10px;background:#F0F4F0;color:#555;font-size:12px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:inherit;"><i class="ri-message-3-line"></i> Contact Customer</button>
           </div>
         </div>
       </div>
 
     </div>
     <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item active"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item"><span class="ni">🏟️</span>Arenas</div>
-      <div class="nav-item"><span class="ni">📋</span>Events</div>
-      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item active"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
@@ -1665,7 +1669,7 @@
 
           <!-- Toggle action -->
           <div style="background:#FFF3CD;border-radius:12px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
-            <div style="font-size:20px;">🔒</div>
+            <div style="font-size:20px;"><i class="ri-lock-2-fill" style="color:#7A5A00;"></i></div>
             <div>
               <div style="font-size:13px;font-weight:800;color:#7A5A00;">Turn OFF for Booking</div>
               <div style="font-size:11px;color:#AA7A30;margin-top:2px;">This slot will be unavailable to customers</div>
@@ -1706,18 +1710,18 @@
 
     </div>
     <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item active"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item"><span class="ni">🏟️</span>Arenas</div>
-      <div class="nav-item"><span class="ni">📋</span>Events</div>
-      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item active"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
 
 <!-- flow: S8 → S12 (via Requests button on arena card) -->
 <div class="flow-sep">
-  <div class="fs-lbl">📋 Requests on arena card</div>
+  <div class="fs-lbl"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests on arena card</div>
   <div class="fs-arr">→</div>
   <div class="fs-sub">all bookings</div>
 </div>
@@ -1734,7 +1738,7 @@
       <!-- Header -->
       <div style="padding:12px 16px 0;background:#fff;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;">←</div>
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
           <div style="flex:1;">
             <div style="font-size:15px;font-weight:800;color:#111;">Booking Requests</div>
             <div style="font-size:10px;color:#AAA;">Elite Sports Arena · Sun, 26 Apr</div>
@@ -1763,12 +1767,12 @@
                 <h4>Ali Hassan</h4>
                 <p>⚽ Football · 10:00 AM – 12:00 PM · Rs 4,000</p>
               </div>
-              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;">📸 New</div>
+              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;"><i class="ri-camera-line"></i> New</div>
             </div>
-            <div class="bmc-note">📸 Screenshot submitted 2h ago — review before approving</div>
+            <div class="bmc-note"><i class="ri-camera-line"></i> Screenshot submitted 2h ago — review before approving</div>
             <div class="bmc-acts">
-              <button class="bmc-btn msg">💬 Chat</button>
-              <button class="bmc-btn approve" style="flex:2;">📋 View &amp; Review →</button>
+              <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Chat</button>
+              <button class="bmc-btn approve" style="flex:2;"><i class="ri-file-check-line"></i> View &amp; Review</button>
             </div>
           </div>
         </div>
@@ -1783,12 +1787,12 @@
                 <h4>Zain & Team</h4>
                 <p>🏀 Basketball · 2:00 PM – 4:00 PM · Rs 6,000</p>
               </div>
-              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;">📸 New</div>
+              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;"><i class="ri-camera-line"></i> New</div>
             </div>
-            <div class="bmc-note">📸 Screenshot submitted 1h ago — review before approving</div>
+            <div class="bmc-note"><i class="ri-camera-line"></i> Screenshot submitted 1h ago — review before approving</div>
             <div class="bmc-acts">
-              <button class="bmc-btn msg">💬 Chat</button>
-              <button class="bmc-btn approve" style="flex:2;">📋 View &amp; Review →</button>
+              <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Chat</button>
+              <button class="bmc-btn approve" style="flex:2;"><i class="ri-file-check-line"></i> View &amp; Review</button>
             </div>
           </div>
         </div>
@@ -1803,11 +1807,11 @@
                 <h4>Umar Farooq</h4>
                 <p>⚽ Football · 9:00 AM – 11:00 AM · Rs 4,000</p>
               </div>
-              <span class="bk-badge confirmed" style="white-space:nowrap;">✓ Confirmed</span>
+              <span class="bk-badge confirmed" style="white-space:nowrap;"><i class="ri-check-line"></i> Confirmed</span>
             </div>
-            <div class="bmc-note">✓ Payment verified · JazzCash · Today 7:15 AM</div>
+            <div class="bmc-note"><i class="ri-check-line"></i> Payment verified · JazzCash · Today 7:15 AM</div>
             <div class="bmc-acts">
-              <button class="bmc-btn msg">💬 Message</button>
+              <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Message</button>
               <button class="bmc-btn cancel-bk">Cancel Booking</button>
             </div>
           </div>
@@ -1823,11 +1827,11 @@
                 <h4>Karachi Kings</h4>
                 <p>🏀 Basketball · 4:00 PM – 6:00 PM · Rs 6,000</p>
               </div>
-              <span class="bk-badge confirmed" style="white-space:nowrap;">✓ Confirmed</span>
+              <span class="bk-badge confirmed" style="white-space:nowrap;"><i class="ri-check-line"></i> Confirmed</span>
             </div>
-            <div class="bmc-note">✓ Payment verified · Bank Transfer · Yesterday</div>
+            <div class="bmc-note"><i class="ri-check-line"></i> Payment verified · Bank Transfer · Yesterday</div>
             <div class="bmc-acts">
-              <button class="bmc-btn msg">💬 Message</button>
+              <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Message</button>
               <button class="bmc-btn cancel-bk">Cancel Booking</button>
             </div>
           </div>
@@ -1845,7 +1849,7 @@
               </div>
               <span style="font-size:11px;background:#FDECEA;color:#C62828;padding:3px 8px;border-radius:20px;font-weight:700;white-space:nowrap;">Cancelled</span>
             </div>
-            <div class="bmc-note">✕ Cancelled by customer · 3 hours ago</div>
+            <div class="bmc-note"><i class="ri-close-line"></i> Cancelled by customer · 3 hours ago</div>
             <div style="background:#F4FAEE;border-radius:10px;padding:8px 12px;font-size:11px;font-weight:700;color:#2E7D32;display:flex;align-items:center;gap:6px;">
               <span>🟢</span> Slot is now FREE — available for new bookings
             </div>
@@ -1856,11 +1860,11 @@
 
     </div>
     <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item active"><span class="ni">🏟️</span>Arenas</div>
-      <div class="nav-item"><span class="ni">📋</span>Events</div>
-      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item active"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
@@ -1884,9 +1888,9 @@
 
       <!-- Header nav -->
       <div style="display:flex; align-items:center; gap:10px; padding:14px 16px 12px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
-        <div style="width:32px; height:32px; background:#F0F0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer;">←</div>
+        <div style="width:32px; height:32px; background:#F0F0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
         <div style="flex:1; font-size:16px; font-weight:800; color:#111;">Booking Detail</div>
-        <div style="font-size:11px; background:#EDE7FF; color:#5E35B1; padding:5px 10px; border-radius:20px; font-weight:600;">📸 Pending Review</div>
+        <div style="font-size:11px; background:#EDE7FF; color:#5E35B1; padding:5px 10px; border-radius:20px; font-weight:600;"><i class="ri-camera-line"></i> Pending Review</div>
       </div>
 
       <!-- Scrollable body -->
@@ -1933,7 +1937,7 @@
               <div style="font-size:14px; font-weight:700; color:#111;">Ali Hassan</div>
               <div style="font-size:12px; color:#888; margin-top:2px;">0312-3456789 · Joined Apr 2025</div>
             </div>
-            <div style="width:36px; height:36px; background:#E8F5E0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer;">💬</div>
+            <div style="width:36px; height:36px; background:#E8F5E0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer;"><i class="ri-message-3-line" style="font-size:18px;"></i></div>
           </div>
         </div>
 
@@ -1962,23 +1966,23 @@
 
       <!-- Payment Pending explanation (shows contextually) -->
       <div style="margin:0 16px 2px; background:#FFF8E1; border-radius:10px; padding:8px 12px; font-size:10px; color:#7A5A00; line-height:1.4;">
-        <b>⏳ Payment Pending</b> — use if bank transfer is delayed. Slot stays held for 48h, then auto-releases if not approved.
+        <b><i class="ri-time-line"></i> Payment Pending</b> — use if bank transfer is delayed. Slot stays held for 48h, then auto-releases if not approved.
       </div>
 
       <!-- Fixed action bar at bottom -->
       <div class="action-bar" style="position:sticky; bottom:0; flex-shrink:0;">
-        <button class="act-btn contact">💬 Chat</button>
-        <button class="act-btn" style="background:#FFF3CD; color:#7A5A00; font-size:12px;">⏳ Pending</button>
-        <button class="act-btn approve">✓ Approve</button>
+        <button class="act-btn contact"><i class="ri-message-3-line"></i> Chat</button>
+        <button class="act-btn" style="background:#FFF3CD; color:#7A5A00; font-size:12px;"><i class="ri-time-line"></i> Pending</button>
+        <button class="act-btn approve"><i class="ri-check-line"></i> Approve</button>
       </div>
 
     </div><!-- screen -->
     <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item active"><span class="ni">🏟️</span>Arenas</div>
-      <div class="nav-item"><span class="ni">📋</span>Events</div>
-      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item active"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
@@ -2001,7 +2005,7 @@
 
       <!-- Header -->
       <div style="display:flex; align-items:center; gap:10px; padding:14px 16px 14px; background:#fff; border-bottom:1px solid #F0F0F0;">
-        <div style="width:32px; height:32px; background:#F0F0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer;">←</div>
+        <div style="width:32px; height:32px; background:#F0F0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
         <div style="flex:1; font-size:16px; font-weight:800; color:#111;">Payment Mode</div>
       </div>
 
@@ -2013,12 +2017,12 @@
         <!-- Screenshot mode card — ACTIVE -->
         <div class="pay-mode-card" style="border-color:#2E4A1A;">
           <div class="pmc-row">
-            <div class="pmc-icon" style="background:#E8F5E0;">📸</div>
+            <div class="pmc-icon" style="background:#E8F5E0;"><i class="ri-camera-line" style="font-size:22px;color:#2E4A1A;"></i></div>
             <div class="pmc-text">
               <h4>Screenshot Verification</h4>
               <p>Customer pays via JazzCash, EasyPaisa or bank transfer and submits a screenshot. You review and approve manually.</p>
             </div>
-            <div class="pmc-sel on">✓</div>
+            <div class="pmc-sel on"><i class="ri-check-line" style="font-size:12px;"></i></div>
           </div>
           <div style="margin-top:12px; padding-top:10px; border-top:1px solid #F0F0F0; display:flex; gap:8px; flex-wrap:wrap;">
             <span style="font-size:11px; background:#E8F5E0; color:#2E7D32; padding:4px 10px; border-radius:20px; font-weight:600;">● Active</span>
@@ -2063,10 +2067,10 @@
 
     </div><!-- screen -->
     <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item"><span class="ni">🏟️</span>Arenas</div>
-      <div class="nav-item"><span class="ni">📋</span>Events</div>
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
       <div class="nav-item active"><span class="ni">⚙️</span>Settings</div>
     </div>
   </div>
@@ -2074,7 +2078,7 @@
 
 <!-- flow: S8 → S15 (Analytics on arena card) -->
 <div class="flow-sep">
-  <div class="fs-lbl">📊 Analytics on arena card</div>
+  <div class="fs-lbl"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics on arena card</div>
   <div class="fs-arr">→</div>
   <div class="fs-sub">per-arena stats</div>
 </div>
@@ -2091,12 +2095,12 @@
       <!-- Header -->
       <div style="padding:10px 16px 8px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
         <div style="display:flex; align-items:center; gap:10px;">
-          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;">←</div>
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
           <div style="flex:1;">
             <div style="font-size:15px;font-weight:800;color:#111;">Analytics</div>
             <div style="font-size:10px;color:#AAA;margin-top:1px;">Elite Sports Arena · DHA Phase 5</div>
           </div>
-          <div style="font-size:18px;cursor:pointer;">📤</div>
+          <div style="cursor:pointer;"><i class="ri-upload-2-line" style="font-size:20px;color:#888;"></i></div>
         </div>
         <!-- Period picker -->
         <div class="an-period">
@@ -2137,7 +2141,7 @@
         <!-- Quick badges row -->
         <div style="display:flex;gap:7px;padding:8px 16px 0;overflow-x:auto;">
           <div style="background:#E8F5E0;color:#2E7D32;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">38 Confirmed</div>
-          <div style="background:#FFF3CD;color:#E65100;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">4 Pending 📸</div>
+          <div style="background:#FFF3CD;color:#E65100;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;"><i class="ri-camera-line" style="font-size:9px;margin-right:2px;"></i>4 Pending</div>
           <div style="background:#FDECEA;color:#C62828;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">5 Cancelled</div>
           <div style="background:#EDE7FF;color:#5E35B1;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">91.5% Success rate</div>
         </div>
@@ -2308,11 +2312,11 @@
 
     </div><!-- screen -->
     <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item active"><span class="ni">🏟️</span>Arenas</div>
-      <div class="nav-item"><span class="ni">📋</span>Events</div>
-      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item active"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
@@ -2336,12 +2340,12 @@
       <!-- Header -->
       <div style="padding:10px 16px 8px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
         <div style="display:flex; align-items:center; gap:10px;">
-          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;">←</div>
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
           <div style="flex:1;">
             <div style="font-size:15px;font-weight:800;color:#111;">Business Analytics</div>
             <div style="font-size:10px;color:#AAA;margin-top:1px;">Play Pakistan Org. · All 3 Arenas</div>
           </div>
-          <div style="font-size:18px;cursor:pointer;">📤</div>
+          <div style="cursor:pointer;"><i class="ri-upload-2-line" style="font-size:20px;color:#888;"></i></div>
         </div>
         <div class="an-period">
           <div class="ap">Today</div>
@@ -2380,7 +2384,7 @@
 
         <!-- Pending attention banner -->
         <div style="margin:8px 16px 0;background:#FFF3CD;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;">
-          <div style="font-size:18px;">📸</div>
+          <div style="font-size:18px;"><i class="ri-camera-line" style="color:#7A5200;"></i></div>
           <div style="flex:1;">
             <div style="font-size:11px;font-weight:800;color:#7A5A00;">4 screenshots pending review across all arenas</div>
             <div style="font-size:10px;color:#A07840;margin-top:1px;">Oldest: 4 hours ago at Elite Sports Arena</div>
@@ -2487,15 +2491,15 @@
           <div class="as-title">ARENA STATUS FLAGS</div>
           <div style="display:flex;flex-direction:column;gap:8px;">
             <div style="background:#F4FAEE;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:10px;">
-              <div style="font-size:16px;">✅</div>
+              <div style="font-size:16px;"><i class="ri-checkbox-circle-line" style="color:#2E7D32;"></i></div>
               <div><div style="font-size:12px;font-weight:800;color:#2E4A1A;">Elite Sports</div><div style="font-size:10px;color:#888;margin-top:1px;">Open · 72% occupancy this week</div></div>
             </div>
             <div style="background:#F4FAEE;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:10px;">
-              <div style="font-size:16px;">✅</div>
+              <div style="font-size:16px;"><i class="ri-checkbox-circle-line" style="color:#2E7D32;"></i></div>
               <div><div style="font-size:12px;font-weight:800;color:#1565C0;">Champions Ground</div><div style="font-size:10px;color:#888;margin-top:1px;">Open · 64% occupancy this week</div></div>
             </div>
             <div style="background:#FFF3CD;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:10px;">
-              <div style="font-size:16px;">🔧</div>
+              <div style="font-size:16px;"><i class="ri-tools-line" style="color:#FFD600;"></i></div>
               <div><div style="font-size:12px;font-weight:800;color:#7A5A00;">Victory Complex</div><div style="font-size:10px;color:#888;margin-top:1px;">Maintenance until Apr 30 — re-open May 1</div></div>
             </div>
           </div>
@@ -2505,11 +2509,11 @@
 
     </div><!-- screen -->
     <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item active"><span class="ni">📊</span>Analytics</div>
-      <div class="nav-item"><span class="ni">📋</span>Events</div>
-      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item active"><i class="ri-bar-chart-2-line ni"></i>Analytics</div>
+      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
