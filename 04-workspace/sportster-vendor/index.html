@@ -2467,13 +2467,13 @@ body.interactive .page-label { display: none; }
 
         <!-- ── TOTAL ANALYTICS CTA ── -->
         <div class="an-sec" style="padding-bottom:4px;">
-          <div style="background:#1A3A78;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+          <div data-go="s16" style="background:#1A3A78;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;">
             <div style="font-size:22px;">📊</div>
             <div style="flex:1;">
               <div style="font-size:12px;font-weight:800;color:#fff;">View All Arenas Analytics</div>
               <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;">Compare Elite, Champions &amp; Victory side by side</div>
             </div>
-            <div style="font-size:13px;font-weight:800;color:rgba(255,255,255,.8);cursor:pointer;white-space:nowrap;">→ S16</div>
+            <div style="font-size:13px;font-weight:800;color:rgba(255,255,255,.8);white-space:nowrap;">View →</div>
           </div>
         </div>
 
@@ -2703,7 +2703,7 @@ body.interactive .page-label { display: none; }
   function _show(id) {
     cur = id;
     document.querySelectorAll('.col.v').forEach(function (c) { c.classList.remove('v'); });
-    var el = document.getElementById(id);
+    var el = document.getElementById(id) || document.getElementById('s1');
     if (!el) return;
     el.classList.add('v');
     var scr = el.querySelector('.screen');
