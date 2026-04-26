@@ -260,19 +260,31 @@
   .sg-cell .sg-nm { font-size:9px; font-weight:800; margin-top:auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .sg-cell.sg-closed { background:#EBEBEB; background-image:repeating-linear-gradient(-45deg,transparent,transparent 5px,rgba(0,0,0,.04) 5px,rgba(0,0,0,.04) 6px); }
   .sg-cell.sg-closed .sg-hr { color:#C8C8C8; }
-  .sg-cell.sg-avail { background:#F4FAEE; border:1.5px dashed #A8D080; }
-  .sg-cell.sg-avail .sg-hr { color:#7AAB50; }
-  .sg-cell.sg-ok { background:#2E4A1A; }
+  .sg-cell.sg-avail { background:#F0F9E8; border:1.5px dashed #90C850; }
+  .sg-cell.sg-avail .sg-hr { color:#60A030; }
+  .sg-cell.sg-ok { background:linear-gradient(145deg,#2A6E20,#3DAA2E); }
   .sg-cell.sg-ok .sg-hr,.sg-cell.sg-ok .sg-nm { color:#fff; }
-  .sg-cell.sg-ok .sg-hr { opacity:.7; }
-  .sg-cell.sg-pend { background:#E65100; }
+  .sg-cell.sg-ok .sg-hr { opacity:.8; }
+  .sg-cell.sg-pend { background:linear-gradient(145deg,#BF5500,#F08A00); }
   .sg-cell.sg-pend .sg-hr,.sg-cell.sg-pend .sg-nm { color:#fff; }
-  .sg-cell.sg-pend .sg-hr { opacity:.8; }
+  .sg-cell.sg-pend .sg-hr { opacity:.85; }
   .sg-cell.sg-pend::after { content:'📸'; position:absolute; top:5px; right:6px; font-size:10px; }
-  .sg-cell.sg-done { background:#E0E0E0; }
-  .sg-cell.sg-done .sg-hr,.sg-cell.sg-done .sg-nm { color:#9E9E9E; }
-  .sg-cell.sg-blk { background:#CFD8DC; }
-  .sg-cell.sg-blk .sg-hr { color:#607D8B; }
+  .sg-cell.sg-done { background:#DDE6DF; }
+  .sg-cell.sg-done .sg-hr,.sg-cell.sg-done .sg-nm { color:#8FA898; }
+  .sg-cell.sg-blk { background:#37474F; background-image:repeating-linear-gradient(-45deg,transparent,transparent 5px,rgba(255,255,255,.07) 5px,rgba(255,255,255,.07) 6px); }
+  .sg-cell.sg-blk .sg-hr { color:#90A4AE; }
+
+  /* Half-hour slot modifier */
+  .sg-half { min-height:40px!important; padding:5px 6px 4px!important; }
+  .sg-half .sg-hr { font-size:8px!important; letter-spacing:-.5px!important; }
+  .sg-half .sg-ico { font-size:12px!important; margin-top:1px!important; }
+  .sg-half .sg-nm { font-size:7.5px!important; }
+
+  /* Flow connectors between screen columns */
+  .flow-sep { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; flex-shrink:0; min-width:52px; align-self:center; margin-top:36px; }
+  .flow-sep .fs-lbl { font-size:9px; font-weight:800; color:#888; text-align:center; max-width:66px; line-height:1.4; }
+  .flow-sep .fs-arr { font-size:20px; color:#BDD4A8; line-height:1; }
+  .flow-sep .fs-sub { font-size:8px; color:#BBB; text-align:center; max-width:66px; line-height:1.3; font-style:italic; }
 
   /* Bottom sheet overlay (slot tap) */
   .bs-bg { position:absolute; inset:0; background:rgba(0,0,0,.5); z-index:10; border-radius:0 0 36px 36px; display:flex; flex-direction:column; justify-content:flex-end; }
@@ -958,7 +970,7 @@
      SCREEN 8 — MY ARENAS
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">8 · My Arenas</div>
+  <div class="page-label">8 · My Arenas — from: 🏟️ Arenas nav</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active">
@@ -1008,7 +1020,12 @@
               <div class="ac-stat"><div class="sv">8</div><div class="sl">Bookings</div></div>
               <div class="ac-stat"><div class="sv" style="color:#7A5A00;">2<span class="ndot" style="width:5px;height:5px;"></span></div><div class="sl">Pending</div></div>
               <div class="ac-stat"><div class="sv" style="color:#2E4A1A;">Rs 22k</div><div class="sl">Today</div></div>
-              <div class="ac-stat"><div class="sv">⚽🏀</div><div class="sl">Courts</div></div>
+              <div class="ac-stat"><div class="sv">⚽🏀</div><div class="sl">Sport</div></div>
+            </div>
+            <div style="display:flex;border-top:1px solid #F5F5F5;margin-top:8px;">
+              <div style="flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:700;color:#2E4A1A;cursor:pointer;border-right:1px solid #F5F5F5;">📅 Schedule</div>
+              <div style="flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F5F5F5;">📋 Requests</div>
+              <div style="flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:700;color:#1565C0;cursor:pointer;">📊 Analytics</div>
             </div>
           </div>
         </div>
@@ -1028,7 +1045,12 @@
               <div class="ac-stat"><div class="sv">7</div><div class="sl">Bookings</div></div>
               <div class="ac-stat"><div class="sv" style="color:#7A5A00;">2<span class="ndot" style="width:5px;height:5px;"></span></div><div class="sl">Pending</div></div>
               <div class="ac-stat"><div class="sv" style="color:#2E4A1A;">Rs 18k</div><div class="sl">Today</div></div>
-              <div class="ac-stat"><div class="sv">⚽🏏</div><div class="sl">Courts</div></div>
+              <div class="ac-stat"><div class="sv">⚽🏏</div><div class="sl">Sport</div></div>
+            </div>
+            <div style="display:flex;border-top:1px solid #F5F5F5;margin-top:8px;">
+              <div style="flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:700;color:#2E4A1A;cursor:pointer;border-right:1px solid #F5F5F5;">📅 Schedule</div>
+              <div style="flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F5F5F5;">📋 Requests</div>
+              <div style="flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:700;color:#1565C0;cursor:pointer;">📊 Analytics</div>
             </div>
           </div>
         </div>
@@ -1048,12 +1070,27 @@
               <div class="ac-stat"><div class="sv">3</div><div class="sl">Bookings</div></div>
               <div class="ac-stat"><div class="sv" style="color:#888;">0</div><div class="sl">Pending</div></div>
               <div class="ac-stat"><div class="sv" style="color:#2E4A1A;">Rs 9k</div><div class="sl">Today</div></div>
-              <div class="ac-stat"><div class="sv">🏀🎾</div><div class="sl">Courts</div></div>
+              <div class="ac-stat"><div class="sv">🏀🎾</div><div class="sl">Sport</div></div>
+            </div>
+            <div style="display:flex;border-top:1px solid #F5F5F5;margin-top:8px;">
+              <div style="flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:600;color:#AAA;cursor:pointer;border-right:1px solid #F5F5F5;">📅 Schedule</div>
+              <div style="flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:600;color:#AAA;cursor:pointer;border-right:1px solid #F5F5F5;">📋 Requests</div>
+              <div style="flex:1;padding:9px 4px;text-align:center;font-size:11px;font-weight:600;color:#AAA;cursor:pointer;">📊 Analytics</div>
             </div>
           </div>
         </div>
 
       </div><!-- end arena cards -->
+
+      <!-- Analytics CTA -->
+      <div style="margin:0 16px 16px;background:#F0F4FE;border:1.5px solid #C5D6F5;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:12px;">
+        <div style="font-size:22px;">📊</div>
+        <div style="flex:1;">
+          <div style="font-size:12px;font-weight:800;color:#1565C0;">View Total Business Analytics</div>
+          <div style="font-size:10px;color:#6090C0;margin-top:2px;">Revenue, occupancy &amp; trends across all 3 arenas</div>
+        </div>
+        <div style="font-size:11px;font-weight:800;color:#1565C0;cursor:pointer;white-space:nowrap;">→ S16</div>
+      </div>
 
     </div><!-- screen -->
     <div class="bottom-nav">
@@ -1067,11 +1104,18 @@
 </div>
 
 
+<!-- flow: S8 → S9 -->
+<div class="flow-sep">
+  <div class="fs-lbl">Tap arena card</div>
+  <div class="fs-arr">→</div>
+  <div class="fs-sub">📅 Schedule</div>
+</div>
+
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 9 — ARENA SCHEDULE (24-HOUR SLOT GRID)
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">9 · Arena Schedule</div>
+  <div class="page-label">9 · Schedule (Hourly) — tap arena card</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden;">
@@ -1115,10 +1159,10 @@
         </div>
         <!-- Compact legend -->
         <div style="display:flex;gap:10px;padding:5px 14px 7px;flex-wrap:wrap;">
-          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#2E4A1A;"></div>Confirmed</div>
-          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#E65100;"></div>Pending 📸</div>
-          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F4FAEE;border:1.5px dashed #A8D080;"></div>Available</div>
-          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#CFD8DC;"></div>Blocked</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#2A6E20,#3DAA2E);"></div>Confirmed</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending 📸</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Available</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#EBEBEB;"></div>Closed</div>
         </div>
       </div>
@@ -1170,11 +1214,154 @@
   </div>
 </div>
 
+<!-- flow: S9 → S9b (half-hour variant) -->
+<div class="flow-sep">
+  <div class="fs-lbl">Half-hour mode</div>
+  <div class="fs-arr">→</div>
+  <div class="fs-sub">same screen, 30-min slots</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCREEN 9b — ARENA SCHEDULE (HALF-HOUR SLOT GRID)
+═══════════════════════════════════════════════════════ -->
+<div class="col">
+  <div class="page-label">9b · Schedule (Half-Hour) — if arena uses 30-min slots</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden;">
+
+      <!-- Header -->
+      <div style="padding:10px 16px 10px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;">←</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;color:#111;">Elite Sports Arena</div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5 · <b style="color:#2E4A1A;">Half-hour slots</b></div>
+          </div>
+          <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#2E4A1A;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;">Block Slots</div>
+        </div>
+      </div>
+
+      <!-- DATE STRIP -->
+      <div class="dt-strip" style="background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
+        <div class="dt-day"><div class="dd-name">WED</div><div class="dd-num">23</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">THU</div><div class="dd-num">24</div><div class="dd-tag">6 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">FRI</div><div class="dd-num">25</div><div class="dd-tag">12 bkgs</div></div>
+        <div class="dt-day today"><div class="dd-name">TODAY</div><div class="dd-num">26</div><div class="dd-tag">16 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">SUN</div><div class="dd-num">27</div><div class="dd-tag">8 bkgs</div></div>
+        <div class="dt-day has-pending"><div class="dd-name">MON</div><div class="dd-num">28</div><div class="dd-tag">4 📸</div></div>
+      </div>
+
+      <!-- DAY SUMMARY -->
+      <div style="background:#fff; border-bottom:1.5px solid #EFEFEF; flex-shrink:0;">
+        <div class="day-sum">
+          <div class="ds"><div class="dv" style="color:#2E7D32;">10</div><div class="dl">Confirmed</div></div>
+          <div style="width:1px;background:#EFEFEF;"></div>
+          <div class="ds"><div class="dv" style="color:#BF5500;">6</div><div class="dl">📸 Pending</div></div>
+          <div style="width:1px;background:#EFEFEF;"></div>
+          <div class="ds"><div class="dv" style="color:#60A030;">18</div><div class="dl">Available</div></div>
+          <div style="width:1px;background:#EFEFEF;"></div>
+          <div class="ds"><div class="dv" style="color:#78909C;">4</div><div class="dl">Blocked</div></div>
+        </div>
+        <!-- Compact legend -->
+        <div style="display:flex;gap:10px;padding:5px 14px 7px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#2A6E20,#3DAA2E);"></div>Confirmed</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending 📸</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Available</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#EBEBEB;"></div>Closed</div>
+        </div>
+      </div>
+
+      <!-- HALF-HOUR SLOT GRID (4 cols × 12 rows = 48 half-hour slots) -->
+      <div style="flex:1; overflow-y:auto;">
+        <div class="slot-grid">
+          <!-- Row 1: 12:00a–1:30a (closed) -->
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">12:00a</div></div>
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">12:30a</div></div>
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">1:00a</div></div>
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">1:30a</div></div>
+          <!-- Row 2: 2:00a–3:30a (closed) -->
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">2:00a</div></div>
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">2:30a</div></div>
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">3:00a</div></div>
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">3:30a</div></div>
+          <!-- Row 3: 4:00a–5:30a (closed) -->
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">4:00a</div></div>
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">4:30a</div></div>
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">5:00a</div></div>
+          <div class="sg-cell sg-closed sg-half"><div class="sg-hr">5:30a</div></div>
+          <!-- Row 4: 6:00a–7:30a (open / available) -->
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">6:00a</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">6:30a</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">7:00a</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">7:30a</div></div>
+          <!-- Row 5: 8:00a–9:30a (past done + confirmed — Umar 9-11am, so 9:00 onward) -->
+          <div class="sg-cell sg-done sg-half"><div class="sg-hr">8:00a</div><div class="sg-ico">⚽</div><div class="sg-nm">W.W.</div></div>
+          <div class="sg-cell sg-done sg-half"><div class="sg-hr">8:30a</div><div class="sg-ico">⚽</div><div class="sg-nm">W.W.</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">9:00a</div><div class="sg-ico">⚽</div><div class="sg-nm">Umar F.</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">9:30a</div><div class="sg-ico">⚽</div><div class="sg-nm">Umar F.</div></div>
+          <!-- Row 6: 10:00a–11:30a (pending screenshot — Ali Hassan 10am–12pm = 4 half-slots) -->
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">10:00a</div><div class="sg-ico">⚽</div><div class="sg-nm">Ali H.</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">10:30a</div><div class="sg-ico">⚽</div><div class="sg-nm">Ali H.</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">11:00a</div><div class="sg-ico">⚽</div><div class="sg-nm">Ali H.</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">11:30a</div><div class="sg-ico">⚽</div><div class="sg-nm">Ali H.</div></div>
+          <!-- Row 7: 12:00p–1:30p (available) -->
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:00p</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:30p</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">1:00p</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">1:30p</div></div>
+          <!-- Row 8: 2:00p–3:30p (pending — Zain 2–4pm = 4 half-slots) -->
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">2:00p</div><div class="sg-ico">🏀</div><div class="sg-nm">Zain T.</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">2:30p</div><div class="sg-ico">🏀</div><div class="sg-nm">Zain T.</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:00p</div><div class="sg-ico">🏀</div><div class="sg-nm">Zain T.</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:30p</div><div class="sg-ico">🏀</div><div class="sg-nm">Zain T.</div></div>
+          <!-- Row 9: 4:00p–5:30p (confirmed — K.Kings 4–6pm) -->
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">4:00p</div><div class="sg-ico">🏀</div><div class="sg-nm">K.Kings</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">4:30p</div><div class="sg-ico">🏀</div><div class="sg-nm">K.Kings</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">5:00p</div><div class="sg-ico">🏀</div><div class="sg-nm">K.Kings</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">5:30p</div><div class="sg-ico">🏀</div><div class="sg-nm">K.Kings</div></div>
+          <!-- Row 10: 6:00p–7:30p (confirmed — Ahmed G. 6–8pm) -->
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:00p</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:30p</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:00p</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:30p</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
+          <!-- Row 11: 8:00p–9:30p (blocked by vendor) -->
+          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">8:00p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;">🔒</div></div>
+          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">8:30p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;">🔒</div></div>
+          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">9:00p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;">🔒</div></div>
+          <div class="sg-cell sg-blk sg-half"><div class="sg-hr">9:30p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;">🔒</div></div>
+          <!-- Row 12: 10:00p–11:30p (available) -->
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:00p</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:30p</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:00p</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:30p</div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item"><span class="ni">🏠</span>Home</div>
+      <div class="nav-item active"><span class="ni">📅</span>Schedule</div>
+      <div class="nav-item"><span class="ni">🏟️</span>Arenas</div>
+      <div class="nav-item"><span class="ni">📋</span>Events</div>
+      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+    </div>
+  </div>
+</div>
+
+<!-- flow: S9 → S10 -->
+<div class="flow-sep">
+  <div class="fs-lbl">Tap booked / pending slot</div>
+  <div class="fs-arr">→</div>
+  <div class="fs-sub">bottom sheet</div>
+</div>
+
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 10 — SLOT TAP → BOOKING DETAIL SHEET
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">10 · Slot Tap → Detail</div>
+  <div class="page-label">10 · Slot Detail Sheet — tap booked cell</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden; position:relative;">
@@ -1264,11 +1451,18 @@
   </div>
 </div>
 
+<!-- flow: S9 → S11 (branch) -->
+<div class="flow-sep">
+  <div class="fs-lbl">Long press any slot</div>
+  <div class="fs-arr">→</div>
+  <div class="fs-sub">manage popup</div>
+</div>
+
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 11 — LONG PRESS → SLOT MANAGEMENT POPUP
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">11 · Long Press → Manage Slot</div>
+  <div class="page-label">11 · Manage Slot — long press slot cell</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden; position:relative;">
@@ -1366,11 +1560,18 @@
   </div>
 </div>
 
+<!-- flow: S8 → S12 (via Requests button on arena card) -->
+<div class="flow-sep">
+  <div class="fs-lbl">📋 Requests on arena card</div>
+  <div class="fs-arr">→</div>
+  <div class="fs-sub">all bookings</div>
+</div>
+
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 12 — BOOKING MANAGEMENT (ALL REQUESTS)
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">12 · Booking Management</div>
+  <div class="page-label">12 · Booking Requests — tap Requests on card</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="display:flex;flex-direction:column;">
@@ -1510,11 +1711,18 @@
 </div>
 
 
+<!-- flow: S12 → S13 or S10 → S13 -->
+<div class="flow-sep">
+  <div class="fs-lbl">View &amp; Review →</div>
+  <div class="fs-arr">→</div>
+  <div class="fs-sub">from S10 or S12</div>
+</div>
+
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 13 — BOOKING DETAIL + SCREENSHOT REVIEW
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">13 · Booking Detail</div>
+  <div class="page-label">13 · Booking Detail — from S10 View Details / S12 Review</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="display:flex; flex-direction:column;">
@@ -1620,11 +1828,18 @@
   </div>
 </div>
 
+<!-- flow: S8 → S14 (settings) -->
+<div class="flow-sep">
+  <div class="fs-lbl">⚙️ Arena settings</div>
+  <div class="fs-arr">→</div>
+  <div class="fs-sub">payment mode</div>
+</div>
+
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 14 — PAYMENT MODE
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">14 · Payment Mode</div>
+  <div class="page-label">14 · Payment Mode — via arena settings</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active">
@@ -1702,11 +1917,18 @@
   </div>
 </div>
 
+<!-- flow: S8 → S15 (Analytics on arena card) -->
+<div class="flow-sep">
+  <div class="fs-lbl">📊 Analytics on arena card</div>
+  <div class="fs-arr">→</div>
+  <div class="fs-sub">per-arena stats</div>
+</div>
+
 <!-- ═══════════════════════════════════════════════════════
-     SCREEN 15 — ARENA ANALYTICS
+     SCREEN 15 — ARENA ANALYTICS (PER-ARENA)
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">15 · Arena Analytics</div>
+  <div class="page-label">15 · Per-Arena Analytics — tap 📊 on arena card</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden;">
@@ -1915,6 +2137,18 @@
           </div>
         </div>
 
+        <!-- ── TOTAL ANALYTICS CTA ── -->
+        <div class="an-sec" style="padding-bottom:4px;">
+          <div style="background:#1A3A78;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+            <div style="font-size:22px;">📊</div>
+            <div style="flex:1;">
+              <div style="font-size:12px;font-weight:800;color:#fff;">View All Arenas Analytics</div>
+              <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;">Compare Elite, Champions &amp; Victory side by side</div>
+            </div>
+            <div style="font-size:13px;font-weight:800;color:#8AB8FF;cursor:pointer;white-space:nowrap;">→ S16</div>
+          </div>
+        </div>
+
       </div><!-- scrollable content -->
 
     </div><!-- screen -->
@@ -1922,6 +2156,203 @@
       <div class="nav-item"><span class="ni">🏠</span>Home</div>
       <div class="nav-item"><span class="ni">📅</span>Schedule</div>
       <div class="nav-item active"><span class="ni">🏟️</span>Arenas</div>
+      <div class="nav-item"><span class="ni">📋</span>Events</div>
+      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+    </div>
+  </div>
+</div>
+
+<!-- flow: S15 → S16 -->
+<div class="flow-sep">
+  <div class="fs-lbl">View All Arenas →</div>
+  <div class="fs-arr">→</div>
+  <div class="fs-sub">from S15 CTA or Dashboard 📊 nav</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCREEN 16 — TOTAL VENDOR ANALYTICS (ALL ARENAS)
+═══════════════════════════════════════════════════════ -->
+<div class="col">
+  <div class="page-label">16 · Total Analytics — from: S15 CTA or Dashboard 📊 nav</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden;">
+
+      <!-- Header -->
+      <div style="padding:10px 16px 8px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;">←</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;color:#111;">Business Analytics</div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;">Play Pakistan Org. · All 3 Arenas</div>
+          </div>
+          <div style="font-size:18px;cursor:pointer;">📤</div>
+        </div>
+        <div class="an-period">
+          <div class="ap">Today</div>
+          <div class="ap active">This Week</div>
+          <div class="ap">Month</div>
+          <div class="ap">All Time</div>
+        </div>
+      </div>
+
+      <!-- Scrollable content -->
+      <div style="flex:1; overflow-y:auto; padding-bottom:12px;">
+
+        <!-- ── COMBINED KPI TILES ── -->
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kv" style="color:#2E4A1A;">Rs 234k</div>
+            <div class="kl">TOTAL REVENUE</div>
+            <div class="kt up">↑ 21% vs last week</div>
+          </div>
+          <div class="kpi">
+            <div class="kv">134</div>
+            <div class="kl">TOTAL BOOKINGS</div>
+            <div class="kt up">↑ 15% vs last week</div>
+          </div>
+          <div class="kpi">
+            <div class="kv" style="color:#1565C0;">68%</div>
+            <div class="kl">AVG OCCUPANCY</div>
+            <div class="kt up">↑ 4pts vs last week</div>
+          </div>
+          <div class="kpi">
+            <div class="kv">Rs 1,746</div>
+            <div class="kl">AVG BOOKING VALUE</div>
+            <div class="kt up">↑ 5% vs last week</div>
+          </div>
+        </div>
+
+        <!-- Pending attention banner -->
+        <div style="margin:8px 16px 0;background:#FFF3CD;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:10px;">
+          <div style="font-size:18px;">📸</div>
+          <div style="flex:1;">
+            <div style="font-size:11px;font-weight:800;color:#7A5A00;">4 screenshots pending review across all arenas</div>
+            <div style="font-size:10px;color:#A07840;margin-top:1px;">Oldest: 4 hours ago at Elite Sports Arena</div>
+          </div>
+          <div style="font-size:11px;font-weight:800;color:#E65100;cursor:pointer;">Review →</div>
+        </div>
+
+        <!-- ── REVENUE BY ARENA ── -->
+        <div class="an-sec">
+          <div class="as-title">REVENUE BY ARENA — THIS WEEK</div>
+          <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #F0F0F0;">
+            <div class="dow-row">
+              <div style="font-size:10px;color:#444;font-weight:700;width:72px;flex-shrink:0;">Elite Sports</div>
+              <div class="dr-bar-bg"><div class="dr-bar-fill" style="width:90%;background:linear-gradient(90deg,#2A6E20,#3DAA2E);"></div></div>
+              <div style="font-size:10px;color:#2E4A1A;font-weight:800;width:36px;text-align:right;flex-shrink:0;">Rs 87k</div>
+            </div>
+            <div class="dow-row">
+              <div style="font-size:10px;color:#444;font-weight:700;width:72px;flex-shrink:0;">Champions</div>
+              <div class="dr-bar-bg"><div class="dr-bar-fill" style="width:72%;background:#1565C0;"></div></div>
+              <div style="font-size:10px;color:#1565C0;font-weight:800;width:36px;text-align:right;flex-shrink:0;">Rs 72k</div>
+            </div>
+            <div class="dow-row" style="margin-bottom:0;">
+              <div style="font-size:10px;color:#444;font-weight:700;width:72px;flex-shrink:0;">Victory</div>
+              <div class="dr-bar-bg"><div class="dr-bar-fill" style="width:76%;background:#AA5500;"></div></div>
+              <div style="font-size:10px;color:#AA5500;font-weight:800;width:36px;text-align:right;flex-shrink:0;">Rs 75k</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── ARENA SCORECARD TABLE ── -->
+        <div class="an-sec">
+          <div class="as-title">ARENA SCORECARD</div>
+          <div style="background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #F0F0F0;">
+            <div style="display:grid;grid-template-columns:1fr 58px 46px 46px;background:#F8FBF5;padding:8px 14px;border-bottom:1px solid #F0F0F0;">
+              <div style="font-size:10px;font-weight:700;color:#AAA;">Arena</div>
+              <div style="font-size:10px;font-weight:700;color:#AAA;text-align:right;">Revenue</div>
+              <div style="font-size:10px;font-weight:700;color:#AAA;text-align:right;">Occup.</div>
+              <div style="font-size:10px;font-weight:700;color:#AAA;text-align:right;">Bkgs</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 58px 46px 46px;padding:11px 14px;border-bottom:1px solid #F5F5F5;align-items:center;">
+              <div>
+                <div style="font-size:12px;font-weight:800;color:#111;display:flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:#2A6E20;display:inline-block;"></span>Elite Sports</div>
+                <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5</div>
+              </div>
+              <div style="font-size:12px;font-weight:800;color:#2E4A1A;text-align:right;">Rs 87k</div>
+              <div style="font-size:12px;font-weight:800;color:#1565C0;text-align:right;">72%</div>
+              <div style="font-size:12px;font-weight:800;color:#111;text-align:right;">47</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 58px 46px 46px;padding:11px 14px;border-bottom:1px solid #F5F5F5;align-items:center;">
+              <div>
+                <div style="font-size:12px;font-weight:800;color:#111;display:flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:#1565C0;display:inline-block;"></span>Champions</div>
+                <div style="font-size:10px;color:#AAA;margin-top:1px;">Gulshan-e-Iqbal</div>
+              </div>
+              <div style="font-size:12px;font-weight:800;color:#1565C0;text-align:right;">Rs 72k</div>
+              <div style="font-size:12px;font-weight:800;color:#1565C0;text-align:right;">64%</div>
+              <div style="font-size:12px;font-weight:800;color:#111;text-align:right;">52</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 58px 46px 46px;padding:11px 14px;align-items:center;">
+              <div>
+                <div style="font-size:12px;font-weight:800;color:#111;display:flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:#AA5500;display:inline-block;"></span>Victory</div>
+                <div style="font-size:10px;color:#AAA;margin-top:1px;">North Nazimabad</div>
+              </div>
+              <div style="font-size:12px;font-weight:800;color:#AA5500;text-align:right;">Rs 75k</div>
+              <div style="font-size:12px;font-weight:800;color:#888;text-align:right;">68%</div>
+              <div style="font-size:12px;font-weight:800;color:#111;text-align:right;">35</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── COMBINED DAILY REVENUE ── -->
+        <div class="an-sec">
+          <div class="as-title">COMBINED DAILY REVENUE</div>
+          <div style="background:#fff;border-radius:14px;padding:14px 16px 28px;border:1.5px solid #F0F0F0;">
+            <div class="rev-chart">
+              <div class="rev-bar" style="height:30%;"><div class="rv">Mon</div></div>
+              <div class="rev-bar" style="height:48%;"><div class="rv">Tue</div></div>
+              <div class="rev-bar" style="height:55%;"><div class="rv">Wed</div></div>
+              <div class="rev-bar" style="height:72%;"><div class="rv">Thu</div></div>
+              <div class="rev-bar" style="height:65%;"><div class="rv">Fri</div></div>
+              <div class="rev-bar" style="height:88%;"><div class="rv">Sat</div></div>
+              <div class="rev-bar today" style="height:100%;"><div class="rv" style="color:#2E4A1A;">Today</div></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:22px;padding-top:8px;border-top:1px solid #F5F5F5;">
+              <div style="text-align:center;"><div style="font-size:12px;font-weight:800;color:#2E4A1A;">Rs 56k</div><div style="font-size:9px;color:#AAA;">Peak day</div></div>
+              <div style="text-align:center;"><div style="font-size:12px;font-weight:800;color:#111;">Rs 33.4k</div><div style="font-size:9px;color:#AAA;">Daily avg</div></div>
+              <div style="text-align:center;"><div style="font-size:12px;font-weight:800;color:#888;">Rs 18k</div><div style="font-size:9px;color:#AAA;">Slowest</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SPORT MIX (all arenas) ── -->
+        <div class="an-sec">
+          <div class="as-title">SPORT MIX ACROSS ALL ARENAS</div>
+          <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #F0F0F0;">
+            <div class="sp-row"><div class="sr-ico">⚽</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Football</div><div class="sr-bg"><div class="sr-fill" style="width:48%;background:#2E4A1A;"></div></div></div><div class="sr-pct">48%</div></div>
+            <div class="sp-row"><div class="sr-ico">🏀</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Basketball</div><div class="sr-bg"><div class="sr-fill" style="width:25%;background:#1565C0;"></div></div></div><div class="sr-pct">25%</div></div>
+            <div class="sp-row"><div class="sr-ico">🏏</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Cricket</div><div class="sr-bg"><div class="sr-fill" style="width:18%;background:#7B3F00;"></div></div></div><div class="sr-pct">18%</div></div>
+            <div class="sp-row" style="margin-bottom:0;"><div class="sr-ico">🎾</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Tennis</div><div class="sr-bg"><div class="sr-fill" style="width:9%;background:#880E4F;"></div></div></div><div class="sr-pct">9%</div></div>
+          </div>
+        </div>
+
+        <!-- ── MAINTENANCE / FLAGS ── -->
+        <div class="an-sec" style="padding-bottom:4px;">
+          <div class="as-title">ARENA STATUS FLAGS</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="background:#F4FAEE;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:10px;">
+              <div style="font-size:16px;">✅</div>
+              <div><div style="font-size:12px;font-weight:800;color:#2E4A1A;">Elite Sports</div><div style="font-size:10px;color:#888;margin-top:1px;">Open · 72% occupancy this week</div></div>
+            </div>
+            <div style="background:#F4FAEE;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:10px;">
+              <div style="font-size:16px;">✅</div>
+              <div><div style="font-size:12px;font-weight:800;color:#1565C0;">Champions Ground</div><div style="font-size:10px;color:#888;margin-top:1px;">Open · 64% occupancy this week</div></div>
+            </div>
+            <div style="background:#FFF3CD;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:10px;">
+              <div style="font-size:16px;">🔧</div>
+              <div><div style="font-size:12px;font-weight:800;color:#7A5A00;">Victory Complex</div><div style="font-size:10px;color:#888;margin-top:1px;">Maintenance until Apr 30 — re-open May 1</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- scrollable content -->
+
+    </div><!-- screen -->
+    <div class="bottom-nav">
+      <div class="nav-item"><span class="ni">🏠</span>Home</div>
+      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
+      <div class="nav-item active"><span class="ni">📊</span>Analytics</div>
       <div class="nav-item"><span class="ni">📋</span>Events</div>
       <div class="nav-item"><span class="ni">👤</span>Profile</div>
     </div>
