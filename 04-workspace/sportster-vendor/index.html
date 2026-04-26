@@ -143,168 +143,89 @@
   .form-body::-webkit-scrollbar { display: none; }
 
   /* ══════════════════════════════════════
-     BOOKING MANAGEMENT — NEW CSS
+     ARENA BOOKING MANAGEMENT — CSS
   ══════════════════════════════════════ */
 
-  /* Booking Hub header */
-  .bk-header { background: linear-gradient(135deg, #1A3A5C 0%, #2E6AAA 100%); padding: 28px 20px 20px; color:#fff; }
-  .bk-header .greeting { font-size:12px; opacity:.7; margin-bottom:4px; }
-  .bk-header h1 { font-size:20px; font-weight:800; }
-  .bk-header .sub { font-size:12px; opacity:.6; margin-top:2px; }
+  /* Arena switcher pill row */
+  .arena-switch { display:flex; gap:8px; padding:12px 16px 8px; overflow-x:auto; }
+  .arena-switch::-webkit-scrollbar { display:none; }
+  .arena-pill { padding:7px 14px; border-radius:20px; border:1.5px solid #E5E5E5; font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap; color:#666; background:#FAFAFA; }
+  .arena-pill.active { background:#2E4A1A; color:#fff; border-color:#2E4A1A; }
 
-  /* Booking-themed stat cards */
-  .bk-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:14px 16px; }
-  .bk-stat { background:#fff; border:1px solid #EEF2FF; border-radius:14px; padding:14px; }
-  .bk-stat .bk-val { font-size:22px; font-weight:800; }
-  .bk-stat .bk-lbl { font-size:11px; color:#888; margin-top:2px; }
-  .bk-stat .bk-trend { font-size:11px; font-weight:600; margin-top:4px; }
-  .bk-stat .bk-trend.up { color:#2E7D32; }
-  .bk-stat .bk-trend.down { color:#C62828; }
+  /* Arena card (My Arenas list) */
+  .arena-card { margin:0 16px 12px; border:1px solid #EFEFEF; border-radius:16px; background:#fff; overflow:hidden; }
+  .arena-card .ac-color-bar { height:5px; }
+  .arena-card .ac-body { padding:14px 16px; }
+  .arena-card .ac-name { font-size:15px; font-weight:700; color:#111; }
+  .arena-card .ac-addr { font-size:12px; color:#888; margin-top:3px; }
+  .arena-card .ac-stats { display:flex; gap:0; margin-top:12px; border-top:1px solid #F5F5F5; padding-top:10px; }
+  .arena-card .ac-stat { flex:1; text-align:center; }
+  .arena-card .ac-stat .sv { font-size:16px; font-weight:800; color:#111; }
+  .arena-card .ac-stat .sl { font-size:10px; color:#AAA; margin-top:2px; }
+  .arena-card .ac-stat + .ac-stat { border-left:1px solid #F0F0F0; }
 
-  /* Occupancy ring */
-  .occ-ring-wrap { display:flex; justify-content:center; align-items:center; padding:8px 16px 4px; }
-  .occ-ring { width:100px; height:100px; border-radius:50%; background: conic-gradient(#2E6AAA 0% 72%, #E8F0FF 72% 100%); display:flex; align-items:center; justify-content:center; position:relative; }
-  .occ-ring::before { content:''; width:70px; height:70px; background:#fff; border-radius:50%; position:absolute; }
-  .occ-ring .occ-val { position:relative; z-index:1; font-size:18px; font-weight:800; color:#1A3A5C; text-align:center; }
-  .occ-ring .occ-val span { display:block; font-size:10px; font-weight:500; color:#888; }
-
-  /* Timeline / Schedule */
-  .timeline-wrap { padding:0 16px 12px; }
-  .time-slot-row { display:flex; gap:8px; align-items:center; margin-bottom:6px; }
-  .time-slot-row .t-time { font-size:11px; color:#999; width:44px; flex-shrink:0; font-weight:500; }
-  .time-slot-bar { flex:1; height:36px; border-radius:8px; display:flex; align-items:center; padding:0 10px; font-size:12px; font-weight:600; }
-  .time-slot-bar.booked { background:#DCEEFF; color:#1A3A5C; }
-  .time-slot-bar.booked-gym { background:#E3F2E0; color:#1A5C2E; }
-  .time-slot-bar.pending { background:#FFF3CD; color:#7A5A00; }
-  .time-slot-bar.available { background:#F5F7FA; color:#CCC; border:1.5px dashed #E0E0E0; }
-  .time-slot-bar.blocked { background:#FDECEA; color:#C62828; }
-  .slot-dot { width:8px; height:8px; border-radius:50%; margin-right:6px; flex-shrink:0; }
-  .slot-dot.blue { background:#2E6AAA; }
-  .slot-dot.green { background:#2E7D32; }
-  .slot-dot.orange { background:#E65100; }
-  .slot-dot.red { background:#C62828; }
-
-  /* Bookings list */
-  .bk-card { margin:0 16px 10px; border:1px solid #EEF2FF; border-radius:14px; padding:14px; background:#fff; display:flex; gap:12px; align-items:flex-start; }
-  .bk-card .bk-avatar { width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
-  .bk-card .bk-info h4 { font-size:14px; font-weight:700; color:#111; }
-  .bk-card .bk-info .bk-meta { font-size:12px; color:#888; margin-top:3px; }
-  .bk-card .bk-info .bk-sub { font-size:12px; color:#555; margin-top:2px; font-weight:500; }
-  .bk-badge { padding:3px 9px; border-radius:20px; font-size:11px; font-weight:700; flex-shrink:0; }
+  /* Booking list item */
+  .bk-row { display:flex; gap:12px; align-items:center; padding:13px 16px; border-bottom:1px solid #F5F5F5; background:#fff; cursor:pointer; }
+  .bk-row:last-child { border-bottom:none; }
+  .bk-row .bk-sport { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+  .bk-row .bk-main { flex:1; min-width:0; }
+  .bk-row .bk-main h4 { font-size:14px; font-weight:700; color:#111; }
+  .bk-row .bk-main p { font-size:12px; color:#888; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .bk-row .bk-right { display:flex; flex-direction:column; align-items:flex-end; gap:5px; }
+  .bk-badge { padding:3px 9px; border-radius:20px; font-size:11px; font-weight:700; }
   .bk-badge.confirmed { background:#E8F5E0; color:#2E7D32; }
   .bk-badge.pending   { background:#FFF3CD; color:#7A5A00; }
+  .bk-badge.screenshot{ background:#EDE7FF; color:#5E35B1; }
   .bk-badge.cancelled { background:#FDECEA; color:#C62828; }
-  .bk-badge.checkedin { background:#E3F2FD; color:#0D47A1; }
+  .bk-badge.completed { background:#F0F0F0; color:#666; }
 
-  /* Booking detail */
-  .bk-detail-hero { width:100%; height:140px; display:flex; align-items:center; justify-content:center; font-size:52px; }
-  .bk-detail-sec { padding:14px 16px; border-bottom:1px solid #F0F0F0; }
-  .bk-detail-sec h3 { font-size:11px; font-weight:700; color:#999; text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
-  .bk-detail-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
-  .bk-detail-row .dk { font-size:13px; color:#888; }
-  .bk-detail-row .dv { font-size:13px; font-weight:600; color:#111; }
-  .action-btn-row { display:flex; gap:8px; padding:14px 16px; }
-  .action-pill { flex:1; padding:11px 0; border-radius:12px; font-size:13px; font-weight:700; border:none; cursor:pointer; text-align:center; font-family:inherit; }
-  .action-pill.approve  { background:#E8F5E0; color:#2E7D32; }
-  .action-pill.decline  { background:#FDECEA; color:#C62828; }
-  .action-pill.contact  { background:#E3F2FD; color:#0D47A1; }
-  .action-pill.checkin  { background:#2E4A1A; color:#fff; }
-  .action-pill.refund   { background:#FFF3CD; color:#7A5A00; }
+  /* Booking detail rows */
+  .det-sec { padding:14px 16px; border-bottom:1px solid #F5F5F5; }
+  .det-sec .ds-title { font-size:11px; font-weight:700; color:#BBB; text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; }
+  .det-row { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:9px; }
+  .det-row:last-child { margin-bottom:0; }
+  .det-row .dk { font-size:13px; color:#888; }
+  .det-row .dv { font-size:13px; font-weight:600; color:#111; text-align:right; max-width:55%; }
 
-  /* Slot manager */
-  .day-strip { display:flex; gap:6px; padding:14px 16px 6px; overflow-x:auto; }
-  .day-strip::-webkit-scrollbar { display:none; }
-  .day-pill { min-width:44px; height:60px; border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:10px; cursor:pointer; border:1.5px solid #E5E5E5; color:#666; font-weight:600; gap:2px; }
-  .day-pill .dp-num { font-size:17px; font-weight:800; }
-  .day-pill.sel { background:#2E4A1A; color:#fff; border-color:#2E4A1A; }
-  .day-pill.has-bookings { border-color:#2E6AAA; color:#2E6AAA; }
+  /* Payment screenshot preview */
+  .ss-preview { margin:12px 16px; border:1.5px solid #E5E5E5; border-radius:14px; overflow:hidden; }
+  .ss-preview .ss-header { padding:10px 14px; background:#F8F8F8; border-bottom:1px solid #EFEFEF; display:flex; justify-content:space-between; align-items:center; }
+  .ss-preview .ss-header span { font-size:12px; font-weight:600; color:#555; }
+  .ss-preview .ss-header .ss-time { font-size:11px; color:#AAA; }
+  .ss-preview .ss-img { background: linear-gradient(160deg,#F5F0FF 0%, #EDE7FF 100%); height:140px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; }
+  .ss-preview .ss-img .si-icon { font-size:36px; }
+  .ss-preview .ss-img .si-label { font-size:12px; color:#7B68EE; font-weight:600; }
+  .ss-preview .ss-img .si-amount { font-size:18px; font-weight:800; color:#5E35B1; }
+  .ss-preview .ss-img .si-ref { font-size:11px; color:#AAA; }
 
-  .slot-grid { padding:8px 16px; display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  .slot-block { border-radius:12px; padding:10px 12px; border:1.5px solid #E5E5E5; position:relative; }
-  .slot-block .sb-time { font-size:12px; font-weight:700; color:#111; }
-  .slot-block .sb-status { font-size:11px; margin-top:2px; }
-  .slot-block.open  { background:#F0FFF4; border-color:#A5D6A7; }
-  .slot-block.open  .sb-status { color:#2E7D32; }
-  .slot-block.taken { background:#E8F0FF; border-color:#90CAF9; }
-  .slot-block.taken .sb-status { color:#1A3A5C; }
-  .slot-block.blocked-s { background:#FFF8F0; border-color:#FFCC80; }
-  .slot-block.blocked-s .sb-status { color:#E65100; }
-  .slot-block .sb-price { font-size:12px; font-weight:700; color:#2E4A1A; margin-top:4px; }
-  .slot-block .sb-lock { position:absolute; top:8px; right:8px; font-size:14px; }
+  /* Approve / Decline action bar */
+  .action-bar { display:flex; gap:10px; padding:14px 16px; border-top:1px solid #F0F0F0; background:#fff; }
+  .act-btn { flex:1; padding:13px; border-radius:13px; font-size:14px; font-weight:700; border:none; cursor:pointer; font-family:inherit; }
+  .act-btn.approve { background:#2E4A1A; color:#fff; }
+  .act-btn.decline { background:#FDECEA; color:#C62828; }
+  .act-btn.contact { background:#F0F0F0; color:#444; }
 
-  /* Revenue Analytics */
-  .chart-wrap { padding:14px 16px; }
-  .bar-chart { display:flex; align-items:flex-end; gap:6px; height:90px; }
-  .bar-chart .bar-col { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; }
-  .bar-chart .bar { width:100%; border-radius:6px 6px 0 0; background:#2E6AAA; }
-  .bar-chart .bar.highlight { background:#2E4A1A; }
-  .bar-chart .bar-label { font-size:9px; color:#AAA; }
+  /* Slot timeline (day view) */
+  .slot-row { display:flex; gap:8px; align-items:center; padding:7px 16px; border-bottom:1px solid #F8F8F8; }
+  .slot-row .sr-time { font-size:11px; color:#AAA; width:48px; flex-shrink:0; font-weight:500; }
+  .slot-bar { flex:1; height:40px; border-radius:10px; display:flex; align-items:center; padding:0 12px; font-size:12px; font-weight:600; gap:6px; }
+  .slot-bar.open     { background:#F5FFF7; border:1.5px dashed #B2DFDB; color:#AAA; }
+  .slot-bar.booked   { background:#E8F5E0; border:1.5px solid #A5D6A7; color:#2E7D32; }
+  .slot-bar.pending  { background:#FFF8E1; border:1.5px solid #FFD54F; color:#7A5A00; }
+  .slot-bar.blocked  { background:#F5F5F5; border:1.5px solid #E0E0E0; color:#BDBDBD; }
+  .slot-bar .sb-dot  { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
 
-  .metric-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:0 16px 14px; }
-  .metric-card { background:#F8F9FF; border-radius:14px; padding:14px; }
-  .metric-card .mc-icon { font-size:22px; margin-bottom:6px; }
-  .metric-card .mc-val { font-size:20px; font-weight:800; color:#111; }
-  .metric-card .mc-lbl { font-size:11px; color:#888; margin-top:2px; }
+  /* Payment mode setting card */
+  .pay-mode-card { margin:0 16px 12px; border:1.5px solid #EFEFEF; border-radius:16px; padding:16px; background:#fff; }
+  .pay-mode-card .pmc-row { display:flex; align-items:center; gap:12px; }
+  .pay-mode-card .pmc-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+  .pay-mode-card .pmc-text h4 { font-size:14px; font-weight:700; color:#111; }
+  .pay-mode-card .pmc-text p  { font-size:12px; color:#888; margin-top:2px; line-height:1.4; }
+  .pay-mode-card .pmc-sel { margin-left:auto; width:22px; height:22px; border-radius:50%; border:2px solid #E0E0E0; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .pay-mode-card .pmc-sel.on { background:#2E4A1A; border-color:#2E4A1A; color:#fff; font-size:12px; font-weight:700; }
 
-  /* Heatmap */
-  .heatmap-wrap { padding:12px 16px; }
-  .heatmap-grid { display:grid; grid-template-columns:repeat(8,1fr); gap:4px; }
-  .hm-label { font-size:9px; color:#AAA; text-align:center; padding:2px 0; }
-  .hm-cell { height:22px; border-radius:4px; }
-  .hm-0 { background:#F0F0F0; }
-  .hm-1 { background:#DCEEFF; }
-  .hm-2 { background:#90CAF9; }
-  .hm-3 { background:#2E6AAA; }
-  .hm-4 { background:#1A3A5C; }
-
-  /* Approvals queue */
-  .approval-card { margin:0 16px 10px; border-radius:14px; border:1.5px solid #FFF3CD; background:#FFFDF5; padding:14px; }
-  .approval-card .ap-header { display:flex; gap:10px; align-items:flex-start; margin-bottom:10px; }
-  .approval-card .ap-avatar { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; background:#FFF3CD; flex-shrink:0; }
-  .approval-card .ap-name { font-size:14px; font-weight:700; color:#111; }
-  .approval-card .ap-meta { font-size:12px; color:#888; margin-top:2px; }
-  .approval-card .ap-details { background:#FFF9ED; border-radius:10px; padding:10px; margin-bottom:10px; }
-  .approval-card .ap-details .ap-row { display:flex; justify-content:space-between; font-size:12px; color:#666; margin-bottom:4px; }
-  .approval-card .ap-details .ap-row:last-child { margin-bottom:0; }
-  .approval-card .ap-details .ap-row b { color:#111; }
-  .ap-actions { display:flex; gap:8px; }
-  .ap-btn { flex:1; padding:10px; border-radius:10px; font-size:13px; font-weight:700; border:none; cursor:pointer; font-family:inherit; }
-  .ap-btn.approve { background:#E8F5E0; color:#2E7D32; }
-  .ap-btn.decline { background:#FDECEA; color:#C62828; }
-
-  /* Notification dot */
-  .notif-dot { width:8px; height:8px; background:#D32F2F; border-radius:50%; display:inline-block; margin-left:4px; vertical-align:middle; }
-
-  /* Segmented control */
-  .seg-ctrl { display:flex; background:#F0F0F0; border-radius:12px; padding:3px; margin:0 16px 14px; }
-  .seg-btn { flex:1; padding:8px; border-radius:9px; font-size:12px; font-weight:600; text-align:center; cursor:pointer; color:#888; }
-  .seg-btn.active { background:#fff; color:#111; box-shadow:0 1px 4px rgba(0,0,0,0.1); }
-
-  /* Revenue row */
-  .rev-row { display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-bottom:1px solid #F5F5F5; }
-  .rev-row .rr-left h4 { font-size:13px; font-weight:700; color:#111; }
-  .rev-row .rr-left p  { font-size:11px; color:#888; margin-top:2px; }
-  .rev-row .rr-amt { font-size:14px; font-weight:800; color:#2E4A1A; }
-
-  /* Mini customer card in detail */
-  .cust-card { margin:12px 16px; background:#F5F9FF; border-radius:14px; padding:14px; display:flex; gap:12px; align-items:center; }
-  .cust-card .cust-ava { width:44px; height:44px; border-radius:12px; background:#DCEEFF; display:flex; align-items:center; justify-content:center; font-size:22px; }
-  .cust-card .cust-info h4 { font-size:14px; font-weight:700; color:#111; }
-  .cust-card .cust-info p  { font-size:12px; color:#888; margin-top:2px; }
-  .cust-card .cust-action { margin-left:auto; }
-  .cust-card .cust-action button { padding:7px 14px; border-radius:8px; border:1.5px solid #2E6AAA; background:transparent; color:#2E6AAA; font-size:12px; font-weight:700; cursor:pointer; font-family:inherit; }
-
-  /* Donut sport chart */
-  .sport-donut-wrap { display:flex; gap:16px; padding:12px 16px; align-items:center; }
-  .sport-donut { width:80px; height:80px; border-radius:50%; background: conic-gradient(#2E4A1A 0% 42%, #2E6AAA 42% 68%, #6EA832 68% 85%, #D4860A 85% 100%); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .sport-donut::before { content:''; width:54px; height:54px; background:#fff; border-radius:50%; }
-  .sport-legend { display:flex; flex-direction:column; gap:5px; flex:1; }
-  .sl-row { display:flex; align-items:center; gap:6px; font-size:12px; }
-  .sl-dot { width:10px; height:10px; border-radius:3px; flex-shrink:0; }
-
-  /* Timeline day view */
-  .tl-header { display:flex; gap:6px; padding:10px 16px 4px; overflow-x:auto; }
-  .tl-header::-webkit-scrollbar { display:none; }
+  /* Notif dot */
+  .ndot { display:inline-block; width:7px; height:7px; background:#D32F2F; border-radius:50%; margin-left:3px; vertical-align:middle; }
 </style>
 </head>
 <body>
@@ -904,980 +825,589 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
-     SCREEN 8 — BOOKING HUB DASHBOARD
+     SCREEN 8 — MY ARENAS
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">8 · Booking Hub</div>
+  <div class="page-label">8 · My Arenas</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active">
 
-      <div class="bk-header">
-        <div class="greeting">Sunday, Apr 26 · Good Morning 👋</div>
-        <h1>Booking Hub</h1>
-        <div class="sub">DHA Sports Arena · Verified Venue</div>
-      </div>
-
-      <!-- 4 KPI tiles -->
-      <div class="bk-stats">
-        <div class="bk-stat">
-          <div class="bk-val" style="color:#1A3A5C;">14</div>
-          <div class="bk-lbl">Today's Bookings</div>
-          <div class="bk-trend up">↑ 3 vs yesterday</div>
-        </div>
-        <div class="bk-stat">
-          <div class="bk-val" style="color:#2E7D32;">Rs 28K</div>
-          <div class="bk-lbl">Today's Revenue</div>
-          <div class="bk-trend up">↑ 12% vs avg</div>
-        </div>
-        <div class="bk-stat">
-          <div class="bk-val" style="color:#E65100;">5</div>
-          <div class="bk-lbl">Pending Approval</div>
-          <div class="bk-trend" style="color:#E65100;">⚡ Needs action</div>
-        </div>
-        <div class="bk-stat">
-          <div class="bk-val" style="color:#6A1A8C;">72%</div>
-          <div class="bk-lbl">Occupancy Rate</div>
-          <div class="bk-trend up">↑ 8% this week</div>
+      <!-- Header -->
+      <div style="padding:14px 16px 8px; background:#fff; border-bottom:1px solid #F0F0F0;">
+        <div style="font-size:11px; color:#AAA; font-weight:500; margin-bottom:2px;">Sun, 26 Apr</div>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <h2 style="font-size:20px; font-weight:800; color:#111;">My Arenas</h2>
+          <span style="font-size:11px; background:#E8F5E0; color:#2E7D32; padding:5px 10px; border-radius:20px; font-weight:600;">+ Add Arena</span>
         </div>
       </div>
 
-      <!-- Occupancy visual + quick legend -->
-      <div style="padding:0 16px 6px; display:flex; align-items:center; gap:16px;">
-        <div class="occ-ring-wrap" style="padding:0;">
-          <div class="occ-ring">
-            <div class="occ-val">72%<span>Occupancy</span></div>
-          </div>
+      <!-- Summary strip -->
+      <div style="display:flex; background:#F8FBF5; padding:12px 16px; gap:0; border-bottom:1px solid #EFEFEF;">
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:20px; font-weight:800; color:#111;">3</div>
+          <div style="font-size:10px; color:#AAA; margin-top:2px;">Arenas</div>
         </div>
-        <div style="flex:1; display:flex; flex-direction:column; gap:6px;">
-          <div style="display:flex; align-items:center; gap:6px; font-size:12px;">
-            <div style="width:10px;height:10px;border-radius:3px;background:#2E6AAA;"></div>
-            <span style="color:#555;">Arena Bookings <b style="color:#111;">9</b></span>
-          </div>
-          <div style="display:flex; align-items:center; gap:6px; font-size:12px;">
-            <div style="width:10px;height:10px;border-radius:3px;background:#2E7D32;"></div>
-            <span style="color:#555;">Gym Sessions <b style="color:#111;">5</b></span>
-          </div>
-          <div style="display:flex; align-items:center; gap:6px; font-size:12px;">
-            <div style="width:10px;height:10px;border-radius:3px;background:#FFF3CD;border:1px solid #E65100;"></div>
-            <span style="color:#555;">Pending <b style="color:#E65100;">5</b></span>
-          </div>
-          <div style="display:flex; align-items:center; gap:6px; font-size:12px;">
-            <div style="width:10px;height:10px;border-radius:3px;background:#F0F0F0;border:1px solid #E0E0E0;"></div>
-            <span style="color:#555;">Available <b style="color:#888;">6 slots</b></span>
-          </div>
+        <div style="width:1px; background:#E8E8E8;"></div>
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:20px; font-weight:800; color:#2E7D32;">18</div>
+          <div style="font-size:10px; color:#AAA; margin-top:2px;">Today's Bookings</div>
+        </div>
+        <div style="width:1px; background:#E8E8E8;"></div>
+        <div style="flex:1; text-align:center;">
+          <div style="font-size:20px; font-weight:800; color:#7A5A00;">4<span class="ndot"></span></div>
+          <div style="font-size:10px; color:#AAA; margin-top:2px;">Pending</div>
         </div>
       </div>
 
-      <!-- Quick actions row -->
-      <div style="display:flex; gap:8px; padding:10px 16px; overflow-x:auto;">
-        <div style="min-width:80px; background:#EEF4FF; border-radius:14px; padding:12px 8px; text-align:center; cursor:pointer;">
-          <div style="font-size:22px;">📅</div>
-          <div style="font-size:10px; font-weight:700; color:#1A3A5C; margin-top:4px;">Schedule</div>
-        </div>
-        <div style="min-width:80px; background:#FFF9ED; border-radius:14px; padding:12px 8px; text-align:center; cursor:pointer;">
-          <div style="font-size:22px;">⏳</div>
-          <div style="font-size:10px; font-weight:700; color:#7A5A00; margin-top:4px;">Pending <span class="notif-dot"></span></div>
-        </div>
-        <div style="min-width:80px; background:#F0FFF4; border-radius:14px; padding:12px 8px; text-align:center; cursor:pointer;">
-          <div style="font-size:22px;">📊</div>
-          <div style="font-size:10px; font-weight:700; color:#2E7D32; margin-top:4px;">Analytics</div>
-        </div>
-        <div style="min-width:80px; background:#F5F0FF; border-radius:14px; padding:12px 8px; text-align:center; cursor:pointer;">
-          <div style="font-size:22px;">⚙️</div>
-          <div style="font-size:10px; font-weight:700; color:#6A1A8C; margin-top:4px;">Manage</div>
-        </div>
-        <div style="min-width:80px; background:#FFF0F0; border-radius:14px; padding:12px 8px; text-align:center; cursor:pointer;">
-          <div style="font-size:22px;">💰</div>
-          <div style="font-size:10px; font-weight:700; color:#C62828; margin-top:4px;">Revenue</div>
-        </div>
-      </div>
+      <!-- Arena cards -->
+      <div style="padding:14px 0 8px;">
 
-      <!-- Today's upcoming bookings preview -->
-      <div class="section-title">Upcoming Today</div>
-      <div style="padding:0 16px 12px; display:flex; flex-direction:column; gap:8px;">
-        <div class="bk-card" style="margin:0; border-color:#DCEEFF; background:#F7FBFF;">
-          <div class="bk-avatar" style="background:#DCEEFF;">⚽</div>
-          <div class="bk-info" style="flex:1;">
-            <h4>Ali Hassan</h4>
-            <div class="bk-meta">Football Arena · 11:00 AM – 1:00 PM</div>
-            <div class="bk-sub">Rs 4,000 · JazzCash ✓</div>
+        <!-- Arena 1 -->
+        <div class="arena-card" style="cursor:pointer;">
+          <div class="ac-color-bar" style="background:#2E4A1A;"></div>
+          <div class="ac-body">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between;">
+              <div>
+                <div class="ac-name">Elite Sports Arena</div>
+                <div class="ac-addr">📍 DHA Phase 5, Karachi</div>
+              </div>
+              <span style="font-size:11px; background:#E8F5E0; color:#2E7D32; padding:4px 9px; border-radius:20px; font-weight:600; white-space:nowrap;">Open</span>
+            </div>
+            <div class="ac-stats">
+              <div class="ac-stat"><div class="sv">8</div><div class="sl">Bookings</div></div>
+              <div class="ac-stat"><div class="sv" style="color:#7A5A00;">2<span class="ndot" style="width:5px;height:5px;"></span></div><div class="sl">Pending</div></div>
+              <div class="ac-stat"><div class="sv" style="color:#2E4A1A;">Rs 22k</div><div class="sl">Today</div></div>
+              <div class="ac-stat"><div class="sv">⚽🏀</div><div class="sl">Courts</div></div>
+            </div>
           </div>
-          <span class="bk-badge confirmed">Confirmed</span>
         </div>
-        <div class="bk-card" style="margin:0; border-color:#FFF3CD; background:#FFFDF5;">
-          <div class="bk-avatar" style="background:#FFF3CD;">🏋️</div>
-          <div class="bk-info" style="flex:1;">
-            <h4>Sara Malik</h4>
-            <div class="bk-meta">Gym Session · 12:00 PM – 1:00 PM</div>
-            <div class="bk-sub">Rs 500 · Awaiting payment</div>
-          </div>
-          <span class="bk-badge pending">Pending</span>
-        </div>
-        <div class="bk-card" style="margin:0;">
-          <div class="bk-avatar" style="background:#E8F5E0;">🏀</div>
-          <div class="bk-info" style="flex:1;">
-            <h4>Zain & Team</h4>
-            <div class="bk-meta">Basketball Court · 2:00 PM – 4:00 PM</div>
-            <div class="bk-sub">Rs 6,000 · Card ✓</div>
-          </div>
-          <span class="bk-badge confirmed">Confirmed</span>
-        </div>
-      </div>
 
-    </div>
+        <!-- Arena 2 -->
+        <div class="arena-card" style="cursor:pointer;">
+          <div class="ac-color-bar" style="background:#1A5FAA;"></div>
+          <div class="ac-body">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between;">
+              <div>
+                <div class="ac-name">Champions Ground</div>
+                <div class="ac-addr">📍 Gulshan-e-Iqbal, Karachi</div>
+              </div>
+              <span style="font-size:11px; background:#E8F5E0; color:#2E7D32; padding:4px 9px; border-radius:20px; font-weight:600; white-space:nowrap;">Open</span>
+            </div>
+            <div class="ac-stats">
+              <div class="ac-stat"><div class="sv">7</div><div class="sl">Bookings</div></div>
+              <div class="ac-stat"><div class="sv" style="color:#7A5A00;">2<span class="ndot" style="width:5px;height:5px;"></span></div><div class="sl">Pending</div></div>
+              <div class="ac-stat"><div class="sv" style="color:#2E4A1A;">Rs 18k</div><div class="sl">Today</div></div>
+              <div class="ac-stat"><div class="sv">⚽🏏</div><div class="sl">Courts</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arena 3 -->
+        <div class="arena-card" style="cursor:pointer;">
+          <div class="ac-color-bar" style="background:#AA5500;"></div>
+          <div class="ac-body">
+            <div style="display:flex; align-items:flex-start; justify-content:space-between;">
+              <div>
+                <div class="ac-name">Victory Sports Complex</div>
+                <div class="ac-addr">📍 North Nazimabad, Karachi</div>
+              </div>
+              <span style="font-size:11px; background:#FFF3CD; color:#7A5A00; padding:4px 9px; border-radius:20px; font-weight:600; white-space:nowrap;">Maintenance</span>
+            </div>
+            <div class="ac-stats">
+              <div class="ac-stat"><div class="sv">3</div><div class="sl">Bookings</div></div>
+              <div class="ac-stat"><div class="sv" style="color:#888;">0</div><div class="sl">Pending</div></div>
+              <div class="ac-stat"><div class="sv" style="color:#2E4A1A;">Rs 9k</div><div class="sl">Today</div></div>
+              <div class="ac-stat"><div class="sv">🏀🎾</div><div class="sl">Courts</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end arena cards -->
+
+    </div><!-- screen -->
     <div class="bottom-nav">
-      <div class="nav-item active"><span class="ni">🏠</span>Home</div>
+      <div class="nav-item"><span class="ni">🏠</span>Home</div>
       <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item"><span class="ni">📋</span>Bookings</div>
-      <div class="nav-item"><span class="ni">📊</span>Analytics</div>
-      <div class="nav-item"><span class="ni">⚙️</span>Manage</div>
+      <div class="nav-item active"><span class="ni">🏟️</span>Arenas</div>
+      <div class="nav-item"><span class="ni">📋</span>Events</div>
+      <div class="nav-item"><span class="ni">👤</span>Profile</div>
     </div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
-     SCREEN 9 — TODAY'S SCHEDULE / CALENDAR TIMELINE
+     SCREEN 9 — ARENA BOOKINGS LIST
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">9 · Schedule Timeline</div>
+  <div class="page-label">9 · Bookings List</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active">
 
-      <div class="nav">
-        <div class="back">←</div>
-        <h2>Schedule</h2>
-        <span class="action-btn">+ Block</span>
-      </div>
+      <!-- Header -->
+      <div style="padding:12px 16px 0; background:#fff; border-bottom:1px solid #F0F0F0;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <div style="width:32px; height:32px; background:#F0F0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer;">←</div>
+          <div style="flex:1;">
+            <div style="font-size:16px; font-weight:800; color:#111;">Elite Sports Arena</div>
+            <div style="font-size:11px; color:#AAA;">DHA Phase 5 · Today's bookings</div>
+          </div>
+          <div style="font-size:20px; cursor:pointer;">📅</div>
+        </div>
 
-      <!-- Week strip -->
-      <div class="day-strip">
-        <div class="day-pill has-bookings">
-          <span style="font-size:9px;">MON</span><span class="dp-num">21</span>
-        </div>
-        <div class="day-pill has-bookings">
-          <span style="font-size:9px;">TUE</span><span class="dp-num">22</span>
-        </div>
-        <div class="day-pill has-bookings">
-          <span style="font-size:9px;">WED</span><span class="dp-num">23</span>
-        </div>
-        <div class="day-pill has-bookings">
-          <span style="font-size:9px;">THU</span><span class="dp-num">24</span>
-        </div>
-        <div class="day-pill has-bookings">
-          <span style="font-size:9px;">FRI</span><span class="dp-num">25</span>
-        </div>
-        <div class="day-pill sel">
-          <span style="font-size:9px;">SAT</span><span class="dp-num">26</span>
-        </div>
-        <div class="day-pill">
-          <span style="font-size:9px;">SUN</span><span class="dp-num">27</span>
+        <!-- Arena switcher pills -->
+        <div class="arena-switch" style="padding:0 0 10px; margin:0 -16px; padding-left:0;">
+          <div style="width:16px; flex-shrink:0;"></div>
+          <div class="arena-pill active">Elite Sports</div>
+          <div class="arena-pill">Champions Ground</div>
+          <div class="arena-pill">Victory Complex</div>
+          <div style="width:8px; flex-shrink:0;"></div>
         </div>
       </div>
 
-      <!-- Venue tab selector -->
-      <div class="seg-ctrl" style="margin-bottom:8px;">
-        <div class="seg-btn active">All Venues</div>
-        <div class="seg-btn">🏟️ Arena</div>
-        <div class="seg-btn">💪 Gym</div>
+      <!-- Filter chips -->
+      <div style="display:flex; gap:7px; padding:10px 16px; overflow-x:auto; background:#FAFAFA; border-bottom:1px solid #F0F0F0;">
+        <div style="padding:6px 13px; border-radius:20px; background:#2E4A1A; color:#fff; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">All · 8</div>
+        <div style="padding:6px 13px; border-radius:20px; background:#fff; border:1.5px solid #EDE7FF; color:#5E35B1; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">📸 Screenshot · 2</div>
+        <div style="padding:6px 13px; border-radius:20px; background:#fff; border:1.5px solid #E5E5E5; color:#666; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">✅ Confirmed · 4</div>
+        <div style="padding:6px 13px; border-radius:20px; background:#fff; border:1.5px solid #E5E5E5; color:#666; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">Done · 2</div>
       </div>
 
-      <!-- Timeline -->
-      <div class="timeline-wrap">
-        <div class="time-slot-row">
-          <span class="t-time">6 AM</span>
-          <div class="time-slot-bar booked-gym"><div class="slot-dot green"></div>Gym — Ahmed K. (1hr)</div>
+      <!-- Bookings list -->
+      <div style="background:#fff; flex:1; overflow-y:auto;">
+
+        <!-- Booking row: screenshot pending -->
+        <div class="bk-row" style="background:#FFFDF8;">
+          <div class="bk-sport" style="background:#EDE7FF;">⚽</div>
+          <div class="bk-main">
+            <h4>Ali Hassan</h4>
+            <p>Football Court A · 10:00 – 12:00 PM · Rs 4,000</p>
+          </div>
+          <div class="bk-right">
+            <span class="bk-badge screenshot">📸 Review</span>
+            <span style="font-size:10px; color:#AAA;">2h ago</span>
+          </div>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">7 AM</span>
-          <div class="time-slot-bar booked-gym"><div class="slot-dot green"></div>Gym — Sara M. (2hr)</div>
+
+        <!-- Booking row: screenshot pending -->
+        <div class="bk-row" style="background:#FFFDF8;">
+          <div class="bk-sport" style="background:#EDE7FF;">🏀</div>
+          <div class="bk-main">
+            <h4>Zain & 5</h4>
+            <p>Basketball Court · 2:00 – 4:00 PM · Rs 6,000</p>
+          </div>
+          <div class="bk-right">
+            <span class="bk-badge screenshot">📸 Review</span>
+            <span style="font-size:10px; color:#AAA;">1h ago</span>
+          </div>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">8 AM</span>
-          <div class="time-slot-bar available"><div class="slot-dot" style="background:#E0E0E0;"></div>Available</div>
+
+        <!-- Booking row: confirmed -->
+        <div class="bk-row">
+          <div class="bk-sport" style="background:#E8F5E0;">⚽</div>
+          <div class="bk-main">
+            <h4>Umar Farooq</h4>
+            <p>Football Court B · 9:00 – 11:00 AM · Rs 4,000</p>
+          </div>
+          <div class="bk-right">
+            <span class="bk-badge confirmed">✓ Confirmed</span>
+            <span style="font-size:10px; color:#AAA;">3h ago</span>
+          </div>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">9 AM</span>
-          <div class="time-slot-bar available"><div class="slot-dot" style="background:#E0E0E0;"></div>Available</div>
+
+        <!-- Booking row: confirmed -->
+        <div class="bk-row">
+          <div class="bk-sport" style="background:#E8F5E0;">🏀</div>
+          <div class="bk-main">
+            <h4>Karachi Kings</h4>
+            <p>Basketball Court · 4:00 – 6:00 PM · Rs 6,000</p>
+          </div>
+          <div class="bk-right">
+            <span class="bk-badge confirmed">✓ Confirmed</span>
+            <span style="font-size:10px; color:#AAA;">yesterday</span>
+          </div>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">10 AM</span>
-          <div class="time-slot-bar booked"><div class="slot-dot blue"></div>Arena — Ali H. (2hr)</div>
+
+        <!-- Booking row: confirmed -->
+        <div class="bk-row">
+          <div class="bk-sport" style="background:#E8F5E0;">⚽</div>
+          <div class="bk-main">
+            <h4>Ahmed Group</h4>
+            <p>Football Court A · 6:00 – 8:00 PM · Rs 4,000</p>
+          </div>
+          <div class="bk-right">
+            <span class="bk-badge confirmed">✓ Confirmed</span>
+            <span style="font-size:10px; color:#AAA;">yesterday</span>
+          </div>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">11 AM</span>
-          <div class="time-slot-bar booked"><div class="slot-dot blue"></div>Arena — Ali H. (cont.)</div>
+
+        <!-- Booking row: confirmed -->
+        <div class="bk-row">
+          <div class="bk-sport" style="background:#E8F5E0;">🏏</div>
+          <div class="bk-main">
+            <h4>Peshawar XI</h4>
+            <p>Cricket Net · 8:00 – 10:00 AM · Rs 2,500</p>
+          </div>
+          <div class="bk-right">
+            <span class="bk-badge confirmed">✓ Confirmed</span>
+            <span style="font-size:10px; color:#AAA;">yesterday</span>
+          </div>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">12 PM</span>
-          <div class="time-slot-bar pending"><div class="slot-dot orange"></div>⏳ Gym — Sara M. (pending)</div>
+
+        <!-- Booking row: done -->
+        <div class="bk-row">
+          <div class="bk-sport" style="background:#F5F5F5;">⚽</div>
+          <div class="bk-main">
+            <h4>Weekend Warriors</h4>
+            <p>Football Court B · 7:00 – 9:00 AM · Rs 4,000</p>
+          </div>
+          <div class="bk-right">
+            <span style="font-size:11px; background:#F5F5F5; color:#AAA; padding:4px 8px; border-radius:8px; font-weight:600; white-space:nowrap;">Done</span>
+            <span style="font-size:10px; color:#AAA;">today 9am</span>
+          </div>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">1 PM</span>
-          <div class="time-slot-bar available"><div class="slot-dot" style="background:#E0E0E0;"></div>Available</div>
+
+        <!-- Booking row: done -->
+        <div class="bk-row">
+          <div class="bk-sport" style="background:#F5F5F5;">🏀</div>
+          <div class="bk-main">
+            <h4>Sara & Team</h4>
+            <p>Basketball Court · 8:00 – 10:00 AM · Rs 6,000</p>
+          </div>
+          <div class="bk-right">
+            <span style="font-size:11px; background:#F5F5F5; color:#AAA; padding:4px 8px; border-radius:8px; font-weight:600; white-space:nowrap;">Done</span>
+            <span style="font-size:10px; color:#AAA;">today 10am</span>
+          </div>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">2 PM</span>
-          <div class="time-slot-bar booked"><div class="slot-dot blue"></div>Arena — Zain & Team (2hr)</div>
+
+      </div><!-- end bookings list -->
+
+    </div><!-- screen -->
+    <div class="bottom-nav">
+      <div class="nav-item"><span class="ni">🏠</span>Home</div>
+      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
+      <div class="nav-item active"><span class="ni">🏟️</span>Arenas</div>
+      <div class="nav-item"><span class="ni">📋</span>Events</div>
+      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCREEN 10 — BOOKING DETAIL + SCREENSHOT REVIEW
+═══════════════════════════════════════════════════════ -->
+<div class="col">
+  <div class="page-label">10 · Booking Detail</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="display:flex; flex-direction:column;">
+
+      <!-- Header nav -->
+      <div style="display:flex; align-items:center; gap:10px; padding:14px 16px 12px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
+        <div style="width:32px; height:32px; background:#F0F0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer;">←</div>
+        <div style="flex:1; font-size:16px; font-weight:800; color:#111;">Booking Detail</div>
+        <div style="font-size:11px; background:#EDE7FF; color:#5E35B1; padding:5px 10px; border-radius:20px; font-weight:600;">📸 Pending Review</div>
+      </div>
+
+      <!-- Scrollable body -->
+      <div style="flex:1; overflow-y:auto;">
+
+        <!-- Booking info card -->
+        <div style="margin:12px 16px; border:1px solid #EFEFEF; border-radius:14px; background:#fff; overflow:hidden;">
+          <div style="height:4px; background:#2E4A1A;"></div>
+          <div style="padding:14px 16px;">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+              <div style="width:44px; height:44px; background:#E8F5E0; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px;">⚽</div>
+              <div>
+                <div style="font-size:15px; font-weight:700; color:#111;">Football Court A</div>
+                <div style="font-size:12px; color:#888; margin-top:2px;">Elite Sports Arena · DHA Phase 5</div>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+              <div style="background:#F8FBF5; border-radius:10px; padding:10px;">
+                <div style="font-size:10px; color:#AAA; margin-bottom:3px;">Date</div>
+                <div style="font-size:13px; font-weight:700; color:#111;">Sun, 26 Apr</div>
+              </div>
+              <div style="background:#F8FBF5; border-radius:10px; padding:10px;">
+                <div style="font-size:10px; color:#AAA; margin-bottom:3px;">Time</div>
+                <div style="font-size:13px; font-weight:700; color:#111;">10:00 – 12:00 PM</div>
+              </div>
+              <div style="background:#F8FBF5; border-radius:10px; padding:10px;">
+                <div style="font-size:10px; color:#AAA; margin-bottom:3px;">Duration</div>
+                <div style="font-size:13px; font-weight:700; color:#111;">2 Hours</div>
+              </div>
+              <div style="background:#F8FBF5; border-radius:10px; padding:10px;">
+                <div style="font-size:10px; color:#AAA; margin-bottom:3px;">Amount</div>
+                <div style="font-size:13px; font-weight:700; color:#2E4A1A;">Rs 4,000</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">3 PM</span>
-          <div class="time-slot-bar booked"><div class="slot-dot blue"></div>Arena — Zain & Team (cont.)</div>
+
+        <!-- Customer card -->
+        <div style="margin:0 16px 12px; border:1px solid #EFEFEF; border-radius:14px; padding:14px 16px; background:#fff;">
+          <div style="font-size:11px; font-weight:700; color:#AAA; letter-spacing:0.5px; margin-bottom:10px;">CUSTOMER</div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; background:#2E4A1A; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; font-weight:700; flex-shrink:0;">A</div>
+            <div style="flex:1;">
+              <div style="font-size:14px; font-weight:700; color:#111;">Ali Hassan</div>
+              <div style="font-size:12px; color:#888; margin-top:2px;">0312-3456789 · Joined Apr 2025</div>
+            </div>
+            <div style="width:36px; height:36px; background:#E8F5E0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px; cursor:pointer;">💬</div>
+          </div>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">4 PM</span>
-          <div class="time-slot-bar pending"><div class="slot-dot orange"></div>⏳ Arena — Usman R. (pending)</div>
+
+        <!-- Payment screenshot -->
+        <div style="margin:0 16px 4px; font-size:11px; font-weight:700; color:#AAA; letter-spacing:0.5px; padding:0 2px;">PAYMENT SCREENSHOT</div>
+        <div class="ss-preview">
+          <div class="ss-header">
+            <span>JazzCash Transfer</span>
+            <span class="ss-time">Submitted · 2h ago</span>
+          </div>
+          <div class="ss-img">
+            <div class="si-icon">📲</div>
+            <div class="si-label">JazzCash · Payment Screenshot</div>
+            <div class="si-amount">Rs 4,000</div>
+            <div class="si-ref">Ref: JC-20260426-8821</div>
+          </div>
+          <div style="padding:10px 14px; display:flex; justify-content:space-between; align-items:center; background:#FAFAFA;">
+            <div style="font-size:11px; color:#888;">Sender: Ali Hassan · 0312-3456789</div>
+            <div style="font-size:11px; color:#5E35B1; font-weight:600; cursor:pointer;">View Full →</div>
+          </div>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">5 PM</span>
-          <div class="time-slot-bar booked"><div class="slot-dot blue"></div>Arena — Hassan T. (2hr)</div>
+
+        <div style="height:80px;"></div><!-- spacer for action bar -->
+
+      </div><!-- scroll body -->
+
+      <!-- Fixed action bar at bottom -->
+      <div class="action-bar" style="position:sticky; bottom:0; flex-shrink:0;">
+        <button class="act-btn contact">💬 Message</button>
+        <button class="act-btn decline">✗ Decline</button>
+        <button class="act-btn approve">✓ Approve</button>
+      </div>
+
+    </div><!-- screen -->
+    <div class="bottom-nav">
+      <div class="nav-item"><span class="ni">🏠</span>Home</div>
+      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
+      <div class="nav-item active"><span class="ni">🏟️</span>Arenas</div>
+      <div class="nav-item"><span class="ni">📋</span>Events</div>
+      <div class="nav-item"><span class="ni">👤</span>Profile</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCREEN 11 — TODAY'S SLOT VIEW
+═══════════════════════════════════════════════════════ -->
+<div class="col">
+  <div class="page-label">11 · Today's Slots</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active">
+
+      <!-- Header -->
+      <div style="padding:12px 16px; background:#fff; border-bottom:1px solid #F0F0F0;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+          <div style="width:32px; height:32px; background:#F0F0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer;">←</div>
+          <div style="flex:1;">
+            <div style="font-size:15px; font-weight:800; color:#111;">Elite Sports Arena</div>
+            <div style="font-size:11px; color:#AAA;">Today's slot overview</div>
+          </div>
+          <span style="font-size:13px; background:#F8FBF5; border:1px solid #E0EDD8; color:#2E4A1A; padding:5px 10px; border-radius:10px; font-weight:600; cursor:pointer;">Sun 26 ▾</span>
         </div>
-        <div class="time-slot-row">
-          <span class="t-time">6 PM</span>
-          <div class="time-slot-bar booked"><div class="slot-dot blue"></div>Arena — Hassan T. (cont.)</div>
-        </div>
-        <div class="time-slot-row">
-          <span class="t-time">7 PM</span>
-          <div class="time-slot-bar booked-gym"><div class="slot-dot green"></div>Gym — Bilal A. (2hr)</div>
-        </div>
-        <div class="time-slot-row">
-          <span class="t-time">8 PM</span>
-          <div class="time-slot-bar booked"><div class="slot-dot blue"></div>Arena — Night Session (2hr)</div>
-        </div>
-        <div class="time-slot-row">
-          <span class="t-time">9 PM</span>
-          <div class="time-slot-bar blocked"><div class="slot-dot red"></div>🔒 Blocked — Maintenance</div>
-        </div>
-        <div class="time-slot-row">
-          <span class="t-time">10 PM</span>
-          <div class="time-slot-bar blocked"><div class="slot-dot red"></div>🔒 Closed</div>
+        <!-- Arena switcher -->
+        <div class="arena-switch" style="padding:0; margin:0 -16px; padding-left:0;">
+          <div style="width:16px; flex-shrink:0;"></div>
+          <div class="arena-pill active">Football A</div>
+          <div class="arena-pill">Football B</div>
+          <div class="arena-pill">Basketball</div>
+          <div class="arena-pill">Cricket Net</div>
+          <div style="width:8px; flex-shrink:0;"></div>
         </div>
       </div>
 
       <!-- Legend -->
-      <div style="display:flex; gap:10px; padding:4px 16px 14px; flex-wrap:wrap;">
-        <div style="display:flex; align-items:center; gap:4px; font-size:10px; color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#DCEEFF;border:1px solid #90CAF9;"></div>Arena Booked</div>
-        <div style="display:flex; align-items:center; gap:4px; font-size:10px; color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#E3F2E0;border:1px solid #A5D6A7;"></div>Gym Booked</div>
-        <div style="display:flex; align-items:center; gap:4px; font-size:10px; color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#FFF3CD;border:1px solid #FFD54F;"></div>Pending</div>
-        <div style="display:flex; align-items:center; gap:4px; font-size:10px; color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#FDECEA;border:1px solid #EF9A9A;"></div>Blocked</div>
+      <div style="display:flex; gap:10px; padding:8px 16px; background:#FAFAFA; border-bottom:1px solid #F0F0F0; flex-wrap:wrap;">
+        <div style="display:flex; align-items:center; gap:5px; font-size:10px; color:#555;">
+          <div style="width:8px;height:8px;border-radius:3px;background:#E8F5E0;border:1px solid #A5D6A7;"></div>Booked
+        </div>
+        <div style="display:flex; align-items:center; gap:5px; font-size:10px; color:#555;">
+          <div style="width:8px;height:8px;border-radius:3px;background:#FFF8E1;border:1px solid #FFD54F;"></div>Pending
+        </div>
+        <div style="display:flex; align-items:center; gap:5px; font-size:10px; color:#555;">
+          <div style="width:8px;height:8px;border-radius:3px;background:#F5FFF7;border:1.5px dashed #B2DFDB;"></div>Available
+        </div>
+        <div style="display:flex; align-items:center; gap:5px; font-size:10px; color:#555;">
+          <div style="width:8px;height:8px;border-radius:3px;background:#F5F5F5;border:1px solid #E0E0E0;"></div>Blocked
+        </div>
       </div>
 
-    </div>
+      <!-- Slot timeline -->
+      <div style="flex:1; overflow-y:auto; background:#FAFAFA;">
+
+        <div class="slot-row">
+          <div class="sr-time">6:00 AM</div>
+          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">7:00 AM</div>
+          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">8:00 AM</div>
+          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Weekend Warriors</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">9:00 AM</div>
+          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Weekend Warriors</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">10:00 AM</div>
+          <div class="slot-bar pending"><span class="sb-dot" style="background:#FFD54F;"></span>Ali Hassan · 📸</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">11:00 AM</div>
+          <div class="slot-bar pending"><span class="sb-dot" style="background:#FFD54F;"></span>Ali Hassan · 📸</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">12:00 PM</div>
+          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">1:00 PM</div>
+          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">2:00 PM</div>
+          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Karachi Kings</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">3:00 PM</div>
+          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Karachi Kings</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">4:00 PM</div>
+          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">5:00 PM</div>
+          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">6:00 PM</div>
+          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Ahmed Group</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">7:00 PM</div>
+          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Ahmed Group</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">8:00 PM</div>
+          <div class="slot-bar blocked"><span class="sb-dot" style="background:#E0E0E0;"></span>Blocked · Maintenance</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">9:00 PM</div>
+          <div class="slot-bar blocked"><span class="sb-dot" style="background:#E0E0E0;"></span>Blocked · Maintenance</div>
+        </div>
+        <div class="slot-row">
+          <div class="sr-time">10:00 PM</div>
+          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
+        </div>
+
+      </div>
+
+    </div><!-- screen -->
     <div class="bottom-nav">
       <div class="nav-item"><span class="ni">🏠</span>Home</div>
       <div class="nav-item active"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item"><span class="ni">📋</span>Bookings</div>
-      <div class="nav-item"><span class="ni">📊</span>Analytics</div>
-      <div class="nav-item"><span class="ni">⚙️</span>Manage</div>
+      <div class="nav-item"><span class="ni">🏟️</span>Arenas</div>
+      <div class="nav-item"><span class="ni">📋</span>Events</div>
+      <div class="nav-item"><span class="ni">👤</span>Profile</div>
     </div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
-     SCREEN 10 — ALL BOOKINGS LIST
+     SCREEN 12 — PAYMENT MODE SETTINGS
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">10 · All Bookings</div>
+  <div class="page-label">12 · Payment Mode</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active">
 
-      <div class="nav">
-        <div class="back">←</div>
-        <h2>All Bookings</h2>
-        <span class="action-btn">Export</span>
+      <!-- Header -->
+      <div style="display:flex; align-items:center; gap:10px; padding:14px 16px 14px; background:#fff; border-bottom:1px solid #F0F0F0;">
+        <div style="width:32px; height:32px; background:#F0F0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer;">←</div>
+        <div style="flex:1; font-size:16px; font-weight:800; color:#111;">Payment Mode</div>
       </div>
 
-      <!-- Search -->
-      <div style="padding:10px 16px 8px;">
-        <input type="text" placeholder="🔍  Search by name, sport, ID…"
-          style="width:100%;padding:11px 14px;border:1.5px solid #E5E5E5;border-radius:12px;font-size:13px;font-family:inherit;outline:none;background:#FAFAFA;">
-      </div>
+      <div style="padding:14px 0;">
 
-      <!-- Filter chips -->
-      <div style="display:flex; gap:6px; padding:0 16px 10px; overflow-x:auto;">
-        <span class="chip selected" style="font-size:12px; padding:6px 14px;">All</span>
-        <span class="chip" style="font-size:12px; padding:6px 14px;">⏳ Pending (5)</span>
-        <span class="chip" style="font-size:12px; padding:6px 14px;">✅ Confirmed</span>
-        <span class="chip" style="font-size:12px; padding:6px 14px;">🏁 Checked-In</span>
-        <span class="chip" style="font-size:12px; padding:6px 14px;">❌ Cancelled</span>
-      </div>
+        <!-- Section label -->
+        <div style="font-size:11px; font-weight:700; color:#AAA; letter-spacing:0.5px; padding:0 20px 8px;">SELECT HOW CUSTOMERS CAN PAY</div>
 
-      <!-- Sort / Date row -->
-      <div style="display:flex; justify-content:space-between; align-items:center; padding:0 16px 10px;">
-        <div style="font-size:12px; color:#888;">Showing <b style="color:#111;">47</b> bookings</div>
-        <div style="font-size:12px; font-weight:600; color:#2E4A1A; cursor:pointer;">📅 Apr 26, 2026 ▾</div>
-      </div>
-
-      <!-- Booking list -->
-      <div style="overflow-y:auto; flex:1;">
-
-        <div style="font-size:11px; font-weight:700; color:#AAA; padding:4px 16px 6px; letter-spacing:.5px; text-transform:uppercase;">Today · Apr 26</div>
-
-        <div class="bk-card">
-          <div class="bk-avatar" style="background:#DCEEFF;">⚽</div>
-          <div class="bk-info" style="flex:1;">
-            <h4>Ali Hassan</h4>
-            <div class="bk-meta">🏟️ Football Arena · 11:00 AM – 1:00 PM</div>
-            <div class="bk-sub">Rs 4,000 · JazzCash · #BK-7821</div>
-          </div>
-          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
-            <span class="bk-badge confirmed">Confirmed</span>
-            <span style="font-size:10px; color:#888;">2hr</span>
-          </div>
-        </div>
-
-        <div class="bk-card" style="border-color:#FFF3CD; background:#FFFDF5;">
-          <div class="bk-avatar" style="background:#FFF3CD;">🏋️</div>
-          <div class="bk-info" style="flex:1;">
-            <h4>Sara Malik</h4>
-            <div class="bk-meta">💪 Gym Session · 12:00 PM – 1:00 PM</div>
-            <div class="bk-sub">Rs 500 · Awaiting · #BK-7822</div>
-          </div>
-          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
-            <span class="bk-badge pending">Pending</span>
-            <span style="font-size:10px; color:#888;">1hr</span>
-          </div>
-        </div>
-
-        <div class="bk-card">
-          <div class="bk-avatar" style="background:#E8F5E0;">🏀</div>
-          <div class="bk-info" style="flex:1;">
-            <h4>Zain & Team</h4>
-            <div class="bk-meta">🏟️ Basketball Court · 2:00 PM – 4:00 PM</div>
-            <div class="bk-sub">Rs 6,000 · Card ✓ · #BK-7823</div>
-          </div>
-          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
-            <span class="bk-badge confirmed">Confirmed</span>
-            <span style="font-size:10px; color:#888;">2hr</span>
-          </div>
-        </div>
-
-        <div class="bk-card" style="border-color:#FFF3CD; background:#FFFDF5;">
-          <div class="bk-avatar" style="background:#FFF3CD;">🎾</div>
-          <div class="bk-info" style="flex:1;">
-            <h4>Usman Raza</h4>
-            <div class="bk-meta">🏟️ Tennis Court · 4:00 PM – 6:00 PM</div>
-            <div class="bk-sub">Rs 3,600 · EasyPaisa · #BK-7824</div>
-          </div>
-          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
-            <span class="bk-badge pending">Pending</span>
-            <span style="font-size:10px; color:#888;">2hr</span>
-          </div>
-        </div>
-
-        <div class="bk-card">
-          <div class="bk-avatar" style="background:#DCEEFF;">⚽</div>
-          <div class="bk-info" style="flex:1;">
-            <h4>Hassan Tariq</h4>
-            <div class="bk-meta">🏟️ Football Arena · 5:00 PM – 7:00 PM</div>
-            <div class="bk-sub">Rs 4,000 · Card ✓ · #BK-7825</div>
-          </div>
-          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
-            <span class="bk-badge checkedin">Checked-In</span>
-            <span style="font-size:10px; color:#888;">2hr</span>
-          </div>
-        </div>
-
-        <div class="bk-card" style="border-color:#FDECEA; background:#FFF8F8;">
-          <div class="bk-avatar" style="background:#FDECEA;">🏏</div>
-          <div class="bk-info" style="flex:1;">
-            <h4>Imran Khan</h4>
-            <div class="bk-meta">🏟️ Cricket Net · 3:00 PM – 4:00 PM</div>
-            <div class="bk-sub">Rs 1,500 · Refunded · #BK-7816</div>
-          </div>
-          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
-            <span class="bk-badge cancelled">Cancelled</span>
-            <span style="font-size:10px; color:#888;">1hr</span>
-          </div>
-        </div>
-
-        <div style="font-size:11px; font-weight:700; color:#AAA; padding:8px 16px 6px; letter-spacing:.5px; text-transform:uppercase;">Yesterday · Apr 25</div>
-
-        <div class="bk-card">
-          <div class="bk-avatar" style="background:#F3E5F5;">🏸</div>
-          <div class="bk-info" style="flex:1;">
-            <h4>Nida Farooq</h4>
-            <div class="bk-meta">🏟️ Badminton Court · 7:00 PM – 9:00 PM</div>
-            <div class="bk-sub">Rs 3,200 · EasyPaisa ✓ · #BK-7801</div>
-          </div>
-          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
-            <span class="bk-badge confirmed">Confirmed</span>
-            <span style="font-size:10px; color:#888;">2hr</span>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item active"><span class="ni">📋</span>Bookings</div>
-      <div class="nav-item"><span class="ni">📊</span>Analytics</div>
-      <div class="nav-item"><span class="ni">⚙️</span>Manage</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
-     SCREEN 11 — BOOKING DETAIL
-═══════════════════════════════════════════════════════ -->
-<div class="col">
-  <div class="page-label">11 · Booking Detail</div>
-  <div class="phone">
-    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
-    <div class="screen active" style="overflow-y:auto;">
-
-      <div class="nav">
-        <div class="back">←</div>
-        <h2>Booking #BK-7821</h2>
-        <span class="action-btn" style="color:#C62828;">Cancel</span>
-      </div>
-
-      <!-- Hero -->
-      <div class="bk-detail-hero" style="background:linear-gradient(135deg,#1A3A5C,#2E6AAA);">⚽</div>
-
-      <!-- Status bar -->
-      <div style="display:flex; justify-content:space-between; align-items:center; padding:14px 16px; background:#E8F5E0; border-bottom:1px solid #C8E6C9;">
-        <div style="font-size:14px; font-weight:700; color:#2E7D32;">✅ Confirmed</div>
-        <div style="font-size:12px; color:#2E7D32; font-weight:600;">Payment Received</div>
-      </div>
-
-      <!-- Customer info -->
-      <div class="cust-card">
-        <div class="cust-ava">👤</div>
-        <div class="cust-info">
-          <h4>Ali Hassan</h4>
-          <p>+92 300 123 4567 · Karachi</p>
-        </div>
-        <div class="cust-action">
-          <button>📞 Call</button>
-        </div>
-      </div>
-
-      <!-- Booking details -->
-      <div class="bk-detail-sec">
-        <h3>Booking Details</h3>
-        <div class="bk-detail-row">
-          <span class="dk">Venue</span>
-          <span class="dv">DHA Sports Arena</span>
-        </div>
-        <div class="bk-detail-row">
-          <span class="dk">Sport</span>
-          <span class="dv">⚽ Football</span>
-        </div>
-        <div class="bk-detail-row">
-          <span class="dk">Date</span>
-          <span class="dv">Sunday, Apr 26, 2026</span>
-        </div>
-        <div class="bk-detail-row">
-          <span class="dk">Time</span>
-          <span class="dv">11:00 AM – 1:00 PM</span>
-        </div>
-        <div class="bk-detail-row">
-          <span class="dk">Duration</span>
-          <span class="dv">2 Hours</span>
-        </div>
-        <div class="bk-detail-row">
-          <span class="dk">Players</span>
-          <span class="dv">10 registered</span>
-        </div>
-      </div>
-
-      <!-- Payment details -->
-      <div class="bk-detail-sec">
-        <h3>Payment</h3>
-        <div class="bk-detail-row">
-          <span class="dk">Base Amount</span>
-          <span class="dv">Rs 4,000</span>
-        </div>
-        <div class="bk-detail-row">
-          <span class="dk">Add-ons</span>
-          <span class="dv">Rs 200 (Equipment)</span>
-        </div>
-        <div class="bk-detail-row">
-          <span class="dk">Platform Fee</span>
-          <span class="dv" style="color:#C62828;">- Rs 120</span>
-        </div>
-        <div class="bk-detail-row" style="border-top:1px dashed #E0E0E0; padding-top:8px; margin-top:4px;">
-          <span class="dk" style="font-weight:700; color:#111;">Net Payout</span>
-          <span class="dv" style="font-size:15px; color:#2E7D32;">Rs 4,080</span>
-        </div>
-        <div class="bk-detail-row">
-          <span class="dk">Method</span>
-          <span class="dv">📱 JazzCash</span>
-        </div>
-        <div class="bk-detail-row">
-          <span class="dk">Transaction ID</span>
-          <span class="dv" style="font-size:12px;">JC-8832-XQPZ</span>
-        </div>
-      </div>
-
-      <!-- Notes -->
-      <div class="bk-detail-sec">
-        <h3>Customer Note</h3>
-        <div style="font-size:13px; color:#555; line-height:1.5; background:#F8F9FA; border-radius:10px; padding:10px;">
-          "Please set up 2 goal posts before we arrive. We'll have 10 players total."
-        </div>
-      </div>
-
-      <!-- Action buttons -->
-      <div class="action-btn-row">
-        <button class="action-pill contact">💬 Message</button>
-        <button class="action-pill checkin">✅ Check-In</button>
-        <button class="action-pill refund">↩ Refund</button>
-      </div>
-
-      <div style="height:10px;"></div>
-    </div>
-    <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item active"><span class="ni">📋</span>Bookings</div>
-      <div class="nav-item"><span class="ni">📊</span>Analytics</div>
-      <div class="nav-item"><span class="ni">⚙️</span>Manage</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
-     SCREEN 12 — SLOT & PRICING MANAGER
-═══════════════════════════════════════════════════════ -->
-<div class="col">
-  <div class="page-label">12 · Slot & Pricing Manager</div>
-  <div class="phone">
-    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
-    <div class="screen active">
-
-      <div class="nav">
-        <div class="back">←</div>
-        <h2>Manage Slots</h2>
-        <span class="action-btn">Save</span>
-      </div>
-
-      <!-- Venue picker -->
-      <div style="padding:10px 16px 4px;">
-        <div class="seg-ctrl" style="margin-bottom:0;">
-          <div class="seg-btn active">🏟️ Arena</div>
-          <div class="seg-btn">💪 Gym</div>
-          <div class="seg-btn">🎾 Courts</div>
-        </div>
-      </div>
-
-      <!-- Week day strip -->
-      <div class="day-strip" style="padding-top:12px;">
-        <div class="day-pill sel"><span style="font-size:9px;">MON</span><span class="dp-num">26</span></div>
-        <div class="day-pill has-bookings"><span style="font-size:9px;">TUE</span><span class="dp-num">27</span></div>
-        <div class="day-pill has-bookings"><span style="font-size:9px;">WED</span><span class="dp-num">28</span></div>
-        <div class="day-pill"><span style="font-size:9px;">THU</span><span class="dp-num">29</span></div>
-        <div class="day-pill"><span style="font-size:9px;">FRI</span><span class="dp-num">30</span></div>
-        <div class="day-pill has-bookings"><span style="font-size:9px;">SAT</span><span class="dp-num">1</span></div>
-        <div class="day-pill has-bookings"><span style="font-size:9px;">SUN</span><span class="dp-num">2</span></div>
-      </div>
-
-      <!-- Summary strip -->
-      <div style="display:flex; gap:8px; padding:8px 16px 12px;">
-        <div style="flex:1; background:#E8F0FF; border-radius:10px; padding:8px 10px; text-align:center;">
-          <div style="font-size:16px; font-weight:800; color:#1A3A5C;">9</div>
-          <div style="font-size:10px; color:#555;">Booked</div>
-        </div>
-        <div style="flex:1; background:#F0FFF4; border-radius:10px; padding:8px 10px; text-align:center;">
-          <div style="font-size:16px; font-weight:800; color:#2E7D32;">6</div>
-          <div style="font-size:10px; color:#555;">Available</div>
-        </div>
-        <div style="flex:1; background:#FFF8F0; border-radius:10px; padding:8px 10px; text-align:center;">
-          <div style="font-size:16px; font-weight:800; color:#E65100;">2</div>
-          <div style="font-size:10px; color:#555;">Blocked</div>
-        </div>
-        <div style="flex:1; background:#FFF9ED; border-radius:10px; padding:8px 10px; text-align:center;">
-          <div style="font-size:16px; font-weight:800; color:#7A5A00;">5</div>
-          <div style="font-size:10px; color:#555;">Pending</div>
-        </div>
-      </div>
-
-      <!-- Pricing preset -->
-      <div style="padding:0 16px 8px;">
-        <div style="font-size:13px; font-weight:700; color:#111; margin-bottom:8px;">Pricing Tiers</div>
-        <div style="display:flex; gap:8px;">
-          <div style="flex:1; background:#F0FFF4; border:1.5px solid #A5D6A7; border-radius:12px; padding:10px; text-align:center; cursor:pointer;">
-            <div style="font-size:11px; color:#2E7D32; font-weight:700;">🌅 Morning</div>
-            <div style="font-size:14px; font-weight:800; color:#111; margin-top:4px;">Rs 1,800/hr</div>
-            <div style="font-size:10px; color:#888;">6am–12pm</div>
-          </div>
-          <div style="flex:1; background:#EEF4FF; border:1.5px solid #90CAF9; border-radius:12px; padding:10px; text-align:center; cursor:pointer;">
-            <div style="font-size:11px; color:#1A3A5C; font-weight:700;">☀️ Afternoon</div>
-            <div style="font-size:14px; font-weight:800; color:#111; margin-top:4px;">Rs 2,000/hr</div>
-            <div style="font-size:10px; color:#888;">12pm–6pm</div>
-          </div>
-          <div style="flex:1; background:#F5F0FF; border:1.5px solid #CE93D8; border-radius:12px; padding:10px; text-align:center; cursor:pointer;">
-            <div style="font-size:11px; color:#6A1A8C; font-weight:700;">🌙 Evening</div>
-            <div style="font-size:14px; font-weight:800; color:#111; margin-top:4px;">Rs 2,500/hr</div>
-            <div style="font-size:10px; color:#888;">6pm–10pm</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Slot grid -->
-      <div style="font-size:13px; font-weight:700; color:#111; padding:10px 16px 4px;">Today's Slots — Click to Edit</div>
-      <div class="slot-grid">
-        <div class="slot-block open">
-          <div class="sb-time">6:00 AM</div>
-          <div class="sb-status">🟢 Available</div>
-          <div class="sb-price">Rs 1,800</div>
-        </div>
-        <div class="slot-block open">
-          <div class="sb-time">7:00 AM</div>
-          <div class="sb-status">🟢 Available</div>
-          <div class="sb-price">Rs 1,800</div>
-        </div>
-        <div class="slot-block taken">
-          <div class="sb-time">8:00 AM</div>
-          <div class="sb-status">🔵 Ali Hassan</div>
-          <div class="sb-price">Rs 2,000</div>
-        </div>
-        <div class="slot-block taken">
-          <div class="sb-time">9:00 AM</div>
-          <div class="sb-status">🔵 Ali Hassan</div>
-          <div class="sb-price">Rs 2,000</div>
-        </div>
-        <div class="slot-block open">
-          <div class="sb-time">10:00 AM</div>
-          <div class="sb-status">🟢 Available</div>
-          <div class="sb-price">Rs 2,000</div>
-        </div>
-        <div class="slot-block blocked-s">
-          <div class="sb-time">11:00 AM</div>
-          <div class="sb-status">🔒 Blocked</div>
-          <div class="sb-price sb-lock">🔒</div>
-        </div>
-        <div class="slot-block taken">
-          <div class="sb-time">12:00 PM</div>
-          <div class="sb-status">🔵 Zain Team</div>
-          <div class="sb-price">Rs 2,000</div>
-        </div>
-        <div class="slot-block taken">
-          <div class="sb-time">1:00 PM</div>
-          <div class="sb-status">🔵 Zain Team</div>
-          <div class="sb-price">Rs 2,000</div>
-        </div>
-      </div>
-
-      <!-- Block slot action -->
-      <div style="padding:12px 16px;">
-        <button class="btn outline" style="width:100%; font-size:13px; padding:12px;">🔒 Block Time Slot / Maintenance Window</button>
-      </div>
-
-      <div style="height:10px;"></div>
-    </div>
-    <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item"><span class="ni">📋</span>Bookings</div>
-      <div class="nav-item"><span class="ni">📊</span>Analytics</div>
-      <div class="nav-item active"><span class="ni">⚙️</span>Manage</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
-     SCREEN 13 — REVENUE & ANALYTICS
-═══════════════════════════════════════════════════════ -->
-<div class="col">
-  <div class="page-label">13 · Revenue & Analytics</div>
-  <div class="phone">
-    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
-    <div class="screen active">
-
-      <div class="nav">
-        <div class="back">←</div>
-        <h2>Analytics</h2>
-        <span class="action-btn">📤 Export</span>
-      </div>
-
-      <!-- Period selector -->
-      <div class="seg-ctrl" style="margin-top:10px;">
-        <div class="seg-btn">Today</div>
-        <div class="seg-btn active">This Week</div>
-        <div class="seg-btn">Month</div>
-        <div class="seg-btn">All Time</div>
-      </div>
-
-      <!-- Top revenue metric -->
-      <div style="background:linear-gradient(135deg,#1A3A5C,#2E6AAA); margin:0 16px 14px; border-radius:18px; padding:20px; color:#fff;">
-        <div style="font-size:12px; opacity:.7; margin-bottom:4px;">Total Revenue · This Week</div>
-        <div style="font-size:30px; font-weight:800;">Rs 1,84,500</div>
-        <div style="font-size:12px; opacity:.7; margin-top:4px;">↑ 18% vs last week · <b style="opacity:1;">67 bookings</b></div>
-      </div>
-
-      <!-- 4-metric grid -->
-      <div class="metric-grid">
-        <div class="metric-card">
-          <div class="mc-icon">📅</div>
-          <div class="mc-val">67</div>
-          <div class="mc-lbl">Total Bookings</div>
-        </div>
-        <div class="metric-card">
-          <div class="mc-icon">⏱️</div>
-          <div class="mc-val">134 hrs</div>
-          <div class="mc-lbl">Total Hours Booked</div>
-        </div>
-        <div class="metric-card">
-          <div class="mc-icon">💰</div>
-          <div class="mc-val">Rs 2,754</div>
-          <div class="mc-lbl">Avg Booking Value</div>
-        </div>
-        <div class="metric-card">
-          <div class="mc-icon">🏆</div>
-          <div class="mc-val">78%</div>
-          <div class="mc-lbl">Occupancy Rate</div>
-        </div>
-      </div>
-
-      <!-- Revenue bar chart (7-day) -->
-      <div style="padding:0 16px 4px; font-size:13px; font-weight:700; color:#111;">Daily Revenue (This Week)</div>
-      <div class="chart-wrap">
-        <div class="bar-chart">
-          <div class="bar-col">
-            <div class="bar" style="height:45px; opacity:.6;"></div>
-            <div class="bar-label">Mon</div>
-          </div>
-          <div class="bar-col">
-            <div class="bar" style="height:52px; opacity:.7;"></div>
-            <div class="bar-label">Tue</div>
-          </div>
-          <div class="bar-col">
-            <div class="bar" style="height:38px; opacity:.6;"></div>
-            <div class="bar-label">Wed</div>
-          </div>
-          <div class="bar-col">
-            <div class="bar" style="height:66px; opacity:.8;"></div>
-            <div class="bar-label">Thu</div>
-          </div>
-          <div class="bar-col">
-            <div class="bar" style="height:74px; opacity:.9;"></div>
-            <div class="bar-label">Fri</div>
-          </div>
-          <div class="bar-col">
-            <div class="bar highlight" style="height:90px;"></div>
-            <div class="bar-label" style="color:#2E4A1A; font-weight:700;">Sat ↑</div>
-          </div>
-          <div class="bar-col">
-            <div class="bar" style="height:28px; opacity:.4;"></div>
-            <div class="bar-label">Sun</div>
-          </div>
-        </div>
-        <div style="display:flex; justify-content:space-between; margin-top:6px; font-size:10px; color:#AAA;">
-          <span>Rs 0</span><span>Rs 50K</span>
-        </div>
-      </div>
-
-      <!-- Sport breakdown donut -->
-      <div style="padding:4px 16px 4px; font-size:13px; font-weight:700; color:#111;">Revenue by Sport</div>
-      <div class="sport-donut-wrap">
-        <div class="sport-donut"></div>
-        <div class="sport-legend">
-          <div class="sl-row"><div class="sl-dot" style="background:#2E4A1A;"></div><span style="flex:1; color:#555;">⚽ Football</span><b>42%</b></div>
-          <div class="sl-row"><div class="sl-dot" style="background:#2E6AAA;"></div><span style="flex:1; color:#555;">🏀 Basketball</span><b>26%</b></div>
-          <div class="sl-row"><div class="sl-dot" style="background:#6EA832;"></div><span style="flex:1; color:#555;">💪 Gym</span><b>17%</b></div>
-          <div class="sl-row"><div class="sl-dot" style="background:#D4860A;"></div><span style="flex:1; color:#555;">🎾 Tennis</span><b>15%</b></div>
-        </div>
-      </div>
-
-      <!-- Peak hours heatmap -->
-      <div style="padding:4px 16px 4px; font-size:13px; font-weight:700; color:#111;">Peak Hours Heatmap</div>
-      <div class="heatmap-wrap">
-        <div style="font-size:10px; color:#999; margin-bottom:4px;">Hour →  6am  8am  10am  12pm  2pm  4pm  6pm  8pm</div>
-        <div style="font-size:10px; color:#999; margin-bottom:4px; display:flex; gap:4px; align-items:center;">
-          <span style="width:20px;">Mon</span>
-          <div class="hm-cell hm-1" style="flex:1;"></div><div class="hm-cell hm-2" style="flex:1;"></div>
-          <div class="hm-cell hm-1" style="flex:1;"></div><div class="hm-cell hm-3" style="flex:1;"></div>
-          <div class="hm-cell hm-4" style="flex:1;"></div><div class="hm-cell hm-3" style="flex:1;"></div>
-          <div class="hm-cell hm-4" style="flex:1;"></div><div class="hm-cell hm-2" style="flex:1;"></div>
-        </div>
-        <div style="font-size:10px; color:#999; margin-bottom:4px; display:flex; gap:4px; align-items:center;">
-          <span style="width:20px;">Tue</span>
-          <div class="hm-cell hm-0" style="flex:1;"></div><div class="hm-cell hm-1" style="flex:1;"></div>
-          <div class="hm-cell hm-2" style="flex:1;"></div><div class="hm-cell hm-2" style="flex:1;"></div>
-          <div class="hm-cell hm-3" style="flex:1;"></div><div class="hm-cell hm-4" style="flex:1;"></div>
-          <div class="hm-cell hm-3" style="flex:1;"></div><div class="hm-cell hm-1" style="flex:1;"></div>
-        </div>
-        <div style="font-size:10px; color:#999; margin-bottom:4px; display:flex; gap:4px; align-items:center;">
-          <span style="width:20px;">Sat</span>
-          <div class="hm-cell hm-2" style="flex:1;"></div><div class="hm-cell hm-3" style="flex:1;"></div>
-          <div class="hm-cell hm-4" style="flex:1;"></div><div class="hm-cell hm-4" style="flex:1;"></div>
-          <div class="hm-cell hm-4" style="flex:1;"></div><div class="hm-cell hm-4" style="flex:1;"></div>
-          <div class="hm-cell hm-3" style="flex:1;"></div><div class="hm-cell hm-2" style="flex:1;"></div>
-        </div>
-        <div style="display:flex; gap:6px; align-items:center; margin-top:6px; font-size:10px; color:#888;">
-          <div class="hm-cell hm-0" style="width:14px;height:14px;flex-shrink:0;"></div><span>Low</span>
-          <div class="hm-cell hm-2" style="width:14px;height:14px;flex-shrink:0;"></div><span>Medium</span>
-          <div class="hm-cell hm-4" style="width:14px;height:14px;flex-shrink:0;"></div><span>Peak</span>
-        </div>
-      </div>
-
-      <!-- Top customers -->
-      <div style="padding:4px 16px 4px; font-size:13px; font-weight:700; color:#111;">Top Customers This Week</div>
-      <div class="rev-row">
-        <div class="rr-left"><h4>🥇 Zain & Team</h4><p>8 bookings · Football + Basketball</p></div>
-        <div class="rr-amt">Rs 28,000</div>
-      </div>
-      <div class="rev-row">
-        <div class="rr-left"><h4>🥈 Ali Hassan</h4><p>5 bookings · Football</p></div>
-        <div class="rr-amt">Rs 14,500</div>
-      </div>
-      <div class="rev-row">
-        <div class="rr-left"><h4>🥉 Sara Malik</h4><p>12 gym sessions</p></div>
-        <div class="rr-amt">Rs 6,000</div>
-      </div>
-
-      <div style="height:16px;"></div>
-    </div>
-    <div class="bottom-nav">
-      <div class="nav-item"><span class="ni">🏠</span>Home</div>
-      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item"><span class="ni">📋</span>Bookings</div>
-      <div class="nav-item active"><span class="ni">📊</span>Analytics</div>
-      <div class="nav-item"><span class="ni">⚙️</span>Manage</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════
-     SCREEN 14 — PENDING APPROVALS QUEUE
-═══════════════════════════════════════════════════════ -->
-<div class="col">
-  <div class="page-label">14 · Pending Approvals</div>
-  <div class="phone">
-    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
-    <div class="screen active">
-
-      <div class="nav">
-        <div class="back">←</div>
-        <h2>Approvals Queue <span class="notif-dot"></span></h2>
-        <span class="action-btn" style="color:#2E4A1A;">Approve All</span>
-      </div>
-
-      <!-- Summary bar -->
-      <div style="background:#FFF9ED; border:1px solid #FFD54F; margin:10px 16px; border-radius:14px; padding:14px; display:flex; align-items:center; gap:12px;">
-        <div style="font-size:28px;">⏳</div>
-        <div style="flex:1;">
-          <div style="font-size:14px; font-weight:700; color:#7A5A00;">5 Bookings Awaiting Your Approval</div>
-          <div style="font-size:12px; color:#AAA; margin-top:2px;">Oldest request: 2 hours ago — respond quickly</div>
-        </div>
-      </div>
-
-      <!-- Sort -->
-      <div style="display:flex; justify-content:space-between; align-items:center; padding:0 16px 10px;">
-        <div style="font-size:12px; color:#888;">Sorted by: <b style="color:#111;">Oldest first</b></div>
-        <div style="font-size:12px; color:#2E4A1A; font-weight:600; cursor:pointer;">Filter ▾</div>
-      </div>
-
-      <!-- Cards -->
-      <div style="overflow-y:auto; flex:1;">
-
-        <!-- Card 1 -->
-        <div class="approval-card">
-          <div class="ap-header">
-            <div class="ap-avatar">⚽</div>
-            <div style="flex:1;">
-              <div class="ap-name">Sara Malik</div>
-              <div class="ap-meta">Requested 2 hrs ago · +92 311 987 6543</div>
+        <!-- Screenshot mode card — ACTIVE -->
+        <div class="pay-mode-card" style="border-color:#2E4A1A;">
+          <div class="pmc-row">
+            <div class="pmc-icon" style="background:#E8F5E0;">📸</div>
+            <div class="pmc-text">
+              <h4>Screenshot Verification</h4>
+              <p>Customer pays via JazzCash, EasyPaisa or bank transfer and submits a screenshot. You review and approve manually.</p>
             </div>
-            <div style="font-size:11px; font-weight:700; color:#E65100; background:#FFF3CD; padding:3px 8px; border-radius:8px;">2h ago</div>
+            <div class="pmc-sel on">✓</div>
           </div>
-          <div class="ap-details">
-            <div class="ap-row"><span>Venue</span><b>Football Arena</b></div>
-            <div class="ap-row"><span>Date & Time</span><b>Apr 26 · 12:00 PM – 2:00 PM</b></div>
-            <div class="ap-row"><span>Duration</span><b>2 Hours</b></div>
-            <div class="ap-row"><span>Amount</span><b style="color:#2E7D32;">Rs 4,000 · EasyPaisa ✓</b></div>
-            <div class="ap-row"><span>Note</span><b>"Need floodlights on please"</b></div>
-          </div>
-          <div class="ap-actions">
-            <button class="ap-btn decline">✕ Decline</button>
-            <button class="ap-btn approve">✓ Approve</button>
+          <div style="margin-top:12px; padding-top:10px; border-top:1px solid #F0F0F0; display:flex; gap:8px; flex-wrap:wrap;">
+            <span style="font-size:11px; background:#E8F5E0; color:#2E7D32; padding:4px 10px; border-radius:20px; font-weight:600;">● Active</span>
+            <span style="font-size:11px; background:#F5F5F5; color:#888; padding:4px 10px; border-radius:20px; font-weight:600;">JazzCash · EasyPaisa · Bank</span>
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="approval-card">
-          <div class="ap-header">
-            <div class="ap-avatar">🎾</div>
-            <div style="flex:1;">
-              <div class="ap-name">Usman Raza</div>
-              <div class="ap-meta">Requested 3 hrs ago · +92 323 111 2233</div>
+        <!-- Payment gateway card — Coming Soon -->
+        <div class="pay-mode-card" style="opacity:0.65;">
+          <div class="pmc-row">
+            <div class="pmc-icon" style="background:#EDE7FF;">💳</div>
+            <div class="pmc-text">
+              <h4>Payment Gateway</h4>
+              <p>Customers pay online directly. Instant confirmation — no screenshot review needed. Zero manual work.</p>
             </div>
-            <div style="font-size:11px; font-weight:700; color:#E65100; background:#FFF3CD; padding:3px 8px; border-radius:8px;">3h ago</div>
+            <div class="pmc-sel"></div>
           </div>
-          <div class="ap-details">
-            <div class="ap-row"><span>Venue</span><b>Tennis Court A</b></div>
-            <div class="ap-row"><span>Date & Time</span><b>Apr 26 · 4:00 PM – 6:00 PM</b></div>
-            <div class="ap-row"><span>Duration</span><b>2 Hours</b></div>
-            <div class="ap-row"><span>Amount</span><b style="color:#2E7D32;">Rs 3,600 · Card ✓</b></div>
-            <div class="ap-row"><span>Note</span><b>—</b></div>
-          </div>
-          <div class="ap-actions">
-            <button class="ap-btn decline">✕ Decline</button>
-            <button class="ap-btn approve">✓ Approve</button>
+          <div style="margin-top:12px; padding-top:10px; border-top:1px solid #F0F0F0; display:flex; gap:8px;">
+            <span style="font-size:11px; background:#EDE7FF; color:#5E35B1; padding:4px 10px; border-radius:20px; font-weight:600;">Coming Soon</span>
+            <span style="font-size:11px; background:#F5F5F5; color:#888; padding:4px 10px; border-radius:20px; font-weight:600;">Stripe · Local banks</span>
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="approval-card">
-          <div class="ap-header">
-            <div class="ap-avatar">🏋️</div>
-            <div style="flex:1;">
-              <div class="ap-name">Bilal Ahmed</div>
-              <div class="ap-meta">Requested 4 hrs ago · +92 300 555 7788</div>
-            </div>
-            <div style="font-size:11px; font-weight:700; color:#AAA; background:#F5F5F5; padding:3px 8px; border-radius:8px;">4h ago</div>
-          </div>
-          <div class="ap-details">
-            <div class="ap-row"><span>Venue</span><b>Gym Floor</b></div>
-            <div class="ap-row"><span>Date & Time</span><b>Apr 27 · 7:00 AM – 8:00 AM</b></div>
-            <div class="ap-row"><span>Duration</span><b>1 Hour</b></div>
-            <div class="ap-row"><span>Amount</span><b style="color:#2E7D32;">Rs 500 · JazzCash ✓</b></div>
-            <div class="ap-row"><span>Add-ons</span><b>Towel + Locker</b></div>
-          </div>
-          <div class="ap-actions">
-            <button class="ap-btn decline">✕ Decline</button>
-            <button class="ap-btn approve">✓ Approve</button>
+        <!-- Info note -->
+        <div style="margin:4px 16px 12px; background:#F8FBF5; border:1px solid #DDE8D0; border-radius:12px; padding:12px 14px;">
+          <div style="font-size:12px; font-weight:700; color:#2E4A1A; margin-bottom:5px;">ℹ️ How Screenshot Mode Works</div>
+          <div style="font-size:12px; color:#555; line-height:1.55;">
+            1. Customer selects slot and gets payment details<br>
+            2. Customer transfers and uploads screenshot<br>
+            3. You review the screenshot in <b>Bookings → Pending</b><br>
+            4. Approve or decline — slot confirms instantly
           </div>
         </div>
 
-        <!-- Card 4 -->
-        <div class="approval-card">
-          <div class="ap-header">
-            <div class="ap-avatar">🏀</div>
-            <div style="flex:1;">
-              <div class="ap-name">Ahad & Friends</div>
-              <div class="ap-meta">Requested 5 hrs ago · +92 344 900 1122</div>
-            </div>
-            <div style="font-size:11px; font-weight:700; color:#AAA; background:#F5F5F5; padding:3px 8px; border-radius:8px;">5h ago</div>
-          </div>
-          <div class="ap-details">
-            <div class="ap-row"><span>Venue</span><b>Basketball Court</b></div>
-            <div class="ap-row"><span>Date & Time</span><b>Apr 27 · 6:00 PM – 8:00 PM</b></div>
-            <div class="ap-row"><span>Duration</span><b>2 Hours</b></div>
-            <div class="ap-row"><span>Amount</span><b style="color:#2E7D32;">Rs 6,000 · Cash on Arrival</b></div>
-            <div class="ap-row"><span>Note</span><b>"Will be 12 players total"</b></div>
-          </div>
-          <div class="ap-actions">
-            <button class="ap-btn decline">✕ Decline</button>
-            <button class="ap-btn approve">✓ Approve</button>
-          </div>
+        <!-- Per-arena setting note -->
+        <div style="margin:0 16px; background:#FFF8E1; border:1px solid #FFD54F; border-radius:12px; padding:12px 14px;">
+          <div style="font-size:12px; font-weight:700; color:#7A5A00; margin-bottom:4px;">🏟️ Per-Arena Setting</div>
+          <div style="font-size:12px; color:#7A5A00; line-height:1.5;">When Payment Gateway launches, you can set a different payment mode for each of your arenas independently.</div>
         </div>
 
       </div>
 
-    </div>
+    </div><!-- screen -->
     <div class="bottom-nav">
       <div class="nav-item"><span class="ni">🏠</span>Home</div>
       <div class="nav-item"><span class="ni">📅</span>Schedule</div>
-      <div class="nav-item active"><span class="ni">📋</span>Bookings</div>
-      <div class="nav-item"><span class="ni">📊</span>Analytics</div>
-      <div class="nav-item"><span class="ni">⚙️</span>Manage</div>
+      <div class="nav-item"><span class="ni">🏟️</span>Arenas</div>
+      <div class="nav-item"><span class="ni">📋</span>Events</div>
+      <div class="nav-item active"><span class="ni">⚙️</span>Settings</div>
     </div>
   </div>
 </div>
