@@ -10,7 +10,7 @@
 <title>Sportster Vendor App — Tournament Creation</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; background: #EEEEF4; display: flex; gap: 24px; padding: 24px; overflow-x: auto; min-height: 100vh; align-items: flex-start; }
+  body { font-family: 'Inter', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; background: #E8E8E6; display: flex; gap: 24px; padding: 24px; overflow-x: auto; min-height: 100vh; align-items: flex-start; }
 
   /* ── Phone Frame ── */
   .phone { width: 375px; min-width: 375px; background: #fff; border-radius: 40px; box-shadow: 0 24px 60px rgba(0,0,0,0.18); overflow: hidden; display: flex; flex-direction: column; }
@@ -22,21 +22,21 @@
   .nav { display: flex; align-items: center; padding: 12px 16px; gap: 12px; border-bottom: 1px solid #F0F0F0; }
   .nav .back { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #F5F5F5; cursor: pointer; font-size: 18px; }
   .nav h2 { font-size: 17px; font-weight: 700; flex: 1; }
-  .nav .action-btn { font-size: 13px; font-weight: 600; color: #2E4A1A; cursor: pointer; }
+  .nav .action-btn { font-size: 13px; font-weight: 600; color: #09210E; cursor: pointer; }
 
   /* ── Dashboard ── */
-  .dash-header { background: linear-gradient(135deg, #2E4A1A 0%, #4A7A28 100%); padding: 32px 20px 24px; color: #fff; }
+  .dash-header { background: linear-gradient(135deg, #09210E 0%, #163F1E 100%); padding: 32px 20px 24px; color: #fff; }
   .dash-header .greeting { font-size: 13px; opacity: 0.75; margin-bottom: 4px; }
   .dash-header h1 { font-size: 22px; font-weight: 800; }
   .dash-header .org { font-size: 12px; opacity: 0.65; margin-top: 2px; }
 
   .stats-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; padding: 16px; }
   .stat-card { background: #F8F9FA; border-radius: 14px; padding: 14px; text-align: center; }
-  .stat-card .val { font-size: 22px; font-weight: 800; color: #2E4A1A; }
+  .stat-card .val { font-size: 22px; font-weight: 800; color: #09210E; }
   .stat-card .lbl { font-size: 11px; color: #888; margin-top: 2px; }
 
   .section-title { font-size: 15px; font-weight: 700; padding: 0 16px 10px; color: #111; }
-  .create-btn-card { margin: 0 16px 16px; background: #2E4A1A; border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: opacity .15s; }
+  .create-btn-card { margin: 0 16px 16px; background: #09210E; border-radius: 16px; padding: 18px; display: flex; align-items: center; gap: 14px; cursor: pointer; transition: opacity .15s; }
   .create-btn-card:hover { opacity: .9; }
   .create-btn-card .icon { width: 44px; height: 44px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
   .create-btn-card .text h3 { color: #fff; font-size: 15px; font-weight: 700; }
@@ -48,15 +48,15 @@
   .t-card .info h4 { font-size: 14px; font-weight: 700; color: #111; }
   .t-card .info .meta { font-size: 12px; color: #888; margin-top: 3px; }
   .t-card .badge { margin-left: auto; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; flex-shrink: 0; }
-  .badge.open { background: #E8F5E0; color: #3A7D0A; }
+  .badge.open { background: #E8F5E0; color: #1A6030; }
   .badge.live { background: #FFEAEA; color: #D32F2F; }
   .badge.closed { background: #F5F5F5; color: #888; }
 
   /* ── Step progress ── */
   .step-progress { padding: 14px 16px; display: flex; align-items: center; gap: 6px; }
   .step-dot { flex: 1; height: 4px; border-radius: 2px; background: #E5E5E5; }
-  .step-dot.done { background: #2E4A1A; }
-  .step-dot.active { background: #6EA832; }
+  .step-dot.done { background: #09210E; }
+  .step-dot.active { background: #2A7A38; }
   .step-label { font-size: 11px; color: #888; text-align: right; width: 60px; }
 
   /* ── Form elements ── */
@@ -64,26 +64,26 @@
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-group label { font-size: 12px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: .4px; }
   .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 13px 14px; border: 1.5px solid #E5E5E5; border-radius: 12px; font-size: 14px; color: #111; background: #FAFAFA; outline: none; font-family: inherit; }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #4A7A28; background: #fff; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #163F1E; background: #fff; }
   .form-group textarea { resize: none; min-height: 90px; }
   .form-group .hint { font-size: 11px; color: #AAA; }
 
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip { padding: 8px 16px; border-radius: 20px; border: 1.5px solid #E5E5E5; font-size: 13px; font-weight: 500; cursor: pointer; transition: all .15s; color: #444; background: #FAFAFA; user-select: none; }
-  .chip.selected { background: #2E4A1A; color: #fff; border-color: #2E4A1A; }
+  .chip.selected { background: #09210E; color: #fff; border-color: #09210E; }
 
   .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #F0F0F0; }
   .toggle-row:last-child { border-bottom: none; }
   .toggle-row .t-label { font-size: 14px; color: #111; }
   .toggle-row .t-sub { font-size: 12px; color: #888; }
   .toggle { width: 44px; height: 26px; background: #E5E5E5; border-radius: 13px; position: relative; cursor: pointer; transition: background .2s; flex-shrink: 0; }
-  .toggle.on { background: #2E4A1A; }
+  .toggle.on { background: #09210E; }
   .toggle::after { content: ''; position: absolute; width: 22px; height: 22px; border-radius: 50%; background: #fff; top: 2px; left: 2px; transition: left .2s; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
   .toggle.on::after { left: 20px; }
 
   .range-row { display: flex; flex-direction: column; gap: 8px; }
   .range-row .range-labels { display: flex; justify-content: space-between; font-size: 12px; color: #888; }
-  input[type=range] { width: 100%; accent-color: #2E4A1A; }
+  input[type=range] { width: 100%; accent-color: #09210E; }
 
   /* ── Image upload ── */
   .img-upload { border: 2px dashed #D0D0D0; border-radius: 14px; padding: 28px; text-align: center; cursor: pointer; color: #AAA; background: #FAFAFA; }
@@ -101,10 +101,10 @@
   .slot-card .slot-info p { font-size: 12px; color: #888; }
   .slot-del { width: 30px; height: 30px; border-radius: 8px; background: #FFEAEA; color: #D32F2F; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; }
 
-  .add-row { display: flex; align-items: center; gap: 8px; padding: 12px 0; cursor: pointer; color: #4A7A28; font-size: 13px; font-weight: 600; }
+  .add-row { display: flex; align-items: center; gap: 8px; padding: 12px 0; cursor: pointer; color: #163F1E; font-size: 13px; font-weight: 600; }
 
   /* ── Review screen ── */
-  .review-header-img { width: 100%; height: 160px; background: linear-gradient(135deg, #2E4A1A, #6EA832); display: flex; align-items: center; justify-content: center; font-size: 48px; }
+  .review-header-img { width: 100%; height: 160px; background: linear-gradient(135deg, #09210E, #1E6428); display: flex; align-items: center; justify-content: center; font-size: 48px; }
   .review-section { padding: 16px; border-bottom: 1px solid #F0F0F0; }
   .review-section h3 { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
   .review-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
@@ -119,20 +119,20 @@
   .success-body h2 { font-size: 22px; font-weight: 800; color: #111; margin-bottom: 8px; }
   .success-body p { font-size: 14px; color: #888; line-height: 1.5; }
   .id-badge { margin-top: 20px; background: #F5F5F5; border-radius: 12px; padding: 12px 20px; font-size: 13px; color: #444; }
-  .id-badge span { font-weight: 700; color: #2E4A1A; }
+  .id-badge span { font-weight: 700; color: #09210E; }
 
   /* ── Bottom buttons ── */
   .bottom-bar { padding: 16px; border-top: 1px solid #F0F0F0; display: flex; gap: 10px; background: #fff; }
   .btn { flex: 1; padding: 15px; border-radius: 14px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; transition: all .15s; font-family: inherit; }
-  .btn.primary { background: #2E4A1A; color: #fff; }
-  .btn.primary:hover { background: #3A6021; }
+  .btn.primary { background: #09210E; color: #fff; }
+  .btn.primary:hover { background: #0F2E14; }
   .btn.secondary { background: #F0F0F0; color: #444; }
-  .btn.outline { background: transparent; border: 2px solid #2E4A1A; color: #2E4A1A; }
+  .btn.outline { background: transparent; border: 2px solid #09210E; color: #09210E; }
 
   /* ── Bottom Nav ── */
   .bottom-nav { display: flex; border-top: 1px solid #F0F0F0; background: #fff; }
   .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 10px 0 6px; cursor: pointer; gap: 3px; font-size: 10px; color: #AAA; font-weight: 500; }
-  .nav-item.active { color: #2E4A1A; }
+  .nav-item.active { color: #09210E; }
   .nav-item .ni { font-size: 22px; display: block; line-height: 1.1; }
 
   /* ── Page labels ── */
@@ -154,7 +154,7 @@
   .arena-switch { display:flex; gap:8px; padding:12px 16px 8px; overflow-x:auto; }
   .arena-switch::-webkit-scrollbar { display:none; }
   .arena-pill { padding:7px 14px; border-radius:20px; border:1.5px solid #E5E5E5; font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap; color:#666; background:#FAFAFA; }
-  .arena-pill.active { background:#2E4A1A; color:#fff; border-color:#2E4A1A; }
+  .arena-pill.active { background:#09210E; color:#fff; border-color:#09210E; }
 
   /* Arena card (My Arenas list) */
   .arena-card { margin:0 16px 12px; border:1px solid #EFEFEF; border-radius:16px; background:#fff; overflow:hidden; }
@@ -177,9 +177,9 @@
   .bk-row .bk-main p { font-size:12px; color:#888; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .bk-row .bk-right { display:flex; flex-direction:column; align-items:flex-end; gap:5px; }
   .bk-badge { padding:3px 9px; border-radius:20px; font-size:11px; font-weight:700; }
-  .bk-badge.confirmed { background:#E8F5E0; color:#2E7D32; }
+  .bk-badge.confirmed { background:#E8F5E0; color:#1A6030; }
   .bk-badge.pending   { background:#FFF3CD; color:#7A5A00; }
-  .bk-badge.screenshot{ background:#EDE7FF; color:#5E35B1; }
+  .bk-badge.screenshot{ background:#E4EDE8; color:#09210E; }
   .bk-badge.cancelled { background:#FDECEA; color:#C62828; }
   .bk-badge.completed { background:#F0F0F0; color:#666; }
 
@@ -196,16 +196,16 @@
   .ss-preview .ss-header { padding:10px 14px; background:#F8F8F8; border-bottom:1px solid #EFEFEF; display:flex; justify-content:space-between; align-items:center; }
   .ss-preview .ss-header span { font-size:12px; font-weight:600; color:#555; }
   .ss-preview .ss-header .ss-time { font-size:11px; color:#AAA; }
-  .ss-preview .ss-img { background: linear-gradient(160deg,#F5F0FF 0%, #EDE7FF 100%); height:140px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; }
+  .ss-preview .ss-img { background: linear-gradient(160deg,#F0F5F2 0%, #E4EDE8 100%); height:140px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; }
   .ss-preview .ss-img .si-icon { font-size:36px; }
-  .ss-preview .ss-img .si-label { font-size:12px; color:#7B68EE; font-weight:600; }
-  .ss-preview .ss-img .si-amount { font-size:18px; font-weight:800; color:#5E35B1; }
+  .ss-preview .ss-img .si-label { font-size:12px; color:#2A7A3A; font-weight:600; }
+  .ss-preview .ss-img .si-amount { font-size:18px; font-weight:800; color:#09210E; }
   .ss-preview .ss-img .si-ref { font-size:11px; color:#AAA; }
 
   /* Approve / Decline action bar */
   .action-bar { display:flex; gap:10px; padding:14px 16px; border-top:1px solid #F0F0F0; background:#fff; }
   .act-btn { flex:1; padding:13px; border-radius:13px; font-size:14px; font-weight:700; border:none; cursor:pointer; font-family:inherit; }
-  .act-btn.approve { background:#2E4A1A; color:#fff; }
+  .act-btn.approve { background:#09210E; color:#fff; }
   .act-btn.decline { background:#FDECEA; color:#C62828; }
   .act-btn.contact { background:#F0F0F0; color:#444; }
 
@@ -214,7 +214,7 @@
   .slot-row .sr-time { font-size:11px; color:#AAA; width:48px; flex-shrink:0; font-weight:500; }
   .slot-bar { flex:1; height:40px; border-radius:10px; display:flex; align-items:center; padding:0 12px; font-size:12px; font-weight:600; gap:6px; }
   .slot-bar.open     { background:#F5FFF7; border:1.5px dashed #B2DFDB; color:#AAA; }
-  .slot-bar.booked   { background:#E8F5E0; border:1.5px solid #A5D6A7; color:#2E7D32; }
+  .slot-bar.booked   { background:#E8F5E0; border:1.5px solid #A5D6A7; color:#1A6030; }
   .slot-bar.pending  { background:#FFF8E1; border:1.5px solid #FFD54F; color:#7A5A00; }
   .slot-bar.blocked  { background:#F5F5F5; border:1.5px solid #E0E0E0; color:#BDBDBD; }
   .slot-bar .sb-dot  { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
@@ -226,7 +226,7 @@
   .pay-mode-card .pmc-text h4 { font-size:14px; font-weight:700; color:#111; }
   .pay-mode-card .pmc-text p  { font-size:12px; color:#888; margin-top:2px; line-height:1.4; }
   .pay-mode-card .pmc-sel { margin-left:auto; width:22px; height:22px; border-radius:50%; border:2px solid #E0E0E0; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .pay-mode-card .pmc-sel.on { background:#2E4A1A; border-color:#2E4A1A; color:#fff; font-size:12px; font-weight:700; }
+  .pay-mode-card .pmc-sel.on { background:#09210E; border-color:#09210E; color:#fff; font-size:12px; font-weight:700; }
 
   /* Notif dot */
   .ndot { display:inline-block; width:7px; height:7px; background:#D32F2F; border-radius:50%; margin-left:3px; vertical-align:middle; }
@@ -235,7 +235,7 @@
   .dt-strip { display:flex; gap:5px; padding:10px 16px; overflow-x:auto; }
   .dt-strip::-webkit-scrollbar { display:none; }
   .dt-day { display:flex; flex-direction:column; align-items:center; padding:7px 9px; border-radius:13px; cursor:pointer; min-width:46px; border:1.5px solid transparent; flex-shrink:0; }
-  .dt-day.today { background:#2E4A1A; }
+  .dt-day.today { background:#09210E; }
   .dt-day.has-bkg { border-color:#DDE8D0; background:#F4FAEE; }
   .dt-day.has-pending { border-color:#FFB300; background:#FFF8E1; }
   .dt-day .dd-name { font-size:9px; font-weight:700; color:#CCC; letter-spacing:.3px; text-transform:uppercase; }
@@ -246,7 +246,7 @@
   .dt-day.has-bkg .dd-num, .dt-day.has-pending .dd-num { color:#111; }
   .dt-day .dd-tag { font-size:9px; font-weight:800; margin-top:2px; }
   .dt-day.today .dd-tag { color:rgba(255,255,255,.85); }
-  .dt-day.has-bkg .dd-tag { color:#2E7D32; }
+  .dt-day.has-bkg .dd-tag { color:#1A6030; }
   .dt-day.has-pending .dd-tag { color:#E65100; }
 
   /* Day summary bar */
@@ -266,7 +266,7 @@
   .sg-cell.sg-closed .sg-hr { color:#C8C8C8; }
   .sg-cell.sg-avail { background:#F0F9E8; border:1.5px dashed #90C850; }
   .sg-cell.sg-avail .sg-hr { color:#60A030; }
-  .sg-cell.sg-ok { background:linear-gradient(145deg,#2A6E20,#3DAA2E); }
+  .sg-cell.sg-ok { background:linear-gradient(145deg,#09210E,#163F1E); }
   .sg-cell.sg-ok .sg-hr,.sg-cell.sg-ok .sg-nm { color:#fff; }
   .sg-cell.sg-ok .sg-hr { opacity:.8; }
   .sg-cell.sg-pend { background:linear-gradient(145deg,#BF5500,#F08A00); }
@@ -299,16 +299,16 @@
   .sm-bg { position:absolute; inset:0; background:rgba(0,0,0,.6); z-index:20; border-radius:36px; display:flex; align-items:center; justify-content:center; padding:20px; }
   .sm-card { background:#fff; border-radius:20px; width:100%; padding:20px 18px; }
   .smp-row { display:flex; align-items:center; gap:10px; padding:11px 12px; border-radius:12px; border:1.5px solid #EFEFEF; margin-bottom:8px; cursor:pointer; }
-  .smp-row.sel { border-color:#2E4A1A; background:#F4FAEE; }
+  .smp-row.sel { border-color:#09210E; background:#F4FAEE; }
   .smp-dot { width:18px; height:18px; border-radius:50%; border:2px solid #D0D0D0; flex-shrink:0; }
-  .smp-row.sel .smp-dot { border-color:#2E4A1A; background:#2E4A1A; box-shadow:inset 0 0 0 3px #fff; }
+  .smp-row.sel .smp-dot { border-color:#09210E; background:#09210E; box-shadow:inset 0 0 0 3px #fff; }
 
   /* Booking management cards */
   .bmc { margin:0 14px 10px; border-radius:16px; overflow:hidden; }
   .bmc .bmc-bar { height:5px; }
   .bmc.pend .bmc-bar { background:linear-gradient(90deg,#BF360C,#FF6D00); }
-  .bmc.conf .bmc-bar { background:linear-gradient(90deg,#1B5E20,#43A047); }
-  .bmc.canc .bmc-bar { background:linear-gradient(90deg,#880E4F,#E91E63); }
+  .bmc.conf .bmc-bar { background:linear-gradient(90deg,#09210E,#2A7A38); }
+  .bmc.canc .bmc-bar { background:linear-gradient(90deg,#8B2020,#C02828); }
   .bmc .bmc-body { padding:12px 14px; border:1.5px solid #F0F0F0; border-top:none; border-radius:0 0 16px 16px; }
   .bmc.pend .bmc-body { background:#FFF8F0; border-color:#FFD0A0; }
   .bmc.conf .bmc-body { background:#fff; }
@@ -319,11 +319,11 @@
   .bmc .bmc-info p { font-size:11px; color:#777; margin-top:2px; }
   .bmc .bmc-note { font-size:11px; border-radius:9px; padding:7px 10px; margin-bottom:10px; font-weight:600; display:flex; align-items:center; gap:6px; }
   .bmc.pend .bmc-note { background:#FFF3CD; color:#7A5A00; }
-  .bmc.conf .bmc-note { background:#E8F5E0; color:#2E7D32; }
+  .bmc.conf .bmc-note { background:#E8F5E0; color:#1A6030; }
   .bmc.canc .bmc-note { background:#FDECEA; color:#B71C1C; }
   .bmc .bmc-acts { display:flex; gap:7px; }
   .bmc .bmc-btn { flex:1; padding:9px 4px; border-radius:10px; font-size:11px; font-weight:800; border:none; cursor:pointer; font-family:inherit; text-align:center; }
-  .bmc .bmc-btn.approve { background:#2E4A1A; color:#fff; }
+  .bmc .bmc-btn.approve { background:#09210E; color:#fff; }
   .bmc .bmc-btn.decline { background:#FDECEA; color:#C62828; }
   .bmc .bmc-btn.msg { background:#F0F4F0; color:#444; }
   .bmc .bmc-btn.cancel-bk { background:#FFF3CD; color:#7A5A00; }
@@ -331,20 +331,20 @@
   /* Analytics screen */
   .an-period { display:flex; background:#F0F4EE; border-radius:12px; padding:3px; margin:12px 16px 0; }
   .an-period .ap { flex:1; text-align:center; padding:7px 4px; border-radius:9px; font-size:11px; font-weight:700; color:#888; cursor:pointer; }
-  .an-period .ap.active { background:#fff; color:#2E4A1A; box-shadow:0 1px 4px rgba(0,0,0,.1); }
+  .an-period .ap.active { background:#fff; color:#09210E; box-shadow:0 1px 4px rgba(0,0,0,.1); }
   .kpi-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:12px 16px 4px; }
   .kpi { background:#fff; border-radius:14px; padding:13px 14px; border:1.5px solid #F0F0F0; }
   .kpi .kv { font-size:20px; font-weight:900; color:#111; }
   .kpi .kl { font-size:10px; color:#AAA; margin-top:3px; font-weight:600; }
   .kpi .kt { font-size:10px; font-weight:700; margin-top:5px; }
-  .kpi .kt.up { color:#2E7D32; }
+  .kpi .kt.up { color:#1A6030; }
   .kpi .kt.dn { color:#C62828; }
   .an-sec { padding:14px 16px 4px; }
   .an-sec .as-title { font-size:11px; font-weight:800; color:#555; margin-bottom:10px; letter-spacing:.3px; }
   /* Revenue bar chart */
   .rev-chart { display:flex; align-items:flex-end; gap:5px; height:70px; }
   .rev-bar { flex:1; border-radius:5px 5px 0 0; min-height:4px; position:relative; cursor:pointer; }
-  .rev-bar.today { background:#2E4A1A; }
+  .rev-bar.today { background:#09210E; }
   .rev-bar:not(.today) { background:#C8E6C9; }
   .rev-bar .rv { position:absolute; bottom:-16px; left:50%; transform:translateX(-50%); font-size:8px; color:#AAA; font-weight:700; white-space:nowrap; }
   /* Day-of-week bars */
@@ -370,7 +370,7 @@
   .tc-row .tc-info h4 { font-size:12px; font-weight:800; color:#111; }
   .tc-row .tc-info p { font-size:10px; color:#888; margin-top:1px; }
   .tc-row .tc-val { margin-left:auto; text-align:right; }
-  .tc-row .tc-val .tv { font-size:13px; font-weight:800; color:#2E4A1A; }
+  .tc-row .tc-val .tv { font-size:13px; font-weight:800; color:#09210E; }
   .tc-row .tc-val .tl { font-size:9px; color:#AAA; }
 </style>
 </head>
@@ -980,7 +980,7 @@
     <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;">
 
       <!-- ── GRADIENT HEADER DASHBOARD ── -->
-      <div style="background:linear-gradient(150deg,#172E0E 0%,#2A5E18 55%,#3A8024 100%);padding:16px 16px 20px;flex-shrink:0;">
+      <div style="background:linear-gradient(150deg,#09210E 0%,#0F2E14 55%,#163F1E 100%);padding:16px 16px 20px;flex-shrink:0;">
         <div style="font-size:10px;color:rgba(255,255,255,.45);font-weight:600;letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px;">Sun, 26 Apr · 9:41 AM</div>
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
           <div>
@@ -991,7 +991,7 @@
           <div style="background:rgba(255,255,255,.13);border-radius:14px;padding:10px 14px;text-align:right;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);">
             <div style="font-size:20px;font-weight:900;color:#fff;letter-spacing:-.5px;">Rs 49k</div>
             <div style="font-size:9px;color:rgba(255,255,255,.55);margin-top:1px;">Today's Revenue</div>
-            <div style="font-size:9px;font-weight:800;color:#90EE70;margin-top:2px;">↑ 14% vs yesterday</div>
+            <div style="font-size:9px;font-weight:800;color:#70D880;margin-top:2px;">↑ 14% vs yesterday</div>
           </div>
         </div>
 
@@ -1029,15 +1029,15 @@
         <!-- ════ ARENA 1: Elite Sports Arena ════ -->
         <div style="margin:0 14px 14px;border-radius:20px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1);">
           <!-- Gradient header -->
-          <div style="background:linear-gradient(135deg,#1A4A10,#3DAA2E);padding:14px 16px 16px;">
+          <div style="background:linear-gradient(135deg,#09210E,#163F1E);padding:14px 16px 16px;">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">
               <div>
                 <div style="font-size:16px;font-weight:900;color:#fff;letter-spacing:-.2px;">Elite Sports Arena</div>
                 <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;"><i class="ri-map-pin-2-line" style="font-size:11px;margin-right:2px;"></i>DHA Phase 5, Karachi</div>
               </div>
               <div style="background:rgba(144,238,112,.22);border-radius:20px;padding:4px 11px;display:flex;align-items:center;gap:4px;border:1px solid rgba(144,238,112,.35);">
-                <div style="width:6px;height:6px;background:#90EE70;border-radius:50%;"></div>
-                <span style="font-size:10px;color:#90EE70;font-weight:800;">Open</span>
+                <div style="width:6px;height:6px;background:#70D880;border-radius:50%;"></div>
+                <span style="font-size:10px;color:#70D880;font-weight:800;">Open</span>
               </div>
             </div>
             <!-- Slot occupancy fill bar -->
@@ -1047,11 +1047,11 @@
                 <div style="font-size:12px;font-weight:900;color:#fff;">8 <span style="font-size:9px;font-weight:600;color:rgba(255,255,255,.5);">/ 18 slots</span></div>
               </div>
               <div style="background:rgba(0,0,0,.2);border-radius:6px;height:8px;overflow:hidden;">
-                <div style="width:44%;height:100%;background:linear-gradient(90deg,#90EE70,#C8FF80);border-radius:6px;"></div>
+                <div style="width:44%;height:100%;background:linear-gradient(90deg,#4AAA60,#70D880);border-radius:6px;"></div>
               </div>
               <div style="display:flex;justify-content:space-between;margin-top:5px;">
                 <div style="font-size:9px;color:rgba(255,255,255,.45);">6 confirmed &nbsp;·&nbsp; 2 pending <i class="ri-camera-line" style="font-size:9px;"></i></div>
-                <div style="font-size:10px;font-weight:800;color:#90EE70;">44%</div>
+                <div style="font-size:10px;font-weight:800;color:#70D880;">44%</div>
               </div>
             </div>
           </div>
@@ -1059,10 +1059,10 @@
           <div style="background:#fff;padding:12px 14px 0;">
             <!-- KPI grid -->
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
-              <div style="background:#F2FBF0;border-radius:12px;padding:10px 10px 8px;">
-                <div style="font-size:15px;font-weight:900;color:#2A6E20;">Rs 22k</div>
-                <div style="font-size:8px;color:#7AAA60;margin-top:2px;font-weight:600;">REVENUE TODAY</div>
-                <div style="font-size:8px;color:#90C060;margin-top:1px;">↑ 12%</div>
+              <div style="background:#F2F7F3;border-radius:12px;padding:10px 10px 8px;">
+                <div style="font-size:15px;font-weight:900;color:#09210E;">Rs 22k</div>
+                <div style="font-size:8px;color:#4A6B4E;margin-top:2px;font-weight:600;">REVENUE TODAY</div>
+                <div style="font-size:8px;color:#5A8A68;margin-top:1px;">↑ 12%</div>
               </div>
               <div style="background:#FFF6E8;border-radius:12px;padding:10px 10px 8px;position:relative;">
                 <div style="font-size:15px;font-weight:900;color:#BF5500;">2 <i class="ri-camera-line" style="font-size:14px;vertical-align:middle;"></i></div>
@@ -1070,17 +1070,17 @@
                 <div style="font-size:8px;color:#F08A00;margin-top:1px;">Oldest: 2h ago</div>
                 <div style="position:absolute;top:8px;right:8px;width:7px;height:7px;background:#F08A00;border-radius:50%;box-shadow:0 0 0 2px #fff8ee;"></div>
               </div>
-              <div style="background:#F0F4FE;border-radius:12px;padding:10px 10px 8px;">
-                <div style="font-size:14px;font-weight:900;color:#1565C0;">⚽ 🏀</div>
-                <div style="font-size:8px;color:#5080C0;margin-top:2px;font-weight:600;">SPORTS</div>
-                <div style="font-size:8px;color:#80A0E0;margin-top:1px;">Football · Basketball</div>
+              <div style="background:#F2F7F3;border-radius:12px;padding:10px 10px 8px;">
+                <div style="font-size:14px;font-weight:900;color:#09210E;">⚽ 🏀</div>
+                <div style="font-size:8px;color:#4A6B4E;margin-top:2px;font-weight:600;">SPORTS</div>
+                <div style="font-size:8px;color:#7A917C;margin-top:1px;">Football · Basketball</div>
               </div>
             </div>
             <!-- Next slots mini-timeline -->
             <div style="margin-bottom:0;">
               <div style="font-size:8px;color:#BBB;font-weight:800;letter-spacing:.5px;margin-bottom:7px;">NEXT SLOTS</div>
               <div style="display:flex;gap:4px;">
-                <div style="flex:1;background:linear-gradient(145deg,#2A6E20,#3DAA2E);border-radius:9px;padding:6px 5px;text-align:center;">
+                <div style="flex:1;background:linear-gradient(145deg,#09210E,#163F1E);border-radius:9px;padding:6px 5px;text-align:center;">
                   <div style="font-size:9px;font-weight:900;color:#fff;">12pm</div>
                   <div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px;">⚽ Umar</div>
                 </div>
@@ -1088,7 +1088,7 @@
                   <div style="font-size:9px;font-weight:900;color:#fff;">2pm</div>
                   <div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px;"><i class="ri-camera-line" style="font-size:8px;"></i> Zain</div>
                 </div>
-                <div style="flex:1;background:linear-gradient(145deg,#2A6E20,#3DAA2E);border-radius:9px;padding:6px 5px;text-align:center;">
+                <div style="flex:1;background:linear-gradient(145deg,#09210E,#163F1E);border-radius:9px;padding:6px 5px;text-align:center;">
                   <div style="font-size:9px;font-weight:900;color:#fff;">4pm</div>
                   <div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px;">🏀 Kings</div>
                 </div>
@@ -1100,24 +1100,24 @@
             </div>
             <!-- Action strip -->
             <div style="display:flex;border-top:1px solid #F0F0F0;margin-top:10px;">
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#2A6E20;cursor:pointer;border-right:1px solid #F0F0F0;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;border-right:1px solid #F0F0F0;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
               <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F0F0F0;position:relative;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests<span style="position:absolute;top:8px;right:6px;width:6px;height:6px;background:#E65100;border-radius:50%;"></span></div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#1565C0;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
             </div>
           </div>
         </div>
 
         <!-- ════ ARENA 2: Champions Ground ════ -->
         <div style="margin:0 14px 14px;border-radius:20px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1);">
-          <div style="background:linear-gradient(135deg,#0C3570,#1A6BCC);padding:14px 16px 16px;">
+          <div style="background:linear-gradient(135deg,#09210E,#163F1E);padding:14px 16px 16px;">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">
               <div>
                 <div style="font-size:16px;font-weight:900;color:#fff;letter-spacing:-.2px;">Champions Ground</div>
                 <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;"><i class="ri-map-pin-2-line" style="font-size:11px;margin-right:2px;"></i>Gulshan-e-Iqbal, Karachi</div>
               </div>
               <div style="background:rgba(144,238,112,.22);border-radius:20px;padding:4px 11px;display:flex;align-items:center;gap:4px;border:1px solid rgba(144,238,112,.35);">
-                <div style="width:6px;height:6px;background:#90EE70;border-radius:50%;"></div>
-                <span style="font-size:10px;color:#90EE70;font-weight:800;">Open</span>
+                <div style="width:6px;height:6px;background:#70D880;border-radius:50%;"></div>
+                <span style="font-size:10px;color:#70D880;font-weight:800;">Open</span>
               </div>
             </div>
             <div>
@@ -1126,20 +1126,20 @@
                 <div style="font-size:12px;font-weight:900;color:#fff;">7 <span style="font-size:9px;font-weight:600;color:rgba(255,255,255,.5);">/ 18 slots</span></div>
               </div>
               <div style="background:rgba(0,0,0,.2);border-radius:6px;height:8px;overflow:hidden;">
-                <div style="width:39%;height:100%;background:linear-gradient(90deg,#80CCFF,#AADEFF);border-radius:6px;"></div>
+                <div style="width:39%;height:100%;background:linear-gradient(90deg,#4AAA60,#70D880);border-radius:6px;"></div>
               </div>
               <div style="display:flex;justify-content:space-between;margin-top:5px;">
                 <div style="font-size:9px;color:rgba(255,255,255,.45);">5 confirmed &nbsp;·&nbsp; 2 pending <i class="ri-camera-line" style="font-size:9px;"></i></div>
-                <div style="font-size:10px;font-weight:800;color:#80CCFF;">39%</div>
+                <div style="font-size:10px;font-weight:800;color:#70D880;">39%</div>
               </div>
             </div>
           </div>
           <div style="background:#fff;padding:12px 14px 0;">
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
-              <div style="background:#EEF4FF;border-radius:12px;padding:10px 10px 8px;">
-                <div style="font-size:15px;font-weight:900;color:#1565C0;">Rs 18k</div>
-                <div style="font-size:8px;color:#5080C0;margin-top:2px;font-weight:600;">REVENUE TODAY</div>
-                <div style="font-size:8px;color:#3A70D0;margin-top:1px;">↑ 8%</div>
+              <div style="background:#F2F7F3;border-radius:12px;padding:10px 10px 8px;">
+                <div style="font-size:15px;font-weight:900;color:#09210E;">Rs 18k</div>
+                <div style="font-size:8px;color:#4A6B4E;margin-top:2px;font-weight:600;">REVENUE TODAY</div>
+                <div style="font-size:8px;color:#2A7A38;margin-top:1px;">↑ 8%</div>
               </div>
               <div style="background:#FFF6E8;border-radius:12px;padding:10px 10px 8px;position:relative;">
                 <div style="font-size:15px;font-weight:900;color:#BF5500;">2 <i class="ri-camera-line" style="font-size:14px;vertical-align:middle;"></i></div>
@@ -1147,20 +1147,20 @@
                 <div style="font-size:8px;color:#F08A00;margin-top:1px;">Oldest: 4h ago</div>
                 <div style="position:absolute;top:8px;right:8px;width:7px;height:7px;background:#F08A00;border-radius:50%;box-shadow:0 0 0 2px #fff8ee;"></div>
               </div>
-              <div style="background:#EEF4FF;border-radius:12px;padding:10px 10px 8px;">
-                <div style="font-size:14px;font-weight:900;color:#1565C0;">⚽ 🏏</div>
-                <div style="font-size:8px;color:#5080C0;margin-top:2px;font-weight:600;">SPORTS</div>
-                <div style="font-size:8px;color:#80A0E0;margin-top:1px;">Football · Cricket</div>
+              <div style="background:#F2F7F3;border-radius:12px;padding:10px 10px 8px;">
+                <div style="font-size:14px;font-weight:900;color:#09210E;">⚽ 🏏</div>
+                <div style="font-size:8px;color:#4A6B4E;margin-top:2px;font-weight:600;">SPORTS</div>
+                <div style="font-size:8px;color:#7A917C;margin-top:1px;">Football · Cricket</div>
               </div>
             </div>
             <div style="margin-bottom:0;">
               <div style="font-size:8px;color:#BBB;font-weight:800;letter-spacing:.5px;margin-bottom:7px;">NEXT SLOTS</div>
               <div style="display:flex;gap:4px;">
-                <div style="flex:1;background:linear-gradient(145deg,#2A6E20,#3DAA2E);border-radius:9px;padding:6px 5px;text-align:center;">
+                <div style="flex:1;background:linear-gradient(145deg,#09210E,#163F1E);border-radius:9px;padding:6px 5px;text-align:center;">
                   <div style="font-size:9px;font-weight:900;color:#fff;">11am</div>
                   <div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px;">⚽ Imran</div>
                 </div>
-                <div style="flex:1;background:linear-gradient(145deg,#0C3570,#1A6BCC);border-radius:9px;padding:6px 5px;text-align:center;">
+                <div style="flex:1;background:linear-gradient(145deg,#09210E,#163F1E);border-radius:9px;padding:6px 5px;text-align:center;">
                   <div style="font-size:9px;font-weight:900;color:#fff;">1pm</div>
                   <div style="font-size:8px;color:rgba(255,255,255,.7);margin-top:1px;">🏏 Raza</div>
                 </div>
@@ -1175,16 +1175,16 @@
               </div>
             </div>
             <div style="display:flex;border-top:1px solid #F0F0F0;margin-top:10px;">
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#2A6E20;cursor:pointer;border-right:1px solid #F0F0F0;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;border-right:1px solid #F0F0F0;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
               <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F0F0F0;position:relative;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests<span style="position:absolute;top:8px;right:6px;width:6px;height:6px;background:#E65100;border-radius:50%;"></span></div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#1565C0;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
             </div>
           </div>
         </div>
 
         <!-- ════ ARENA 3: Victory Sports Complex (Maintenance) ════ -->
         <div style="margin:0 14px 14px;border-radius:20px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);">
-          <div style="background:linear-gradient(135deg,#5C2E00,#AA6010);padding:14px 16px 16px;">
+          <div style="background:linear-gradient(135deg,#242424,#3D3D3D);padding:14px 16px 16px;">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;">
               <div>
                 <div style="font-size:16px;font-weight:900;color:#fff;letter-spacing:-.2px;">Victory Sports Complex</div>
@@ -1224,29 +1224,29 @@
             <div style="display:flex;border-top:1px solid #EEEEEE;">
               <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:#CCC;cursor:pointer;border-right:1px solid #EEEEEE;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
               <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:#CCC;cursor:pointer;border-right:1px solid #EEEEEE;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests</div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#AA5500;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
+              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#666666;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
             </div>
           </div>
         </div>
 
         <!-- ════ ADD NEW ARENA ════ -->
-        <div style="margin:0 14px 14px;border-radius:20px;border:2px dashed #B8D4A8;padding:16px;display:flex;align-items:center;gap:14px;cursor:pointer;background:#FAFCF8;">
-          <div style="width:40px;height:40px;background:linear-gradient(135deg,#E8F5E0,#C8E8B0);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#2E4A1A;flex-shrink:0;">+</div>
+        <div style="margin:0 14px 14px;border-radius:20px;border:2px dashed #C0CCC0;padding:16px;display:flex;align-items:center;gap:14px;cursor:pointer;background:#FAFCF8;">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,#EFEFEF,#E4EAE4);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#09210E;flex-shrink:0;">+</div>
           <div>
-            <div style="font-size:13px;font-weight:800;color:#2E4A1A;">Register New Arena</div>
+            <div style="font-size:13px;font-weight:800;color:#09210E;">Register New Arena</div>
             <div style="font-size:11px;color:#98B880;margin-top:2px;">Set hours, pricing &amp; sports offered</div>
           </div>
           <div style="margin-left:auto;font-size:18px;color:#C8D8C0;">›</div>
         </div>
 
         <!-- ════ TOTAL ANALYTICS CTA ════ -->
-        <div style="margin:0 14px 14px;background:linear-gradient(135deg,#0D2456,#1A3A78);border-radius:18px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 16px rgba(26,58,120,.25);">
+        <div style="margin:0 14px 14px;background:linear-gradient(135deg,#09210E,#163F1E);border-radius:18px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 16px rgba(9,33,14,.25);">
           <div style="width:38px;height:38px;background:rgba(255,255,255,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📊</div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:13px;font-weight:800;color:#fff;">View Total Business Analytics</div>
             <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px;">Revenue, occupancy &amp; trends · All 3 arenas</div>
           </div>
-          <div style="background:rgba(255,255,255,.15);color:#8AB8FF;font-size:11px;font-weight:800;padding:7px 12px;border-radius:10px;cursor:pointer;white-space:nowrap;flex-shrink:0;">→ S16</div>
+          <div style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);font-size:11px;font-weight:800;padding:7px 12px;border-radius:10px;cursor:pointer;white-space:nowrap;flex-shrink:0;">→ S16</div>
         </div>
 
       </div><!-- scrollable -->
@@ -1287,7 +1287,7 @@
             <div style="font-size:15px;font-weight:800;color:#111;">Elite Sports Arena</div>
             <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5 · Hourly slots</div>
           </div>
-          <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#2E4A1A;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;"><i class="ri-calendar-close-line" style="font-size:12px;margin-right:3px;"></i>Block Slots</div>
+          <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#09210E;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;"><i class="ri-calendar-close-line" style="font-size:12px;margin-right:3px;"></i>Block Slots</div>
         </div>
       </div>
 
@@ -1308,7 +1308,7 @@
       <!-- DAY SUMMARY + LEGEND -->
       <div style="background:#fff; border-bottom:1.5px solid #EFEFEF; flex-shrink:0;">
         <div class="day-sum">
-          <div class="ds"><div class="dv" style="color:#2E7D32;">6</div><div class="dl">Confirmed</div></div>
+          <div class="ds"><div class="dv" style="color:#1A6030;">6</div><div class="dl">Confirmed</div></div>
           <div style="width:1px;background:#EFEFEF;"></div>
           <div class="ds"><div class="dv" style="color:#E65100;">2</div><div class="dl"><i class="ri-camera-line" style="font-size:10px;margin-right:2px;"></i>Pending</div></div>
           <div style="width:1px;background:#EFEFEF;"></div>
@@ -1318,7 +1318,7 @@
         </div>
         <!-- Compact legend -->
         <div style="display:flex;gap:10px;padding:5px 14px 7px;flex-wrap:wrap;">
-          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#2A6E20,#3DAA2E);"></div>Confirmed</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#09210E,#163F1E);"></div>Confirmed</div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending <i class="ri-camera-line" style="font-size:9px;"></i></div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Available</div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
@@ -1395,9 +1395,9 @@
           <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
           <div style="flex:1;">
             <div style="font-size:15px;font-weight:800;color:#111;">Elite Sports Arena</div>
-            <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5 · <b style="color:#2E4A1A;">Half-hour slots</b></div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5 · <b style="color:#09210E;">Half-hour slots</b></div>
           </div>
-          <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#2E4A1A;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;"><i class="ri-calendar-close-line" style="font-size:12px;margin-right:3px;"></i>Block Slots</div>
+          <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#09210E;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;"><i class="ri-calendar-close-line" style="font-size:12px;margin-right:3px;"></i>Block Slots</div>
         </div>
       </div>
 
@@ -1414,7 +1414,7 @@
       <!-- DAY SUMMARY -->
       <div style="background:#fff; border-bottom:1.5px solid #EFEFEF; flex-shrink:0;">
         <div class="day-sum">
-          <div class="ds"><div class="dv" style="color:#2E7D32;">10</div><div class="dl">Confirmed</div></div>
+          <div class="ds"><div class="dv" style="color:#1A6030;">10</div><div class="dl">Confirmed</div></div>
           <div style="width:1px;background:#EFEFEF;"></div>
           <div class="ds"><div class="dv" style="color:#BF5500;">6</div><div class="dl"><i class="ri-camera-line" style="font-size:10px;margin-right:2px;"></i>Pending</div></div>
           <div style="width:1px;background:#EFEFEF;"></div>
@@ -1424,7 +1424,7 @@
         </div>
         <!-- Compact legend -->
         <div style="display:flex;gap:10px;padding:5px 14px 7px;flex-wrap:wrap;">
-          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#2A6E20,#3DAA2E);"></div>Confirmed</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#09210E,#163F1E);"></div>Confirmed</div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending <i class="ri-camera-line" style="font-size:9px;"></i></div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Available</div>
           <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
@@ -1532,7 +1532,7 @@
           <div style="font-size:10px;color:#AAA;">DHA Phase 5 · Hourly slots</div>
         </div>
         <div style="display:flex;gap:5px;padding:10px 16px;background:#fff;border-bottom:1px solid #F0F0F0;overflow:hidden;">
-          <div style="min-width:46px;text-align:center;padding:7px;border-radius:13px;background:#2E4A1A;"><div style="font-size:9px;color:rgba(255,255,255,.6);">TODAY</div><div style="font-size:17px;font-weight:900;color:#fff;">26</div></div>
+          <div style="min-width:46px;text-align:center;padding:7px;border-radius:13px;background:#09210E;"><div style="font-size:9px;color:rgba(255,255,255,.6);">TODAY</div><div style="font-size:17px;font-weight:900;color:#fff;">26</div></div>
         </div>
         <div class="slot-grid">
           <div class="sg-cell sg-closed"><div class="sg-hr">12am</div></div>
@@ -1575,7 +1575,7 @@
 
           <!-- Customer row -->
           <div style="display:flex;align-items:center;gap:12px;padding:0 16px 12px;border-bottom:1px solid #F5F5F5;">
-            <div style="width:44px;height:44px;border-radius:50%;background:#2E4A1A;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:900;flex-shrink:0;">A</div>
+            <div style="width:44px;height:44px;border-radius:50%;background:#09210E;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:900;flex-shrink:0;">A</div>
             <div style="flex:1;">
               <div style="font-size:14px;font-weight:800;color:#111;">Ali Hassan</div>
               <div style="font-size:11px;color:#888;margin-top:2px;">⚽ Football · 2 hours · Rs 4,000</div>
@@ -1591,7 +1591,7 @@
 
           <!-- Single primary action -->
           <div style="padding:0 16px;">
-            <button style="width:100%;padding:14px;background:#2E4A1A;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">View Full Booking Details <i class="ri-arrow-right-s-line"></i></button>
+            <button style="width:100%;padding:14px;background:#09210E;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">View Full Booking Details <i class="ri-arrow-right-s-line"></i></button>
           </div>
           <div style="padding:8px 16px 0;">
             <button style="width:100%;padding:10px;background:#F0F4F0;color:#555;font-size:12px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:inherit;"><i class="ri-message-3-line"></i> Contact Customer</button>
@@ -1645,7 +1645,7 @@
           <div class="sg-cell sg-ok"><div class="sg-hr">9am</div></div>
           <div class="sg-cell sg-pend"><div class="sg-hr">10am</div></div>
           <div class="sg-cell sg-pend"><div class="sg-hr">11am</div></div>
-          <div class="sg-cell sg-avail" style="box-shadow:0 0 0 3px #fff,0 0 0 5px #2E4A1A;"><div class="sg-hr">12pm</div></div>
+          <div class="sg-cell sg-avail" style="box-shadow:0 0 0 3px #fff,0 0 0 5px #09210E;"><div class="sg-hr">12pm</div></div>
           <div class="sg-cell sg-avail"><div class="sg-hr">1pm</div></div>
           <div class="sg-cell sg-pend"><div class="sg-hr">2pm</div></div>
           <div class="sg-cell sg-pend"><div class="sg-hr">3pm</div></div>
@@ -1703,7 +1703,7 @@
           <!-- Action buttons -->
           <div style="display:flex;gap:8px;">
             <button style="flex:1;padding:12px;background:#F0F0F0;color:#555;font-size:13px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Cancel</button>
-            <button style="flex:1.4;padding:12px;background:#2E4A1A;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Apply Change</button>
+            <button style="flex:1.4;padding:12px;background:#09210E;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Apply Change</button>
           </div>
         </div>
       </div>
@@ -1747,7 +1747,7 @@
         </div>
         <!-- Tab bar -->
         <div style="display:flex;gap:0;border-bottom:2px solid #EFEFEF;margin:0 -16px;padding:0 16px;">
-          <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:800;color:#2E4A1A;border-bottom:2.5px solid #2E4A1A;margin-bottom:-2px;cursor:pointer;">All <span style="background:#EFEFEF;color:#555;border-radius:20px;padding:1px 6px;font-size:10px;">8</span></div>
+          <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:800;color:#09210E;border-bottom:2.5px solid #09210E;margin-bottom:-2px;cursor:pointer;">All <span style="background:#EFEFEF;color:#555;border-radius:20px;padding:1px 6px;font-size:10px;">8</span></div>
           <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:800;color:#E65100;border-bottom:2.5px solid #E65100;margin-bottom:-2px;cursor:pointer;">Pending <span style="background:#FFE0B2;color:#E65100;border-radius:20px;padding:1px 6px;font-size:10px;">2</span></div>
           <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;">Confirmed <span style="background:#EFEFEF;color:#AAA;border-radius:20px;padding:1px 6px;font-size:10px;">4</span></div>
           <div style="padding:8px 0;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;">Cancelled <span style="background:#EFEFEF;color:#AAA;border-radius:20px;padding:1px 6px;font-size:10px;">2</span></div>
@@ -1802,7 +1802,7 @@
           <div class="bmc-bar"></div>
           <div class="bmc-body">
             <div class="bmc-top">
-              <div class="bmc-av" style="background:#1B5E20;">U</div>
+              <div class="bmc-av" style="background:#09210E;">U</div>
               <div class="bmc-info">
                 <h4>Umar Farooq</h4>
                 <p>⚽ Football · 9:00 AM – 11:00 AM · Rs 4,000</p>
@@ -1822,7 +1822,7 @@
           <div class="bmc-bar"></div>
           <div class="bmc-body">
             <div class="bmc-top">
-              <div class="bmc-av" style="background:#2E4A1A;">K</div>
+              <div class="bmc-av" style="background:#09210E;">K</div>
               <div class="bmc-info">
                 <h4>Karachi Kings</h4>
                 <p>🏀 Basketball · 4:00 PM – 6:00 PM · Rs 6,000</p>
@@ -1842,7 +1842,7 @@
           <div class="bmc-bar"></div>
           <div class="bmc-body">
             <div class="bmc-top">
-              <div class="bmc-av" style="background:#880E4F;">S</div>
+              <div class="bmc-av" style="background:#163F1E;">S</div>
               <div class="bmc-info">
                 <h4>Sara Malik</h4>
                 <p>🏏 Cricket · 12:00 PM – 2:00 PM · Rs 3,000</p>
@@ -1850,7 +1850,7 @@
               <span style="font-size:11px;background:#FDECEA;color:#C62828;padding:3px 8px;border-radius:20px;font-weight:700;white-space:nowrap;">Cancelled</span>
             </div>
             <div class="bmc-note"><i class="ri-close-line"></i> Cancelled by customer · 3 hours ago</div>
-            <div style="background:#F4FAEE;border-radius:10px;padding:8px 12px;font-size:11px;font-weight:700;color:#2E7D32;display:flex;align-items:center;gap:6px;">
+            <div style="background:#F4FAEE;border-radius:10px;padding:8px 12px;font-size:11px;font-weight:700;color:#1A6030;display:flex;align-items:center;gap:6px;">
               <span>🟢</span> Slot is now FREE — available for new bookings
             </div>
           </div>
@@ -1890,7 +1890,7 @@
       <div style="display:flex; align-items:center; gap:10px; padding:14px 16px 12px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
         <div style="width:32px; height:32px; background:#F0F0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
         <div style="flex:1; font-size:16px; font-weight:800; color:#111;">Booking Detail</div>
-        <div style="font-size:11px; background:#EDE7FF; color:#5E35B1; padding:5px 10px; border-radius:20px; font-weight:600;"><i class="ri-camera-line"></i> Pending Review</div>
+        <div style="font-size:11px; background:#E4EDE8; color:#09210E; padding:5px 10px; border-radius:20px; font-weight:600;"><i class="ri-camera-line"></i> Pending Review</div>
       </div>
 
       <!-- Scrollable body -->
@@ -1898,7 +1898,7 @@
 
         <!-- Booking info card -->
         <div style="margin:12px 16px; border:1px solid #EFEFEF; border-radius:14px; background:#fff; overflow:hidden;">
-          <div style="height:4px; background:#2E4A1A;"></div>
+          <div style="height:4px; background:#09210E;"></div>
           <div style="padding:14px 16px;">
             <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
               <div style="width:44px; height:44px; background:#E8F5E0; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px;">⚽</div>
@@ -1922,7 +1922,7 @@
               </div>
               <div style="background:#F8FBF5; border-radius:10px; padding:10px;">
                 <div style="font-size:10px; color:#AAA; margin-bottom:3px;">Amount</div>
-                <div style="font-size:13px; font-weight:700; color:#2E4A1A;">Rs 4,000</div>
+                <div style="font-size:13px; font-weight:700; color:#09210E;">Rs 4,000</div>
               </div>
             </div>
           </div>
@@ -1932,7 +1932,7 @@
         <div style="margin:0 16px 12px; border:1px solid #EFEFEF; border-radius:14px; padding:14px 16px; background:#fff;">
           <div style="font-size:11px; font-weight:700; color:#AAA; letter-spacing:0.5px; margin-bottom:10px;">CUSTOMER</div>
           <div style="display:flex; align-items:center; gap:12px;">
-            <div style="width:40px; height:40px; background:#2E4A1A; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; font-weight:700; flex-shrink:0;">A</div>
+            <div style="width:40px; height:40px; background:#09210E; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; font-weight:700; flex-shrink:0;">A</div>
             <div style="flex:1;">
               <div style="font-size:14px; font-weight:700; color:#111;">Ali Hassan</div>
               <div style="font-size:12px; color:#888; margin-top:2px;">0312-3456789 · Joined Apr 2025</div>
@@ -1956,7 +1956,7 @@
           </div>
           <div style="padding:10px 14px; display:flex; justify-content:space-between; align-items:center; background:#FAFAFA;">
             <div style="font-size:11px; color:#888;">Sender: Ali Hassan · 0312-3456789</div>
-            <div style="font-size:11px; color:#5E35B1; font-weight:600; cursor:pointer;">View Full →</div>
+            <div style="font-size:11px; color:#09210E; font-weight:600; cursor:pointer;">View Full →</div>
           </div>
         </div>
 
@@ -2015,9 +2015,9 @@
         <div style="font-size:11px; font-weight:700; color:#AAA; letter-spacing:0.5px; padding:0 20px 8px;">SELECT HOW CUSTOMERS CAN PAY</div>
 
         <!-- Screenshot mode card — ACTIVE -->
-        <div class="pay-mode-card" style="border-color:#2E4A1A;">
+        <div class="pay-mode-card" style="border-color:#09210E;">
           <div class="pmc-row">
-            <div class="pmc-icon" style="background:#E8F5E0;"><i class="ri-camera-line" style="font-size:22px;color:#2E4A1A;"></i></div>
+            <div class="pmc-icon" style="background:#E8F5E0;"><i class="ri-camera-line" style="font-size:22px;color:#09210E;"></i></div>
             <div class="pmc-text">
               <h4>Screenshot Verification</h4>
               <p>Customer pays via JazzCash, EasyPaisa or bank transfer and submits a screenshot. You review and approve manually.</p>
@@ -2025,7 +2025,7 @@
             <div class="pmc-sel on"><i class="ri-check-line" style="font-size:12px;"></i></div>
           </div>
           <div style="margin-top:12px; padding-top:10px; border-top:1px solid #F0F0F0; display:flex; gap:8px; flex-wrap:wrap;">
-            <span style="font-size:11px; background:#E8F5E0; color:#2E7D32; padding:4px 10px; border-radius:20px; font-weight:600;">● Active</span>
+            <span style="font-size:11px; background:#E8F5E0; color:#1A6030; padding:4px 10px; border-radius:20px; font-weight:600;">● Active</span>
             <span style="font-size:11px; background:#F5F5F5; color:#888; padding:4px 10px; border-radius:20px; font-weight:600;">JazzCash · EasyPaisa · Bank</span>
           </div>
         </div>
@@ -2033,7 +2033,7 @@
         <!-- Payment gateway card — Coming Soon -->
         <div class="pay-mode-card" style="opacity:0.65;">
           <div class="pmc-row">
-            <div class="pmc-icon" style="background:#EDE7FF;">💳</div>
+            <div class="pmc-icon" style="background:#E4EDE8;">💳</div>
             <div class="pmc-text">
               <h4>Payment Gateway</h4>
               <p>Customers pay online directly. Instant confirmation — no screenshot review needed. Zero manual work.</p>
@@ -2041,14 +2041,14 @@
             <div class="pmc-sel"></div>
           </div>
           <div style="margin-top:12px; padding-top:10px; border-top:1px solid #F0F0F0; display:flex; gap:8px;">
-            <span style="font-size:11px; background:#EDE7FF; color:#5E35B1; padding:4px 10px; border-radius:20px; font-weight:600;">Coming Soon</span>
+            <span style="font-size:11px; background:#E4EDE8; color:#09210E; padding:4px 10px; border-radius:20px; font-weight:600;">Coming Soon</span>
             <span style="font-size:11px; background:#F5F5F5; color:#888; padding:4px 10px; border-radius:20px; font-weight:600;">Stripe · Local banks</span>
           </div>
         </div>
 
         <!-- Info note -->
         <div style="margin:4px 16px 12px; background:#F8FBF5; border:1px solid #DDE8D0; border-radius:12px; padding:12px 14px;">
-          <div style="font-size:12px; font-weight:700; color:#2E4A1A; margin-bottom:5px;">ℹ️ How Screenshot Mode Works</div>
+          <div style="font-size:12px; font-weight:700; color:#09210E; margin-bottom:5px;">ℹ️ How Screenshot Mode Works</div>
           <div style="font-size:12px; color:#555; line-height:1.55;">
             1. Customer selects slot and gets payment details<br>
             2. Customer transfers and uploads screenshot<br>
@@ -2117,7 +2117,7 @@
         <!-- ── KPI TILES ── -->
         <div class="kpi-grid">
           <div class="kpi">
-            <div class="kv" style="color:#2E4A1A;">Rs 87k</div>
+            <div class="kv" style="color:#09210E;">Rs 87k</div>
             <div class="kl">REVENUE THIS WEEK</div>
             <div class="kt up">↑ 18% vs last week</div>
           </div>
@@ -2127,7 +2127,7 @@
             <div class="kt up">↑ 12% vs last week</div>
           </div>
           <div class="kpi">
-            <div class="kv" style="color:#1565C0;">72%</div>
+            <div class="kv" style="color:#09210E;">72%</div>
             <div class="kl">OCCUPANCY RATE</div>
             <div class="kt up">↑ 5pts vs last week</div>
           </div>
@@ -2140,10 +2140,10 @@
 
         <!-- Quick badges row -->
         <div style="display:flex;gap:7px;padding:8px 16px 0;overflow-x:auto;">
-          <div style="background:#E8F5E0;color:#2E7D32;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">38 Confirmed</div>
+          <div style="background:#E8F5E0;color:#1A6030;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">38 Confirmed</div>
           <div style="background:#FFF3CD;color:#E65100;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;"><i class="ri-camera-line" style="font-size:9px;margin-right:2px;"></i>4 Pending</div>
           <div style="background:#FDECEA;color:#C62828;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">5 Cancelled</div>
-          <div style="background:#EDE7FF;color:#5E35B1;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">91.5% Success rate</div>
+          <div style="background:#E4EDE8;color:#09210E;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">91.5% Success rate</div>
         </div>
 
         <!-- ── REVENUE TREND (7 days) ── -->
@@ -2157,11 +2157,11 @@
               <div class="rev-bar" style="height:70%;"><div class="rv">Thu</div></div>
               <div class="rev-bar" style="height:60%;"><div class="rv">Fri</div></div>
               <div class="rev-bar" style="height:90%;"><div class="rv">Sat</div></div>
-              <div class="rev-bar today" style="height:100%;"><div class="rv" style="color:#2E4A1A;">Today</div></div>
+              <div class="rev-bar today" style="height:100%;"><div class="rv" style="color:#09210E;">Today</div></div>
             </div>
             <div style="display:flex;justify-content:space-between;margin-top:20px;padding-top:8px;border-top:1px solid #F5F5F5;">
               <div style="text-align:center;">
-                <div style="font-size:13px;font-weight:800;color:#2E4A1A;">Rs 22k</div>
+                <div style="font-size:13px;font-weight:800;color:#09210E;">Rs 22k</div>
                 <div style="font-size:9px;color:#AAA;">Peak day (Sat)</div>
               </div>
               <div style="text-align:center;">
@@ -2180,13 +2180,13 @@
         <div class="an-sec">
           <div class="as-title">OCCUPANCY BY DAY OF WEEK</div>
           <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #F0F0F0;">
-            <div class="dow-row"><div class="dr-label">Mon</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:45%;background:#B8D89A;"></div></div><div class="dr-val">45%</div></div>
-            <div class="dow-row"><div class="dr-label">Tue</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:52%;background:#B8D89A;"></div></div><div class="dr-val">52%</div></div>
+            <div class="dow-row"><div class="dr-label">Mon</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:45%;background:#98D0A8;"></div></div><div class="dr-val">45%</div></div>
+            <div class="dow-row"><div class="dr-label">Tue</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:52%;background:#98D0A8;"></div></div><div class="dr-val">52%</div></div>
             <div class="dow-row"><div class="dr-label">Wed</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:60%;background:#8AB870;"></div></div><div class="dr-val">60%</div></div>
-            <div class="dow-row"><div class="dr-label">Thu</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:75%;background:#5A9A40;"></div></div><div class="dr-val">75%</div></div>
-            <div class="dow-row"><div class="dr-label">Fri</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:82%;background:#4A8030;"></div></div><div class="dr-val">82%</div></div>
-            <div class="dow-row"><div class="dr-label">Sat</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:95%;background:#2E4A1A;"></div></div><div class="dr-val">95%</div></div>
-            <div class="dow-row" style="margin-bottom:0;"><div class="dr-label">Sun</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:88%;background:#2E4A1A;"></div></div><div class="dr-val">88%</div></div>
+            <div class="dow-row"><div class="dr-label">Thu</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:75%;background:#3A8A4A;"></div></div><div class="dr-val">75%</div></div>
+            <div class="dow-row"><div class="dr-label">Fri</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:82%;background:#2A7A38;"></div></div><div class="dr-val">82%</div></div>
+            <div class="dow-row"><div class="dr-label">Sat</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:95%;background:#09210E;"></div></div><div class="dr-val">95%</div></div>
+            <div class="dow-row" style="margin-bottom:0;"><div class="dr-label">Sun</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:88%;background:#09210E;"></div></div><div class="dr-val">88%</div></div>
           </div>
         </div>
 
@@ -2204,23 +2204,23 @@
               <div class="ph-lbl">Night</div>
             </div>
             <!-- Mon -->
-            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Mon</div><div class="ph-cell" style="background:#D4EDBC;"></div><div class="ph-cell" style="background:#F5F5F5;"></div><div class="ph-cell" style="background:#A8D080;"></div><div class="ph-cell" style="background:#5A9A40;"></div><div class="ph-cell" style="background:#F5F5F5;"></div></div>
+            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Mon</div><div class="ph-cell" style="background:#D0EDD8;"></div><div class="ph-cell" style="background:#F5F5F5;"></div><div class="ph-cell" style="background:#88C898;"></div><div class="ph-cell" style="background:#3A8A4A;"></div><div class="ph-cell" style="background:#F5F5F5;"></div></div>
             <div style="height:2px;"></div>
             <!-- Tue -->
-            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Tue</div><div class="ph-cell" style="background:#F5F5F5;"></div><div class="ph-cell" style="background:#D4EDBC;"></div><div class="ph-cell" style="background:#8AC860;"></div><div class="ph-cell" style="background:#5A9A40;"></div><div class="ph-cell" style="background:#D4EDBC;"></div></div>
+            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Tue</div><div class="ph-cell" style="background:#F5F5F5;"></div><div class="ph-cell" style="background:#D0EDD8;"></div><div class="ph-cell" style="background:#5AAA68;"></div><div class="ph-cell" style="background:#3A8A4A;"></div><div class="ph-cell" style="background:#D0EDD8;"></div></div>
             <div style="height:2px;"></div>
             <!-- Fri -->
-            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Fri</div><div class="ph-cell" style="background:#A8D080;"></div><div class="ph-cell" style="background:#A8D080;"></div><div class="ph-cell" style="background:#5A9A40;"></div><div class="ph-cell" style="background:#2E4A1A;"></div><div class="ph-cell" style="background:#5A9A40;"></div></div>
+            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Fri</div><div class="ph-cell" style="background:#88C898;"></div><div class="ph-cell" style="background:#88C898;"></div><div class="ph-cell" style="background:#3A8A4A;"></div><div class="ph-cell" style="background:#09210E;"></div><div class="ph-cell" style="background:#3A8A4A;"></div></div>
             <div style="height:2px;"></div>
             <!-- Sat -->
-            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Sat</div><div class="ph-cell" style="background:#5A9A40;"></div><div class="ph-cell" style="background:#8AC860;"></div><div class="ph-cell" style="background:#2E4A1A;"></div><div class="ph-cell" style="background:#2E4A1A;"></div><div class="ph-cell" style="background:#8AC860;"></div></div>
+            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Sat</div><div class="ph-cell" style="background:#3A8A4A;"></div><div class="ph-cell" style="background:#5AAA68;"></div><div class="ph-cell" style="background:#09210E;"></div><div class="ph-cell" style="background:#09210E;"></div><div class="ph-cell" style="background:#5AAA68;"></div></div>
             <div style="height:2px;"></div>
             <!-- Sun -->
-            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Sun</div><div class="ph-cell" style="background:#D4EDBC;"></div><div class="ph-cell" style="background:#5A9A40;"></div><div class="ph-cell" style="background:#2E4A1A;"></div><div class="ph-cell" style="background:#2E4A1A;"></div><div class="ph-cell" style="background:#A8D080;"></div></div>
+            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Sun</div><div class="ph-cell" style="background:#D0EDD8;"></div><div class="ph-cell" style="background:#3A8A4A;"></div><div class="ph-cell" style="background:#09210E;"></div><div class="ph-cell" style="background:#09210E;"></div><div class="ph-cell" style="background:#88C898;"></div></div>
             <!-- Legend -->
             <div style="display:flex;align-items:center;gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid #F5F5F5;">
               <div style="font-size:9px;color:#AAA;">Low</div>
-              <div style="flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,#F5F5F5,#D4EDBC,#A8D080,#5A9A40,#2E4A1A);"></div>
+              <div style="flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,#F5F5F5,#D0EDD8,#88C898,#3A8A4A,#09210E);"></div>
               <div style="font-size:9px;color:#AAA;">High</div>
             </div>
           </div>
@@ -2230,10 +2230,10 @@
         <div class="an-sec">
           <div class="as-title">BOOKINGS BY SPORT</div>
           <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #F0F0F0;">
-            <div class="sp-row"><div class="sr-ico">⚽</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Football</div><div class="sr-bg"><div class="sr-fill" style="width:52%;background:#2E4A1A;"></div></div></div><div class="sr-pct">52%</div></div>
-            <div class="sp-row"><div class="sr-ico">🏀</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Basketball</div><div class="sr-bg"><div class="sr-fill" style="width:28%;background:#1565C0;"></div></div></div><div class="sr-pct">28%</div></div>
-            <div class="sp-row"><div class="sr-ico">🏏</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Cricket</div><div class="sr-bg"><div class="sr-fill" style="width:13%;background:#7B3F00;"></div></div></div><div class="sr-pct">13%</div></div>
-            <div class="sp-row" style="margin-bottom:0;"><div class="sr-ico">🎾</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Tennis</div><div class="sr-bg"><div class="sr-fill" style="width:7%;background:#880E4F;"></div></div></div><div class="sr-pct">7%</div></div>
+            <div class="sp-row"><div class="sr-ico">⚽</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Football</div><div class="sr-bg"><div class="sr-fill" style="width:52%;background:#09210E;"></div></div></div><div class="sr-pct">52%</div></div>
+            <div class="sp-row"><div class="sr-ico">🏀</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Basketball</div><div class="sr-bg"><div class="sr-fill" style="width:28%;background:#1E6428;"></div></div></div><div class="sr-pct">28%</div></div>
+            <div class="sp-row"><div class="sr-ico">🏏</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Cricket</div><div class="sr-bg"><div class="sr-fill" style="width:13%;background:#3A8040;"></div></div></div><div class="sr-pct">13%</div></div>
+            <div class="sp-row" style="margin-bottom:0;"><div class="sr-ico">🎾</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Tennis</div><div class="sr-bg"><div class="sr-fill" style="width:7%;background:#5AAA60;"></div></div></div><div class="sr-pct">7%</div></div>
           </div>
         </div>
 
@@ -2243,13 +2243,13 @@
           <div style="background:#fff;border-radius:14px;padding:4px 14px;border:1.5px solid #F0F0F0;">
             <div class="tc-row">
               <div style="font-size:11px;font-weight:800;color:#AAA;width:16px;">1</div>
-              <div class="tc-av" style="background:#2E4A1A;">U</div>
+              <div class="tc-av" style="background:#09210E;">U</div>
               <div class="tc-info"><h4>Umar Farooq</h4><p>⚽ Football · 8 bookings</p></div>
               <div class="tc-val"><div class="tv">Rs 32k</div><div class="tl">total spent</div></div>
             </div>
             <div class="tc-row">
               <div style="font-size:11px;font-weight:800;color:#AAA;width:16px;">2</div>
-              <div class="tc-av" style="background:#1565C0;">K</div>
+              <div class="tc-av" style="background:#1E6428;">K</div>
               <div class="tc-info"><h4>Karachi Kings</h4><p>🏀 Basketball · 6 bookings</p></div>
               <div class="tc-val"><div class="tv">Rs 36k</div><div class="tl">total spent</div></div>
             </div>
@@ -2261,7 +2261,7 @@
             </div>
             <div class="tc-row">
               <div style="font-size:11px;font-weight:800;color:#AAA;width:16px;">4</div>
-              <div class="tc-av" style="background:#880E4F;">Z</div>
+              <div class="tc-av" style="background:#163F1E;">Z</div>
               <div class="tc-info"><h4>Zain & Team</h4><p>🏀 Basketball · 4 bookings</p></div>
               <div class="tc-val"><div class="tv">Rs 24k</div><div class="tl">total spent</div></div>
             </div>
@@ -2280,7 +2280,7 @@
           <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #F0F0F0;">
             <div style="display:flex;gap:10px;margin-bottom:10px;">
               <div style="flex:1;background:#F4FAEE;border-radius:11px;padding:10px;text-align:center;">
-                <div style="font-size:18px;font-weight:900;color:#2E7D32;">91.5%</div>
+                <div style="font-size:18px;font-weight:900;color:#1A6030;">91.5%</div>
                 <div style="font-size:9px;color:#AAA;margin-top:2px;">Completion rate</div>
               </div>
               <div style="flex:1;background:#FFF3CD;border-radius:11px;padding:10px;text-align:center;">
@@ -2304,7 +2304,7 @@
               <div style="font-size:12px;font-weight:800;color:#fff;">View All Arenas Analytics</div>
               <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;">Compare Elite, Champions &amp; Victory side by side</div>
             </div>
-            <div style="font-size:13px;font-weight:800;color:#8AB8FF;cursor:pointer;white-space:nowrap;">→ S16</div>
+            <div style="font-size:13px;font-weight:800;color:rgba(255,255,255,.8);cursor:pointer;white-space:nowrap;">→ S16</div>
           </div>
         </div>
 
@@ -2361,7 +2361,7 @@
         <!-- ── COMBINED KPI TILES ── -->
         <div class="kpi-grid">
           <div class="kpi">
-            <div class="kv" style="color:#2E4A1A;">Rs 234k</div>
+            <div class="kv" style="color:#09210E;">Rs 234k</div>
             <div class="kl">TOTAL REVENUE</div>
             <div class="kt up">↑ 21% vs last week</div>
           </div>
@@ -2371,7 +2371,7 @@
             <div class="kt up">↑ 15% vs last week</div>
           </div>
           <div class="kpi">
-            <div class="kv" style="color:#1565C0;">68%</div>
+            <div class="kv" style="color:#09210E;">68%</div>
             <div class="kl">AVG OCCUPANCY</div>
             <div class="kt up">↑ 4pts vs last week</div>
           </div>
@@ -2398,18 +2398,18 @@
           <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #F0F0F0;">
             <div class="dow-row">
               <div style="font-size:10px;color:#444;font-weight:700;width:72px;flex-shrink:0;">Elite Sports</div>
-              <div class="dr-bar-bg"><div class="dr-bar-fill" style="width:90%;background:linear-gradient(90deg,#2A6E20,#3DAA2E);"></div></div>
-              <div style="font-size:10px;color:#2E4A1A;font-weight:800;width:36px;text-align:right;flex-shrink:0;">Rs 87k</div>
+              <div class="dr-bar-bg"><div class="dr-bar-fill" style="width:90%;background:linear-gradient(90deg,#0F2E14,#1E6428);"></div></div>
+              <div style="font-size:10px;color:#09210E;font-weight:800;width:36px;text-align:right;flex-shrink:0;">Rs 87k</div>
             </div>
             <div class="dow-row">
               <div style="font-size:10px;color:#444;font-weight:700;width:72px;flex-shrink:0;">Champions</div>
-              <div class="dr-bar-bg"><div class="dr-bar-fill" style="width:72%;background:#1565C0;"></div></div>
-              <div style="font-size:10px;color:#1565C0;font-weight:800;width:36px;text-align:right;flex-shrink:0;">Rs 72k</div>
+              <div class="dr-bar-bg"><div class="dr-bar-fill" style="width:72%;background:#1E6428;"></div></div>
+              <div style="font-size:10px;color:#09210E;font-weight:800;width:36px;text-align:right;flex-shrink:0;">Rs 72k</div>
             </div>
             <div class="dow-row" style="margin-bottom:0;">
               <div style="font-size:10px;color:#444;font-weight:700;width:72px;flex-shrink:0;">Victory</div>
               <div class="dr-bar-bg"><div class="dr-bar-fill" style="width:76%;background:#AA5500;"></div></div>
-              <div style="font-size:10px;color:#AA5500;font-weight:800;width:36px;text-align:right;flex-shrink:0;">Rs 75k</div>
+              <div style="font-size:10px;color:#666666;font-weight:800;width:36px;text-align:right;flex-shrink:0;">Rs 75k</div>
             </div>
           </div>
         </div>
@@ -2426,20 +2426,20 @@
             </div>
             <div style="display:grid;grid-template-columns:1fr 58px 46px 46px;padding:11px 14px;border-bottom:1px solid #F5F5F5;align-items:center;">
               <div>
-                <div style="font-size:12px;font-weight:800;color:#111;display:flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:#2A6E20;display:inline-block;"></span>Elite Sports</div>
+                <div style="font-size:12px;font-weight:800;color:#111;display:flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:#0F2E14;display:inline-block;"></span>Elite Sports</div>
                 <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5</div>
               </div>
-              <div style="font-size:12px;font-weight:800;color:#2E4A1A;text-align:right;">Rs 87k</div>
-              <div style="font-size:12px;font-weight:800;color:#1565C0;text-align:right;">72%</div>
+              <div style="font-size:12px;font-weight:800;color:#09210E;text-align:right;">Rs 87k</div>
+              <div style="font-size:12px;font-weight:800;color:#09210E;text-align:right;">72%</div>
               <div style="font-size:12px;font-weight:800;color:#111;text-align:right;">47</div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 58px 46px 46px;padding:11px 14px;border-bottom:1px solid #F5F5F5;align-items:center;">
               <div>
-                <div style="font-size:12px;font-weight:800;color:#111;display:flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:#1565C0;display:inline-block;"></span>Champions</div>
+                <div style="font-size:12px;font-weight:800;color:#111;display:flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:#1E6428;display:inline-block;"></span>Champions</div>
                 <div style="font-size:10px;color:#AAA;margin-top:1px;">Gulshan-e-Iqbal</div>
               </div>
-              <div style="font-size:12px;font-weight:800;color:#1565C0;text-align:right;">Rs 72k</div>
-              <div style="font-size:12px;font-weight:800;color:#1565C0;text-align:right;">64%</div>
+              <div style="font-size:12px;font-weight:800;color:#09210E;text-align:right;">Rs 72k</div>
+              <div style="font-size:12px;font-weight:800;color:#09210E;text-align:right;">64%</div>
               <div style="font-size:12px;font-weight:800;color:#111;text-align:right;">52</div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 58px 46px 46px;padding:11px 14px;align-items:center;">
@@ -2447,7 +2447,7 @@
                 <div style="font-size:12px;font-weight:800;color:#111;display:flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:#AA5500;display:inline-block;"></span>Victory</div>
                 <div style="font-size:10px;color:#AAA;margin-top:1px;">North Nazimabad</div>
               </div>
-              <div style="font-size:12px;font-weight:800;color:#AA5500;text-align:right;">Rs 75k</div>
+              <div style="font-size:12px;font-weight:800;color:#666666;text-align:right;">Rs 75k</div>
               <div style="font-size:12px;font-weight:800;color:#888;text-align:right;">68%</div>
               <div style="font-size:12px;font-weight:800;color:#111;text-align:right;">35</div>
             </div>
@@ -2465,10 +2465,10 @@
               <div class="rev-bar" style="height:72%;"><div class="rv">Thu</div></div>
               <div class="rev-bar" style="height:65%;"><div class="rv">Fri</div></div>
               <div class="rev-bar" style="height:88%;"><div class="rv">Sat</div></div>
-              <div class="rev-bar today" style="height:100%;"><div class="rv" style="color:#2E4A1A;">Today</div></div>
+              <div class="rev-bar today" style="height:100%;"><div class="rv" style="color:#09210E;">Today</div></div>
             </div>
             <div style="display:flex;justify-content:space-between;margin-top:22px;padding-top:8px;border-top:1px solid #F5F5F5;">
-              <div style="text-align:center;"><div style="font-size:12px;font-weight:800;color:#2E4A1A;">Rs 56k</div><div style="font-size:9px;color:#AAA;">Peak day</div></div>
+              <div style="text-align:center;"><div style="font-size:12px;font-weight:800;color:#09210E;">Rs 56k</div><div style="font-size:9px;color:#AAA;">Peak day</div></div>
               <div style="text-align:center;"><div style="font-size:12px;font-weight:800;color:#111;">Rs 33.4k</div><div style="font-size:9px;color:#AAA;">Daily avg</div></div>
               <div style="text-align:center;"><div style="font-size:12px;font-weight:800;color:#888;">Rs 18k</div><div style="font-size:9px;color:#AAA;">Slowest</div></div>
             </div>
@@ -2479,10 +2479,10 @@
         <div class="an-sec">
           <div class="as-title">SPORT MIX ACROSS ALL ARENAS</div>
           <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #F0F0F0;">
-            <div class="sp-row"><div class="sr-ico">⚽</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Football</div><div class="sr-bg"><div class="sr-fill" style="width:48%;background:#2E4A1A;"></div></div></div><div class="sr-pct">48%</div></div>
-            <div class="sp-row"><div class="sr-ico">🏀</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Basketball</div><div class="sr-bg"><div class="sr-fill" style="width:25%;background:#1565C0;"></div></div></div><div class="sr-pct">25%</div></div>
+            <div class="sp-row"><div class="sr-ico">⚽</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Football</div><div class="sr-bg"><div class="sr-fill" style="width:48%;background:#09210E;"></div></div></div><div class="sr-pct">48%</div></div>
+            <div class="sp-row"><div class="sr-ico">🏀</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Basketball</div><div class="sr-bg"><div class="sr-fill" style="width:25%;background:#1E6428;"></div></div></div><div class="sr-pct">25%</div></div>
             <div class="sp-row"><div class="sr-ico">🏏</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Cricket</div><div class="sr-bg"><div class="sr-fill" style="width:18%;background:#7B3F00;"></div></div></div><div class="sr-pct">18%</div></div>
-            <div class="sp-row" style="margin-bottom:0;"><div class="sr-ico">🎾</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Tennis</div><div class="sr-bg"><div class="sr-fill" style="width:9%;background:#880E4F;"></div></div></div><div class="sr-pct">9%</div></div>
+            <div class="sp-row" style="margin-bottom:0;"><div class="sr-ico">🎾</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Tennis</div><div class="sr-bg"><div class="sr-fill" style="width:9%;background:#163F1E;"></div></div></div><div class="sr-pct">9%</div></div>
           </div>
         </div>
 
@@ -2491,12 +2491,12 @@
           <div class="as-title">ARENA STATUS FLAGS</div>
           <div style="display:flex;flex-direction:column;gap:8px;">
             <div style="background:#F4FAEE;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:10px;">
-              <div style="font-size:16px;"><i class="ri-checkbox-circle-line" style="color:#2E7D32;"></i></div>
-              <div><div style="font-size:12px;font-weight:800;color:#2E4A1A;">Elite Sports</div><div style="font-size:10px;color:#888;margin-top:1px;">Open · 72% occupancy this week</div></div>
+              <div style="font-size:16px;"><i class="ri-checkbox-circle-line" style="color:#1A6030;"></i></div>
+              <div><div style="font-size:12px;font-weight:800;color:#09210E;">Elite Sports</div><div style="font-size:10px;color:#888;margin-top:1px;">Open · 72% occupancy this week</div></div>
             </div>
             <div style="background:#F4FAEE;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:10px;">
-              <div style="font-size:16px;"><i class="ri-checkbox-circle-line" style="color:#2E7D32;"></i></div>
-              <div><div style="font-size:12px;font-weight:800;color:#1565C0;">Champions Ground</div><div style="font-size:10px;color:#888;margin-top:1px;">Open · 64% occupancy this week</div></div>
+              <div style="font-size:16px;"><i class="ri-checkbox-circle-line" style="color:#1A6030;"></i></div>
+              <div><div style="font-size:12px;font-weight:800;color:#09210E;">Champions Ground</div><div style="font-size:10px;color:#888;margin-top:1px;">Open · 64% occupancy this week</div></div>
             </div>
             <div style="background:#FFF3CD;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:10px;">
               <div style="font-size:16px;"><i class="ri-tools-line" style="color:#FFD600;"></i></div>
