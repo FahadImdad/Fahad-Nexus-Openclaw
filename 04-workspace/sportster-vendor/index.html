@@ -381,6 +381,14 @@
   .tc-row .tc-val .tv { font-size:13px; font-weight:800; color:#09210E; }
   .tc-row .tc-val .tl { font-size:9px; color:#AAA; }
 
+
+  /* Schedule settings screen (s18) pills & steppers */
+  .ss-pill { padding:7px 13px; border-radius:20px; border:1.5px solid #E5E5E5; font-size:12px; font-weight:600; cursor:pointer; background:#FAFAFA; color:#555; user-select:none; transition:all .15s; }
+  .ss-pill.ss-active { background:#09210E; color:#fff; border-color:#09210E; }
+  .ss-step-btn { width:30px; height:30px; background:#F0F0F0; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px; line-height:1; font-weight:700; color:#444; cursor:pointer; user-select:none; flex-shrink:0; }
+  .ss-step-btn:active { background:#DDD; }
+  .ss-step-val { font-size:12px; font-weight:800; color:#111; min-width:68px; text-align:center; }
+
 /* ── INTERACTIVE SINGLE-SCREEN MODE ── */
 body.interactive { justify-content: center; gap: 0; padding: 24px; overflow-x: hidden; min-height: 100vh; align-items: center; }
 body.interactive .col { display: none; }
@@ -450,8 +458,9 @@ body.interactive .page-label { display: none; }
     </div>
     <div class="bottom-nav">
       <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
-      <div class="nav-item"><i class="ri-file-list-3-line ni"></i>Events</div>
-      <div class="nav-item"><i class="ri-bar-chart-2-line ni"></i>Analytics</div>
+      <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
@@ -977,9 +986,10 @@ body.interactive .page-label { display: none; }
       </div>
     </div>
     <div class="bottom-nav">
-      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
-      <div class="nav-item active"><i class="ri-file-list-3-line ni"></i>Events</div>
-      <div class="nav-item"><i class="ri-bar-chart-2-line ni"></i>Analytics</div>
+      <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
@@ -1035,7 +1045,7 @@ body.interactive .page-label { display: none; }
           <div style="font-size:12px;font-weight:800;color:#7A5200;">4 payment screenshots need review</div>
           <div style="font-size:10px;color:#A07840;margin-top:1px;">Elite Sports · Champions Ground · oldest 2h ago</div>
         </div>
-        <div style="background:linear-gradient(135deg,#BF5500,#F08A00);color:#fff;font-size:11px;font-weight:800;padding:7px 12px;border-radius:10px;cursor:pointer;white-space:nowrap;flex-shrink:0;box-shadow:0 2px 6px rgba(240,138,0,.3);">Review All</div>
+        <div data-go="s17" style="background:linear-gradient(135deg,#BF5500,#F08A00);color:#fff;font-size:11px;font-weight:800;padding:7px 12px;border-radius:10px;cursor:pointer;white-space:nowrap;flex-shrink:0;box-shadow:0 2px 6px rgba(240,138,0,.3);">Review All</div>
       </div>
 
       <!-- ── ARENA CARDS (scrollable) ── -->
@@ -1115,9 +1125,9 @@ body.interactive .page-label { display: none; }
             </div>
             <!-- Action strip -->
             <div style="display:flex;border-top:1px solid #F0F0F0;margin-top:10px;">
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;border-right:1px solid #F0F0F0;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F0F0F0;position:relative;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests<span style="position:absolute;top:8px;right:6px;width:6px;height:6px;background:#E65100;border-radius:50%;"></span></div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
+              <div data-go="s9" style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;border-right:1px solid #F0F0F0;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
+              <div data-go="s12" style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F0F0F0;position:relative;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests<span style="position:absolute;top:8px;right:6px;width:6px;height:6px;background:#E65100;border-radius:50%;"></span></div>
+              <div data-go="s15" style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
             </div>
           </div>
         </div>
@@ -1190,9 +1200,9 @@ body.interactive .page-label { display: none; }
               </div>
             </div>
             <div style="display:flex;border-top:1px solid #F0F0F0;margin-top:10px;">
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;border-right:1px solid #F0F0F0;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F0F0F0;position:relative;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests<span style="position:absolute;top:8px;right:6px;width:6px;height:6px;background:#E65100;border-radius:50%;"></span></div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
+              <div data-go="s9" style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;border-right:1px solid #F0F0F0;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
+              <div data-go="s12" style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#BF5500;cursor:pointer;border-right:1px solid #F0F0F0;position:relative;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests<span style="position:absolute;top:8px;right:6px;width:6px;height:6px;background:#E65100;border-radius:50%;"></span></div>
+              <div data-go="s15" style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#09210E;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
             </div>
           </div>
         </div>
@@ -1237,9 +1247,9 @@ body.interactive .page-label { display: none; }
               </div>
             </div>
             <div style="display:flex;border-top:1px solid #EEEEEE;">
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:#CCC;cursor:pointer;border-right:1px solid #EEEEEE;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:#CCC;cursor:pointer;border-right:1px solid #EEEEEE;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests</div>
-              <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#666666;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
+              <div data-go="s9" style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:#CCC;cursor:pointer;border-right:1px solid #EEEEEE;"><i class="ri-calendar-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Schedule</div>
+              <div data-go="s12" style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:#CCC;cursor:pointer;border-right:1px solid #EEEEEE;"><i class="ri-file-list-3-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Requests</div>
+              <div data-go="s15" style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:#666666;cursor:pointer;"><i class="ri-bar-chart-2-line" style="font-size:13px;vertical-align:-1px;margin-right:3px;"></i>Analytics</div>
             </div>
           </div>
         </div>
@@ -1261,7 +1271,7 @@ body.interactive .page-label { display: none; }
             <div style="font-size:13px;font-weight:800;color:#fff;">View Total Business Analytics</div>
             <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px;">Revenue, occupancy &amp; trends · All 3 arenas</div>
           </div>
-          <div style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);font-size:11px;font-weight:800;padding:7px 12px;border-radius:10px;cursor:pointer;white-space:nowrap;flex-shrink:0;">→ S16</div>
+          <div data-go="s16" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);font-size:11px;font-weight:800;padding:7px 12px;border-radius:10px;cursor:pointer;white-space:nowrap;flex-shrink:0;">→ Analytics</div>
         </div>
 
       </div><!-- scrollable -->
@@ -1302,7 +1312,10 @@ body.interactive .page-label { display: none; }
             <div style="font-size:15px;font-weight:800;color:#111;">Elite Sports Arena</div>
             <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5 · Hourly slots</div>
           </div>
-          <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#09210E;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;"><i class="ri-calendar-close-line" style="font-size:12px;margin-right:3px;"></i>Block Slots</div>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#09210E;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;"><i class="ri-calendar-close-line" style="font-size:12px;margin-right:3px;"></i>Block Slots</div>
+            <div data-go="s18" style="width:32px;height:32px;background:#09210E;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-settings-3-line" style="font-size:16px;color:#fff;line-height:1;"></i></div>
+          </div>
         </div>
       </div>
 
@@ -1412,7 +1425,10 @@ body.interactive .page-label { display: none; }
             <div style="font-size:15px;font-weight:800;color:#111;">Elite Sports Arena</div>
             <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5 · <b style="color:#09210E;">Half-hour slots</b></div>
           </div>
-          <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#09210E;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;"><i class="ri-calendar-close-line" style="font-size:12px;margin-right:3px;"></i>Block Slots</div>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <div style="font-size:11px;background:#F4FAEE;border:1px solid #C5DFAA;color:#09210E;padding:5px 10px;border-radius:9px;font-weight:700;cursor:pointer;"><i class="ri-calendar-close-line" style="font-size:12px;margin-right:3px;"></i>Block Slots</div>
+            <div data-go="s18" style="width:32px;height:32px;background:#09210E;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-settings-3-line" style="font-size:16px;color:#fff;line-height:1;"></i></div>
+          </div>
         </div>
       </div>
 
@@ -2615,11 +2631,28 @@ body.interactive .page-label { display: none; }
     if (scr) scr.scrollTop = 0;
   }
 
+  window.go   = go;
+  window.back = back;
+
   // ── Event delegation ──
   document.addEventListener('click', function (e) {
     var col = e.target.closest('.col');
     if (!col) return;
     var id = col.id;
+
+    // DATA-GO ATTRIBUTE (highest priority — explicit navigation targets)
+    var goEl = e.target.closest('[data-go]');
+    if (goEl && !e.target.closest('.bottom-nav')) {
+      go(goEl.getAttribute('data-go'));
+      return;
+    }
+
+    // DATA-BACK ATTRIBUTE
+    var backEl = e.target.closest('[data-back]');
+    if (backEl && !e.target.closest('.bottom-nav')) {
+      back();
+      return;
+    }
 
     // BOTTOM NAV
     var ni = e.target.closest('.nav-item');
@@ -2627,23 +2660,26 @@ body.interactive .page-label { display: none; }
       var icon = ni.querySelector('.ni');
       var cls  = icon ? (icon.className || '') : '';
       var txt  = ni.textContent.trim();
-      if (cls.includes('ri-home-5-line')    || txt.includes('Home'))     { go('s1');  return; }
-      if (cls.includes('ri-calendar-2-line')|| txt.includes('Schedule')) { go('s9');  return; }
-      if (cls.includes('ri-building-4-line')|| txt.includes('Arena'))    { go('s8');  return; }
-      if (cls.includes('ri-bar-chart-2-line')|| txt.includes('Analytics')){ go('s16'); return; }
-      if (cls.includes('ri-inbox-line') || txt.includes('Bookings')) { go('s17'); return; }
-      if (cls.includes('ri-file-list-3-line')|| txt.includes('Events'))  { go('s7');  return; }
-      if (cls.includes('ri-user-3-line')    || txt.includes('Profile'))  { go('s1');  return; }
+      if (cls.includes('ri-home-5-line')     || txt === 'Home')     { go('s1');  return; }
+      if (cls.includes('ri-calendar-2-line') || txt === 'Schedule') { go('s9');  return; }
+      if (cls.includes('ri-building-4-line') || txt === 'Arenas')   { go('s8');  return; }
+      if (cls.includes('ri-bar-chart-2-line')|| txt === 'Analytics'){ go('s16'); return; }
+      if (cls.includes('ri-inbox-line')      || txt === 'Bookings') { go('s17'); return; }
+      if (cls.includes('ri-user-3-line')     || txt === 'Profile')  { go('s1');  return; }
       return;
     }
 
-    // BACK ARROWS (left-arrow icon or its 1-child wrapper div, not in bottom-nav)
+    // BACK ARROWS (left-arrow icon or its wrapper, not in bottom-nav)
     if (!e.target.closest('.bottom-nav')) {
-      if (e.target.classList && e.target.classList.contains('ri-arrow-left-s-line')) { back(); return; }
-      var pd = e.target.closest('div');
-      if (pd && pd.children.length === 1 && pd.children[0] &&
-          pd.children[0].classList && pd.children[0].classList.contains('ri-arrow-left-s-line')) {
-        back(); return;
+      var t = e.target;
+      if (t.classList && t.classList.contains('ri-arrow-left-s-line')) { back(); return; }
+      // wrapper div containing only the back arrow
+      var arrowParent = t.closest('div');
+      if (arrowParent) {
+        var kids = arrowParent.children;
+        if (kids.length === 1 && kids[0].classList && kids[0].classList.contains('ri-arrow-left-s-line')) {
+          back(); return;
+        }
       }
     }
 
@@ -2661,25 +2697,6 @@ body.interactive .page-label { display: none; }
     if (id === 's7') {
       if (e.target.closest('.btn.primary'))  { go('s1'); return; }
       if (e.target.closest('.btn.outline'))  { hist = []; go('s2'); return; }
-    }
-
-    // s8 MY ARENAS — action-strip divs (Schedule / Requests / Analytics / Review All)
-    if (id === 's8') {
-      for (var el2 = e.target; el2 && el2 !== col; el2 = el2.parentElement) {
-        var st = el2.getAttribute ? (el2.getAttribute('style') || '') : '';
-        if (st.includes('cursor:pointer') && !el2.closest('.bottom-nav')) {
-          // Collect direct text-node content only
-          var dt = '';
-          for (var n = 0; n < el2.childNodes.length; n++) {
-            if (el2.childNodes[n].nodeType === 3) dt += el2.childNodes[n].textContent;
-          }
-          dt = dt.trim();
-          if (dt === 'Schedule')  { go('s9');  return; }
-          if (dt === 'Requests')  { go('s12'); return; }
-          if (dt === 'Analytics') { go('s15'); return; }
-          if (dt === 'Review All'){ go('s17'); return; }
-        }
-      }
     }
 
     // s9 / s9b SLOT GRID
@@ -2703,7 +2720,6 @@ body.interactive .page-label { display: none; }
       if (btn11) {
         var t11 = btn11.textContent.trim();
         if (t11 === 'Cancel' || t11.includes('Apply')) { back(); return; }
-        // Stepper buttons handled in DOMContentLoaded
       }
     }
 
@@ -2779,12 +2795,9 @@ body.interactive .page-label { display: none; }
       var plusBtn  = stepperWrap ? stepperWrap.nextElementSibling  : null;
       var price = 2500;
       function updatePrices() {
-        if (stepperWrap) stepperWrap.childNodes.forEach ? null : null;
         if (stepperWrap) stepperWrap.textContent = 'Rs ' + price.toLocaleString();
-        // Update header price pill
         var hdrPill = s11.querySelector('.sm-card > div:first-child [style*="font-weight:900"]');
         if (hdrPill) hdrPill.childNodes[0].textContent = 'Rs ' + price.toLocaleString();
-        // Update discount display
         var strikeTxt = s11.querySelector('[style*="text-decoration:line-through"]');
         if (strikeTxt) strikeTxt.textContent = 'Rs ' + price.toLocaleString();
         var discFinal = s11.querySelector('[style*="font-size:15px"][style*="color:#1A6030"]');
@@ -2825,6 +2838,38 @@ body.interactive .page-label { display: none; }
           });
         });
       }
+    }
+
+    // s18: Schedule Settings pill groups & steppers
+    var s18 = document.getElementById('s18');
+    if (s18) {
+      // Pill groups — each .ss-pill-group div contains .ss-pill children
+      s18.querySelectorAll('.ss-pill-group').forEach(function (group) {
+        var pills = Array.prototype.slice.call(group.querySelectorAll('.ss-pill'));
+        pills.forEach(function (pill) {
+          pill.addEventListener('click', function (e) {
+            e.stopPropagation();
+            pills.forEach(function (p) { p.classList.remove('ss-active'); });
+            this.classList.add('ss-active');
+          });
+        });
+      });
+
+      // Price steppers
+      var steppers = [
+        { minus: '#s18-wday-minus', plus: '#s18-wday-plus', val: '#s18-wday', price: 2000, step: 500 },
+        { minus: '#s18-wend-minus', plus: '#s18-wend-plus', val: '#s18-wend', price: 2500, step: 500 },
+        { minus: '#s18-peak-minus', plus: '#s18-peak-plus', val: '#s18-peak', price: 3000, step: 500 }
+      ];
+      steppers.forEach(function (cfg) {
+        var minEl = s18.querySelector(cfg.minus);
+        var plsEl = s18.querySelector(cfg.plus);
+        var valEl = s18.querySelector(cfg.val);
+        var p = cfg.price;
+        function upd() { if (valEl) valEl.textContent = 'Rs ' + p.toLocaleString(); }
+        if (minEl) minEl.addEventListener('click', function (e) { e.stopPropagation(); p = Math.max(100, p - cfg.step); upd(); });
+        if (plsEl) plsEl.addEventListener('click', function (e) { e.stopPropagation(); p = Math.min(99500, p + cfg.step); upd(); });
+      });
     }
   });
 
@@ -3170,6 +3215,210 @@ body.interactive .page-label { display: none; }
     </div>
   </div>
 </div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCREEN 18 — SCHEDULE SETTINGS POPUP
+═══════════════════════════════════════════════════════ -->
+<div class="col" id="s18">
+  <div class="page-label">18 · Schedule Settings — gear icon on s9/s9b</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden; position:relative;">
+
+      <!-- Dimmed grid background -->
+      <div style="opacity:.28; filter:blur(1.5px); pointer-events:none; flex:1; overflow:hidden;">
+        <div style="padding:10px 16px 10px; background:#fff; border-bottom:1px solid #F0F0F0;">
+          <div style="font-size:15px;font-weight:800;color:#111;">Elite Sports Arena</div>
+          <div style="font-size:10px;color:#AAA;">DHA Phase 5 · Hourly slots</div>
+        </div>
+        <div style="display:flex;gap:5px;padding:8px 16px;background:#fff;border-bottom:1px solid #F0F0F0;">
+          <div style="min-width:46px;text-align:center;padding:7px;border-radius:13px;background:#09210E;"><div style="font-size:9px;color:rgba(255,255,255,.6);">TODAY</div><div style="font-size:17px;font-weight:900;color:#fff;">26</div></div>
+          <div style="min-width:46px;text-align:center;padding:7px;border-radius:13px;"><div style="font-size:9px;color:#CCC;">SUN</div><div style="font-size:17px;font-weight:900;color:#CCC;">27</div></div>
+          <div style="min-width:46px;text-align:center;padding:7px;border-radius:13px;"><div style="font-size:9px;color:#CCC;">MON</div><div style="font-size:17px;font-weight:900;color:#CCC;">28</div></div>
+        </div>
+        <div class="slot-grid" style="padding:6px 10px;">
+          <div class="sg-cell sg-ok"><div class="sg-hr">9am</div><div class="sg-nm">Umar F.</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">10am</div><div class="sg-nm">Ali H.</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">11am</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">12pm</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">4pm</div><div class="sg-nm">K.Kings</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">5pm</div><div class="sg-nm">K.Kings</div></div>
+          <div class="sg-cell sg-blk"><div class="sg-hr">8pm</div></div>
+          <div class="sg-cell sg-blk"><div class="sg-hr">9pm</div></div>
+        </div>
+      </div>
+
+      <!-- SETTINGS MODAL OVERLAY -->
+      <div class="sm-bg" style="padding:8px 14px; overflow-y:auto;">
+        <div class="sm-card" style="padding:0; margin-top:2px; max-height:100%; display:flex; flex-direction:column;">
+
+          <!-- Header -->
+          <div style="padding:14px 16px 12px; border-bottom:1px solid #F0F0F0; display:flex; align-items:center; justify-content:space-between; flex-shrink:0;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Slot Settings</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;">Elite Sports Arena</div>
+            </div>
+            <div data-back style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+              <i class="ri-close-line" style="font-size:18px;color:#555;"></i>
+            </div>
+          </div>
+
+          <!-- Scrollable content -->
+          <div style="flex:1; overflow-y:auto; padding:14px 16px;">
+
+            <!-- 1. Advance Booking Window -->
+            <div style="margin-bottom:16px;">
+              <div style="font-size:10px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;"><i class="ri-calendar-2-line" style="margin-right:4px;color:#09210E;"></i>Advance Booking Window</div>
+              <div class="ss-pill-group" style="display:flex;gap:6px;flex-wrap:wrap;">
+                <div class="ss-pill">3 days</div>
+                <div class="ss-pill">5 days</div>
+                <div class="ss-pill ss-active">7 days</div>
+                <div class="ss-pill">14 days</div>
+                <div class="ss-pill">30 days</div>
+              </div>
+              <div style="font-size:10px;color:#AAA;margin-top:6px;line-height:1.4;">Customers can only view and book slots within this window from today.</div>
+            </div>
+
+            <!-- 2. Minimum Notice Period -->
+            <div style="margin-bottom:16px;">
+              <div style="font-size:10px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;"><i class="ri-alarm-line" style="margin-right:4px;color:#09210E;"></i>Min. Booking Notice</div>
+              <div class="ss-pill-group" style="display:flex;gap:6px;flex-wrap:wrap;">
+                <div class="ss-pill">1 hr</div>
+                <div class="ss-pill ss-active">2 hrs</div>
+                <div class="ss-pill">4 hrs</div>
+                <div class="ss-pill">24 hrs</div>
+              </div>
+              <div style="font-size:10px;color:#AAA;margin-top:6px;line-height:1.4;">How far in advance a customer must book before the slot starts.</div>
+            </div>
+
+            <!-- 3. Base Pricing -->
+            <div style="margin-bottom:16px;">
+              <div style="font-size:10px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;"><i class="ri-price-tag-3-line" style="margin-right:4px;color:#09210E;"></i>Base Pricing (per slot)</div>
+
+              <!-- Weekday -->
+              <div style="background:#FAFAFA;border-radius:12px;padding:11px 13px;margin-bottom:7px;border:1.5px solid #F0F0F0;">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <div>
+                    <div style="font-size:12px;font-weight:700;color:#333;">Weekday</div>
+                    <div style="font-size:10px;color:#AAA;margin-top:1px;">Mon – Thu</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:4px;">
+                    <div id="s18-wday-minus" class="ss-step-btn">−</div>
+                    <div id="s18-wday" class="ss-step-val">Rs 2,000</div>
+                    <div id="s18-wday-plus" class="ss-step-btn">+</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Weekend -->
+              <div style="background:#FAFAFA;border-radius:12px;padding:11px 13px;margin-bottom:7px;border:1.5px solid #F0F0F0;">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <div>
+                    <div style="font-size:12px;font-weight:700;color:#333;">Weekend</div>
+                    <div style="font-size:10px;color:#AAA;margin-top:1px;">Fri – Sun</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:4px;">
+                    <div id="s18-wend-minus" class="ss-step-btn">−</div>
+                    <div id="s18-wend" class="ss-step-val">Rs 2,500</div>
+                    <div id="s18-wend-plus" class="ss-step-btn">+</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Peak Hours -->
+              <div style="background:#F4FAEE;border-radius:12px;padding:11px 13px;border:1.5px solid #C5DFAA;">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <div>
+                    <div style="font-size:12px;font-weight:700;color:#09210E;">Peak Hours</div>
+                    <div style="font-size:10px;color:#4A7A30;margin-top:1px;">5 PM – 9 PM · All days</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:4px;">
+                    <div id="s18-peak-minus" class="ss-step-btn">−</div>
+                    <div id="s18-peak" class="ss-step-val" style="color:#09210E;">Rs 3,000</div>
+                    <div id="s18-peak-plus" class="ss-step-btn">+</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Default Slot Duration -->
+            <div style="margin-bottom:16px;">
+              <div style="font-size:10px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;"><i class="ri-time-line" style="margin-right:4px;color:#09210E;"></i>Default Slot Duration</div>
+              <div class="ss-pill-group" style="display:flex;gap:6px;flex-wrap:wrap;">
+                <div class="ss-pill">30 min</div>
+                <div class="ss-pill ss-active">1 hr</div>
+                <div class="ss-pill">2 hrs</div>
+                <div class="ss-pill">3 hrs</div>
+              </div>
+            </div>
+
+            <!-- 5. Cancellation Policy -->
+            <div style="margin-bottom:16px;">
+              <div style="font-size:10px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;"><i class="ri-refund-2-line" style="margin-right:4px;color:#09210E;"></i>Cancellation Policy</div>
+              <div class="ss-pill-group" style="display:flex;gap:6px;flex-wrap:wrap;">
+                <div class="ss-pill ss-active">Free ≤24h</div>
+                <div class="ss-pill">Free ≤48h</div>
+                <div class="ss-pill">No Refund</div>
+              </div>
+              <div style="font-size:10px;color:#AAA;margin-top:6px;line-height:1.4;">Customer can cancel free of charge up to this time before the slot.</div>
+            </div>
+
+            <!-- 6. Auto-Confirm -->
+            <div style="margin-bottom:16px;background:#FAFAFA;border-radius:12px;padding:12px 13px;border:1.5px solid #F0F0F0;">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div>
+                  <div style="font-size:12px;font-weight:700;color:#333;">Auto-Confirm Bookings</div>
+                  <div style="font-size:10px;color:#AAA;margin-top:2px;line-height:1.3;">Skip manual payment review and confirm automatically</div>
+                </div>
+                <div class="toggle" style="margin-left:12px;flex-shrink:0;"></div>
+              </div>
+            </div>
+
+            <!-- 7. Max Slots Per Customer/Day -->
+            <div style="margin-bottom:16px;">
+              <div style="font-size:10px;font-weight:800;color:#555;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;"><i class="ri-group-line" style="margin-right:4px;color:#09210E;"></i>Max Bookings Per Customer / Day</div>
+              <div class="ss-pill-group" style="display:flex;gap:6px;flex-wrap:wrap;">
+                <div class="ss-pill ss-active">1 slot</div>
+                <div class="ss-pill">2 slots</div>
+                <div class="ss-pill">3 slots</div>
+                <div class="ss-pill">Unlimited</div>
+              </div>
+            </div>
+
+            <!-- 8. Operating Hours (read-only display) -->
+            <div style="background:#F4FAEE;border-radius:12px;padding:11px 13px;border:1.5px solid #C5DFAA;margin-bottom:4px;">
+              <div style="display:flex;align-items:center;gap:9px;">
+                <i class="ri-store-2-line" style="font-size:18px;color:#09210E;flex-shrink:0;"></i>
+                <div style="flex:1;">
+                  <div style="font-size:12px;font-weight:700;color:#09210E;">Operating Hours</div>
+                  <div style="font-size:11px;color:#4A7A30;margin-top:1px;">6:00 AM – 11:00 PM · Every day</div>
+                </div>
+                <div style="font-size:11px;font-weight:700;color:#09210E;cursor:pointer;white-space:nowrap;">Edit ›</div>
+              </div>
+            </div>
+
+          </div><!-- scrollable content -->
+
+          <!-- Action buttons -->
+          <div style="padding:12px 16px 14px; border-top:1px solid #F0F0F0; display:flex; gap:8px; flex-shrink:0;">
+            <button data-back style="flex:1;padding:12px;background:#F0F0F0;color:#555;font-size:13px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button data-back style="flex:2;padding:12px;background:#09210E;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;"><i class="ri-save-line" style="margin-right:5px;"></i>Save Settings</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item active"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
+    </div>
+  </div>
+</div>
+
 
 </body>
 </html>
