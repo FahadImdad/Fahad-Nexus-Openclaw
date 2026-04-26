@@ -380,6 +380,13 @@
   .tc-row .tc-val { margin-left:auto; text-align:right; }
   .tc-row .tc-val .tv { font-size:13px; font-weight:800; color:#09210E; }
   .tc-row .tc-val .tl { font-size:9px; color:#AAA; }
+
+/* ── INTERACTIVE SINGLE-SCREEN MODE ── */
+body.interactive { justify-content: center; gap: 0; padding: 24px; overflow-x: hidden; min-height: 100vh; align-items: center; }
+body.interactive .col { display: none; }
+body.interactive .col.v { display: flex; flex-direction: column; align-items: center; }
+body.interactive .flow-sep { display: none; }
+body.interactive .page-label { display: none; }
 </style>
 </head>
 <body>
@@ -387,7 +394,7 @@
 <!-- ═══════════════════════════════════════════════
      SCREEN 1 — VENDOR DASHBOARD
 ════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s1">
   <div class="page-label">1 · Dashboard</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -453,7 +460,7 @@
 <!-- ═══════════════════════════════════════════════
      SCREEN 2 — STEP 1: BASIC INFO
 ════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s2">
   <div class="page-label">2 · Create — Step 1/5</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -564,7 +571,7 @@
 <!-- ═══════════════════════════════════════════════
      SCREEN 3 — STEP 2: DATE, TIME & LOCATION
 ════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s3">
   <div class="page-label">3 · Create — Step 2/5</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -668,7 +675,7 @@
 <!-- ═══════════════════════════════════════════════
      SCREEN 4 — STEP 3: REGISTRATION & SLOTS
 ════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s4">
   <div class="page-label">4 · Create — Step 3/5</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -767,7 +774,7 @@
 <!-- ═══════════════════════════════════════════════
      SCREEN 5 — STEP 4: PRIZES & TOURNAMENT INFO
 ════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s5">
   <div class="page-label">5 · Create — Step 4/5</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -864,7 +871,7 @@
 <!-- ═══════════════════════════════════════════════
      SCREEN 6 — STEP 5: REVIEW & PUBLISH
 ════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s6">
   <div class="page-label">6 · Review & Publish</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -952,7 +959,7 @@
 <!-- ═══════════════════════════════════════════════
      SCREEN 7 — SUCCESS / PUBLISHED
 ════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s7">
   <div class="page-label">7 · Published!</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -981,7 +988,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 8 — MY ARENAS
 ═══════════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s8">
   <div class="page-label">8 · My Arenas — from: 🏟️ Arenas nav</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -1281,7 +1288,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 9 — ARENA SCHEDULE (24-HOUR SLOT GRID)
 ═══════════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s9">
   <div class="page-label">9 · Schedule (Hourly) — tap arena card</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -1391,7 +1398,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 9b — ARENA SCHEDULE (HALF-HOUR SLOT GRID)
 ═══════════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s9b">
   <div class="page-label">9b · Schedule (Half-Hour) — if arena uses 30-min slots</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -1527,7 +1534,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 10 — SLOT TAP → BOOKING DETAIL SHEET
 ═══════════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s10">
   <div class="page-label">10 · Slot Detail Sheet — tap booked cell</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -1628,7 +1635,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 11 — LONG PRESS → SLOT MANAGEMENT POPUP
 ═══════════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s11">
   <div class="page-label">11 · Manage Slot — long press slot cell</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -1780,7 +1787,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 12 — BOOKING MANAGEMENT (ALL REQUESTS)
 ═══════════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s12">
   <div class="page-label">12 · Booking Requests — tap Requests on card</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -1931,7 +1938,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 13 — BOOKING DETAIL + SCREENSHOT REVIEW
 ═══════════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s13">
   <div class="page-label">13 · Booking Detail — from S10 View Details / S12 Review</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -2048,7 +2055,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 14 — PAYMENT MODE
 ═══════════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s14">
   <div class="page-label">14 · Payment Mode — via arena settings</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -2137,7 +2144,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 15 — ARENA ANALYTICS (PER-ARENA)
 ═══════════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s15">
   <div class="page-label">15 · Per-Arena Analytics — tap 📊 on arena card</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -2382,7 +2389,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SCREEN 16 — TOTAL VENDOR ANALYTICS (ALL ARENAS)
 ═══════════════════════════════════════════════════════ -->
-<div class="col">
+<div class="col" id="s16">
   <div class="page-label">16 · Total Analytics — from: S15 CTA or Dashboard 📊 nav</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
@@ -2569,5 +2576,236 @@
   </div>
 </div>
 
+
+<script>
+(function () {
+  var hist = [], cur = 's1';
+
+  function go(id) {
+    if (id === cur) return;
+    hist.push(cur);
+    _show(id);
+  }
+  function back() {
+    if (hist.length > 0) _show(hist.pop());
+  }
+  function _show(id) {
+    cur = id;
+    document.querySelectorAll('.col.v').forEach(function (c) { c.classList.remove('v'); });
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add('v');
+    var scr = el.querySelector('.screen');
+    if (scr) scr.scrollTop = 0;
+  }
+
+  // ── Event delegation ──
+  document.addEventListener('click', function (e) {
+    var col = e.target.closest('.col');
+    if (!col) return;
+    var id = col.id;
+
+    // BOTTOM NAV
+    var ni = e.target.closest('.nav-item');
+    if (ni) {
+      var icon = ni.querySelector('.ni');
+      var cls  = icon ? (icon.className || '') : '';
+      var txt  = ni.textContent.trim();
+      if (cls.includes('ri-home-5-line')    || txt.includes('Home'))     { go('s1');  return; }
+      if (cls.includes('ri-calendar-2-line')|| txt.includes('Schedule')) { go('s9');  return; }
+      if (cls.includes('ri-building-4-line')|| txt.includes('Arena'))    { go('s8');  return; }
+      if (cls.includes('ri-bar-chart-2-line')|| txt.includes('Analytics')){ go('s16'); return; }
+      if (cls.includes('ri-file-list-3-line')|| txt.includes('Events'))  { go('s7');  return; }
+      if (cls.includes('ri-user-3-line')    || txt.includes('Profile'))  { go('s1');  return; }
+      return;
+    }
+
+    // BACK ARROWS (left-arrow icon or its 1-child wrapper div, not in bottom-nav)
+    if (!e.target.closest('.bottom-nav')) {
+      if (e.target.classList && e.target.classList.contains('ri-arrow-left-s-line')) { back(); return; }
+      var pd = e.target.closest('div');
+      if (pd && pd.children.length === 1 && pd.children[0] &&
+          pd.children[0].classList && pd.children[0].classList.contains('ri-arrow-left-s-line')) {
+        back(); return;
+      }
+    }
+
+    // s1 DASHBOARD
+    if (id === 's1') {
+      if (e.target.closest('.create-btn-card')) { go('s2'); return; }
+      if (e.target.closest('.t-card'))          { go('s7'); return; }
+    }
+
+    // s2–s6 TOURNAMENT CREATION (Next button)
+    var nextMap = { s2:'s3', s3:'s4', s4:'s5', s5:'s6', s6:'s7' };
+    if (nextMap[id] && e.target.closest('.btn.primary')) { go(nextMap[id]); return; }
+
+    // s7 PUBLISHED
+    if (id === 's7') {
+      if (e.target.closest('.btn.primary'))  { go('s1'); return; }
+      if (e.target.closest('.btn.outline'))  { hist = []; go('s2'); return; }
+    }
+
+    // s8 MY ARENAS — action-strip divs (Schedule / Requests / Analytics / Review All)
+    if (id === 's8') {
+      for (var el2 = e.target; el2 && el2 !== col; el2 = el2.parentElement) {
+        var st = el2.getAttribute ? (el2.getAttribute('style') || '') : '';
+        if (st.includes('cursor:pointer') && !el2.closest('.bottom-nav')) {
+          // Collect direct text-node content only
+          var dt = '';
+          for (var n = 0; n < el2.childNodes.length; n++) {
+            if (el2.childNodes[n].nodeType === 3) dt += el2.childNodes[n].textContent;
+          }
+          dt = dt.trim();
+          if (dt === 'Schedule')  { go('s9');  return; }
+          if (dt === 'Requests')  { go('s12'); return; }
+          if (dt === 'Analytics') { go('s15'); return; }
+          if (dt === 'Review All'){ go('s12'); return; }
+        }
+      }
+    }
+
+    // s9 / s9b SLOT GRID
+    if (id === 's9' || id === 's9b') {
+      var cell = e.target.closest('.sg-cell');
+      if (cell) {
+        if (cell.classList.contains('sg-ok') || cell.classList.contains('sg-pend') || cell.classList.contains('sg-done')) { go('s10'); return; }
+        if (cell.classList.contains('sg-avail')) { go('s11'); return; }
+      }
+    }
+
+    // s10 SLOT DETAIL SHEET
+    if (id === 's10') {
+      var btn = e.target.tagName === 'BUTTON' ? e.target : e.target.closest('button');
+      if (btn && btn.textContent.includes('View Full Booking')) { go('s13'); return; }
+    }
+
+    // s11 MANAGE SLOT MODAL
+    if (id === 's11') {
+      var btn11 = e.target.tagName === 'BUTTON' ? e.target : e.target.closest('button');
+      if (btn11) {
+        var t11 = btn11.textContent.trim();
+        if (t11 === 'Cancel' || t11.includes('Apply')) { back(); return; }
+        // Stepper buttons handled in DOMContentLoaded
+      }
+    }
+
+    // s12 BOOKING REQUESTS
+    if (id === 's12') {
+      var btn12 = e.target.tagName === 'BUTTON' ? e.target : e.target.closest('button');
+      if (btn12 && (btn12.textContent.includes('View') || btn12.textContent.includes('Review'))) { go('s13'); return; }
+    }
+
+    // s13 BOOKING DETAIL
+    if (id === 's13') {
+      var btn13 = e.target.tagName === 'BUTTON' ? e.target : e.target.closest('button');
+      if (btn13 && btn13.classList.contains('approve')) { back(); return; }
+    }
+
+    // s15 PER-ARENA ANALYTICS → Total Analytics CTA
+    if (id === 's15') {
+      if (e.target.closest('[style*="1A3A78"]')) { go('s16'); return; }
+    }
+  });
+
+  // ── DOMContentLoaded: initialise UI & micro-interactions ──
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.classList.add('interactive');
+    _show('s1');
+
+    // Toggle click (any .toggle element)
+    document.querySelectorAll('.toggle').forEach(function (t) {
+      t.addEventListener('click', function (e) {
+        e.stopPropagation();
+        this.classList.toggle('on');
+      });
+    });
+
+    // Chip selection
+    document.querySelectorAll('.chip').forEach(function (c) {
+      c.addEventListener('click', function (e) {
+        e.stopPropagation();
+        this.classList.toggle('selected');
+      });
+    });
+
+    // s11: Segmented Open/Block control
+    var s11 = document.getElementById('s11');
+    if (s11) {
+      var segWrap = s11.querySelector('[style*="background:#EFEFEF"][style*="border-radius:11px"]');
+      if (segWrap) {
+        var segs = Array.prototype.slice.call(segWrap.children);
+        segs.forEach(function (seg) {
+          seg.addEventListener('click', function (e) {
+            e.stopPropagation();
+            segs.forEach(function (s) {
+              s.style.background = '';
+              s.style.color      = '#999';
+              s.style.fontWeight = '600';
+            });
+            this.style.background  = '#09210E';
+            this.style.color       = '#fff';
+            this.style.fontWeight  = '700';
+          });
+        });
+      }
+
+      // s11: Price stepper
+      var stepperWrap = s11.querySelector('[style*="height:38px"][style*="border-top"]');
+      var minusBtn = stepperWrap ? stepperWrap.previousElementSibling : null;
+      var plusBtn  = stepperWrap ? stepperWrap.nextElementSibling  : null;
+      var price = 2500;
+      function updatePrices() {
+        if (stepperWrap) stepperWrap.childNodes.forEach ? null : null;
+        if (stepperWrap) stepperWrap.textContent = 'Rs ' + price.toLocaleString();
+        // Update header price pill
+        var hdrPill = s11.querySelector('.sm-card > div:first-child [style*="font-weight:900"]');
+        if (hdrPill) hdrPill.childNodes[0].textContent = 'Rs ' + price.toLocaleString();
+        // Update discount display
+        var strikeTxt = s11.querySelector('[style*="text-decoration:line-through"]');
+        if (strikeTxt) strikeTxt.textContent = 'Rs ' + price.toLocaleString();
+        var discFinal = s11.querySelector('[style*="font-size:15px"][style*="color:#1A6030"]');
+        if (discFinal) discFinal.textContent = 'Rs ' + Math.round(price * 0.8).toLocaleString();
+      }
+      if (minusBtn) {
+        minusBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          price = Math.max(100, price - 100);
+          updatePrices();
+        });
+      }
+      if (plusBtn) {
+        plusBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          price = Math.min(99900, price + 100);
+          updatePrices();
+        });
+      }
+
+      // s11: Apply-scope radio items
+      var scopeGrid = s11.querySelector('[style*="grid-template-columns:1fr 1fr"]');
+      if (scopeGrid) {
+        var radioItems = Array.prototype.slice.call(scopeGrid.children);
+        radioItems.forEach(function (item) {
+          item.addEventListener('click', function (e) {
+            e.stopPropagation();
+            radioItems.forEach(function (ri) {
+              ri.style.border     = '1.5px solid #E5E5E5';
+              ri.style.background = '#FAFAFA';
+              var dot = ri.querySelector('[style*="border-radius:50%"]');
+              if (dot) { dot.style.background = ''; dot.style.boxShadow = ''; }
+            });
+            this.style.border     = '1.5px solid #09210E';
+            this.style.background = '#F4FAEE';
+            var dot = this.querySelector('[style*="border-radius:50%"]');
+            if (dot) { dot.style.background = '#09210E'; dot.style.boxShadow = 'inset 0 0 0 2.5px #fff'; }
+          });
+        });
+      }
+    }
+  });
+
+})();
+</script>
 </body>
 </html>
