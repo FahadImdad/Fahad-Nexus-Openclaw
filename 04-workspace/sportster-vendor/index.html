@@ -10,8 +10,9 @@
 <title>Sportster Vendor App — Tournament Creation</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { overflow-x: auto; min-height: 100%; }
-  body { font-family: 'Inter', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; background: #E8E8E6; display: flex; flex-wrap: nowrap; align-items: flex-start; gap: 24px; padding: 32px; width: max-content; min-height: 100vh; }
+  html, body { margin: 0; padding: 0; background: #E8E8E6; }
+  body { font-family: 'Inter', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: auto; overflow-y: auto; min-height: 100vh; }
+  #flow-row { display: flex; flex-wrap: nowrap; align-items: flex-start; gap: 24px; padding: 32px; width: max-content; min-height: 100vh; }
 
   /* ── Phone Frame ── */
   .phone { width: 375px; min-width: 375px; height: 720px; background: #fff; border-radius: 40px; box-shadow: 0 24px 60px rgba(0,0,0,0.18); overflow: hidden; display: flex; flex-direction: column; }
@@ -391,7 +392,8 @@
   .ss-step-val { font-size:12px; font-weight:800; color:#111; min-width:68px; text-align:center; }
 
 /* ── INTERACTIVE SINGLE-SCREEN MODE ── */
-body.interactive { justify-content: center; gap: 0; padding: 24px; overflow-x: hidden; min-height: 100vh; align-items: center; }
+body.interactive { overflow: hidden; }
+body.interactive #flow-row { display: flex; flex-wrap: nowrap; width: 100vw; min-height: 100vh; padding: 0; gap: 0; align-items: center; justify-content: center; }
 body.interactive .col { display: none; }
 body.interactive .col.v { display: flex; flex-direction: column; align-items: center; }
 body.interactive .flow-sep { display: none; }
@@ -414,6 +416,7 @@ body.interactive #demo-toggle::before { content: '← '; }
 <body>
 
 <button id="demo-toggle">▶ Interactive Demo</button>
+<div id="flow-row">
 
 <!-- ═══════════════════════════════════════════════
      SCREEN 1 — VENDOR DASHBOARD
@@ -3568,6 +3571,6 @@ body.interactive #demo-toggle::before { content: '← '; }
   </div>
 </div>
 
-
+</div><!-- #flow-row -->
 </body>
 </html>
