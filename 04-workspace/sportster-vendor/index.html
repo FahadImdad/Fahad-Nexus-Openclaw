@@ -226,6 +226,33 @@
 
   /* Notif dot */
   .ndot { display:inline-block; width:7px; height:7px; background:#D32F2F; border-radius:50%; margin-left:3px; vertical-align:middle; }
+
+  /* Slot occupancy grid */
+  .sg-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; background:#fff; }
+  .sg-inner { display:inline-block; min-width:100%; padding:0 16px 8px; }
+  .sg-time-row { display:flex; padding:6px 0 4px 52px; gap:2px; }
+  .sg-th { width:30px; flex-shrink:0; text-align:center; font-size:9px; color:#AAA; font-weight:600; }
+  .sg-court-row { display:flex; align-items:center; gap:2px; padding:2px 0; }
+  .sg-label { width:52px; flex-shrink:0; font-size:10px; color:#555; font-weight:700; padding-right:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:right; line-height:1.2; }
+  .sg-cell { width:30px; height:28px; border-radius:5px; flex-shrink:0; cursor:pointer; }
+  .sg-cell.sg-open    { background:#F2FFF4; border:1px solid #DCF0DC; }
+  .sg-cell.sg-booked  { background:#C8E6C9; border:1px solid #81C784; }
+  .sg-cell.sg-pending { background:#FFF9C4; border:1.5px solid #FFD54F; }
+  .sg-cell.sg-blocked { background:#EBEBEB; border:1px solid #D8D8D8; }
+
+  /* Compact 2-col booking cards */
+  .bk2-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:10px 14px; background:#F8FBF5; }
+  .bk2-card { background:#fff; border:1px solid #EFEFEF; border-radius:11px; padding:9px 10px; }
+  .bk2-card .b2-top { display:flex; align-items:center; gap:7px; margin-bottom:5px; }
+  .bk2-card .b2-icon { width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
+  .bk2-card .b2-name { font-size:12px; font-weight:700; color:#111; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .bk2-card .b2-time { font-size:11px; color:#888; margin-bottom:4px; }
+
+  /* Sport filter pills (reuses arena-pill style, different context) */
+  .sport-filter { display:flex; gap:6px; padding:8px 16px; overflow-x:auto; background:#FAFAFA; border-bottom:1px solid #F0F0F0; }
+  .sport-filter::-webkit-scrollbar { display:none; }
+  .sf-pill { padding:5px 12px; border-radius:20px; border:1.5px solid #E5E5E5; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap; color:#666; background:#fff; }
+  .sf-pill.active { background:#2E4A1A; color:#fff; border-color:#2E4A1A; }
 </style>
 </head>
 <body>
@@ -937,27 +964,26 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
-     SCREEN 9 — ARENA BOOKINGS LIST
+     SCREEN 9 — ARENA BOOKINGS (SLOT GRID + COMPACT LIST)
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">9 · Bookings List</div>
+  <div class="page-label">9 · Bookings — Slot Grid</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active">
 
       <!-- Header -->
-      <div style="padding:12px 16px 0; background:#fff; border-bottom:1px solid #F0F0F0;">
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
-          <div style="width:32px; height:32px; background:#F0F0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer;">←</div>
+      <div style="padding:10px 16px 0; background:#fff; border-bottom:1px solid #F0F0F0;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+          <div style="width:30px; height:30px; background:#F0F0F0; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:15px; cursor:pointer;">←</div>
           <div style="flex:1;">
-            <div style="font-size:16px; font-weight:800; color:#111;">Elite Sports Arena</div>
-            <div style="font-size:11px; color:#AAA;">DHA Phase 5 · Today's bookings</div>
+            <div style="font-size:15px; font-weight:800; color:#111;">Elite Sports Arena</div>
+            <div style="font-size:10px; color:#AAA;">DHA Phase 5 · Sun, 26 Apr</div>
           </div>
-          <div style="font-size:20px; cursor:pointer;">📅</div>
+          <span style="font-size:12px; background:#F8FBF5; border:1px solid #E0EDD8; color:#2E4A1A; padding:4px 9px; border-radius:9px; font-weight:600; cursor:pointer;">Sun 26 ▾</span>
         </div>
-
-        <!-- Arena switcher pills -->
-        <div class="arena-switch" style="padding:0 0 10px; margin:0 -16px; padding-left:0;">
+        <!-- Arena switcher -->
+        <div class="arena-switch" style="padding:0 0 8px; margin:0 -16px; padding-left:0;">
           <div style="width:16px; flex-shrink:0;"></div>
           <div class="arena-pill active">Elite Sports</div>
           <div class="arena-pill">Champions Ground</div>
@@ -966,122 +992,218 @@
         </div>
       </div>
 
-      <!-- Filter chips -->
-      <div style="display:flex; gap:7px; padding:10px 16px; overflow-x:auto; background:#FAFAFA; border-bottom:1px solid #F0F0F0;">
-        <div style="padding:6px 13px; border-radius:20px; background:#2E4A1A; color:#fff; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">All · 8</div>
-        <div style="padding:6px 13px; border-radius:20px; background:#fff; border:1.5px solid #EDE7FF; color:#5E35B1; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">📸 Screenshot · 2</div>
-        <div style="padding:6px 13px; border-radius:20px; background:#fff; border:1.5px solid #E5E5E5; color:#666; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">✅ Confirmed · 4</div>
-        <div style="padding:6px 13px; border-radius:20px; background:#fff; border:1.5px solid #E5E5E5; color:#666; font-size:12px; font-weight:600; white-space:nowrap; cursor:pointer;">Done · 2</div>
+      <!-- Sport filter -->
+      <div class="sport-filter">
+        <div class="sf-pill active">All Courts</div>
+        <div class="sf-pill">⚽ Football</div>
+        <div class="sf-pill">🏀 Basketball</div>
+        <div class="sf-pill">🏏 Cricket</div>
+        <div class="sf-pill">🎾 Tennis</div>
       </div>
 
-      <!-- Bookings list -->
-      <div style="background:#fff; flex:1; overflow-y:auto;">
-
-        <!-- Booking row: screenshot pending -->
-        <div class="bk-row" style="background:#FFFDF8;">
-          <div class="bk-sport" style="background:#EDE7FF;">⚽</div>
-          <div class="bk-main">
-            <h4>Ali Hassan</h4>
-            <p>Football Court A · 10:00 – 12:00 PM · Rs 4,000</p>
-          </div>
-          <div class="bk-right">
-            <span class="bk-badge screenshot">📸 Review</span>
-            <span style="font-size:10px; color:#AAA;">2h ago</span>
+      <!-- SLOT OCCUPANCY GRID -->
+      <div style="background:#fff; border-bottom:1.5px solid #EFEFEF;">
+        <!-- Section label + legend inline -->
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 16px 4px;">
+          <div style="font-size:11px; font-weight:700; color:#555;">Today's Slot Overview</div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <div style="display:flex;gap:3px;align-items:center;font-size:9px;color:#888;"><div style="width:9px;height:9px;border-radius:2px;background:#C8E6C9;border:1px solid #81C784;"></div>Booked</div>
+            <div style="display:flex;gap:3px;align-items:center;font-size:9px;color:#888;"><div style="width:9px;height:9px;border-radius:2px;background:#FFF9C4;border:1px solid #FFD54F;"></div>Pending</div>
+            <div style="display:flex;gap:3px;align-items:center;font-size:9px;color:#888;"><div style="width:9px;height:9px;border-radius:2px;background:#F2FFF4;border:1px solid #DCF0DC;"></div>Free</div>
           </div>
         </div>
 
-        <!-- Booking row: screenshot pending -->
-        <div class="bk-row" style="background:#FFFDF8;">
-          <div class="bk-sport" style="background:#EDE7FF;">🏀</div>
-          <div class="bk-main">
-            <h4>Zain & 5</h4>
-            <p>Basketball Court · 2:00 – 4:00 PM · Rs 6,000</p>
-          </div>
-          <div class="bk-right">
-            <span class="bk-badge screenshot">📸 Review</span>
-            <span style="font-size:10px; color:#AAA;">1h ago</span>
-          </div>
-        </div>
-
-        <!-- Booking row: confirmed -->
-        <div class="bk-row">
-          <div class="bk-sport" style="background:#E8F5E0;">⚽</div>
-          <div class="bk-main">
-            <h4>Umar Farooq</h4>
-            <p>Football Court B · 9:00 – 11:00 AM · Rs 4,000</p>
-          </div>
-          <div class="bk-right">
-            <span class="bk-badge confirmed">✓ Confirmed</span>
-            <span style="font-size:10px; color:#AAA;">3h ago</span>
-          </div>
-        </div>
-
-        <!-- Booking row: confirmed -->
-        <div class="bk-row">
-          <div class="bk-sport" style="background:#E8F5E0;">🏀</div>
-          <div class="bk-main">
-            <h4>Karachi Kings</h4>
-            <p>Basketball Court · 4:00 – 6:00 PM · Rs 6,000</p>
-          </div>
-          <div class="bk-right">
-            <span class="bk-badge confirmed">✓ Confirmed</span>
-            <span style="font-size:10px; color:#AAA;">yesterday</span>
-          </div>
-        </div>
-
-        <!-- Booking row: confirmed -->
-        <div class="bk-row">
-          <div class="bk-sport" style="background:#E8F5E0;">⚽</div>
-          <div class="bk-main">
-            <h4>Ahmed Group</h4>
-            <p>Football Court A · 6:00 – 8:00 PM · Rs 4,000</p>
-          </div>
-          <div class="bk-right">
-            <span class="bk-badge confirmed">✓ Confirmed</span>
-            <span style="font-size:10px; color:#AAA;">yesterday</span>
-          </div>
-        </div>
-
-        <!-- Booking row: confirmed -->
-        <div class="bk-row">
-          <div class="bk-sport" style="background:#E8F5E0;">🏏</div>
-          <div class="bk-main">
-            <h4>Peshawar XI</h4>
-            <p>Cricket Net · 8:00 – 10:00 AM · Rs 2,500</p>
-          </div>
-          <div class="bk-right">
-            <span class="bk-badge confirmed">✓ Confirmed</span>
-            <span style="font-size:10px; color:#AAA;">yesterday</span>
+        <div class="sg-wrap">
+          <div class="sg-inner">
+            <!-- Time header -->
+            <div class="sg-time-row">
+              <div class="sg-th">8a</div><div class="sg-th">9a</div><div class="sg-th">10a</div>
+              <div class="sg-th">11a</div><div class="sg-th">12p</div><div class="sg-th">1p</div>
+              <div class="sg-th">2p</div><div class="sg-th">3p</div><div class="sg-th">4p</div>
+              <div class="sg-th">5p</div><div class="sg-th">6p</div><div class="sg-th">7p</div>
+              <div class="sg-th">8p</div><div class="sg-th">9p</div>
+            </div>
+            <!-- Football A: booked 8-10, pending 10-12, booked 6-8 -->
+            <div class="sg-court-row">
+              <div class="sg-label">⚽ Ftb A</div>
+              <div class="sg-cell sg-booked"></div><div class="sg-cell sg-booked"></div>
+              <div class="sg-cell sg-pending"></div><div class="sg-cell sg-pending"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-booked"></div><div class="sg-cell sg-booked"></div>
+              <div class="sg-cell sg-blocked"></div><div class="sg-cell sg-blocked"></div>
+            </div>
+            <!-- Football B: booked 9-11, open rest -->
+            <div class="sg-court-row">
+              <div class="sg-label">⚽ Ftb B</div>
+              <div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-booked"></div><div class="sg-cell sg-booked"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-blocked"></div><div class="sg-cell sg-blocked"></div>
+            </div>
+            <!-- Basketball: booked 8-10, pending 2-4 -->
+            <div class="sg-court-row">
+              <div class="sg-label">🏀 Bball</div>
+              <div class="sg-cell sg-booked"></div><div class="sg-cell sg-booked"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-pending"></div><div class="sg-cell sg-pending"></div>
+              <div class="sg-cell sg-booked"></div><div class="sg-cell sg-booked"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+            </div>
+            <!-- Cricket: booked 8-10, open rest -->
+            <div class="sg-court-row">
+              <div class="sg-label">🏏 Cricket</div>
+              <div class="sg-cell sg-booked"></div><div class="sg-cell sg-booked"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+            </div>
           </div>
         </div>
 
-        <!-- Booking row: done -->
-        <div class="bk-row">
-          <div class="bk-sport" style="background:#F5F5F5;">⚽</div>
-          <div class="bk-main">
-            <h4>Weekend Warriors</h4>
-            <p>Football Court B · 7:00 – 9:00 AM · Rs 4,000</p>
+        <!-- Summary bar -->
+        <div style="display:flex; gap:0; padding:6px 16px 10px;">
+          <div style="flex:1; text-align:center;">
+            <span style="font-size:15px; font-weight:800; color:#2E7D32;">12</span>
+            <span style="font-size:10px; color:#AAA; margin-left:3px;">booked</span>
           </div>
-          <div class="bk-right">
-            <span style="font-size:11px; background:#F5F5F5; color:#AAA; padding:4px 8px; border-radius:8px; font-weight:600; white-space:nowrap;">Done</span>
-            <span style="font-size:10px; color:#AAA;">today 9am</span>
+          <div style="width:1px; background:#EFEFEF;"></div>
+          <div style="flex:1; text-align:center;">
+            <span style="font-size:15px; font-weight:800; color:#7A5A00;">4</span>
+            <span style="font-size:10px; color:#AAA; margin-left:3px;">pending</span>
           </div>
-        </div>
-
-        <!-- Booking row: done -->
-        <div class="bk-row">
-          <div class="bk-sport" style="background:#F5F5F5;">🏀</div>
-          <div class="bk-main">
-            <h4>Sara & Team</h4>
-            <p>Basketball Court · 8:00 – 10:00 AM · Rs 6,000</p>
+          <div style="width:1px; background:#EFEFEF;"></div>
+          <div style="flex:1; text-align:center;">
+            <span style="font-size:15px; font-weight:800; color:#888;">28</span>
+            <span style="font-size:10px; color:#AAA; margin-left:3px;">free</span>
           </div>
-          <div class="bk-right">
-            <span style="font-size:11px; background:#F5F5F5; color:#AAA; padding:4px 8px; border-radius:8px; font-weight:600; white-space:nowrap;">Done</span>
-            <span style="font-size:10px; color:#AAA;">today 10am</span>
+          <div style="width:1px; background:#EFEFEF;"></div>
+          <div style="flex:1; text-align:center;">
+            <span style="font-size:15px; font-weight:800; color:#D32F2F;">4</span>
+            <span style="font-size:10px; color:#AAA; margin-left:3px;">blocked</span>
           </div>
         </div>
+      </div>
 
-      </div><!-- end bookings list -->
+      <!-- Bookings status filter -->
+      <div style="display:flex; gap:6px; padding:8px 16px; overflow-x:auto; background:#FAFAFA; border-bottom:1px solid #F0F0F0;">
+        <div style="padding:5px 11px; border-radius:20px; background:#2E4A1A; color:#fff; font-size:11px; font-weight:700; white-space:nowrap; cursor:pointer;">All · 8</div>
+        <div style="padding:5px 11px; border-radius:20px; background:#EDE7FF; color:#5E35B1; font-size:11px; font-weight:700; white-space:nowrap; cursor:pointer;">📸 Review · 2</div>
+        <div style="padding:5px 11px; border-radius:20px; background:#fff; border:1.5px solid #E5E5E5; color:#666; font-size:11px; font-weight:700; white-space:nowrap; cursor:pointer;">✓ Confirmed · 4</div>
+        <div style="padding:5px 11px; border-radius:20px; background:#fff; border:1.5px solid #E5E5E5; color:#AAA; font-size:11px; font-weight:700; white-space:nowrap; cursor:pointer;">Done · 2</div>
+      </div>
+
+      <!-- 2-column compact booking cards -->
+      <div style="flex:1; overflow-y:auto; background:#F8FBF5;">
+        <div class="bk2-grid">
+
+          <!-- Screenshot pending -->
+          <div class="bk2-card" style="border-color:#E8E0FF; background:#FDFCFF;">
+            <div class="b2-top">
+              <div class="b2-icon" style="background:#EDE7FF;">⚽</div>
+              <div style="flex:1; min-width:0;">
+                <div class="b2-name">Ali Hassan</div>
+              </div>
+            </div>
+            <div class="b2-time">10am – 12pm · Ftb A</div>
+            <span class="bk-badge screenshot" style="font-size:10px;">📸 Review</span>
+          </div>
+
+          <!-- Screenshot pending -->
+          <div class="bk2-card" style="border-color:#E8E0FF; background:#FDFCFF;">
+            <div class="b2-top">
+              <div class="b2-icon" style="background:#EDE7FF;">🏀</div>
+              <div style="flex:1; min-width:0;">
+                <div class="b2-name">Zain & 5</div>
+              </div>
+            </div>
+            <div class="b2-time">2pm – 4pm · Bball</div>
+            <span class="bk-badge screenshot" style="font-size:10px;">📸 Review</span>
+          </div>
+
+          <!-- Confirmed -->
+          <div class="bk2-card">
+            <div class="b2-top">
+              <div class="b2-icon" style="background:#E8F5E0;">⚽</div>
+              <div style="flex:1; min-width:0;">
+                <div class="b2-name">Umar Farooq</div>
+              </div>
+            </div>
+            <div class="b2-time">9am – 11am · Ftb B</div>
+            <span class="bk-badge confirmed" style="font-size:10px;">✓ Confirmed</span>
+          </div>
+
+          <!-- Confirmed -->
+          <div class="bk2-card">
+            <div class="b2-top">
+              <div class="b2-icon" style="background:#E8F5E0;">🏀</div>
+              <div style="flex:1; min-width:0;">
+                <div class="b2-name">Karachi Kings</div>
+              </div>
+            </div>
+            <div class="b2-time">4pm – 6pm · Bball</div>
+            <span class="bk-badge confirmed" style="font-size:10px;">✓ Confirmed</span>
+          </div>
+
+          <!-- Confirmed -->
+          <div class="bk2-card">
+            <div class="b2-top">
+              <div class="b2-icon" style="background:#E8F5E0;">⚽</div>
+              <div style="flex:1; min-width:0;">
+                <div class="b2-name">Ahmed Group</div>
+              </div>
+            </div>
+            <div class="b2-time">6pm – 8pm · Ftb A</div>
+            <span class="bk-badge confirmed" style="font-size:10px;">✓ Confirmed</span>
+          </div>
+
+          <!-- Confirmed -->
+          <div class="bk2-card">
+            <div class="b2-top">
+              <div class="b2-icon" style="background:#E8F5E0;">🏏</div>
+              <div style="flex:1; min-width:0;">
+                <div class="b2-name">Peshawar XI</div>
+              </div>
+            </div>
+            <div class="b2-time">8am – 10am · Cricket</div>
+            <span class="bk-badge confirmed" style="font-size:10px;">✓ Confirmed</span>
+          </div>
+
+          <!-- Done -->
+          <div class="bk2-card" style="opacity:0.65;">
+            <div class="b2-top">
+              <div class="b2-icon" style="background:#F0F0F0;">⚽</div>
+              <div style="flex:1; min-width:0;">
+                <div class="b2-name">Wknd Warriors</div>
+              </div>
+            </div>
+            <div class="b2-time">7am – 9am · Ftb B</div>
+            <span style="font-size:10px; background:#F0F0F0; color:#AAA; padding:3px 7px; border-radius:8px; font-weight:700;">Done</span>
+          </div>
+
+          <!-- Done -->
+          <div class="bk2-card" style="opacity:0.65;">
+            <div class="b2-top">
+              <div class="b2-icon" style="background:#F0F0F0;">🏀</div>
+              <div style="flex:1; min-width:0;">
+                <div class="b2-name">Sara & Team</div>
+              </div>
+            </div>
+            <div class="b2-time">8am – 10am · Bball</div>
+            <span style="font-size:10px; background:#F0F0F0; color:#AAA; padding:3px 7px; border-radius:8px; font-weight:700;">Done</span>
+          </div>
+
+        </div>
+      </div>
 
     </div><!-- screen -->
     <div class="bottom-nav">
@@ -1200,77 +1322,125 @@
 </div>
 
 <!-- ═══════════════════════════════════════════════════════
-     SCREEN 11 — TODAY'S SLOT VIEW
+     SCREEN 11 — TODAY'S SLOT VIEW (GRID + SPORT FILTER)
 ═══════════════════════════════════════════════════════ -->
 <div class="col">
-  <div class="page-label">11 · Today's Slots</div>
+  <div class="page-label">11 · Slot View — Sport Filter</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active">
 
       <!-- Header -->
-      <div style="padding:12px 16px; background:#fff; border-bottom:1px solid #F0F0F0;">
+      <div style="padding:10px 16px 0; background:#fff; border-bottom:1px solid #F0F0F0;">
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-          <div style="width:32px; height:32px; background:#F0F0F0; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; cursor:pointer;">←</div>
+          <div style="width:30px; height:30px; background:#F0F0F0; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:15px; cursor:pointer;">←</div>
           <div style="flex:1;">
             <div style="font-size:15px; font-weight:800; color:#111;">Elite Sports Arena</div>
-            <div style="font-size:11px; color:#AAA;">Today's slot overview</div>
+            <div style="font-size:10px; color:#AAA;">⚽ Football · Today's slots</div>
           </div>
-          <span style="font-size:13px; background:#F8FBF5; border:1px solid #E0EDD8; color:#2E4A1A; padding:5px 10px; border-radius:10px; font-weight:600; cursor:pointer;">Sun 26 ▾</span>
+          <span style="font-size:12px; background:#F8FBF5; border:1px solid #E0EDD8; color:#2E4A1A; padding:4px 9px; border-radius:9px; font-weight:600; cursor:pointer;">Sun 26 ▾</span>
         </div>
         <!-- Arena switcher -->
-        <div class="arena-switch" style="padding:0; margin:0 -16px; padding-left:0;">
+        <div class="arena-switch" style="padding:0 0 8px; margin:0 -16px; padding-left:0;">
           <div style="width:16px; flex-shrink:0;"></div>
-          <div class="arena-pill active">Football A</div>
-          <div class="arena-pill">Football B</div>
-          <div class="arena-pill">Basketball</div>
-          <div class="arena-pill">Cricket Net</div>
+          <div class="arena-pill active">Elite Sports</div>
+          <div class="arena-pill">Champions Ground</div>
+          <div class="arena-pill">Victory Complex</div>
           <div style="width:8px; flex-shrink:0;"></div>
         </div>
       </div>
 
-      <!-- Legend -->
-      <div style="display:flex; gap:10px; padding:8px 16px; background:#FAFAFA; border-bottom:1px solid #F0F0F0; flex-wrap:wrap;">
-        <div style="display:flex; align-items:center; gap:5px; font-size:10px; color:#555;">
-          <div style="width:8px;height:8px;border-radius:3px;background:#E8F5E0;border:1px solid #A5D6A7;"></div>Booked
+      <!-- Sport filter (the main new feature) -->
+      <div class="sport-filter">
+        <div class="sf-pill">All Sports</div>
+        <div class="sf-pill active">⚽ Football</div>
+        <div class="sf-pill">🏀 Basketball</div>
+        <div class="sf-pill">🏏 Cricket</div>
+        <div class="sf-pill">🎾 Tennis</div>
+      </div>
+
+      <!-- GRID VIEW: Football courts filtered (2 courts shown) -->
+      <div style="background:#fff; border-bottom:1.5px solid #EFEFEF; padding-bottom:6px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 16px 4px;">
+          <div style="font-size:11px; font-weight:700; color:#555;">⚽ Football Courts · 2 courts</div>
+          <div style="display:flex; gap:8px;">
+            <div style="display:flex;gap:3px;align-items:center;font-size:9px;color:#888;"><div style="width:8px;height:8px;border-radius:2px;background:#C8E6C9;border:1px solid #81C784;"></div>Booked</div>
+            <div style="display:flex;gap:3px;align-items:center;font-size:9px;color:#888;"><div style="width:8px;height:8px;border-radius:2px;background:#FFF9C4;border:1px solid #FFD54F;"></div>Pending</div>
+            <div style="display:flex;gap:3px;align-items:center;font-size:9px;color:#888;"><div style="width:8px;height:8px;border-radius:2px;background:#F2FFF4;border:1px solid #DCF0DC;"></div>Free</div>
+          </div>
         </div>
-        <div style="display:flex; align-items:center; gap:5px; font-size:10px; color:#555;">
-          <div style="width:8px;height:8px;border-radius:3px;background:#FFF8E1;border:1px solid #FFD54F;"></div>Pending
+        <div class="sg-wrap">
+          <div class="sg-inner">
+            <div class="sg-time-row">
+              <div class="sg-th">8a</div><div class="sg-th">9a</div><div class="sg-th">10a</div>
+              <div class="sg-th">11a</div><div class="sg-th">12p</div><div class="sg-th">1p</div>
+              <div class="sg-th">2p</div><div class="sg-th">3p</div><div class="sg-th">4p</div>
+              <div class="sg-th">5p</div><div class="sg-th">6p</div><div class="sg-th">7p</div>
+              <div class="sg-th">8p</div><div class="sg-th">9p</div>
+            </div>
+            <div class="sg-court-row">
+              <div class="sg-label">Court A</div>
+              <div class="sg-cell sg-booked"></div><div class="sg-cell sg-booked"></div>
+              <div class="sg-cell sg-pending"></div><div class="sg-cell sg-pending"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-booked"></div><div class="sg-cell sg-booked"></div>
+              <div class="sg-cell sg-blocked"></div><div class="sg-cell sg-blocked"></div>
+            </div>
+            <div class="sg-court-row">
+              <div class="sg-label">Court B</div>
+              <div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-booked"></div><div class="sg-cell sg-booked"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-open"></div><div class="sg-cell sg-open"></div>
+              <div class="sg-cell sg-blocked"></div><div class="sg-cell sg-blocked"></div>
+            </div>
+          </div>
         </div>
-        <div style="display:flex; align-items:center; gap:5px; font-size:10px; color:#555;">
-          <div style="width:8px;height:8px;border-radius:3px;background:#F5FFF7;border:1.5px dashed #B2DFDB;"></div>Available
-        </div>
-        <div style="display:flex; align-items:center; gap:5px; font-size:10px; color:#555;">
-          <div style="width:8px;height:8px;border-radius:3px;background:#F5F5F5;border:1px solid #E0E0E0;"></div>Blocked
+        <div style="display:flex; gap:0; padding:5px 16px 0;">
+          <div style="flex:1; text-align:center; font-size:11px;">
+            <span style="font-weight:800; color:#2E7D32;">7</span><span style="color:#AAA; margin-left:2px;">booked</span>
+          </div>
+          <div style="width:1px; background:#EFEFEF;"></div>
+          <div style="flex:1; text-align:center; font-size:11px;">
+            <span style="font-weight:800; color:#7A5A00;">2</span><span style="color:#AAA; margin-left:2px;">pending</span>
+          </div>
+          <div style="width:1px; background:#EFEFEF;"></div>
+          <div style="flex:1; text-align:center; font-size:11px;">
+            <span style="font-weight:800; color:#888;">15</span><span style="color:#AAA; margin-left:2px;">free</span>
+          </div>
+          <div style="width:1px; background:#EFEFEF;"></div>
+          <div style="flex:1; text-align:center; font-size:11px;">
+            <span style="font-weight:800; color:#D32F2F;">4</span><span style="color:#AAA; margin-left:2px;">blocked</span>
+          </div>
         </div>
       </div>
 
-      <!-- Slot timeline -->
+      <!-- Hourly detail list for selected court (Court A) -->
+      <div style="background:#F8FBF5; padding:8px 16px 4px; display:flex; align-items:center; justify-content:space-between;">
+        <div style="font-size:11px; font-weight:700; color:#555;">Court A · Slot Detail</div>
+        <div style="font-size:11px; color:#2E4A1A; font-weight:600; cursor:pointer;">Court B →</div>
+      </div>
       <div style="flex:1; overflow-y:auto; background:#FAFAFA;">
 
         <div class="slot-row">
-          <div class="sr-time">6:00 AM</div>
-          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
-        </div>
-        <div class="slot-row">
-          <div class="sr-time">7:00 AM</div>
-          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
-        </div>
-        <div class="slot-row">
           <div class="sr-time">8:00 AM</div>
-          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Weekend Warriors</div>
+          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Weekend Warriors · ⚽</div>
         </div>
         <div class="slot-row">
           <div class="sr-time">9:00 AM</div>
-          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Weekend Warriors</div>
+          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Weekend Warriors · ⚽</div>
         </div>
         <div class="slot-row">
           <div class="sr-time">10:00 AM</div>
-          <div class="slot-bar pending"><span class="sb-dot" style="background:#FFD54F;"></span>Ali Hassan · 📸</div>
+          <div class="slot-bar pending"><span class="sb-dot" style="background:#FFD54F;"></span>Ali Hassan · ⚽ · 📸</div>
         </div>
         <div class="slot-row">
           <div class="sr-time">11:00 AM</div>
-          <div class="slot-bar pending"><span class="sb-dot" style="background:#FFD54F;"></span>Ali Hassan · 📸</div>
+          <div class="slot-bar pending"><span class="sb-dot" style="background:#FFD54F;"></span>Ali Hassan · ⚽ · 📸</div>
         </div>
         <div class="slot-row">
           <div class="sr-time">12:00 PM</div>
@@ -1282,11 +1452,11 @@
         </div>
         <div class="slot-row">
           <div class="sr-time">2:00 PM</div>
-          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Karachi Kings</div>
+          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
         </div>
         <div class="slot-row">
           <div class="sr-time">3:00 PM</div>
-          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Karachi Kings</div>
+          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
         </div>
         <div class="slot-row">
           <div class="sr-time">4:00 PM</div>
@@ -1298,11 +1468,11 @@
         </div>
         <div class="slot-row">
           <div class="sr-time">6:00 PM</div>
-          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Ahmed Group</div>
+          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Ahmed Group · ⚽</div>
         </div>
         <div class="slot-row">
           <div class="sr-time">7:00 PM</div>
-          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Ahmed Group</div>
+          <div class="slot-bar booked"><span class="sb-dot" style="background:#4CAF50;"></span>Ahmed Group · ⚽</div>
         </div>
         <div class="slot-row">
           <div class="sr-time">8:00 PM</div>
@@ -1311,10 +1481,6 @@
         <div class="slot-row">
           <div class="sr-time">9:00 PM</div>
           <div class="slot-bar blocked"><span class="sb-dot" style="background:#E0E0E0;"></span>Blocked · Maintenance</div>
-        </div>
-        <div class="slot-row">
-          <div class="sr-time">10:00 PM</div>
-          <div class="slot-bar open"><span class="sb-dot" style="background:#B2DFDB;"></span>Available</div>
         </div>
 
       </div>
