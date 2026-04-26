@@ -300,7 +300,7 @@
 
   /* Bottom sheet overlay (slot tap) */
   .bs-bg { position:absolute; inset:0; background:rgba(0,0,0,.5); z-index:10; border-radius:0 0 36px 36px; display:flex; flex-direction:column; justify-content:flex-end; }
-  .bs-card { background:#fff; border-radius:22px 22px 0 0; padding-bottom:20px; }
+  .bs-card { background:#fff; border-radius:22px 22px 0 0; padding-bottom:20px; position:relative; }
   .bs-handle { width:32px; height:4px; background:#E0E0E0; border-radius:2px; margin:12px auto 14px; }
 
   /* Slot management popup */
@@ -624,7 +624,7 @@ body.interactive .page-label { display: none; }
       </div>
 
       <div class="bottom-bar">
-        <button class="btn secondary">Cancel</button>
+        <button class="btn secondary" data-back>Cancel</button>
         <button class="btn primary">Next →</button>
       </div>
     </div>
@@ -728,7 +728,7 @@ body.interactive .page-label { display: none; }
       </div>
 
       <div class="bottom-bar">
-        <button class="btn secondary">← Back</button>
+        <button class="btn secondary" data-back>← Back</button>
         <button class="btn primary">Next →</button>
       </div>
     </div>
@@ -827,7 +827,7 @@ body.interactive .page-label { display: none; }
       </div>
 
       <div class="bottom-bar">
-        <button class="btn secondary">← Back</button>
+        <button class="btn secondary" data-back>← Back</button>
         <button class="btn primary">Next →</button>
       </div>
     </div>
@@ -924,7 +924,7 @@ body.interactive .page-label { display: none; }
       </div>
 
       <div class="bottom-bar">
-        <button class="btn secondary">← Back</button>
+        <button class="btn secondary" data-back>← Back</button>
         <button class="btn primary">Review →</button>
       </div>
     </div>
@@ -942,7 +942,7 @@ body.interactive .page-label { display: none; }
       <div class="nav">
         <div class="back"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
         <h2>Review Tournament</h2>
-        <span class="action-btn" style="color:#D32F2F;">Edit</span>
+        <span class="action-btn" style="color:#D32F2F;" data-back>Edit</span>
       </div>
       <div class="step-progress">
         <div class="step-dot done"></div>
@@ -1013,7 +1013,7 @@ body.interactive .page-label { display: none; }
 
       <div class="bottom-bar" style="flex-direction:column;gap:10px;">
         <button class="btn primary" style="width:100%;">🚀 Publish Tournament</button>
-        <button class="btn outline" style="width:100%;">💾 Save as Draft</button>
+        <button class="btn outline" style="width:100%;" data-go="s1">💾 Save as Draft</button>
       </div>
     </div>
   </div>
@@ -1034,7 +1034,7 @@ body.interactive .page-label { display: none; }
         <div class="id-badge">Tournament ID: <span>#NBC-2024-0712</span></div>
         <div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;width:100%;">
           <button class="btn primary" style="width:100%;">📊 View Dashboard</button>
-          <button class="btn secondary" style="width:100%;"><i class="ri-eye-line" style="margin-right:4px;font-size:14px;"></i>Preview User View</button>
+          <button class="btn secondary" style="width:100%;" data-back><i class="ri-eye-line" style="margin-right:4px;font-size:14px;"></i>Preview User View</button>
           <button class="btn outline" style="width:100%;margin-top:4px;">＋ Create Another</button>
         </div>
       </div>
@@ -1675,6 +1675,7 @@ body.interactive .page-label { display: none; }
       <div class="bs-bg">
         <div class="bs-card">
           <div class="bs-handle"></div>
+          <div style="position:absolute;top:12px;right:14px;width:28px;height:28px;background:#F0F0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:1;" data-back><i class="ri-close-line" style="font-size:16px;color:#555;line-height:1;"></i></div>
 
           <!-- Slot identity pill -->
           <div style="display:flex;align-items:center;gap:8px;padding:0 16px 12px;">
@@ -1703,7 +1704,7 @@ body.interactive .page-label { display: none; }
             <button style="width:100%;padding:14px;background:#09210E;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">View Full Booking Details <i class="ri-arrow-right-s-line"></i></button>
           </div>
           <div style="padding:8px 16px 0;">
-            <button style="width:100%;padding:10px;background:#F0F4F0;color:#555;font-size:12px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:inherit;"><i class="ri-message-3-line"></i> Contact Customer</button>
+            <button data-back style="width:100%;padding:10px;background:#F0F4F0;color:#555;font-size:12px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:inherit;"><i class="ri-message-3-line"></i> Contact Customer</button>
           </div>
         </div>
       </div>
@@ -1898,7 +1899,7 @@ body.interactive .page-label { display: none; }
           <div style="font-size:20px;">🔍</div>
         </div>
         <!-- Tab bar -->
-        <div style="display:flex;gap:0;border-bottom:2px solid #EFEFEF;margin:0 -16px;padding:0 16px;">
+        <div data-tab-bar style="display:flex;gap:0;border-bottom:2px solid #EFEFEF;margin:0 -16px;padding:0 16px;">
           <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:800;color:#09210E;border-bottom:2.5px solid #09210E;margin-bottom:-2px;cursor:pointer;">All <span style="background:#EFEFEF;color:#555;border-radius:20px;padding:1px 6px;font-size:10px;">8</span></div>
           <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:800;color:#E65100;border-bottom:2.5px solid #E65100;margin-bottom:-2px;cursor:pointer;">Pending <span style="background:#FFE0B2;color:#E65100;border-radius:20px;padding:1px 6px;font-size:10px;">2</span></div>
           <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;">Confirmed <span style="background:#EFEFEF;color:#AAA;border-radius:20px;padding:1px 6px;font-size:10px;">4</span></div>
@@ -1939,7 +1940,7 @@ body.interactive .page-label { display: none; }
             </div>
             <div class="bmc-note"><i class="ri-camera-line"></i> Screenshot submitted 2h ago — review before approving</div>
             <div class="bmc-acts">
-              <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Chat</button>
+              <button class="bmc-btn msg" data-back><i class="ri-message-3-line"></i> Chat</button>
               <button class="bmc-btn approve" style="flex:2;"><i class="ri-file-check-line"></i> View &amp; Review</button>
             </div>
           </div>
@@ -1959,7 +1960,7 @@ body.interactive .page-label { display: none; }
             </div>
             <div class="bmc-note"><i class="ri-camera-line"></i> Screenshot submitted 1h ago — review before approving</div>
             <div class="bmc-acts">
-              <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Chat</button>
+              <button class="bmc-btn msg" data-back><i class="ri-message-3-line"></i> Chat</button>
               <button class="bmc-btn approve" style="flex:2;"><i class="ri-file-check-line"></i> View &amp; Review</button>
             </div>
           </div>
@@ -1980,7 +1981,7 @@ body.interactive .page-label { display: none; }
             <div class="bmc-note"><i class="ri-check-line"></i> Payment verified · JazzCash · Today 7:15 AM</div>
             <div class="bmc-acts">
               <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Message</button>
-              <button class="bmc-btn cancel-bk">Cancel Booking</button>
+              <button class="bmc-btn cancel-bk" data-back>Cancel Booking</button>
             </div>
           </div>
         </div>
@@ -2000,7 +2001,7 @@ body.interactive .page-label { display: none; }
             <div class="bmc-note"><i class="ri-check-line"></i> Payment verified · Bank Transfer · Yesterday</div>
             <div class="bmc-acts">
               <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Message</button>
-              <button class="bmc-btn cancel-bk">Cancel Booking</button>
+              <button class="bmc-btn cancel-bk" data-back>Cancel Booking</button>
             </div>
           </div>
         </div>
@@ -2139,8 +2140,8 @@ body.interactive .page-label { display: none; }
 
       <!-- Fixed action bar at bottom -->
       <div class="action-bar" style="position:sticky; bottom:0; flex-shrink:0;">
-        <button class="act-btn contact"><i class="ri-message-3-line"></i> Chat</button>
-        <button class="act-btn" style="background:#FFF3CD; color:#7A5A00; font-size:12px;"><i class="ri-time-line"></i> Pending</button>
+        <button class="act-btn contact" data-back><i class="ri-message-3-line"></i> Chat</button>
+        <button class="act-btn" data-back style="background:#FFF3CD; color:#7A5A00; font-size:12px;"><i class="ri-time-line"></i> Pending</button>
         <button class="act-btn approve"><i class="ri-check-line"></i> Approve</button>
       </div>
 
@@ -2557,7 +2558,7 @@ body.interactive .page-label { display: none; }
             <div style="font-size:11px;font-weight:800;color:#7A5A00;">4 screenshots pending review across all arenas</div>
             <div style="font-size:10px;color:#A07840;margin-top:1px;">Oldest: 4 hours ago at Elite Sports Arena</div>
           </div>
-          <div style="font-size:11px;font-weight:800;color:#E65100;cursor:pointer;">Review →</div>
+          <div data-go="s17" style="font-size:11px;font-weight:800;color:#E65100;cursor:pointer;">Review →</div>
         </div>
 
         <!-- ── REVENUE BY ARENA ── -->
@@ -2819,10 +2820,6 @@ body.interactive .page-label { display: none; }
       if (btn17 && btn17.classList.contains('approve')) { go('s13'); return; }
     }
 
-    // s15 PER-ARENA ANALYTICS → Total Analytics CTA
-    if (id === 's15') {
-      if (e.target.closest('[style*="1A3A78"]')) { go('s16'); return; }
-    }
   });
 
   // ── DOMContentLoaded: initialise UI & micro-interactions ──
@@ -2952,6 +2949,41 @@ body.interactive .page-label { display: none; }
       });
     }
 
+    // Period pickers (.an-period .ap) — visual-only active toggle
+    document.querySelectorAll('.an-period').forEach(function (group) {
+      var pills = Array.prototype.slice.call(group.querySelectorAll('.ap'));
+      pills.forEach(function (pill) {
+        pill.addEventListener('click', function (e) {
+          e.stopPropagation();
+          pills.forEach(function (p) { p.classList.remove('active'); });
+          this.classList.add('active');
+        });
+      });
+    });
+
+    // Filter tabs (s12 / s17) — visual-only active toggle
+    document.querySelectorAll('[data-tab-bar]').forEach(function (bar) {
+      var tabs = Array.prototype.slice.call(bar.children).filter(function (c) {
+        return c.tagName === 'DIV';
+      });
+      if (tabs.length < 2) return;
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function (e) {
+          e.stopPropagation();
+          tabs.forEach(function (t) {
+            t.style.color = '#AAA';
+            t.style.fontWeight = '700';
+            t.style.borderBottom = '';
+            t.style.marginBottom = '';
+          });
+          this.style.color = '#09210E';
+          this.style.fontWeight = '800';
+          this.style.borderBottom = '2.5px solid #09210E';
+          this.style.marginBottom = '-1px';
+        });
+      });
+    });
+
     // Arena switcher chips — visual-only active toggle
     document.querySelectorAll('.arena-sw').forEach(function (chip) {
       chip.addEventListener('click', function (e) {
@@ -3025,7 +3057,7 @@ body.interactive .page-label { display: none; }
 
       <!-- Filter tabs -->
       <div style="background:#fff;border-bottom:1px solid #EFEFEF;flex-shrink:0;">
-        <div style="display:flex;padding:0 16px;overflow-x:auto;">
+        <div data-tab-bar style="display:flex;padding:0 16px;overflow-x:auto;">
           <div style="padding:10px 0;margin-right:16px;font-size:12px;font-weight:800;color:#09210E;border-bottom:2.5px solid #09210E;margin-bottom:-1px;cursor:pointer;white-space:nowrap;">All <span style="background:#EFEFEF;border-radius:20px;padding:1px 6px;font-size:10px;color:#555;">14</span></div>
           <div style="padding:10px 0;margin-right:16px;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;white-space:nowrap;">Pending <span style="background:#FFE0B2;border-radius:20px;padding:1px 6px;font-size:10px;color:#E65100;">4</span></div>
           <div style="padding:10px 0;margin-right:16px;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;white-space:nowrap;">Confirmed <span style="background:#EFEFEF;border-radius:20px;padding:1px 6px;font-size:10px;color:#AAA;">8</span></div>
