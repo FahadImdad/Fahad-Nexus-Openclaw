@@ -395,9 +395,24 @@ body.interactive .col { display: none; }
 body.interactive .col.v { display: flex; flex-direction: column; align-items: center; }
 body.interactive .flow-sep { display: none; }
 body.interactive .page-label { display: none; }
+body.interactive #demo-toggle { background: #1a1a1a; color: #fff; }
+body.interactive #demo-toggle::before { content: '← '; }
+
+/* ── DEMO TOGGLE BUTTON ── */
+#demo-toggle {
+  position: fixed; top: 16px; right: 16px; z-index: 9999;
+  background: #09210E; color: #fff;
+  border: none; border-radius: 12px; padding: 10px 18px;
+  font-size: 13px; font-weight: 800; font-family: inherit;
+  cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,.22);
+  letter-spacing: .2px; transition: opacity .15s;
+}
+#demo-toggle:hover { opacity: .88; }
 </style>
 </head>
 <body>
+
+<button id="demo-toggle">▶ Interactive Demo</button>
 
 <!-- ═══════════════════════════════════════════════
      SCREEN 1 — VENDOR DASHBOARD
@@ -2822,10 +2837,27 @@ body.interactive .page-label { display: none; }
 
   });
 
+  // ── Demo toggle button ──
+  window.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('demo-toggle');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        if (document.body.classList.contains('interactive')) {
+          document.body.classList.remove('interactive');
+          document.querySelectorAll('.col.v').forEach(function (c) { c.classList.remove('v'); });
+          btn.textContent = '▶ Interactive Demo';
+          window.scrollTo(0, 0);
+        } else {
+          document.body.classList.add('interactive');
+          _show('s1');
+          btn.textContent = 'Exit Demo';
+        }
+      });
+    }
+  });
+
   // ── DOMContentLoaded: initialise UI & micro-interactions ──
   document.addEventListener('DOMContentLoaded', function () {
-    document.body.classList.add('interactive');
-    _show('s1');
 
     // Toggle click (any .toggle element)
     document.querySelectorAll('.toggle').forEach(function (t) {
