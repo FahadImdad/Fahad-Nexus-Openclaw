@@ -284,6 +284,14 @@
   .sg-half .sg-ico { font-size:12px!important; margin-top:1px!important; }
   .sg-half .sg-nm { font-size:7.5px!important; }
 
+  /* Slot price tag */
+  .sg-cell .sg-pr { font-size:8px; font-weight:800; margin-top:auto; line-height:1.1; }
+  .sg-cell.sg-avail .sg-pr { color:#2A7A38; }
+  .sg-cell.sg-ok .sg-pr { color:rgba(255,255,255,.7); }
+  .sg-cell.sg-pend .sg-pr { color:rgba(255,255,255,.72); }
+  .sg-cell.sg-done .sg-pr { color:#8FA898; }
+  .sg-half .sg-pr { font-size:7px!important; }
+
   /* Flow connectors between screen columns */
   .flow-sep { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; flex-shrink:0; min-width:52px; align-self:center; margin-top:36px; }
   .flow-sep .fs-lbl { font-size:9px; font-weight:800; color:#888; text-align:center; max-width:66px; line-height:1.4; }
@@ -1337,28 +1345,28 @@
           <!-- Row 2: 4am–7am (closed / opening) -->
           <div class="sg-cell sg-closed"><div class="sg-hr">4am</div></div>
           <div class="sg-cell sg-closed"><div class="sg-hr">5am</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">6am</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">7am</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">6am</div><div class="sg-pr">Rs 1.2k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">7am</div><div class="sg-pr">Rs 1.2k</div></div>
           <!-- Row 3: 8am–11am -->
-          <div class="sg-cell sg-done"><div class="sg-hr">8am</div><div class="sg-ico">⚽</div><div class="sg-nm">W.Warriors</div></div>
-          <div class="sg-cell sg-ok"><div class="sg-hr">9am</div><div class="sg-ico">⚽</div><div class="sg-nm">Umar F.</div></div>
-          <div class="sg-cell sg-pend"><div class="sg-hr">10am</div><div class="sg-ico">⚽</div><div class="sg-nm">Ali H.</div></div>
-          <div class="sg-cell sg-pend"><div class="sg-hr">11am</div><div class="sg-ico">⚽</div><div class="sg-nm">Ali H.</div></div>
+          <div class="sg-cell sg-done"><div class="sg-hr">8am</div><div class="sg-nm">W.Warriors</div><div class="sg-pr">Rs 2k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">9am</div><div class="sg-nm">Umar F.</div><div class="sg-pr">Rs 2k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">10am</div><div class="sg-nm">Ali H.</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">11am</div><div class="sg-nm">Ali H.</div><div class="sg-pr">Rs 2.5k</div></div>
           <!-- Row 4: 12pm–3pm -->
-          <div class="sg-cell sg-avail"><div class="sg-hr">12pm</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">1pm</div></div>
-          <div class="sg-cell sg-pend"><div class="sg-hr">2pm</div><div class="sg-ico">🏀</div><div class="sg-nm">Zain &amp; T.</div></div>
-          <div class="sg-cell sg-pend"><div class="sg-hr">3pm</div><div class="sg-ico">🏀</div><div class="sg-nm">Zain &amp; T.</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">12pm</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">1pm</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">2pm</div><div class="sg-nm">Zain &amp;T.</div><div class="sg-pr">Rs 3k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">3pm</div><div class="sg-nm">Zain &amp;T.</div><div class="sg-pr">Rs 3k</div></div>
           <!-- Row 5: 4pm–7pm (all booked/confirmed) -->
-          <div class="sg-cell sg-ok"><div class="sg-hr">4pm</div><div class="sg-ico">🏀</div><div class="sg-nm">K.Kings</div></div>
-          <div class="sg-cell sg-ok"><div class="sg-hr">5pm</div><div class="sg-ico">🏀</div><div class="sg-nm">K.Kings</div></div>
-          <div class="sg-cell sg-ok"><div class="sg-hr">6pm</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
-          <div class="sg-cell sg-ok"><div class="sg-hr">7pm</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">4pm</div><div class="sg-nm">K.Kings</div><div class="sg-pr">Rs 3.5k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">5pm</div><div class="sg-nm">K.Kings</div><div class="sg-pr">Rs 3.5k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">6pm</div><div class="sg-nm">Ahmed G.</div><div class="sg-pr">Rs 3.5k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">7pm</div><div class="sg-nm">Ahmed G.</div><div class="sg-pr">Rs 3.5k</div></div>
           <!-- Row 6: 8pm–11pm (blocked / available) -->
           <div class="sg-cell sg-blk"><div class="sg-hr">8pm</div><div class="sg-ico" style="font-size:13px; margin-top:6px;"><i class="ri-lock-2-fill"></i></div></div>
           <div class="sg-cell sg-blk"><div class="sg-hr">9pm</div><div class="sg-ico" style="font-size:13px; margin-top:6px;"><i class="ri-lock-2-fill"></i></div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">10pm</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">11pm</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">10pm</div><div class="sg-pr">Rs 2k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">11pm</div><div class="sg-pr">Rs 2k</div></div>
         </div>
       </div>
 
@@ -1451,50 +1459,50 @@
           <div class="sg-cell sg-closed sg-half"><div class="sg-hr">5:00a</div></div>
           <div class="sg-cell sg-closed sg-half"><div class="sg-hr">5:30a</div></div>
           <!-- Row 4: 6:00a–7:30a (open / available) -->
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">6:00a</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">6:30a</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">7:00a</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">7:30a</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">6:00a</div><div class="sg-pr">700</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">6:30a</div><div class="sg-pr">700</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">7:00a</div><div class="sg-pr">700</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">7:30a</div><div class="sg-pr">700</div></div>
           <!-- Row 5: 8:00a–9:30a (past done + confirmed — Umar 9-11am, so 9:00 onward) -->
-          <div class="sg-cell sg-done sg-half"><div class="sg-hr">8:00a</div><div class="sg-ico">⚽</div><div class="sg-nm">W.W.</div></div>
-          <div class="sg-cell sg-done sg-half"><div class="sg-hr">8:30a</div><div class="sg-ico">⚽</div><div class="sg-nm">W.W.</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">9:00a</div><div class="sg-ico">⚽</div><div class="sg-nm">Umar F.</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">9:30a</div><div class="sg-ico">⚽</div><div class="sg-nm">Umar F.</div></div>
+          <div class="sg-cell sg-done sg-half"><div class="sg-hr">8:00a</div><div class="sg-nm">W.W.</div><div class="sg-pr">1k</div></div>
+          <div class="sg-cell sg-done sg-half"><div class="sg-hr">8:30a</div><div class="sg-nm">W.W.</div><div class="sg-pr">1k</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">9:00a</div><div class="sg-nm">Umar F.</div><div class="sg-pr">1k</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">9:30a</div><div class="sg-nm">Umar F.</div><div class="sg-pr">1k</div></div>
           <!-- Row 6: 10:00a–11:30a (pending screenshot — Ali Hassan 10am–12pm = 4 half-slots) -->
-          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">10:00a</div><div class="sg-ico">⚽</div><div class="sg-nm">Ali H.</div></div>
-          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">10:30a</div><div class="sg-ico">⚽</div><div class="sg-nm">Ali H.</div></div>
-          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">11:00a</div><div class="sg-ico">⚽</div><div class="sg-nm">Ali H.</div></div>
-          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">11:30a</div><div class="sg-ico">⚽</div><div class="sg-nm">Ali H.</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">10:00a</div><div class="sg-nm">Ali H.</div><div class="sg-pr">1.2k</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">10:30a</div><div class="sg-nm">Ali H.</div><div class="sg-pr">1.2k</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">11:00a</div><div class="sg-nm">Ali H.</div><div class="sg-pr">1.2k</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">11:30a</div><div class="sg-nm">Ali H.</div><div class="sg-pr">1.2k</div></div>
           <!-- Row 7: 12:00p–1:30p (available) -->
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:00p</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:30p</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">1:00p</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">1:30p</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:00p</div><div class="sg-pr">1.2k</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:30p</div><div class="sg-pr">1.2k</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">1:00p</div><div class="sg-pr">1.2k</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">1:30p</div><div class="sg-pr">1.2k</div></div>
           <!-- Row 8: 2:00p–3:30p (pending — Zain 2–4pm = 4 half-slots) -->
-          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">2:00p</div><div class="sg-ico">🏀</div><div class="sg-nm">Zain T.</div></div>
-          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">2:30p</div><div class="sg-ico">🏀</div><div class="sg-nm">Zain T.</div></div>
-          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:00p</div><div class="sg-ico">🏀</div><div class="sg-nm">Zain T.</div></div>
-          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:30p</div><div class="sg-ico">🏀</div><div class="sg-nm">Zain T.</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">2:00p</div><div class="sg-nm">Zain T.</div><div class="sg-pr">1.5k</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">2:30p</div><div class="sg-nm">Zain T.</div><div class="sg-pr">1.5k</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:00p</div><div class="sg-nm">Zain T.</div><div class="sg-pr">1.5k</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:30p</div><div class="sg-nm">Zain T.</div><div class="sg-pr">1.5k</div></div>
           <!-- Row 9: 4:00p–5:30p (confirmed — K.Kings 4–6pm) -->
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">4:00p</div><div class="sg-ico">🏀</div><div class="sg-nm">K.Kings</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">4:30p</div><div class="sg-ico">🏀</div><div class="sg-nm">K.Kings</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">5:00p</div><div class="sg-ico">🏀</div><div class="sg-nm">K.Kings</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">5:30p</div><div class="sg-ico">🏀</div><div class="sg-nm">K.Kings</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">4:00p</div><div class="sg-nm">K.Kings</div><div class="sg-pr">1.8k</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">4:30p</div><div class="sg-nm">K.Kings</div><div class="sg-pr">1.8k</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">5:00p</div><div class="sg-nm">K.Kings</div><div class="sg-pr">1.8k</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">5:30p</div><div class="sg-nm">K.Kings</div><div class="sg-pr">1.8k</div></div>
           <!-- Row 10: 6:00p–7:30p (confirmed — Ahmed G. 6–8pm) -->
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:00p</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:30p</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:00p</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:30p</div><div class="sg-ico">⚽</div><div class="sg-nm">Ahmed G.</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:00p</div><div class="sg-nm">Ahmed G.</div><div class="sg-pr">1.8k</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:30p</div><div class="sg-nm">Ahmed G.</div><div class="sg-pr">1.8k</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:00p</div><div class="sg-nm">Ahmed G.</div><div class="sg-pr">1.8k</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:30p</div><div class="sg-nm">Ahmed G.</div><div class="sg-pr">1.8k</div></div>
           <!-- Row 11: 8:00p–9:30p (blocked by vendor) -->
           <div class="sg-cell sg-blk sg-half"><div class="sg-hr">8:00p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;"><i class="ri-lock-2-fill"></i></div></div>
           <div class="sg-cell sg-blk sg-half"><div class="sg-hr">8:30p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;"><i class="ri-lock-2-fill"></i></div></div>
           <div class="sg-cell sg-blk sg-half"><div class="sg-hr">9:00p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;"><i class="ri-lock-2-fill"></i></div></div>
           <div class="sg-cell sg-blk sg-half"><div class="sg-hr">9:30p</div><div class="sg-ico" style="font-size:11px;margin-top:3px;"><i class="ri-lock-2-fill"></i></div></div>
           <!-- Row 12: 10:00p–11:30p (available) -->
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:00p</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:30p</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:00p</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:30p</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:00p</div><div class="sg-pr">1.2k</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:30p</div><div class="sg-pr">1.2k</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:00p</div><div class="sg-pr">1.2k</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:30p</div><div class="sg-pr">1.2k</div></div>
         </div>
       </div>
 
@@ -1541,14 +1549,14 @@
           <div class="sg-cell sg-closed"><div class="sg-hr">3am</div></div>
           <div class="sg-cell sg-closed"><div class="sg-hr">4am</div></div>
           <div class="sg-cell sg-closed"><div class="sg-hr">5am</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">6am</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">7am</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">6am</div><div class="sg-pr">Rs 1.2k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">7am</div><div class="sg-pr">Rs 1.2k</div></div>
           <div class="sg-cell sg-done"><div class="sg-hr">8am</div><div class="sg-ico">⚽</div></div>
           <div class="sg-cell sg-ok"><div class="sg-hr">9am</div><div class="sg-ico">⚽</div></div>
           <div class="sg-cell sg-pend" style="box-shadow:0 0 0 3px #fff,0 0 0 5px #E65100;"><div class="sg-hr">10am</div><div class="sg-ico">⚽</div></div>
           <div class="sg-cell sg-pend"><div class="sg-hr">11am</div><div class="sg-ico">⚽</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">12pm</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">1pm</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">12pm</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">1pm</div><div class="sg-pr">Rs 2.5k</div></div>
           <div class="sg-cell sg-pend"><div class="sg-hr">2pm</div></div>
           <div class="sg-cell sg-pend"><div class="sg-hr">3pm</div></div>
           <div class="sg-cell sg-ok"><div class="sg-hr">4pm</div></div>
@@ -1557,8 +1565,8 @@
           <div class="sg-cell sg-ok"><div class="sg-hr">7pm</div></div>
           <div class="sg-cell sg-blk"><div class="sg-hr">8pm</div></div>
           <div class="sg-cell sg-blk"><div class="sg-hr">9pm</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">10pm</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">11pm</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">10pm</div><div class="sg-pr">Rs 2k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">11pm</div><div class="sg-pr">Rs 2k</div></div>
         </div>
       </div>
 
@@ -1639,14 +1647,14 @@
           <div class="sg-cell sg-closed"><div class="sg-hr">3am</div></div>
           <div class="sg-cell sg-closed"><div class="sg-hr">4am</div></div>
           <div class="sg-cell sg-closed"><div class="sg-hr">5am</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">6am</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">7am</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">6am</div><div class="sg-pr">Rs 1.2k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">7am</div><div class="sg-pr">Rs 1.2k</div></div>
           <div class="sg-cell sg-done"><div class="sg-hr">8am</div></div>
           <div class="sg-cell sg-ok"><div class="sg-hr">9am</div></div>
           <div class="sg-cell sg-pend"><div class="sg-hr">10am</div></div>
           <div class="sg-cell sg-pend"><div class="sg-hr">11am</div></div>
           <div class="sg-cell sg-avail" style="box-shadow:0 0 0 3px #fff,0 0 0 5px #09210E;"><div class="sg-hr">12pm</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">1pm</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">1pm</div><div class="sg-pr">Rs 2.5k</div></div>
           <div class="sg-cell sg-pend"><div class="sg-hr">2pm</div></div>
           <div class="sg-cell sg-pend"><div class="sg-hr">3pm</div></div>
           <div class="sg-cell sg-ok"><div class="sg-hr">4pm</div></div>
@@ -1655,55 +1663,112 @@
           <div class="sg-cell sg-ok"><div class="sg-hr">7pm</div></div>
           <div class="sg-cell sg-blk"><div class="sg-hr">8pm</div></div>
           <div class="sg-cell sg-blk"><div class="sg-hr">9pm</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">10pm</div></div>
-          <div class="sg-cell sg-avail"><div class="sg-hr">11pm</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">10pm</div><div class="sg-pr">Rs 2k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">11pm</div><div class="sg-pr">Rs 2k</div></div>
         </div>
       </div>
 
       <!-- MANAGEMENT POPUP (center modal) -->
       <div class="sm-bg">
-        <div class="sm-card">
-          <!-- Title -->
-          <div style="font-size:16px;font-weight:900;color:#111;margin-bottom:2px;">Manage Slot</div>
-          <div style="font-size:12px;color:#888;margin-bottom:6px;">12:00 PM – 1:00 PM · Currently <span style="color:#7AAB50;font-weight:700;">Available</span></div>
+        <div class="sm-card" style="max-height:85vh;overflow-y:auto;">
 
-          <!-- Toggle action -->
-          <div style="background:#FFF3CD;border-radius:12px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
-            <div style="font-size:20px;"><i class="ri-lock-2-fill" style="color:#7A5A00;"></i></div>
+          <!-- Header: slot + current price -->
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">
             <div>
-              <div style="font-size:13px;font-weight:800;color:#7A5A00;">Turn OFF for Booking</div>
-              <div style="font-size:11px;color:#AA7A30;margin-top:2px;">This slot will be unavailable to customers</div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Manage Slot</div>
+              <div style="font-size:10px;color:#888;margin-top:2px;">12:00 PM – 1:00 PM · Elite Sports Arena</div>
+            </div>
+            <div style="background:#F0F7F1;border-radius:10px;padding:6px 10px;text-align:right;flex-shrink:0;">
+              <div style="font-size:9px;font-weight:800;color:#2A7A38;text-transform:uppercase;letter-spacing:.4px;">Available</div>
+              <div style="font-size:13px;font-weight:900;color:#09210E;margin-top:1px;">Rs 2,500 / hr</div>
             </div>
           </div>
 
-          <!-- Apply scope -->
-          <div style="font-size:11px;font-weight:700;color:#AAA;letter-spacing:.5px;margin-bottom:8px;">APPLY CHANGE TO</div>
+          <!-- ── AVAILABILITY ── -->
+          <div style="font-size:9px;font-weight:800;color:#BBB;letter-spacing:.6px;text-transform:uppercase;margin-bottom:7px;">Availability</div>
+          <div style="background:#FFF8EC;border-radius:11px;padding:10px 12px;margin-bottom:12px;display:flex;align-items:center;gap:10px;cursor:pointer;border:1.5px solid #EFD890;">
+            <i class="ri-lock-2-fill" style="font-size:18px;color:#7A5A00;flex-shrink:0;"></i>
+            <div>
+              <div style="font-size:13px;font-weight:800;color:#7A5A00;">Turn OFF for Booking</div>
+              <div style="font-size:10px;color:#AA8030;margin-top:1px;">Slot hidden from customers</div>
+            </div>
+          </div>
+
+          <div style="height:1px;background:#F0F0F0;margin-bottom:12px;"></div>
+
+          <!-- ── SLOT PRICING ── -->
+          <div style="font-size:9px;font-weight:800;color:#BBB;letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px;">Slot Pricing</div>
+
+          <!-- Price stepper -->
+          <div style="background:#F8FAF8;border-radius:11px;padding:10px 12px;margin-bottom:8px;border:1.5px solid #E8EEE8;">
+            <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:8px;">Set Price for this Slot</div>
+            <div style="display:flex;align-items:stretch;gap:0;">
+              <button style="width:38px;border:1.5px solid #DDD;background:#F0F0F0;border-radius:10px 0 0 10px;font-size:22px;color:#444;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">−</button>
+              <div style="flex:1;min-height:38px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#09210E;">Rs 2,500</div>
+              <button style="width:38px;border:1.5px solid #DDD;background:#F0F0F0;border-radius:0 10px 10px 0;font-size:22px;color:#444;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">+</button>
+            </div>
+            <div style="font-size:9px;color:#BBB;text-align:center;margin-top:5px;">Base rate Rs 2,500 · tap ± to adjust by Rs 100</div>
+          </div>
+
+          <!-- Discount section -->
+          <div style="background:#F8FAF8;border-radius:11px;padding:10px 12px;margin-bottom:12px;border:1.5px solid #E8EEE8;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div style="display:flex;align-items:center;gap:7px;">
+                <i class="ri-price-tag-3-line" style="font-size:16px;color:#09210E;"></i>
+                <div style="font-size:13px;font-weight:700;color:#111;">Offer Discount</div>
+              </div>
+              <div class="toggle on"></div>
+            </div>
+            <div style="margin-top:10px;padding-top:10px;border-top:1px solid #EEF0EE;display:flex;align-items:center;gap:10px;">
+              <div style="display:flex;align-items:center;gap:5px;flex:1;">
+                <div style="border:1.5px solid #C8DCC8;border-radius:9px;padding:5px 10px;font-size:17px;font-weight:900;color:#09210E;min-width:46px;text-align:center;background:#fff;">20</div>
+                <div style="font-size:13px;font-weight:700;color:#555;">% off</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:10px;color:#BBB;text-decoration:line-through;font-weight:600;">Rs 2,500</div>
+                <div style="font-size:17px;font-weight:900;color:#1A6030;line-height:1.1;">Rs 2,000</div>
+                <div style="font-size:9px;color:#7AAA70;">Customer sees: Rs 2,000</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:1px;background:#F0F0F0;margin-bottom:12px;"></div>
+
+          <!-- ── APPLY TO ── -->
+          <div style="font-size:9px;font-weight:800;color:#BBB;letter-spacing:.6px;text-transform:uppercase;margin-bottom:7px;">Apply Changes To</div>
           <div class="smp-row sel">
             <div class="smp-dot"></div>
             <div>
-              <div style="font-size:13px;font-weight:700;color:#111;">Today only</div>
-              <div style="font-size:11px;color:#AAA;margin-top:1px;">Sun, 26 Apr · just this day</div>
+              <div style="font-size:12px;font-weight:700;color:#111;">Today only</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;">Sun, 26 Apr · just this slot</div>
             </div>
           </div>
           <div class="smp-row">
             <div class="smp-dot"></div>
             <div>
-              <div style="font-size:13px;font-weight:700;color:#333;">Every Sunday</div>
-              <div style="font-size:11px;color:#AAA;margin-top:1px;">Recurring weekly on Sundays</div>
+              <div style="font-size:12px;font-weight:700;color:#333;">Every Sunday</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;">12–1 PM slot · recurring weekly</div>
             </div>
           </div>
-          <div class="smp-row" style="margin-bottom:16px;">
+          <div class="smp-row">
             <div class="smp-dot"></div>
             <div>
-              <div style="font-size:13px;font-weight:700;color:#333;">All days</div>
-              <div style="font-size:11px;color:#AAA;margin-top:1px;">Every day going forward</div>
+              <div style="font-size:12px;font-weight:700;color:#333;">Weekends only</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;">Sat &amp; Sun · 12–1 PM slot</div>
+            </div>
+          </div>
+          <div class="smp-row" style="margin-bottom:14px;">
+            <div class="smp-dot"></div>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:#333;">All days</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;">Every day going forward</div>
             </div>
           </div>
 
           <!-- Action buttons -->
           <div style="display:flex;gap:8px;">
-            <button style="flex:1;padding:12px;background:#F0F0F0;color:#555;font-size:13px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Cancel</button>
-            <button style="flex:1.4;padding:12px;background:#09210E;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Apply Change</button>
+            <button style="flex:1;padding:12px;background:#F0F0F0;color:#555;font-size:13px;font-weight:700;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button style="flex:1.5;padding:12px;background:#09210E;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Apply Changes</button>
           </div>
         </div>
       </div>
