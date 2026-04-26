@@ -10,7 +10,8 @@
 <title>Sportster Vendor App — Tournament Creation</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; background: #E8E8E6; display: flex; flex-wrap: nowrap; gap: 24px; padding: 24px; overflow-x: auto; min-height: 100vh; align-items: flex-start; }
+  html { overflow-x: auto; }
+  body { font-family: 'Inter', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; background: #E8E8E6; display: flex; flex-wrap: nowrap; align-items: flex-start; gap: 24px; padding: 24px 32px; min-height: 100vh; min-width: max-content; }
 
   /* ── Phone Frame ── */
   .phone { width: 375px; min-width: 375px; height: 720px; background: #fff; border-radius: 40px; box-shadow: 0 24px 60px rgba(0,0,0,0.18); overflow: hidden; display: flex; flex-direction: column; }
@@ -139,7 +140,7 @@
   .page-label { text-align: center; font-size: 12px; font-weight: 700; color: #888; margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
 
   /* ── Outer layout ── */
-  .col { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+  .col { display: flex; flex-direction: column; gap: 8px; align-items: center; flex-shrink: 0; }
   .col .page-label { font-size: 11px; color: #666; font-weight: 700; letter-spacing: 1px; }
 
   /* scrollbar hide */
