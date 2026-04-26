@@ -311,6 +311,51 @@
   .bmc .bmc-btn.decline { background:#FDECEA; color:#C62828; }
   .bmc .bmc-btn.msg { background:#F0F4F0; color:#444; }
   .bmc .bmc-btn.cancel-bk { background:#FFF3CD; color:#7A5A00; }
+
+  /* Analytics screen */
+  .an-period { display:flex; background:#F0F4EE; border-radius:12px; padding:3px; margin:12px 16px 0; }
+  .an-period .ap { flex:1; text-align:center; padding:7px 4px; border-radius:9px; font-size:11px; font-weight:700; color:#888; cursor:pointer; }
+  .an-period .ap.active { background:#fff; color:#2E4A1A; box-shadow:0 1px 4px rgba(0,0,0,.1); }
+  .kpi-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:12px 16px 4px; }
+  .kpi { background:#fff; border-radius:14px; padding:13px 14px; border:1.5px solid #F0F0F0; }
+  .kpi .kv { font-size:20px; font-weight:900; color:#111; }
+  .kpi .kl { font-size:10px; color:#AAA; margin-top:3px; font-weight:600; }
+  .kpi .kt { font-size:10px; font-weight:700; margin-top:5px; }
+  .kpi .kt.up { color:#2E7D32; }
+  .kpi .kt.dn { color:#C62828; }
+  .an-sec { padding:14px 16px 4px; }
+  .an-sec .as-title { font-size:11px; font-weight:800; color:#555; margin-bottom:10px; letter-spacing:.3px; }
+  /* Revenue bar chart */
+  .rev-chart { display:flex; align-items:flex-end; gap:5px; height:70px; }
+  .rev-bar { flex:1; border-radius:5px 5px 0 0; min-height:4px; position:relative; cursor:pointer; }
+  .rev-bar.today { background:#2E4A1A; }
+  .rev-bar:not(.today) { background:#C8E6C9; }
+  .rev-bar .rv { position:absolute; bottom:-16px; left:50%; transform:translateX(-50%); font-size:8px; color:#AAA; font-weight:700; white-space:nowrap; }
+  /* Day-of-week bars */
+  .dow-row { display:flex; align-items:center; gap:8px; margin-bottom:7px; }
+  .dow-row .dr-label { font-size:10px; color:#888; font-weight:700; width:26px; flex-shrink:0; }
+  .dow-row .dr-bar-bg { flex:1; background:#F0F0F0; border-radius:4px; height:12px; overflow:hidden; }
+  .dow-row .dr-bar-fill { height:100%; border-radius:4px; }
+  .dow-row .dr-val { font-size:10px; color:#555; font-weight:700; width:28px; text-align:right; flex-shrink:0; }
+  /* Peak hours heatmap */
+  .ph-grid { display:grid; grid-template-columns:28px repeat(5,1fr); gap:2px; }
+  .ph-lbl { font-size:8px; color:#AAA; font-weight:700; text-align:center; padding:3px 0; display:flex; align-items:center; justify-content:center; }
+  .ph-cell { border-radius:4px; height:18px; }
+  /* Sport distribution */
+  .sp-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .sp-row .sr-ico { font-size:14px; width:20px; flex-shrink:0; }
+  .sp-row .sr-bg { flex:1; background:#F0F0F0; border-radius:4px; height:10px; overflow:hidden; }
+  .sp-row .sr-fill { height:100%; border-radius:4px; }
+  .sp-row .sr-pct { font-size:10px; font-weight:800; color:#555; width:30px; text-align:right; flex-shrink:0; }
+  /* Top customer row */
+  .tc-row { display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid #F5F5F5; }
+  .tc-row:last-child { border-bottom:none; }
+  .tc-row .tc-av { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; color:#fff; flex-shrink:0; }
+  .tc-row .tc-info h4 { font-size:12px; font-weight:800; color:#111; }
+  .tc-row .tc-info p { font-size:10px; color:#888; margin-top:1px; }
+  .tc-row .tc-val { margin-left:auto; text-align:right; }
+  .tc-row .tc-val .tv { font-size:13px; font-weight:800; color:#2E4A1A; }
+  .tc-row .tc-val .tl { font-size:9px; color:#AAA; }
 </style>
 </head>
 <body>
@@ -1193,13 +1238,17 @@
             <div style="width:34px;height:34px;background:#F0F4F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;">💬</div>
           </div>
 
-          <!-- Action buttons -->
-          <div style="display:flex;gap:8px;padding:12px 16px 0;">
-            <button style="flex:1;padding:12px;background:#FDECEA;color:#C62828;font-size:13px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">✗ Decline</button>
-            <button style="flex:1.6;padding:12px;background:#2E4A1A;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">✓ Approve Booking</button>
+          <!-- Info note -->
+          <div style="margin:0 16px 10px;background:#FFF8E1;border-radius:10px;padding:9px 12px;font-size:11px;color:#7A5A00;font-weight:600;line-height:1.4;">
+            📋 Review the payment screenshot and booking details before approving
+          </div>
+
+          <!-- Single primary action -->
+          <div style="padding:0 16px;">
+            <button style="width:100%;padding:14px;background:#2E4A1A;color:#fff;font-size:14px;font-weight:800;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">View Full Booking Details →</button>
           </div>
           <div style="padding:8px 16px 0;">
-            <button style="width:100%;padding:10px;background:#F8F8F8;color:#555;font-size:12px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">View Full Booking Details →</button>
+            <button style="width:100%;padding:10px;background:#F0F4F0;color:#555;font-size:12px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">💬 Contact Customer</button>
           </div>
         </div>
       </div>
@@ -1358,13 +1407,12 @@
                 <h4>Ali Hassan</h4>
                 <p>⚽ Football · 10:00 AM – 12:00 PM · Rs 4,000</p>
               </div>
-              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;">New 📸</div>
+              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;">📸 New</div>
             </div>
-            <div class="bmc-note">📸 Screenshot submitted 2 hours ago · Waiting for your review</div>
+            <div class="bmc-note">📸 Screenshot submitted 2h ago — review before approving</div>
             <div class="bmc-acts">
-              <button class="bmc-btn decline">✗ Decline</button>
               <button class="bmc-btn msg">💬 Chat</button>
-              <button class="bmc-btn approve">✓ Approve</button>
+              <button class="bmc-btn approve" style="flex:2;">📋 View &amp; Review →</button>
             </div>
           </div>
         </div>
@@ -1379,13 +1427,12 @@
                 <h4>Zain & Team</h4>
                 <p>🏀 Basketball · 2:00 PM – 4:00 PM · Rs 6,000</p>
               </div>
-              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;">New 📸</div>
+              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;">📸 New</div>
             </div>
-            <div class="bmc-note">📸 Screenshot submitted 1 hour ago · Waiting for your review</div>
+            <div class="bmc-note">📸 Screenshot submitted 1h ago — review before approving</div>
             <div class="bmc-acts">
-              <button class="bmc-btn decline">✗ Decline</button>
               <button class="bmc-btn msg">💬 Chat</button>
-              <button class="bmc-btn approve">✓ Approve</button>
+              <button class="bmc-btn approve" style="flex:2;">📋 View &amp; Review →</button>
             </div>
           </div>
         </div>
@@ -1550,10 +1597,15 @@
 
       </div><!-- scroll body -->
 
+      <!-- Payment Pending explanation (shows contextually) -->
+      <div style="margin:0 16px 2px; background:#FFF8E1; border-radius:10px; padding:8px 12px; font-size:10px; color:#7A5A00; line-height:1.4;">
+        <b>⏳ Payment Pending</b> — use if bank transfer is delayed. Slot stays held for 48h, then auto-releases if not approved.
+      </div>
+
       <!-- Fixed action bar at bottom -->
       <div class="action-bar" style="position:sticky; bottom:0; flex-shrink:0;">
-        <button class="act-btn contact">💬 Message</button>
-        <button class="act-btn decline">✗ Decline</button>
+        <button class="act-btn contact">💬 Chat</button>
+        <button class="act-btn" style="background:#FFF3CD; color:#7A5A00; font-size:12px;">⏳ Pending</button>
         <button class="act-btn approve">✓ Approve</button>
       </div>
 
@@ -1646,6 +1698,232 @@
       <div class="nav-item"><span class="ni">🏟️</span>Arenas</div>
       <div class="nav-item"><span class="ni">📋</span>Events</div>
       <div class="nav-item active"><span class="ni">⚙️</span>Settings</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SCREEN 15 — ARENA ANALYTICS
+═══════════════════════════════════════════════════════ -->
+<div class="col">
+  <div class="page-label">15 · Arena Analytics</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden;">
+
+      <!-- Header -->
+      <div style="padding:10px 16px 8px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;">←</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;color:#111;">Analytics</div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;">Elite Sports Arena · DHA Phase 5</div>
+          </div>
+          <div style="font-size:18px;cursor:pointer;">📤</div>
+        </div>
+        <!-- Period picker -->
+        <div class="an-period">
+          <div class="ap">Today</div>
+          <div class="ap active">This Week</div>
+          <div class="ap">Month</div>
+          <div class="ap">All Time</div>
+        </div>
+      </div>
+
+      <!-- Scrollable content -->
+      <div style="flex:1; overflow-y:auto; padding-bottom:12px;">
+
+        <!-- ── KPI TILES ── -->
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kv" style="color:#2E4A1A;">Rs 87k</div>
+            <div class="kl">REVENUE THIS WEEK</div>
+            <div class="kt up">↑ 18% vs last week</div>
+          </div>
+          <div class="kpi">
+            <div class="kv">47</div>
+            <div class="kl">TOTAL BOOKINGS</div>
+            <div class="kt up">↑ 12% vs last week</div>
+          </div>
+          <div class="kpi">
+            <div class="kv" style="color:#1565C0;">72%</div>
+            <div class="kl">OCCUPANCY RATE</div>
+            <div class="kt up">↑ 5pts vs last week</div>
+          </div>
+          <div class="kpi">
+            <div class="kv">Rs 1,851</div>
+            <div class="kl">AVG BOOKING VALUE</div>
+            <div class="kt up">↑ 6% vs last week</div>
+          </div>
+        </div>
+
+        <!-- Quick badges row -->
+        <div style="display:flex;gap:7px;padding:8px 16px 0;overflow-x:auto;">
+          <div style="background:#E8F5E0;color:#2E7D32;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">38 Confirmed</div>
+          <div style="background:#FFF3CD;color:#E65100;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">4 Pending 📸</div>
+          <div style="background:#FDECEA;color:#C62828;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">5 Cancelled</div>
+          <div style="background:#EDE7FF;color:#5E35B1;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;white-space:nowrap;">91.5% Success rate</div>
+        </div>
+
+        <!-- ── REVENUE TREND (7 days) ── -->
+        <div class="an-sec">
+          <div class="as-title">DAILY REVENUE — THIS WEEK</div>
+          <div style="background:#fff;border-radius:14px;padding:14px 16px 24px;border:1.5px solid #F0F0F0;">
+            <div class="rev-chart">
+              <div class="rev-bar" style="height:38%;"><div class="rv">Mon</div></div>
+              <div class="rev-bar" style="height:55%;"><div class="rv">Tue</div></div>
+              <div class="rev-bar" style="height:45%;"><div class="rv">Wed</div></div>
+              <div class="rev-bar" style="height:70%;"><div class="rv">Thu</div></div>
+              <div class="rev-bar" style="height:60%;"><div class="rv">Fri</div></div>
+              <div class="rev-bar" style="height:90%;"><div class="rv">Sat</div></div>
+              <div class="rev-bar today" style="height:100%;"><div class="rv" style="color:#2E4A1A;">Today</div></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:20px;padding-top:8px;border-top:1px solid #F5F5F5;">
+              <div style="text-align:center;">
+                <div style="font-size:13px;font-weight:800;color:#2E4A1A;">Rs 22k</div>
+                <div style="font-size:9px;color:#AAA;">Peak day (Sat)</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="font-size:13px;font-weight:800;color:#111;">Rs 12.4k</div>
+                <div style="font-size:9px;color:#AAA;">Daily avg</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="font-size:13px;font-weight:800;color:#888;">Rs 7.2k</div>
+                <div style="font-size:9px;color:#AAA;">Slowest day</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── OCCUPANCY BY DAY OF WEEK ── -->
+        <div class="an-sec">
+          <div class="as-title">OCCUPANCY BY DAY OF WEEK</div>
+          <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #F0F0F0;">
+            <div class="dow-row"><div class="dr-label">Mon</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:45%;background:#B8D89A;"></div></div><div class="dr-val">45%</div></div>
+            <div class="dow-row"><div class="dr-label">Tue</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:52%;background:#B8D89A;"></div></div><div class="dr-val">52%</div></div>
+            <div class="dow-row"><div class="dr-label">Wed</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:60%;background:#8AB870;"></div></div><div class="dr-val">60%</div></div>
+            <div class="dow-row"><div class="dr-label">Thu</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:75%;background:#5A9A40;"></div></div><div class="dr-val">75%</div></div>
+            <div class="dow-row"><div class="dr-label">Fri</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:82%;background:#4A8030;"></div></div><div class="dr-val">82%</div></div>
+            <div class="dow-row"><div class="dr-label">Sat</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:95%;background:#2E4A1A;"></div></div><div class="dr-val">95%</div></div>
+            <div class="dow-row" style="margin-bottom:0;"><div class="dr-label">Sun</div><div class="dr-bar-bg"><div class="dr-bar-fill" style="width:88%;background:#2E4A1A;"></div></div><div class="dr-val">88%</div></div>
+          </div>
+        </div>
+
+        <!-- ── PEAK HOURS HEATMAP ── -->
+        <div class="an-sec">
+          <div class="as-title">PEAK HOURS HEATMAP</div>
+          <div style="background:#fff;border-radius:14px;padding:12px 14px;border:1.5px solid #F0F0F0;">
+            <!-- Column labels -->
+            <div class="ph-grid" style="margin-bottom:3px;">
+              <div class="ph-lbl"></div>
+              <div class="ph-lbl">Morn</div>
+              <div class="ph-lbl">Noon</div>
+              <div class="ph-lbl">Aft</div>
+              <div class="ph-lbl">Eve</div>
+              <div class="ph-lbl">Night</div>
+            </div>
+            <!-- Mon -->
+            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Mon</div><div class="ph-cell" style="background:#D4EDBC;"></div><div class="ph-cell" style="background:#F5F5F5;"></div><div class="ph-cell" style="background:#A8D080;"></div><div class="ph-cell" style="background:#5A9A40;"></div><div class="ph-cell" style="background:#F5F5F5;"></div></div>
+            <div style="height:2px;"></div>
+            <!-- Tue -->
+            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Tue</div><div class="ph-cell" style="background:#F5F5F5;"></div><div class="ph-cell" style="background:#D4EDBC;"></div><div class="ph-cell" style="background:#8AC860;"></div><div class="ph-cell" style="background:#5A9A40;"></div><div class="ph-cell" style="background:#D4EDBC;"></div></div>
+            <div style="height:2px;"></div>
+            <!-- Fri -->
+            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Fri</div><div class="ph-cell" style="background:#A8D080;"></div><div class="ph-cell" style="background:#A8D080;"></div><div class="ph-cell" style="background:#5A9A40;"></div><div class="ph-cell" style="background:#2E4A1A;"></div><div class="ph-cell" style="background:#5A9A40;"></div></div>
+            <div style="height:2px;"></div>
+            <!-- Sat -->
+            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Sat</div><div class="ph-cell" style="background:#5A9A40;"></div><div class="ph-cell" style="background:#8AC860;"></div><div class="ph-cell" style="background:#2E4A1A;"></div><div class="ph-cell" style="background:#2E4A1A;"></div><div class="ph-cell" style="background:#8AC860;"></div></div>
+            <div style="height:2px;"></div>
+            <!-- Sun -->
+            <div class="ph-grid"><div class="ph-lbl" style="font-size:9px;color:#AAA;">Sun</div><div class="ph-cell" style="background:#D4EDBC;"></div><div class="ph-cell" style="background:#5A9A40;"></div><div class="ph-cell" style="background:#2E4A1A;"></div><div class="ph-cell" style="background:#2E4A1A;"></div><div class="ph-cell" style="background:#A8D080;"></div></div>
+            <!-- Legend -->
+            <div style="display:flex;align-items:center;gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid #F5F5F5;">
+              <div style="font-size:9px;color:#AAA;">Low</div>
+              <div style="flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,#F5F5F5,#D4EDBC,#A8D080,#5A9A40,#2E4A1A);"></div>
+              <div style="font-size:9px;color:#AAA;">High</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SPORT BREAKDOWN ── -->
+        <div class="an-sec">
+          <div class="as-title">BOOKINGS BY SPORT</div>
+          <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #F0F0F0;">
+            <div class="sp-row"><div class="sr-ico">⚽</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Football</div><div class="sr-bg"><div class="sr-fill" style="width:52%;background:#2E4A1A;"></div></div></div><div class="sr-pct">52%</div></div>
+            <div class="sp-row"><div class="sr-ico">🏀</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Basketball</div><div class="sr-bg"><div class="sr-fill" style="width:28%;background:#1565C0;"></div></div></div><div class="sr-pct">28%</div></div>
+            <div class="sp-row"><div class="sr-ico">🏏</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Cricket</div><div class="sr-bg"><div class="sr-fill" style="width:13%;background:#7B3F00;"></div></div></div><div class="sr-pct">13%</div></div>
+            <div class="sp-row" style="margin-bottom:0;"><div class="sr-ico">🎾</div><div style="flex:1;min-width:0;"><div style="font-size:11px;font-weight:700;color:#555;margin-bottom:4px;">Tennis</div><div class="sr-bg"><div class="sr-fill" style="width:7%;background:#880E4F;"></div></div></div><div class="sr-pct">7%</div></div>
+          </div>
+        </div>
+
+        <!-- ── TOP CUSTOMERS ── -->
+        <div class="an-sec">
+          <div class="as-title">TOP CUSTOMERS THIS MONTH</div>
+          <div style="background:#fff;border-radius:14px;padding:4px 14px;border:1.5px solid #F0F0F0;">
+            <div class="tc-row">
+              <div style="font-size:11px;font-weight:800;color:#AAA;width:16px;">1</div>
+              <div class="tc-av" style="background:#2E4A1A;">U</div>
+              <div class="tc-info"><h4>Umar Farooq</h4><p>⚽ Football · 8 bookings</p></div>
+              <div class="tc-val"><div class="tv">Rs 32k</div><div class="tl">total spent</div></div>
+            </div>
+            <div class="tc-row">
+              <div style="font-size:11px;font-weight:800;color:#AAA;width:16px;">2</div>
+              <div class="tc-av" style="background:#1565C0;">K</div>
+              <div class="tc-info"><h4>Karachi Kings</h4><p>🏀 Basketball · 6 bookings</p></div>
+              <div class="tc-val"><div class="tv">Rs 36k</div><div class="tl">total spent</div></div>
+            </div>
+            <div class="tc-row">
+              <div style="font-size:11px;font-weight:800;color:#AAA;width:16px;">3</div>
+              <div class="tc-av" style="background:#E65100;">A</div>
+              <div class="tc-info"><h4>Ahmed Group</h4><p>⚽ Football · 5 bookings</p></div>
+              <div class="tc-val"><div class="tv">Rs 20k</div><div class="tl">total spent</div></div>
+            </div>
+            <div class="tc-row">
+              <div style="font-size:11px;font-weight:800;color:#AAA;width:16px;">4</div>
+              <div class="tc-av" style="background:#880E4F;">Z</div>
+              <div class="tc-info"><h4>Zain & Team</h4><p>🏀 Basketball · 4 bookings</p></div>
+              <div class="tc-val"><div class="tv">Rs 24k</div><div class="tl">total spent</div></div>
+            </div>
+            <div class="tc-row">
+              <div style="font-size:11px;font-weight:800;color:#AAA;width:16px;">5</div>
+              <div class="tc-av" style="background:#7B3F00;">P</div>
+              <div class="tc-info"><h4>Peshawar XI</h4><p>🏏 Cricket · 3 bookings</p></div>
+              <div class="tc-val"><div class="tv">Rs 7.5k</div><div class="tl">total spent</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CANCELLATION INSIGHT ── -->
+        <div class="an-sec">
+          <div class="as-title">CANCELLATION INSIGHTS</div>
+          <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #F0F0F0;">
+            <div style="display:flex;gap:10px;margin-bottom:10px;">
+              <div style="flex:1;background:#F4FAEE;border-radius:11px;padding:10px;text-align:center;">
+                <div style="font-size:18px;font-weight:900;color:#2E7D32;">91.5%</div>
+                <div style="font-size:9px;color:#AAA;margin-top:2px;">Completion rate</div>
+              </div>
+              <div style="flex:1;background:#FFF3CD;border-radius:11px;padding:10px;text-align:center;">
+                <div style="font-size:18px;font-weight:900;color:#7A5A00;">5</div>
+                <div style="font-size:9px;color:#AAA;margin-top:2px;">Cancellations/month</div>
+              </div>
+              <div style="flex:1;background:#FDECEA;border-radius:11px;padding:10px;text-align:center;">
+                <div style="font-size:18px;font-weight:900;color:#C62828;">Rs 9k</div>
+                <div style="font-size:9px;color:#AAA;margin-top:2px;">Lost revenue</div>
+              </div>
+            </div>
+            <div style="font-size:11px;color:#888;line-height:1.5;">Most cancellations happen <b style="color:#555;">Mon–Tue mornings</b>. Consider a non-refundable deposit to reduce no-shows.</div>
+          </div>
+        </div>
+
+      </div><!-- scrollable content -->
+
+    </div><!-- screen -->
+    <div class="bottom-nav">
+      <div class="nav-item"><span class="ni">🏠</span>Home</div>
+      <div class="nav-item"><span class="ni">📅</span>Schedule</div>
+      <div class="nav-item active"><span class="ni">🏟️</span>Arenas</div>
+      <div class="nav-item"><span class="ni">📋</span>Events</div>
+      <div class="nav-item"><span class="ni">👤</span>Profile</div>
     </div>
   </div>
 </div>
