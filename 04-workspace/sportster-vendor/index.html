@@ -13,9 +13,9 @@
   body { font-family: 'Inter', -apple-system, sans-serif; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; background: #E8E8E6; display: flex; gap: 24px; padding: 24px; overflow-x: auto; min-height: 100vh; align-items: flex-start; }
 
   /* ── Phone Frame ── */
-  .phone { width: 375px; min-width: 375px; background: #fff; border-radius: 40px; box-shadow: 0 24px 60px rgba(0,0,0,0.18); overflow: hidden; display: flex; flex-direction: column; }
-  .status-bar { background: #fff; padding: 14px 20px 8px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 600; }
-  .screen { flex: 1; overflow-y: auto; background: #fff; display: none; }
+  .phone { width: 375px; min-width: 375px; height: 720px; background: #fff; border-radius: 40px; box-shadow: 0 24px 60px rgba(0,0,0,0.18); overflow: hidden; display: flex; flex-direction: column; }
+  .status-bar { background: #fff; padding: 14px 20px 8px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+  .screen { flex: 1; overflow-y: auto; background: #fff; display: none; min-height: 0; }
   .screen.active { display: flex; flex-direction: column; }
 
   /* ── Nav bar ── */
@@ -130,7 +130,7 @@
   .btn.outline { background: transparent; border: 2px solid #09210E; color: #09210E; }
 
   /* ── Bottom Nav ── */
-  .bottom-nav { display: flex; border-top: 1px solid #F0F0F0; background: #fff; }
+  .bottom-nav { display: flex; border-top: 1px solid #F0F0F0; background: #fff; flex-shrink: 0; }
   .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 10px 0 6px; cursor: pointer; gap: 3px; font-size: 10px; color: #AAA; font-weight: 500; }
   .nav-item.active { color: #09210E; }
   .nav-item .ni { font-size: 22px; display: block; line-height: 1.1; }
@@ -304,8 +304,8 @@
   .bs-handle { width:32px; height:4px; background:#E0E0E0; border-radius:2px; margin:12px auto 14px; }
 
   /* Slot management popup */
-  .sm-bg { position:absolute; inset:0; background:rgba(0,0,0,.6); z-index:20; border-radius:36px; display:flex; align-items:center; justify-content:center; padding:20px; }
-  .sm-card { background:#fff; border-radius:20px; width:100%; padding:20px 18px; }
+  .sm-bg { position:absolute; inset:0; background:rgba(0,0,0,.6); z-index:20; border-radius:36px; display:flex; align-items:flex-start; justify-content:center; padding:10px 16px; overflow-y:auto; }
+  .sm-card { background:#fff; border-radius:20px; width:100%; padding:16px 16px; margin-top:4px; }
   .smp-row { display:flex; align-items:center; gap:10px; padding:11px 12px; border-radius:12px; border:1.5px solid #EFEFEF; margin-bottom:8px; cursor:pointer; }
   .smp-row.sel { border-color:#09210E; background:#F4FAEE; }
   .smp-dot { width:18px; height:18px; border-radius:50%; border:2px solid #D0D0D0; flex-shrink:0; }
