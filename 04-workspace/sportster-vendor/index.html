@@ -284,13 +284,13 @@
   .sg-half .sg-ico { font-size:12px!important; margin-top:1px!important; }
   .sg-half .sg-nm { font-size:7.5px!important; }
 
-  /* Slot price tag */
-  .sg-cell .sg-pr { font-size:8px; font-weight:800; margin-top:auto; line-height:1.1; }
-  .sg-cell.sg-avail .sg-pr { color:#2A7A38; }
+  /* Slot price tag — follows sg-nm in booked cells; pushes to bottom in avail cells */
+  .sg-cell .sg-pr { font-size:8px; font-weight:800; margin-top:2px; line-height:1.1; }
+  .sg-cell.sg-avail .sg-pr { color:#2A7A38; margin-top:auto; }
   .sg-cell.sg-ok .sg-pr { color:rgba(255,255,255,.7); }
   .sg-cell.sg-pend .sg-pr { color:rgba(255,255,255,.72); }
   .sg-cell.sg-done .sg-pr { color:#8FA898; }
-  .sg-half .sg-pr { font-size:7px!important; }
+  .sg-half .sg-pr { font-size:7px!important; margin-top:1px!important; }
 
   /* Flow connectors between screen columns */
   .flow-sep { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; flex-shrink:0; min-width:52px; align-self:center; margin-top:36px; }
@@ -1670,105 +1670,91 @@
 
       <!-- MANAGEMENT POPUP (center modal) -->
       <div class="sm-bg">
-        <div class="sm-card" style="max-height:85vh;overflow-y:auto;">
+        <div class="sm-card">
 
-          <!-- Header: slot + current price -->
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;">
+          <!-- ── HEADER ── -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
             <div>
-              <div style="font-size:16px;font-weight:900;color:#111;">Manage Slot</div>
-              <div style="font-size:10px;color:#888;margin-top:2px;">12:00 PM – 1:00 PM · Elite Sports Arena</div>
+              <div style="font-size:15px;font-weight:900;color:#111;">Manage Slot</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;">12:00 PM – 1:00 PM · Elite Sports Arena</div>
             </div>
-            <div style="background:#F0F7F1;border-radius:10px;padding:6px 10px;text-align:right;flex-shrink:0;">
-              <div style="font-size:9px;font-weight:800;color:#2A7A38;text-transform:uppercase;letter-spacing:.4px;">Available</div>
-              <div style="font-size:13px;font-weight:900;color:#09210E;margin-top:1px;">Rs 2,500 / hr</div>
+            <div style="font-size:13px;font-weight:900;color:#09210E;">Rs 2,500<span style="font-size:9px;font-weight:600;color:#AAA;">/hr</span></div>
+          </div>
+
+          <!-- ── SLOT STATUS — segmented control ── -->
+          <div style="display:flex;gap:0;background:#EFEFEF;border-radius:11px;padding:3px;margin-bottom:10px;">
+            <div style="flex:1;padding:8px 6px;text-align:center;background:#09210E;border-radius:9px;font-size:12px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+              <i class="ri-checkbox-circle-line" style="font-size:13px;"></i> Open for Booking
+            </div>
+            <div style="flex:1;padding:8px 6px;text-align:center;font-size:12px;font-weight:600;color:#999;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+              <i class="ri-lock-2-fill" style="font-size:13px;"></i> Block Slot
             </div>
           </div>
 
-          <!-- ── AVAILABILITY ── -->
-          <div style="font-size:9px;font-weight:800;color:#BBB;letter-spacing:.6px;text-transform:uppercase;margin-bottom:7px;">Availability</div>
-          <div style="background:#FFF8EC;border-radius:11px;padding:10px 12px;margin-bottom:12px;display:flex;align-items:center;gap:10px;cursor:pointer;border:1.5px solid #EFD890;">
-            <i class="ri-lock-2-fill" style="font-size:18px;color:#7A5A00;flex-shrink:0;"></i>
-            <div>
-              <div style="font-size:13px;font-weight:800;color:#7A5A00;">Turn OFF for Booking</div>
-              <div style="font-size:10px;color:#AA8030;margin-top:1px;">Slot hidden from customers</div>
-            </div>
-          </div>
+          <div style="height:1px;background:#F0F0F0;margin-bottom:10px;"></div>
 
-          <div style="height:1px;background:#F0F0F0;margin-bottom:12px;"></div>
-
-          <!-- ── SLOT PRICING ── -->
-          <div style="font-size:9px;font-weight:800;color:#BBB;letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px;">Slot Pricing</div>
+          <!-- ── PRICING ── -->
+          <div style="font-size:9px;font-weight:800;color:#CCC;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;">Slot Pricing</div>
 
           <!-- Price stepper -->
-          <div style="background:#F8FAF8;border-radius:11px;padding:10px 12px;margin-bottom:8px;border:1.5px solid #E8EEE8;">
-            <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:8px;">Set Price for this Slot</div>
-            <div style="display:flex;align-items:stretch;gap:0;">
-              <button style="width:38px;border:1.5px solid #DDD;background:#F0F0F0;border-radius:10px 0 0 10px;font-size:22px;color:#444;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">−</button>
-              <div style="flex:1;min-height:38px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#09210E;">Rs 2,500</div>
-              <button style="width:38px;border:1.5px solid #DDD;background:#F0F0F0;border-radius:0 10px 10px 0;font-size:22px;color:#444;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">+</button>
-            </div>
-            <div style="font-size:9px;color:#BBB;text-align:center;margin-top:5px;">Base rate Rs 2,500 · tap ± to adjust by Rs 100</div>
+          <div style="display:flex;align-items:stretch;gap:0;margin-bottom:5px;">
+            <button style="width:38px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:10px 0 0 10px;font-size:22px;color:#444;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">−</button>
+            <div style="flex:1;height:38px;border-top:1.5px solid #E0E0E0;border-bottom:1.5px solid #E0E0E0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#09210E;">Rs 2,500</div>
+            <button style="width:38px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:0 10px 10px 0;font-size:22px;color:#444;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">+</button>
           </div>
+          <div style="font-size:9px;color:#CCC;text-align:center;margin-bottom:9px;">adjusts by Rs 100 per tap</div>
 
-          <!-- Discount section -->
-          <div style="background:#F8FAF8;border-radius:11px;padding:10px 12px;margin-bottom:12px;border:1.5px solid #E8EEE8;">
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <div style="display:flex;align-items:center;gap:7px;">
-                <i class="ri-price-tag-3-line" style="font-size:16px;color:#09210E;"></i>
-                <div style="font-size:13px;font-weight:700;color:#111;">Offer Discount</div>
+          <!-- Discount row -->
+          <div style="background:#F8FAF8;border-radius:10px;padding:9px 12px;margin-bottom:10px;border:1.5px solid #E8EEE8;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0;">
+              <div style="display:flex;align-items:center;gap:6px;">
+                <i class="ri-price-tag-3-line" style="font-size:14px;color:#09210E;"></i>
+                <span style="font-size:12px;font-weight:700;color:#111;">Offer Discount</span>
               </div>
               <div class="toggle on"></div>
             </div>
-            <div style="margin-top:10px;padding-top:10px;border-top:1px solid #EEF0EE;display:flex;align-items:center;gap:10px;">
-              <div style="display:flex;align-items:center;gap:5px;flex:1;">
-                <div style="border:1.5px solid #C8DCC8;border-radius:9px;padding:5px 10px;font-size:17px;font-weight:900;color:#09210E;min-width:46px;text-align:center;background:#fff;">20</div>
-                <div style="font-size:13px;font-weight:700;color:#555;">% off</div>
+            <!-- Discount detail (when toggle on) -->
+            <div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid #EEF0EE;">
+              <div style="display:flex;align-items:center;gap:4px;">
+                <div style="border:1.5px solid #C8DCC8;border-radius:8px;padding:4px 9px;font-size:16px;font-weight:900;color:#09210E;min-width:40px;text-align:center;background:#fff;">20</div>
+                <span style="font-size:12px;font-weight:700;color:#666;">%</span>
               </div>
-              <div style="text-align:right;">
-                <div style="font-size:10px;color:#BBB;text-decoration:line-through;font-weight:600;">Rs 2,500</div>
-                <div style="font-size:17px;font-weight:900;color:#1A6030;line-height:1.1;">Rs 2,000</div>
-                <div style="font-size:9px;color:#7AAA70;">Customer sees: Rs 2,000</div>
+              <i class="ri-arrow-right-line" style="font-size:13px;color:#CCC;flex-shrink:0;"></i>
+              <div style="flex:1;">
+                <span style="font-size:10px;color:#CCC;text-decoration:line-through;margin-right:3px;">Rs 2,500</span>
+                <span style="font-size:15px;font-weight:900;color:#1A6030;">Rs 2,000</span>
               </div>
+              <div style="font-size:8px;color:#7AAA70;text-align:right;line-height:1.3;">Customer<br>sees this</div>
             </div>
           </div>
 
-          <div style="height:1px;background:#F0F0F0;margin-bottom:12px;"></div>
+          <div style="height:1px;background:#F0F0F0;margin-bottom:10px;"></div>
 
-          <!-- ── APPLY TO ── -->
-          <div style="font-size:9px;font-weight:800;color:#BBB;letter-spacing:.6px;text-transform:uppercase;margin-bottom:7px;">Apply Changes To</div>
-          <div class="smp-row sel">
-            <div class="smp-dot"></div>
-            <div>
-              <div style="font-size:12px;font-weight:700;color:#111;">Today only</div>
-              <div style="font-size:10px;color:#AAA;margin-top:1px;">Sun, 26 Apr · just this slot</div>
+          <!-- ── APPLY TO — 2×2 grid ── -->
+          <div style="font-size:9px;font-weight:800;color:#CCC;letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;">Apply Changes To</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:7px;border:1.5px solid #09210E;border-radius:10px;padding:8px 9px;background:#F4FAEE;cursor:pointer;">
+              <div style="width:13px;height:13px;border-radius:50%;border:2px solid #09210E;background:#09210E;box-shadow:inset 0 0 0 2.5px #fff;flex-shrink:0;"></div>
+              <div><div style="font-size:11px;font-weight:700;color:#111;">Today only</div><div style="font-size:9px;color:#AAA;">Sun, 26 Apr</div></div>
             </div>
-          </div>
-          <div class="smp-row">
-            <div class="smp-dot"></div>
-            <div>
-              <div style="font-size:12px;font-weight:700;color:#333;">Every Sunday</div>
-              <div style="font-size:10px;color:#AAA;margin-top:1px;">12–1 PM slot · recurring weekly</div>
+            <div style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;">
+              <div style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div>
+              <div><div style="font-size:11px;font-weight:700;color:#333;">Every Sunday</div><div style="font-size:9px;color:#AAA;">Recurring</div></div>
             </div>
-          </div>
-          <div class="smp-row">
-            <div class="smp-dot"></div>
-            <div>
-              <div style="font-size:12px;font-weight:700;color:#333;">Weekends only</div>
-              <div style="font-size:10px;color:#AAA;margin-top:1px;">Sat &amp; Sun · 12–1 PM slot</div>
+            <div style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;">
+              <div style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div>
+              <div><div style="font-size:11px;font-weight:700;color:#333;">Weekends</div><div style="font-size:9px;color:#AAA;">Sat &amp; Sun</div></div>
             </div>
-          </div>
-          <div class="smp-row" style="margin-bottom:14px;">
-            <div class="smp-dot"></div>
-            <div>
-              <div style="font-size:12px;font-weight:700;color:#333;">All days</div>
-              <div style="font-size:10px;color:#AAA;margin-top:1px;">Every day going forward</div>
+            <div style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;">
+              <div style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div>
+              <div><div style="font-size:11px;font-weight:700;color:#333;">All days</div><div style="font-size:9px;color:#AAA;">Every day</div></div>
             </div>
           </div>
 
           <!-- Action buttons -->
           <div style="display:flex;gap:8px;">
-            <button style="flex:1;padding:12px;background:#F0F0F0;color:#555;font-size:13px;font-weight:700;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Cancel</button>
-            <button style="flex:1.5;padding:12px;background:#09210E;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Apply Changes</button>
+            <button style="flex:1;padding:11px;background:#F0F0F0;color:#555;font-size:13px;font-weight:700;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button style="flex:1.5;padding:11px;background:#09210E;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Apply Changes</button>
           </div>
         </div>
       </div>
