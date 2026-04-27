@@ -1391,7 +1391,7 @@ body:not(.interactive) #s22-success { display: none !important; }
   <div class="page-label">19 · Arena Detail — matches customer-facing arena display</div>
   <div class="phone">
     <div class="status-bar" style="position:absolute;top:0;left:0;right:0;z-index:10;background:transparent;"><span style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5);">9:41</span><span style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5);">●●● 100%</span></div>
-    <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;">
+    <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;position:relative;">
 
       <!-- ── HERO (220dp tall, mirrors user app) ── -->
       <div style="position:relative;height:170px;background:linear-gradient(150deg,#09210E 0%,#163F1E 55%,#1E5028 100%);flex-shrink:0;display:flex;align-items:center;justify-content:center;">
@@ -1712,6 +1712,25 @@ body:not(.interactive) #s22-success { display: none !important; }
           <div style="display:flex;gap:8px;">
             <button id="s19-hol-cancel" style="flex:1;padding:13px;border:1.5px solid #E0E0E0;border-radius:12px;font-size:13px;font-weight:700;color:#555;background:#fff;cursor:pointer;font-family:inherit;">Cancel</button>
             <button id="s19-hol-confirm" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Confirm</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blocked Dates Management Sheet -->
+      <div id="s19-hol-mgmt" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 16px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Blocked Dates</div>
+              <div style="font-size:11px;color:#999;margin-top:2px;">Tap × to unblock · tap <b style="color:#09210E;">Mark More</b> to add</div>
+            </div>
+            <div id="s19-hol-mgmt-close" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i></div>
+          </div>
+          <div id="s19-hol-mgmt-list" style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;margin-bottom:16px;"></div>
+          <div style="display:flex;gap:8px;">
+            <button id="s19-hol-mgmt-add" style="flex:1;padding:12px;border:1.5px solid #09210E;border-radius:12px;font-size:12px;font-weight:800;color:#09210E;background:#fff;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;"><i class="ri-calendar-close-line" style="font-size:14px;"></i>Mark More</button>
+            <button id="s19-hol-mgmt-done" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Done</button>
           </div>
         </div>
       </div>
@@ -2072,7 +2091,7 @@ body:not(.interactive) #s22-success { display: none !important; }
   <div class="page-label">22 · Register New Arena — All 6 Steps (scroll)</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
-    <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;">
+    <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;position:relative;">
 
       <!-- ── Fixed Header ── -->
       <div style="background:#fff;border-bottom:1px solid #EBEBEB;flex-shrink:0;">
@@ -2573,6 +2592,25 @@ body:not(.interactive) #s22-success { display: none !important; }
           <div style="display:flex;gap:8px;">
             <button id="s22-hol-cancel" style="flex:1;padding:13px;border:1.5px solid #E0E0E0;border-radius:12px;font-size:13px;font-weight:700;color:#555;background:#fff;cursor:pointer;font-family:inherit;">Cancel</button>
             <button id="s22-hol-confirm" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Confirm</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blocked Dates Management Sheet -->
+      <div id="s22-hol-mgmt" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 16px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Blocked Dates</div>
+              <div style="font-size:11px;color:#999;margin-top:2px;">Tap × to unblock · tap <b style="color:#09210E;">Mark More</b> to add</div>
+            </div>
+            <div id="s22-hol-mgmt-close" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i></div>
+          </div>
+          <div id="s22-hol-mgmt-list" style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;margin-bottom:16px;"></div>
+          <div style="display:flex;gap:8px;">
+            <button id="s22-hol-mgmt-add" style="flex:1;padding:12px;border:1.5px solid #09210E;border-radius:12px;font-size:12px;font-weight:800;color:#09210E;background:#fff;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;"><i class="ri-calendar-close-line" style="font-size:14px;"></i>Mark More</button>
+            <button id="s22-hol-mgmt-done" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Done</button>
           </div>
         </div>
       </div>
@@ -4925,10 +4963,9 @@ body:not(.interactive) #s22-success { display: none !important; }
 
   // ── Holiday Calendar Factory (s22 Register Arena, s19 Edit Arena) ──
   function makeHolCal(cfg) {
-    var scr      = cfg.scr;
-    var screen   = document.getElementById(scr);
+    var scr    = cfg.scr;
+    var screen = document.getElementById(scr);
     if (!screen) return;
-    var screenEl = screen.querySelector('.screen') || screen;
 
     var sheet   = screen.querySelector('#' + scr + '-hol-sheet');
     var calGrid = screen.querySelector('#' + scr + '-hol-grid');
@@ -4936,33 +4973,8 @@ body:not(.interactive) #s22-success { display: none !important; }
     var sumWrap = screen.querySelector('#' + scr + '-hol-summary');
     var sumText = screen.querySelector('#' + scr + '-hol-sumtxt');
     var chipsEl = screen.querySelector('#' + scr + '-hol-chips');
-
-    // Build management popup dynamically and append inside .screen
-    var mgmt = document.createElement('div');
-    mgmt.id = scr + '-hol-mgmt';
-    mgmt.className = 'bs-bg';
-    mgmt.style.display = 'none';
-    mgmt.innerHTML =
-      '<div class="bs-card" style="padding:20px 16px 28px;">' +
-        '<div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 16px;"></div>' +
-        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">' +
-          '<div>' +
-            '<div style="font-size:16px;font-weight:900;color:#111;">Blocked Dates</div>' +
-            '<div style="font-size:11px;color:#999;margin-top:2px;">Tap × to unblock · tap <b style="color:#09210E;">Mark More</b> to add</div>' +
-          '</div>' +
-          '<div id="' + scr + '-hol-mgmt-close" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">' +
-            '<i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i>' +
-          '</div>' +
-        '</div>' +
-        '<div id="' + scr + '-hol-mgmt-list" style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;margin-bottom:16px;"></div>' +
-        '<div style="display:flex;gap:8px;">' +
-          '<button id="' + scr + '-hol-mgmt-add" style="flex:1;padding:12px;border:1.5px solid #09210E;border-radius:12px;font-size:12px;font-weight:800;color:#09210E;background:#fff;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;">' +
-            '<i class="ri-calendar-close-line" style="font-size:14px;"></i>Mark More' +
-          '</button>' +
-          '<button id="' + scr + '-hol-mgmt-done" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Done</button>' +
-        '</div>' +
-      '</div>';
-    screenEl.appendChild(mgmt);
+    var mgmt    = screen.querySelector('#' + scr + '-hol-mgmt');
+    var mgmtList = screen.querySelector('#' + scr + '-hol-mgmt-list');
 
     var TODAY   = new Date(2026, 3, 28);
     var calYear = TODAY.getFullYear(), calMonth = TODAY.getMonth();
@@ -5036,7 +5048,7 @@ body:not(.interactive) #s22-success { display: none !important; }
     }
 
     function renderMgmt() {
-      var listEl = mgmt.querySelector('#' + scr + '-hol-mgmt-list');
+      var listEl = mgmtList;
       if (!listEl) return;
       var keys = Object.keys(offDays).filter(function(k) { return offDays[k]; }).sort();
       if (!keys.length) {
