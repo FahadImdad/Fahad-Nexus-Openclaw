@@ -503,6 +503,16 @@ body:not(.interactive) #s22-success { display: none !important; }
               <div style="width:33px;height:33px;background:#DFF0C8;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-bar-chart-2-line" style="font-size:16px;color:#09210E;"></i></div>
               <div><div style="font-size:12px;font-weight:800;color:#09210E;">Analytics</div><div style="font-size:9px;color:#4A7A30;margin-top:1px;">Full report</div></div>
             </div>
+            <!-- Tournaments — full-width card -->
+            <div data-go="s38" style="grid-column:span 2;background:linear-gradient(135deg,#09210E 0%,#163F1E 100%);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:11px;cursor:pointer;position:relative;overflow:hidden;">
+              <div style="position:absolute;right:-10px;top:-10px;width:70px;height:70px;background:rgba(255,255,255,.05);border-radius:50%;"></div>
+              <div style="width:36px;height:36px;background:rgba(255,255,255,.14);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">🏆</div>
+              <div style="flex:1;">
+                <div style="font-size:12px;font-weight:900;color:#fff;">Tournaments</div>
+                <div style="font-size:9px;color:rgba(255,255,255,.55);margin-top:1px;">3 active · manage & track results</div>
+              </div>
+              <div style="background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:3px 9px;font-size:9px;font-weight:800;color:rgba(255,255,255,.8);flex-shrink:0;display:flex;align-items:center;gap:4px;"><span style="width:5px;height:5px;background:#70D880;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;"></span>3 Live</div>
+            </div>
           </div>
         </div>
 
@@ -1066,7 +1076,7 @@ body:not(.interactive) #s22-success { display: none !important; }
         <p>Your tournament is now live on Sportster and visible to players across Pakistan.</p>
         <div class="id-badge">Tournament ID: <span>#NBC-2024-0712</span></div>
         <div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;width:100%;">
-          <button class="btn primary" style="width:100%;">📊 View Dashboard</button>
+          <button class="btn primary" style="width:100%;" data-go="s38">📊 View Dashboard</button>
           <button class="btn secondary" style="width:100%;" data-back><i class="ri-eye-line" style="margin-right:4px;font-size:14px;"></i>Preview User View</button>
           <button class="btn outline" style="width:100%;margin-top:4px;">＋ Create Another</button>
         </div>
@@ -5231,6 +5241,104 @@ body:not(.interactive) #s22-success { display: none !important; }
   makeHolCal({ scr: 's22' });
   makeHolCal({ scr: 's19' });
 
+  // ─── S39 TOURNAMENT DASHBOARD ───────────────────────────────────────────
+  (function() {
+    var el = document.getElementById('s39');
+    if (!el) return;
+
+    var tabReg   = el.querySelector('#s39-tab-reg');
+    var tabMatch = el.querySelector('#s39-tab-match');
+    var paneReg  = el.querySelector('#s39-pane-reg');
+    var paneMatch = el.querySelector('#s39-pane-match');
+    var sheet    = el.querySelector('#s39-update-sheet');
+    var selectedWinner = null;
+
+    function switchTab(active) {
+      if (active === 'reg') {
+        tabReg.style.color   = '#09210E';  tabReg.style.borderBottom  = '2.5px solid #09210E';
+        tabMatch.style.color = '#AAA';     tabMatch.style.borderBottom = '';
+        paneReg.style.display   = 'block';
+        paneMatch.style.display = 'none';
+      } else {
+        tabMatch.style.color = '#09210E'; tabMatch.style.borderBottom = '2.5px solid #09210E';
+        tabReg.style.color   = '#AAA';    tabReg.style.borderBottom   = '';
+        paneMatch.style.display = 'block';
+        paneReg.style.display   = 'none';
+      }
+    }
+
+    function openSheet()  { selectedWinner = null; resetRadios(); sheet.style.display = 'flex'; }
+    function closeSheet() { sheet.style.display = 'none'; }
+
+    function resetRadios() {
+      el.querySelectorAll('.s39-winner-opt').forEach(function(opt) {
+        opt.style.background = '#F4F7F2';
+        opt.style.borderColor = '#E0EED8';
+        var radio = opt.querySelector('.s39-radio');
+        if (radio) { radio.style.background = ''; radio.style.borderColor = '#CCC'; }
+      });
+    }
+
+    document.addEventListener('click', function(e) {
+      if (!el.contains(e.target)) return;
+
+      // Tab switching
+      if (e.target.closest('#s39-tab-reg'))   { switchTab('reg');   return; }
+      if (e.target.closest('#s39-tab-match')) { switchTab('match'); return; }
+
+      // Open match update sheet
+      if (e.target.closest('#s39-post-update-btn')) { openSheet(); return; }
+
+      // Close sheet
+      if (e.target.id === 's39-update-sheet')        { closeSheet(); return; }
+      if (e.target.closest('#s39-update-close'))     { closeSheet(); return; }
+
+      // Winner option selection
+      var opt = e.target.closest('.s39-winner-opt');
+      if (opt && el.contains(opt)) {
+        selectedWinner = opt.getAttribute('data-winner');
+        resetRadios();
+        opt.style.background   = '#E8F5E0';
+        opt.style.borderColor  = '#09210E';
+        var radio = opt.querySelector('.s39-radio');
+        if (radio) { radio.style.background = '#09210E'; radio.style.borderColor = '#09210E'; }
+        return;
+      }
+
+      // Post update
+      if (e.target.closest('#s39-update-post') && el.contains(e.target)) {
+        var narrative = el.querySelector('#s39-narrative');
+        var text = narrative ? narrative.value.trim() : '';
+        if (!selectedWinner) {
+          if (narrative) { narrative.style.borderColor = ''; }
+          var opts = el.querySelectorAll('.s39-winner-opt');
+          opts.forEach(function(o) { o.style.borderColor = '#E65100'; });
+          setTimeout(function() { opts.forEach(function(o) { o.style.borderColor = '#E0EED8'; }); }, 1200);
+          return;
+        }
+        // Success: close sheet, update match 3 card to show completed state
+        var match3Btn = el.querySelector('#s39-post-update-btn');
+        if (match3Btn) {
+          var card = match3Btn.closest('div[style*="border-radius:14px"]');
+          if (card) {
+            var badge = card.querySelector('[style*="Scheduled"]');
+            if (badge) { badge.textContent = 'Completed'; badge.style.background = '#E8F5E0'; badge.style.color = '#09210E'; badge.style.border = 'none'; }
+          }
+          var winnerLabel = selectedWinner === 'a' ? '🦅 Eagles Squad' : selectedWinner === 'b' ? '🐺 Wolves Pack' : '🤝 Draw';
+          var reportDiv = document.createElement('div');
+          reportDiv.style.cssText = 'background:#F4F7F2;border-radius:10px;padding:8px 10px;border-left:3px solid #09210E;margin-top:8px;';
+          reportDiv.innerHTML = '<div style="font-size:9px;font-weight:800;color:#09210E;margin-bottom:3px;text-transform:uppercase;letter-spacing:.3px;">Match Report</div>' +
+            '<div style="font-size:11px;color:#555;line-height:1.6;">' + (text || 'No narrative provided.') + '</div>' +
+            '<div style="font-size:9px;color:#09210E;font-weight:800;margin-top:5px;">Winner: ' + winnerLabel + '</div>' +
+            '<div style="font-size:9px;color:#AAA;margin-top:3px;">Posted by you · just now</div>';
+          match3Btn.parentNode.replaceChild(reportDiv, match3Btn);
+        }
+        if (narrative) narrative.value = '';
+        closeSheet();
+        return;
+      }
+    });
+  })();
 
 })();
 </script>
@@ -6748,6 +6856,523 @@ body:not(.interactive) #s22-success { display: none !important; }
           <div style="font-size:10px;color:#3B50C4;line-height:1.6;font-weight:600;">Questions about these terms? Email <span style="font-weight:900;">legal@sportster.com</span></div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN 38 — TOURNAMENT HUB
+════════════════════════════════════════════════ -->
+<div class="col" id="s38">
+  <div class="page-label">38 · Tournament Hub — from: Home Tournaments card / S7 View Dashboard</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;">
+
+      <!-- Gradient header -->
+      <div style="background:linear-gradient(150deg,#09210E 0%,#0F2E14 55%,#163F1E 100%);padding:16px 16px 18px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.12);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(255,255,255,.12);"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
+            <div>
+              <div style="font-size:18px;font-weight:900;color:#fff;letter-spacing:-.3px;">My Tournaments</div>
+              <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px;">Play Pakistan Org.</div>
+            </div>
+          </div>
+          <div data-go="s2" style="background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);border-radius:11px;padding:7px 12px;display:flex;align-items:center;gap:5px;cursor:pointer;">
+            <i class="ri-add-line" style="font-size:14px;color:#fff;"></i>
+            <span style="font-size:11px;font-weight:800;color:#fff;">Create</span>
+          </div>
+        </div>
+        <!-- Stats row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;">
+          <div style="background:rgba(255,255,255,.11);border-radius:11px;padding:9px 8px;text-align:center;border:1px solid rgba(255,255,255,.08);">
+            <div style="font-size:18px;font-weight:900;color:#fff;">3</div>
+            <div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:2px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Active</div>
+          </div>
+          <div style="background:rgba(104,211,145,.18);border-radius:11px;padding:9px 8px;text-align:center;border:1px solid rgba(104,211,145,.3);">
+            <div style="font-size:18px;font-weight:900;color:#70D880;">1</div>
+            <div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:2px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Upcoming</div>
+          </div>
+          <div style="background:rgba(255,255,255,.11);border-radius:11px;padding:9px 8px;text-align:center;border:1px solid rgba(255,255,255,.08);">
+            <div style="font-size:18px;font-weight:900;color:#fff;">2</div>
+            <div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:2px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Completed</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter tabs -->
+      <div style="background:#fff;border-bottom:1px solid #EFEFEF;flex-shrink:0;">
+        <div style="display:flex;padding:0 16px;overflow-x:auto;">
+          <div style="padding:10px 0;margin-right:20px;font-size:12px;font-weight:800;color:#09210E;border-bottom:2.5px solid #09210E;margin-bottom:-1px;cursor:pointer;white-space:nowrap;">All <span style="background:#EFEFEF;border-radius:20px;padding:1px 6px;font-size:10px;color:#555;">6</span></div>
+          <div style="padding:10px 0;margin-right:20px;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;white-space:nowrap;">Active <span style="background:#E8F5E0;border-radius:20px;padding:1px 6px;font-size:10px;color:#09210E;">3</span></div>
+          <div style="padding:10px 0;margin-right:20px;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;white-space:nowrap;">Upcoming</div>
+          <div style="padding:10px 0;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;white-space:nowrap;">Completed</div>
+        </div>
+      </div>
+
+      <!-- Tournament list -->
+      <div style="flex:1;overflow-y:auto;background:#F4F7F2;padding:10px 0 16px;">
+
+        <!-- Active label -->
+        <div style="display:flex;align-items:center;gap:7px;padding:0 16px 8px;">
+          <span style="display:inline-block;width:6px;height:6px;background:#09210E;border-radius:50%;animation:pulse 1.5s infinite;"></span>
+          <span style="font-size:9px;font-weight:800;color:#09210E;letter-spacing:.5px;text-transform:uppercase;">Active · 3 tournaments</span>
+        </div>
+
+        <!-- Card 1: National Basketball Championship (Live) -->
+        <div data-go="s39" style="margin:0 14px 10px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);cursor:pointer;">
+          <div style="height:3px;background:linear-gradient(90deg,#09210E,#2A7A38);"></div>
+          <div style="padding:12px 13px 13px;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:9px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:44px;height:44px;background:#E8F5E0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🏀</div>
+                <div>
+                  <div style="font-size:13px;font-weight:900;color:#111;letter-spacing:-.2px;">Natl. Basketball Champ.</div>
+                  <div style="font-size:10px;color:#888;margin-top:2px;">Knockout · 16 Teams · Elite Sports</div>
+                </div>
+              </div>
+              <div style="background:#E8F5E0;color:#09210E;font-size:9px;font-weight:900;padding:3px 9px;border-radius:20px;border:1px solid #B5D8A0;flex-shrink:0;display:flex;align-items:center;gap:4px;"><span style="width:5px;height:5px;background:#09210E;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;"></span>Live</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+              <div style="background:#F8FBF5;border-radius:9px;padding:7px 8px;border:1px solid #EEF4E8;">
+                <div style="font-size:14px;font-weight:900;color:#09210E;">14<span style="font-size:9px;color:#888;font-weight:600;">/16</span></div>
+                <div style="font-size:8px;color:#AAA;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-top:1px;">Registered</div>
+              </div>
+              <div style="background:#FFF8F0;border-radius:9px;padding:7px 8px;border:1px solid #FFD0A0;">
+                <div style="font-size:14px;font-weight:900;color:#E65100;display:flex;align-items:center;gap:3px;"><span style="width:5px;height:5px;background:#E65100;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;"></span>3</div>
+                <div style="font-size:8px;color:#BF5500;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-top:1px;">Pending</div>
+              </div>
+              <div style="background:#F8FBF5;border-radius:9px;padding:7px 8px;border:1px solid #EEF4E8;">
+                <div style="font-size:14px;font-weight:900;color:#09210E;">4</div>
+                <div style="font-size:8px;color:#AAA;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-top:1px;">Matches</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div style="font-size:10px;color:#AAA;">May 1 – May 20, 2026</div>
+              <div style="font-size:11px;font-weight:800;color:#09210E;display:flex;align-items:center;gap:4px;">Manage <i class="ri-arrow-right-s-line" style="font-size:13px;"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Karachi Football League -->
+        <div style="margin:0 14px 10px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);cursor:pointer;">
+          <div style="height:3px;background:linear-gradient(90deg,#0A6B7A,#1AA0BC);"></div>
+          <div style="padding:12px 13px 13px;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:9px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:44px;height:44px;background:#E0F7FA;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">⚽</div>
+                <div>
+                  <div style="font-size:13px;font-weight:900;color:#111;letter-spacing:-.2px;">Karachi Football League</div>
+                  <div style="font-size:10px;color:#888;margin-top:2px;">Round-Robin · 12 Teams · Champions Ground</div>
+                </div>
+              </div>
+              <div style="background:#E0F7FA;color:#0A6B7A;font-size:9px;font-weight:900;padding:3px 9px;border-radius:20px;border:1px solid #9DD8E0;flex-shrink:0;">Reg. Open</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;">
+              <div style="background:#F8FBF5;border-radius:9px;padding:7px 8px;border:1px solid #EEF4E8;">
+                <div style="font-size:14px;font-weight:900;color:#09210E;">8<span style="font-size:9px;color:#888;font-weight:600;">/12</span></div>
+                <div style="font-size:8px;color:#AAA;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-top:1px;">Registered</div>
+              </div>
+              <div style="background:#FFF8F0;border-radius:9px;padding:7px 8px;border:1px solid #FFD0A0;">
+                <div style="font-size:14px;font-weight:900;color:#E65100;">5</div>
+                <div style="font-size:8px;color:#BF5500;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-top:1px;">Pending</div>
+              </div>
+              <div style="background:#F8FBF5;border-radius:9px;padding:7px 8px;border:1px solid #EEF4E8;">
+                <div style="font-size:14px;font-weight:900;color:#09210E;">0</div>
+                <div style="font-size:8px;color:#AAA;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-top:1px;">Matches</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div style="font-size:10px;color:#AAA;">Jun 10 – Jun 30, 2026</div>
+              <div style="font-size:11px;font-weight:800;color:#09210E;display:flex;align-items:center;gap:4px;">Manage <i class="ri-arrow-right-s-line" style="font-size:13px;"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming label -->
+        <div style="display:flex;align-items:center;gap:7px;padding:8px 16px 8px;">
+          <span style="font-size:9px;font-weight:800;color:#888;letter-spacing:.5px;text-transform:uppercase;">Upcoming</span>
+        </div>
+
+        <!-- Card 3: Cricket T20 Cup -->
+        <div style="margin:0 14px 10px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.05);cursor:pointer;opacity:.85;">
+          <div style="height:3px;background:linear-gradient(90deg,#7A5800,#C9961A);"></div>
+          <div style="padding:12px 13px 13px;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:9px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:44px;height:44px;background:#FFF8E0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🏏</div>
+                <div>
+                  <div style="font-size:13px;font-weight:900;color:#111;letter-spacing:-.2px;">Elite Cricket T20 Cup</div>
+                  <div style="font-size:10px;color:#888;margin-top:2px;">Knockout · 8 Teams · Victory Complex</div>
+                </div>
+              </div>
+              <div style="background:#FFF3D0;color:#7A5800;font-size:9px;font-weight:900;padding:3px 9px;border-radius:20px;border:1px solid #DDBC80;flex-shrink:0;">Upcoming</div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div style="font-size:10px;color:#AAA;">Jul 5 – Jul 20, 2026 · Reg. closes Jun 28</div>
+              <div style="font-size:11px;font-weight:800;color:#09210E;display:flex;align-items:center;gap:4px;">Manage <i class="ri-arrow-right-s-line" style="font-size:13px;"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Completed label -->
+        <div style="display:flex;align-items:center;gap:7px;padding:4px 16px 8px;">
+          <span style="font-size:9px;font-weight:800;color:#888;letter-spacing:.5px;text-transform:uppercase;">Completed</span>
+        </div>
+
+        <!-- Card 4: Past -->
+        <div style="margin:0 14px 10px;background:#F9F9F9;border-radius:16px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);cursor:pointer;">
+          <div style="height:3px;background:#CCC;"></div>
+          <div style="padding:12px 13px 13px;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:44px;height:44px;background:#EFEFEF;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;filter:grayscale(1);">🏀</div>
+                <div>
+                  <div style="font-size:13px;font-weight:900;color:#666;letter-spacing:-.2px;">Spring Basket League '25</div>
+                  <div style="font-size:10px;color:#AAA;margin-top:2px;">League · 10 Teams · Elite Sports</div>
+                </div>
+              </div>
+              <div style="background:#EBEBEB;color:#888;font-size:9px;font-weight:900;padding:3px 9px;border-radius:20px;flex-shrink:0;">Done</div>
+            </div>
+            <div style="font-size:10px;color:#BBB;">Feb 10 – Mar 2, 2025 · 🏆 Winners: Bulls Squad</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN 39 — TOURNAMENT DASHBOARD
+════════════════════════════════════════════════ -->
+<div class="col" id="s39">
+  <div class="page-label">39 · Tournament Dashboard — from: S38 Manage card</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;position:relative;">
+
+      <!-- Gradient header -->
+      <div style="background:linear-gradient(150deg,#09210E 0%,#0F2E14 55%,#163F1E 100%);padding:14px 16px 16px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.12);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px solid rgba(255,255,255,.12);"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
+          <div style="flex:1;">
+            <div style="font-size:16px;font-weight:900;color:#fff;letter-spacing:-.2px;line-height:1.2;">Natl. Basketball Champ.</div>
+            <div style="font-size:9px;color:rgba(255,255,255,.5);margin-top:2px;">🏀 Basketball · Knockout · 16 Teams</div>
+          </div>
+          <div style="background:#E8F5E0;color:#09210E;font-size:9px;font-weight:900;padding:3px 9px;border-radius:20px;display:flex;align-items:center;gap:4px;flex-shrink:0;"><span style="width:5px;height:5px;background:#09210E;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;"></span>Live</div>
+        </div>
+        <!-- Stats strip -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;">
+          <div style="background:rgba(255,255,255,.11);border-radius:11px;padding:9px 8px;text-align:center;border:1px solid rgba(255,255,255,.08);">
+            <div style="font-size:16px;font-weight:900;color:#fff;">14<span style="font-size:9px;color:rgba(255,255,255,.5);">/16</span></div>
+            <div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:2px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Registered</div>
+          </div>
+          <div style="background:rgba(230,81,0,.22);border-radius:11px;padding:9px 8px;text-align:center;border:1px solid rgba(230,81,0,.35);">
+            <div style="font-size:16px;font-weight:900;color:#FFB74D;display:flex;align-items:center;justify-content:center;gap:3px;"><span style="display:inline-block;width:5px;height:5px;background:#FFB74D;border-radius:50%;animation:pulse 1.5s infinite;"></span>3</div>
+            <div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:2px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Pending</div>
+          </div>
+          <div style="background:rgba(255,255,255,.11);border-radius:11px;padding:9px 8px;text-align:center;border:1px solid rgba(255,255,255,.08);">
+            <div style="font-size:16px;font-weight:900;color:#fff;">4</div>
+            <div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:2px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Matches</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab bar -->
+      <div style="background:#fff;border-bottom:1.5px solid #EFEFEF;flex-shrink:0;display:flex;padding:0 16px;">
+        <div id="s39-tab-reg" style="padding:11px 0;margin-right:22px;font-size:12px;font-weight:800;color:#09210E;border-bottom:2.5px solid #09210E;margin-bottom:-1.5px;cursor:pointer;display:flex;align-items:center;gap:5px;">Registrations <span style="background:#FFE0B2;border-radius:20px;padding:1px 6px;font-size:10px;color:#E65100;">3</span></div>
+        <div id="s39-tab-match" style="padding:11px 0;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;">Match Updates</div>
+      </div>
+
+      <!-- ── REGISTRATIONS TAB ── -->
+      <div id="s39-pane-reg" style="flex:1;overflow-y:auto;background:#F4F7F2;padding:10px 0 16px;">
+
+        <!-- Pending label -->
+        <div style="display:flex;align-items:center;gap:7px;padding:0 16px 8px;">
+          <span style="display:inline-block;width:6px;height:6px;background:#E65100;border-radius:50%;animation:pulse 1.5s infinite;"></span>
+          <span style="font-size:9px;font-weight:800;color:#E65100;letter-spacing:.5px;text-transform:uppercase;">Pending Review — 3</span>
+        </div>
+
+        <!-- Pending: Thunder Bolts -->
+        <div style="margin:0 14px 9px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07);">
+          <div style="height:3px;background:linear-gradient(90deg,#BF5500,#F08A00);"></div>
+          <div style="padding:11px 12px 12px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;gap:9px;">
+                <div style="width:38px;height:38px;background:#FFF3E0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">⚡</div>
+                <div>
+                  <div style="font-size:13px;font-weight:900;color:#111;">Thunder Bolts</div>
+                  <div style="font-size:10px;color:#888;margin-top:2px;">Captain: Hamza Khan · 6 players</div>
+                </div>
+              </div>
+              <div style="background:#FFF3E0;border-radius:20px;padding:2px 8px;font-size:9px;font-weight:800;color:#E65100;border:1px solid #FFD0A0;">New</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding:7px 9px;background:#F9F9F9;border-radius:9px;">
+              <i class="ri-money-rupee-circle-line" style="font-size:13px;color:#09210E;flex-shrink:0;"></i>
+              <div style="font-size:11px;color:#555;">Entry fee: <b style="color:#09210E;">Rs 2,500</b> · Payment screenshot attached</div>
+            </div>
+            <div style="display:flex;gap:7px;">
+              <button style="flex:1;padding:9px;background:#FFF0F0;color:#C62828;font-size:11px;font-weight:800;border:1.5px solid #FFCDD2;border-radius:10px;cursor:pointer;font-family:inherit;">✕ Reject</button>
+              <button style="flex:2;padding:9px;background:linear-gradient(135deg,#09210E,#2A7A38);color:#fff;font-size:11px;font-weight:800;border:none;border-radius:10px;cursor:pointer;font-family:inherit;">✓ Approve</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending: Storm Chasers -->
+        <div style="margin:0 14px 9px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07);">
+          <div style="height:3px;background:linear-gradient(90deg,#BF5500,#F08A00);"></div>
+          <div style="padding:11px 12px 12px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;gap:9px;">
+                <div style="width:38px;height:38px;background:#E0F7FA;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🌪️</div>
+                <div>
+                  <div style="font-size:13px;font-weight:900;color:#111;">Storm Chasers</div>
+                  <div style="font-size:10px;color:#888;margin-top:2px;">Captain: Ali Raza · 5 players</div>
+                </div>
+              </div>
+              <div style="background:#FFF3E0;border-radius:20px;padding:2px 8px;font-size:9px;font-weight:800;color:#E65100;border:1px solid #FFD0A0;">New</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding:7px 9px;background:#F9F9F9;border-radius:9px;">
+              <i class="ri-money-rupee-circle-line" style="font-size:13px;color:#09210E;flex-shrink:0;"></i>
+              <div style="font-size:11px;color:#555;">Entry fee: <b style="color:#09210E;">Rs 2,500</b> · <span style="color:#E65100;">No screenshot yet</span></div>
+            </div>
+            <div style="display:flex;gap:7px;">
+              <button style="flex:1;padding:9px;background:#FFF0F0;color:#C62828;font-size:11px;font-weight:800;border:1.5px solid #FFCDD2;border-radius:10px;cursor:pointer;font-family:inherit;">✕ Reject</button>
+              <button style="flex:2;padding:9px;background:linear-gradient(135deg,#09210E,#2A7A38);color:#fff;font-size:11px;font-weight:800;border:none;border-radius:10px;cursor:pointer;font-family:inherit;">✓ Approve</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending: Iron Hawks -->
+        <div style="margin:0 14px 9px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07);">
+          <div style="height:3px;background:linear-gradient(90deg,#BF5500,#F08A00);"></div>
+          <div style="padding:11px 12px 12px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;gap:9px;">
+                <div style="width:38px;height:38px;background:#F0F4FF;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🦅</div>
+                <div>
+                  <div style="font-size:13px;font-weight:900;color:#111;">Iron Hawks</div>
+                  <div style="font-size:10px;color:#888;margin-top:2px;">Captain: Saad Farooq · 6 players</div>
+                </div>
+              </div>
+              <div style="background:#FFF3E0;border-radius:20px;padding:2px 8px;font-size:9px;font-weight:800;color:#E65100;border:1px solid #FFD0A0;">New</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;padding:7px 9px;background:#F9F9F9;border-radius:9px;">
+              <i class="ri-money-rupee-circle-line" style="font-size:13px;color:#09210E;flex-shrink:0;"></i>
+              <div style="font-size:11px;color:#555;">Entry fee: <b style="color:#09210E;">Rs 2,500</b> · Payment screenshot attached</div>
+            </div>
+            <div style="display:flex;gap:7px;">
+              <button style="flex:1;padding:9px;background:#FFF0F0;color:#C62828;font-size:11px;font-weight:800;border:1.5px solid #FFCDD2;border-radius:10px;cursor:pointer;font-family:inherit;">✕ Reject</button>
+              <button style="flex:2;padding:9px;background:linear-gradient(135deg,#09210E,#2A7A38);color:#fff;font-size:11px;font-weight:800;border:none;border-radius:10px;cursor:pointer;font-family:inherit;">✓ Approve</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Approved section -->
+        <div style="display:flex;align-items:center;gap:7px;padding:8px 16px 8px;">
+          <span style="font-size:9px;font-weight:800;color:#09210E;letter-spacing:.5px;text-transform:uppercase;">Approved · 11 teams</span>
+        </div>
+
+        <div style="margin:0 14px;background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #EEF4E8;">
+          <div style="padding:10px 12px;display:flex;align-items:center;gap:9px;border-bottom:1px solid #F5F5F5;">
+            <div style="width:30px;height:30px;background:#E8F5E0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">🦁</div>
+            <div style="flex:1;"><div style="font-size:12px;font-weight:800;color:#111;">Lions FC</div><div style="font-size:10px;color:#888;">Omar Sheikh · 6 players</div></div>
+            <div style="background:#E8F5E0;color:#09210E;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;">✓</div>
+          </div>
+          <div style="padding:10px 12px;display:flex;align-items:center;gap:9px;border-bottom:1px solid #F5F5F5;">
+            <div style="width:30px;height:30px;background:#E8F5E0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">🐉</div>
+            <div style="flex:1;"><div style="font-size:12px;font-weight:800;color:#111;">Dragons United</div><div style="font-size:10px;color:#888;">Usman Malik · 7 players</div></div>
+            <div style="background:#E8F5E0;color:#09210E;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;">✓</div>
+          </div>
+          <div style="padding:10px 12px;display:flex;align-items:center;gap:9px;border-bottom:1px solid #F5F5F5;">
+            <div style="width:30px;height:30px;background:#E8F5E0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">🔥</div>
+            <div style="flex:1;"><div style="font-size:12px;font-weight:800;color:#111;">Blazers Club</div><div style="font-size:10px;color:#888;">Zain Ahmed · 7 players</div></div>
+            <div style="background:#E8F5E0;color:#09210E;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;">✓</div>
+          </div>
+          <div style="padding:10px 12px;display:flex;align-items:center;gap:9px;border-bottom:1px solid #F5F5F5;">
+            <div style="width:30px;height:30px;background:#E8F5E0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">🐺</div>
+            <div style="flex:1;"><div style="font-size:12px;font-weight:800;color:#111;">Wolves Pack</div><div style="font-size:10px;color:#888;">Faisal Qureshi · 6 players</div></div>
+            <div style="background:#E8F5E0;color:#09210E;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;">✓</div>
+          </div>
+          <div style="padding:10px 12px;display:flex;align-items:center;gap:9px;border-bottom:1px solid #F5F5F5;">
+            <div style="width:30px;height:30px;background:#E8F5E0;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">🎯</div>
+            <div style="flex:1;"><div style="font-size:12px;font-weight:800;color:#111;">Sharp Shooters</div><div style="font-size:10px;color:#888;">Bilal Ansari · 6 players</div></div>
+            <div style="background:#E8F5E0;color:#09210E;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;">✓</div>
+          </div>
+          <div style="padding:10px 12px;display:flex;align-items:center;gap:9px;">
+            <div style="flex:1;text-align:center;font-size:10px;color:#888;font-weight:600;">+ 6 more approved teams</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── MATCH UPDATES TAB (hidden by default) ── -->
+      <div id="s39-pane-match" style="display:none;flex:1;overflow-y:auto;background:#F4F7F2;padding:10px 0 16px;">
+
+        <div style="display:flex;align-items:center;gap:7px;padding:0 16px 8px;">
+          <span style="font-size:9px;font-weight:800;color:#09210E;letter-spacing:.5px;text-transform:uppercase;">Quarter-Finals · Round 1</span>
+        </div>
+
+        <!-- Match 1: Completed with report -->
+        <div style="margin:0 14px 9px;background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #EEF4E8;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+          <div style="padding:11px 12px 12px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <div style="font-size:9px;font-weight:800;color:#AAA;text-transform:uppercase;letter-spacing:.4px;">Match 1 · May 3, 2026</div>
+              <div style="background:#E8F5E0;color:#09210E;font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;">Completed</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <div style="flex:1;text-align:center;">
+                <div style="font-size:18px;margin-bottom:3px;">🦁</div>
+                <div style="font-size:11px;font-weight:900;color:#09210E;">Lions FC</div>
+                <div style="font-size:9px;color:#09210E;font-weight:800;margin-top:2px;">🏆 Winner</div>
+              </div>
+              <div style="font-size:12px;font-weight:900;color:#CCC;flex-shrink:0;">vs</div>
+              <div style="flex:1;text-align:center;opacity:.5;">
+                <div style="font-size:18px;margin-bottom:3px;">🌪️</div>
+                <div style="font-size:11px;font-weight:700;color:#888;">Storm Chasers</div>
+                <div style="font-size:9px;color:#C62828;font-weight:700;margin-top:2px;">Eliminated</div>
+              </div>
+            </div>
+            <div style="background:#F4F7F2;border-radius:10px;padding:8px 10px;border-left:3px solid #09210E;">
+              <div style="font-size:9px;font-weight:800;color:#09210E;margin-bottom:3px;text-transform:uppercase;letter-spacing:.3px;">Match Report</div>
+              <div style="font-size:11px;color:#555;line-height:1.6;">Lions FC dominated from the first quarter, showing sharp teamwork. Storm Chasers fought hard in Q3 but couldn't close the gap.</div>
+              <div style="font-size:9px;color:#AAA;margin-top:5px;">Posted by you · May 3, 8:45 PM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match 2: Completed with report -->
+        <div style="margin:0 14px 9px;background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #EEF4E8;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+          <div style="padding:11px 12px 12px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <div style="font-size:9px;font-weight:800;color:#AAA;text-transform:uppercase;letter-spacing:.4px;">Match 2 · May 3, 2026</div>
+              <div style="background:#E8F5E0;color:#09210E;font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;">Completed</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <div style="flex:1;text-align:center;opacity:.5;">
+                <div style="font-size:18px;margin-bottom:3px;">🐉</div>
+                <div style="font-size:11px;font-weight:700;color:#888;">Dragons United</div>
+                <div style="font-size:9px;color:#C62828;font-weight:700;margin-top:2px;">Eliminated</div>
+              </div>
+              <div style="font-size:12px;font-weight:900;color:#CCC;flex-shrink:0;">vs</div>
+              <div style="flex:1;text-align:center;">
+                <div style="font-size:18px;margin-bottom:3px;">🔥</div>
+                <div style="font-size:11px;font-weight:900;color:#09210E;">Blazers Club</div>
+                <div style="font-size:9px;color:#09210E;font-weight:800;margin-top:2px;">🏆 Winner</div>
+              </div>
+            </div>
+            <div style="background:#F4F7F2;border-radius:10px;padding:8px 10px;border-left:3px solid #09210E;">
+              <div style="font-size:9px;font-weight:800;color:#09210E;margin-bottom:3px;text-transform:uppercase;letter-spacing:.3px;">Match Report</div>
+              <div style="font-size:11px;color:#555;line-height:1.6;">Closely contested, decided in the final minute. Blazers' captain led a stunning Q4 comeback to seal victory.</div>
+              <div style="font-size:9px;color:#AAA;margin-top:5px;">Posted by you · May 3, 10:20 PM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match 3: Scheduled, ready to post -->
+        <div style="margin:0 14px 9px;background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #EEF4E8;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+          <div style="padding:11px 12px 12px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <div style="font-size:9px;font-weight:800;color:#AAA;text-transform:uppercase;letter-spacing:.4px;">Match 3 · May 5, 2026</div>
+              <div style="background:#FFF8E0;color:#7A5800;font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;border:1px solid #DDBC80;">Scheduled</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <div style="flex:1;text-align:center;">
+                <div style="font-size:18px;margin-bottom:3px;">🦅</div>
+                <div style="font-size:11px;font-weight:800;color:#333;">Eagles Squad</div>
+              </div>
+              <div style="font-size:12px;font-weight:900;color:#CCC;flex-shrink:0;">vs</div>
+              <div style="flex:1;text-align:center;">
+                <div style="font-size:18px;margin-bottom:3px;">🐺</div>
+                <div style="font-size:11px;font-weight:800;color:#333;">Wolves Pack</div>
+              </div>
+            </div>
+            <button id="s39-post-update-btn" style="width:100%;padding:10px;background:#09210E;color:#fff;font-size:11px;font-weight:900;border:none;border-radius:11px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:6px;"><i class="ri-edit-line" style="font-size:13px;pointer-events:none;"></i>Post Match Update</button>
+          </div>
+        </div>
+
+        <!-- Match 4: Upcoming (greyed) -->
+        <div style="margin:0 14px 9px;background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #EFEFEF;opacity:.65;">
+          <div style="padding:11px 12px 12px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <div style="font-size:9px;font-weight:800;color:#AAA;text-transform:uppercase;letter-spacing:.4px;">Match 4 · May 6, 2026</div>
+              <div style="background:#F0F0F0;color:#888;font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;">Upcoming</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="flex:1;text-align:center;">
+                <div style="font-size:18px;margin-bottom:3px;">⚡</div>
+                <div style="font-size:11px;font-weight:800;color:#888;">Thunder Bolts</div>
+              </div>
+              <div style="font-size:12px;font-weight:900;color:#DDD;flex-shrink:0;">vs</div>
+              <div style="flex:1;text-align:center;">
+                <div style="font-size:18px;margin-bottom:3px;">🎯</div>
+                <div style="font-size:11px;font-weight:800;color:#888;">Sharp Shooters</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ─── MATCH UPDATE BOTTOM SHEET ─── -->
+      <div id="s39-update-sheet" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 16px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Post Match Update</div>
+              <div style="font-size:11px;color:#999;margin-top:2px;">Match 3 · Eagles Squad vs Wolves Pack</div>
+            </div>
+            <div id="s39-update-close" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i></div>
+          </div>
+
+          <!-- Winner selection -->
+          <div style="margin-bottom:14px;">
+            <div style="font-size:12px;font-weight:800;color:#111;margin-bottom:10px;">Select Winner</div>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <div class="s39-winner-opt" data-winner="a" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#F4F7F2;border-radius:11px;border:2px solid #E0EED8;cursor:pointer;">
+                <div class="s39-radio" style="width:18px;height:18px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div>
+                <span style="font-size:16px;pointer-events:none;">🦅</span>
+                <div style="flex:1;font-size:12px;font-weight:800;color:#333;pointer-events:none;">Eagles Squad wins</div>
+              </div>
+              <div class="s39-winner-opt" data-winner="b" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#F4F7F2;border-radius:11px;border:2px solid #E0EED8;cursor:pointer;">
+                <div class="s39-radio" style="width:18px;height:18px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div>
+                <span style="font-size:16px;pointer-events:none;">🐺</span>
+                <div style="flex:1;font-size:12px;font-weight:800;color:#333;pointer-events:none;">Wolves Pack wins</div>
+              </div>
+              <div class="s39-winner-opt" data-winner="draw" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#F4F7F2;border-radius:11px;border:2px solid #E0EED8;cursor:pointer;">
+                <div class="s39-radio" style="width:18px;height:18px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div>
+                <span style="font-size:14px;pointer-events:none;">🤝</span>
+                <div style="flex:1;font-size:12px;font-weight:700;color:#555;pointer-events:none;">Draw / No Result</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Narrative -->
+          <div style="margin-bottom:16px;">
+            <div style="font-size:12px;font-weight:800;color:#111;margin-bottom:7px;">Match Narrative</div>
+            <textarea id="s39-narrative" placeholder="Describe what happened — key moments, standout players, how the game unfolded…" style="width:100%;height:88px;padding:10px;font-size:11px;font-family:inherit;border:1.5px solid #E0E0E0;border-radius:11px;resize:none;outline:none;color:#333;background:#FAFAFA;box-sizing:border-box;line-height:1.6;"></textarea>
+          </div>
+
+          <button id="s39-update-post" style="width:100%;padding:13px;background:#09210E;color:#fff;font-size:13px;font-weight:900;border:none;border-radius:13px;cursor:pointer;font-family:inherit;letter-spacing:.2px;">Post Update</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
 </div>
