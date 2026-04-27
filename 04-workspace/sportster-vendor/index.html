@@ -2326,23 +2326,64 @@ body:not(.interactive) #s22-success { display: none !important; }
                 <div class="toggle" id="r-discount-toggle" style="width:40px;height:22px;border-radius:11px;background:#DDD;position:relative;cursor:pointer;transition:background .25s;flex-shrink:0;"><div style="position:absolute;top:3px;left:3px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .25s;box-shadow:0 1px 3px rgba(0,0,0,.2);"></div></div>
               </div>
               <div id="r-discount-detail" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #F0F0F0;">
-                <!-- % input -->
-                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:6px;">Discount % (applied to all days)</div>
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-                  <input id="r-disc-input" type="number" min="1" max="80" placeholder="e.g. 20" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:15px;font-weight:900;color:#09210E;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;text-align:center;" />
-                  <div style="font-size:18px;font-weight:900;color:#09210E;">%</div>
+
+                <!-- STEP 1: Day -->
+                <div style="font-size:9px;font-weight:900;color:#888;letter-spacing:.6px;margin-bottom:6px;">STEP 1 — SELECT DAY</div>
+                <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;">
+                  <div class="r-disc-day" data-day="mon" data-label="Mon" style="padding:7px 10px;border-radius:9px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;text-align:center;min-width:36px;"><div style="font-size:11px;font-weight:800;color:#333;">Mon</div><div class="r-dday-price" style="font-size:9px;color:#AAA;margin-top:1px;">Rs 2,000</div></div>
+                  <div class="r-disc-day" data-day="tue" data-label="Tue" style="padding:7px 10px;border-radius:9px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;text-align:center;min-width:36px;"><div style="font-size:11px;font-weight:800;color:#333;">Tue</div><div class="r-dday-price" style="font-size:9px;color:#AAA;margin-top:1px;">Rs 2,000</div></div>
+                  <div class="r-disc-day" data-day="wed" data-label="Wed" style="padding:7px 10px;border-radius:9px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;text-align:center;min-width:36px;"><div style="font-size:11px;font-weight:800;color:#333;">Wed</div><div class="r-dday-price" style="font-size:9px;color:#AAA;margin-top:1px;">Rs 2,000</div></div>
+                  <div class="r-disc-day" data-day="thu" data-label="Thu" style="padding:7px 10px;border-radius:9px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;text-align:center;min-width:36px;"><div style="font-size:11px;font-weight:800;color:#333;">Thu</div><div class="r-dday-price" style="font-size:9px;color:#AAA;margin-top:1px;">Rs 2,000</div></div>
+                  <div class="r-disc-day" data-day="fri" data-label="Fri" style="padding:7px 10px;border-radius:9px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;text-align:center;min-width:36px;"><div style="font-size:11px;font-weight:800;color:#333;">Fri</div><div class="r-dday-price" style="font-size:9px;color:#AAA;margin-top:1px;">Rs 2,500</div></div>
+                  <div class="r-disc-day" data-day="sat" data-label="Sat" style="padding:7px 10px;border-radius:9px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;text-align:center;min-width:36px;"><div style="font-size:11px;font-weight:800;color:#333;">Sat</div><div class="r-dday-price" style="font-size:9px;color:#AAA;margin-top:1px;">Rs 2,500</div></div>
+                  <div class="r-disc-day" data-day="sun" data-label="Sun" style="padding:7px 10px;border-radius:9px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;text-align:center;min-width:36px;"><div style="font-size:11px;font-weight:800;color:#333;">Sun</div><div class="r-dday-price" style="font-size:9px;color:#AAA;margin-top:1px;">Rs 2,500</div></div>
                 </div>
-                <!-- Per-day rows: original price + discounted price -->
-                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Original Price → Discounted Price</div>
-                <div style="display:flex;flex-direction:column;gap:5px;" id="r-disc-preview">
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Mon</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,000</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Tue</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,000</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Wed</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,000</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Thu</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,000</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:800;color:#09210E;width:28px;flex-shrink:0;">Fri</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,500</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Sat</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,500</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Sun</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,500</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
+
+                <!-- STEPS 2–4: shown after day picked -->
+                <div id="r-disc-builder" style="display:none;">
+
+                  <!-- STEP 2: Slot grid -->
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+                    <div style="font-size:9px;font-weight:900;color:#888;letter-spacing:.6px;">STEP 2 — SELECT SLOTS <span id="r-disc-day-label" style="color:#09210E;font-weight:900;"></span></div>
+                    <div id="r-disc-all-row" style="display:flex;align-items:center;gap:5px;cursor:pointer;">
+                      <div id="r-disc-all-chk" style="width:14px;height:14px;border:1.5px solid #CCC;border-radius:4px;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;"></div>
+                      <span style="font-size:10px;color:#555;font-weight:700;">All slots</span>
+                    </div>
+                  </div>
+                  <div id="r-disc-slot-grid" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px;"></div>
+
+                  <!-- STEP 3: % -->
+                  <div style="font-size:9px;font-weight:900;color:#888;letter-spacing:.6px;margin-bottom:6px;">STEP 3 — DISCOUNT %</div>
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;">
+                    <input id="r-disc-pct" type="number" min="1" max="80" placeholder="e.g. 20" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:15px;font-weight:900;color:#09210E;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;text-align:center;" />
+                    <div style="font-size:18px;font-weight:900;color:#09210E;">%</div>
+                  </div>
+
+                  <!-- STEP 4: Frequency -->
+                  <div style="font-size:9px;font-weight:900;color:#888;letter-spacing:.6px;margin-bottom:6px;">STEP 4 — HOW OFTEN?</div>
+                  <div style="display:flex;gap:6px;margin-bottom:14px;">
+                    <div class="r-disc-freq r-disc-freq-sel" data-freq="weekly" style="flex:1;padding:10px 6px;border-radius:10px;border:1.5px solid #09210E;background:#09210E;text-align:center;cursor:pointer;">
+                      <div style="font-size:12px;">🔁</div>
+                      <div style="font-size:11px;font-weight:800;color:#fff;margin-top:2px;">Every Week</div>
+                      <div style="font-size:9px;color:rgba(255,255,255,.6);margin-top:1px;">Recurring</div>
+                    </div>
+                    <div class="r-disc-freq" data-freq="once" style="flex:1;padding:10px 6px;border-radius:10px;border:1.5px solid #DDD;background:#fff;text-align:center;cursor:pointer;">
+                      <div style="font-size:12px;">📅</div>
+                      <div style="font-size:11px;font-weight:800;color:#555;margin-top:2px;">One-time</div>
+                      <div style="font-size:9px;color:#AAA;margin-top:1px;">This week only</div>
+                    </div>
+                  </div>
+
+                  <button id="r-disc-add-btn" style="width:100%;padding:12px;background:#09210E;color:#fff;border:none;border-radius:10px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;letter-spacing:.3px;">+ ADD DISCOUNT RULE</button>
                 </div>
+
+                <!-- Active Rules -->
+                <div id="r-disc-rules-wrap" style="display:none;margin-top:14px;padding-top:12px;border-top:1px solid #F0F0F0;">
+                  <div style="font-size:9px;font-weight:900;color:#888;letter-spacing:.6px;margin-bottom:8px;">ACTIVE RULES</div>
+                  <div id="r-disc-rules-list" style="display:flex;flex-direction:column;gap:6px;"></div>
+                  <div id="r-disc-add-more" style="margin-top:10px;padding:9px;border-radius:9px;border:1.5px dashed #09210E;text-align:center;font-size:11px;font-weight:800;color:#09210E;cursor:pointer;">+ Add Another Rule</div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -4167,19 +4208,72 @@ body:not(.interactive) #s22-success { display: none !important; }
     var dayOrder = ['mon','tue','wed','thu','fri','sat','sun'];
     var dayLabels = {mon:'Mon',tue:'Tue',wed:'Wed',thu:'Thu',fri:'Fri',sat:'Sat',sun:'Sun'};
 
-    function updateDiscPreview(pct) {
-      var preview = s22.querySelector('#r-disc-preview');
-      if (!preview) return;
-      var rows = preview.querySelectorAll('div[style*="display:flex"]');
-      dayOrder.forEach(function(d, i) {
-        var row = rows[i]; if (!row) return;
-        var orig = prices[d];
-        var disc = Math.round(orig * (1 - pct/100) / 100) * 100;
-        var origEl = row.querySelector('.r-disc-orig');
-        var newEl = row.querySelector('.r-disc-new');
-        if (origEl) origEl.textContent = 'Rs ' + orig.toLocaleString();
-        if (newEl) newEl.textContent = 'Rs ' + disc.toLocaleString();
+    // Discount builder state
+    var discSlotTimes = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'];
+    var discRules = [];
+    var discSelDay = null;
+    var discSelSlots = [];
+    var discAllSlots = false;
+    var discFreq = 'weekly';
+
+    function discBuildSlotGrid() {
+      var grid = s22.querySelector('#r-disc-slot-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      discSelSlots = [];
+      discAllSlots = false;
+      var allChk = s22.querySelector('#r-disc-all-chk');
+      if (allChk) { allChk.innerHTML=''; allChk.style.background='#fff'; allChk.style.borderColor='#CCC'; }
+      discSlotTimes.forEach(function(t) {
+        var el = document.createElement('div');
+        el.className = 'r-disc-slot';
+        el.setAttribute('data-slot', t);
+        el.style.cssText = 'padding:6px 9px;border-radius:8px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;';
+        el.textContent = t;
+        grid.appendChild(el);
       });
+    }
+
+    function discRenderRules() {
+      var wrap = s22.querySelector('#r-disc-rules-wrap');
+      var list = s22.querySelector('#r-disc-rules-list');
+      if (!wrap || !list) return;
+      if (discRules.length === 0) { wrap.style.display='none'; return; }
+      wrap.style.display = 'block';
+      list.innerHTML = '';
+      discRules.forEach(function(rule, idx) {
+        var slotsText = rule.allSlots ? 'All Slots' : rule.slots.join(', ');
+        var freqLabel = rule.freq==='weekly' ? '🔁 Every Week' : '📅 One-time';
+        var freqBg = rule.freq==='weekly' ? '#E8F5E9' : '#FFF3E0';
+        var freqClr = rule.freq==='weekly' ? '#09210E' : '#E65100';
+        var item = document.createElement('div');
+        item.style.cssText = 'background:#F4FAEE;border:1.5px solid #C8E6C9;border-radius:10px;padding:9px 10px;display:flex;align-items:flex-start;gap:8px;';
+        item.innerHTML =
+          '<div style="flex:1;min-width:0;">' +
+            '<div style="font-size:12px;font-weight:800;color:#09210E;">' + rule.dayLabel + ' — ' + rule.pct + '% off</div>' +
+            '<div style="font-size:10px;color:#666;margin-top:2px;word-break:break-word;">' + slotsText + '</div>' +
+            '<span style="display:inline-block;margin-top:4px;background:' + freqBg + ';border-radius:6px;padding:2px 7px;font-size:9px;font-weight:800;color:' + freqClr + ';">' + freqLabel + '</span>' +
+          '</div>' +
+          '<div class="r-disc-rm" data-idx="' + idx + '" style="width:22px;height:22px;border-radius:50%;background:#FFEBEE;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">' +
+            '<i class="ri-delete-bin-line" style="font-size:12px;color:#E53935;pointer-events:none;"></i>' +
+          '</div>';
+        list.appendChild(item);
+      });
+    }
+
+    function discResetBuilder() {
+      discSelDay = null;
+      discSelSlots = [];
+      discAllSlots = false;
+      s22.querySelectorAll('.r-disc-day').forEach(function(d) {
+        d.style.borderColor='#E0E0E0'; d.style.background='#fff';
+        var n=d.querySelector('div:first-child'); if(n) n.style.color='#333';
+        var p=d.querySelector('.r-dday-price'); if(p) p.style.color='#AAA';
+      });
+      var builder = s22.querySelector('#r-disc-builder');
+      if (builder) builder.style.display='none';
+      var pctEl = s22.querySelector('#r-disc-pct');
+      if (pctEl) pctEl.value='';
     }
 
     function showStep(n) {
@@ -4374,9 +4468,9 @@ body:not(.interactive) #s22-success { display: none !important; }
 
       // Day price steppers
       var pMinus = e.target.closest('.r-p-minus');
-      if (pMinus) { e.stopPropagation(); var d=pMinus.getAttribute('data-day'); if(d){ prices[d]=Math.max(100,prices[d]-100); updatePriceDisplay(d); var pctEl=s22.querySelector('#r-disc-input'); if(pctEl&&pctEl.value) updateDiscPreview(parseInt(pctEl.value)||0); } return; }
+      if (pMinus) { e.stopPropagation(); var d=pMinus.getAttribute('data-day'); if(d){ prices[d]=Math.max(100,prices[d]-100); updatePriceDisplay(d); } return; }
       var pPlus = e.target.closest('.r-p-plus');
-      if (pPlus)  { e.stopPropagation(); var d=pPlus.getAttribute('data-day');  if(d){ prices[d]=Math.min(99900,prices[d]+100); updatePriceDisplay(d); var pctEl=s22.querySelector('#r-disc-input'); if(pctEl&&pctEl.value) updateDiscPreview(parseInt(pctEl.value)||0); } return; }
+      if (pPlus)  { e.stopPropagation(); var d=pPlus.getAttribute('data-day');  if(d){ prices[d]=Math.min(99900,prices[d]+100); updatePriceDisplay(d); } return; }
 
       // Conf pills
       var confPill = e.target.closest('.r-conf-pill');
@@ -4394,7 +4488,104 @@ body:not(.interactive) #s22-success { display: none !important; }
       var canPill = e.target.closest('.r-can-pill');
       if (canPill) { e.stopPropagation(); s22.querySelectorAll('.r-can-pill').forEach(function(p){ p.style.background='#fff';p.style.color='#555';p.style.borderColor='#DDD';p.classList.remove('r-sel'); }); canPill.style.background='#09210E';canPill.style.color='#fff';canPill.style.borderColor='#09210E';canPill.classList.add('r-sel'); return; }
 
-      // Discount stepper
+      // Discount: day pill
+      var discDayEl = e.target.closest('.r-disc-day');
+      if (discDayEl && s22.contains(discDayEl)) {
+        e.stopPropagation();
+        discSelDay = discDayEl.getAttribute('data-day');
+        var dLabel = discDayEl.getAttribute('data-label');
+        s22.querySelectorAll('.r-disc-day').forEach(function(d) {
+          d.style.borderColor='#E0E0E0'; d.style.background='#fff';
+          var n=d.querySelector('div:first-child'); if(n) n.style.color='#333';
+          var p=d.querySelector('.r-dday-price'); if(p) p.style.color='#AAA';
+        });
+        discDayEl.style.borderColor='#09210E'; discDayEl.style.background='#09210E';
+        var dn=discDayEl.querySelector('div:first-child'); if(dn) dn.style.color='#fff';
+        var dp=discDayEl.querySelector('.r-dday-price'); if(dp) dp.style.color='rgba(255,255,255,.7)';
+        var builder=s22.querySelector('#r-disc-builder'); if(builder) builder.style.display='block';
+        var lbl=s22.querySelector('#r-disc-day-label'); if(lbl) lbl.textContent='— '+dLabel;
+        discBuildSlotGrid();
+        return;
+      }
+
+      // Discount: slot click
+      var discSlotEl = e.target.closest('.r-disc-slot');
+      if (discSlotEl && s22.contains(discSlotEl)) {
+        e.stopPropagation();
+        var slot = discSlotEl.getAttribute('data-slot');
+        var si = discSelSlots.indexOf(slot);
+        if (si === -1) {
+          discSelSlots.push(slot);
+          discSlotEl.style.background='#09210E'; discSlotEl.style.borderColor='#09210E'; discSlotEl.style.color='#fff';
+        } else {
+          discSelSlots.splice(si, 1);
+          discSlotEl.style.background='#fff'; discSlotEl.style.borderColor='#E0E0E0'; discSlotEl.style.color='#555';
+          discAllSlots=false;
+          var ac=s22.querySelector('#r-disc-all-chk'); if(ac){ac.innerHTML='';ac.style.background='#fff';ac.style.borderColor='#CCC';}
+        }
+        return;
+      }
+
+      // Discount: all-slots checkbox
+      if (e.target.id==='r-disc-all-row' || e.target.closest('#r-disc-all-row')) {
+        e.stopPropagation();
+        discAllSlots = !discAllSlots;
+        var ac=s22.querySelector('#r-disc-all-chk');
+        if(ac){ if(discAllSlots){ac.innerHTML='<i class="ri-check-line" style="font-size:10px;color:#fff;pointer-events:none;"></i>';ac.style.background='#09210E';ac.style.borderColor='#09210E';}else{ac.innerHTML='';ac.style.background='#fff';ac.style.borderColor='#CCC';} }
+        discSelSlots=[];
+        s22.querySelectorAll('.r-disc-slot').forEach(function(sl){
+          if(discAllSlots){discSelSlots.push(sl.getAttribute('data-slot'));sl.style.background='#09210E';sl.style.borderColor='#09210E';sl.style.color='#fff';}
+          else{sl.style.background='#fff';sl.style.borderColor='#E0E0E0';sl.style.color='#555';}
+        });
+        return;
+      }
+
+      // Discount: frequency pill
+      var freqPill = e.target.closest('.r-disc-freq');
+      if (freqPill && s22.contains(freqPill)) {
+        e.stopPropagation();
+        discFreq = freqPill.getAttribute('data-freq');
+        s22.querySelectorAll('.r-disc-freq').forEach(function(p){
+          p.style.background='#fff'; p.style.borderColor='#DDD';
+          var t=p.querySelector('div:nth-child(2)'); if(t) t.style.color='#555';
+          var sub=p.querySelector('div:nth-child(3)'); if(sub) sub.style.color='#AAA';
+        });
+        freqPill.style.background='#09210E'; freqPill.style.borderColor='#09210E';
+        var ft=freqPill.querySelector('div:nth-child(2)'); if(ft) ft.style.color='#fff';
+        var fsub=freqPill.querySelector('div:nth-child(3)'); if(fsub) fsub.style.color='rgba(255,255,255,.6)';
+        return;
+      }
+
+      // Discount: add rule button
+      if (e.target.id==='r-disc-add-btn' || e.target.closest('#r-disc-add-btn')) {
+        e.stopPropagation();
+        if (!discSelDay) return;
+        var slotsToSave = discAllSlots ? discSlotTimes.slice() : discSelSlots.slice();
+        if (!discAllSlots && slotsToSave.length===0) return;
+        var pctEl=s22.querySelector('#r-disc-pct'); var pct=pctEl?(parseInt(pctEl.value)||0):0;
+        if(pct<1||pct>80){if(pctEl){pctEl.style.borderColor='#E53935';setTimeout(function(){pctEl.style.borderColor='#E0E0E0';},800);}return;}
+        var dPill=s22.querySelector('.r-disc-day[data-day="'+discSelDay+'"]');
+        var dLabel=dPill?dPill.getAttribute('data-label'):discSelDay;
+        discRules.push({day:discSelDay,dayLabel:dLabel,slots:slotsToSave,allSlots:discAllSlots,pct:pct,freq:discFreq});
+        discRenderRules();
+        discBuildSlotGrid();
+        if(pctEl) pctEl.value='';
+        return;
+      }
+
+      // Discount: remove rule
+      var rmBtn = e.target.closest('.r-disc-rm');
+      if (rmBtn && s22.contains(rmBtn)) {
+        e.stopPropagation();
+        var ri=parseInt(rmBtn.getAttribute('data-idx'));
+        if(!isNaN(ri)){discRules.splice(ri,1);discRenderRules();}
+        return;
+      }
+
+      // Discount: add another rule
+      if (e.target.id==='r-disc-add-more' || e.target.closest('#r-disc-add-more')) {
+        e.stopPropagation(); discResetBuilder(); return;
+      }
 
       // Declaration checkbox
       if (e.target.id === 'r-decl-row' || e.target.closest('#r-decl-row')) { e.stopPropagation(); var chk=s22.querySelector('#r-decl-check'); if(!chk) return; var on=chk.classList.contains('checked'); if(on){ chk.classList.remove('checked');chk.style.background='#fff';chk.style.borderColor='#C0C0C0';chk.innerHTML=''; }else{ chk.classList.add('checked');chk.style.background='#09210E';chk.style.borderColor='#09210E';chk.innerHTML='<i class="ri-check-line" style="font-size:10px;color:#fff;"></i>'; } return; }
@@ -4405,15 +4596,6 @@ body:not(.interactive) #s22-success { display: none !important; }
       var goEl = e.target.closest('[data-go="s22"]');
       if (goEl) { setTimeout(function(){ showStep(1); var suc=document.getElementById('s22-success'); if(suc) suc.style.display='none'; }, 50); }
     });
-
-    // Wire discount % input (updateDiscPreview is local to this IIFE, can't use inline oninput)
-    var discInput = s22.querySelector('#r-disc-input');
-    if (discInput) {
-      discInput.addEventListener('input', function() {
-        var v = parseInt(this.value) || 0;
-        if (v >= 1 && v <= 80) updateDiscPreview(v);
-      });
-    }
 
     // Wire discount toggle directly — the global .toggle handler fires first with stopPropagation,
     // which prevents the document listener from ever seeing this click. A direct listener on the
