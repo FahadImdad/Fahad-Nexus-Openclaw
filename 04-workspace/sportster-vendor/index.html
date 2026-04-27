@@ -402,6 +402,13 @@ body.interactive .page-label { display: none; }
 body.interactive #demo-toggle { background: #1a1a1a; color: #fff; }
 body.interactive #demo-toggle::before { content: '← '; }
 
+/* Flow view: show all 6 registration steps as one tall screen */
+body:not(.interactive) #s22 .reg-step { display: block !important; }
+body:not(.interactive) #s22 .reg-step + .reg-step { border-top: 2px dashed #E0E0E0; margin-top: 4px; padding-top: 14px; }
+/* Flow view: hide error toast and success overlay */
+body:not(.interactive) #s22-error,
+body:not(.interactive) #s22-success { display: none !important; }
+
 /* ── DEMO TOGGLE BUTTON ── */
 #demo-toggle {
   position: fixed; top: 16px; right: 16px; z-index: 9999;
@@ -2045,7 +2052,7 @@ body.interactive #demo-toggle::before { content: '← '; }
      SCREEN 22 — REGISTER NEW ARENA (multi-step wizard)
 ═══════════════════════════════════════════════════════ -->
 <div class="col" id="s22">
-  <div class="page-label">22 · Register New Arena — 6-step wizard</div>
+  <div class="page-label">22 · Register New Arena — All 6 Steps (scroll down)</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;">
