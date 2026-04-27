@@ -2633,7 +2633,7 @@ body:not(.interactive) #s22-success { display: none !important; }
   <div class="page-label">9 · Schedule (Hourly) — tap arena card</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
-    <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden;">
+    <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden; position:relative;">
 
       <!-- Header -->
       <div style="padding:10px 16px 10px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
@@ -2767,6 +2767,25 @@ body:not(.interactive) #s22-success { display: none !important; }
         </div>
       </div>
 
+      <!-- Blocked Dates Management Sheet -->
+      <div id="s9-hol-mgmt" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 16px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Blocked Dates</div>
+              <div style="font-size:11px;color:#999;margin-top:2px;">Tap × to unblock · tap <b style="color:#09210E;">Mark More</b> to add</div>
+            </div>
+            <div id="s9-hol-mgmt-close" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i></div>
+          </div>
+          <div id="s9-hol-mgmt-list" style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;margin-bottom:16px;"></div>
+          <div style="display:flex;gap:8px;">
+            <button id="s9-hol-mgmt-add" style="flex:1;padding:12px;border:1.5px solid #09210E;border-radius:12px;font-size:12px;font-weight:800;color:#09210E;background:#fff;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;"><i class="ri-calendar-close-line" style="font-size:14px;"></i>Mark More</button>
+            <button id="s9-hol-mgmt-done" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Done</button>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="bottom-nav">
       <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
@@ -2792,7 +2811,7 @@ body:not(.interactive) #s22-success { display: none !important; }
   <div class="page-label">9b · Schedule (Half-Hour) — if arena uses 30-min slots</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
-    <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden;">
+    <div class="screen active" style="background:#F4F7F2; display:flex; flex-direction:column; overflow:hidden; position:relative;">
 
       <!-- Header -->
       <div style="padding:10px 16px 10px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
@@ -2802,7 +2821,8 @@ body:not(.interactive) #s22-success { display: none !important; }
             <div style="font-size:15px;font-weight:800;color:#111;">Elite Sports Arena</div>
             <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5 · <b style="color:#09210E;">Half-hour slots</b></div>
           </div>
-          <div data-go="s18" style="width:32px;height:32px;background:#09210E;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-settings-3-line" style="font-size:16px;color:#fff;line-height:1;"></i></div>
+          <div id="s9b-holiday-btn" style="width:32px;height:32px;background:#FFF3F3;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-calendar-close-line" style="font-size:16px;color:#E53935;line-height:1;"></i></div>
+          <div data-go="s18" style="width:32px;height:32px;background:#09210E;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;margin-left:4px;"><i class="ri-settings-3-line" style="font-size:16px;color:#fff;line-height:1;"></i></div>
         </div>
 
       <!-- Arena switcher + slot type -->
@@ -2908,6 +2928,56 @@ body:not(.interactive) #s22-success { display: none !important; }
           <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:30p</div><div class="sg-pr">1.2k</div></div>
           <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:00p</div><div class="sg-pr">1.2k</div></div>
           <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:30p</div><div class="sg-pr">1.2k</div></div>
+        </div>
+      </div>
+
+      <!-- Calendar Sheet -->
+      <div id="s9b-holiday-sheet" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;max-height:88%;overflow-y:auto;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 18px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Mark Days Off</div>
+              <div style="font-size:11px;color:#999;margin-top:3px;">Tap a date to block · tap again to unblock</div>
+            </div>
+            <div id="s9b-cal-close-x" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i></div>
+          </div>
+          <div style="display:flex;align-items:center;margin-bottom:16px;">
+            <div id="s9b-cal-prev" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-left-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
+            <div id="s9b-cal-month-lbl" style="flex:1;text-align:center;font-size:16px;font-weight:900;color:#111;"></div>
+            <div id="s9b-cal-next" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-right-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:8px;text-align:center;">
+            <div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">M</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">W</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">F</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div>
+          </div>
+          <div id="s9b-cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:16px;"></div>
+          <div id="s9b-cal-summary" style="display:none;background:#FFF3F3;border-radius:12px;padding:11px 13px;margin-bottom:16px;border:1.5px solid #FFCDD2;">
+            <div style="font-size:10px;font-weight:900;color:#C62828;margin-bottom:4px;">🚫 Days Blocked</div>
+            <div id="s9b-cal-sum-text" style="font-size:11px;color:#666;line-height:1.8;"></div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button id="s9b-cal-cancel" style="flex:1;padding:13px;border:1.5px solid #E0E0E0;border-radius:12px;font-size:13px;font-weight:700;color:#555;background:#fff;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button id="s9b-cal-confirm" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Confirm</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blocked Dates Management Sheet -->
+      <div id="s9b-hol-mgmt" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 16px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Blocked Dates</div>
+              <div style="font-size:11px;color:#999;margin-top:2px;">Tap × to unblock · tap <b style="color:#09210E;">Mark More</b> to add</div>
+            </div>
+            <div id="s9b-hol-mgmt-close" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i></div>
+          </div>
+          <div id="s9b-hol-mgmt-list" style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;margin-bottom:16px;"></div>
+          <div style="display:flex;gap:8px;">
+            <button id="s9b-hol-mgmt-add" style="flex:1;padding:12px;border:1.5px solid #09210E;border-radius:12px;font-size:12px;font-weight:800;color:#09210E;background:#fff;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;"><i class="ri-calendar-close-line" style="font-size:14px;"></i>Mark More</button>
+            <button id="s9b-hol-mgmt-done" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Done</button>
+          </div>
         </div>
       </div>
 
@@ -4785,26 +4855,28 @@ body:not(.interactive) #s22-success { display: none !important; }
   })();
 
 
-  // ── S9 Holiday / Off-Day Calendar ──────────────────────────
-  (function() {
-    var s9 = document.getElementById('s9');
-    if (!s9) return;
+  // ── S9 / S9b Holiday Calendar shared logic ─────────────────
+  function makeScheduleCal(cfg) {
+    var scr     = cfg.scr;
+    var el      = document.getElementById(scr);
+    if (!el) return;
+    var pfx     = cfg.pfx;   // 's9-cal' or 's9b-cal'
 
-    var sheet   = s9.querySelector('#s9-holiday-sheet');
-    var calGrid = s9.querySelector('#s9-cal-grid');
-    var mLbl    = s9.querySelector('#s9-cal-month-lbl');
-    var sumWrap = s9.querySelector('#s9-cal-summary');
-    var sumText = s9.querySelector('#s9-cal-sum-text');
-    var overlay = s9.querySelector('#s9-holiday-overlay');
+    var sheet   = el.querySelector('#' + scr + '-holiday-sheet');
+    var calGrid = el.querySelector('#' + pfx + '-grid');
+    var mLbl    = el.querySelector('#' + pfx + '-month-lbl');
+    var sumWrap = el.querySelector('#' + pfx + '-summary');
+    var sumText = el.querySelector('#' + pfx + '-sum-text');
+    var overlay = el.querySelector('#' + scr + '-holiday-overlay') || null;
+    var mgmt     = el.querySelector('#' + scr + '-hol-mgmt');
+    var mgmtList = el.querySelector('#' + scr + '-hol-mgmt-list');
 
-    var TODAY = new Date(2026, 3, 28); // April 28 2026 (prototype date)
-    var calYear = 2026, calMonth = 3;
-
-    var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    var SHORT  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-    var offDays  = {};   // committed: 'YYYY-M-D' → true
-    var tempOff  = {};   // working copy while sheet is open
+    var TODAY   = new Date(2026, 3, 28);
+    var calYear = TODAY.getFullYear(), calMonth = TODAY.getMonth();
+    var MONTHS  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var SHORT   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var DOWS    = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var offDays = {}, tempOff = {};
 
     function dkey(y, m, d) { return y + '-' + m + '-' + d; }
 
@@ -4812,14 +4884,11 @@ body:not(.interactive) #s22-success { display: none !important; }
       if (!calGrid || !mLbl) return;
       mLbl.textContent = MONTHS[calMonth] + ' ' + calYear;
       calGrid.innerHTML = '';
-
-      var firstDow = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
-      var offset   = (firstDow === 0) ? 6 : firstDow - 1;    // Mon-start
+      var firstDow = new Date(calYear, calMonth, 1).getDay();
+      var offset   = (firstDow === 0) ? 6 : firstDow - 1;
       var dim      = new Date(calYear, calMonth + 1, 0).getDate();
       var todayMid = new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate());
-
       for (var i = 0; i < offset; i++) { calGrid.appendChild(document.createElement('div')); }
-
       for (var d = 1; d <= dim; d++) {
         var cell = document.createElement('div');
         var k    = dkey(calYear, calMonth, d);
@@ -4827,130 +4896,138 @@ body:not(.interactive) #s22-success { display: none !important; }
         var past = dt < todayMid;
         var tod  = (calYear === TODAY.getFullYear() && calMonth === TODAY.getMonth() && d === TODAY.getDate());
         var off  = !!tempOff[k];
-
         cell.setAttribute('data-ckey', k);
         cell.style.cssText = 'aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:12px;font-weight:700;';
-
         if (past) {
-          cell.style.color  = '#CCC';
-          cell.style.fontSize = '11px';
+          cell.style.color = '#CCC'; cell.style.fontSize = '11px';
         } else if (off) {
-          cell.style.background = '#E53935';
-          cell.style.color      = '#fff';
-          cell.style.cursor     = 'pointer';
+          cell.style.background = '#E53935'; cell.style.color = '#fff'; cell.style.cursor = 'pointer';
         } else if (tod) {
-          cell.style.background = '#E8F5E9';
-          cell.style.color      = '#09210E';
-          cell.style.fontWeight = '900';
-          cell.style.outline    = '1.5px solid #09210E';
-          cell.style.cursor     = 'pointer';
+          cell.style.background = '#E8F5E9'; cell.style.color = '#09210E'; cell.style.fontWeight = '900';
+          cell.style.outline = '1.5px solid #09210E'; cell.style.cursor = 'pointer';
         } else {
-          cell.style.background = '#F5F5F5';
-          cell.style.color      = '#333';
-          cell.style.cursor     = 'pointer';
+          cell.style.background = '#F5F5F5'; cell.style.color = '#333'; cell.style.cursor = 'pointer';
         }
-
         cell.textContent = d;
         calGrid.appendChild(cell);
       }
-
       refreshSummary();
     }
 
     function refreshSummary() {
       if (!sumWrap || !sumText) return;
       var keys = Object.keys(tempOff).filter(function(k) { return tempOff[k]; }).sort();
-      if (keys.length === 0) { sumWrap.style.display = 'none'; return; }
+      if (!keys.length) { sumWrap.style.display = 'none'; return; }
       sumWrap.style.display = 'block';
       sumText.textContent = keys.map(function(k) {
-        var p = k.split('-');
-        return SHORT[parseInt(p[1])] + ' ' + p[2];
+        var p = k.split('-'); return SHORT[parseInt(p[1])] + ' ' + p[2];
       }).join(' · ');
     }
+
+    function renderMgmt() {
+      if (!mgmtList) return;
+      var keys = Object.keys(offDays).filter(function(k) { return offDays[k]; }).sort();
+      if (!keys.length) {
+        mgmtList.innerHTML = '<div style="text-align:center;padding:24px 0;color:#CCC;font-size:12px;font-style:italic;">No dates blocked yet</div>';
+        return;
+      }
+      mgmtList.innerHTML = keys.map(function(k) {
+        var p   = k.split('-');
+        var lbl = SHORT[parseInt(p[1])] + ' ' + p[2] + ', ' + p[0];
+        var dow = new Date(parseInt(p[0]), parseInt(p[1]), parseInt(p[2])).getDay();
+        return '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#FFF8F8;border-radius:11px;border:1px solid #FFCDD2;">' +
+          '<div style="display:flex;align-items:center;gap:10px;">' +
+            '<div style="width:36px;height:36px;background:#FFEBEE;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🚫</div>' +
+            '<div><div style="font-size:13px;font-weight:800;color:#C62828;">' + lbl + '</div>' +
+            '<div style="font-size:10px;color:#AAA;margin-top:2px;">' + DOWS[dow] + ' · Arena Closed</div></div>' +
+          '</div>' +
+          '<div class="sch-mgmt-rm" data-scr="' + scr + '" data-key="' + k + '" style="width:28px;height:28px;background:#FFE0E0;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;font-weight:900;color:#E53935;flex-shrink:0;line-height:1;">×</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function openMgmt()  { renderMgmt(); if (mgmt) mgmt.style.display = 'flex'; }
+    function closeMgmt() { if (mgmt) mgmt.style.display = 'none'; }
 
     function openSheet() {
       tempOff = {};
       Object.keys(offDays).forEach(function(k) { tempOff[k] = true; });
       calYear = TODAY.getFullYear(); calMonth = TODAY.getMonth();
       renderCal();
-      sheet.style.display = 'flex';
+      if (sheet) sheet.style.display = 'flex';
     }
 
-    function closeSheet() { tempOff = {}; sheet.style.display = 'none'; }
+    function closeSheet() { tempOff = {}; if (sheet) sheet.style.display = 'none'; }
 
     function confirmSheet() {
       offDays = {};
       Object.keys(tempOff).forEach(function(k) { if (tempOff[k]) offDays[k] = true; });
-      sheet.style.display = 'none';
+      if (sheet) sheet.style.display = 'none';
       updateDateStrip();
+      if (Object.keys(offDays).length > 0) openMgmt();
     }
 
     function updateDateStrip() {
-      s9.querySelectorAll('.dt-day').forEach(function(dd) {
+      el.querySelectorAll('.dt-day').forEach(function(dd) {
         var numEl = dd.querySelector('.dd-num');
         var tagEl = dd.querySelector('.dd-tag');
         if (!numEl || !tagEl) return;
         var d = parseInt(numEl.textContent);
         if (isNaN(d)) return;
-        var k = dkey(2026, 3, d); // April 2026 matches the strip's dates
+        var k = dkey(2026, 3, d);
         if (offDays[k]) {
-          tagEl.innerHTML = '🚫';
-          tagEl.style.color = '#E53935';
-          dd.style.background = '#FFF5F5';
-          dd.setAttribute('data-hol', '1');
+          tagEl.innerHTML = '🚫'; tagEl.style.color = '#E53935';
+          dd.style.background = '#FFF5F5'; dd.setAttribute('data-hol', '1');
         } else if (dd.getAttribute('data-hol')) {
-          dd.removeAttribute('data-hol');
-          dd.style.background = '';
-          var orig = dd.getAttribute('data-orig-tag');
-          tagEl.innerHTML = orig || '—';
-          tagEl.style.color = '';
+          dd.removeAttribute('data-hol'); dd.style.background = '';
+          tagEl.innerHTML = dd.getAttribute('data-orig-tag') || '—'; tagEl.style.color = '';
         }
       });
     }
 
-    // Store original tags so we can restore them
-    s9.querySelectorAll('.dt-day').forEach(function(dd) {
+    el.querySelectorAll('.dt-day').forEach(function(dd) {
       var t = dd.querySelector('.dd-tag');
       if (t) dd.setAttribute('data-orig-tag', t.innerHTML);
     });
 
     document.addEventListener('click', function(e) {
-      // Open calendar
-      if (e.target.closest('#s9-holiday-btn')) { openSheet(); return; }
-      // Re-open from overlay
-      if (e.target.closest('#s9-hol-edit-btn')) { openSheet(); return; }
-      // Close X / backdrop / cancel
-      if (e.target.id === 's9-holiday-sheet') { closeSheet(); return; }
-      if (e.target.closest('#s9-cal-close-x') && s9.contains(e.target)) { closeSheet(); return; }
-      if (e.target.closest('#s9-cal-cancel')  && s9.contains(e.target)) { closeSheet(); return; }
-      // Confirm
-      if (e.target.closest('#s9-cal-confirm') && s9.contains(e.target)) { confirmSheet(); return; }
-      // Month navigation (only when sheet is open)
-      if (sheet.style.display !== 'none') {
-        if (e.target.closest('#s9-cal-prev') && s9.contains(e.target)) {
-          calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; }
-          renderCal(); return;
+      if (e.target.closest('#' + scr + '-holiday-btn') && el.contains(e.target)) { openSheet(); return; }
+      if (e.target.closest('#' + scr + '-hol-edit-btn') && el.contains(e.target)) { openSheet(); return; }
+      if (e.target.id === scr + '-holiday-sheet') { closeSheet(); return; }
+      if (e.target.closest('#' + pfx + '-close-x') && el.contains(e.target)) { closeSheet(); return; }
+      if (e.target.closest('#' + pfx + '-cancel')  && el.contains(e.target)) { closeSheet(); return; }
+      if (e.target.closest('#' + pfx + '-confirm') && el.contains(e.target)) { confirmSheet(); return; }
+      if (sheet && sheet.style.display !== 'none') {
+        if (e.target.closest('#' + pfx + '-prev') && el.contains(e.target)) {
+          calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCal(); return;
         }
-        if (e.target.closest('#s9-cal-next') && s9.contains(e.target)) {
-          calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; }
-          renderCal(); return;
+        if (e.target.closest('#' + pfx + '-next') && el.contains(e.target)) {
+          calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCal(); return;
+        }
+        var cCell = e.target.closest('[data-ckey]');
+        if (cCell && el.contains(cCell)) {
+          var k = cCell.getAttribute('data-ckey');
+          var p = k.split('-');
+          var dt = new Date(parseInt(p[0]), parseInt(p[1]), parseInt(p[2]));
+          var todayMid = new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate());
+          if (dt < todayMid) return;
+          tempOff[k] = !tempOff[k]; renderCal(); return;
         }
       }
-      // Date cell toggle
-      var cCell = e.target.closest('[data-ckey]');
-      if (cCell && s9.contains(cCell)) {
-        var k = cCell.getAttribute('data-ckey');
-        var p = k.split('-');
-        var dt = new Date(parseInt(p[0]), parseInt(p[1]), parseInt(p[2]));
-        var todayMid = new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate());
-        if (dt < todayMid) return; // can't mark past dates
-        tempOff[k] = !tempOff[k];
-        renderCal();
+      // Management popup
+      if (e.target.id === scr + '-hol-mgmt') { closeMgmt(); return; }
+      if (e.target.closest('#' + scr + '-hol-mgmt-close') && el.contains(e.target)) { closeMgmt(); return; }
+      if (e.target.closest('#' + scr + '-hol-mgmt-done')  && el.contains(e.target)) { closeMgmt(); return; }
+      if (e.target.closest('#' + scr + '-hol-mgmt-add')   && el.contains(e.target)) { closeMgmt(); openSheet(); return; }
+      var mRm = e.target.closest('.sch-mgmt-rm');
+      if (mRm && mRm.getAttribute('data-scr') === scr && el.contains(mRm)) {
+        var key = mRm.getAttribute('data-key');
+        if (key) { delete offDays[key]; renderMgmt(); updateDateStrip(); }
         return;
       }
       // Date-strip tap → show/hide holiday overlay
       var dtDay = e.target.closest('.dt-day');
-      if (dtDay && s9.contains(dtDay) && sheet.style.display === 'none') {
+      if (dtDay && el.contains(dtDay) && sheet && sheet.style.display === 'none') {
         var numEl = dtDay.querySelector('.dd-num');
         if (!numEl) return;
         var d = parseInt(numEl.textContent);
@@ -4958,7 +5035,10 @@ body:not(.interactive) #s22-success { display: none !important; }
         if (overlay) overlay.style.display = offDays[k] ? 'flex' : 'none';
       }
     });
-  })();
+  }
+
+  makeScheduleCal({ scr: 's9',  pfx: 's9-cal'  });
+  makeScheduleCal({ scr: 's9b', pfx: 's9b-cal' });
 
 
   // ── Holiday Calendar Factory (s22 Register Arena, s19 Edit Arena) ──
