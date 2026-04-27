@@ -1432,7 +1432,7 @@ body.interactive #demo-toggle::before { content: '← '; }
           </div>
         </div>
 
-        <!-- Sports (matching customer app filter chips) -->
+        <!-- Sports (full list from Figma user app) -->
         <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8F0E0;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
             <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Sports Offered</div>
@@ -1441,50 +1441,96 @@ body.interactive #demo-toggle::before { content: '← '; }
           <div style="display:flex;flex-wrap:wrap;gap:6px;">
             <div style="background:#09210E;color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;">⚽ Football</div>
             <div style="background:#09210E;color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;">🏀 Basketball</div>
-            <div style="background:#F4FAEE;color:#09210E;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;border:1.5px solid #C5DFAA;">🏏 Cricket</div>
+            <div style="background:#09210E;color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;">🏏 Cricket</div>
             <div style="background:#F4FAEE;color:#09210E;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;border:1.5px solid #C5DFAA;">🎾 Tennis</div>
-            <div style="background:#F0F4EE;color:#888;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;border:1.5px dashed #C5DFAA;cursor:pointer;">+ Add</div>
+            <div style="background:#F4FAEE;color:#09210E;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;border:1.5px solid #C5DFAA;">🏸 Badminton</div>
+            <div style="background:#F4FAEE;color:#09210E;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;border:1.5px solid #C5DFAA;">🏐 Volleyball</div>
+            <div style="background:#FAFAFA;color:#BBB;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;border:1.5px solid #E8E8E8;">🏑 Hockey</div>
+            <div style="background:#FAFAFA;color:#BBB;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;border:1.5px solid #E8E8E8;">🔵 Squash</div>
+            <div style="background:#FAFAFA;color:#BBB;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;border:1.5px solid #E8E8E8;">🏓 Table Tennis</div>
+            <div style="background:#FAFAFA;color:#BBB;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;border:1.5px solid #E8E8E8;">🎱 Snooker</div>
           </div>
+          <div style="font-size:9px;color:#AAA;margin-top:8px;">Dark = offered · Light = not available</div>
         </div>
 
-        <!-- Amenities (exact match to user app: Parking, Showers, Floodlights, Café, Scoreboard, Changing Room) -->
+        <!-- Amenities (full list from Figma + Android app) -->
         <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8F0E0;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
             <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Amenities</div>
             <div style="font-size:9px;color:#AAA;">shown to customers</div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">
-            <div style="display:flex;align-items:center;gap:8px;padding:7px 9px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
-              <span style="font-size:15px;">🅿️</span>
-              <div style="flex:1;"><div style="font-size:11px;font-weight:700;color:#09210E;">Parking</div><div style="font-size:9px;color:#4A7A30;">30 cars</div></div>
-              <div style="width:16px;height:16px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:10px;color:#fff;"></i></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+
+            <!-- ON -->
+            <div style="display:flex;align-items:center;gap:7px;padding:7px 8px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
+              <span style="font-size:14px;flex-shrink:0;">🅿️</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#09210E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Parking</div><div style="font-size:8px;color:#4A7A30;">30 cars</div></div>
+              <div style="width:15px;height:15px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div>
             </div>
-            <div style="display:flex;align-items:center;gap:8px;padding:7px 9px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
-              <span style="font-size:15px;">🚿</span>
-              <div style="flex:1;"><div style="font-size:11px;font-weight:700;color:#09210E;">Showers</div><div style="font-size:9px;color:#4A7A30;">Available</div></div>
-              <div style="width:16px;height:16px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:10px;color:#fff;"></i></div>
+
+            <div style="display:flex;align-items:center;gap:7px;padding:7px 8px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
+              <span style="font-size:14px;flex-shrink:0;">🚿</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#09210E;">Shower</div><div style="font-size:8px;color:#4A7A30;">Available</div></div>
+              <div style="width:15px;height:15px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div>
             </div>
-            <div style="display:flex;align-items:center;gap:8px;padding:7px 9px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
-              <span style="font-size:15px;">💡</span>
-              <div style="flex:1;"><div style="font-size:11px;font-weight:700;color:#09210E;">Floodlights</div><div style="font-size:9px;color:#4A7A30;">Full pitch</div></div>
-              <div style="width:16px;height:16px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:10px;color:#fff;"></i></div>
+
+            <div style="display:flex;align-items:center;gap:7px;padding:7px 8px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
+              <span style="font-size:14px;flex-shrink:0;">💡</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#09210E;">Floodlights</div><div style="font-size:8px;color:#4A7A30;">Full pitch</div></div>
+              <div style="width:15px;height:15px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div>
             </div>
-            <div style="display:flex;align-items:center;gap:8px;padding:7px 9px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
-              <span style="font-size:15px;">👕</span>
-              <div style="flex:1;"><div style="font-size:11px;font-weight:700;color:#09210E;">Changing Room</div><div style="font-size:9px;color:#4A7A30;">2 rooms</div></div>
-              <div style="width:16px;height:16px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:10px;color:#fff;"></i></div>
+
+            <div style="display:flex;align-items:center;gap:7px;padding:7px 8px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
+              <span style="font-size:14px;flex-shrink:0;">👕</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#09210E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Changing Room</div><div style="font-size:8px;color:#4A7A30;">2 rooms</div></div>
+              <div style="width:15px;height:15px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div>
             </div>
-            <div style="display:flex;align-items:center;gap:8px;padding:7px 9px;background:#FAFAFA;border-radius:9px;border:1px solid #EFEFEF;opacity:.6;">
-              <span style="font-size:15px;">🥤</span>
-              <div style="flex:1;"><div style="font-size:11px;font-weight:700;color:#777;">Café</div><div style="font-size:9px;color:#BBB;">Not available</div></div>
-              <div style="width:16px;height:16px;background:#E8E8E8;border-radius:4px;flex-shrink:0;border:1px solid #D0D0D0;"></div>
+
+            <div style="display:flex;align-items:center;gap:7px;padding:7px 8px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
+              <span style="font-size:14px;flex-shrink:0;">🔒</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#09210E;">Locker</div><div style="font-size:8px;color:#4A7A30;">Secure</div></div>
+              <div style="width:15px;height:15px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div>
             </div>
-            <div style="display:flex;align-items:center;gap:8px;padding:7px 9px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
-              <span style="font-size:15px;">📡</span>
-              <div style="flex:1;"><div style="font-size:11px;font-weight:700;color:#09210E;">Scoreboard</div><div style="font-size:9px;color:#4A7A30;">Digital</div></div>
-              <div style="width:16px;height:16px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:10px;color:#fff;"></i></div>
+
+            <div style="display:flex;align-items:center;gap:7px;padding:7px 8px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
+              <span style="font-size:14px;flex-shrink:0;">🛠️</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#09210E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Equip. Rental</div><div style="font-size:8px;color:#4A7A30;">On request</div></div>
+              <div style="width:15px;height:15px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div>
             </div>
+
+            <div style="display:flex;align-items:center;gap:7px;padding:7px 8px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
+              <span style="font-size:14px;flex-shrink:0;">🚻</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#09210E;">Toilets</div><div style="font-size:8px;color:#4A7A30;">Both gender</div></div>
+              <div style="width:15px;height:15px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:7px;padding:7px 8px;background:#F4FAEE;border-radius:9px;border:1px solid #D0E8C0;">
+              <span style="font-size:14px;flex-shrink:0;">📡</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#09210E;">Scoreboard</div><div style="font-size:8px;color:#4A7A30;">Digital</div></div>
+              <div style="width:15px;height:15px;background:#09210E;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div>
+            </div>
+
+            <!-- OFF -->
+            <div style="display:flex;align-items:center;gap:7px;padding:7px 8px;background:#FAFAFA;border-radius:9px;border:1px solid #EFEFEF;opacity:.55;">
+              <span style="font-size:14px;flex-shrink:0;">🥤</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#888;">Café</div><div style="font-size:8px;color:#CCC;">Not available</div></div>
+              <div style="width:15px;height:15px;background:#E8E8E8;border-radius:4px;flex-shrink:0;border:1px solid #D8D8D8;"></div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:7px;padding:7px 8px;background:#FAFAFA;border-radius:9px;border:1px solid #EFEFEF;opacity:.55;">
+              <span style="font-size:14px;flex-shrink:0;">📶</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#888;">WiFi</div><div style="font-size:8px;color:#CCC;">Not available</div></div>
+              <div style="width:15px;height:15px;background:#E8E8E8;border-radius:4px;flex-shrink:0;border:1px solid #D8D8D8;"></div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:7px;padding:7px 8px;background:#FAFAFA;border-radius:9px;border:1px solid #EFEFEF;opacity:.55;">
+              <span style="font-size:14px;flex-shrink:0;">🩺</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#888;">First Aid</div><div style="font-size:8px;color:#CCC;">Not available</div></div>
+              <div style="width:15px;height:15px;background:#E8E8E8;border-radius:4px;flex-shrink:0;border:1px solid #D8D8D8;"></div>
+            </div>
+
           </div>
+          <div style="font-size:9px;color:#AAA;margin-top:8px;">Tap any amenity to toggle on / off</div>
         </div>
 
         <!-- Arena Specs -->
