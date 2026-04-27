@@ -1570,46 +1570,46 @@ body.interactive #demo-toggle::before { content: '← '; }
         <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8E8E8;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
             <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Social & Links</div>
-            <div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;">Edit ›</div>
+            <div data-social-edit style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;">Edit ›</div>
           </div>
           <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap;">
             <!-- Instagram - linked -->
-            <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;">
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;">
               <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;">
                 <i class="ri-instagram-line" style="font-size:18px;color:#111;"></i>
               </div>
               <div style="font-size:8px;color:#09210E;font-weight:700;">@elitesports</div>
             </div>
             <!-- Facebook - linked -->
-            <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;">
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;">
               <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;">
                 <i class="ri-facebook-circle-line" style="font-size:18px;color:#111;"></i>
               </div>
               <div style="font-size:8px;color:#09210E;font-weight:700;">EliteSports</div>
             </div>
             <!-- X / Twitter - not added -->
-            <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
               <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;">
                 <i class="ri-twitter-x-line" style="font-size:16px;color:#AAA;"></i>
               </div>
               <div style="font-size:8px;color:#AAA;font-weight:600;">Add</div>
             </div>
             <!-- Snapchat - not added -->
-            <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
               <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;">
                 <i class="ri-snapchat-line" style="font-size:17px;color:#AAA;"></i>
               </div>
               <div style="font-size:8px;color:#AAA;font-weight:600;">Add</div>
             </div>
             <!-- YouTube - not added -->
-            <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
               <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;">
                 <i class="ri-youtube-line" style="font-size:18px;color:#AAA;"></i>
               </div>
               <div style="font-size:8px;color:#AAA;font-weight:600;">Add</div>
             </div>
             <!-- Website - not added -->
-            <div style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
               <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;">
                 <i class="ri-global-line" style="font-size:17px;color:#AAA;"></i>
               </div>
@@ -1681,6 +1681,93 @@ body.interactive #demo-toggle::before { content: '← '; }
         <button data-go="s9" style="flex:1;padding:10px 6px;background:#F0F4EE;color:#09210E;font-size:11px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;"><i class="ri-calendar-2-line" style="margin-right:4px;"></i>Schedule</button>
         <button data-go="s21" style="flex:1;padding:10px 6px;background:#F5F0FF;color:#6B21A8;font-size:11px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;"><i class="ri-eye-line" style="margin-right:4px;"></i>Preview</button>
         <button data-go="s18" style="flex:1.2;padding:10px 6px;background:#09210E;color:#fff;font-size:11px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;"><i class="ri-settings-3-line" style="margin-right:4px;"></i>Slot Settings</button>
+      </div>
+
+      <!-- Social Links Bottom Sheet (hidden by default) -->
+      <div id="s19-social-sheet" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:0 0 20px;">
+          <div class="bs-handle"></div>
+          <!-- Header -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0 16px 12px;">
+            <div>
+              <div style="font-size:15px;font-weight:900;color:#111;">Social & Links</div>
+              <div style="font-size:11px;color:#AAA;margin-top:2px;">Add your arena's social profiles</div>
+            </div>
+            <div id="s19-social-close" style="width:30px;height:30px;background:#F0F0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+              <i class="ri-close-line" style="font-size:17px;color:#555;line-height:1;"></i>
+            </div>
+          </div>
+          <div style="height:1px;background:#F0F0F0;margin-bottom:14px;"></div>
+          <!-- Input rows -->
+          <div style="padding:0 16px;display:flex;flex-direction:column;gap:10px;">
+            <!-- Instagram -->
+            <div style="display:flex;align-items:center;gap:11px;">
+              <div style="width:36px;height:36px;border-radius:50%;background:#FDEEF7;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <i class="ri-instagram-line" style="font-size:18px;color:#C13584;"></i>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Instagram</div>
+                <input type="text" value="@elitesports_khi" placeholder="@yourusername" style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:7px 10px;font-size:12px;font-family:inherit;color:#111;background:#FAFAFA;box-sizing:border-box;outline:none;" />
+              </div>
+            </div>
+            <!-- Facebook -->
+            <div style="display:flex;align-items:center;gap:11px;">
+              <div style="width:36px;height:36px;border-radius:50%;background:#E8F0FE;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <i class="ri-facebook-circle-line" style="font-size:18px;color:#1877F2;"></i>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Facebook</div>
+                <input type="text" value="EliteSportsArena" placeholder="Page name or URL" style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:7px 10px;font-size:12px;font-family:inherit;color:#111;background:#FAFAFA;box-sizing:border-box;outline:none;" />
+              </div>
+            </div>
+            <!-- X / Twitter -->
+            <div style="display:flex;align-items:center;gap:11px;">
+              <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <i class="ri-twitter-x-line" style="font-size:16px;color:#111;"></i>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">X (Twitter)</div>
+                <input type="text" value="" placeholder="@handle" style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:7px 10px;font-size:12px;font-family:inherit;color:#111;background:#FAFAFA;box-sizing:border-box;outline:none;" />
+              </div>
+            </div>
+            <!-- Snapchat -->
+            <div style="display:flex;align-items:center;gap:11px;">
+              <div style="width:36px;height:36px;border-radius:50%;background:#FFFDE7;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <i class="ri-snapchat-line" style="font-size:17px;color:#FFCA28;"></i>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Snapchat</div>
+                <input type="text" value="" placeholder="@snapname" style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:7px 10px;font-size:12px;font-family:inherit;color:#111;background:#FAFAFA;box-sizing:border-box;outline:none;" />
+              </div>
+            </div>
+            <!-- YouTube -->
+            <div style="display:flex;align-items:center;gap:11px;">
+              <div style="width:36px;height:36px;border-radius:50%;background:#FFEBEE;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <i class="ri-youtube-line" style="font-size:18px;color:#FF1744;"></i>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">YouTube</div>
+                <input type="text" value="" placeholder="Channel name or URL" style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:7px 10px;font-size:12px;font-family:inherit;color:#111;background:#FAFAFA;box-sizing:border-box;outline:none;" />
+              </div>
+            </div>
+            <!-- Website -->
+            <div style="display:flex;align-items:center;gap:11px;">
+              <div style="width:36px;height:36px;border-radius:50%;background:#E8F5E0;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                <i class="ri-global-line" style="font-size:17px;color:#09210E;"></i>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Website</div>
+                <input type="text" value="" placeholder="https://yourarena.com" style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:7px 10px;font-size:12px;font-family:inherit;color:#111;background:#FAFAFA;box-sizing:border-box;outline:none;" />
+              </div>
+            </div>
+          </div>
+          <!-- Save button -->
+          <div style="padding:14px 16px 0;">
+            <button id="s19-social-save" style="width:100%;padding:13px;background:#09210E;color:#fff;font-size:13px;font-weight:900;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">
+              <i class="ri-save-line" style="margin-right:6px;"></i>Save Changes
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -3599,6 +3686,40 @@ body.interactive #demo-toggle::before { content: '← '; }
       });
     });
   });
+
+  // ── S19 Social Links bottom sheet ──────────────────────────
+  (function () {
+    var sheet = document.getElementById('s19-social-sheet');
+    if (!sheet) return;
+    var closeBtn = document.getElementById('s19-social-close');
+    var saveBtn  = document.getElementById('s19-social-save');
+
+    function openSheet(e) {
+      if (e) e.stopPropagation();
+      sheet.style.display = 'flex';
+    }
+    function closeSheet(e) {
+      if (e) e.stopPropagation();
+      sheet.style.display = 'none';
+    }
+
+    // "Edit ›" button and all social icon tiles
+    document.querySelectorAll('[data-social-edit]').forEach(function (el) {
+      el.addEventListener('click', openSheet);
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeSheet);
+
+    // Tap backdrop (outside card) closes
+    sheet.addEventListener('click', function (e) {
+      if (e.target === sheet) closeSheet();
+    });
+
+    if (saveBtn) saveBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      closeSheet();
+    });
+  })();
 
 })();
 </script>
