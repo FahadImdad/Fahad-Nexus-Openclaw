@@ -1431,8 +1431,8 @@ body:not(.interactive) #s22-success { display: none !important; }
       <!-- ── SCROLLABLE CONTENT ── -->
       <div style="flex:1;overflow-y:auto;padding:12px 14px 14px;">
 
-        <!-- Photos strip (editable) -->
-        <div style="margin-bottom:12px;">
+        <!-- 1. Photos strip (editable) -->
+        <div style="margin-bottom:10px;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;">
             <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Photos</div>
             <div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;">Manage ›</div>
@@ -1445,83 +1445,25 @@ body:not(.interactive) #s22-success { display: none !important; }
           </div>
         </div>
 
-        <!-- Social Links -->
-        <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8E8E8;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-            <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Social & Links</div>
-            <div data-social-edit style="display:flex;align-items:center;gap:5px;background:#09210E;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">
-              <i class="ri-pencil-line" style="font-size:11px;"></i>Edit
-            </div>
+        <!-- 2. Arena Description -->
+        <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8F0E0;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Description</div>
+            <div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;background:#F4FAEE;padding:4px 10px;border-radius:20px;border:1px solid #C5DFAA;"><i class="ri-pencil-line" style="margin-right:3px;font-size:10px;"></i>Edit</div>
           </div>
-          <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap;">
-            <!-- Instagram - linked -->
-            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;">
-              <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;">
-                <i class="ri-instagram-line" style="font-size:18px;color:#111;"></i>
-              </div>
-              <div style="font-size:8px;color:#09210E;font-weight:700;">@elitesports</div>
-            </div>
-            <!-- Facebook - linked -->
-            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;">
-              <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;">
-                <i class="ri-facebook-circle-line" style="font-size:18px;color:#111;"></i>
-              </div>
-              <div style="font-size:8px;color:#09210E;font-weight:700;">EliteSports</div>
-            </div>
-            <!-- X / Twitter - not added -->
-            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
-              <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;">
-                <i class="ri-twitter-x-line" style="font-size:16px;color:#AAA;"></i>
-              </div>
-              <div style="font-size:8px;color:#AAA;font-weight:600;">Add</div>
-            </div>
-            <!-- Snapchat - not added -->
-            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
-              <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;">
-                <i class="ri-snapchat-line" style="font-size:17px;color:#AAA;"></i>
-              </div>
-              <div style="font-size:8px;color:#AAA;font-weight:600;">Add</div>
-            </div>
-            <!-- YouTube - not added -->
-            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
-              <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;">
-                <i class="ri-youtube-line" style="font-size:18px;color:#AAA;"></i>
-              </div>
-              <div style="font-size:8px;color:#AAA;font-weight:600;">Add</div>
-            </div>
-            <!-- Website - not added -->
-            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;">
-              <div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;">
-                <i class="ri-global-line" style="font-size:17px;color:#AAA;"></i>
-              </div>
-              <div style="font-size:8px;color:#AAA;font-weight:600;">Add</div>
-            </div>
-          </div>
+          <textarea rows="3" style="width:100%;border:1.5px solid #E8F0E0;border-radius:10px;padding:8px 10px;font-size:11px;font-family:inherit;color:#333;background:#F8FAF6;box-sizing:border-box;outline:none;resize:none;line-height:1.55;">Elite Sports Arena is a premium multi-sport facility in DHA Phase 5 offering world-class pitches, professional lighting, and top-tier amenities for a complete sporting experience.</textarea>
         </div>
 
-        <!-- Indoor / Outdoor toggle -->
-        <div style="background:#fff;border-radius:14px;padding:11px 13px;margin-bottom:10px;border:1.5px solid #E8F0E0;">
-          <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px;">Arena Type</div>
-          <div style="display:flex;gap:7px;">
-            <div style="flex:1;background:#09210E;border-radius:10px;padding:9px;text-align:center;cursor:pointer;border:2px solid #09210E;">
-              <div style="font-size:18px;">🌿</div>
-              <div style="font-size:11px;font-weight:800;color:#fff;margin-top:3px;">Outdoor</div>
-              <div style="font-size:8px;color:rgba(255,255,255,.6);margin-top:1px;">Open air</div>
-            </div>
-            <div style="flex:1;background:#F4F7F2;border-radius:10px;padding:9px;text-align:center;cursor:pointer;border:2px solid #E0E8D8;">
-              <div style="font-size:18px;">🏢</div>
-              <div style="font-size:11px;font-weight:800;color:#888;margin-top:3px;">Indoor</div>
-              <div style="font-size:8px;color:#BBB;margin-top:1px;">Covered hall</div>
-            </div>
-            <div style="flex:1;background:#F4F7F2;border-radius:10px;padding:9px;text-align:center;cursor:pointer;border:2px solid #E0E8D8;">
-              <div style="font-size:18px;">🔀</div>
-              <div style="font-size:11px;font-weight:800;color:#888;margin-top:3px;">Both</div>
-              <div style="font-size:8px;color:#BBB;margin-top:1px;">Mixed</div>
-            </div>
-          </div>
+        <!-- Arena Specs — each item separate for direct editing -->
+        <div style="margin-bottom:10px;display:flex;flex-direction:column;gap:6px;">
+          <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px;">Arena Specs</div>
+          <div style="background:#fff;border-radius:12px;padding:10px 13px;border:1.5px solid #E8F0E0;display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;background:#F4FAEE;border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="ri-leaf-line" style="font-size:14px;color:#09210E;"></i></div><div><div style="font-size:9px;color:#AAA;font-weight:600;">Surface</div><div style="font-size:12px;font-weight:800;color:#09210E;">Artificial Turf</div></div></div><div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;background:#F4FAEE;padding:4px 10px;border-radius:20px;border:1px solid #C5DFAA;">Edit</div></div>
+          <div style="background:#fff;border-radius:12px;padding:10px 13px;border:1.5px solid #E8F0E0;display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;background:#F4FAEE;border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="ri-group-line" style="font-size:14px;color:#09210E;"></i></div><div><div style="font-size:9px;color:#AAA;font-weight:600;">Capacity</div><div style="font-size:12px;font-weight:800;color:#09210E;">22 Players</div></div></div><div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;background:#F4FAEE;padding:4px 10px;border-radius:20px;border:1px solid #C5DFAA;">Edit</div></div>
+          <div style="background:#fff;border-radius:12px;padding:10px 13px;border:1.5px solid #E8F0E0;display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;background:#F4FAEE;border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="ri-expand-horizontal-line" style="font-size:14px;color:#09210E;"></i></div><div><div style="font-size:9px;color:#AAA;font-weight:600;">Arena Size</div><div style="font-size:12px;font-weight:800;color:#09210E;">100 × 60 yd</div></div></div><div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;background:#F4FAEE;padding:4px 10px;border-radius:20px;border:1px solid #C5DFAA;">Edit</div></div>
+          <div style="background:#fff;border-radius:12px;padding:10px 13px;border:1.5px solid #E8F0E0;display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;background:#F4FAEE;border-radius:8px;display:flex;align-items:center;justify-content:center;"><i class="ri-sun-line" style="font-size:14px;color:#09210E;"></i></div><div><div style="font-size:9px;color:#AAA;font-weight:600;">Arena Type</div><div style="font-size:12px;font-weight:800;color:#09210E;">🌿 Outdoor</div></div></div><div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;background:#F4FAEE;padding:4px 10px;border-radius:20px;border:1px solid #C5DFAA;">Edit</div></div>
         </div>
 
-        <!-- Sports (exact from screenshot, excluding pool/snooker/foosball/dabbu) -->
+        <!-- 4. Sports Offered (tap to toggle) -->
         <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8F0E0;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
             <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Sports Offered</div>
@@ -1543,7 +1485,7 @@ body:not(.interactive) #s22-success { display: none !important; }
           <div style="font-size:9px;color:#AAA;margin-top:8px;">Dark green = offered &nbsp;·&nbsp; Light = not available &nbsp;·&nbsp; Tap to toggle</div>
         </div>
 
-        <!-- Amenities (expanded: 20 options) -->
+        <!-- 5. Facilities & Amenities -->
         <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8F0E0;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
             <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Facilities &amp; Amenities</div>
@@ -1576,89 +1518,119 @@ body:not(.interactive) #s22-success { display: none !important; }
           <div style="font-size:9px;color:#AAA;margin-top:8px;">Tap any item to toggle on / off</div>
         </div>
 
-        <!-- Arena Specs -->
+        <!-- 7. Location & Contact — full editable -->
         <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8F0E0;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
-            <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Arena Specs</div>
-            <div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;">Edit ›</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Location & Contact</div>
+            <div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;background:#F4FAEE;padding:4px 10px;border-radius:20px;border:1px solid #C5DFAA;"><i class="ri-pencil-line" style="margin-right:3px;font-size:10px;"></i>Edit</div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">
-            <div style="background:#F4F7F2;border-radius:9px;padding:8px 10px;"><div style="font-size:9px;color:#AAA;margin-bottom:2px;">Surface</div><div style="font-size:12px;font-weight:800;color:#09210E;">Artificial Turf</div></div>
-            <div style="background:#F4F7F2;border-radius:9px;padding:8px 10px;"><div style="font-size:9px;color:#AAA;margin-bottom:2px;">Capacity</div><div style="font-size:12px;font-weight:800;color:#09210E;">22 Players</div></div>
-            <div style="background:#F4F7F2;border-radius:9px;padding:8px 10px;"><div style="font-size:9px;color:#AAA;margin-bottom:2px;">Arena Size</div><div style="font-size:12px;font-weight:800;color:#09210E;">100 × 60 yd</div></div>
-            <div style="background:#F4F7F2;border-radius:9px;padding:8px 10px;"><div style="font-size:9px;color:#AAA;margin-bottom:2px;">Type</div><div style="font-size:12px;font-weight:800;color:#09210E;">🌿 Outdoor</div></div>
+          <!-- City pills -->
+          <div style="margin-bottom:10px;">
+            <div style="font-size:9px;font-weight:700;color:#AAA;margin-bottom:5px;">City</div>
+            <div style="display:flex;gap:5px;flex-wrap:wrap;">
+              <div style="padding:5px 11px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Karachi</div>
+              <div style="padding:5px 11px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">Lahore</div>
+              <div style="padding:5px 11px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Islamabad</div>
+              <div style="padding:5px 11px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Rawalpindi</div>
+              <div style="padding:5px 11px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Faisalabad</div>
+              <div style="padding:5px 11px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Multan</div>
+            </div>
+          </div>
+          <!-- Area -->
+          <div style="margin-bottom:8px;">
+            <div style="font-size:9px;font-weight:700;color:#AAA;margin-bottom:4px;">Area / Sector</div>
+            <input type="text" value="DHA Phase 5" style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:8px 10px;font-size:11px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;color:#111;" />
+          </div>
+          <!-- Address -->
+          <div style="margin-bottom:8px;">
+            <div style="font-size:9px;font-weight:700;color:#AAA;margin-bottom:4px;">Full Street Address</div>
+            <textarea rows="2" style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:8px 10px;font-size:11px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;resize:none;line-height:1.5;color:#111;">14-C, DHA Phase 5, Lahore</textarea>
+          </div>
+          <!-- Maps Link -->
+          <div style="margin-bottom:8px;">
+            <div style="font-size:9px;font-weight:700;color:#AAA;margin-bottom:4px;">Google Maps Link</div>
+            <input type="url" placeholder="https://maps.google.com/..." style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:8px 10px;font-size:11px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;color:#111;" />
+          </div>
+          <!-- Contact rows -->
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid #F0F0F0;">
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:28px;height:28px;background:#E8F5E0;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-phone-line" style="font-size:13px;color:#09210E;"></i></div><input type="tel" value="+92 300 123 4567" style="flex:1;border:1.5px solid #E0E0E0;border-radius:9px;padding:7px 10px;font-size:11px;font-family:inherit;background:#F8FAF6;outline:none;color:#111;" /></div>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:28px;height:28px;background:#E8F5E0;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-whatsapp-line" style="font-size:13px;color:#25D366;"></i></div><input type="tel" placeholder="+92 300 000 0000 (WhatsApp)" style="flex:1;border:1.5px solid #E0E0E0;border-radius:9px;padding:7px 10px;font-size:11px;font-family:inherit;background:#F8FAF6;outline:none;color:#111;" /></div>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:28px;height:28px;background:#E8F5E0;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-mail-line" style="font-size:13px;color:#09210E;"></i></div><input type="email" placeholder="arena@example.com" style="flex:1;border:1.5px solid #E0E0E0;border-radius:9px;padding:7px 10px;font-size:11px;font-family:inherit;background:#F8FAF6;outline:none;color:#111;" /></div>
           </div>
         </div>
 
-        <!-- Location Map Snippet -->
-        <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8F0E0;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
-            <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Location</div>
-            <div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;">Update ›</div>
+        <!-- 8. Social & Links — moved after location -->
+        <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8E8E8;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Social & Links</div>
+            <div data-social-edit style="display:flex;align-items:center;gap:5px;background:#09210E;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;"><i class="ri-pencil-line" style="font-size:11px;"></i>Edit</div>
           </div>
-          <!-- Map placeholder (mimics Google Maps embed) -->
-          <div style="border-radius:11px;overflow:hidden;border:1px solid #E0E8D8;position:relative;">
-            <!-- Map background grid -->
-            <div style="height:110px;background:linear-gradient(180deg,#EEF4E8 0%,#E4EED8 100%);position:relative;overflow:hidden;">
-              <!-- Road lines -->
-              <div style="position:absolute;top:50%;left:0;right:0;height:3px;background:rgba(255,255,255,.9);transform:translateY(-50%);"></div>
-              <div style="position:absolute;left:35%;top:0;bottom:0;width:3px;background:rgba(255,255,255,.9);"></div>
-              <div style="position:absolute;top:28%;left:0;right:0;height:2px;background:rgba(255,255,255,.6);"></div>
-              <div style="position:absolute;top:72%;left:0;right:0;height:2px;background:rgba(255,255,255,.6);"></div>
-              <!-- Block shapes -->
-              <div style="position:absolute;top:8px;left:8px;width:50px;height:28px;background:rgba(200,220,180,.6);border-radius:4px;"></div>
-              <div style="position:absolute;top:8px;left:65px;width:70px;height:28px;background:rgba(200,220,180,.6);border-radius:4px;"></div>
-              <div style="position:absolute;bottom:12px;left:8px;width:80px;height:28px;background:rgba(200,220,180,.6);border-radius:4px;"></div>
-              <div style="position:absolute;bottom:12px;right:12px;width:60px;height:40px;background:rgba(200,220,180,.6);border-radius:4px;"></div>
-              <!-- Pin -->
-              <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-100%);">
-                <div style="width:28px;height:28px;background:#09210E;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;">
-                  <div style="width:10px;height:10px;background:#fff;border-radius:50%;transform:rotate(45deg);"></div>
-                </div>
-                <div style="width:4px;height:8px;background:#09210E;margin:0 auto;border-radius:0 0 2px 2px;"></div>
-              </div>
-            </div>
-            <!-- Address bar below map -->
-            <div style="padding:9px 12px;background:#F8FAF6;border-top:1px solid #E8F0E0;display:flex;align-items:center;gap:8px;">
-              <i class="ri-map-pin-2-fill" style="font-size:14px;color:#09210E;flex-shrink:0;"></i>
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:11px;font-weight:700;color:#09210E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">14-C, DHA Phase 5, Lahore</div>
-                <div style="font-size:9px;color:#888;margin-top:1px;">Tap to open in Google Maps</div>
-              </div>
-              <i class="ri-external-link-line" style="font-size:13px;color:#888;flex-shrink:0;"></i>
-            </div>
+          <div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap;">
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;"><div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;"><i class="ri-instagram-line" style="font-size:18px;color:#111;"></i></div><div style="font-size:8px;color:#09210E;font-weight:700;">@elitesports</div></div>
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;"><div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;"><i class="ri-facebook-circle-line" style="font-size:18px;color:#111;"></i></div><div style="font-size:8px;color:#09210E;font-weight:700;">EliteSports</div></div>
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;"><div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;"><i class="ri-twitter-x-line" style="font-size:16px;color:#AAA;"></i></div><div style="font-size:8px;color:#AAA;font-weight:600;">Add</div></div>
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;"><div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;"><i class="ri-snapchat-line" style="font-size:17px;color:#AAA;"></i></div><div style="font-size:8px;color:#AAA;font-weight:600;">Add</div></div>
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;"><div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;"><i class="ri-youtube-line" style="font-size:18px;color:#AAA;"></i></div><div style="font-size:8px;color:#AAA;font-weight:600;">Add</div></div>
+            <div data-social-edit style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;opacity:.38;"><div style="width:36px;height:36px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;border:1.5px dashed #CCC;"><i class="ri-global-line" style="font-size:17px;color:#AAA;"></i></div><div style="font-size:8px;color:#AAA;font-weight:600;">Add</div></div>
           </div>
-          <!-- Contact row below map -->
-          <div style="display:flex;align-items:center;gap:9px;margin-top:9px;"><i class="ri-phone-line" style="font-size:13px;color:#09210E;flex-shrink:0;"></i><span style="font-size:11px;color:#333;">+92 300 123 4567</span></div>
-          <div style="display:flex;align-items:center;gap:9px;margin-top:6px;"><i class="ri-time-line" style="font-size:13px;color:#09210E;flex-shrink:0;"></i><span style="font-size:11px;color:#333;">6:00 AM – 11:00 PM (Mon–Thu)</span></div>
         </div>
 
-        <!-- Pricing -->
+        <!-- 9. Operating Hours -->
+        <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8F0E0;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Operating Hours</div>
+            <div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;background:#F4FAEE;padding:4px 10px;border-radius:20px;border:1px solid #C5DFAA;"><i class="ri-pencil-line" style="margin-right:3px;font-size:10px;"></i>Edit</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:52px;font-size:10px;font-weight:700;color:#333;flex-shrink:0;">Mon–Thu</div><input type="time" value="06:00" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;background:#F8FAF6;outline:none;" /><span style="font-size:10px;color:#AAA;">to</span><input type="time" value="23:00" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;background:#F8FAF6;outline:none;" /></div>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:52px;font-size:10px;font-weight:700;color:#09210E;flex-shrink:0;">Friday</div><input type="time" value="14:00" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;background:#F8FAF6;outline:none;" /><span style="font-size:10px;color:#AAA;">to</span><input type="time" value="23:00" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;background:#F8FAF6;outline:none;" /></div>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:52px;font-size:10px;font-weight:700;color:#333;flex-shrink:0;">Saturday</div><input type="time" value="06:00" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;background:#F8FAF6;outline:none;" /><span style="font-size:10px;color:#AAA;">to</span><input type="time" value="23:59" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;background:#F8FAF6;outline:none;" /></div>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:52px;font-size:10px;font-weight:700;color:#333;flex-shrink:0;">Sunday</div><input type="time" value="06:00" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;background:#F8FAF6;outline:none;" /><span style="font-size:10px;color:#AAA;">to</span><input type="time" value="23:59" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;background:#F8FAF6;outline:none;" /></div>
+          </div>
+        </div>
+
+        <!-- 10. Booking Rules -->
+        <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #E8F0E0;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Booking Rules</div>
+            <div style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;background:#F4FAEE;padding:4px 10px;border-radius:20px;border:1px solid #C5DFAA;"><i class="ri-pencil-line" style="margin-right:3px;font-size:10px;"></i>Edit</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <!-- Confirmation type -->
+            <div><div style="font-size:9px;font-weight:700;color:#AAA;margin-bottom:5px;">Booking Confirmation</div><div style="display:flex;gap:6px;"><div style="flex:1;padding:8px 4px;border-radius:9px;border:1.5px solid #09210E;background:#09210E;text-align:center;font-size:10px;font-weight:800;color:#fff;cursor:pointer;">⚡ Auto</div><div style="flex:1;padding:8px 4px;border-radius:9px;border:1.5px solid #DDD;background:#fff;text-align:center;font-size:10px;font-weight:700;color:#555;cursor:pointer;">✋ Manual</div></div></div>
+            <!-- Min advance -->
+            <div><div style="font-size:9px;font-weight:700;color:#AAA;margin-bottom:5px;">Min. Advance Notice</div><div style="display:flex;gap:5px;flex-wrap:wrap;"><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">1hr</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">2hr</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">3hr</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">6hr</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">12hr</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">24hr</div></div></div>
+            <!-- Max window -->
+            <div><div style="font-size:9px;font-weight:700;color:#AAA;margin-bottom:5px;">Max Booking Window</div><div style="display:flex;gap:5px;flex-wrap:wrap;"><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">7 days</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">14 days</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">30 days</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">60 days</div></div></div>
+            <!-- Cancellation -->
+            <div><div style="font-size:9px;font-weight:700;color:#AAA;margin-bottom:5px;">Cancellation Policy</div><div style="display:flex;gap:5px;flex-wrap:wrap;"><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">None</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">2hr free</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">6hr free</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">24hr free</div><div style="padding:5px 9px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">48hr free</div></div></div>
+          </div>
+        </div>
+
+        <!-- 11. Slot Settings & Pricing -->
         <div style="background:#F4FAEE;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #C5DFAA;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
-            <div style="font-size:10px;font-weight:800;color:#09210E;text-transform:uppercase;letter-spacing:.5px;">Pricing</div>
-            <div data-go="s18" style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;">Manage in Slot Settings ›</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="font-size:10px;font-weight:800;color:#09210E;text-transform:uppercase;letter-spacing:.5px;">Slot Settings & Pricing</div>
+            <div data-go="s18" style="font-size:10px;font-weight:700;color:#09210E;cursor:pointer;">Full Edit in Slot Settings ›</div>
           </div>
+          <!-- Slot Duration -->
+          <div style="margin-bottom:10px;">
+            <div style="font-size:9px;font-weight:700;color:#AAA;margin-bottom:5px;">Slot Duration</div>
+            <div style="display:flex;gap:6px;">
+              <div style="flex:1;padding:8px 4px;border-radius:9px;border:1.5px solid #DDD;background:#fff;text-align:center;font-size:10px;font-weight:700;color:#555;cursor:pointer;">30 min</div>
+              <div style="flex:1;padding:8px 4px;border-radius:9px;border:1.5px solid #09210E;background:#09210E;text-align:center;font-size:10px;font-weight:800;color:#fff;cursor:pointer;">1 Hour</div>
+              <div style="flex:1;padding:8px 4px;border-radius:9px;border:1.5px solid #DDD;background:#fff;text-align:center;font-size:10px;font-weight:700;color:#555;cursor:pointer;">2 Hours</div>
+            </div>
+          </div>
+          <!-- Pricing summary -->
           <div style="display:flex;gap:7px;">
-            <div style="flex:1;background:#fff;border-radius:9px;padding:8px;text-align:center;">
-              <div style="font-size:9px;color:#888;font-weight:600;">Mon–Thu</div>
-              <div style="font-size:14px;font-weight:900;color:#09210E;margin-top:2px;">Rs 2,000</div>
-              <div style="font-size:8px;color:#AAA;">/hr</div>
-            </div>
-            <div style="flex:1;background:#fff;border-radius:9px;padding:8px;text-align:center;">
-              <div style="font-size:9px;color:#888;font-weight:600;">Friday</div>
-              <div style="font-size:14px;font-weight:900;color:#09210E;margin-top:2px;">Rs 2,200</div>
-              <div style="font-size:8px;color:#AAA;">/hr</div>
-            </div>
-            <div style="flex:1;background:#fff;border-radius:9px;padding:8px;text-align:center;">
-              <div style="font-size:9px;color:#888;font-weight:600;">Sat–Sun</div>
-              <div style="font-size:14px;font-weight:900;color:#09210E;margin-top:2px;">Rs 2,500</div>
-              <div style="font-size:8px;color:#AAA;">/hr</div>
-            </div>
+            <div style="flex:1;background:#fff;border-radius:9px;padding:8px;text-align:center;"><div style="font-size:9px;color:#888;font-weight:600;">Mon–Thu</div><div style="font-size:14px;font-weight:900;color:#09210E;margin-top:2px;">Rs 2,000</div><div style="font-size:8px;color:#AAA;">/hr</div></div>
+            <div style="flex:1;background:#fff;border-radius:9px;padding:8px;text-align:center;"><div style="font-size:9px;color:#888;font-weight:600;">Friday</div><div style="font-size:14px;font-weight:900;color:#09210E;margin-top:2px;">Rs 2,500</div><div style="font-size:8px;color:#AAA;">/hr</div></div>
+            <div style="flex:1;background:#fff;border-radius:9px;padding:8px;text-align:center;"><div style="font-size:9px;color:#888;font-weight:600;">Sat–Sun</div><div style="font-size:14px;font-weight:900;color:#09210E;margin-top:2px;">Rs 2,500</div><div style="font-size:8px;color:#AAA;">/hr</div></div>
           </div>
         </div>
 
-        <!-- Reviews summary -->
+        <!-- 12. Customer Reviews -->
         <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:14px;border:1.5px solid #E8F0E0;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
             <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Customer Reviews</div>
@@ -2065,7 +2037,6 @@ body:not(.interactive) #s22-success { display: none !important; }
           </div>
           <div style="flex:1;">
             <div style="font-size:14px;font-weight:900;color:#111;">Register New Arena</div>
-            <div id="s22-step-label" style="font-size:10px;color:#888;margin-top:1px;font-weight:600;">Step 1 of 6 — Arena Profile</div>
           </div>
           <div style="background:#FFF3CD;border:1px solid #FFD700;border-radius:20px;padding:4px 9px;font-size:9px;font-weight:800;color:#856404;display:flex;align-items:center;gap:4px;">
             <i class="ri-time-line" style="font-size:10px;"></i>Pending Approval
@@ -2110,22 +2081,12 @@ body:not(.interactive) #s22-success { display: none !important; }
                 <div class="r-type-pill" data-val="both" style="flex:1;padding:9px 4px;border-radius:10px;border:1.5px solid #DDD;background:#fff;text-align:center;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🔄 Both</div>
               </div>
             </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-              <div style="background:#fff;border-radius:10px;padding:10px 12px;border:1.5px solid #E0E0E0;">
-                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Courts / Pitches <span style="color:#E53935;">★</span></div>
-                <div style="display:flex;align-items:center;gap:0;">
-                  <button id="r-courts-minus" style="width:30px;height:30px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button>
-                  <div id="r-courts-val" style="flex:1;height:30px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#09210E;">2</div>
-                  <button id="r-courts-plus" style="width:30px;height:30px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button>
-                </div>
-              </div>
-              <div style="background:#fff;border-radius:10px;padding:10px 12px;border:1.5px solid #E0E0E0;">
-                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Capacity (people) <span style="color:#E53935;">★</span></div>
-                <div style="display:flex;align-items:center;gap:0;">
-                  <button id="r-cap-minus" style="width:30px;height:30px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button>
-                  <div id="r-cap-val" style="flex:1;height:30px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#09210E;">50</div>
-                  <button id="r-cap-plus" style="width:30px;height:30px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button>
-                </div>
+            <div style="background:#fff;border-radius:10px;padding:10px 12px;border:1.5px solid #E0E0E0;">
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Capacity (people) <span style="color:#E53935;">★</span></div>
+              <div style="display:flex;align-items:center;gap:0;">
+                <button id="r-cap-minus" style="width:30px;height:30px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button>
+                <div id="r-cap-val" style="flex:1;height:30px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#09210E;">50</div>
+                <button id="r-cap-plus" style="width:30px;height:30px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button>
               </div>
             </div>
             <div>
@@ -2365,11 +2326,21 @@ body:not(.interactive) #s22-success { display: none !important; }
                 <div class="toggle" id="r-discount-toggle" style="width:40px;height:22px;border-radius:11px;background:#DDD;position:relative;cursor:pointer;transition:background .25s;flex-shrink:0;"><div style="position:absolute;top:3px;left:3px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .25s;box-shadow:0 1px 3px rgba(0,0,0,.2);"></div></div>
               </div>
               <div id="r-discount-detail" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #F0F0F0;">
-                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Discount Percentage</div>
-                <div style="display:flex;align-items:center;gap:8px;">
+                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Discount Percentage for All Days</div>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
                   <button id="r-disc-minus" style="width:32px;height:32px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:9px 0 0 9px;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button>
                   <div id="r-disc-val" style="flex:1;height:32px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#09210E;">20%</div>
                   <button id="r-disc-plus" style="width:32px;height:32px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 9px 9px 0;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button>
+                </div>
+                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Price Preview — Original → Discounted</div>
+                <div style="display:flex;flex-direction:column;gap:5px;" id="r-disc-preview">
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Mon</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,000</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 1,600</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Tue</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,000</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 1,600</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Wed</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,000</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 1,600</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Thu</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,000</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 1,600</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:800;color:#09210E;width:28px;flex-shrink:0;">Fri</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,500</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 2,000</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Sat</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,500</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 2,000</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Sun</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,500</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 2,000</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
                 </div>
               </div>
             </div>
@@ -3838,6 +3809,22 @@ body:not(.interactive) #s22-success { display: none !important; }
     if (!col) return;
     var id = col.id;
 
+    // S24 REFERRAL — intercept Create Account before data-go fires
+    if (e.target.id === 's24-create-btn' || e.target.closest('#s24-create-btn')) {
+      var refInput = document.getElementById('s24-ref-input');
+      var popup = document.getElementById('s24-ref-popup');
+      if (refInput && popup) {
+        var code = (refInput.value || '').trim().toUpperCase();
+        var valid = ['SPORT24','VENDOR01','SPORTSTER'];
+        if (!valid.includes(code)) { popup.style.display = 'flex'; return; }
+      }
+    }
+    // S24 REFERRAL POPUP — close
+    if (e.target.id === 's24-ref-close' || e.target.closest('#s24-ref-close')) {
+      var popup = document.getElementById('s24-ref-popup'); if (popup) popup.style.display = 'none'; return;
+    }
+    if (e.target.id === 's24-ref-popup') { e.target.style.display = 'none'; return; }
+
     // DATA-GO ATTRIBUTE (highest priority — explicit navigation targets)
     var goEl = e.target.closest('[data-go]');
     if (goEl && !e.target.closest('.bottom-nav')) {
@@ -4176,6 +4163,25 @@ body:not(.interactive) #s22-success { display: none !important; }
     var curStep = 1;
     var prices = { mon:2000, tue:2000, wed:2000, thu:2000, fri:2500, sat:2500, sun:2500 };
     var courts = 2, cap = 50;
+    var dayOrder = ['mon','tue','wed','thu','fri','sat','sun'];
+    var dayLabels = {mon:'Mon',tue:'Tue',wed:'Wed',thu:'Thu',fri:'Fri',sat:'Sat',sun:'Sun'};
+
+    function updateDiscPreview(pct) {
+      var preview = s22.querySelector('#r-disc-preview');
+      if (!preview) return;
+      var rows = preview.querySelectorAll('div[style*="display:flex"]');
+      dayOrder.forEach(function(d, i) {
+        var row = rows[i]; if (!row) return;
+        var orig = prices[d];
+        var disc = Math.round(orig * (1 - pct/100) / 100) * 100;
+        var origEl = row.querySelector('.r-disc-orig');
+        var newEl = row.querySelector('.r-disc-new');
+        var badgeEl = row.querySelectorAll('div')[3];
+        if (origEl) origEl.textContent = 'Rs ' + orig.toLocaleString();
+        if (newEl) newEl.textContent = 'Rs ' + disc.toLocaleString();
+        if (badgeEl) badgeEl.textContent = '-' + pct + '%';
+      });
+    }
 
     function showStep(n) {
       curStep = n;
@@ -4369,9 +4375,9 @@ body:not(.interactive) #s22-success { display: none !important; }
 
       // Day price steppers
       var pMinus = e.target.closest('.r-p-minus');
-      if (pMinus) { e.stopPropagation(); var d=pMinus.getAttribute('data-day'); if(d){ prices[d]=Math.max(100,prices[d]-100); updatePriceDisplay(d); } return; }
+      if (pMinus) { e.stopPropagation(); var d=pMinus.getAttribute('data-day'); if(d){ prices[d]=Math.max(100,prices[d]-100); updatePriceDisplay(d); var pctEl=s22.querySelector('#r-disc-val'); if(pctEl) updateDiscPreview(parseInt(pctEl.textContent)||20); } return; }
       var pPlus = e.target.closest('.r-p-plus');
-      if (pPlus)  { e.stopPropagation(); var d=pPlus.getAttribute('data-day');  if(d){ prices[d]=Math.min(99900,prices[d]+100); updatePriceDisplay(d); } return; }
+      if (pPlus)  { e.stopPropagation(); var d=pPlus.getAttribute('data-day');  if(d){ prices[d]=Math.min(99900,prices[d]+100); updatePriceDisplay(d); var pctEl=s22.querySelector('#r-disc-val'); if(pctEl) updateDiscPreview(parseInt(pctEl.textContent)||20); } return; }
 
       // Conf pills
       var confPill = e.target.closest('.r-conf-pill');
@@ -4393,8 +4399,8 @@ body:not(.interactive) #s22-success { display: none !important; }
       if (e.target.id === 'r-discount-toggle' || e.target.closest('#r-discount-toggle')) { e.stopPropagation(); var tog=s22.querySelector('#r-discount-toggle'); var det=s22.querySelector('#r-discount-detail'); if(!tog||!det) return; var on=tog.classList.contains('on'); if(on){ tog.classList.remove('on');tog.style.background='#DDD';var th=tog.querySelector('div');if(th)th.style.transform='';det.style.display='none'; }else{ tog.classList.add('on');tog.style.background='#09210E';var th=tog.querySelector('div');if(th)th.style.transform='translateX(18px)';det.style.display='block'; } return; }
 
       // Discount stepper
-      if (e.target.id === 'r-disc-plus') { e.stopPropagation(); var el=s22.querySelector('#r-disc-val'); var v=parseInt((el.textContent||'20').replace('%',''))||20; v=Math.min(80,v+5); el.textContent=v+'%'; return; }
-      if (e.target.id === 'r-disc-minus') { e.stopPropagation(); var el=s22.querySelector('#r-disc-val'); var v=parseInt((el.textContent||'20').replace('%',''))||20; v=Math.max(5,v-5); el.textContent=v+'%'; return; }
+      if (e.target.id === 'r-disc-plus') { e.stopPropagation(); var el=s22.querySelector('#r-disc-val'); var v=parseInt((el.textContent||'20').replace('%',''))||20; v=Math.min(80,v+5); el.textContent=v+'%'; updateDiscPreview(v); return; }
+      if (e.target.id === 'r-disc-minus') { e.stopPropagation(); var el=s22.querySelector('#r-disc-val'); var v=parseInt((el.textContent||'20').replace('%',''))||20; v=Math.max(5,v-5); el.textContent=v+'%'; updateDiscPreview(v); return; }
 
       // Declaration checkbox
       if (e.target.id === 'r-decl-row' || e.target.closest('#r-decl-row')) { e.stopPropagation(); var chk=s22.querySelector('#r-decl-check'); if(!chk) return; var on=chk.classList.contains('checked'); if(on){ chk.classList.remove('checked');chk.style.background='#fff';chk.style.borderColor='#C0C0C0';chk.innerHTML=''; }else{ chk.classList.add('checked');chk.style.background='#09210E';chk.style.borderColor='#09210E';chk.innerHTML='<i class="ri-check-line" style="font-size:10px;color:#fff;"></i>'; } return; }
@@ -5151,14 +5157,43 @@ body:not(.interactive) #s22-success { display: none !important; }
             <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Password <span style="color:#E53935;">*</span></div>
             <input type="password" placeholder="Min. 8 characters" style="width:100%;border:1.5px solid #E0E0E0;border-radius:11px;padding:10px 13px;font-size:12px;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;" />
           </div>
-          <div style="margin-bottom:16px;">
+          <div style="margin-bottom:11px;">
             <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Confirm Password <span style="color:#E53935;">*</span></div>
             <input type="password" placeholder="Re-enter password" style="width:100%;border:1.5px solid #E0E0E0;border-radius:11px;padding:10px 13px;font-size:12px;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;" />
+          </div>
+          <!-- Referral Code -->
+          <div style="margin-bottom:16px;">
+            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Referral Code <span style="color:#E53935;">*</span></div>
+            <div style="position:relative;">
+              <input id="s24-ref-input" type="text" placeholder="Enter your Sportster referral code" style="width:100%;border:1.5px solid #E0E0E0;border-radius:11px;padding:10px 13px;font-size:12px;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;padding-right:42px;" />
+              <i class="ri-coupon-3-line" style="position:absolute;right:13px;top:50%;transform:translateY(-50%);font-size:16px;color:#AAA;"></i>
+            </div>
+            <div style="font-size:9px;color:#AAA;margin-top:4px;"><i class="ri-information-line" style="margin-right:2px;"></i>A referral code is required. Contact <span style="color:#09210E;font-weight:700;">support@sportster.com</span> if you don't have one.</div>
           </div>
           <div style="background:#E8F5E0;border-radius:11px;padding:10px 12px;font-size:10px;color:#09210E;font-weight:600;line-height:1.5;margin-bottom:16px;">
             <i class="ri-information-line" style="margin-right:4px;"></i>After creating your account, you'll register your arena for approval. Your arenas go live once the Sportster team verifies them.
           </div>
-          <button data-go="s22" style="width:100%;padding:14px;background:#09210E;color:#fff;font-size:14px;font-weight:900;border:none;border-radius:13px;cursor:pointer;font-family:inherit;margin-bottom:12px;">Create Account & Register Arena</button>
+          <button id="s24-create-btn" data-go="s22" style="width:100%;padding:14px;background:#09210E;color:#fff;font-size:14px;font-weight:900;border:none;border-radius:13px;cursor:pointer;font-family:inherit;margin-bottom:12px;">Create Account & Register Arena</button>
+
+          <!-- Invalid referral code popup overlay -->
+          <div id="s24-ref-popup" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:40;align-items:flex-end;justify-content:center;">
+            <div style="background:#fff;border-radius:20px 20px 0 0;padding:22px 20px 28px;width:100%;box-sizing:border-box;">
+              <div style="width:40px;height:4px;background:#DDD;border-radius:2px;margin:0 auto 18px;"></div>
+              <div style="width:56px;height:56px;background:#FDECEA;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
+                <i class="ri-error-warning-line" style="font-size:28px;color:#C62828;"></i>
+              </div>
+              <div style="font-size:16px;font-weight:900;color:#111;text-align:center;margin-bottom:8px;">Invalid Referral Code</div>
+              <div style="font-size:12px;color:#666;text-align:center;line-height:1.6;margin-bottom:20px;">The referral code you entered is incorrect or has expired. Please try a valid code or contact Sportster to get one.</div>
+              <div style="background:#F4F7F2;border-radius:12px;padding:12px 14px;margin-bottom:20px;display:flex;gap:8px;align-items:flex-start;">
+                <i class="ri-customer-service-2-line" style="font-size:16px;color:#09210E;flex-shrink:0;margin-top:1px;"></i>
+                <div>
+                  <div style="font-size:11px;font-weight:800;color:#09210E;margin-bottom:2px;">Contact Sportster</div>
+                  <div style="font-size:10px;color:#555;line-height:1.5;">Email us at <span style="color:#09210E;font-weight:700;">support@sportster.com</span> with your name, business details and we will provide a valid referral code.</div>
+                </div>
+              </div>
+              <button id="s24-ref-close" style="width:100%;padding:13px;background:#09210E;color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Try Again</button>
+            </div>
+          </div>
           <div style="text-align:center;font-size:11px;color:#AAA;">Already have an account? <span data-go="s23" style="color:#09210E;font-weight:800;cursor:pointer;">Sign In</span></div>
         </div>
       </div>
@@ -5305,9 +5340,9 @@ body:not(.interactive) #s22-success { display: none !important; }
           <!-- Account -->
           <div style="background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #E8E8E8;">
             <div style="padding:10px 14px;font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid #F5F5F5;">Account</div>
-            <div data-go="s26" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-user-3-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Personal Information</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
-            <div data-go="s26" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-building-4-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Business Details</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
-            <div data-go="s26" style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-lock-password-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Change Password</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
+            <div data-go="s31" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-user-3-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Personal Information</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
+            <div data-go="s32" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-building-4-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Business Details</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
+            <div data-go="s33" style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-lock-password-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Change Password</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
           </div>
           <!-- Finance -->
           <div style="background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #E8E8E8;">
@@ -5320,8 +5355,8 @@ body:not(.interactive) #s22-success { display: none !important; }
               </div>
               <i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i>
             </div>
-            <div data-go="s14" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-bank-card-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Payment Methods</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
-            <div data-go="s26" style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-bank-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Bank Account Details</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
+            <div data-go="s34" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-bank-card-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Payment Methods</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
+            <div data-go="s35" style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-bank-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Bank Account Details</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
           </div>
           <!-- Arenas -->
           <div style="background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #E8E8E8;">
@@ -5334,8 +5369,8 @@ body:not(.interactive) #s22-success { display: none !important; }
             <div style="padding:10px 14px;font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid #F5F5F5;">Support</div>
             <div data-go="s29" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-question-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Help Center</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
             <div data-go="s30" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-customer-service-2-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Contact Sportster Support</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
-            <div data-go="s26" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-shield-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Privacy Policy</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
-            <div data-go="s26" style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-file-text-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Terms & Conditions</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
+            <div data-go="s36" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-shield-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Privacy Policy</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
+            <div data-go="s37" style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-file-text-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Terms & Conditions</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
           </div>
           <!-- Sign Out -->
           <div data-go="s23" style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #FECDD3;display:flex;align-items:center;gap:12px;cursor:pointer;">
@@ -5655,6 +5690,245 @@ body:not(.interactive) #s22-success { display: none !important; }
         <input type="text" placeholder="Type a message..." style="flex:1;border:1.5px solid #E0E0E0;border-radius:22px;padding:9px 14px;font-size:12px;font-family:inherit;outline:none;background:#FAFAFA;" />
         <div style="width:36px;height:36px;background:#09210E;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
           <i class="ri-send-plane-2-fill" style="font-size:16px;color:#fff;margin-left:2px;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- flow sep -->
+<div class="flow-sep"><div class="fs-lbl">Profile Sub-screens</div><div class="fs-arr">→</div><div class="fs-sub">From s26 menu items</div></div>
+
+<!-- ═══ S31 — PERSONAL INFORMATION ═══ -->
+<div class="col" id="s31">
+  <div class="page-label">31 · Personal Information</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;">
+      <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+        <div data-back style="width:32px;height:32px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;color:#333;line-height:1;"></i></div>
+        <div style="flex:1;font-size:15px;font-weight:900;color:#111;">Personal Information</div>
+        <div style="font-size:11px;font-weight:700;color:#09210E;cursor:pointer;">Save</div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:16px;">
+        <!-- Avatar row -->
+        <div style="display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:14px;margin-bottom:14px;border:1.5px solid #E8E8E8;">
+          <div style="width:60px;height:60px;background:linear-gradient(135deg,#2A7A38,#5AB86C);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:#fff;flex-shrink:0;">M</div>
+          <div><div style="font-size:13px;font-weight:800;color:#111;">Muhammad Ahmed</div><div style="font-size:11px;color:#AAA;margin-top:2px;">vendor@elitesports.pk</div></div>
+          <div style="margin-left:auto;font-size:10px;font-weight:700;color:#09210E;background:#E8F5E0;padding:5px 11px;border-radius:20px;cursor:pointer;">Change Photo</div>
+        </div>
+        <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #E8E8E8;display:flex;flex-direction:column;gap:12px;">
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Full Name</div><input type="text" value="Muhammad Ahmed" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Email Address</div><input type="email" value="vendor@elitesports.pk" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Phone Number</div><input type="tel" value="+92 300 123 4567" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Date of Birth</div><input type="date" value="1990-05-14" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">CNIC Number</div><input type="text" value="35202-1234567-1" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">City</div><input type="text" value="Lahore" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+        </div>
+        <button style="width:100%;margin-top:16px;padding:13px;background:#09210E;color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S32 — BUSINESS DETAILS ═══ -->
+<div class="col" id="s32">
+  <div class="page-label">32 · Business Details</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;">
+      <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+        <div data-back style="width:32px;height:32px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;color:#333;line-height:1;"></i></div>
+        <div style="flex:1;font-size:15px;font-weight:900;color:#111;">Business Details</div>
+        <div style="font-size:11px;font-weight:700;color:#09210E;cursor:pointer;">Save</div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:16px;">
+        <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #E8E8E8;display:flex;flex-direction:column;gap:12px;">
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Business / Organization Name</div><input type="text" value="Elite Sports Pvt. Ltd." style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Business Type</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <div style="padding:6px 12px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">Sole Proprietor</div>
+              <div style="padding:6px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Pvt. Ltd.</div>
+              <div style="padding:6px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Partnership</div>
+            </div>
+          </div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">NTN / Tax Number</div><input type="text" placeholder="e.g. 1234567-8" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Business Registration Number</div><input type="text" placeholder="SECP / Chamber of Commerce number" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Business Address</div><textarea rows="2" placeholder="Registered office address" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;resize:none;line-height:1.5;"></textarea></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Business Email</div><input type="email" placeholder="business@example.com" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Business Phone</div><input type="tel" placeholder="+92 21 000 0000" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+        </div>
+        <button style="width:100%;margin-top:16px;padding:13px;background:#09210E;color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S33 — CHANGE PASSWORD ═══ -->
+<div class="col" id="s33">
+  <div class="page-label">33 · Change Password</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;">
+      <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+        <div data-back style="width:32px;height:32px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;color:#333;line-height:1;"></i></div>
+        <div style="flex:1;font-size:15px;font-weight:900;color:#111;">Change Password</div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:16px;">
+        <div style="background:#FFF8E0;border-radius:12px;padding:11px 13px;margin-bottom:14px;border:1.5px solid #FFE082;display:flex;gap:8px;align-items:flex-start;">
+          <i class="ri-shield-keyhole-line" style="font-size:16px;color:#B8860B;flex-shrink:0;margin-top:1px;"></i>
+          <div style="font-size:10px;color:#7A5A00;line-height:1.6;font-weight:600;">For security, you'll be logged out of all other devices after changing your password.</div>
+        </div>
+        <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #E8E8E8;display:flex;flex-direction:column;gap:12px;">
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Current Password</div><input type="password" placeholder="Enter current password" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          <div style="height:1px;background:#F0F0F0;"></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">New Password</div><input type="password" placeholder="Min. 8 characters" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          <div><div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Confirm New Password</div><input type="password" placeholder="Re-enter new password" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+        </div>
+        <button style="width:100%;margin-top:16px;padding:13px;background:#09210E;color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Update Password</button>
+        <div style="text-align:center;margin-top:12px;font-size:11px;color:#AAA;">Forgot your password? <span style="color:#09210E;font-weight:700;cursor:pointer;">Send Reset Email</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S34 — PAYMENT METHODS ═══ -->
+<div class="col" id="s34">
+  <div class="page-label">34 · Payment Methods</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;">
+      <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+        <div data-back style="width:32px;height:32px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;color:#333;line-height:1;"></i></div>
+        <div style="flex:1;font-size:15px;font-weight:900;color:#111;">Payment Methods</div>
+        <div style="font-size:11px;font-weight:700;color:#09210E;cursor:pointer;">+ Add</div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;">
+        <!-- Active card -->
+        <div style="background:linear-gradient(135deg,#09210E,#1E5028);border-radius:16px;padding:16px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;background:rgba(255,255,255,.06);border-radius:50%;"></div>
+          <div style="position:absolute;bottom:-30px;left:30px;width:140px;height:140px;background:rgba(255,255,255,.04);border-radius:50%;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;"><span style="font-size:12px;font-weight:800;color:rgba(255,255,255,.6);">EASYPAISA WALLET</span><div style="background:rgba(255,255,255,.15);padding:4px 9px;border-radius:20px;font-size:9px;font-weight:800;color:#fff;">PRIMARY</div></div>
+          <div style="font-size:16px;font-weight:900;color:#fff;letter-spacing:2px;margin-bottom:10px;">**** **** **** 7823</div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;"><div><div style="font-size:8px;color:rgba(255,255,255,.5);font-weight:600;margin-bottom:2px;">HOLDER</div><div style="font-size:11px;font-weight:700;color:#fff;">Muhammad Ahmed</div></div><div style="font-size:20px;">📱</div></div>
+        </div>
+        <!-- Other method -->
+        <div style="background:#fff;border-radius:14px;padding:13px 14px;border:1.5px solid #E8E8E8;display:flex;align-items:center;gap:12px;">
+          <div style="width:40px;height:40px;background:#FFF3CD;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-size:20px;">🏦</span></div>
+          <div style="flex:1;"><div style="font-size:12px;font-weight:800;color:#111;">JazzCash</div><div style="font-size:10px;color:#AAA;margin-top:1px;">+92 300 123 4567</div></div>
+          <div style="font-size:9px;font-weight:700;color:#E53935;cursor:pointer;">Remove</div>
+        </div>
+        <!-- Add new -->
+        <div style="background:#fff;border-radius:14px;padding:13px 14px;border:2px dashed #C5DFAA;display:flex;align-items:center;gap:12px;cursor:pointer;">
+          <div style="width:40px;height:40px;background:#E8F5E0;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-add-line" style="font-size:20px;color:#09210E;"></i></div>
+          <div style="font-size:12px;font-weight:800;color:#09210E;">Add New Payment Method</div>
+        </div>
+        <!-- Info note -->
+        <div style="background:#F0F4FF;border-radius:12px;padding:11px 13px;border:1.5px solid #C5C8F0;display:flex;gap:8px;align-items:flex-start;">
+          <i class="ri-information-line" style="font-size:14px;color:#4A6CF7;flex-shrink:0;margin-top:1px;"></i>
+          <div style="font-size:10px;color:#3B50C4;line-height:1.6;font-weight:600;">Payment methods are used to pay Sportster's platform fee. Arena earnings are paid to your linked bank account.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S35 — BANK ACCOUNT DETAILS ═══ -->
+<div class="col" id="s35">
+  <div class="page-label">35 · Bank Account Details</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;">
+      <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+        <div data-back style="width:32px;height:32px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;color:#333;line-height:1;"></i></div>
+        <div style="flex:1;font-size:15px;font-weight:900;color:#111;">Bank Account Details</div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:16px;">
+        <!-- Current linked account -->
+        <div style="background:linear-gradient(135deg,#09210E,#1E5028);border-radius:14px;padding:14px 16px;margin-bottom:14px;">
+          <div style="font-size:9px;color:rgba(255,255,255,.5);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;">Current Payout Account</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:38px;height:38px;background:rgba(255,255,255,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-bank-line" style="font-size:18px;color:#fff;"></i></div>
+            <div><div style="font-size:13px;font-weight:900;color:#fff;">HBL — Habib Bank</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px;">****4521 · Muhammad Ahmed</div></div>
+          </div>
+          <div style="margin-top:10px;display:flex;gap:7px;"><div style="flex:1;background:rgba(255,255,255,.12);border-radius:8px;padding:8px;text-align:center;"><div style="font-size:8px;color:rgba(255,255,255,.5);font-weight:600;">IBAN</div><div style="font-size:10px;font-weight:800;color:#fff;margin-top:2px;">PK36HABB0000****4521</div></div><div style="flex:1;background:rgba(255,255,255,.12);border-radius:8px;padding:8px;text-align:center;"><div style="font-size:8px;color:rgba(255,255,255,.5);font-weight:600;">Branch Code</div><div style="font-size:10px;font-weight:800;color:#fff;margin-top:2px;">0001</div></div></div>
+        </div>
+        <!-- Update form -->
+        <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #E8E8E8;margin-bottom:12px;">
+          <div style="font-size:11px;font-weight:800;color:#333;margin-bottom:12px;">Update Bank Account</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div><div style="font-size:10px;font-weight:700;color:#555;margin-bottom:4px;">Bank Name</div><input type="text" placeholder="e.g. HBL, Meezan, UBL..." style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:9px 11px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+            <div><div style="font-size:10px;font-weight:700;color:#555;margin-bottom:4px;">Account Title</div><input type="text" placeholder="Full name as on account" style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:9px 11px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+            <div><div style="font-size:10px;font-weight:700;color:#555;margin-bottom:4px;">IBAN / Account Number</div><input type="text" placeholder="PK00XXXX0000000000000000" style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:9px 11px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+            <div><div style="font-size:10px;font-weight:700;color:#555;margin-bottom:4px;">Branch Code (optional)</div><input type="text" placeholder="e.g. 0001" style="width:100%;border:1.5px solid #E0E0E0;border-radius:9px;padding:9px 11px;font-size:12px;font-family:inherit;background:#F8FAF6;box-sizing:border-box;outline:none;" /></div>
+          </div>
+        </div>
+        <div style="background:#FFF8E0;border-radius:11px;padding:10px 12px;border:1.5px solid #FFE082;display:flex;gap:7px;align-items:flex-start;margin-bottom:14px;">
+          <i class="ri-information-line" style="font-size:13px;color:#B8860B;flex-shrink:0;margin-top:1px;"></i>
+          <div style="font-size:10px;color:#7A5A00;line-height:1.6;font-weight:600;">Payouts are sent every Monday. Changes take effect from the next payout cycle.</div>
+        </div>
+        <button style="width:100%;padding:13px;background:#09210E;color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Update Bank Account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S36 — PRIVACY POLICY ═══ -->
+<div class="col" id="s36">
+  <div class="page-label">36 · Privacy Policy</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;">
+      <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+        <div data-back style="width:32px;height:32px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;color:#333;line-height:1;"></i></div>
+        <div style="flex:1;font-size:15px;font-weight:900;color:#111;">Privacy Policy</div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;">
+        <div style="background:#E8F5E0;border-radius:12px;padding:11px 13px;border:1.5px solid #C5DFAA;font-size:10px;color:#09210E;font-weight:600;line-height:1.6;"><i class="ri-shield-check-line" style="margin-right:4px;font-size:12px;"></i>Last updated: 15 January 2025 · Effective immediately</div>
+        <!-- Policy sections -->
+        <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #E8E8E8;display:flex;flex-direction:column;gap:12px;">
+          <div><div style="font-size:12px;font-weight:900;color:#111;margin-bottom:6px;">1. Information We Collect</div><div style="font-size:11px;color:#555;line-height:1.7;">We collect information you provide during registration (name, CNIC, email, phone, business details) and operational data such as arena listings, bookings, pricing, and transaction records. Usage data including app interactions may also be collected.</div></div>
+          <div style="height:1px;background:#F5F5F5;"></div>
+          <div><div style="font-size:12px;font-weight:900;color:#111;margin-bottom:6px;">2. How We Use Your Information</div><div style="font-size:11px;color:#555;line-height:1.7;">Your data is used to operate the Sportster platform, process payouts, verify vendor identity, resolve disputes, improve our services, and send relevant notifications. We do not sell personal data to third parties.</div></div>
+          <div style="height:1px;background:#F5F5F5;"></div>
+          <div><div style="font-size:12px;font-weight:900;color:#111;margin-bottom:6px;">3. Data Security</div><div style="font-size:11px;color:#555;line-height:1.7;">All data is encrypted in transit and at rest using industry-standard protocols. Access to vendor data is restricted to authorized Sportster personnel only.</div></div>
+          <div style="height:1px;background:#F5F5F5;"></div>
+          <div><div style="font-size:12px;font-weight:900;color:#111;margin-bottom:6px;">4. Your Rights</div><div style="font-size:11px;color:#555;line-height:1.7;">You may request access, correction, or deletion of your personal data at any time by contacting support@sportster.com. Account deletion removes all personal data within 30 days.</div></div>
+          <div style="height:1px;background:#F5F5F5;"></div>
+          <div><div style="font-size:12px;font-weight:900;color:#111;margin-bottom:6px;">5. Contact Us</div><div style="font-size:11px;color:#555;line-height:1.7;">For privacy-related queries, email <span style="color:#09210E;font-weight:700;">privacy@sportster.com</span> or write to Sportster Technologies, DHA Phase 2, Karachi, Pakistan.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S37 — TERMS & CONDITIONS ═══ -->
+<div class="col" id="s37">
+  <div class="page-label">37 · Terms & Conditions</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;">
+      <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;display:flex;align-items:center;gap:10px;">
+        <div data-back style="width:32px;height:32px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;color:#333;line-height:1;"></i></div>
+        <div style="flex:1;font-size:15px;font-weight:900;color:#111;">Terms & Conditions</div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;">
+        <div style="background:#E8F5E0;border-radius:12px;padding:11px 13px;border:1.5px solid #C5DFAA;font-size:10px;color:#09210E;font-weight:600;line-height:1.6;"><i class="ri-file-text-line" style="margin-right:4px;font-size:12px;"></i>Vendor Terms · Last updated: 15 January 2025</div>
+        <div style="background:#fff;border-radius:14px;padding:14px;border:1.5px solid #E8E8E8;display:flex;flex-direction:column;gap:12px;">
+          <div><div style="font-size:12px;font-weight:900;color:#111;margin-bottom:6px;">1. Vendor Eligibility</div><div style="font-size:11px;color:#555;line-height:1.7;">To list arenas on Sportster, you must be a legal owner or authorized operator of the facility, provide accurate documents during registration, and maintain a valid business status. Sportster reserves the right to reject or remove any listing.</div></div>
+          <div style="height:1px;background:#F5F5F5;"></div>
+          <div><div style="font-size:12px;font-weight:900;color:#111;margin-bottom:6px;">2. Arena Listings</div><div style="font-size:11px;color:#555;line-height:1.7;">All arena information must be accurate and up-to-date. Misleading descriptions, false amenities, or inflated capacity are grounds for immediate suspension. Vendors must honour all confirmed bookings.</div></div>
+          <div style="height:1px;background:#F5F5F5;"></div>
+          <div><div style="font-size:12px;font-weight:900;color:#111;margin-bottom:6px;">3. Payments & Commissions</div><div style="font-size:11px;color:#555;line-height:1.7;">Sportster charges a platform commission of <strong>10–15%</strong> per booking. Remaining earnings are disbursed weekly to the registered bank account. Sportster may adjust commission rates with 30-day advance notice.</div></div>
+          <div style="height:1px;background:#F5F5F5;"></div>
+          <div><div style="font-size:12px;font-weight:900;color:#111;margin-bottom:6px;">4. Cancellations</div><div style="font-size:11px;color:#555;line-height:1.7;">Vendors must set a clear cancellation policy. Cancellations initiated by the vendor after customer payment will result in a full refund to the customer and a cancellation penalty deducted from the vendor's next payout.</div></div>
+          <div style="height:1px;background:#F5F5F5;"></div>
+          <div><div style="font-size:12px;font-weight:900;color:#111;margin-bottom:6px;">5. Termination</div><div style="font-size:11px;color:#555;line-height:1.7;">Sportster may suspend or permanently remove a vendor account for repeated policy violations, fraudulent activity, or failure to honour bookings. Vendors may close their account by contacting support with 14-days notice.</div></div>
+        </div>
+        <div style="background:#F0F4FF;border-radius:12px;padding:11px 13px;border:1.5px solid #C5C8F0;display:flex;gap:8px;align-items:flex-start;">
+          <i class="ri-question-line" style="font-size:14px;color:#4A6CF7;flex-shrink:0;margin-top:1px;"></i>
+          <div style="font-size:10px;color:#3B50C4;line-height:1.6;font-weight:600;">Questions about these terms? Email <span style="font-weight:900;">legal@sportster.com</span></div>
         </div>
       </div>
     </div>
