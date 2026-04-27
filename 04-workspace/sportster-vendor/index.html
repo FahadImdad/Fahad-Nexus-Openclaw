@@ -3398,6 +3398,29 @@ body.interactive #demo-toggle::before { content: '← '; }
       return;
     }
 
+    // SOCIAL LINKS SHEET — open
+    if (e.target.closest('[data-social-edit]')) {
+      var sheet = document.getElementById('s19-social-sheet');
+      if (sheet) { sheet.style.display = 'flex'; }
+      return;
+    }
+
+    // SOCIAL LINKS SHEET — close (X button or backdrop)
+    if (e.target.id === 's19-social-close' || e.target.closest('#s19-social-close')) {
+      var sheet = document.getElementById('s19-social-sheet');
+      if (sheet) { sheet.style.display = 'none'; }
+      return;
+    }
+    if (e.target.id === 's19-social-save' || e.target.closest('#s19-social-save')) {
+      var sheet = document.getElementById('s19-social-sheet');
+      if (sheet) { sheet.style.display = 'none'; }
+      return;
+    }
+    if (e.target.id === 's19-social-sheet') {
+      e.target.style.display = 'none';
+      return;
+    }
+
     // BOTTOM NAV
     var ni = e.target.closest('.nav-item');
     if (ni) {
@@ -3689,39 +3712,6 @@ body.interactive #demo-toggle::before { content: '← '; }
     });
   });
 
-  // ── S19 Social Links bottom sheet ──────────────────────────
-  (function () {
-    var sheet = document.getElementById('s19-social-sheet');
-    if (!sheet) return;
-    var closeBtn = document.getElementById('s19-social-close');
-    var saveBtn  = document.getElementById('s19-social-save');
-
-    function openSheet(e) {
-      if (e) e.stopPropagation();
-      sheet.style.display = 'flex';
-    }
-    function closeSheet(e) {
-      if (e) e.stopPropagation();
-      sheet.style.display = 'none';
-    }
-
-    // "Edit ›" button and all social icon tiles
-    document.querySelectorAll('[data-social-edit]').forEach(function (el) {
-      el.addEventListener('click', openSheet);
-    });
-
-    if (closeBtn) closeBtn.addEventListener('click', closeSheet);
-
-    // Tap backdrop (outside card) closes
-    sheet.addEventListener('click', function (e) {
-      if (e.target === sheet) closeSheet();
-    });
-
-    if (saveBtn) saveBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      closeSheet();
-    });
-  })();
 
 })();
 </script>
