@@ -4925,9 +4925,10 @@ body:not(.interactive) #s22-success { display: none !important; }
 
   // ── Holiday Calendar Factory (s22 Register Arena, s19 Edit Arena) ──
   function makeHolCal(cfg) {
-    var scr    = cfg.scr;
-    var screen = document.getElementById(scr);
+    var scr      = cfg.scr;
+    var screen   = document.getElementById(scr);
     if (!screen) return;
+    var screenEl = screen.querySelector('.screen') || screen;
 
     var sheet   = screen.querySelector('#' + scr + '-hol-sheet');
     var calGrid = screen.querySelector('#' + scr + '-hol-grid');
@@ -4936,11 +4937,39 @@ body:not(.interactive) #s22-success { display: none !important; }
     var sumText = screen.querySelector('#' + scr + '-hol-sumtxt');
     var chipsEl = screen.querySelector('#' + scr + '-hol-chips');
 
-    var TODAY    = new Date(2026, 3, 28);
-    var calYear  = TODAY.getFullYear(), calMonth = TODAY.getMonth();
-    var MONTHS   = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    var SHORT    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    var offDays  = {}, tempOff = {};
+    // Build management popup dynamically and append inside .screen
+    var mgmt = document.createElement('div');
+    mgmt.id = scr + '-hol-mgmt';
+    mgmt.className = 'bs-bg';
+    mgmt.style.display = 'none';
+    mgmt.innerHTML =
+      '<div class="bs-card" style="padding:20px 16px 28px;">' +
+        '<div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 16px;"></div>' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">' +
+          '<div>' +
+            '<div style="font-size:16px;font-weight:900;color:#111;">Blocked Dates</div>' +
+            '<div style="font-size:11px;color:#999;margin-top:2px;">Tap × to unblock · tap <b style="color:#09210E;">Mark More</b> to add</div>' +
+          '</div>' +
+          '<div id="' + scr + '-hol-mgmt-close" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">' +
+            '<i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i>' +
+          '</div>' +
+        '</div>' +
+        '<div id="' + scr + '-hol-mgmt-list" style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;margin-bottom:16px;"></div>' +
+        '<div style="display:flex;gap:8px;">' +
+          '<button id="' + scr + '-hol-mgmt-add" style="flex:1;padding:12px;border:1.5px solid #09210E;border-radius:12px;font-size:12px;font-weight:800;color:#09210E;background:#fff;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;">' +
+            '<i class="ri-calendar-close-line" style="font-size:14px;"></i>Mark More' +
+          '</button>' +
+          '<button id="' + scr + '-hol-mgmt-done" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Done</button>' +
+        '</div>' +
+      '</div>';
+    screenEl.appendChild(mgmt);
+
+    var TODAY   = new Date(2026, 3, 28);
+    var calYear = TODAY.getFullYear(), calMonth = TODAY.getMonth();
+    var MONTHS  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var SHORT   = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var DOWS    = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var offDays = {}, tempOff = {};
 
     function dkey(y, m, d) { return y + '-' + m + '-' + d; }
 
@@ -4998,13 +5027,41 @@ body:not(.interactive) #s22-success { display: none !important; }
       chipsEl.innerHTML = keys.map(function(k) {
         var p = k.split('-');
         var lbl = SHORT[parseInt(p[1])] + ' ' + p[2];
-        return '<div style="display:inline-flex;align-items:center;gap:3px;background:#FFF3F3;border:1px solid #FFCDD2;border-radius:20px;padding:3px 7px 3px 6px;">' +
-          '<span style="font-size:10px;color:#E53935;">🚫</span>' +
-          '<span style="font-size:10px;font-weight:700;color:#C62828;">' + lbl + '</span>' +
+        return '<div class="hol-chip-item" data-scrm="' + scr + '" style="display:inline-flex;align-items:center;gap:3px;background:#FFF3F3;border:1px solid #FFCDD2;border-radius:20px;padding:3px 7px 3px 6px;cursor:pointer;">' +
+          '<span style="font-size:10px;color:#E53935;pointer-events:none;">🚫</span>' +
+          '<span style="font-size:10px;font-weight:700;color:#C62828;pointer-events:none;">' + lbl + '</span>' +
           '<span class="hol-chip-rm" data-scrm="' + scr + '" data-key="' + k + '" style="font-size:13px;color:#BBBBBB;margin-left:3px;font-weight:900;cursor:pointer;line-height:1;">×</span>' +
           '</div>';
       }).join('');
     }
+
+    function renderMgmt() {
+      var listEl = mgmt.querySelector('#' + scr + '-hol-mgmt-list');
+      if (!listEl) return;
+      var keys = Object.keys(offDays).filter(function(k) { return offDays[k]; }).sort();
+      if (!keys.length) {
+        listEl.innerHTML = '<div style="text-align:center;padding:24px 0;color:#CCC;font-size:12px;font-style:italic;">No dates blocked yet</div>';
+        return;
+      }
+      listEl.innerHTML = keys.map(function(k) {
+        var p   = k.split('-');
+        var lbl = SHORT[parseInt(p[1])] + ' ' + p[2] + ', ' + p[0];
+        var dow = new Date(parseInt(p[0]), parseInt(p[1]), parseInt(p[2])).getDay();
+        return '<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#FFF8F8;border-radius:11px;border:1px solid #FFCDD2;">' +
+          '<div style="display:flex;align-items:center;gap:10px;">' +
+            '<div style="width:36px;height:36px;background:#FFEBEE;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🚫</div>' +
+            '<div>' +
+              '<div style="font-size:13px;font-weight:800;color:#C62828;">' + lbl + '</div>' +
+              '<div style="font-size:10px;color:#AAA;margin-top:2px;">' + DOWS[dow] + ' · Arena Closed</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="hol-mgmt-rm" data-scrm="' + scr + '" data-key="' + k + '" style="width:28px;height:28px;background:#FFE0E0;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;font-weight:900;color:#E53935;flex-shrink:0;line-height:1;">×</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function openMgmt()  { renderMgmt(); mgmt.style.display = 'flex'; }
+    function closeMgmt() { mgmt.style.display = 'none'; }
 
     function openSheet() {
       tempOff = {};
@@ -5021,10 +5078,14 @@ body:not(.interactive) #s22-success { display: none !important; }
       Object.keys(tempOff).forEach(function(k) { if (tempOff[k]) offDays[k] = true; });
       if (sheet) sheet.style.display = 'none';
       renderChips();
+      if (Object.keys(offDays).length > 0) openMgmt();
     }
 
     document.addEventListener('click', function(e) {
+      // Open calendar
       if (e.target.closest('#' + scr + '-hol-open-btn') && screen.contains(e.target)) { openSheet(); return; }
+
+      // Calendar sheet
       if (e.target.id === scr + '-hol-sheet') { closeSheet(); return; }
       if (e.target.closest('#' + scr + '-hol-close')   && screen.contains(e.target)) { closeSheet(); return; }
       if (e.target.closest('#' + scr + '-hol-cancel')  && screen.contains(e.target)) { closeSheet(); return; }
@@ -5046,6 +5107,25 @@ body:not(.interactive) #s22-success { display: none !important; }
           tempOff[k] = !tempOff[k]; renderCal(); return;
         }
       }
+
+      // Management popup
+      if (e.target.id === scr + '-hol-mgmt') { closeMgmt(); return; }
+      if (e.target.closest('#' + scr + '-hol-mgmt-close') && screen.contains(e.target)) { closeMgmt(); return; }
+      if (e.target.closest('#' + scr + '-hol-mgmt-done')  && screen.contains(e.target)) { closeMgmt(); return; }
+      if (e.target.closest('#' + scr + '-hol-mgmt-add')   && screen.contains(e.target)) { closeMgmt(); openSheet(); return; }
+      var mRm = e.target.closest('.hol-mgmt-rm');
+      if (mRm && mRm.getAttribute('data-scrm') === scr && screen.contains(mRm)) {
+        var key = mRm.getAttribute('data-key');
+        if (key) { delete offDays[key]; renderMgmt(); renderChips(); }
+        return;
+      }
+
+      // Chip click (not ×) → open management
+      var chipItem = e.target.closest('.hol-chip-item');
+      if (chipItem && chipItem.getAttribute('data-scrm') === scr && screen.contains(chipItem)) {
+        if (!e.target.closest('.hol-chip-rm')) { openMgmt(); return; }
+      }
+      // Chip × remove
       var rm = e.target.closest('.hol-chip-rm');
       if (rm && rm.getAttribute('data-scrm') === scr && screen.contains(rm)) {
         var key = rm.getAttribute('data-key');
