@@ -4394,9 +4394,6 @@ body:not(.interactive) #s22-success { display: none !important; }
       var canPill = e.target.closest('.r-can-pill');
       if (canPill) { e.stopPropagation(); s22.querySelectorAll('.r-can-pill').forEach(function(p){ p.style.background='#fff';p.style.color='#555';p.style.borderColor='#DDD';p.classList.remove('r-sel'); }); canPill.style.background='#09210E';canPill.style.color='#fff';canPill.style.borderColor='#09210E';canPill.classList.add('r-sel'); return; }
 
-      // Discount toggle
-      if (e.target.id === 'r-discount-toggle' || e.target.closest('#r-discount-toggle')) { e.stopPropagation(); var tog=s22.querySelector('#r-discount-toggle'); var det=s22.querySelector('#r-discount-detail'); if(!tog||!det) return; var on=tog.classList.contains('on'); if(on){ tog.classList.remove('on');tog.style.background='#DDD';var th=tog.querySelector('div');if(th)th.style.transform='';det.style.display='none'; }else{ tog.classList.add('on');tog.style.background='#09210E';var th=tog.querySelector('div');if(th)th.style.transform='translateX(18px)';det.style.display='block'; } return; }
-
       // Discount stepper
 
       // Declaration checkbox
@@ -4415,6 +4412,18 @@ body:not(.interactive) #s22-success { display: none !important; }
       discInput.addEventListener('input', function() {
         var v = parseInt(this.value) || 0;
         if (v >= 1 && v <= 80) updateDiscPreview(v);
+      });
+    }
+
+    // Wire discount toggle directly — the global .toggle handler fires first with stopPropagation,
+    // which prevents the document listener from ever seeing this click. A direct listener on the
+    // same element still fires (stopPropagation only blocks bubbling to parents, not sibling listeners).
+    // The global handler already toggled the 'on' class, so we just read its new state here.
+    var discToggle = s22.querySelector('#r-discount-toggle');
+    if (discToggle) {
+      discToggle.addEventListener('click', function() {
+        var det = s22.querySelector('#r-discount-detail');
+        if (det) det.style.display = this.classList.contains('on') ? 'block' : 'none';
       });
     }
 
