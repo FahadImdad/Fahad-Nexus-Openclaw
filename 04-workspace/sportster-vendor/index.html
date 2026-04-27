@@ -1607,7 +1607,24 @@ body:not(.interactive) #s22-success { display: none !important; }
           </div>
         </div>
 
-        <!-- 11. Slot Settings & Pricing -->
+        <!-- 11. Blocked Dates -->
+        <div style="background:#fff;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #FFE0E0;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Blocked Dates</div>
+              <div style="font-size:9px;color:#AAA;margin-top:2px;">Holidays · closures · maintenance</div>
+            </div>
+            <div id="s19-hol-open-btn" style="display:flex;align-items:center;gap:4px;padding:7px 11px;background:#FFF3F3;border-radius:20px;cursor:pointer;border:1px solid #FFCDD2;">
+              <i class="ri-calendar-close-line" style="font-size:13px;color:#E53935;pointer-events:none;"></i>
+              <span style="font-size:11px;font-weight:800;color:#E53935;pointer-events:none;">Mark Off</span>
+            </div>
+          </div>
+          <div id="s19-hol-chips" style="display:flex;flex-wrap:wrap;gap:5px;min-height:20px;">
+            <span style="font-size:10px;color:#CCC;font-style:italic;">No dates blocked</span>
+          </div>
+        </div>
+
+        <!-- 12. Slot Settings & Pricing -->
         <div style="background:#F4FAEE;border-radius:14px;padding:12px 13px;margin-bottom:10px;border:1.5px solid #C5DFAA;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
             <div style="font-size:10px;font-weight:800;color:#09210E;text-transform:uppercase;letter-spacing:.5px;">Slot Settings & Pricing</div>
@@ -1671,6 +1688,34 @@ body:not(.interactive) #s22-success { display: none !important; }
       </div>
 
       <!-- Social Links Bottom Sheet (hidden by default) -->
+      <!-- s19 holiday calendar sheet -->
+      <div id="s19-hol-sheet" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;max-height:88%;overflow-y:auto;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 18px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div><div style="font-size:16px;font-weight:900;color:#111;">Mark Days Off</div><div style="font-size:11px;color:#999;margin-top:3px;">Tap a date to block · tap again to unblock</div></div>
+            <div id="s19-hol-close" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i></div>
+          </div>
+          <div style="display:flex;align-items:center;margin-bottom:16px;">
+            <div id="s19-hol-prev" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-left-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
+            <div id="s19-hol-mlbl" style="flex:1;text-align:center;font-size:16px;font-weight:900;color:#111;"></div>
+            <div id="s19-hol-next" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-right-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:8px;text-align:center;">
+            <div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">M</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">W</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">F</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div>
+          </div>
+          <div id="s19-hol-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:16px;"></div>
+          <div id="s19-hol-summary" style="display:none;background:#FFF3F3;border-radius:12px;padding:11px 13px;margin-bottom:16px;border:1.5px solid #FFCDD2;">
+            <div style="font-size:10px;font-weight:900;color:#C62828;margin-bottom:4px;">🚫 Days Blocked</div>
+            <div id="s19-hol-sumtxt" style="font-size:11px;color:#666;line-height:1.8;"></div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button id="s19-hol-cancel" style="flex:1;padding:13px;border:1.5px solid #E0E0E0;border-radius:12px;font-size:13px;font-weight:700;color:#555;background:#fff;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button id="s19-hol-confirm" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Confirm</button>
+          </div>
+        </div>
+      </div>
+
       <div id="s19-social-sheet" class="bs-bg" style="display:none;">
         <div class="bs-card" style="padding:0 0 20px;">
           <div class="bs-handle"></div>
@@ -2284,6 +2329,23 @@ body:not(.interactive) #s22-success { display: none !important; }
                 <div class="r-can-pill" data-can="no" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">No Refund</div>
               </div>
             </div>
+
+            <!-- Block Specific Dates -->
+            <div style="background:#fff;border-radius:12px;padding:12px 13px;border:1.5px solid #FFE0E0;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
+                <div>
+                  <div style="font-size:12px;font-weight:800;color:#111;">Block Specific Dates</div>
+                  <div style="font-size:9px;color:#AAA;margin-top:2px;">Mark holidays, strikes, closures in advance</div>
+                </div>
+                <div id="s22-hol-open-btn" style="display:flex;align-items:center;gap:4px;padding:7px 10px;background:#FFF3F3;border-radius:20px;cursor:pointer;border:1px solid #FFCDD2;">
+                  <i class="ri-calendar-close-line" style="font-size:13px;color:#E53935;pointer-events:none;"></i>
+                  <span style="font-size:11px;font-weight:800;color:#E53935;pointer-events:none;">Mark Off</span>
+                </div>
+              </div>
+              <div id="s22-hol-chips" style="display:flex;flex-wrap:wrap;gap:5px;min-height:20px;">
+                <span style="font-size:10px;color:#CCC;font-style:italic;">No dates blocked</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -2484,6 +2546,37 @@ body:not(.interactive) #s22-success { display: none !important; }
         </button>
       </div>
 
+      <!-- Block Dates Calendar Sheet -->
+      <div id="s22-hol-sheet" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;max-height:88%;overflow-y:auto;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 18px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Block Specific Dates</div>
+              <div style="font-size:11px;color:#999;margin-top:3px;">Tap a date to block · tap again to unblock</div>
+            </div>
+            <div id="s22-hol-close" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i></div>
+          </div>
+          <div style="display:flex;align-items:center;margin-bottom:16px;">
+            <div id="s22-hol-prev" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-left-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
+            <div id="s22-hol-mlbl" style="flex:1;text-align:center;font-size:16px;font-weight:900;color:#111;"></div>
+            <div id="s22-hol-next" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-right-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:8px;text-align:center;">
+            <div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">M</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">W</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">F</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div>
+          </div>
+          <div id="s22-hol-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:16px;"></div>
+          <div id="s22-hol-summary" style="display:none;background:#FFF3F3;border-radius:12px;padding:11px 13px;margin-bottom:16px;border:1.5px solid #FFCDD2;">
+            <div style="font-size:10px;font-weight:900;color:#C62828;margin-bottom:4px;">🚫 Days Blocked</div>
+            <div id="s22-hol-sumtxt" style="font-size:11px;color:#666;line-height:1.8;"></div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button id="s22-hol-cancel" style="flex:1;padding:13px;border:1.5px solid #E0E0E0;border-radius:12px;font-size:13px;font-weight:700;color:#555;background:#fff;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button id="s22-hol-confirm" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Confirm</button>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="bottom-nav">
       <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
@@ -2604,47 +2697,34 @@ body:not(.interactive) #s22-success { display: none !important; }
       </div>
 
       <!-- ═══ HOLIDAY CALENDAR BOTTOM SHEET ═══ -->
-      <div id="s9-holiday-sheet" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.52);z-index:30;align-items:flex-end;">
-        <div style="background:#fff;border-radius:20px 20px 0 0;padding:16px 16px 26px;width:100%;box-sizing:border-box;max-height:88%;overflow-y:auto;">
-          <!-- handle -->
-          <div style="width:36px;height:4px;background:#E0E0E0;border-radius:2px;margin:0 auto 14px;"></div>
-          <!-- title row -->
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;">
+      <div id="s9-holiday-sheet" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;max-height:88%;overflow-y:auto;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 18px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
             <div>
-              <div style="font-size:15px;font-weight:900;color:#111;">Mark Days Off</div>
-              <div style="font-size:10px;color:#888;margin-top:2px;">Tap dates to block — holidays, strikes, closures</div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Mark Days Off</div>
+              <div style="font-size:11px;color:#999;margin-top:3px;">Tap a date to block · tap again to unblock</div>
             </div>
-            <div id="s9-cal-close-x" style="width:28px;height:28px;border-radius:50%;background:#F0F0F0;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
-              <i class="ri-close-line" style="font-size:15px;color:#555;pointer-events:none;"></i>
+            <div id="s9-cal-close-x" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
+              <i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i>
             </div>
           </div>
-          <!-- month nav -->
-          <div style="display:flex;align-items:center;justify-content:space-between;margin:14px 0 10px;">
-            <div id="s9-cal-prev" style="width:32px;height:32px;border-radius:8px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#555;pointer-events:none;"></i></div>
-            <div id="s9-cal-month-lbl" style="font-size:14px;font-weight:800;color:#111;"></div>
-            <div id="s9-cal-next" style="width:32px;height:32px;border-radius:8px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-right-s-line" style="font-size:18px;color:#555;pointer-events:none;"></i></div>
+          <div style="display:flex;align-items:center;margin-bottom:16px;">
+            <div id="s9-cal-prev" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-left-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
+            <div id="s9-cal-month-lbl" style="flex:1;text-align:center;font-size:16px;font-weight:900;color:#111;"></div>
+            <div id="s9-cal-next" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-right-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
           </div>
-          <!-- day-of-week headers -->
-          <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;text-align:center;">
-            <div style="font-size:9px;font-weight:800;color:#AAA;padding:2px 0;">M</div>
-            <div style="font-size:9px;font-weight:800;color:#AAA;padding:2px 0;">T</div>
-            <div style="font-size:9px;font-weight:800;color:#AAA;padding:2px 0;">W</div>
-            <div style="font-size:9px;font-weight:800;color:#AAA;padding:2px 0;">T</div>
-            <div style="font-size:9px;font-weight:800;color:#AAA;padding:2px 0;">F</div>
-            <div style="font-size:9px;font-weight:800;color:#888;padding:2px 0;">S</div>
-            <div style="font-size:9px;font-weight:800;color:#888;padding:2px 0;">S</div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:8px;text-align:center;">
+            <div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">M</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">W</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">F</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div>
           </div>
-          <!-- date grid (populated by JS) -->
-          <div id="s9-cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:14px;"></div>
-          <!-- selected days summary -->
-          <div id="s9-cal-summary" style="display:none;background:#FFF3F3;border-radius:10px;padding:10px 12px;margin-bottom:14px;border:1px solid #FFCDD2;">
-            <div style="font-size:10px;font-weight:800;color:#C62828;margin-bottom:3px;">🚫 Marked as Closed</div>
-            <div id="s9-cal-sum-text" style="font-size:11px;color:#666;line-height:1.7;"></div>
+          <div id="s9-cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:16px;"></div>
+          <div id="s9-cal-summary" style="display:none;background:#FFF3F3;border-radius:12px;padding:11px 13px;margin-bottom:16px;border:1.5px solid #FFCDD2;">
+            <div style="font-size:10px;font-weight:900;color:#C62828;margin-bottom:4px;">🚫 Days Blocked</div>
+            <div id="s9-cal-sum-text" style="font-size:11px;color:#666;line-height:1.8;"></div>
           </div>
-          <!-- action buttons -->
           <div style="display:flex;gap:8px;">
-            <button id="s9-cal-cancel" style="flex:1;padding:12px;border:1.5px solid #E0E0E0;border-radius:12px;font-size:13px;font-weight:700;color:#555;background:#fff;cursor:pointer;font-family:inherit;">Cancel</button>
-            <button id="s9-cal-confirm" style="flex:2;padding:12px;border:none;border-radius:12px;font-size:13px;font-weight:800;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Confirm</button>
+            <button id="s9-cal-cancel" style="flex:1;padding:13px;border:1.5px solid #E0E0E0;border-radius:12px;font-size:13px;font-weight:700;color:#555;background:#fff;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button id="s9-cal-confirm" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Confirm</button>
           </div>
         </div>
       </div>
@@ -4841,6 +4921,143 @@ body:not(.interactive) #s22-success { display: none !important; }
       }
     });
   })();
+
+
+  // ── Holiday Calendar Factory (s22 Register Arena, s19 Edit Arena) ──
+  function makeHolCal(cfg) {
+    var scr    = cfg.scr;
+    var screen = document.getElementById(scr);
+    if (!screen) return;
+
+    var sheet   = screen.querySelector('#' + scr + '-hol-sheet');
+    var calGrid = screen.querySelector('#' + scr + '-hol-grid');
+    var mLbl    = screen.querySelector('#' + scr + '-hol-mlbl');
+    var sumWrap = screen.querySelector('#' + scr + '-hol-summary');
+    var sumText = screen.querySelector('#' + scr + '-hol-sumtxt');
+    var chipsEl = screen.querySelector('#' + scr + '-hol-chips');
+
+    var TODAY    = new Date(2026, 3, 28);
+    var calYear  = TODAY.getFullYear(), calMonth = TODAY.getMonth();
+    var MONTHS   = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var SHORT    = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var offDays  = {}, tempOff = {};
+
+    function dkey(y, m, d) { return y + '-' + m + '-' + d; }
+
+    function renderCal() {
+      if (!calGrid || !mLbl) return;
+      mLbl.textContent = MONTHS[calMonth] + ' ' + calYear;
+      calGrid.innerHTML = '';
+      var firstDow = new Date(calYear, calMonth, 1).getDay();
+      var offset   = (firstDow === 0) ? 6 : firstDow - 1;
+      var dim      = new Date(calYear, calMonth + 1, 0).getDate();
+      var todayMid = new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate());
+      for (var i = 0; i < offset; i++) { calGrid.appendChild(document.createElement('div')); }
+      for (var d = 1; d <= dim; d++) {
+        var cell = document.createElement('div');
+        var k    = dkey(calYear, calMonth, d);
+        var dt   = new Date(calYear, calMonth, d);
+        var past = dt < todayMid;
+        var tod  = (calYear === TODAY.getFullYear() && calMonth === TODAY.getMonth() && d === TODAY.getDate());
+        var off  = !!tempOff[k];
+        cell.setAttribute('data-hcell', k);
+        cell.style.cssText = 'aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:12px;font-weight:700;';
+        if (past) {
+          cell.style.color = '#CCC'; cell.style.fontSize = '11px';
+        } else if (off) {
+          cell.style.background = '#E53935'; cell.style.color = '#fff'; cell.style.cursor = 'pointer';
+        } else if (tod) {
+          cell.style.background = '#E8F5E9'; cell.style.color = '#09210E'; cell.style.fontWeight = '900';
+          cell.style.outline = '1.5px solid #09210E'; cell.style.cursor = 'pointer';
+        } else {
+          cell.style.background = '#F5F5F5'; cell.style.color = '#333'; cell.style.cursor = 'pointer';
+        }
+        cell.textContent = d;
+        calGrid.appendChild(cell);
+      }
+      refreshSum();
+    }
+
+    function refreshSum() {
+      if (!sumWrap || !sumText) return;
+      var keys = Object.keys(tempOff).filter(function(k) { return tempOff[k]; }).sort();
+      if (!keys.length) { sumWrap.style.display = 'none'; return; }
+      sumWrap.style.display = 'block';
+      sumText.textContent = keys.map(function(k) {
+        var p = k.split('-'); return SHORT[parseInt(p[1])] + ' ' + p[2];
+      }).join(' · ');
+    }
+
+    function renderChips() {
+      if (!chipsEl) return;
+      var keys = Object.keys(offDays).filter(function(k) { return offDays[k]; }).sort();
+      if (!keys.length) {
+        chipsEl.innerHTML = '<span style="font-size:10px;color:#CCC;font-style:italic;">No dates blocked</span>';
+        return;
+      }
+      chipsEl.innerHTML = keys.map(function(k) {
+        var p = k.split('-');
+        var lbl = SHORT[parseInt(p[1])] + ' ' + p[2];
+        return '<div style="display:inline-flex;align-items:center;gap:3px;background:#FFF3F3;border:1px solid #FFCDD2;border-radius:20px;padding:3px 7px 3px 6px;">' +
+          '<span style="font-size:10px;color:#E53935;">🚫</span>' +
+          '<span style="font-size:10px;font-weight:700;color:#C62828;">' + lbl + '</span>' +
+          '<span class="hol-chip-rm" data-scrm="' + scr + '" data-key="' + k + '" style="font-size:13px;color:#BBBBBB;margin-left:3px;font-weight:900;cursor:pointer;line-height:1;">×</span>' +
+          '</div>';
+      }).join('');
+    }
+
+    function openSheet() {
+      tempOff = {};
+      Object.keys(offDays).forEach(function(k) { tempOff[k] = true; });
+      calYear = TODAY.getFullYear(); calMonth = TODAY.getMonth();
+      renderCal();
+      if (sheet) sheet.style.display = 'flex';
+    }
+
+    function closeSheet() { tempOff = {}; if (sheet) sheet.style.display = 'none'; }
+
+    function confirmSheet() {
+      offDays = {};
+      Object.keys(tempOff).forEach(function(k) { if (tempOff[k]) offDays[k] = true; });
+      if (sheet) sheet.style.display = 'none';
+      renderChips();
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('#' + scr + '-hol-open-btn') && screen.contains(e.target)) { openSheet(); return; }
+      if (e.target.id === scr + '-hol-sheet') { closeSheet(); return; }
+      if (e.target.closest('#' + scr + '-hol-close')   && screen.contains(e.target)) { closeSheet(); return; }
+      if (e.target.closest('#' + scr + '-hol-cancel')  && screen.contains(e.target)) { closeSheet(); return; }
+      if (e.target.closest('#' + scr + '-hol-confirm') && screen.contains(e.target)) { confirmSheet(); return; }
+      if (sheet && sheet.style.display !== 'none') {
+        if (e.target.closest('#' + scr + '-hol-prev') && screen.contains(e.target)) {
+          calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCal(); return;
+        }
+        if (e.target.closest('#' + scr + '-hol-next') && screen.contains(e.target)) {
+          calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCal(); return;
+        }
+        var hCell = e.target.closest('[data-hcell]');
+        if (hCell && screen.contains(hCell)) {
+          var k = hCell.getAttribute('data-hcell');
+          var p = k.split('-');
+          var dt = new Date(parseInt(p[0]), parseInt(p[1]), parseInt(p[2]));
+          var todayMid = new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate());
+          if (dt < todayMid) return;
+          tempOff[k] = !tempOff[k]; renderCal(); return;
+        }
+      }
+      var rm = e.target.closest('.hol-chip-rm');
+      if (rm && rm.getAttribute('data-scrm') === scr && screen.contains(rm)) {
+        var key = rm.getAttribute('data-key');
+        if (key) { delete offDays[key]; renderChips(); }
+      }
+    });
+
+    renderChips(); // initialise empty state
+  }
+
+  makeHolCal({ scr: 's22' });
+  makeHolCal({ scr: 's19' });
 
 
 })();
