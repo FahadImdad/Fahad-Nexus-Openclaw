@@ -2326,21 +2326,22 @@ body:not(.interactive) #s22-success { display: none !important; }
                 <div class="toggle" id="r-discount-toggle" style="width:40px;height:22px;border-radius:11px;background:#DDD;position:relative;cursor:pointer;transition:background .25s;flex-shrink:0;"><div style="position:absolute;top:3px;left:3px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .25s;box-shadow:0 1px 3px rgba(0,0,0,.2);"></div></div>
               </div>
               <div id="r-discount-detail" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #F0F0F0;">
-                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Discount Percentage for All Days</div>
+                <!-- % input -->
+                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:6px;">Discount % (applied to all days)</div>
                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-                  <button id="r-disc-minus" style="width:32px;height:32px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:9px 0 0 9px;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button>
-                  <div id="r-disc-val" style="flex:1;height:32px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#09210E;">20%</div>
-                  <button id="r-disc-plus" style="width:32px;height:32px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 9px 9px 0;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button>
+                  <input id="r-disc-input" type="number" min="1" max="80" placeholder="e.g. 20" oninput="var v=parseInt(this.value)||0;if(v>=1&&v<=80)updateDiscPreview(v);" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:15px;font-weight:900;color:#09210E;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;text-align:center;" />
+                  <div style="font-size:18px;font-weight:900;color:#09210E;">%</div>
                 </div>
-                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Price Preview — Original → Discounted</div>
+                <!-- Per-day rows: original price + discounted price -->
+                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Original Price → Discounted Price</div>
                 <div style="display:flex;flex-direction:column;gap:5px;" id="r-disc-preview">
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Mon</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,000</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 1,600</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Tue</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,000</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 1,600</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Wed</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,000</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 1,600</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Thu</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,000</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 1,600</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:800;color:#09210E;width:28px;flex-shrink:0;">Fri</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,500</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 2,000</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Sat</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,500</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 2,000</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
-                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Sun</div><div class="r-disc-orig" style="font-size:11px;color:#888;text-decoration:line-through;flex:1;">Rs 2,500</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#09210E;">Rs 2,000</div><div style="font-size:9px;color:#E53935;font-weight:700;background:#FEECEC;padding:2px 6px;border-radius:20px;">-20%</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Mon</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,000</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Tue</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,000</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Wed</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,000</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Thu</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,000</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:800;color:#09210E;width:28px;flex-shrink:0;">Fri</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,500</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Sat</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,500</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
+                  <div style="display:flex;align-items:center;gap:6px;background:#F4FAEE;border-radius:8px;padding:6px 10px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Sun</div><div class="r-disc-orig" style="font-size:11px;color:#555;flex:1;">Rs 2,500</div><div style="font-size:10px;color:#AAA;">→</div><div class="r-disc-new" style="font-size:11px;font-weight:800;color:#E53935;">—</div></div>
                 </div>
               </div>
             </div>
@@ -4176,10 +4177,8 @@ body:not(.interactive) #s22-success { display: none !important; }
         var disc = Math.round(orig * (1 - pct/100) / 100) * 100;
         var origEl = row.querySelector('.r-disc-orig');
         var newEl = row.querySelector('.r-disc-new');
-        var badgeEl = row.querySelectorAll('div')[3];
         if (origEl) origEl.textContent = 'Rs ' + orig.toLocaleString();
         if (newEl) newEl.textContent = 'Rs ' + disc.toLocaleString();
-        if (badgeEl) badgeEl.textContent = '-' + pct + '%';
       });
     }
 
@@ -4375,9 +4374,9 @@ body:not(.interactive) #s22-success { display: none !important; }
 
       // Day price steppers
       var pMinus = e.target.closest('.r-p-minus');
-      if (pMinus) { e.stopPropagation(); var d=pMinus.getAttribute('data-day'); if(d){ prices[d]=Math.max(100,prices[d]-100); updatePriceDisplay(d); var pctEl=s22.querySelector('#r-disc-val'); if(pctEl) updateDiscPreview(parseInt(pctEl.textContent)||20); } return; }
+      if (pMinus) { e.stopPropagation(); var d=pMinus.getAttribute('data-day'); if(d){ prices[d]=Math.max(100,prices[d]-100); updatePriceDisplay(d); var pctEl=s22.querySelector('#r-disc-input'); if(pctEl&&pctEl.value) updateDiscPreview(parseInt(pctEl.value)||0); } return; }
       var pPlus = e.target.closest('.r-p-plus');
-      if (pPlus)  { e.stopPropagation(); var d=pPlus.getAttribute('data-day');  if(d){ prices[d]=Math.min(99900,prices[d]+100); updatePriceDisplay(d); var pctEl=s22.querySelector('#r-disc-val'); if(pctEl) updateDiscPreview(parseInt(pctEl.textContent)||20); } return; }
+      if (pPlus)  { e.stopPropagation(); var d=pPlus.getAttribute('data-day');  if(d){ prices[d]=Math.min(99900,prices[d]+100); updatePriceDisplay(d); var pctEl=s22.querySelector('#r-disc-input'); if(pctEl&&pctEl.value) updateDiscPreview(parseInt(pctEl.value)||0); } return; }
 
       // Conf pills
       var confPill = e.target.closest('.r-conf-pill');
@@ -4399,8 +4398,6 @@ body:not(.interactive) #s22-success { display: none !important; }
       if (e.target.id === 'r-discount-toggle' || e.target.closest('#r-discount-toggle')) { e.stopPropagation(); var tog=s22.querySelector('#r-discount-toggle'); var det=s22.querySelector('#r-discount-detail'); if(!tog||!det) return; var on=tog.classList.contains('on'); if(on){ tog.classList.remove('on');tog.style.background='#DDD';var th=tog.querySelector('div');if(th)th.style.transform='';det.style.display='none'; }else{ tog.classList.add('on');tog.style.background='#09210E';var th=tog.querySelector('div');if(th)th.style.transform='translateX(18px)';det.style.display='block'; } return; }
 
       // Discount stepper
-      if (e.target.id === 'r-disc-plus') { e.stopPropagation(); var el=s22.querySelector('#r-disc-val'); var v=parseInt((el.textContent||'20').replace('%',''))||20; v=Math.min(80,v+5); el.textContent=v+'%'; updateDiscPreview(v); return; }
-      if (e.target.id === 'r-disc-minus') { e.stopPropagation(); var el=s22.querySelector('#r-disc-val'); var v=parseInt((el.textContent||'20').replace('%',''))||20; v=Math.max(5,v-5); el.textContent=v+'%'; updateDiscPreview(v); return; }
 
       // Declaration checkbox
       if (e.target.id === 'r-decl-row' || e.target.closest('#r-decl-row')) { e.stopPropagation(); var chk=s22.querySelector('#r-decl-check'); if(!chk) return; var on=chk.classList.contains('checked'); if(on){ chk.classList.remove('checked');chk.style.background='#fff';chk.style.borderColor='#C0C0C0';chk.innerHTML=''; }else{ chk.classList.add('checked');chk.style.background='#09210E';chk.style.borderColor='#09210E';chk.innerHTML='<i class="ri-check-line" style="font-size:10px;color:#fff;"></i>'; } return; }
