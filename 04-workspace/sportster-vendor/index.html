@@ -2052,526 +2052,422 @@ body:not(.interactive) #s22-success { display: none !important; }
      SCREEN 22 — REGISTER NEW ARENA (multi-step wizard)
 ═══════════════════════════════════════════════════════ -->
 <div class="col" id="s22">
-  <div class="page-label">22 · Register New Arena — All 6 Steps (scroll down)</div>
+  <div class="page-label">22 · Register New Arena — All 6 Steps (scroll)</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;">
 
-      <!-- Header -->
-      <div style="background:#fff;padding:10px 16px 0;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
-        <div style="display:flex;align-items:center;gap:10px;padding-bottom:10px;">
+      <!-- ── Fixed Header ── -->
+      <div style="background:#fff;border-bottom:1px solid #EBEBEB;flex-shrink:0;">
+        <div style="padding:10px 14px 8px;display:flex;align-items:center;gap:10px;">
           <div data-back style="width:32px;height:32px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
             <i class="ri-arrow-left-s-line" style="font-size:20px;color:#333;line-height:1;"></i>
           </div>
           <div style="flex:1;">
             <div style="font-size:14px;font-weight:900;color:#111;">Register New Arena</div>
-            <div id="s22-step-label" style="font-size:10px;color:#AAA;margin-top:1px;">Step 1 of 6 — Basic Info</div>
+            <div id="s22-step-label" style="font-size:10px;color:#888;margin-top:1px;font-weight:600;">Step 1 of 6 — Arena Profile</div>
           </div>
-          <div style="font-size:10px;font-weight:800;color:#09210E;background:#E8F5E0;padding:3px 9px;border-radius:20px;">Pending Approval</div>
+          <div style="background:#FFF3CD;border:1px solid #FFD700;border-radius:20px;padding:4px 9px;font-size:9px;font-weight:800;color:#856404;display:flex;align-items:center;gap:4px;">
+            <i class="ri-time-line" style="font-size:10px;"></i>Pending Approval
+          </div>
         </div>
-        <!-- Progress bar -->
-        <div style="display:flex;gap:3px;padding-bottom:10px;">
-          <div class="reg-prog" id="rp1" style="flex:1;height:4px;border-radius:2px;background:#09210E;"></div>
-          <div class="reg-prog" id="rp2" style="flex:1;height:4px;border-radius:2px;background:#E0E0E0;"></div>
-          <div class="reg-prog" id="rp3" style="flex:1;height:4px;border-radius:2px;background:#E0E0E0;"></div>
-          <div class="reg-prog" id="rp4" style="flex:1;height:4px;border-radius:2px;background:#E0E0E0;"></div>
-          <div class="reg-prog" id="rp5" style="flex:1;height:4px;border-radius:2px;background:#E0E0E0;"></div>
-          <div class="reg-prog" id="rp6" style="flex:1;height:4px;border-radius:2px;background:#E0E0E0;"></div>
+        <!-- Step dots -->
+        <div style="display:flex;align-items:center;padding:0 14px 10px;gap:4px;">
+          <div class="reg-prog" id="rp1" style="flex:1;height:3px;border-radius:2px;background:#09210E;transition:background .3s;"></div>
+          <div class="reg-prog" id="rp2" style="flex:1;height:3px;border-radius:2px;background:#DDD;transition:background .3s;"></div>
+          <div class="reg-prog" id="rp3" style="flex:1;height:3px;border-radius:2px;background:#DDD;transition:background .3s;"></div>
+          <div class="reg-prog" id="rp4" style="flex:1;height:3px;border-radius:2px;background:#DDD;transition:background .3s;"></div>
+          <div class="reg-prog" id="rp5" style="flex:1;height:3px;border-radius:2px;background:#DDD;transition:background .3s;"></div>
+          <div class="reg-prog" id="rp6" style="flex:1;height:3px;border-radius:2px;background:#DDD;transition:background .3s;"></div>
         </div>
       </div>
 
-      <!-- ───── SCROLLABLE STEP CONTENT ───── -->
+      <!-- ── Scrollable Steps ── -->
       <div style="flex:1;overflow-y:auto;">
 
-        <!-- ══ STEP 1: Basic Info ══ -->
-        <div class="reg-step" id="rs1" style="padding:14px;">
-          <div style="font-size:12px;font-weight:900;color:#09210E;margin-bottom:12px;display:flex;align-items:center;gap:6px;"><i class="ri-information-line" style="font-size:14px;"></i>Basic Information</div>
+        <!-- ════ STEP 1: Arena Profile ════ -->
+        <div class="reg-step" id="rs1" style="padding:14px 14px 6px;">
 
-          <!-- Arena Name -->
-          <div style="margin-bottom:10px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Arena Name <span style="color:#E53935;">*</span></div>
-            <input id="r-name" type="text" placeholder="e.g. Elite Sports Arena" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:9px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
+          <div style="background:linear-gradient(135deg,#09210E,#163F1E);border-radius:14px;padding:11px 13px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+            <i class="ri-building-4-line" style="font-size:20px;color:#fff;"></i>
+            <div><div style="font-size:12px;font-weight:900;color:#fff;">Arena Profile</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px;">Basic identity of your arena</div></div>
           </div>
 
-          <!-- Description -->
-          <div style="margin-bottom:10px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Description <span style="color:#E53935;">*</span></div>
-            <textarea id="r-desc" placeholder="Describe your arena — facilities, location highlights, what makes it special..." rows="3" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:9px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;resize:none;line-height:1.5;"></textarea>
-          </div>
-
-          <!-- Arena Type -->
-          <div style="margin-bottom:10px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:7px;">Arena Type <span style="color:#E53935;">*</span></div>
-            <div style="display:flex;gap:6px;">
-              <div class="r-type-pill r-sel" data-val="indoor" style="flex:1;padding:8px 4px;border-radius:10px;border:1.5px solid #09210E;background:#09210E;text-align:center;font-size:11px;font-weight:800;color:#fff;cursor:pointer;">🏠 Indoor</div>
-              <div class="r-type-pill" data-val="outdoor" style="flex:1;padding:8px 4px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;text-align:center;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🌳 Outdoor</div>
-              <div class="r-type-pill" data-val="both" style="flex:1;padding:8px 4px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;text-align:center;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🔄 Both</div>
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Arena Display Name <span style="color:#E53935;">★</span></div>
+              <input id="r-name" type="text" placeholder="e.g. Elite Sports Arena" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
             </div>
-          </div>
-
-          <!-- City -->
-          <div style="margin-bottom:10px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:7px;">City <span style="color:#E53935;">*</span></div>
-            <div style="display:flex;gap:5px;flex-wrap:wrap;">
-              <div class="r-city-pill r-sel" data-val="karachi" style="padding:5px 11px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">Karachi</div>
-              <div class="r-city-pill" data-val="lahore" style="padding:5px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Lahore</div>
-              <div class="r-city-pill" data-val="islamabad" style="padding:5px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Islamabad</div>
-              <div class="r-city-pill" data-val="rawalpindi" style="padding:5px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Rawalpindi</div>
-              <div class="r-city-pill" data-val="faisalabad" style="padding:5px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Faisalabad</div>
-              <div class="r-city-pill" data-val="multan" style="padding:5px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Multan</div>
-              <div class="r-city-pill" data-val="peshawar" style="padding:5px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Peshawar</div>
-              <div class="r-city-pill" data-val="quetta" style="padding:5px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Quetta</div>
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Short Description <span style="color:#E53935;">★</span></div>
+              <textarea id="r-desc" placeholder="Describe your arena — what sports, surface, standout features..." rows="3" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;resize:none;line-height:1.55;"></textarea>
             </div>
-          </div>
-
-          <!-- Area / Sector -->
-          <div style="margin-bottom:10px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Area / Sector <span style="color:#E53935;">*</span></div>
-            <input id="r-area" type="text" placeholder="e.g. DHA Phase 5, Gulshan-e-Iqbal..." style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:9px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-
-          <!-- Full Address -->
-          <div style="margin-bottom:10px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Full Street Address <span style="color:#E53935;">*</span></div>
-            <textarea id="r-addr" placeholder="Plot #, Street, Block, Karachi..." rows="2" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:9px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;resize:none;line-height:1.5;"></textarea>
-          </div>
-
-          <!-- Google Maps -->
-          <div style="margin-bottom:4px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Google Maps Link <span style="color:#AAA;font-weight:600;">(optional)</span></div>
-            <input id="r-maps" type="text" placeholder="https://maps.google.com/..." style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:9px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-        </div>
-
-        <!-- ══ STEP 2: Contact & Social ══ -->
-        <div class="reg-step" id="rs2" style="padding:14px;display:none;">
-          <div style="font-size:12px;font-weight:900;color:#09210E;margin-bottom:12px;display:flex;align-items:center;gap:6px;"><i class="ri-phone-line" style="font-size:14px;"></i>Contact & Social Links</div>
-
-          <!-- Phone -->
-          <div style="margin-bottom:10px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Contact Phone <span style="color:#E53935;">*</span></div>
-            <input id="r-phone" type="tel" placeholder="+92 300 000 0000" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:9px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-
-          <!-- WhatsApp -->
-          <div style="margin-bottom:10px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">WhatsApp Number <span style="color:#E53935;">*</span></div>
-            <input id="r-wa" type="tel" placeholder="+92 300 000 0000" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:9px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-
-          <!-- Email -->
-          <div style="margin-bottom:10px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Email Address <span style="color:#E53935;">*</span></div>
-            <input id="r-email" type="email" placeholder="arena@example.com" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:9px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-
-          <div style="height:1px;background:#F0F0F0;margin:12px 0;"></div>
-          <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">Social Links <span style="color:#AAA;font-weight:600;text-transform:none;">(optional)</span></div>
-
-          <!-- Instagram -->
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;">
-            <div style="width:32px;height:32px;background:#FDEEF7;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-instagram-line" style="font-size:16px;color:#C13584;"></i></div>
-            <input type="text" placeholder="Instagram — @handle" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-          <!-- Facebook -->
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;">
-            <div style="width:32px;height:32px;background:#E8F0FE;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-facebook-circle-line" style="font-size:16px;color:#1877F2;"></i></div>
-            <input type="text" placeholder="Facebook — page name or URL" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-          <!-- X -->
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;">
-            <div style="width:32px;height:32px;background:#F0F0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-twitter-x-line" style="font-size:14px;color:#111;"></i></div>
-            <input type="text" placeholder="X (Twitter) — @handle" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-          <!-- Snapchat -->
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;">
-            <div style="width:32px;height:32px;background:#FFFDE7;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-snapchat-line" style="font-size:16px;color:#FFCA28;"></i></div>
-            <input type="text" placeholder="Snapchat — @snapname" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-          <!-- YouTube -->
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;">
-            <div style="width:32px;height:32px;background:#FFEBEE;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-youtube-line" style="font-size:16px;color:#FF1744;"></i></div>
-            <input type="text" placeholder="YouTube — channel name or URL" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-          <!-- Website -->
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
-            <div style="width:32px;height:32px;background:#E8F5E0;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-global-line" style="font-size:15px;color:#09210E;"></i></div>
-            <input type="text" placeholder="Website — https://yourarena.com" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-        </div>
-
-        <!-- ══ STEP 3: Sports & Amenities ══ -->
-        <div class="reg-step" id="rs3" style="padding:14px;display:none;">
-          <div style="font-size:12px;font-weight:900;color:#09210E;margin-bottom:12px;display:flex;align-items:center;gap:6px;"><i class="ri-football-line" style="font-size:14px;"></i>Sports & Amenities</div>
-
-          <!-- Sports -->
-          <div style="margin-bottom:14px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:8px;">Sports Offered <span style="color:#E53935;">*</span> <span style="color:#AAA;font-weight:600;">(select all that apply)</span></div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;" id="r-sports-wrap">
-              <div class="r-sport-chip" data-sport="cricket" style="padding:6px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏏 Cricket</div>
-              <div class="r-sport-chip" data-sport="football" style="padding:6px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">⚽ Football</div>
-              <div class="r-sport-chip" data-sport="padel" style="padding:6px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🎾 Padel</div>
-              <div class="r-sport-chip" data-sport="basketball" style="padding:6px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏀 Basketball</div>
-              <div class="r-sport-chip" data-sport="volleyball" style="padding:6px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏐 Volleyball</div>
-              <div class="r-sport-chip" data-sport="hockey" style="padding:6px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏑 Hockey</div>
-              <div class="r-sport-chip" data-sport="pickleball" style="padding:6px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏓 Pickle Ball</div>
-              <div class="r-sport-chip" data-sport="squash" style="padding:6px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🟡 Squash</div>
-              <div class="r-sport-chip" data-sport="tennis" style="padding:6px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🎾 Tennis</div>
-              <div class="r-sport-chip" data-sport="badminton" style="padding:6px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏸 Badminton</div>
-              <div class="r-sport-chip" data-sport="tabletennis" style="padding:6px 11px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏓 Table Tennis</div>
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Arena Type <span style="color:#E53935;">★</span></div>
+              <div style="display:flex;gap:6px;">
+                <div class="r-type-pill r-sel" data-val="indoor" style="flex:1;padding:9px 4px;border-radius:10px;border:1.5px solid #09210E;background:#09210E;text-align:center;font-size:11px;font-weight:800;color:#fff;cursor:pointer;">🏠 Indoor</div>
+                <div class="r-type-pill" data-val="outdoor" style="flex:1;padding:9px 4px;border-radius:10px;border:1.5px solid #DDD;background:#fff;text-align:center;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🌳 Outdoor</div>
+                <div class="r-type-pill" data-val="both" style="flex:1;padding:9px 4px;border-radius:10px;border:1.5px solid #DDD;background:#fff;text-align:center;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🔄 Both</div>
+              </div>
             </div>
-          </div>
-
-          <!-- Amenities -->
-          <div>
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:8px;">Facilities & Amenities <span style="color:#E53935;">*</span> <span style="color:#AAA;font-weight:600;">(toggle available)</span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;" id="r-amenities-wrap">
-              <div class="r-amenity" data-a="parking" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-car-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Parking</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="background:#fff;border-radius:10px;padding:10px 12px;border:1.5px solid #E0E0E0;">
+                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Courts / Pitches <span style="color:#E53935;">★</span></div>
+                <div style="display:flex;align-items:center;gap:0;">
+                  <button id="r-courts-minus" style="width:30px;height:30px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button>
+                  <div id="r-courts-val" style="flex:1;height:30px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#09210E;">2</div>
+                  <button id="r-courts-plus" style="width:30px;height:30px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button>
+                </div>
               </div>
-              <div class="r-amenity" data-a="showers" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-shower-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Showers</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
+              <div style="background:#fff;border-radius:10px;padding:10px 12px;border:1.5px solid #E0E0E0;">
+                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Capacity (people) <span style="color:#E53935;">★</span></div>
+                <div style="display:flex;align-items:center;gap:0;">
+                  <button id="r-cap-minus" style="width:30px;height:30px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button>
+                  <div id="r-cap-val" style="flex:1;height:30px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#09210E;">50</div>
+                  <button id="r-cap-plus" style="width:30px;height:30px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button>
+                </div>
               </div>
-              <div class="r-amenity" data-a="floodlights" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-lightbulb-flash-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Floodlights</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="changing" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-t-shirt-2-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Changing Room</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="lockers" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-lock-2-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Lockers</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="equipment" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-tools-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Equip. Rental</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="cctv" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-camera-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">CCTV</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="security" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-shield-check-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Security</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="wifi" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-wifi-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">WiFi</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="cafe" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-cup-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Café / Canteen</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="ac" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-temp-cold-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Air Conditioning</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="toilets" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-men-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Toilets</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="water" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-drop-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Water Cooler</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="firstaid" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-first-aid-kit-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">First Aid Kit</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="prayer" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-building-2-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Prayer Room</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="wheelchair" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-wheelchair-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Wheelchair Access</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="generator" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-flashlight-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Generator</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="valet" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-key-2-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Valet Parking</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="pa" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-volume-up-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">PA System</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
-              </div>
-              <div class="r-amenity" data-a="scoreboard" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;">
-                <i class="ri-dashboard-2-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i>
-                <span style="font-size:11px;font-weight:700;color:#888;flex:1;">Scoreboard</span>
-                <div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #D0D0D0;flex-shrink:0;"></div>
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Surface Type <span style="color:#E53935;">★</span></div>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;">
+                <div class="r-surf-pill r-sel" data-surf="artificial" style="padding:6px 11px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">Artificial Turf</div>
+                <div class="r-surf-pill" data-surf="grass" style="padding:6px 11px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Natural Grass</div>
+                <div class="r-surf-pill" data-surf="hardcourt" style="padding:6px 11px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Hard Court</div>
+                <div class="r-surf-pill" data-surf="clay" style="padding:6px 11px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Clay</div>
+                <div class="r-surf-pill" data-surf="synthetic" style="padding:6px 11px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Synthetic</div>
+                <div class="r-surf-pill" data-surf="concrete" style="padding:6px 11px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Concrete</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ══ STEP 4: Specs & Hours ══ -->
-        <div class="reg-step" id="rs4" style="padding:14px;display:none;">
-          <div style="font-size:12px;font-weight:900;color:#09210E;margin-bottom:12px;display:flex;align-items:center;gap:6px;"><i class="ri-ruler-line" style="font-size:14px;"></i>Arena Specs & Operating Hours</div>
+        <!-- ════ STEP 2: Location & Contact ════ -->
+        <div class="reg-step" id="rs2" style="padding:14px 14px 6px;display:none;">
 
-          <!-- Courts / Pitches -->
-          <div style="background:#fff;border-radius:12px;padding:11px 13px;margin-bottom:8px;border:1.5px solid #E8E8E8;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:9px;">Total Courts / Pitches <span style="color:#E53935;">*</span></div>
-            <div style="display:flex;align-items:center;gap:0;">
-              <button id="r-courts-minus" style="width:36px;height:36px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:9px 0 0 9px;font-size:20px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">−</button>
-              <div id="r-courts-val" style="flex:1;height:36px;border-top:1.5px solid #E0E0E0;border-bottom:1.5px solid #E0E0E0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#09210E;">2</div>
-              <button id="r-courts-plus" style="width:36px;height:36px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:0 9px 9px 0;font-size:20px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">+</button>
-            </div>
+          <div style="background:linear-gradient(135deg,#09210E,#163F1E);border-radius:14px;padding:11px 13px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+            <i class="ri-map-pin-2-line" style="font-size:20px;color:#fff;"></i>
+            <div><div style="font-size:12px;font-weight:900;color:#fff;">Location & Contact</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px;">Where to find you & how to reach</div></div>
           </div>
 
-          <!-- Capacity -->
-          <div style="background:#fff;border-radius:12px;padding:11px 13px;margin-bottom:8px;border:1.5px solid #E8E8E8;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:9px;">Spectator Capacity <span style="color:#E53935;">*</span></div>
-            <div style="display:flex;align-items:center;gap:0;">
-              <button id="r-cap-minus" style="width:36px;height:36px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:9px 0 0 9px;font-size:20px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">−</button>
-              <div id="r-cap-val" style="flex:1;height:36px;border-top:1.5px solid #E0E0E0;border-bottom:1.5px solid #E0E0E0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#09210E;">50</div>
-              <button id="r-cap-plus" style="width:36px;height:36px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:0 9px 9px 0;font-size:20px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">+</button>
+          <div style="display:flex;flex-direction:column;gap:11px;">
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">City <span style="color:#E53935;">★</span></div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;">
+                <div class="r-city-pill r-sel" data-val="karachi" style="padding:6px 12px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">Karachi</div>
+                <div class="r-city-pill" data-val="lahore" style="padding:6px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Lahore</div>
+                <div class="r-city-pill" data-val="islamabad" style="padding:6px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Islamabad</div>
+                <div class="r-city-pill" data-val="rawalpindi" style="padding:6px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Rawalpindi</div>
+                <div class="r-city-pill" data-val="faisalabad" style="padding:6px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Faisalabad</div>
+                <div class="r-city-pill" data-val="multan" style="padding:6px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Multan</div>
+                <div class="r-city-pill" data-val="peshawar" style="padding:6px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Peshawar</div>
+                <div class="r-city-pill" data-val="quetta" style="padding:6px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Quetta</div>
+              </div>
             </div>
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Area / Sector <span style="color:#E53935;">★</span></div>
+              <input id="r-area" type="text" placeholder="e.g. DHA Phase 5, Gulshan Block 14..." style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Full Street Address <span style="color:#E53935;">★</span></div>
+              <textarea id="r-addr" placeholder="Plot #, Street name, Block, Landmark..." rows="2" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;resize:none;line-height:1.55;"></textarea>
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Google Maps Link <span style="font-weight:500;color:#AAA;">(optional)</span></div>
+              <input id="r-maps" type="text" placeholder="https://maps.google.com/..." style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
+            </div>
+            <div style="height:1px;background:#EFEFEF;"></div>
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Contact Phone <span style="color:#E53935;">★</span></div>
+              <input id="r-phone" type="tel" placeholder="+92 300 000 0000" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">WhatsApp Number <span style="color:#E53935;">★</span></div>
+              <input id="r-wa" type="tel" placeholder="+92 300 000 0000" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
+            </div>
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Email Address <span style="color:#E53935;">★</span></div>
+              <input id="r-email" type="email" placeholder="arena@example.com" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
+            </div>
+            <div style="height:1px;background:#EFEFEF;"></div>
+            <div style="font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;">Social Links <span style="font-weight:500;color:#AAA;text-transform:none;">(optional)</span></div>
+            <div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;background:#FDEEF7;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-instagram-line" style="font-size:15px;color:#C13584;"></i></div><input type="text" placeholder="Instagram @handle" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:11px;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;" /></div>
+            <div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;background:#E8F0FE;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-facebook-circle-line" style="font-size:15px;color:#1877F2;"></i></div><input type="text" placeholder="Facebook page or URL" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:11px;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;" /></div>
+            <div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;background:#F0F0F0;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-twitter-x-line" style="font-size:13px;color:#111;"></i></div><input type="text" placeholder="X (Twitter) @handle" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:11px;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;" /></div>
+            <div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;background:#FFFDE7;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-snapchat-line" style="font-size:15px;color:#FFCA28;"></i></div><input type="text" placeholder="Snapchat @name" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:11px;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;" /></div>
+            <div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;background:#FFEBEE;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-youtube-line" style="font-size:15px;color:#FF1744;"></i></div><input type="text" placeholder="YouTube channel" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:11px;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;" /></div>
+            <div style="display:flex;align-items:center;gap:9px;"><div style="width:30px;height:30px;background:#E8F5E0;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-global-line" style="font-size:14px;color:#09210E;"></i></div><input type="text" placeholder="Website URL" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:8px 11px;font-size:11px;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;" /></div>
+          </div>
+        </div>
+
+        <!-- ════ STEP 3: Sports & Amenities ════ -->
+        <div class="reg-step" id="rs3" style="padding:14px 14px 6px;display:none;">
+
+          <div style="background:linear-gradient(135deg,#09210E,#163F1E);border-radius:14px;padding:11px 13px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+            <i class="ri-football-line" style="font-size:20px;color:#fff;"></i>
+            <div><div style="font-size:12px;font-weight:900;color:#fff;">Sports & Amenities</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px;">What you offer to customers</div></div>
           </div>
 
-          <!-- Surface Type -->
-          <div style="background:#fff;border-radius:12px;padding:11px 13px;margin-bottom:8px;border:1.5px solid #E8E8E8;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:8px;">Surface Type <span style="color:#E53935;">*</span></div>
-            <div style="display:flex;flex-wrap:wrap;gap:5px;">
-              <div class="r-surf-pill r-sel" data-surf="artificial" style="padding:5px 10px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">Artificial Turf</div>
-              <div class="r-surf-pill" data-surf="grass" style="padding:5px 10px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Natural Grass</div>
-              <div class="r-surf-pill" data-surf="hardcourt" style="padding:5px 10px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Hard Court</div>
-              <div class="r-surf-pill" data-surf="clay" style="padding:5px 10px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Clay</div>
-              <div class="r-surf-pill" data-surf="synthetic" style="padding:5px 10px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Synthetic</div>
-              <div class="r-surf-pill" data-surf="concrete" style="padding:5px 10px;border-radius:20px;border:1.5px solid #E0E0E0;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">Concrete</div>
+          <div style="display:flex;flex-direction:column;gap:13px;">
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:8px;">Sports Offered <span style="color:#E53935;">★</span> <span style="font-weight:500;color:#AAA;">tap to select all that apply</span></div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;" id="r-sports-wrap">
+                <div class="r-sport-chip" data-sport="cricket" style="padding:7px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏏 Cricket</div>
+                <div class="r-sport-chip" data-sport="football" style="padding:7px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">⚽ Football</div>
+                <div class="r-sport-chip" data-sport="padel" style="padding:7px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🎾 Padel</div>
+                <div class="r-sport-chip" data-sport="basketball" style="padding:7px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏀 Basketball</div>
+                <div class="r-sport-chip" data-sport="volleyball" style="padding:7px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏐 Volleyball</div>
+                <div class="r-sport-chip" data-sport="hockey" style="padding:7px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏑 Hockey</div>
+                <div class="r-sport-chip" data-sport="pickleball" style="padding:7px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏓 Pickle Ball</div>
+                <div class="r-sport-chip" data-sport="squash" style="padding:7px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🟡 Squash</div>
+                <div class="r-sport-chip" data-sport="tennis" style="padding:7px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🎾 Tennis</div>
+                <div class="r-sport-chip" data-sport="badminton" style="padding:7px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏸 Badminton</div>
+                <div class="r-sport-chip" data-sport="tabletennis" style="padding:7px 12px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:11px;font-weight:700;color:#555;cursor:pointer;">🏓 Table Tennis</div>
+              </div>
             </div>
-          </div>
-
-          <!-- Operating Hours (4 groups) -->
-          <div style="background:#fff;border-radius:12px;padding:11px 13px;border:1.5px solid #E8E8E8;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:10px;">Operating Hours <span style="color:#E53935;">*</span></div>
-            <div style="display:flex;flex-direction:column;gap:7px;">
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:10px;font-weight:700;color:#333;width:56px;flex-shrink:0;">Mon–Thu</div>
-                <input type="text" value="6:00 AM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;" />
-                <div style="font-size:10px;color:#AAA;flex-shrink:0;">to</div>
-                <input type="text" value="11:00 PM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;" />
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:10px;font-weight:700;color:#333;width:56px;flex-shrink:0;">Friday</div>
-                <input type="text" value="2:00 PM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;" />
-                <div style="font-size:10px;color:#AAA;flex-shrink:0;">to</div>
-                <input type="text" value="12:00 AM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;" />
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:10px;font-weight:700;color:#333;width:56px;flex-shrink:0;">Saturday</div>
-                <input type="text" value="8:00 AM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;" />
-                <div style="font-size:10px;color:#AAA;flex-shrink:0;">to</div>
-                <input type="text" value="12:00 AM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;" />
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:10px;font-weight:700;color:#333;width:56px;flex-shrink:0;">Sunday</div>
-                <input type="text" value="8:00 AM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;" />
-                <div style="font-size:10px;color:#AAA;flex-shrink:0;">to</div>
-                <input type="text" value="10:00 PM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;" />
+            <div style="height:1px;background:#EFEFEF;"></div>
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:8px;">Facilities & Amenities <span style="color:#E53935;">★</span> <span style="font-weight:500;color:#AAA;">tap to toggle on</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;" id="r-amenities-wrap">
+                <div class="r-amenity" data-a="parking" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-car-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Parking</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="showers" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-shower-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Showers</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="floodlights" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-lightbulb-flash-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Floodlights</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="changing" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-t-shirt-2-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Changing Room</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="lockers" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-lock-2-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Lockers</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="equipment" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-tools-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Equip. Rental</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="toilets" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-men-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Toilets</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="scoreboard" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-dashboard-2-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Scoreboard</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="cctv" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-camera-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">CCTV</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="security" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-shield-check-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Security Guard</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="water" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-drop-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Water Cooler</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="pa" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-volume-up-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">PA System</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="ac" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-temp-cold-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Air Conditioning</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="cafe" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-cup-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Café / Canteen</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="wifi" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-wifi-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">WiFi</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="firstaid" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-first-aid-kit-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">First Aid Kit</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="prayer" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-building-2-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Prayer Room</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="wheelchair" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-wheelchair-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Wheelchair Access</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="generator" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-flashlight-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Generator</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
+                <div class="r-amenity" data-a="valet" style="display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;cursor:pointer;"><i class="ri-key-2-line" style="font-size:14px;color:#AAA;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#888;flex:1;line-height:1.2;">Valet Parking</span><div class="r-a-dot" style="width:14px;height:14px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ══ STEP 5: Slot Pricing ══ -->
-        <div class="reg-step" id="rs5" style="padding:14px;display:none;">
-          <div style="font-size:12px;font-weight:900;color:#09210E;margin-bottom:12px;display:flex;align-items:center;gap:6px;"><i class="ri-price-tag-3-line" style="font-size:14px;"></i>Slot Duration & Pricing</div>
+        <!-- ════ STEP 4: Operating Hours & Booking Rules ════ -->
+        <div class="reg-step" id="rs4" style="padding:14px 14px 6px;display:none;">
 
-          <!-- Slot Duration -->
-          <div style="background:#fff;border-radius:12px;padding:11px 13px;margin-bottom:10px;border:1.5px solid #E8E8E8;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:8px;">Slot Duration <span style="color:#E53935;">*</span></div>
-            <div style="display:flex;gap:6px;">
-              <div class="r-dur-pill" data-dur="30" style="flex:1;padding:8px 4px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;text-align:center;font-size:11px;font-weight:700;color:#555;cursor:pointer;">30 min</div>
-              <div class="r-dur-pill r-sel" data-dur="60" style="flex:1;padding:8px 4px;border-radius:10px;border:1.5px solid #09210E;background:#09210E;text-align:center;font-size:11px;font-weight:800;color:#fff;cursor:pointer;">1 Hour</div>
-              <div class="r-dur-pill" data-dur="120" style="flex:1;padding:8px 4px;border-radius:10px;border:1.5px solid #E0E0E0;background:#fff;text-align:center;font-size:11px;font-weight:700;color:#555;cursor:pointer;">2 Hours</div>
-            </div>
+          <div style="background:linear-gradient(135deg,#09210E,#163F1E);border-radius:14px;padding:11px 13px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+            <i class="ri-time-line" style="font-size:20px;color:#fff;"></i>
+            <div><div style="font-size:12px;font-weight:900;color:#fff;">Hours & Booking Rules</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px;">When you're open & how bookings work</div></div>
           </div>
 
-          <!-- Day pricing -->
-          <div style="background:#fff;border-radius:12px;padding:11px 13px;border:1.5px solid #E8E8E8;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:10px;">Price Per Slot (Rs) <span style="color:#E53935;">*</span></div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:10px;font-weight:700;color:#555;width:30px;flex-shrink:0;">Mon</div>
-                <button class="r-p-minus" data-day="mon" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">−</button>
-                <div id="rp-mon" style="flex:1;height:28px;border-top:1.5px solid #E0E0E0;border-bottom:1.5px solid #E0E0E0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,000</div>
-                <button class="r-p-plus" data-day="mon" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">+</button>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:10px;font-weight:700;color:#555;width:30px;flex-shrink:0;">Tue</div>
-                <button class="r-p-minus" data-day="tue" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">−</button>
-                <div id="rp-tue" style="flex:1;height:28px;border-top:1.5px solid #E0E0E0;border-bottom:1.5px solid #E0E0E0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,000</div>
-                <button class="r-p-plus" data-day="tue" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">+</button>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:10px;font-weight:700;color:#555;width:30px;flex-shrink:0;">Wed</div>
-                <button class="r-p-minus" data-day="wed" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">−</button>
-                <div id="rp-wed" style="flex:1;height:28px;border-top:1.5px solid #E0E0E0;border-bottom:1.5px solid #E0E0E0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,000</div>
-                <button class="r-p-plus" data-day="wed" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">+</button>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:10px;font-weight:700;color:#555;width:30px;flex-shrink:0;">Thu</div>
-                <button class="r-p-minus" data-day="thu" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">−</button>
-                <div id="rp-thu" style="flex:1;height:28px;border-top:1.5px solid #E0E0E0;border-bottom:1.5px solid #E0E0E0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,000</div>
-                <button class="r-p-plus" data-day="thu" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">+</button>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:10px;font-weight:700;color:#555;width:30px;flex-shrink:0;">Fri</div>
-                <button class="r-p-minus" data-day="fri" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">−</button>
-                <div id="rp-fri" style="flex:1;height:28px;border-top:1.5px solid #E0E0E0;border-bottom:1.5px solid #E0E0E0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,500</div>
-                <button class="r-p-plus" data-day="fri" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">+</button>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:10px;font-weight:700;color:#555;width:30px;flex-shrink:0;">Sat</div>
-                <button class="r-p-minus" data-day="sat" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">−</button>
-                <div id="rp-sat" style="flex:1;height:28px;border-top:1.5px solid #E0E0E0;border-bottom:1.5px solid #E0E0E0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,500</div>
-                <button class="r-p-plus" data-day="sat" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">+</button>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:10px;font-weight:700;color:#555;width:30px;flex-shrink:0;">Sun</div>
-                <button class="r-p-minus" data-day="sun" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">−</button>
-                <div id="rp-sun" style="flex:1;height:28px;border-top:1.5px solid #E0E0E0;border-bottom:1.5px solid #E0E0E0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,500</div>
-                <button class="r-p-plus" data-day="sun" style="width:28px;height:28px;border:1.5px solid #E0E0E0;background:#F5F5F5;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;font-weight:300;display:flex;align-items:center;justify-content:center;">+</button>
+          <div style="display:flex;flex-direction:column;gap:13px;">
+            <!-- Operating Hours -->
+            <div style="background:#fff;border-radius:12px;padding:12px 13px;border:1.5px solid #E0E0E0;">
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:10px;">Operating Hours <span style="color:#E53935;">★</span></div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:8px;"><div style="font-size:10px;font-weight:700;color:#333;width:52px;flex-shrink:0;">Mon–Thu</div><input type="text" value="6:00 AM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;"/><div style="font-size:9px;color:#AAA;">to</div><input type="text" value="11:00 PM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;"/></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div style="font-size:10px;font-weight:700;color:#333;width:52px;flex-shrink:0;">Friday</div><input type="text" value="2:00 PM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;"/><div style="font-size:9px;color:#AAA;">to</div><input type="text" value="12:00 AM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;"/></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div style="font-size:10px;font-weight:700;color:#333;width:52px;flex-shrink:0;">Saturday</div><input type="text" value="8:00 AM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;"/><div style="font-size:9px;color:#AAA;">to</div><input type="text" value="12:00 AM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;"/></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div style="font-size:10px;font-weight:700;color:#333;width:52px;flex-shrink:0;">Sunday</div><input type="text" value="8:00 AM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;"/><div style="font-size:9px;color:#AAA;">to</div><input type="text" value="10:00 PM" style="flex:1;border:1.5px solid #E0E0E0;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;text-align:center;outline:none;"/></div>
               </div>
             </div>
-            <div style="font-size:9px;color:#CCC;text-align:center;margin-top:8px;">adjusts by Rs 100 per tap</div>
+            <!-- Booking Confirmation -->
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Booking Confirmation <span style="color:#E53935;">★</span></div>
+              <div style="display:flex;gap:7px;">
+                <div class="r-conf-pill r-sel" data-conf="auto" style="flex:1;padding:9px 6px;border-radius:10px;border:1.5px solid #09210E;background:#09210E;text-align:center;cursor:pointer;">
+                  <div style="font-size:11px;font-weight:800;color:#fff;">⚡ Auto-Confirm</div>
+                  <div style="font-size:9px;color:rgba(255,255,255,.6);margin-top:2px;">instant booking</div>
+                </div>
+                <div class="r-conf-pill" data-conf="manual" style="flex:1;padding:9px 6px;border-radius:10px;border:1.5px solid #DDD;background:#fff;text-align:center;cursor:pointer;">
+                  <div style="font-size:11px;font-weight:800;color:#555;">👤 Manual Review</div>
+                  <div style="font-size:9px;color:#AAA;margin-top:2px;">you approve each</div>
+                </div>
+              </div>
+            </div>
+            <!-- Advance booking notice -->
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Minimum Advance Booking <span style="color:#E53935;">★</span></div>
+              <div style="font-size:9px;color:#AAA;margin-bottom:7px;">How far ahead must customers book before a slot?</div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;">
+                <div class="r-adv-pill" data-adv="1h" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">1 hr</div>
+                <div class="r-adv-pill r-sel" data-adv="2h" style="padding:6px 10px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">2 hrs</div>
+                <div class="r-adv-pill" data-adv="4h" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">4 hrs</div>
+                <div class="r-adv-pill" data-adv="12h" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">12 hrs</div>
+                <div class="r-adv-pill" data-adv="24h" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">24 hrs</div>
+              </div>
+            </div>
+            <!-- Max advance booking window -->
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Max Advance Booking Window <span style="color:#E53935;">★</span></div>
+              <div style="font-size:9px;color:#AAA;margin-bottom:7px;">How far in the future can customers book?</div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;">
+                <div class="r-win-pill" data-win="1w" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">1 Week</div>
+                <div class="r-win-pill r-sel" data-win="2w" style="padding:6px 10px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">2 Weeks</div>
+                <div class="r-win-pill" data-win="1m" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">1 Month</div>
+                <div class="r-win-pill" data-win="3m" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">3 Months</div>
+              </div>
+            </div>
+            <!-- Cancellation policy -->
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Cancellation Policy <span style="color:#E53935;">★</span></div>
+              <div style="font-size:9px;color:#AAA;margin-bottom:7px;">How many hours before the slot can customer cancel for refund?</div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;">
+                <div class="r-can-pill" data-can="1h" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">1 hr</div>
+                <div class="r-can-pill" data-can="2h" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">2 hrs</div>
+                <div class="r-can-pill r-sel" data-can="6h" style="padding:6px 10px;border-radius:20px;border:1.5px solid #09210E;background:#09210E;font-size:10px;font-weight:700;color:#fff;cursor:pointer;">6 hrs</div>
+                <div class="r-can-pill" data-can="12h" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">12 hrs</div>
+                <div class="r-can-pill" data-can="24h" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">24 hrs</div>
+                <div class="r-can-pill" data-can="no" style="padding:6px 10px;border-radius:20px;border:1.5px solid #DDD;background:#fff;font-size:10px;font-weight:700;color:#555;cursor:pointer;">No Refund</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- ══ STEP 6: Photos & Submit ══ -->
-        <div class="reg-step" id="rs6" style="padding:14px;display:none;">
-          <div style="font-size:12px;font-weight:900;color:#09210E;margin-bottom:12px;display:flex;align-items:center;gap:6px;"><i class="ri-image-line" style="font-size:14px;"></i>Photos & Documents</div>
+        <!-- ════ STEP 5: Slot Settings & Pricing ════ -->
+        <div class="reg-step" id="rs5" style="padding:14px 14px 6px;display:none;">
 
-          <!-- Photo upload area -->
-          <div style="margin-bottom:12px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:7px;">Arena Photos <span style="color:#E53935;">*</span> <span style="color:#AAA;font-weight:600;">(min. 3 photos)</span></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px;">
-              <div style="aspect-ratio:1;background:linear-gradient(135deg,#C5DFAA,#8FBF60);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;">
-                <i class="ri-image-line" style="font-size:22px;color:#fff;opacity:.8;"></i>
-                <div style="position:absolute;top:4px;right:4px;width:16px;height:16px;background:#09210E;border-radius:50%;display:flex;align-items:center;justify-content:center;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div>
+          <div style="background:linear-gradient(135deg,#09210E,#163F1E);border-radius:14px;padding:11px 13px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+            <i class="ri-price-tag-3-line" style="font-size:20px;color:#fff;"></i>
+            <div><div style="font-size:12px;font-weight:900;color:#fff;">Slot Settings & Pricing</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px;">Duration, per-day rates & discounts</div></div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:13px;">
+            <!-- Slot Duration -->
+            <div style="background:#fff;border-radius:12px;padding:12px 13px;border:1.5px solid #E0E0E0;">
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:8px;">Slot Duration <span style="color:#E53935;">★</span></div>
+              <div style="display:flex;gap:6px;">
+                <div class="r-dur-pill" data-dur="30" style="flex:1;padding:9px 4px;border-radius:10px;border:1.5px solid #DDD;background:#fff;text-align:center;font-size:11px;font-weight:700;color:#555;cursor:pointer;">30 min</div>
+                <div class="r-dur-pill r-sel" data-dur="60" style="flex:1;padding:9px 4px;border-radius:10px;border:1.5px solid #09210E;background:#09210E;text-align:center;font-size:11px;font-weight:800;color:#fff;cursor:pointer;">1 Hour</div>
+                <div class="r-dur-pill" data-dur="120" style="flex:1;padding:9px 4px;border-radius:10px;border:1.5px solid #DDD;background:#fff;text-align:center;font-size:11px;font-weight:700;color:#555;cursor:pointer;">2 Hours</div>
               </div>
-              <div style="aspect-ratio:1;background:linear-gradient(135deg,#A8D08A,#6FA840);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;">
-                <i class="ri-image-line" style="font-size:22px;color:#fff;opacity:.8;"></i>
-                <div style="position:absolute;top:4px;right:4px;width:16px;height:16px;background:#09210E;border-radius:50%;display:flex;align-items:center;justify-content:center;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div>
+            </div>
+            <!-- Day Pricing -->
+            <div style="background:#fff;border-radius:12px;padding:12px 13px;border:1.5px solid #E0E0E0;">
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:10px;">Price Per Slot — Each Day <span style="color:#E53935;">★</span></div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:8px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Mon</div><button class="r-p-minus" data-day="mon" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button><div id="rp-mon" style="flex:1;height:26px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,000</div><button class="r-p-plus" data-day="mon" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button><div style="font-size:9px;color:#AAA;width:18px;text-align:right;">Rs</div></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Tue</div><button class="r-p-minus" data-day="tue" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button><div id="rp-tue" style="flex:1;height:26px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,000</div><button class="r-p-plus" data-day="tue" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button><div style="font-size:9px;color:#AAA;width:18px;text-align:right;">Rs</div></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Wed</div><button class="r-p-minus" data-day="wed" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button><div id="rp-wed" style="flex:1;height:26px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,000</div><button class="r-p-plus" data-day="wed" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button><div style="font-size:9px;color:#AAA;width:18px;text-align:right;">Rs</div></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Thu</div><button class="r-p-minus" data-day="thu" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button><div id="rp-thu" style="flex:1;height:26px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,000</div><button class="r-p-plus" data-day="thu" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button><div style="font-size:9px;color:#AAA;width:18px;text-align:right;">Rs</div></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div style="font-size:10px;font-weight:800;color:#09210E;width:28px;flex-shrink:0;">Fri</div><button class="r-p-minus" data-day="fri" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button><div id="rp-fri" style="flex:1;height:26px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,500</div><button class="r-p-plus" data-day="fri" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button><div style="font-size:9px;color:#AAA;width:18px;text-align:right;">Rs</div></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Sat</div><button class="r-p-minus" data-day="sat" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button><div id="rp-sat" style="flex:1;height:26px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,500</div><button class="r-p-plus" data-day="sat" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button><div style="font-size:9px;color:#AAA;width:18px;text-align:right;">Rs</div></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div style="font-size:10px;font-weight:700;color:#333;width:28px;flex-shrink:0;">Sun</div><button class="r-p-minus" data-day="sun" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:7px 0 0 7px;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button><div id="rp-sun" style="flex:1;height:26px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#09210E;">2,500</div><button class="r-p-plus" data-day="sun" style="width:26px;height:26px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 7px 7px 0;font-size:16px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button><div style="font-size:9px;color:#AAA;width:18px;text-align:right;">Rs</div></div>
               </div>
-              <div style="aspect-ratio:1;background:linear-gradient(135deg,#7AA860,#4A8020);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;">
-                <i class="ri-image-line" style="font-size:22px;color:#fff;opacity:.8;"></i>
-                <div style="position:absolute;top:4px;right:4px;width:16px;height:16px;background:#09210E;border-radius:50%;display:flex;align-items:center;justify-content:center;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div>
+              <div style="font-size:9px;color:#CCC;text-align:center;margin-top:7px;">± Rs 100 per tap</div>
+            </div>
+            <!-- Discount -->
+            <div style="background:#fff;border-radius:12px;padding:12px 13px;border:1.5px solid #E0E0E0;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0;">
+                <div style="display:flex;align-items:center;gap:8px;"><i class="ri-price-tag-3-line" style="font-size:15px;color:#09210E;"></i><div><div style="font-size:12px;font-weight:800;color:#111;">Offer Discount</div><div style="font-size:9px;color:#AAA;margin-top:1px;">Optional promotional pricing</div></div></div>
+                <div class="toggle" id="r-discount-toggle" style="width:40px;height:22px;border-radius:11px;background:#DDD;position:relative;cursor:pointer;transition:background .25s;flex-shrink:0;"><div style="position:absolute;top:3px;left:3px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .25s;box-shadow:0 1px 3px rgba(0,0,0,.2);"></div></div>
               </div>
-              <div style="aspect-ratio:1;background:#F0F4EE;border-radius:10px;border:2px dashed #C5DFAA;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;">
-                <i class="ri-add-line" style="font-size:20px;color:#09210E;"></i>
-                <div style="font-size:8px;color:#09210E;font-weight:700;">Add More</div>
+              <div id="r-discount-detail" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #F0F0F0;">
+                <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Discount Percentage</div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <button id="r-disc-minus" style="width:32px;height:32px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:9px 0 0 9px;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button>
+                  <div id="r-disc-val" style="flex:1;height:32px;border-top:1.5px solid #DDD;border-bottom:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#09210E;">20%</div>
+                  <button id="r-disc-plus" style="width:32px;height:32px;border:1.5px solid #DDD;background:#F8F8F8;border-radius:0 9px 9px 0;font-size:18px;color:#444;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Ownership / License doc -->
-          <div style="margin-bottom:12px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:7px;">Ownership / License Document <span style="color:#E53935;">*</span></div>
-            <div style="border:2px dashed #C5DFAA;border-radius:12px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:6px;background:#FAFCF8;cursor:pointer;">
-              <i class="ri-file-upload-line" style="font-size:24px;color:#09210E;"></i>
-              <div style="font-size:11px;font-weight:700;color:#09210E;">Upload Document</div>
-              <div style="font-size:10px;color:#AAA;text-align:center;">PDF, JPG or PNG · Max 5MB<br>CNIC, ownership deed or business license</div>
+        <!-- ════ STEP 6: Photos, Docs & Submit ════ -->
+        <div class="reg-step" id="rs6" style="padding:14px 14px 6px;display:none;">
+
+          <div style="background:linear-gradient(135deg,#09210E,#163F1E);border-radius:14px;padding:11px 13px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+            <i class="ri-image-line" style="font-size:20px;color:#fff;"></i>
+            <div><div style="font-size:12px;font-weight:900;color:#fff;">Photos & Documents</div><div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:1px;">Verification & visual evidence</div></div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:13px;">
+            <!-- Photos -->
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Arena Photos <span style="color:#E53935;">★</span> <span style="font-weight:500;color:#AAA;">minimum 3 required</span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
+                <div style="aspect-ratio:1;background:linear-gradient(135deg,#C5DFAA,#8FBF60);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;"><i class="ri-image-line" style="font-size:20px;color:#fff;opacity:.8;"></i><div style="position:absolute;top:4px;right:4px;width:15px;height:15px;background:#09210E;border-radius:50%;display:flex;align-items:center;justify-content:center;"><i class="ri-check-line" style="font-size:8px;color:#fff;"></i></div></div>
+                <div style="aspect-ratio:1;background:linear-gradient(135deg,#A8D08A,#6FA840);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;"><i class="ri-image-line" style="font-size:20px;color:#fff;opacity:.8;"></i><div style="position:absolute;top:4px;right:4px;width:15px;height:15px;background:#09210E;border-radius:50%;display:flex;align-items:center;justify-content:center;"><i class="ri-check-line" style="font-size:8px;color:#fff;"></i></div></div>
+                <div style="aspect-ratio:1;background:linear-gradient(135deg,#7AA860,#4A8020);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;"><i class="ri-image-line" style="font-size:20px;color:#fff;opacity:.8;"></i><div style="position:absolute;top:4px;right:4px;width:15px;height:15px;background:#09210E;border-radius:50%;display:flex;align-items:center;justify-content:center;"><i class="ri-check-line" style="font-size:8px;color:#fff;"></i></div></div>
+                <div style="aspect-ratio:1;background:#F4F7F2;border-radius:10px;border:2px dashed #C5DFAA;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;"><i class="ri-add-line" style="font-size:18px;color:#09210E;"></i><div style="font-size:8px;color:#09210E;font-weight:700;">Add More</div></div>
+              </div>
             </div>
-          </div>
-
-          <!-- NIC -->
-          <div style="margin-bottom:12px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Owner CNIC Number <span style="color:#E53935;">*</span></div>
-            <input id="r-cnic" type="text" placeholder="12345-1234567-1" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:9px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-
-          <!-- Owner Name -->
-          <div style="margin-bottom:12px;">
-            <div style="font-size:10px;font-weight:800;color:#555;margin-bottom:5px;">Owner Full Name <span style="color:#E53935;">*</span></div>
-            <input id="r-owner" type="text" placeholder="As on CNIC" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:9px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
-          </div>
-
-          <!-- Agreement notice -->
-          <div style="background:#FFF8E0;border-radius:12px;padding:11px 12px;border:1.5px solid #FFE57A;margin-bottom:4px;">
-            <div style="display:flex;gap:8px;align-items:flex-start;">
+            <!-- Ownership doc -->
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:7px;">Ownership / License Document <span style="color:#E53935;">★</span></div>
+              <div style="border:2px dashed #C5DFAA;border-radius:12px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:5px;background:#FAFCF8;cursor:pointer;">
+                <i class="ri-file-upload-line" style="font-size:22px;color:#09210E;"></i>
+                <div style="font-size:11px;font-weight:700;color:#09210E;">Upload Document</div>
+                <div style="font-size:9px;color:#AAA;text-align:center;">PDF, JPG or PNG · Max 5 MB<br>Property deed, ownership letter or business license</div>
+              </div>
+            </div>
+            <!-- Owner CNIC -->
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Owner CNIC Number <span style="color:#E53935;">★</span></div>
+              <input id="r-cnic" type="text" placeholder="12345-1234567-1" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
+            </div>
+            <!-- Owner Name -->
+            <div>
+              <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:5px;">Owner Full Name <span style="color:#E53935;">★</span> <span style="font-weight:500;color:#AAA;">as on CNIC</span></div>
+              <input id="r-owner" type="text" placeholder="Full legal name" style="width:100%;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:12px;font-family:inherit;color:#111;background:#fff;box-sizing:border-box;outline:none;" />
+            </div>
+            <!-- Declaration -->
+            <div style="background:#F4FAEE;border-radius:12px;padding:12px 13px;border:1.5px solid #C5DFAA;" id="r-decl-box" style="cursor:pointer;">
+              <div style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;" id="r-decl-row">
+                <div id="r-decl-check" style="width:18px;height:18px;border-radius:5px;border:2px solid #C0C0C0;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:#fff;"></div>
+                <div style="font-size:10px;color:#444;line-height:1.6;font-weight:600;">I confirm all information provided is accurate and I am authorised to register this arena. I agree to Sportster's <span style="color:#09210E;text-decoration:underline;">Vendor Terms & Conditions</span> and understand the arena will only go live after admin approval.</div>
+              </div>
+            </div>
+            <!-- Notice -->
+            <div style="background:#FFF8E0;border-radius:12px;padding:10px 12px;border:1.5px solid #FFE082;display:flex;gap:8px;align-items:flex-start;">
               <i class="ri-information-line" style="font-size:14px;color:#B8860B;flex-shrink:0;margin-top:1px;"></i>
-              <div style="font-size:10px;color:#7A5A00;line-height:1.5;font-weight:600;">By submitting, you confirm all information is accurate and agree to Sportster's <span style="color:#09210E;text-decoration:underline;">Vendor Terms & Conditions</span>. Your arena will go live only after admin approval (1–3 business days).</div>
+              <div style="font-size:10px;color:#7A5A00;line-height:1.6;font-weight:600;">Your submission will be reviewed by the Sportster team. Typical approval time is <strong>1–3 business days</strong>. You'll receive a notification once approved.</div>
             </div>
           </div>
         </div>
 
       </div><!-- scrollable -->
 
-      <!-- Error toast (hidden) -->
-      <div id="s22-error" style="display:none;position:absolute;bottom:75px;left:14px;right:14px;background:#FF3B30;color:#fff;border-radius:12px;padding:9px 13px;font-size:11px;font-weight:700;display:none;align-items:center;gap:7px;z-index:30;">
+      <!-- Error toast -->
+      <div id="s22-error" style="display:none;position:absolute;bottom:72px;left:12px;right:12px;background:#D32F2F;color:#fff;border-radius:11px;padding:9px 13px;font-size:11px;font-weight:700;align-items:center;gap:7px;z-index:30;">
         <i class="ri-error-warning-line" style="font-size:14px;flex-shrink:0;"></i>
         <span id="s22-error-msg">Please fill all required fields.</span>
       </div>
 
-      <!-- Bottom nav bar -->
-      <div style="padding:10px 14px 12px;border-top:1px solid #F0F0F0;background:#fff;flex-shrink:0;display:flex;gap:8px;">
-        <button id="s22-back-btn" style="width:40px;padding:11px 0;background:#F0F0F0;color:#555;font-size:12px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-arrow-left-s-line" style="font-size:18px;"></i></button>
-        <button id="s22-next-btn" style="flex:1;padding:11px;background:#09210E;color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">Next →</button>
+      <!-- Bottom bar -->
+      <div style="padding:10px 14px 12px;border-top:1px solid #EBEBEB;background:#fff;flex-shrink:0;display:flex;gap:8px;">
+        <button id="s22-back-btn" style="display:none;width:42px;padding:11px 0;background:#F0F0F0;color:#555;font-size:12px;font-weight:800;border:none;border-radius:12px;cursor:pointer;font-family:inherit;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-arrow-left-s-line" style="font-size:18px;line-height:1;"></i></button>
+        <button id="s22-next-btn" style="flex:1;padding:12px;background:#09210E;color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;letter-spacing:.2px;">Next →</button>
       </div>
 
       <!-- Success overlay -->
-      <div id="s22-success" style="display:none;position:absolute;inset:0;background:#fff;border-radius:36px;flex-direction:column;align-items:center;justify-content:center;padding:30px 24px;text-align:center;z-index:40;">
-        <div style="width:72px;height:72px;background:linear-gradient(135deg,#09210E,#2A7A38);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px;box-shadow:0 8px 24px rgba(9,33,14,.3);">
-          <i class="ri-send-plane-2-fill" style="font-size:32px;color:#fff;"></i>
+      <div id="s22-success" style="display:none;position:absolute;inset:0;background:#fff;border-radius:36px;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;z-index:40;overflow-y:auto;">
+        <div style="width:68px;height:68px;background:linear-gradient(135deg,#09210E,#2A7A38);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;box-shadow:0 8px 24px rgba(9,33,14,.3);">
+          <i class="ri-send-plane-2-fill" style="font-size:30px;color:#fff;"></i>
         </div>
-        <div style="font-size:20px;font-weight:900;color:#111;margin-bottom:8px;">Submitted for Approval!</div>
-        <div style="font-size:12px;color:#777;line-height:1.7;margin-bottom:6px;">Your arena registration has been sent to the Sportster team for review.</div>
-        <div style="background:#FFF8E0;border-radius:12px;padding:10px 14px;border:1.5px solid #FFE57A;margin-bottom:22px;width:100%;box-sizing:border-box;">
-          <div style="font-size:11px;font-weight:800;color:#B8860B;margin-bottom:4px;">⏱ Typical approval time</div>
-          <div style="font-size:13px;font-weight:900;color:#7A5A00;">1 – 3 Business Days</div>
-          <div style="font-size:10px;color:#AAA;margin-top:3px;">You'll get a notification once approved</div>
+        <div style="font-size:19px;font-weight:900;color:#111;margin-bottom:6px;">Sent for Approval!</div>
+        <div style="font-size:11px;color:#888;line-height:1.6;margin-bottom:14px;">Your arena registration has been submitted to Sportster's verification team.</div>
+        <div style="background:#FFF8E0;border-radius:12px;padding:10px 14px;border:1.5px solid #FFE082;margin-bottom:18px;width:100%;box-sizing:border-box;">
+          <div style="font-size:10px;font-weight:800;color:#B8860B;margin-bottom:3px;">⏱ Estimated Review Time</div>
+          <div style="font-size:16px;font-weight:900;color:#7A5A00;">1 – 3 Business Days</div>
+          <div style="font-size:10px;color:#AAA;margin-top:2px;">Notification sent once approved</div>
         </div>
-        <div style="display:flex;flex-direction:column;gap:6px;width:100%;">
-          <div style="background:#F4FAEE;border-radius:10px;padding:9px 12px;display:flex;align-items:center;gap:8px;border:1.5px solid #C5DFAA;">
-            <i class="ri-checkbox-circle-fill" style="font-size:14px;color:#09210E;flex-shrink:0;"></i>
-            <span style="font-size:11px;font-weight:700;color:#09210E;">Basic Info & Location</span>
-          </div>
-          <div style="background:#F4FAEE;border-radius:10px;padding:9px 12px;display:flex;align-items:center;gap:8px;border:1.5px solid #C5DFAA;">
-            <i class="ri-checkbox-circle-fill" style="font-size:14px;color:#09210E;flex-shrink:0;"></i>
-            <span style="font-size:11px;font-weight:700;color:#09210E;">Contact & Social Links</span>
-          </div>
-          <div style="background:#F4FAEE;border-radius:10px;padding:9px 12px;display:flex;align-items:center;gap:8px;border:1.5px solid #C5DFAA;">
-            <i class="ri-checkbox-circle-fill" style="font-size:14px;color:#09210E;flex-shrink:0;"></i>
-            <span style="font-size:11px;font-weight:700;color:#09210E;">Sports, Amenities & Specs</span>
-          </div>
-          <div style="background:#F4FAEE;border-radius:10px;padding:9px 12px;display:flex;align-items:center;gap:8px;border:1.5px solid #C5DFAA;">
-            <i class="ri-checkbox-circle-fill" style="font-size:14px;color:#09210E;flex-shrink:0;"></i>
-            <span style="font-size:11px;font-weight:700;color:#09210E;">Pricing & Operating Hours</span>
-          </div>
-          <div style="background:#F4FAEE;border-radius:10px;padding:9px 12px;display:flex;align-items:center;gap:8px;border:1.5px solid #C5DFAA;">
-            <i class="ri-checkbox-circle-fill" style="font-size:14px;color:#09210E;flex-shrink:0;"></i>
-            <span style="font-size:11px;font-weight:700;color:#09210E;">Photos & Documents</span>
-          </div>
+        <div style="display:flex;flex-direction:column;gap:5px;width:100%;margin-bottom:18px;">
+          <div style="background:#F4FAEE;border-radius:9px;padding:8px 12px;display:flex;align-items:center;gap:8px;border:1px solid #C5DFAA;"><i class="ri-checkbox-circle-fill" style="font-size:13px;color:#09210E;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#09210E;">Arena Profile & Specs</span></div>
+          <div style="background:#F4FAEE;border-radius:9px;padding:8px 12px;display:flex;align-items:center;gap:8px;border:1px solid #C5DFAA;"><i class="ri-checkbox-circle-fill" style="font-size:13px;color:#09210E;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#09210E;">Location & Contact Details</span></div>
+          <div style="background:#F4FAEE;border-radius:9px;padding:8px 12px;display:flex;align-items:center;gap:8px;border:1px solid #C5DFAA;"><i class="ri-checkbox-circle-fill" style="font-size:13px;color:#09210E;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#09210E;">Sports & 20 Amenities</span></div>
+          <div style="background:#F4FAEE;border-radius:9px;padding:8px 12px;display:flex;align-items:center;gap:8px;border:1px solid #C5DFAA;"><i class="ri-checkbox-circle-fill" style="font-size:13px;color:#09210E;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#09210E;">Hours, Rules & Cancellation Policy</span></div>
+          <div style="background:#F4FAEE;border-radius:9px;padding:8px 12px;display:flex;align-items:center;gap:8px;border:1px solid #C5DFAA;"><i class="ri-checkbox-circle-fill" style="font-size:13px;color:#09210E;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#09210E;">Slot Duration & Day-wise Pricing</span></div>
+          <div style="background:#F4FAEE;border-radius:9px;padding:8px 12px;display:flex;align-items:center;gap:8px;border:1px solid #C5DFAA;"><i class="ri-checkbox-circle-fill" style="font-size:13px;color:#09210E;flex-shrink:0;"></i><span style="font-size:11px;font-weight:700;color:#09210E;">Photos, Documents & Declaration</span></div>
         </div>
-        <button data-go="s8" style="margin-top:18px;width:100%;padding:13px;background:#09210E;color:#fff;font-size:13px;font-weight:900;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">
-          <i class="ri-home-5-line" style="margin-right:6px;"></i>Back to My Arenas
+        <button data-go="s28" style="width:100%;padding:13px;background:#09210E;color:#fff;font-size:13px;font-weight:900;border:none;border-radius:13px;cursor:pointer;font-family:inherit;margin-bottom:8px;">
+          <i class="ri-time-line" style="margin-right:6px;"></i>Track Approval Status
+        </button>
+        <button data-go="s8" style="width:100%;padding:11px;background:#F0F0F0;color:#555;font-size:12px;font-weight:700;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">
+          Back to My Arenas
         </button>
       </div>
 
@@ -4276,7 +4172,7 @@ body:not(.interactive) #s22-success { display: none !important; }
     var s22 = document.getElementById('s22');
     if (!s22) return;
 
-    var stepLabels = ['Basic Info','Contact & Social','Sports & Amenities','Specs & Hours','Slot Pricing','Photos & Submit'];
+    var stepLabels = ['Arena Profile','Location & Contact','Sports & Amenities','Hours & Booking Rules','Slot Settings & Pricing','Photos & Submit'];
     var curStep = 1;
     var prices = { mon:2000, tue:2000, wed:2000, thu:2000, fri:2500, sat:2500, sun:2500 };
     var courts = 2, cap = 50;
@@ -4327,6 +4223,8 @@ body:not(.interactive) #s22-success { display: none !important; }
         var owner = s22.querySelector('#r-owner');
         if (!cnic||!cnic.value.trim())  { flash(cnic,'CNIC number is required'); return false; }
         if (!owner||!owner.value.trim()){ flash(owner,'Owner name is required'); return false; }
+        var decl = s22.querySelector('#r-decl-check');
+        if (!decl || !decl.classList.contains('checked')) { showError('Please accept the declaration to continue'); return false; }
       }
       return true;
     }
@@ -4474,6 +4372,32 @@ body:not(.interactive) #s22-success { display: none !important; }
       if (pMinus) { e.stopPropagation(); var d=pMinus.getAttribute('data-day'); if(d){ prices[d]=Math.max(100,prices[d]-100); updatePriceDisplay(d); } return; }
       var pPlus = e.target.closest('.r-p-plus');
       if (pPlus)  { e.stopPropagation(); var d=pPlus.getAttribute('data-day');  if(d){ prices[d]=Math.min(99900,prices[d]+100); updatePriceDisplay(d); } return; }
+
+      // Conf pills
+      var confPill = e.target.closest('.r-conf-pill');
+      if (confPill) { e.stopPropagation(); s22.querySelectorAll('.r-conf-pill').forEach(function(p){ p.style.background='#fff';p.style.color='#555';p.style.borderColor='#DDD';p.classList.remove('r-sel'); var sub=p.querySelector('div:last-child'); if(sub) sub.style.color='#AAA'; }); confPill.style.background='#09210E';confPill.style.color='#fff';confPill.style.borderColor='#09210E';confPill.classList.add('r-sel'); var sub=confPill.querySelector('div:last-child'); if(sub) sub.style.color='rgba(255,255,255,.6)'; return; }
+
+      // Advance notice pills
+      var advPill = e.target.closest('.r-adv-pill');
+      if (advPill) { e.stopPropagation(); s22.querySelectorAll('.r-adv-pill').forEach(function(p){ p.style.background='#fff';p.style.color='#555';p.style.borderColor='#DDD';p.classList.remove('r-sel'); }); advPill.style.background='#09210E';advPill.style.color='#fff';advPill.style.borderColor='#09210E';advPill.classList.add('r-sel'); return; }
+
+      // Booking window pills
+      var winPill = e.target.closest('.r-win-pill');
+      if (winPill) { e.stopPropagation(); s22.querySelectorAll('.r-win-pill').forEach(function(p){ p.style.background='#fff';p.style.color='#555';p.style.borderColor='#DDD';p.classList.remove('r-sel'); }); winPill.style.background='#09210E';winPill.style.color='#fff';winPill.style.borderColor='#09210E';winPill.classList.add('r-sel'); return; }
+
+      // Cancellation pills
+      var canPill = e.target.closest('.r-can-pill');
+      if (canPill) { e.stopPropagation(); s22.querySelectorAll('.r-can-pill').forEach(function(p){ p.style.background='#fff';p.style.color='#555';p.style.borderColor='#DDD';p.classList.remove('r-sel'); }); canPill.style.background='#09210E';canPill.style.color='#fff';canPill.style.borderColor='#09210E';canPill.classList.add('r-sel'); return; }
+
+      // Discount toggle
+      if (e.target.id === 'r-discount-toggle' || e.target.closest('#r-discount-toggle')) { e.stopPropagation(); var tog=s22.querySelector('#r-discount-toggle'); var det=s22.querySelector('#r-discount-detail'); if(!tog||!det) return; var on=tog.classList.contains('on'); if(on){ tog.classList.remove('on');tog.style.background='#DDD';var th=tog.querySelector('div');if(th)th.style.transform='';det.style.display='none'; }else{ tog.classList.add('on');tog.style.background='#09210E';var th=tog.querySelector('div');if(th)th.style.transform='translateX(18px)';det.style.display='block'; } return; }
+
+      // Discount stepper
+      if (e.target.id === 'r-disc-plus') { e.stopPropagation(); var el=s22.querySelector('#r-disc-val'); var v=parseInt((el.textContent||'20').replace('%',''))||20; v=Math.min(80,v+5); el.textContent=v+'%'; return; }
+      if (e.target.id === 'r-disc-minus') { e.stopPropagation(); var el=s22.querySelector('#r-disc-val'); var v=parseInt((el.textContent||'20').replace('%',''))||20; v=Math.max(5,v-5); el.textContent=v+'%'; return; }
+
+      // Declaration checkbox
+      if (e.target.id === 'r-decl-row' || e.target.closest('#r-decl-row')) { e.stopPropagation(); var chk=s22.querySelector('#r-decl-check'); if(!chk) return; var on=chk.classList.contains('checked'); if(on){ chk.classList.remove('checked');chk.style.background='#fff';chk.style.borderColor='#C0C0C0';chk.innerHTML=''; }else{ chk.classList.add('checked');chk.style.background='#09210E';chk.style.borderColor='#09210E';chk.innerHTML='<i class="ri-check-line" style="font-size:10px;color:#fff;"></i>'; } return; }
     });
 
     // Reset wizard to step 1 when navigating to s22
