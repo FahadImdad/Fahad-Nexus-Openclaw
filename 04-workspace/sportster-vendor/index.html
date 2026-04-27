@@ -2329,7 +2329,7 @@ body:not(.interactive) #s22-success { display: none !important; }
                 <!-- % input -->
                 <div style="font-size:10px;font-weight:800;color:#444;margin-bottom:6px;">Discount % (applied to all days)</div>
                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-                  <input id="r-disc-input" type="number" min="1" max="80" placeholder="e.g. 20" oninput="var v=parseInt(this.value)||0;if(v>=1&&v<=80)updateDiscPreview(v);" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:15px;font-weight:900;color:#09210E;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;text-align:center;" />
+                  <input id="r-disc-input" type="number" min="1" max="80" placeholder="e.g. 20" style="flex:1;border:1.5px solid #E0E0E0;border-radius:10px;padding:10px 12px;font-size:15px;font-weight:900;color:#09210E;font-family:inherit;background:#fff;box-sizing:border-box;outline:none;text-align:center;" />
                   <div style="font-size:18px;font-weight:900;color:#09210E;">%</div>
                 </div>
                 <!-- Per-day rows: original price + discounted price -->
@@ -4408,6 +4408,15 @@ body:not(.interactive) #s22-success { display: none !important; }
       var goEl = e.target.closest('[data-go="s22"]');
       if (goEl) { setTimeout(function(){ showStep(1); var suc=document.getElementById('s22-success'); if(suc) suc.style.display='none'; }, 50); }
     });
+
+    // Wire discount % input (updateDiscPreview is local to this IIFE, can't use inline oninput)
+    var discInput = s22.querySelector('#r-disc-input');
+    if (discInput) {
+      discInput.addEventListener('input', function() {
+        var v = parseInt(this.value) || 0;
+        if (v >= 1 && v <= 80) updateDiscPreview(v);
+      });
+    }
 
     showStep(1);
   })();
