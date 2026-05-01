@@ -1,0 +1,32 @@
+[project]
+name = "phd-outreach"
+version = "0.1.0"
+description = "Automated personalized PhD/MS cold-email outreach to university faculty"
+requires-python = ">=3.10"
+dependencies = [
+    # CLI
+    "click>=8.0",
+    "rich>=13.0",
+    "pdfplumber>=0.11.0",
+    "python-dotenv>=1.0",
+    "pydantic>=2.0",
+    # Gmail (CLI uses IMAP; web uses OAuth API)
+    "google-auth>=2.0",
+    "google-auth-oauthlib>=1.0",
+    "google-api-python-client>=2.0",
+    # Web UI
+    "fastapi>=0.110.0",
+    "uvicorn>=0.29.0",
+    "jinja2>=3.1.0",
+    "python-multipart>=0.0.9",
+]
+
+[project.scripts]
+phd-outreach = "phd_outreach.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/phd_outreach"]

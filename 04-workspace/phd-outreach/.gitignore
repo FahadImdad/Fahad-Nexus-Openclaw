@@ -1,0 +1,11 @@
+.venv/
+web/sessions/
+.env
+credentials/gmail_token.json
+credentials/gmail_credentials.json
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+*.json
+!pyproject.toml

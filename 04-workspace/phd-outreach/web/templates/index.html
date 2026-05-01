@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhD Outreach</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- Loading overlay -->
+  <div id="loading" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+    <div class="bg-white rounded-2xl p-10 text-center max-w-sm shadow-2xl">
+      <div class="w-14 h-14 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-5"></div>
+      <h3 class="text-lg font-bold text-gray-800">Running Pipeline</h3>
+      <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+        Searching faculty pages, scoring alignment,<br>drafting personalized emails…
+      </p>
+      <p class="text-gray-300 text-xs mt-3">Takes 2–4 minutes</p>
+    </div>
+  </div>
+
+  <!-- Gmail connect modal -->
+  <div id="connect-modal" class="hidden fixed inset-0 bg-black/50 z-40 flex items-center justify-center">
+    <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+      <h2 class="text-lg font-bold text-gray-900 mb-1">Connect Gmail</h2>
+      <p class="text-sm text-gray-400 mb-6">
+        Uses an App Password — no OAuth setup needed.
+      </p>
+
+      <form action="/auth/connect" method="post" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Gmail address</label>
+          <input type="email" name="gmail_address" required placeholder="you@gmail.com"
+            class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">App Password</label>
+          <input type="password" name="app_password" required placeholder="xxxx xxxx xxxx xxxx"
+            class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <p class="text-xs text-gray-400 mt-1.5">
+            Get one at
+            <a href="https://myaccount.google.com/apppasswords" target="_blank"
+               class="text-blue-500 hover:underline">myaccount.google.com/apppasswords</a>
+            (requires 2-Step Verification)
+          </p>
+        </div>
+        <div class="flex gap-3 pt-1">
+          <button type="submit"
+            class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-xl text-sm transition">
+            Connect
+          </button>
+          <button type="button" onclick="closeModal()"
+            class="flex-1 border border-gray-200 text-gray-600 hover:bg-gray-50 font-medium py-2.5 rounded-xl text-sm transition">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="max-w-xl mx-auto py-14 px-4">
+
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center justify-center w-14 h-14 bg-blue-100 rounded-2xl mb-4">
+        <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+      </div>
+      <h1 class="text-3xl font-bold text-gray-900">PhD Outreach</h1>
+      <p class="text-gray-400 mt-2 text-sm">
+        Upload your CV → discover professors → get personalized cold emails in your Gmail Drafts
+      </p>
+    </div>
+
+    {% if connect_error %}
+    <div class="bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3 mb-5">
+      {{ connect_error }}
+    </div>
+    {% endif %}
+
+    <!-- Gmail card -->
+    <div class="bg-white rounded-2xl border border-gray-200 p-5 mb-5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center
+          {{ 'bg-green-100' if gmail_connected else 'bg-gray-100' }}">
+          {% if gmail_connected %}
+          <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          {% else %}
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          {% endif %}
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-gray-800">Gmail</p>
+          {% if gmail_connected %}
+          <p class="text-xs text-green-600">{{ gmail_email }}</p>
+          {% else %}
+          <p class="text-xs text-gray-400">Not connected — drafts won't be saved</p>
+          {% endif %}
+        </div>
+      </div>
+      {% if gmail_connected %}
+      <a href="/auth/disconnect"
+         class="text-xs text-red-400 hover:text-red-600 transition">Disconnect</a>
+      {% else %}
+      <button onclick="openModal()"
+         class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">
+        Connect Gmail →
+      </button>
+      {% endif %}
+    </div>
+
+    <!-- Error box -->
+    <div id="error-box" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3 mb-5"></div>
+
+    <!-- Main form -->
+    <form id="main-form" enctype="multipart/form-data">
+      <div class="bg-white rounded-2xl border border-gray-200 p-6 space-y-5">
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Your CV</label>
+          <label class="flex items-center gap-3 border-2 border-dashed border-gray-200 rounded-xl p-4
+                        cursor-pointer hover:border-blue-400 transition">
+            <svg class="w-6 h-6 text-gray-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            <span id="cv-label" class="text-sm text-gray-400">Click to choose PDF or TXT</span>
+            <input type="file" name="cv" accept=".pdf,.txt" required class="hidden"
+              onchange="document.getElementById('cv-label').textContent = this.files[0]?.name || 'Choose file'">
+          </label>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Target Universities</label>
+          <!-- Tag container -->
+          <div id="uni-tags" class="flex flex-wrap gap-2 mb-2 min-h-0"></div>
+          <div class="flex gap-2">
+            <input type="text" id="uni-input" list="uni-list"
+              placeholder="Type or paste comma-separated list, press Enter or ,"
+              class="flex-1 border border-gray-200 rounded-xl px-4 py-2.5 text-sm
+                     focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
+            <button type="button" onclick="addUni()"
+              class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 rounded-xl text-sm transition">+</button>
+          </div>
+          <!-- Hidden field sent to server -->
+          <input type="hidden" name="universities" id="uni-hidden">
+          <p id="uni-error" class="text-xs text-red-500 mt-1 hidden">Add at least one university.</p>
+          <datalist id="uni-list">
+            <option value="MIT"><option value="Stanford University"><option value="Carnegie Mellon University">
+            <option value="Harvard University"><option value="UC Berkeley"><option value="Princeton University">
+            <option value="Columbia University"><option value="Cornell University"><option value="Yale University">
+            <option value="Caltech"><option value="University of Michigan"><option value="University of Washington">
+            <option value="Georgia Tech"><option value="University of Illinois Urbana-Champaign">
+            <option value="University of Texas Austin"><option value="UCLA"><option value="UCSD">
+            <option value="University of Southern California"><option value="New York University">
+            <option value="University of Pennsylvania"><option value="Duke University">
+            <option value="Johns Hopkins University"><option value="University of Wisconsin-Madison">
+            <option value="Purdue University"><option value="University of Maryland">
+            <option value="University of Massachusetts Amherst"><option value="Brown University">
+            <option value="Dartmouth College"><option value="Rice University"><option value="Vanderbilt University">
+            <option value="University of Minnesota"><option value="Boston University">
+            <option value="Northeastern University"><option value="Virginia Tech">
+            <option value="University of California Santa Barbara"><option value="University of Notre Dame">
+            <option value="Stony Brook University"><option value="Rutgers University">
+            <option value="University of Oxford"><option value="University of Cambridge">
+            <option value="Imperial College London"><option value="University College London">
+            <option value="University of Edinburgh"><option value="University of Manchester">
+            <option value="University of Toronto"><option value="University of British Columbia">
+            <option value="McGill University"><option value="University of Waterloo">
+            <option value="University of Alberta"><option value="Simon Fraser University">
+            <option value="ETH Zurich"><option value="EPFL"><option value="TU Munich">
+            <option value="Sorbonne University"><option value="KU Leuven">
+            <option value="University of Amsterdam"><option value="Delft University of Technology">
+            <option value="University of Copenhagen"><option value="Uppsala University">
+            <option value="National University of Singapore"><option value="Nanyang Technological University">
+            <option value="University of Melbourne"><option value="Australian National University">
+            <option value="University of Sydney"><option value="Tsinghua University">
+            <option value="Peking University"><option value="Tokyo University"><option value="KAIST">
+            <option value="Seoul National University"><option value="Indian Institute of Technology Bombay">
+            <option value="Indian Institute of Technology Delhi"><option value="IIT Madras">
+          </datalist>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">Research Domain</label>
+          <input type="text" name="domain" required list="domain-list"
+            placeholder="e.g. natural language processing, robotics"
+            class="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm
+                   focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
+        </div>
+
+        <div>
+          <label class="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
+            <span>Professors to email</span>
+            <span id="topn-val" class="text-blue-600 font-bold">10</span>
+          </label>
+          <input type="range" name="top_n" min="1" max="100" value="10"
+            oninput="document.getElementById('topn-val').textContent = this.value"
+            class="w-full accent-blue-600 h-2 rounded-full">
+          <div class="flex justify-between text-xs text-gray-300 mt-1"><span>1</span><span>100</span></div>
+        </div>
+
+        <button type="submit"
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl
+                 transition text-sm flex items-center justify-center gap-2">
+          Find Professors & Draft Emails
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </button>
+      </div>
+    </form>
+
+    <div class="mt-8 grid grid-cols-3 gap-3 text-center">
+      {% for num, title, desc in [("1", "Parse CV", "Extracts your research background"), ("2", "Find Profs", "Scores professor alignment"), ("3", "Draft & Save", "Emails land in Gmail Drafts")] %}
+      <div class="bg-white rounded-xl border border-gray-100 p-4">
+        <p class="text-xs font-semibold text-blue-600 mb-1">{{ num }}.</p>
+        <p class="text-xs font-bold text-gray-800">{{ title }}</p>
+        <p class="text-xs text-gray-400 mt-1 leading-tight">{{ desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+  <script>
+    function openModal() { document.getElementById('connect-modal').classList.remove('hidden'); }
+    function closeModal() { document.getElementById('connect-modal').classList.add('hidden'); }
+    document.getElementById('connect-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // ── University tags ──────────────────────────────────────────────────────
+    const universities = [];
+
+    function renderTags() {
+      const container = document.getElementById('uni-tags');
+      container.innerHTML = '';
+      universities.forEach((u, i) => {
+        const tag = document.createElement('span');
+        tag.className = 'inline-flex items-center gap-1 bg-blue-50 border border-blue-200 text-blue-700 text-xs font-medium px-3 py-1 rounded-full';
+        tag.innerHTML = `${u} <button type="button" onclick="removeUni(${i})" class="ml-1 text-blue-400 hover:text-blue-700 font-bold leading-none">&times;</button>`;
+        container.appendChild(tag);
+      });
+      document.getElementById('uni-hidden').value = universities.join(',');
+    }
+
+    function addUni() {
+      const input = document.getElementById('uni-input');
+      const val = input.value.trim();
+      if (val && !universities.includes(val)) {
+        universities.push(val);
+        renderTags();
+      }
+      input.value = '';
+      input.focus();
+      document.getElementById('uni-error').classList.add('hidden');
+    }
+
+    function removeUni(i) {
+      universities.splice(i, 1);
+      renderTags();
+    }
+
+    document.getElementById('uni-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addUni(); }
+    });
+
+    // Paste: split on commas and add all at once
+    document.getElementById('uni-input').addEventListener('paste', function(e) {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData).getData('text');
+      pasted.split(',').map(s => s.trim()).filter(Boolean).forEach(u => {
+        if (u && !universities.includes(u)) universities.push(u);
+      });
+      renderTags();
+      this.value = '';
+      document.getElementById('uni-error').classList.add('hidden');
+    });
+
+    // ── Form submit ──────────────────────────────────────────────────────────
+    document.getElementById('main-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const errorBox = document.getElementById('error-box');
+      errorBox.classList.add('hidden');
+
+      const cv = document.querySelector('input[name="cv"]').files[0];
+      if (!cv) { errorBox.textContent = 'Please select a CV file.'; errorBox.classList.remove('hidden'); return; }
+
+      if (universities.length === 0) {
+        document.getElementById('uni-error').classList.remove('hidden');
+        document.getElementById('uni-input').focus();
+        return;
+      }
+
+      document.getElementById('loading').classList.remove('hidden');
+
+      try {
+        const resp = await fetch('/run', { method: 'POST', body: new FormData(this) });
+        const data = await resp.json();
+
+        if (data.ok) {
+          window.location.href = '/results';
+        } else {
+          document.getElementById('loading').classList.add('hidden');
+          errorBox.textContent = 'Error: ' + data.error;
+          errorBox.classList.remove('hidden');
+        }
+      } catch (err) {
+        document.getElementById('loading').classList.add('hidden');
+        errorBox.textContent = 'Network error: ' + err.message;
+        errorBox.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
