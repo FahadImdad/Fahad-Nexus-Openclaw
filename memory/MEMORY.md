@@ -10,3 +10,4 @@
 - [Dental Receipt Project](project_dental_receipt.md) — Scripts, asset files, invoice details, clinic info, and design decisions for The Dental Arts Studio receipt + treatment note PDFs
 - [MacBook Chat](macbook_chat.md) — MacBook buying discussion; top pick: M2 Pro 14" 32GB at 350k–400k PKR
 - [PhD Outreach Tool](project_phd_outreach.md) — Agentic cold-email web app: CV → professor discovery → personalized drafts in Gmail; full build state + file locations
+- [Nexus Setup State](project_nexus_setup.md) — Nexus install status, what was fixed 2026-05-01, CLI install command if broken again
