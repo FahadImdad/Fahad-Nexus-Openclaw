@@ -5704,37 +5704,75 @@ body:not(.interactive) #s22-success { display: none !important; }
       add.parentElement.insertBefore(clone, add);
     });
 
-    // ── s52 registration: clone PC/unit/snack rows, remove a row, toggle snacks ──
-    function gzCloneRow(addBtn, listSel, rowSel) {
-      var list = addBtn.closest(listSel) ? addBtn.closest(listSel) : addBtn.parentElement.querySelector(listSel);
-      // fallback: list is the previous sibling list of the add button
-      if (!list) list = addBtn.previousElementSibling;
-      var tmpl = list && list.querySelector(rowSel);
-      if (!tmpl) return;
-      var clone = tmpl.cloneNode(true);
-      list.appendChild(clone);
-    }
-    document.addEventListener('click', function (e) {
-      // remove any row (PC override / unit override / snack)
-      var rm = e.target.closest('.gz-rm-row');
-      if (rm) { var row = rm.closest('.gz-pcovr-row, .gz-unitovr-row, .gz-snack-row'); if (row) row.remove(); return; }
-      // add a PC override
-      var addPc = e.target.closest('.gz-add-pcovr');
-      if (addPc) { var l = document.getElementById('gz-pcovr-list'); if (l) l.appendChild(l.querySelector('.gz-pcovr-row').cloneNode(true)); return; }
-      // add a unit override (scoped to this console row's list)
-      var addU = e.target.closest('.gz-add-unitovr');
-      if (addU) { var ul = addU.parentElement.querySelector('.gz-unitovr-list'); if (ul && ul.querySelector('.gz-unitovr-row')) ul.appendChild(ul.querySelector('.gz-unitovr-row').cloneNode(true)); return; }
-      // add a snack
-      var addS = e.target.closest('.gz-add-snack');
-      if (addS) { var sl = document.getElementById('gz-snacks-list'); if (sl && sl.querySelector('.gz-snack-row')) sl.appendChild(sl.querySelector('.gz-snack-row').cloneNode(true)); return; }
-    });
-    // snacks on/off gates the whole snacks section
-    var snToggle = document.getElementById('gz-snacks-toggle');
-    var snSection = document.getElementById('gz-snacks-section');
-    if (snToggle && snSection) {
-      var applySn = function () { snSection.style.opacity = snToggle.checked ? '1' : '.4'; snSection.style.pointerEvents = snToggle.checked ? 'auto' : 'none'; };
-      snToggle.addEventListener('change', applySn); applySn();
-    }
+    // ════════ s52 REGISTRATION WIZARD (step nav + progressive builders) ════════
+    (function () {
+      var s52 = document.getElementById('s52'); if (!s52) return;
+      function tmpl(id) { var t = document.getElementById(id); return t ? t.firstElementChild.cloneNode(true) : null; }
+
+      // ── renumber cubicles (A,B,C…) and PCs (1,2,3…) within each ──
+      function renumber() {
+        var cubs = s52.querySelectorAll('#gz-cubicles .gz-cubicle');
+        cubs.forEach(function (cub, ci) {
+          var letter = String.fromCharCode(65 + ci);
+          var badge = cub.querySelector('.gz-cub-badge'); if (badge) badge.textContent = 'Cubicle ' + letter;
+          var nameI = cub.querySelector('.gz-cub-name');
+          if (nameI && (!nameI.value || /^Cubicle [A-Z]$/.test(nameI.value))) nameI.value = 'Cubicle ' + letter;
+          cub.querySelectorAll('.gz-pc-card').forEach(function (pc, pi) {
+            var n = pc.querySelector('.gz-pc-num'); if (n) n.textContent = 'PC ' + (pi + 1);
+          });
+          var rmCub = cub.querySelector('.gz-rm-cub'); if (rmCub) rmCub.style.display = cubs.length > 1 ? 'flex' : 'none';
+        });
+      }
+      function addPcTo(list) { var c = tmpl('gz-pc-tmpl'); if (c) list.appendChild(c); renumber(); }
+      function addCubicle() {
+        var cub = tmpl('gz-cub-tmpl'); if (!cub) return;
+        document.getElementById('gz-cubicles').appendChild(cub);
+        addPcTo(cub.querySelector('.gz-pc-list'));      // every new cubicle starts with PC 1
+        renumber();
+      }
+      function addConsole() { var c = tmpl('gz-con-tmpl'); if (c) document.getElementById('gz-consoles').appendChild(c); }
+
+      // seed: one cubicle (with PC 1) + one console
+      addCubicle();
+      addConsole();
+
+      // ── delegated clicks within s52 (add/remove cubicle, PC, console, snack) ──
+      s52.addEventListener('click', function (e) {
+        var t = e.target;
+        if (t.closest('.gz-add-cubicle')) { addCubicle(); return; }
+        if (t.closest('.gz-add-pc')) { var cub = t.closest('.gz-cubicle'); if (cub) addPcTo(cub.querySelector('.gz-pc-list')); return; }
+        if (t.closest('.gz-rm-pc')) { var card = t.closest('.gz-pc-card'), list = card && card.parentElement; if (list && list.querySelectorAll('.gz-pc-card').length > 1) { card.remove(); renumber(); } return; }
+        if (t.closest('.gz-rm-cub')) { var c = t.closest('.gz-cubicle'); if (s52.querySelectorAll('#gz-cubicles .gz-cubicle').length > 1) { c.remove(); renumber(); } return; }
+        if (t.closest('.gz-add-console2')) { addConsole(); return; }
+        if (t.closest('.gz-rm-con')) { var cc = t.closest('.gz-con-card'); if (s52.querySelectorAll('#gz-consoles .gz-con-card').length > 1) cc.remove(); return; }
+        if (t.closest('.gz-add-snack')) { var sl = document.getElementById('gz-snacks-list'); if (sl && sl.querySelector('.gz-snack-row')) sl.appendChild(sl.querySelector('.gz-snack-row').cloneNode(true)); return; }
+        if (t.closest('.gz-rm-row')) { var row = t.closest('.gz-snack-row'); if (row) row.remove(); return; }
+      });
+
+      // ── step navigation ──
+      var step = 1, LABELS = ['Zone Profile', 'Cubicles & PCs', 'Consoles', 'Snacks & Facilities', 'Pricing & Review'];
+      function showStep(n) {
+        step = n;
+        s52.querySelectorAll('.gz-wstep').forEach(function (p) { p.style.display = (parseInt(p.getAttribute('data-step'), 10) === n) ? 'block' : 'none'; });
+        s52.querySelectorAll('.gz-wbar').forEach(function (b, i) { b.style.background = (i < n) ? '#A88BFF' : 'rgba(255,255,255,.2)'; });
+        var lab = document.getElementById('gz-wiz-label'); if (lab) lab.textContent = 'Step ' + n + ' of 5 · ' + LABELS[n - 1];
+        var back = document.getElementById('gz-wiz-back'), next = document.getElementById('gz-wiz-next');
+        if (back) back.style.visibility = n > 1 ? 'visible' : 'hidden';
+        if (next) next.textContent = n < 5 ? 'Next →' : '✓ Publish Gaming Zone';
+        var sc = s52.querySelector('.gz-wiz-scroll'); if (sc) sc.scrollTop = 0;
+      }
+      var nextBtn = document.getElementById('gz-wiz-next'), backBtn = document.getElementById('gz-wiz-back');
+      if (nextBtn) nextBtn.addEventListener('click', function () { if (step < 5) showStep(step + 1); else { var p = document.getElementById('gz-wiz-publish'); if (p) p.click(); } });
+      if (backBtn) backBtn.addEventListener('click', function () { if (step > 1) showStep(step - 1); });
+      showStep(1);
+
+      // snacks on/off gates the snacks section
+      var snToggle = document.getElementById('gz-snacks-toggle'), snSection = document.getElementById('gz-snacks-section');
+      if (snToggle && snSection) {
+        var applySn = function () { snSection.style.opacity = snToggle.checked ? '1' : '.4'; snSection.style.pointerEvents = snToggle.checked ? 'auto' : 'none'; };
+        snToggle.addEventListener('change', applySn); applySn();
+      }
+    })();
 
     // ── Clear an in-progress slot selection when the chosen unit changes (s53/s54) ──
     function gzClearScreen(rootId, selbarId) {
@@ -9403,280 +9441,223 @@ body:not(.interactive) #s22-success { display: none !important; }
      SCREEN 52 — REGISTER / SETUP GAMING ZONE (mirrors s22, all steps scroll)
 ════════════════════════════════════════════════ -->
 <div class="col" id="s52">
-  <div class="page-label">52 · Register Gaming Zone — all steps (scroll)</div>
+  <div class="page-label">52 · Register Gaming Zone — step-by-step wizard</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
-    <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;background:#F4F2FA;">
+    <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;background:#F4F2FA;position:relative;">
 
-      <!-- Header -->
-      <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:14px 16px 14px;flex-shrink:0;">
+      <!-- Header + progress -->
+      <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:13px 16px 13px;flex-shrink:0;">
         <div style="display:flex;align-items:center;gap:10px;">
           <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
-          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div style="font-size:9px;color:rgba(200,180,255,.7);margin-top:1px;">Set up your zone in 5 steps</div></div>
+          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div id="gz-wiz-label" style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 1 of 5 · Zone Profile</div></div>
         </div>
-        <!-- Step progress -->
-        <div style="display:flex;gap:4px;margin-top:12px;">
-          <div style="flex:1;height:4px;background:#A88BFF;border-radius:3px;"></div>
-          <div style="flex:1;height:4px;background:#A88BFF;border-radius:3px;"></div>
-          <div style="flex:1;height:4px;background:rgba(255,255,255,.2);border-radius:3px;"></div>
-          <div style="flex:1;height:4px;background:rgba(255,255,255,.2);border-radius:3px;"></div>
-          <div style="flex:1;height:4px;background:rgba(255,255,255,.2);border-radius:3px;"></div>
-        </div>
-      </div>
-
-      <div style="flex:1;overflow-y:auto;padding:13px 14px 90px;">
-
-        <!-- ════ STEP 1: Zone Profile ════ -->
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px;">
-          <div style="width:22px;height:22px;background:#3A1E6E;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;">1</div>
-          <div style="font-size:12px;font-weight:900;color:#1A0E2E;">Zone Profile</div>
-        </div>
-        <div style="background:#fff;border-radius:14px;padding:13px;margin-bottom:16px;border:1.5px solid #ECE4F8;">
-          <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Zone Name</div>
-          <input type="text" value="Nexus Gaming Lounge" style="width:100%;border:1.5px solid #ECE4F8;border-radius:10px;padding:10px;font-size:12px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;margin-bottom:11px;">
-          <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Location / Area</div>
-          <input type="text" value="Bahadurabad, Karachi" style="width:100%;border:1.5px solid #ECE4F8;border-radius:10px;padding:10px;font-size:12px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;margin-bottom:11px;">
-          <!-- Map picker -->
-          <div style="height:80px;border-radius:11px;background:linear-gradient(135deg,#EDE6FA,#DCD0F5);display:flex;align-items:center;justify-content:center;position:relative;border:1.5px solid #E0D4F5;cursor:pointer;margin-bottom:11px;">
-            <i class="ri-map-pin-2-fill" style="font-size:26px;color:#3A1E6E;"></i>
-            <div style="position:absolute;bottom:7px;right:9px;background:#fff;border-radius:20px;padding:3px 10px;font-size:9px;font-weight:800;color:#3A1E6E;box-shadow:0 2px 6px rgba(0,0,0,.1);">📍 Pin on map</div>
-          </div>
-          <!-- Photos -->
-          <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:6px;">Zone Photos</div>
-          <div style="display:flex;gap:6px;">
-            <div style="width:70px;height:54px;background:linear-gradient(135deg,#5A2EA0,#A88BFF);border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-image-line" style="font-size:18px;color:#fff;opacity:.8;"></i></div>
-            <div style="width:70px;height:54px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-image-line" style="font-size:18px;color:#fff;opacity:.8;"></i></div>
-            <div style="width:54px;height:54px;background:#F4F0FB;border-radius:9px;border:2px dashed #C8B4F0;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-add-line" style="font-size:18px;color:#3A1E6E;"></i></div>
-          </div>
-        </div>
-
-        <!-- ════ STEP 2: Cubicles & PCs ════ -->
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px;">
-          <div style="width:22px;height:22px;background:#3A1E6E;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;">2</div>
-          <div style="font-size:12px;font-weight:900;color:#1A0E2E;">Cubicles &amp; PCs</div>
-        </div>
-        <div style="background:#fff;border-radius:14px;padding:13px;margin-bottom:11px;border:1.5px solid #ECE4F8;">
-          <!-- Number of cubicles stepper -->
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;">
-            <div><div style="font-size:12px;font-weight:800;color:#1A0E2E;">How many cubicles?</div><div style="font-size:9px;color:#AAA;margin-top:1px;">Private rooms teams sit in</div></div>
-            <div style="display:flex;align-items:center;gap:10px;">
-              <div class="gz-step-btn" data-target="cub-count" data-dir="-1" style="width:30px;height:30px;border-radius:9px;background:#F4F0FB;border:1.5px solid #D8C8F0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;font-weight:900;color:#3A1E6E;">−</div>
-              <div id="cub-count" class="gz-count" style="font-size:18px;font-weight:900;color:#1A0E2E;min-width:22px;text-align:center;">4</div>
-              <div class="gz-step-btn" data-target="cub-count" data-dir="1" style="width:30px;height:30px;border-radius:9px;background:#3A1E6E;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;font-weight:900;color:#fff;">+</div>
-            </div>
-          </div>
-
-          <!-- Per-cubicle config (repeatable) -->
-          <div style="background:#FAF8FE;border-radius:12px;padding:11px;margin-bottom:8px;border:1px solid #ECE4F8;">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
-              <input type="text" value="Cubicle A" style="border:none;background:transparent;font-size:13px;font-weight:900;color:#1A0E2E;font-family:inherit;outline:none;width:55%;">
-              <div style="display:flex;align-items:center;gap:7px;"><span style="font-size:9px;color:#888;font-weight:700;">PCs</span>
-                <div class="gz-step-btn" data-target="cubA-pc" data-dir="-1" style="width:26px;height:26px;border-radius:8px;background:#F4F0FB;border:1.5px solid #D8C8F0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;font-weight:900;color:#3A1E6E;">−</div>
-                <div id="cubA-pc" class="gz-count" style="font-size:14px;font-weight:900;color:#1A0E2E;min-width:18px;text-align:center;">5</div>
-                <div class="gz-step-btn" data-target="cubA-pc" data-dir="1" style="width:26px;height:26px;border-radius:8px;background:#3A1E6E;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;font-weight:900;color:#fff;">+</div>
-              </div>
-            </div>
-
-            <!-- Standard rig — applies to all PCs unless overridden -->
-            <div style="font-size:9px;font-weight:800;color:#3A1E6E;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;">⚙️ Standard rig · all PCs in this cubicle</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px;">
-              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Monitor (brand · size · Hz)</div><input type="text" value='ASUS TUF · 27" · 165Hz' style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
-              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Graphics card</div><input type="text" value="NVIDIA RTX 4070" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
-              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Processor</div><input type="text" value="Intel Core i7-13700" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
-              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">RAM</div><input type="text" value="32GB DDR5" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
-              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Keyboard &amp; mouse</div><input type="text" value="Razer mech · Logitech 240Hz" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
-              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Headset</div><input type="text" value="HyperX Cloud II" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
-            </div>
-            <div style="font-size:9px;color:#888;font-weight:700;margin-bottom:5px;">Games installed</div>
-            <div class="gz-game-row" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;">
-              <div class="gz-game-chip" style="background:#3A1E6E;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Valorant <span style="opacity:.6;margin-left:2px;">✕</span></div>
-              <div class="gz-game-chip" style="background:#3A1E6E;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">CS2 <span style="opacity:.6;margin-left:2px;">✕</span></div>
-              <div class="gz-game-chip" style="background:#3A1E6E;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Dota 2 <span style="opacity:.6;margin-left:2px;">✕</span></div>
-              <div class="gz-add-game" style="background:#fff;color:#3A1E6E;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;border:1.5px dashed #C8B4F0;cursor:pointer;">+ Add game</div>
-            </div>
-
-            <!-- Per-PC overrides — each PC can have its own rig & games -->
-            <div style="border-top:1px dashed #E0D4F5;padding-top:9px;">
-              <div style="font-size:9px;font-weight:800;color:#3A1E6E;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;">🖥️ Customise individual PCs <span style="color:#AAA;font-weight:600;text-transform:none;">· override the standard rig</span></div>
-              <div id="gz-pcovr-list" style="display:flex;flex-direction:column;gap:6px;">
-                <!-- override row template (cloned by + Override a PC) -->
-                <div class="gz-pcovr-row" style="background:#fff;border:1.5px solid #ECE4F8;border-radius:10px;padding:9px 10px;">
-                  <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px;">
-                    <select style="border:1.5px solid #ECE4F8;border-radius:8px;padding:5px 7px;font-size:11px;font-weight:800;font-family:inherit;color:#3A1E6E;background:#FAF8FE;outline:none;">
-                      <option>PC 1</option><option>PC 2</option><option>PC 3</option><option>PC 4</option><option>PC 5</option>
-                    </select>
-                    <input type="text" value="👑 VIP rig" style="flex:1;border:none;background:transparent;font-size:11px;font-weight:800;color:#1A0E2E;font-family:inherit;outline:none;">
-                    <span class="gz-rm-row" style="font-size:13px;color:#C62828;cursor:pointer;">✕</span>
-                  </div>
-                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-                    <input type="text" value='LG UltraGear · 32" · 240Hz' style="border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:10px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;" placeholder="Monitor">
-                    <input type="text" value="NVIDIA RTX 4080" style="border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:10px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;" placeholder="Graphics">
-                  </div>
-                </div>
-              </div>
-              <div class="gz-add-pcovr" style="margin-top:7px;display:flex;align-items:center;justify-content:center;gap:6px;background:#F4F0FB;border-radius:9px;padding:8px;border:1.5px dashed #C8B4F0;cursor:pointer;">
-                <i class="ri-add-line" style="font-size:14px;color:#3A1E6E;"></i><span style="font-size:10px;font-weight:800;color:#3A1E6E;">Override a specific PC</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Duplicate-for-others helper -->
-          <div style="display:flex;align-items:center;gap:8px;background:#F4F0FB;border-radius:10px;padding:9px 11px;border:1px solid #E0D4F5;cursor:pointer;">
-            <i class="ri-file-copy-line" style="font-size:15px;color:#3A1E6E;"></i>
-            <div style="flex:1;font-size:11px;font-weight:700;color:#3A1E6E;">Apply this setup to cubicles B, C, D</div>
-            <i class="ri-arrow-right-s-line" style="font-size:16px;color:#3A1E6E;"></i>
-          </div>
-        </div>
-
-        <!-- PC booking mode toggle -->
-        <div style="background:#fff;border-radius:14px;padding:13px;margin-bottom:16px;border:1.5px solid #ECE4F8;">
-          <div style="font-size:12px;font-weight:800;color:#1A0E2E;margin-bottom:3px;">How can customers book PCs?</div>
-          <div style="font-size:9px;color:#AAA;margin-bottom:10px;">Choose how this zone sells its PCs</div>
-          <div id="gz-pc-mode" style="display:flex;gap:8px;">
-            <div class="gz-mode-opt" data-mode="pc" style="flex:1;background:#3A1E6E;border:1.5px solid #3A1E6E;border-radius:12px;padding:11px;cursor:pointer;text-align:center;">
-              <i class="ri-computer-line" style="font-size:18px;color:#fff;"></i>
-              <div style="font-size:11px;font-weight:800;color:#fff;margin-top:4px;">Per Individual PC</div>
-              <div style="font-size:8px;color:rgba(200,180,255,.8);margin-top:2px;">Book single seats</div>
-            </div>
-            <div class="gz-mode-opt" data-mode="cubicle" style="flex:1;background:#FAF8FE;border:1.5px solid #ECE4F8;border-radius:12px;padding:11px;cursor:pointer;text-align:center;">
-              <i class="ri-layout-grid-line" style="font-size:18px;color:#9A7BD0;"></i>
-              <div style="font-size:11px;font-weight:800;color:#7A5BB0;margin-top:4px;">Per Whole Cubicle</div>
-              <div style="font-size:8px;color:#AAA;margin-top:2px;">Book full room</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ════ STEP 3: Consoles ════ -->
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px;">
-          <div style="width:22px;height:22px;background:#3A1E6E;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;">3</div>
-          <div style="font-size:12px;font-weight:900;color:#1A0E2E;">Consoles (PS5 / PS4 / Xbox)</div>
-        </div>
-        <div id="gz-console-list" style="background:#fff;border-radius:14px;padding:13px;margin-bottom:8px;border:1.5px solid #ECE4F8;">
-          <!-- Console row (template — cloned by Add another console type) -->
-          <div class="gz-console-row" style="background:#FAF8FE;border-radius:12px;padding:11px;margin-bottom:8px;border:1px solid #ECE4F8;">
-            <div style="display:flex;align-items:center;gap:9px;margin-bottom:9px;">
-              <div style="width:36px;height:36px;background:linear-gradient(135deg,#0A1E3E,#1E5AC0);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;">🎮</div>
-              <select style="flex:1;border:1.5px solid #ECE4F8;border-radius:9px;padding:8px 9px;font-size:12px;font-weight:800;font-family:inherit;color:#1A0E2E;background:#fff;outline:none;">
-                <option>PlayStation 5</option><option>PlayStation 4</option><option>Xbox Series X</option><option>Nintendo Switch</option>
-              </select>
-              <div style="display:flex;align-items:center;gap:6px;"><span style="font-size:9px;color:#888;font-weight:700;">Qty</span>
-                <div class="gz-step-btn" data-dir="-1" style="width:26px;height:26px;border-radius:8px;background:#F4F0FB;border:1.5px solid #D8C8F0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;font-weight:900;color:#3A1E6E;">−</div>
-                <div id="ps5-qty" class="gz-count" style="font-size:14px;font-weight:900;color:#1A0E2E;min-width:18px;text-align:center;">3</div>
-                <div class="gz-step-btn" data-dir="1" style="width:26px;height:26px;border-radius:8px;background:#3A1E6E;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;font-weight:900;color:#fff;">+</div>
-              </div>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px;">
-              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">TV (brand · size)</div><input type="text" value='Samsung · 55" 4K HDR' style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
-              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Controllers / unit</div><input type="text" value="4" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
-            </div>
-            <!-- Extra controller price (per console) -->
-            <div style="display:flex;align-items:center;gap:8px;background:#F0E8FF;border:1px solid #E0D4F5;border-radius:9px;padding:8px 10px;margin-bottom:8px;">
-              <i class="ri-gamepad-line" style="font-size:15px;color:#3A1E6E;"></i>
-              <div style="flex:1;font-size:11px;font-weight:700;color:#3A1E6E;">Extra controller price</div>
-              <span style="font-size:10px;color:#888;font-weight:700;">Rs</span>
-              <input type="text" value="50" style="width:46px;border:1.5px solid #D8C8F0;border-radius:8px;padding:5px 7px;font-size:12px;font-weight:900;font-family:inherit;color:#3A1E6E;background:#fff;box-sizing:border-box;outline:none;text-align:center;">
-              <span style="font-size:10px;color:#888;font-weight:700;">/hr</span>
-            </div>
-            <div style="font-size:9px;color:#888;font-weight:700;margin-bottom:5px;">Games available</div>
-            <div class="gz-game-row" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;">
-              <div class="gz-game-chip" style="background:#3A1E6E;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">FC 24 <span style="opacity:.6;margin-left:2px;">✕</span></div>
-              <div class="gz-game-chip" style="background:#3A1E6E;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;cursor:pointer;">Tekken 8 <span style="opacity:.6;margin-left:2px;">✕</span></div>
-              <div class="gz-add-game" style="background:#fff;color:#3A1E6E;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;border:1.5px dashed #C8B4F0;cursor:pointer;">+ Add game</div>
-            </div>
-            <!-- Per-unit overrides — each unit can have its own TV & games -->
-            <div style="border-top:1px dashed #E0D4F5;padding-top:8px;">
-              <div style="font-size:9px;font-weight:800;color:#3A1E6E;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;">🎮 Customise individual units</div>
-              <div class="gz-unitovr-list" style="display:flex;flex-direction:column;gap:6px;">
-                <div class="gz-unitovr-row" style="background:#fff;border:1.5px solid #ECE4F8;border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px;">
-                  <select style="border:1.5px solid #ECE4F8;border-radius:8px;padding:5px 7px;font-size:11px;font-weight:800;font-family:inherit;color:#3A1E6E;background:#FAF8FE;outline:none;"><option>Unit 1</option><option>Unit 2</option><option>Unit 3</option></select>
-                  <input type="text" value='LG · 65" 4K' style="flex:1;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:10px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;" placeholder="TV brand · size">
-                  <span class="gz-rm-row" style="font-size:13px;color:#C62828;cursor:pointer;">✕</span>
-                </div>
-              </div>
-              <div class="gz-add-unitovr" style="margin-top:7px;display:flex;align-items:center;justify-content:center;gap:6px;background:#F4F0FB;border-radius:9px;padding:8px;border:1.5px dashed #C8B4F0;cursor:pointer;">
-                <i class="ri-add-line" style="font-size:14px;color:#3A1E6E;"></i><span style="font-size:10px;font-weight:800;color:#3A1E6E;">Override a specific unit</span>
-              </div>
-            </div>
-          </div>
-          <div class="gz-add-console" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#F4F0FB;border-radius:10px;padding:10px;border:1.5px dashed #C8B4F0;cursor:pointer;">
-            <i class="ri-add-line" style="font-size:15px;color:#3A1E6E;"></i>
-            <span style="font-size:11px;font-weight:800;color:#3A1E6E;">Add another console type</span>
-          </div>
-        </div>
-        <div style="background:#F4F0FB;border-radius:10px;padding:9px 12px;margin-bottom:16px;display:flex;align-items:center;gap:8px;border:1px solid #E0D4F5;">
-          <i class="ri-time-line" style="font-size:14px;color:#3A1E6E;"></i>
-          <div style="font-size:10px;color:#5A3B9A;font-weight:600;">Consoles &amp; PCs both book on <b>30-minute slots</b> — customers can pick multiple slots for longer sessions.</div>
-        </div>
-
-        <!-- ════ STEP 3b: Snacks & Drinks (optional) ════ -->
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px;">
-          <div style="width:22px;height:22px;background:#3A1E6E;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;">🥤</div>
-          <div style="font-size:12px;font-weight:900;color:#1A0E2E;">Snacks &amp; Drinks <span style="font-size:9px;font-weight:600;color:#AAA;">· optional</span></div>
-        </div>
-        <div style="background:#fff;border-radius:14px;padding:13px;margin-bottom:16px;border:1.5px solid #ECE4F8;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
-            <div style="font-size:12px;font-weight:800;color:#1A0E2E;">Do you sell snacks / drinks?</div>
-            <label style="position:relative;display:inline-block;width:38px;height:21px;"><input type="checkbox" id="gz-snacks-toggle" class="gz-toggle" checked style="opacity:0;width:0;height:0;"><span class="gz-slider"></span></label>
-          </div>
-          <div style="font-size:9px;color:#AAA;margin-bottom:11px;">Add each item with a price. Leave off if you don't offer any — nothing will show to customers.</div>
-          <div id="gz-snacks-section">
-            <div id="gz-snacks-list" style="display:flex;flex-direction:column;gap:7px;">
-              <!-- snack row template (cloned by + Add snack) -->
-              <div class="gz-snack-row" style="display:flex;align-items:center;gap:8px;background:#FAF8FE;border:1px solid #ECE4F8;border-radius:10px;padding:8px 10px;">
-                <span style="font-size:16px;">🍟</span>
-                <input type="text" value="Chips" style="flex:1;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;" placeholder="Item name">
-                <span style="font-size:10px;color:#888;font-weight:700;">Rs</span>
-                <input type="text" value="120" style="width:52px;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:12px;font-weight:900;font-family:inherit;color:#3A1E6E;background:#fff;box-sizing:border-box;outline:none;text-align:center;">
-                <span class="gz-rm-row" style="font-size:14px;color:#C62828;cursor:pointer;">✕</span>
-              </div>
-              <div class="gz-snack-row" style="display:flex;align-items:center;gap:8px;background:#FAF8FE;border:1px solid #ECE4F8;border-radius:10px;padding:8px 10px;">
-                <span style="font-size:16px;">🥤</span>
-                <input type="text" value="Soft drink" style="flex:1;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;" placeholder="Item name">
-                <span style="font-size:10px;color:#888;font-weight:700;">Rs</span>
-                <input type="text" value="80" style="width:52px;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:12px;font-weight:900;font-family:inherit;color:#3A1E6E;background:#fff;box-sizing:border-box;outline:none;text-align:center;">
-                <span class="gz-rm-row" style="font-size:14px;color:#C62828;cursor:pointer;">✕</span>
-              </div>
-            </div>
-            <div class="gz-add-snack" style="margin-top:8px;display:flex;align-items:center;justify-content:center;gap:6px;background:#F4F0FB;border-radius:9px;padding:9px;border:1.5px dashed #C8B4F0;cursor:pointer;">
-              <i class="ri-add-line" style="font-size:14px;color:#3A1E6E;"></i><span style="font-size:11px;font-weight:800;color:#3A1E6E;">Add snack / drink</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- ════ STEP 4: Facilities ════ -->
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px;">
-          <div style="width:22px;height:22px;background:#3A1E6E;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;">4</div>
-          <div style="font-size:12px;font-weight:900;color:#1A0E2E;">Facilities</div>
-        </div>
-        <div style="background:#fff;border-radius:14px;padding:13px;margin-bottom:16px;border:1.5px solid #ECE4F8;">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">❄️ AC</div>
-            <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🌐 High-Speed Net</div>
-            <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🥤 Snack Bar</div>
-            <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🎧 Headsets</div>
-            <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🅿️ Parking</div>
-            <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">🪑 VIP Lounge</div>
-            <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">📹 Streaming Setup</div>
-            <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">🍔 Café</div>
-          </div>
-          <div style="font-size:9px;color:#AAA;margin-top:9px;">Tap to toggle · dark = available</div>
-        </div>
-
-        <!-- ════ STEP 5: Pricing handoff ════ -->
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px;">
-          <div style="width:22px;height:22px;background:#3A1E6E;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;">5</div>
-          <div style="font-size:12px;font-weight:900;color:#1A0E2E;">Pricing</div>
-        </div>
-        <div data-go="s55" style="background:linear-gradient(135deg,#2A1550,#5A2EA0);border-radius:14px;padding:15px;cursor:pointer;display:flex;align-items:center;gap:11px;">
-          <div style="width:40px;height:40px;background:rgba(255,255,255,.15);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">💰</div>
-          <div style="flex:1;"><div style="font-size:13px;font-weight:900;color:#fff;">Set up per-unit pricing</div><div style="font-size:9px;color:rgba(200,180,255,.8);margin-top:2px;">Different rates per day, time &amp; each PC/console</div></div>
-          <i class="ri-arrow-right-s-line" style="font-size:20px;color:rgba(255,255,255,.7);"></i>
+        <div style="display:flex;gap:4px;margin-top:11px;">
+          <div class="gz-wbar" style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div>
+          <div class="gz-wbar" style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
+          <div class="gz-wbar" style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
+          <div class="gz-wbar" style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
+          <div class="gz-wbar" style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
         </div>
       </div>
 
-      <!-- Fixed publish bar -->
-      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.06);">
-        <button data-go="s50" style="width:100%;padding:13px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">Publish Gaming Zone</button>
+      <div class="gz-wiz-scroll" style="flex:1;overflow-y:auto;padding:14px 14px 88px;">
+
+        <!-- ═══════ STEP 1 · ZONE PROFILE ═══════ -->
+        <div class="gz-wstep" data-step="1">
+          <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🎮 Zone profile</div>
+          <div style="font-size:11px;color:#999;margin-bottom:12px;">Tell players where your zone is and what it looks like.</div>
+          <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;">
+            <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Zone name</div>
+            <input type="text" value="Nexus Gaming Lounge" style="width:100%;border:1.5px solid #ECE4F8;border-radius:10px;padding:10px;font-size:12px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;margin-bottom:11px;">
+            <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Location / area</div>
+            <input type="text" value="Bahadurabad, Karachi" style="width:100%;border:1.5px solid #ECE4F8;border-radius:10px;padding:10px;font-size:12px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;margin-bottom:11px;">
+            <div style="height:80px;border-radius:11px;background:linear-gradient(135deg,#EDE6FA,#DCD0F5);display:flex;align-items:center;justify-content:center;position:relative;border:1.5px solid #E0D4F5;cursor:pointer;margin-bottom:11px;">
+              <i class="ri-map-pin-2-fill" style="font-size:26px;color:#3A1E6E;"></i>
+              <div style="position:absolute;bottom:7px;right:9px;background:#fff;border-radius:20px;padding:3px 10px;font-size:9px;font-weight:800;color:#3A1E6E;box-shadow:0 2px 6px rgba(0,0,0,.1);">📍 Pin on map</div>
+            </div>
+            <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:6px;">Zone photos</div>
+            <div style="display:flex;gap:6px;">
+              <div style="width:70px;height:54px;background:linear-gradient(135deg,#5A2EA0,#A88BFF);border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-image-line" style="font-size:18px;color:#fff;opacity:.85;"></i></div>
+              <div style="width:70px;height:54px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-image-line" style="font-size:18px;color:#fff;opacity:.85;"></i></div>
+              <div style="width:54px;height:54px;background:#F4F0FB;border-radius:9px;border:2px dashed #C8B4F0;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-add-line" style="font-size:18px;color:#3A1E6E;"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════ STEP 2 · CUBICLES & PCs ═══════ -->
+        <div class="gz-wstep" data-step="2" style="display:none;">
+          <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🖥️ Cubicles &amp; PCs</div>
+          <div style="font-size:11px;color:#999;margin-bottom:12px;">Add each cubicle, then add its PCs one by one — set the exact specs &amp; games for every PC.</div>
+
+          <div id="gz-cubicles"></div>
+
+          <div class="gz-add-cubicle" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#3A1E6E;border-radius:13px;padding:13px;cursor:pointer;margin-bottom:14px;box-shadow:0 4px 14px rgba(58,30,110,.25);">
+            <i class="ri-add-line" style="font-size:18px;color:#fff;"></i><span style="font-size:13px;font-weight:900;color:#fff;">Add another cubicle</span>
+          </div>
+
+          <!-- PC booking mode -->
+          <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;">
+            <div style="font-size:12px;font-weight:800;color:#1A0E2E;margin-bottom:3px;">How can customers book PCs?</div>
+            <div style="font-size:9px;color:#AAA;margin-bottom:10px;">Choose how this zone sells its PCs</div>
+            <div id="gz-pc-mode" style="display:flex;gap:8px;">
+              <div class="gz-mode-opt" data-mode="pc" style="flex:1;background:#3A1E6E;border:1.5px solid #3A1E6E;border-radius:12px;padding:11px;cursor:pointer;text-align:center;">
+                <i class="ri-computer-line" style="font-size:18px;color:#fff;"></i>
+                <div style="font-size:11px;font-weight:800;color:#fff;margin-top:4px;">Per Individual PC</div>
+                <div style="font-size:8px;color:rgba(200,180,255,.8);margin-top:2px;">Book single seats</div>
+              </div>
+              <div class="gz-mode-opt" data-mode="cubicle" style="flex:1;background:#FAF8FE;border:1.5px solid #ECE4F8;border-radius:12px;padding:11px;cursor:pointer;text-align:center;">
+                <i class="ri-layout-grid-line" style="font-size:18px;color:#9A7BD0;"></i>
+                <div style="font-size:11px;font-weight:800;color:#7A5BB0;margin-top:4px;">Per Whole Cubicle</div>
+                <div style="font-size:8px;color:#AAA;margin-top:2px;">Book full room</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════ STEP 3 · CONSOLES ═══════ -->
+        <div class="gz-wstep" data-step="3" style="display:none;">
+          <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🎮 Consoles</div>
+          <div style="font-size:11px;color:#999;margin-bottom:12px;">Add each console — its name, screen, controllers and the games it has.</div>
+
+          <div id="gz-consoles"></div>
+
+          <div class="gz-add-console2" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#3A1E6E;border-radius:13px;padding:13px;cursor:pointer;box-shadow:0 4px 14px rgba(58,30,110,.25);">
+            <i class="ri-add-line" style="font-size:18px;color:#fff;"></i><span style="font-size:13px;font-weight:900;color:#fff;">Add a console</span>
+          </div>
+          <div style="background:#F4F0FB;border-radius:10px;padding:9px 12px;margin-top:12px;display:flex;align-items:center;gap:8px;border:1px solid #E0D4F5;">
+            <i class="ri-time-line" style="font-size:14px;color:#3A1E6E;"></i>
+            <div style="font-size:10px;color:#5A3B9A;font-weight:600;">PCs &amp; consoles both book on <b>30-minute slots</b>.</div>
+          </div>
+        </div>
+
+        <!-- ═══════ STEP 4 · SNACKS & FACILITIES ═══════ -->
+        <div class="gz-wstep" data-step="4" style="display:none;">
+          <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🥤 Snacks &amp; facilities</div>
+          <div style="font-size:11px;color:#999;margin-bottom:12px;">Optional — add snacks/drinks you sell and the amenities you offer.</div>
+
+          <!-- Snacks -->
+          <div style="background:#fff;border-radius:14px;padding:13px;margin-bottom:12px;border:1.5px solid #ECE4F8;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
+              <div style="font-size:12px;font-weight:800;color:#1A0E2E;">Do you sell snacks / drinks?</div>
+              <label style="position:relative;display:inline-block;width:38px;height:21px;"><input type="checkbox" id="gz-snacks-toggle" class="gz-toggle" checked style="opacity:0;width:0;height:0;"><span class="gz-slider"></span></label>
+            </div>
+            <div style="font-size:9px;color:#AAA;margin-bottom:11px;">Add each item with a price. Leave off if you don't offer any.</div>
+            <div id="gz-snacks-section">
+              <div id="gz-snacks-list" style="display:flex;flex-direction:column;gap:7px;">
+                <div class="gz-snack-row" style="display:flex;align-items:center;gap:8px;background:#FAF8FE;border:1px solid #ECE4F8;border-radius:10px;padding:8px 10px;">
+                  <span style="font-size:16px;">🍟</span>
+                  <input type="text" value="Chips" style="flex:1;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;" placeholder="Item name">
+                  <span style="font-size:10px;color:#888;font-weight:700;">Rs</span>
+                  <input type="text" value="120" style="width:52px;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:12px;font-weight:900;font-family:inherit;color:#3A1E6E;background:#fff;box-sizing:border-box;outline:none;text-align:center;">
+                  <span class="gz-rm-row" style="font-size:14px;color:#C62828;cursor:pointer;">✕</span>
+                </div>
+                <div class="gz-snack-row" style="display:flex;align-items:center;gap:8px;background:#FAF8FE;border:1px solid #ECE4F8;border-radius:10px;padding:8px 10px;">
+                  <span style="font-size:16px;">🥤</span>
+                  <input type="text" value="Soft drink" style="flex:1;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;" placeholder="Item name">
+                  <span style="font-size:10px;color:#888;font-weight:700;">Rs</span>
+                  <input type="text" value="80" style="width:52px;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:12px;font-weight:900;font-family:inherit;color:#3A1E6E;background:#fff;box-sizing:border-box;outline:none;text-align:center;">
+                  <span class="gz-rm-row" style="font-size:14px;color:#C62828;cursor:pointer;">✕</span>
+                </div>
+              </div>
+              <div class="gz-add-snack" style="margin-top:8px;display:flex;align-items:center;justify-content:center;gap:6px;background:#F4F0FB;border-radius:9px;padding:9px;border:1.5px dashed #C8B4F0;cursor:pointer;">
+                <i class="ri-add-line" style="font-size:14px;color:#3A1E6E;"></i><span style="font-size:11px;font-weight:800;color:#3A1E6E;">Add snack / drink</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Facilities -->
+          <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;">
+            <div style="font-size:12px;font-weight:800;color:#1A0E2E;margin-bottom:9px;">Facilities</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">❄️ AC</div>
+              <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🌐 High-Speed Net</div>
+              <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🎧 Headsets</div>
+              <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🅿️ Parking</div>
+              <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">🪑 VIP Lounge</div>
+              <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">📹 Streaming Setup</div>
+              <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">🍔 Café</div>
+            </div>
+            <div style="font-size:9px;color:#AAA;margin-top:9px;">Tap to toggle · dark = available</div>
+          </div>
+        </div>
+
+        <!-- ═══════ STEP 5 · PRICING & REVIEW ═══════ -->
+        <div class="gz-wstep" data-step="5" style="display:none;">
+          <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">💰 Pricing &amp; review</div>
+          <div style="font-size:11px;color:#999;margin-bottom:12px;">Set rates, then publish your zone.</div>
+          <div data-go="s55" style="background:linear-gradient(135deg,#2A1550,#5A2EA0);border-radius:14px;padding:15px;cursor:pointer;display:flex;align-items:center;gap:11px;margin-bottom:12px;">
+            <div style="width:40px;height:40px;background:rgba(255,255,255,.15);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">💰</div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:900;color:#fff;">Set up per-unit pricing</div><div style="font-size:9px;color:rgba(200,180,255,.8);margin-top:2px;">Different rates per day, time &amp; each PC/console</div></div>
+            <i class="ri-arrow-right-s-line" style="font-size:20px;color:rgba(255,255,255,.7);"></i>
+          </div>
+          <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;">
+            <div style="font-size:11px;font-weight:900;color:#1A0E2E;margin-bottom:9px;">Almost done ✨</div>
+            <div style="font-size:11px;color:#666;line-height:1.7;">You've set up your zone profile, cubicles &amp; PCs, consoles, snacks and facilities. Tap <b style="color:#3A1E6E;">Publish</b> below to make it live for players.</div>
+          </div>
+        </div>
+
+        <!-- Hidden templates (cloned by the wizard) -->
+        <div id="gz-tmpls" style="display:none;">
+          <!-- Cubicle template (contains one PC card) -->
+          <div id="gz-cub-tmpl"><div class="gz-cubicle" style="background:#fff;border:1.5px solid #ECE4F8;border-radius:14px;padding:12px;margin-bottom:11px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <div style="width:30px;height:30px;background:linear-gradient(135deg,#2A1550,#5A2EA0);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">🖥️</div>
+              <div style="flex:1;min-width:0;"><div class="gz-cub-badge" style="font-size:9px;font-weight:800;color:#3A1E6E;text-transform:uppercase;letter-spacing:.4px;">Cubicle A</div><input class="gz-cub-name" type="text" value="Cubicle A" style="width:100%;border:none;background:transparent;font-size:13px;font-weight:900;color:#1A0E2E;font-family:inherit;outline:none;"></div>
+              <span class="gz-rm-cub" style="width:24px;height:24px;border-radius:8px;background:#FFF0F0;color:#C62828;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;cursor:pointer;flex-shrink:0;">✕</span>
+            </div>
+            <div class="gz-pc-list"></div>
+            <div class="gz-add-pc" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#F4F0FB;border-radius:10px;padding:9px;border:1.5px dashed #C8B4F0;cursor:pointer;">
+              <i class="ri-add-line" style="font-size:14px;color:#3A1E6E;"></i><span style="font-size:11px;font-weight:800;color:#3A1E6E;">Add another PC</span>
+            </div>
+          </div></div>
+
+          <!-- PC card template -->
+          <div id="gz-pc-tmpl"><div class="gz-pc-card" style="background:#FAF8FE;border:1px solid #ECE4F8;border-radius:11px;padding:10px;margin-bottom:8px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+              <div class="gz-pc-num" style="font-size:12px;font-weight:900;color:#1A0E2E;">PC 1</div>
+              <span class="gz-rm-pc" style="font-size:13px;color:#C62828;cursor:pointer;">✕ remove</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px;">
+              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Monitor (brand·size·Hz)</div><input type="text" placeholder='ASUS TUF 27" 165Hz' style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
+              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Graphics card</div><input type="text" placeholder="NVIDIA RTX 4070" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
+              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Processor</div><input type="text" placeholder="Intel Core i7" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
+              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">RAM</div><input type="text" placeholder="32GB DDR5" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
+              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Keyboard &amp; mouse</div><input type="text" placeholder="Razer · Logitech" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
+              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Headset</div><input type="text" placeholder="HyperX Cloud II" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
+            </div>
+            <div style="font-size:9px;color:#888;font-weight:700;margin-bottom:5px;">Games on this PC</div>
+            <div class="gz-game-row" style="display:flex;flex-wrap:wrap;gap:5px;">
+              <div class="gz-add-game" style="background:#fff;color:#3A1E6E;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;border:1.5px dashed #C8B4F0;cursor:pointer;">+ Add game</div>
+            </div>
+          </div></div>
+
+          <!-- Console card template -->
+          <div id="gz-con-tmpl"><div class="gz-con-card" style="background:#fff;border:1.5px solid #ECE4F8;border-radius:14px;padding:12px;margin-bottom:11px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+              <div style="width:34px;height:34px;background:linear-gradient(135deg,#0A1E3E,#1E5AC0);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🎮</div>
+              <select style="flex:1;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:12px;font-weight:800;font-family:inherit;color:#1A0E2E;background:#FAF8FE;outline:none;"><option>PlayStation 5</option><option>PlayStation 4</option><option>Xbox Series X</option><option>Nintendo Switch</option></select>
+              <span class="gz-rm-con" style="width:24px;height:24px;border-radius:8px;background:#FFF0F0;color:#C62828;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;cursor:pointer;flex-shrink:0;">✕</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px;">
+              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">How many units?</div><div style="display:flex;align-items:center;gap:7px;"><div class="gz-step-btn" data-dir="-1" style="width:26px;height:26px;border-radius:8px;background:#F4F0FB;border:1.5px solid #D8C8F0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;font-weight:900;color:#3A1E6E;">−</div><div class="gz-count" style="font-size:14px;font-weight:900;color:#1A0E2E;min-width:18px;text-align:center;">1</div><div class="gz-step-btn" data-dir="1" style="width:26px;height:26px;border-radius:8px;background:#3A1E6E;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;font-weight:900;color:#fff;">+</div></div></div>
+              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Controllers / unit</div><input type="text" placeholder="4" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
+              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">TV (brand · size)</div><input type="text" placeholder='Samsung 55" 4K' style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
+              <div><div style="font-size:9px;color:#888;font-weight:700;margin-bottom:3px;">Extra controller (Rs/hr)</div><input type="text" placeholder="50" style="width:100%;border:1.5px solid #ECE4F8;border-radius:9px;padding:7px 9px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;"></div>
+            </div>
+            <div style="font-size:9px;color:#888;font-weight:700;margin-bottom:5px;">Games on this console</div>
+            <div class="gz-game-row" style="display:flex;flex-wrap:wrap;gap:5px;">
+              <div class="gz-add-game" style="background:#fff;color:#3A1E6E;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;border:1.5px dashed #C8B4F0;cursor:pointer;">+ Add game</div>
+            </div>
+          </div></div>
+        </div>
+        <button id="gz-wiz-publish" data-go="s50" style="display:none;"></button>
+      </div>
+
+      <!-- Footer nav -->
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.06);display:flex;gap:9px;">
+        <button id="gz-wiz-back" style="flex:1;padding:13px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border:none;border-radius:13px;cursor:pointer;font-family:inherit;visibility:hidden;">← Back</button>
+        <button id="gz-wiz-next" style="flex:2;padding:13px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">Next →</button>
       </div>
     </div>
   </div>
