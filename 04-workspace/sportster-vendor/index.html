@@ -419,38 +419,14 @@
   .ss-step-btn:active { background:#DDD; }
   .ss-step-val { font-size:12px; font-weight:800; color:#111; min-width:68px; text-align:center; }
 
-/* ── INTERACTIVE SINGLE-SCREEN MODE ── */
-body.interactive { overflow: hidden; }
-body.interactive #flow-row { display: flex; flex-wrap: nowrap; width: 100vw; min-height: 100vh; padding: 0; gap: 0; align-items: center; justify-content: center; }
-body.interactive .col { display: none; }
-body.interactive .col.v { display: flex; flex-direction: column; align-items: center; }
-body.interactive .flow-sep { display: none; }
-body.interactive .page-label { display: none; }
-body.interactive #demo-toggle { background: #1a1a1a; color: #fff; }
-body.interactive #demo-toggle::before { content: '← '; }
-
-/* Flow view: show all 6 registration steps as one tall screen */
-body:not(.interactive) #s22 .reg-step { display: block !important; }
-body:not(.interactive) #s22 .reg-step + .reg-step { border-top: 2px dashed #E0E0E0; margin-top: 4px; padding-top: 14px; }
-/* Flow view: hide error toast and success overlay */
-body:not(.interactive) #s22-error,
-body:not(.interactive) #s22-success { display: none !important; }
-
-/* ── DEMO TOGGLE BUTTON ── */
-#demo-toggle {
-  position: fixed; top: 16px; right: 16px; z-index: 9999;
-  background: #09210E; color: #fff;
-  border: none; border-radius: 12px; padding: 10px 18px;
-  font-size: 13px; font-weight: 800; font-family: inherit;
-  cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,.22);
-  letter-spacing: .2px; transition: opacity .15s;
-}
-#demo-toggle:hover { opacity: .88; }
+/* Gallery view: show all registration steps in one tall screen */
+#s22 .reg-step { display: block !important; }
+#s22 .reg-step + .reg-step { border-top: 2px dashed #E0E0E0; margin-top: 4px; padding-top: 14px; }
+#s22-error, #s22-success { display: none !important; }
 </style>
 </head>
 <body>
 
-<button id="demo-toggle">▶ Interactive Demo</button>
 <div id="flow-row">
 
 <!-- ═══════════════════════════════════════════════
@@ -4123,10 +4099,10 @@ body:not(.interactive) #s22-success { display: none !important; }
   }
   function _show(id) {
     cur = id;
-    document.querySelectorAll('.col.v').forEach(function (c) { c.classList.remove('v'); });
-    var el = document.getElementById(id) || document.getElementById('s1');
+    // Gallery mode: all screens stay visible; nav just scrolls the target into view.
+    var el = document.getElementById(id);
     if (!el) return;
-    el.classList.add('v');
+    el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     var scr = el.querySelector('.screen');
     if (scr) scr.scrollTop = 0;
   }
@@ -4281,25 +4257,6 @@ body:not(.interactive) #s22-success { display: none !important; }
       if (btn17 && btn17.classList.contains('approve')) { go('s13'); return; }
     }
 
-  });
-
-  // ── Demo toggle button ──
-  window.addEventListener('DOMContentLoaded', function () {
-    var btn = document.getElementById('demo-toggle');
-    if (btn) {
-      btn.addEventListener('click', function () {
-        if (document.body.classList.contains('interactive')) {
-          document.body.classList.remove('interactive');
-          document.querySelectorAll('.col.v').forEach(function (c) { c.classList.remove('v'); });
-          btn.textContent = '▶ Interactive Demo';
-          window.scrollTo(0, 0);
-        } else {
-          document.body.classList.add('interactive');
-          _show('s1');
-          btn.textContent = 'Exit Demo';
-        }
-      });
-    }
   });
 
   // ── DOMContentLoaded: initialise UI & micro-interactions ──
