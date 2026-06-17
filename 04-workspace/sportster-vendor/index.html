@@ -5563,41 +5563,7 @@ body:not(.interactive) #s22-success { display: none !important; }
     wirePillRow('gz-unit-sw', 'gz-unit-active', { background: '#1E5AC0', color: '#fff' }, { background: '#F2EEFB', color: '#7A5BB0' });
     wirePillRow('gz-con-sw', 'gz-con-active', { background: 'linear-gradient(135deg,#0A1E3E,#1E5AC0)', color: '#fff', border: 'none' }, { background: '#FAF8FE', color: '#7A5BB0', border: '1.5px solid #E0D4F5' });
 
-    // s53 booking-mode tabs (Per PC / Per Cubicle) — swap grid, banner, label & reset selection
-    var s53mode = document.getElementById('s53-mode');
-    if (s53mode) {
-      var pcGrid = document.querySelector('.s53-grid');
-      var cubGrid = document.querySelector('.s53-grid-cubicle');
-      var pcRow = document.getElementById('s53-pc-row');
-      var ctx = document.getElementById('s53-ctx');
-      var selLbl = document.getElementById('s53-sel-label');
-      var selbar = document.getElementById('s53-selbar');
-      function s53clearSel() {
-        [pcGrid, cubGrid].forEach(function (g) {
-          if (g) g.querySelectorAll('.sg-gzsel').forEach(function (c) { c.classList.remove('sg-gzsel'); });
-        });
-        if (selbar) selbar.style.display = 'none';
-      }
-      s53mode.querySelectorAll('.s53-mode-tab').forEach(function (tab) {
-        tab.addEventListener('click', function () {
-          s53mode.querySelectorAll('.s53-mode-tab').forEach(function (t) {
-            t.classList.remove('s53-mode-active');
-            t.style.background = 'transparent'; t.style.color = '#7A5BB0';
-          });
-          tab.classList.add('s53-mode-active');
-          tab.style.background = '#3A1E6E'; tab.style.color = '#fff';
-          var cubMode = tab.getAttribute('data-mode') === 'cubicle';
-          if (pcRow) pcRow.style.display = cubMode ? 'none' : 'flex';
-          if (pcGrid) pcGrid.style.display = cubMode ? 'none' : 'grid';
-          if (cubGrid) cubGrid.style.display = cubMode ? 'grid' : 'none';
-          if (selLbl) selLbl.textContent = cubMode ? 'SELECT CUBICLE' : 'SELECT CUBICLE, THEN PC';
-          if (ctx) ctx.innerHTML = cubMode
-            ? '<i class="ri-layout-grid-line" style="font-size:14px;color:#3A1E6E;"></i><div style="font-size:10px;color:#5A3B9A;font-weight:600;line-height:1.3;">Booking the <b>whole of Cubicle A</b> — all 5 PCs together as one unit. Ideal for team-vs-team. Bundle price per slot.</div>'
-            : '<i class="ri-computer-line" style="font-size:14px;color:#3A1E6E;"></i><div style="font-size:10px;color:#5A3B9A;font-weight:600;line-height:1.3;">Booking <b>individual PCs</b> in Cubicle A — pick a PC above, then tap slots. Each seat priced on its own.</div>';
-          s53clearSel();
-        });
-      });
-    }
+    // (whole-cubicle booking removed — PCs are booked individually only)
 
     // s55 unit-type tabs (PCs / Consoles)
     document.querySelectorAll('.gz-pr-tab').forEach(function (tab) {
@@ -5658,7 +5624,7 @@ body:not(.interactive) #s22-success { display: none !important; }
         });
       });
     }
-    wireSlotGrid('s53', ['.s53-grid', '.s53-grid-cubicle'], 's53-selbar', 's53-selsum', 's53-seltot');
+    wireSlotGrid('s53', ['.s53-grid'], 's53-selbar', 's53-selsum', 's53-seltot');
     wireSlotGrid('s54', ['.s54-grid'], 's54-selbar', 's54-selsum', 's54-seltot');
     // schedule manage-mode toolbar (book / block / discount) on s53 & s54
     document.querySelectorAll('.gz-sched-mode').forEach(function (pill) {
@@ -5704,14 +5670,15 @@ body:not(.interactive) #s22-success { display: none !important; }
       add.parentElement.insertBefore(clone, add);
     });
 
-    // ════════ s52 REGISTRATION WIZARD (step nav + progressive builders) ════════
+    // ════════ s52 REGISTRATION (multi-screen) — progressive cubicle/PC/console builders ════════
     (function () {
-      var s52 = document.getElementById('s52'); if (!s52) return;
+      var cubicles = document.getElementById('gz-cubicles');   // on s52b
+      var consoles = document.getElementById('gz-consoles');   // on s52c
+      if (!cubicles && !consoles) return;
       function tmpl(id) { var t = document.getElementById(id); return t ? t.firstElementChild.cloneNode(true) : null; }
-
-      // ── renumber cubicles (A,B,C…) and PCs (1,2,3…) within each ──
       function renumber() {
-        var cubs = s52.querySelectorAll('#gz-cubicles .gz-cubicle');
+        if (!cubicles) return;
+        var cubs = cubicles.querySelectorAll('.gz-cubicle');
         cubs.forEach(function (cub, ci) {
           var letter = String.fromCharCode(65 + ci);
           var badge = cub.querySelector('.gz-cub-badge'); if (badge) badge.textContent = 'Cubicle ' + letter;
@@ -5725,46 +5692,29 @@ body:not(.interactive) #s22-success { display: none !important; }
       }
       function addPcTo(list) { var c = tmpl('gz-pc-tmpl'); if (c) list.appendChild(c); renumber(); }
       function addCubicle() {
+        if (!cubicles) return;
         var cub = tmpl('gz-cub-tmpl'); if (!cub) return;
-        document.getElementById('gz-cubicles').appendChild(cub);
-        addPcTo(cub.querySelector('.gz-pc-list'));      // every new cubicle starts with PC 1
-        renumber();
+        cubicles.appendChild(cub);
+        addPcTo(cub.querySelector('.gz-pc-list'));   // each new cubicle starts with PC 1
       }
-      function addConsole() { var c = tmpl('gz-con-tmpl'); if (c) document.getElementById('gz-consoles').appendChild(c); }
+      function addConsole() { var c = tmpl('gz-con-tmpl'); if (c && consoles) consoles.appendChild(c); }
 
       // seed: one cubicle (with PC 1) + one console
       addCubicle();
       addConsole();
 
-      // ── delegated clicks within s52 (add/remove cubicle, PC, console, snack) ──
-      s52.addEventListener('click', function (e) {
+      // delegated clicks (cubicles on s52b, consoles on s52c, snacks on s52d)
+      document.addEventListener('click', function (e) {
         var t = e.target;
         if (t.closest('.gz-add-cubicle')) { addCubicle(); return; }
         if (t.closest('.gz-add-pc')) { var cub = t.closest('.gz-cubicle'); if (cub) addPcTo(cub.querySelector('.gz-pc-list')); return; }
         if (t.closest('.gz-rm-pc')) { var card = t.closest('.gz-pc-card'), list = card && card.parentElement; if (list && list.querySelectorAll('.gz-pc-card').length > 1) { card.remove(); renumber(); } return; }
-        if (t.closest('.gz-rm-cub')) { var c = t.closest('.gz-cubicle'); if (s52.querySelectorAll('#gz-cubicles .gz-cubicle').length > 1) { c.remove(); renumber(); } return; }
+        if (t.closest('.gz-rm-cub')) { var c = t.closest('.gz-cubicle'); if (cubicles && cubicles.querySelectorAll('.gz-cubicle').length > 1) { c.remove(); renumber(); } return; }
         if (t.closest('.gz-add-console2')) { addConsole(); return; }
-        if (t.closest('.gz-rm-con')) { var cc = t.closest('.gz-con-card'); if (s52.querySelectorAll('#gz-consoles .gz-con-card').length > 1) cc.remove(); return; }
+        if (t.closest('.gz-rm-con')) { var cc = t.closest('.gz-con-card'); if (consoles && consoles.querySelectorAll('.gz-con-card').length > 1) cc.remove(); return; }
         if (t.closest('.gz-add-snack')) { var sl = document.getElementById('gz-snacks-list'); if (sl && sl.querySelector('.gz-snack-row')) sl.appendChild(sl.querySelector('.gz-snack-row').cloneNode(true)); return; }
         if (t.closest('.gz-rm-row')) { var row = t.closest('.gz-snack-row'); if (row) row.remove(); return; }
       });
-
-      // ── step navigation ──
-      var step = 1, LABELS = ['Zone Profile', 'Cubicles & PCs', 'Consoles', 'Snacks & Facilities', 'Pricing & Review'];
-      function showStep(n) {
-        step = n;
-        s52.querySelectorAll('.gz-wstep').forEach(function (p) { p.style.display = (parseInt(p.getAttribute('data-step'), 10) === n) ? 'block' : 'none'; });
-        s52.querySelectorAll('.gz-wbar').forEach(function (b, i) { b.style.background = (i < n) ? '#A88BFF' : 'rgba(255,255,255,.2)'; });
-        var lab = document.getElementById('gz-wiz-label'); if (lab) lab.textContent = 'Step ' + n + ' of 5 · ' + LABELS[n - 1];
-        var back = document.getElementById('gz-wiz-back'), next = document.getElementById('gz-wiz-next');
-        if (back) back.style.visibility = n > 1 ? 'visible' : 'hidden';
-        if (next) next.textContent = n < 5 ? 'Next →' : '✓ Publish Gaming Zone';
-        var sc = s52.querySelector('.gz-wiz-scroll'); if (sc) sc.scrollTop = 0;
-      }
-      var nextBtn = document.getElementById('gz-wiz-next'), backBtn = document.getElementById('gz-wiz-back');
-      if (nextBtn) nextBtn.addEventListener('click', function () { if (step < 5) showStep(step + 1); else { var p = document.getElementById('gz-wiz-publish'); if (p) p.click(); } });
-      if (backBtn) backBtn.addEventListener('click', function () { if (step > 1) showStep(step - 1); });
-      showStep(1);
 
       // snacks on/off gates the snacks section
       var snToggle = document.getElementById('gz-snacks-toggle'), snSection = document.getElementById('gz-snacks-section');
@@ -5800,8 +5750,8 @@ body:not(.interactive) #s22-success { display: none !important; }
       // per-unit override rows: title, sub, badge, delta added to base (0 = Default uses band rate)
       var OVR = {
         pc: [
-          { title: 'Cubicle A · Pro Squad', sub: '5× RTX 4070 · premium', badge: '+50 / slot', delta: 50 },
-          { title: 'Cubicles B–D · Standard', sub: '13× PCs · uses band rates', badge: 'Default', delta: 0 }
+          { title: 'Premium PCs · RTX 4080', sub: 'priced per PC · per slot', badge: '+50 / slot', delta: 50 },
+          { title: 'Standard PCs · RTX 4060', sub: 'per PC · uses band rates', badge: 'Default', delta: 0 }
         ],
         console: [
           { title: 'PS5 · 4K Stations', sub: '3 units · 55" 4K TVs', badge: '+70 / slot', delta: 70 },
@@ -9244,6 +9194,17 @@ body:not(.interactive) #s22-success { display: none !important; }
           </div>
           <div style="font-size:16px;font-weight:900;color:#3A1E6E;">Rs 150 <span style="font-size:10px;font-weight:600;color:#888;">/ 30 min</span></div>
         </div>
+        <!-- Social links -->
+        <div style="display:flex;align-items:center;gap:8px;margin-top:11px;padding-top:10px;border-top:1px solid #F4F0FB;">
+          <span style="font-size:10px;font-weight:800;color:#999;text-transform:uppercase;letter-spacing:.4px;">Follow</span>
+          <div style="display:flex;gap:7px;">
+            <div style="width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;">📸</div>
+            <div style="width:30px;height:30px;border-radius:9px;background:#1877F2;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;">👍</div>
+            <div style="width:30px;height:30px;border-radius:9px;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;">💬</div>
+            <div style="width:30px;height:30px;border-radius:9px;background:#000;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;">🎵</div>
+          </div>
+          <div style="margin-left:auto;font-size:10px;font-weight:700;color:#3A1E6E;">@nexusgaming.khi</div>
+        </div>
       </div>
 
       <!-- ── SCROLLABLE CONTENT ── -->
@@ -9438,168 +9399,94 @@ body:not(.interactive) #s22-success { display: none !important; }
 </div>
 
 <!-- ═══════════════════════════════════════════════
-     SCREEN 52 — REGISTER / SETUP GAMING ZONE (mirrors s22, all steps scroll)
+     SCREEN 52 — REGISTER GAMING ZONE · STEP 1/5 (Zone Profile)
 ════════════════════════════════════════════════ -->
 <div class="col" id="s52">
-  <div class="page-label">52 · Register Gaming Zone — step-by-step wizard</div>
+  <div class="page-label">52 · Register — Step 1/5 · Zone Profile</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;background:#F4F2FA;position:relative;">
-
-      <!-- Header + progress -->
       <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:13px 16px 13px;flex-shrink:0;">
         <div style="display:flex;align-items:center;gap:10px;">
           <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
-          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div id="gz-wiz-label" style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 1 of 5 · Zone Profile</div></div>
+          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 1 of 5 · Zone Profile</div></div>
         </div>
         <div style="display:flex;gap:4px;margin-top:11px;">
-          <div class="gz-wbar" style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div>
-          <div class="gz-wbar" style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
-          <div class="gz-wbar" style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
-          <div class="gz-wbar" style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
-          <div class="gz-wbar" style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
+          <div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
         </div>
       </div>
-
-      <div class="gz-wiz-scroll" style="flex:1;overflow-y:auto;padding:14px 14px 88px;">
-
-        <!-- ═══════ STEP 1 · ZONE PROFILE ═══════ -->
-        <div class="gz-wstep" data-step="1">
-          <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🎮 Zone profile</div>
-          <div style="font-size:11px;color:#999;margin-bottom:12px;">Tell players where your zone is and what it looks like.</div>
-          <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;">
-            <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Zone name</div>
-            <input type="text" value="Nexus Gaming Lounge" style="width:100%;border:1.5px solid #ECE4F8;border-radius:10px;padding:10px;font-size:12px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;margin-bottom:11px;">
-            <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Location / area</div>
-            <input type="text" value="Bahadurabad, Karachi" style="width:100%;border:1.5px solid #ECE4F8;border-radius:10px;padding:10px;font-size:12px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;margin-bottom:11px;">
-            <div style="height:80px;border-radius:11px;background:linear-gradient(135deg,#EDE6FA,#DCD0F5);display:flex;align-items:center;justify-content:center;position:relative;border:1.5px solid #E0D4F5;cursor:pointer;margin-bottom:11px;">
-              <i class="ri-map-pin-2-fill" style="font-size:26px;color:#3A1E6E;"></i>
-              <div style="position:absolute;bottom:7px;right:9px;background:#fff;border-radius:20px;padding:3px 10px;font-size:9px;font-weight:800;color:#3A1E6E;box-shadow:0 2px 6px rgba(0,0,0,.1);">📍 Pin on map</div>
-            </div>
-            <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:6px;">Zone photos</div>
-            <div style="display:flex;gap:6px;">
-              <div style="width:70px;height:54px;background:linear-gradient(135deg,#5A2EA0,#A88BFF);border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-image-line" style="font-size:18px;color:#fff;opacity:.85;"></i></div>
-              <div style="width:70px;height:54px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-image-line" style="font-size:18px;color:#fff;opacity:.85;"></i></div>
-              <div style="width:54px;height:54px;background:#F4F0FB;border-radius:9px;border:2px dashed #C8B4F0;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-add-line" style="font-size:18px;color:#3A1E6E;"></i></div>
-            </div>
+      <div style="flex:1;overflow-y:auto;padding:14px 14px 88px;">
+        <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🎮 Zone profile</div>
+        <div style="font-size:11px;color:#999;margin-bottom:12px;">Tell players where your zone is and how to find you online.</div>
+        <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;margin-bottom:12px;">
+          <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Zone name</div>
+          <input type="text" value="Nexus Gaming Lounge" style="width:100%;border:1.5px solid #ECE4F8;border-radius:10px;padding:10px;font-size:12px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;margin-bottom:11px;">
+          <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:4px;">Location / area</div>
+          <input type="text" value="Bahadurabad, Karachi" style="width:100%;border:1.5px solid #ECE4F8;border-radius:10px;padding:10px;font-size:12px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;margin-bottom:11px;">
+          <div style="height:80px;border-radius:11px;background:linear-gradient(135deg,#EDE6FA,#DCD0F5);display:flex;align-items:center;justify-content:center;position:relative;border:1.5px solid #E0D4F5;cursor:pointer;margin-bottom:11px;">
+            <i class="ri-map-pin-2-fill" style="font-size:26px;color:#3A1E6E;"></i>
+            <div style="position:absolute;bottom:7px;right:9px;background:#fff;border-radius:20px;padding:3px 10px;font-size:9px;font-weight:800;color:#3A1E6E;box-shadow:0 2px 6px rgba(0,0,0,.1);">📍 Pin on map</div>
+          </div>
+          <div style="font-size:10px;font-weight:700;color:#888;margin-bottom:6px;">Zone photos</div>
+          <div style="display:flex;gap:6px;">
+            <div style="width:70px;height:54px;background:linear-gradient(135deg,#5A2EA0,#A88BFF);border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-image-line" style="font-size:18px;color:#fff;opacity:.85;"></i></div>
+            <div style="width:70px;height:54px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-image-line" style="font-size:18px;color:#fff;opacity:.85;"></i></div>
+            <div style="width:54px;height:54px;background:#F4F0FB;border-radius:9px;border:2px dashed #C8B4F0;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-add-line" style="font-size:18px;color:#3A1E6E;"></i></div>
           </div>
         </div>
-
-        <!-- ═══════ STEP 2 · CUBICLES & PCs ═══════ -->
-        <div class="gz-wstep" data-step="2" style="display:none;">
-          <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🖥️ Cubicles &amp; PCs</div>
-          <div style="font-size:11px;color:#999;margin-bottom:12px;">Add each cubicle, then add its PCs one by one — set the exact specs &amp; games for every PC.</div>
-
-          <div id="gz-cubicles"></div>
-
-          <div class="gz-add-cubicle" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#3A1E6E;border-radius:13px;padding:13px;cursor:pointer;margin-bottom:14px;box-shadow:0 4px 14px rgba(58,30,110,.25);">
-            <i class="ri-add-line" style="font-size:18px;color:#fff;"></i><span style="font-size:13px;font-weight:900;color:#fff;">Add another cubicle</span>
-          </div>
-
-          <!-- PC booking mode -->
-          <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;">
-            <div style="font-size:12px;font-weight:800;color:#1A0E2E;margin-bottom:3px;">How can customers book PCs?</div>
-            <div style="font-size:9px;color:#AAA;margin-bottom:10px;">Choose how this zone sells its PCs</div>
-            <div id="gz-pc-mode" style="display:flex;gap:8px;">
-              <div class="gz-mode-opt" data-mode="pc" style="flex:1;background:#3A1E6E;border:1.5px solid #3A1E6E;border-radius:12px;padding:11px;cursor:pointer;text-align:center;">
-                <i class="ri-computer-line" style="font-size:18px;color:#fff;"></i>
-                <div style="font-size:11px;font-weight:800;color:#fff;margin-top:4px;">Per Individual PC</div>
-                <div style="font-size:8px;color:rgba(200,180,255,.8);margin-top:2px;">Book single seats</div>
-              </div>
-              <div class="gz-mode-opt" data-mode="cubicle" style="flex:1;background:#FAF8FE;border:1.5px solid #ECE4F8;border-radius:12px;padding:11px;cursor:pointer;text-align:center;">
-                <i class="ri-layout-grid-line" style="font-size:18px;color:#9A7BD0;"></i>
-                <div style="font-size:11px;font-weight:800;color:#7A5BB0;margin-top:4px;">Per Whole Cubicle</div>
-                <div style="font-size:8px;color:#AAA;margin-top:2px;">Book full room</div>
-              </div>
-            </div>
+        <!-- Social media links -->
+        <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;">
+          <div style="font-size:12px;font-weight:800;color:#1A0E2E;margin-bottom:2px;">🔗 Social media</div>
+          <div style="font-size:9px;color:#AAA;margin-bottom:10px;">Add your handles so players can follow &amp; message you.</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">📸</div><input type="text" value="@nexusgaming.khi" placeholder="Instagram handle" style="flex:1;border:1.5px solid #ECE4F8;border-radius:9px;padding:8px 10px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;"></div>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:30px;height:30px;border-radius:9px;background:#1877F2;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">👍</div><input type="text" value="fb.com/nexusgaming" placeholder="Facebook page" style="flex:1;border:1.5px solid #ECE4F8;border-radius:9px;padding:8px 10px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;"></div>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:30px;height:30px;border-radius:9px;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">💬</div><input type="text" value="+92 321 4567890" placeholder="WhatsApp number" style="flex:1;border:1.5px solid #ECE4F8;border-radius:9px;padding:8px 10px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;"></div>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:30px;height:30px;border-radius:9px;background:#000;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">🎵</div><input type="text" placeholder="TikTok (optional)" style="flex:1;border:1.5px solid #ECE4F8;border-radius:9px;padding:8px 10px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;"></div>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:30px;height:30px;border-radius:9px;background:#FF0000;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">▶️</div><input type="text" placeholder="YouTube (optional)" style="flex:1;border:1.5px solid #ECE4F8;border-radius:9px;padding:8px 10px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#FAF8FE;box-sizing:border-box;outline:none;"></div>
           </div>
         </div>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.06);display:flex;gap:9px;">
+        <div data-go="s52b" style="flex:1;text-align:center;padding:13px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border-radius:13px;cursor:pointer;">Next: Cubicles &amp; PCs →</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <!-- ═══════ STEP 3 · CONSOLES ═══════ -->
-        <div class="gz-wstep" data-step="3" style="display:none;">
-          <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🎮 Consoles</div>
-          <div style="font-size:11px;color:#999;margin-bottom:12px;">Add each console — its name, screen, controllers and the games it has.</div>
-
-          <div id="gz-consoles"></div>
-
-          <div class="gz-add-console2" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#3A1E6E;border-radius:13px;padding:13px;cursor:pointer;box-shadow:0 4px 14px rgba(58,30,110,.25);">
-            <i class="ri-add-line" style="font-size:18px;color:#fff;"></i><span style="font-size:13px;font-weight:900;color:#fff;">Add a console</span>
-          </div>
-          <div style="background:#F4F0FB;border-radius:10px;padding:9px 12px;margin-top:12px;display:flex;align-items:center;gap:8px;border:1px solid #E0D4F5;">
-            <i class="ri-time-line" style="font-size:14px;color:#3A1E6E;"></i>
-            <div style="font-size:10px;color:#5A3B9A;font-weight:600;">PCs &amp; consoles both book on <b>30-minute slots</b>.</div>
-          </div>
+<!-- ═══════════════════════════════════════════════
+     SCREEN 52b — REGISTER · STEP 2/5 (Cubicles & PCs)
+════════════════════════════════════════════════ -->
+<div class="col" id="s52b">
+  <div class="page-label">52b · Register — Step 2/5 · Cubicles &amp; PCs</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;background:#F4F2FA;position:relative;">
+      <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:13px 16px 13px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
+          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 2 of 5 · Cubicles &amp; PCs</div></div>
+        </div>
+        <div style="display:flex;gap:4px;margin-top:11px;">
+          <div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
+        </div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:14px 14px 88px;">
+        <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🖥️ Cubicles &amp; PCs</div>
+        <div style="font-size:11px;color:#999;margin-bottom:10px;">Add each cubicle, then add its PCs one by one — set the exact specs &amp; games for every PC.</div>
+        <div style="background:#F4F0FB;border-radius:10px;padding:9px 12px;margin-bottom:12px;display:flex;align-items:center;gap:8px;border:1px solid #E0D4F5;">
+          <i class="ri-information-line" style="font-size:14px;color:#3A1E6E;"></i>
+          <div style="font-size:10px;color:#5A3B9A;font-weight:600;">Players book <b>individual PCs</b> inside a cubicle — cubicles aren't booked as a whole.</div>
         </div>
 
-        <!-- ═══════ STEP 4 · SNACKS & FACILITIES ═══════ -->
-        <div class="gz-wstep" data-step="4" style="display:none;">
-          <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🥤 Snacks &amp; facilities</div>
-          <div style="font-size:11px;color:#999;margin-bottom:12px;">Optional — add snacks/drinks you sell and the amenities you offer.</div>
+        <div id="gz-cubicles"></div>
 
-          <!-- Snacks -->
-          <div style="background:#fff;border-radius:14px;padding:13px;margin-bottom:12px;border:1.5px solid #ECE4F8;">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
-              <div style="font-size:12px;font-weight:800;color:#1A0E2E;">Do you sell snacks / drinks?</div>
-              <label style="position:relative;display:inline-block;width:38px;height:21px;"><input type="checkbox" id="gz-snacks-toggle" class="gz-toggle" checked style="opacity:0;width:0;height:0;"><span class="gz-slider"></span></label>
-            </div>
-            <div style="font-size:9px;color:#AAA;margin-bottom:11px;">Add each item with a price. Leave off if you don't offer any.</div>
-            <div id="gz-snacks-section">
-              <div id="gz-snacks-list" style="display:flex;flex-direction:column;gap:7px;">
-                <div class="gz-snack-row" style="display:flex;align-items:center;gap:8px;background:#FAF8FE;border:1px solid #ECE4F8;border-radius:10px;padding:8px 10px;">
-                  <span style="font-size:16px;">🍟</span>
-                  <input type="text" value="Chips" style="flex:1;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;" placeholder="Item name">
-                  <span style="font-size:10px;color:#888;font-weight:700;">Rs</span>
-                  <input type="text" value="120" style="width:52px;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:12px;font-weight:900;font-family:inherit;color:#3A1E6E;background:#fff;box-sizing:border-box;outline:none;text-align:center;">
-                  <span class="gz-rm-row" style="font-size:14px;color:#C62828;cursor:pointer;">✕</span>
-                </div>
-                <div class="gz-snack-row" style="display:flex;align-items:center;gap:8px;background:#FAF8FE;border:1px solid #ECE4F8;border-radius:10px;padding:8px 10px;">
-                  <span style="font-size:16px;">🥤</span>
-                  <input type="text" value="Soft drink" style="flex:1;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;" placeholder="Item name">
-                  <span style="font-size:10px;color:#888;font-weight:700;">Rs</span>
-                  <input type="text" value="80" style="width:52px;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:12px;font-weight:900;font-family:inherit;color:#3A1E6E;background:#fff;box-sizing:border-box;outline:none;text-align:center;">
-                  <span class="gz-rm-row" style="font-size:14px;color:#C62828;cursor:pointer;">✕</span>
-                </div>
-              </div>
-              <div class="gz-add-snack" style="margin-top:8px;display:flex;align-items:center;justify-content:center;gap:6px;background:#F4F0FB;border-radius:9px;padding:9px;border:1.5px dashed #C8B4F0;cursor:pointer;">
-                <i class="ri-add-line" style="font-size:14px;color:#3A1E6E;"></i><span style="font-size:11px;font-weight:800;color:#3A1E6E;">Add snack / drink</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Facilities -->
-          <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;">
-            <div style="font-size:12px;font-weight:800;color:#1A0E2E;margin-bottom:9px;">Facilities</div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;">
-              <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">❄️ AC</div>
-              <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🌐 High-Speed Net</div>
-              <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🎧 Headsets</div>
-              <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🅿️ Parking</div>
-              <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">🪑 VIP Lounge</div>
-              <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">📹 Streaming Setup</div>
-              <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">🍔 Café</div>
-            </div>
-            <div style="font-size:9px;color:#AAA;margin-top:9px;">Tap to toggle · dark = available</div>
-          </div>
+        <div class="gz-add-cubicle" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#3A1E6E;border-radius:13px;padding:13px;cursor:pointer;box-shadow:0 4px 14px rgba(58,30,110,.25);">
+          <i class="ri-add-line" style="font-size:18px;color:#fff;"></i><span style="font-size:13px;font-weight:900;color:#fff;">Add another cubicle</span>
         </div>
 
-        <!-- ═══════ STEP 5 · PRICING & REVIEW ═══════ -->
-        <div class="gz-wstep" data-step="5" style="display:none;">
-          <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">💰 Pricing &amp; review</div>
-          <div style="font-size:11px;color:#999;margin-bottom:12px;">Set rates, then publish your zone.</div>
-          <div data-go="s55" style="background:linear-gradient(135deg,#2A1550,#5A2EA0);border-radius:14px;padding:15px;cursor:pointer;display:flex;align-items:center;gap:11px;margin-bottom:12px;">
-            <div style="width:40px;height:40px;background:rgba(255,255,255,.15);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">💰</div>
-            <div style="flex:1;"><div style="font-size:13px;font-weight:900;color:#fff;">Set up per-unit pricing</div><div style="font-size:9px;color:rgba(200,180,255,.8);margin-top:2px;">Different rates per day, time &amp; each PC/console</div></div>
-            <i class="ri-arrow-right-s-line" style="font-size:20px;color:rgba(255,255,255,.7);"></i>
-          </div>
-          <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;">
-            <div style="font-size:11px;font-weight:900;color:#1A0E2E;margin-bottom:9px;">Almost done ✨</div>
-            <div style="font-size:11px;color:#666;line-height:1.7;">You've set up your zone profile, cubicles &amp; PCs, consoles, snacks and facilities. Tap <b style="color:#3A1E6E;">Publish</b> below to make it live for players.</div>
-          </div>
-        </div>
-
-        <!-- Hidden templates (cloned by the wizard) -->
+        <!-- Hidden templates (cloned by the builders) -->
         <div id="gz-tmpls" style="display:none;">
-          <!-- Cubicle template (contains one PC card) -->
           <div id="gz-cub-tmpl"><div class="gz-cubicle" style="background:#fff;border:1.5px solid #ECE4F8;border-radius:14px;padding:12px;margin-bottom:11px;">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
               <div style="width:30px;height:30px;background:linear-gradient(135deg,#2A1550,#5A2EA0);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">🖥️</div>
@@ -9612,7 +9499,6 @@ body:not(.interactive) #s22-success { display: none !important; }
             </div>
           </div></div>
 
-          <!-- PC card template -->
           <div id="gz-pc-tmpl"><div class="gz-pc-card" style="background:#FAF8FE;border:1px solid #ECE4F8;border-radius:11px;padding:10px;margin-bottom:8px;">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
               <div class="gz-pc-num" style="font-size:12px;font-weight:900;color:#1A0E2E;">PC 1</div>
@@ -9632,7 +9518,6 @@ body:not(.interactive) #s22-success { display: none !important; }
             </div>
           </div></div>
 
-          <!-- Console card template -->
           <div id="gz-con-tmpl"><div class="gz-con-card" style="background:#fff;border:1.5px solid #ECE4F8;border-radius:14px;padding:12px;margin-bottom:11px;">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
               <div style="width:34px;height:34px;background:linear-gradient(135deg,#0A1E3E,#1E5AC0);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🎮</div>
@@ -9651,13 +9536,155 @@ body:not(.interactive) #s22-success { display: none !important; }
             </div>
           </div></div>
         </div>
-        <button id="gz-wiz-publish" data-go="s50" style="display:none;"></button>
       </div>
-
-      <!-- Footer nav -->
       <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.06);display:flex;gap:9px;">
-        <button id="gz-wiz-back" style="flex:1;padding:13px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border:none;border-radius:13px;cursor:pointer;font-family:inherit;visibility:hidden;">← Back</button>
-        <button id="gz-wiz-next" style="flex:2;padding:13px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">Next →</button>
+        <div data-back style="flex:1;text-align:center;padding:13px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border-radius:13px;cursor:pointer;">← Back</div>
+        <div data-go="s52c" style="flex:2;text-align:center;padding:13px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border-radius:13px;cursor:pointer;">Next: Consoles →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN 52c — REGISTER · STEP 3/5 (Consoles)
+════════════════════════════════════════════════ -->
+<div class="col" id="s52c">
+  <div class="page-label">52c · Register — Step 3/5 · Consoles</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;background:#F4F2FA;position:relative;">
+      <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:13px 16px 13px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
+          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 3 of 5 · Consoles</div></div>
+        </div>
+        <div style="display:flex;gap:4px;margin-top:11px;">
+          <div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
+        </div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:14px 14px 88px;">
+        <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🎮 Consoles</div>
+        <div style="font-size:11px;color:#999;margin-bottom:12px;">Add each console — its name, screen, controllers and the games it has.</div>
+        <div id="gz-consoles"></div>
+        <div class="gz-add-console2" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#3A1E6E;border-radius:13px;padding:13px;cursor:pointer;box-shadow:0 4px 14px rgba(58,30,110,.25);">
+          <i class="ri-add-line" style="font-size:18px;color:#fff;"></i><span style="font-size:13px;font-weight:900;color:#fff;">Add a console</span>
+        </div>
+        <div style="background:#F4F0FB;border-radius:10px;padding:9px 12px;margin-top:12px;display:flex;align-items:center;gap:8px;border:1px solid #E0D4F5;">
+          <i class="ri-time-line" style="font-size:14px;color:#3A1E6E;"></i>
+          <div style="font-size:10px;color:#5A3B9A;font-weight:600;">PCs &amp; consoles both book on <b>30-minute slots</b>.</div>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.06);display:flex;gap:9px;">
+        <div data-back style="flex:1;text-align:center;padding:13px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border-radius:13px;cursor:pointer;">← Back</div>
+        <div data-go="s52d" style="flex:2;text-align:center;padding:13px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border-radius:13px;cursor:pointer;">Next: Snacks &amp; Facilities →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN 52d — REGISTER · STEP 4/5 (Snacks & Facilities)
+════════════════════════════════════════════════ -->
+<div class="col" id="s52d">
+  <div class="page-label">52d · Register — Step 4/5 · Snacks &amp; Facilities</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;background:#F4F2FA;position:relative;">
+      <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:13px 16px 13px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
+          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 4 of 5 · Snacks &amp; Facilities</div></div>
+        </div>
+        <div style="display:flex;gap:4px;margin-top:11px;">
+          <div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
+        </div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:14px 14px 88px;">
+        <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">🥤 Snacks &amp; facilities</div>
+        <div style="font-size:11px;color:#999;margin-bottom:12px;">Optional — add snacks/drinks you sell and the amenities you offer.</div>
+        <div style="background:#fff;border-radius:14px;padding:13px;margin-bottom:12px;border:1.5px solid #ECE4F8;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
+            <div style="font-size:12px;font-weight:800;color:#1A0E2E;">Do you sell snacks / drinks?</div>
+            <label style="position:relative;display:inline-block;width:38px;height:21px;"><input type="checkbox" id="gz-snacks-toggle" class="gz-toggle" checked style="opacity:0;width:0;height:0;"><span class="gz-slider"></span></label>
+          </div>
+          <div style="font-size:9px;color:#AAA;margin-bottom:11px;">Add each item with a price. Leave off if you don't offer any.</div>
+          <div id="gz-snacks-section">
+            <div id="gz-snacks-list" style="display:flex;flex-direction:column;gap:7px;">
+              <div class="gz-snack-row" style="display:flex;align-items:center;gap:8px;background:#FAF8FE;border:1px solid #ECE4F8;border-radius:10px;padding:8px 10px;">
+                <span style="font-size:16px;">🍟</span>
+                <input type="text" value="Chips" style="flex:1;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;" placeholder="Item name">
+                <span style="font-size:10px;color:#888;font-weight:700;">Rs</span>
+                <input type="text" value="120" style="width:52px;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:12px;font-weight:900;font-family:inherit;color:#3A1E6E;background:#fff;box-sizing:border-box;outline:none;text-align:center;">
+                <span class="gz-rm-row" style="font-size:14px;color:#C62828;cursor:pointer;">✕</span>
+              </div>
+              <div class="gz-snack-row" style="display:flex;align-items:center;gap:8px;background:#FAF8FE;border:1px solid #ECE4F8;border-radius:10px;padding:8px 10px;">
+                <span style="font-size:16px;">🥤</span>
+                <input type="text" value="Soft drink" style="flex:1;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:11px;font-family:inherit;color:#1A0E2E;background:#fff;box-sizing:border-box;outline:none;" placeholder="Item name">
+                <span style="font-size:10px;color:#888;font-weight:700;">Rs</span>
+                <input type="text" value="80" style="width:52px;border:1.5px solid #ECE4F8;border-radius:8px;padding:6px 8px;font-size:12px;font-weight:900;font-family:inherit;color:#3A1E6E;background:#fff;box-sizing:border-box;outline:none;text-align:center;">
+                <span class="gz-rm-row" style="font-size:14px;color:#C62828;cursor:pointer;">✕</span>
+              </div>
+            </div>
+            <div class="gz-add-snack" style="margin-top:8px;display:flex;align-items:center;justify-content:center;gap:6px;background:#F4F0FB;border-radius:9px;padding:9px;border:1.5px dashed #C8B4F0;cursor:pointer;">
+              <i class="ri-add-line" style="font-size:14px;color:#3A1E6E;"></i><span style="font-size:11px;font-weight:800;color:#3A1E6E;">Add snack / drink</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;">
+          <div style="font-size:12px;font-weight:800;color:#1A0E2E;margin-bottom:9px;">Facilities</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">❄️ AC</div>
+            <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🌐 High-Speed Net</div>
+            <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🎧 Headsets</div>
+            <div class="gz-facility on" style="background:#3A1E6E;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;cursor:pointer;">🅿️ Parking</div>
+            <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">🪑 VIP Lounge</div>
+            <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">📹 Streaming Setup</div>
+            <div class="gz-facility" style="background:#FAF8FE;color:#9A7BD0;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1.5px solid #E0D4F5;cursor:pointer;">🍔 Café</div>
+          </div>
+          <div style="font-size:9px;color:#AAA;margin-top:9px;">Tap to toggle · dark = available</div>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.06);display:flex;gap:9px;">
+        <div data-back style="flex:1;text-align:center;padding:13px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border-radius:13px;cursor:pointer;">← Back</div>
+        <div data-go="s52e" style="flex:2;text-align:center;padding:13px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border-radius:13px;cursor:pointer;">Next: Pricing &amp; Review →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN 52e — REGISTER · STEP 5/5 (Pricing & Review)
+════════════════════════════════════════════════ -->
+<div class="col" id="s52e">
+  <div class="page-label">52e · Register — Step 5/5 · Pricing &amp; Review</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;background:#F4F2FA;position:relative;">
+      <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:13px 16px 13px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
+          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 5 of 5 · Pricing &amp; Review</div></div>
+        </div>
+        <div style="display:flex;gap:4px;margin-top:11px;">
+          <div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div>
+        </div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:14px 14px 88px;">
+        <div style="font-size:13px;font-weight:900;color:#1A0E2E;margin-bottom:3px;">💰 Pricing &amp; review</div>
+        <div style="font-size:11px;color:#999;margin-bottom:12px;">Set rates per individual PC &amp; console, then publish.</div>
+        <div data-go="s55" style="background:linear-gradient(135deg,#2A1550,#5A2EA0);border-radius:14px;padding:15px;cursor:pointer;display:flex;align-items:center;gap:11px;margin-bottom:12px;">
+          <div style="width:40px;height:40px;background:rgba(255,255,255,.15);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">💰</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:900;color:#fff;">Set up per-unit pricing</div><div style="font-size:9px;color:rgba(200,180,255,.8);margin-top:2px;">Different rates per day, time &amp; each individual PC / console</div></div>
+          <i class="ri-arrow-right-s-line" style="font-size:20px;color:rgba(255,255,255,.7);"></i>
+        </div>
+        <div style="background:#fff;border-radius:14px;padding:13px;border:1.5px solid #ECE4F8;">
+          <div style="font-size:11px;font-weight:900;color:#1A0E2E;margin-bottom:9px;">Almost done ✨</div>
+          <div style="font-size:11px;color:#666;line-height:1.7;">You've set your zone profile &amp; socials, cubicles &amp; PCs, consoles, snacks and facilities. Tap <b style="color:#3A1E6E;">Publish</b> below to make it live for players.</div>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.06);display:flex;gap:9px;">
+        <div data-back style="flex:1;text-align:center;padding:13px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border-radius:13px;cursor:pointer;">← Back</div>
+        <div data-go="s50" style="flex:2;text-align:center;padding:13px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border-radius:13px;cursor:pointer;">✓ Publish Gaming Zone</div>
       </div>
     </div>
   </div>
@@ -9769,33 +9796,6 @@ body:not(.interactive) #s22-success { display: none !important; }
           <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:30p</div><div class="sg-pr">200</div></div>
         </div>
 
-        <!-- PER-CUBICLE GRID (whole cubicle = all 5 PCs, bundle price) — hidden until Per Cubicle mode -->
-        <div class="slot-grid s53-grid-cubicle" style="display:none;">
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:00a</div><div class="sg-pr">700</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:30a</div><div class="sg-pr">700</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:00p</div><div class="sg-pr">700</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:30p</div><div class="sg-pr">700</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">1:00p</div><div class="sg-nm">Falcons</div><div class="sg-pr">700</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">1:30p</div><div class="sg-nm">Falcons</div><div class="sg-pr">700</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">2:00p</div><div class="sg-nm">Falcons</div><div class="sg-pr">700</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">2:30p</div><div class="sg-nm">Falcons</div><div class="sg-pr">700</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">3:00p</div><div class="sg-pr">900</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">3:30p</div><div class="sg-pr">900</div></div>
-          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">4:00p</div><div class="sg-nm">Esports PK</div><div class="sg-pr">900</div></div>
-          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">4:30p</div><div class="sg-nm">Esports PK</div><div class="sg-pr">900</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">5:00p</div><div class="sg-pr">900</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">5:30p</div><div class="sg-pr">900</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:00p</div><div class="sg-nm">Clan Apex</div><div class="sg-pr">1.1k</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:30p</div><div class="sg-nm">Clan Apex</div><div class="sg-pr">1.1k</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:00p</div><div class="sg-nm">Clan Apex</div><div class="sg-pr">1.1k</div></div>
-          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:30p</div><div class="sg-nm">Clan Apex</div><div class="sg-pr">1.1k</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">8:00p</div><div class="sg-pr">1.1k</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">8:30p</div><div class="sg-pr">1.1k</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:00p</div><div class="sg-pr">1.1k</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:30p</div><div class="sg-pr">1.1k</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:00p</div><div class="sg-pr">900</div></div>
-          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:30p</div><div class="sg-pr">900</div></div>
-        </div>
       </div>
 
       <!-- Multi-slot selection bar (hidden until slots picked) -->
@@ -9996,7 +9996,7 @@ body:not(.interactive) #s22-success { display: none !important; }
           <div class="gz-ovr-row" style="background:#FAF8FE;border-radius:11px;padding:10px 11px;margin-bottom:7px;border:1px solid #ECE4F8;">
             <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
               <div class="gz-ovr-ico" style="width:30px;height:30px;background:linear-gradient(135deg,#2A1550,#5A2EA0);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-vip-crown-line" style="font-size:14px;color:#fff;"></i></div>
-              <div style="flex:1;"><div class="gz-ovr-title" style="font-size:12px;font-weight:800;color:#1A0E2E;">Cubicle A · Pro Squad</div><div class="gz-ovr-sub" style="font-size:9px;color:#7A5BB0;">5× RTX 4070 · premium</div></div>
+              <div style="flex:1;"><div class="gz-ovr-title" style="font-size:12px;font-weight:800;color:#1A0E2E;">Premium PCs · RTX 4080</div><div class="gz-ovr-sub" style="font-size:9px;color:#7A5BB0;">priced per PC · per slot</div></div>
               <div class="gz-ovr-badge" style="background:#F0E8FF;color:#3A1E6E;font-size:9px;font-weight:800;padding:3px 8px;border-radius:20px;">+50 / slot</div>
             </div>
             <div style="display:flex;gap:5px;">
@@ -10010,7 +10010,7 @@ body:not(.interactive) #s22-success { display: none !important; }
           <div class="gz-ovr-row" style="background:#FAF8FE;border-radius:11px;padding:10px 11px;margin-bottom:7px;border:1px solid #ECE4F8;">
             <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
               <div class="gz-ovr-ico" style="width:30px;height:30px;background:#EDE8F5;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-computer-line" style="font-size:14px;color:#7A5BB0;"></i></div>
-              <div style="flex:1;"><div class="gz-ovr-title" style="font-size:12px;font-weight:800;color:#1A0E2E;">Cubicles B–D · Standard</div><div class="gz-ovr-sub" style="font-size:9px;color:#AAA;">13× PCs · uses band rates</div></div>
+              <div style="flex:1;"><div class="gz-ovr-title" style="font-size:12px;font-weight:800;color:#1A0E2E;">Standard PCs · RTX 4060</div><div class="gz-ovr-sub" style="font-size:9px;color:#AAA;">per PC · uses band rates</div></div>
               <div class="gz-ovr-badge" style="background:#F0F0F0;color:#999;font-size:9px;font-weight:800;padding:3px 8px;border-radius:20px;">Default</div>
             </div>
             <div style="display:flex;gap:5px;">
