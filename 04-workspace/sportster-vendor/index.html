@@ -116,11 +116,15 @@
   .qv-mode.qv-mode-on { background:#3A1E6E; color:#fff; border-color:#3A1E6E; }
   .gz-sched-mode { font-size:10px; font-weight:800; padding:6px 11px; border-radius:99px; background:#F2EEFB; color:#7A5BB0; border:1.5px solid #E0D4F5; cursor:pointer; white-space:nowrap; }
   .gz-sched-mode.qv-mode-on { background:#3A1E6E; color:#fff; border-color:#3A1E6E; }
-  /* Discounted schedule slot (s53/s54) */
-  .sg-cell.sg-disc { background:linear-gradient(145deg,#FFF0D0,#FFE0A0)!important; border:1.5px solid #E0A030!important; }
+  /* Discounted schedule slot (s53/s54) — creative: corner ribbon + struck price + new price */
+  .sg-cell.sg-disc { background:linear-gradient(150deg,#FFF6DF,#FFE3A8)!important; border:1.5px solid #E0A030!important; box-shadow:0 2px 7px rgba(224,160,48,.3)!important; overflow:hidden; }
   .sg-cell.sg-disc .sg-hr { color:#9A6800!important; }
-  .sg-cell.sg-disc .sg-pr { color:#C07000!important; }
-  .sg-cell.sg-disc::after { content:'%'; position:absolute; top:3px; right:5px; font-size:9px; font-weight:900; color:#C07000; }
+  .sg-cell.sg-disc .sg-pr { display:none!important; }
+  .sg-cell.sg-disc .sg-price-old { font-size:8px; color:#B98A30; text-decoration:line-through; line-height:1; }
+  .sg-cell.sg-disc .sg-price-new { font-size:11px; font-weight:900; color:#1A6030; line-height:1.1; }
+  .sg-cell.sg-disc .sg-ribbon { position:absolute; top:0; right:0; background:linear-gradient(135deg,#E08A00,#F4B400); color:#fff; font-size:8px; font-weight:900; padding:1px 5px 1px 6px; border-bottom-left-radius:8px; box-shadow:-1px 1px 3px rgba(0,0,0,.15); letter-spacing:.2px; }
+  /* slot picked for discounting (gold dashed glow) */
+  .sg-cell.sg-gzdsel { outline:2.5px solid #E08A00!important; outline-offset:-2.5px; box-shadow:0 0 0 3px rgba(224,138,0,.25)!important; }
 
   .range-row { display: flex; flex-direction: column; gap: 8px; }
   .range-row .range-labels { display: flex; justify-content: space-between; font-size: 12px; color: #888; }
@@ -7065,6 +7069,15 @@
           </div>
           <!-- White body -->
           <div style="background:#fff;padding:12px 14px 0;">
+            <!-- Live discounts banner (customer-facing teaser) -->
+            <div data-go="s51" style="display:flex;align-items:center;gap:9px;background:linear-gradient(120deg,#FFF3D6 0%,#FFE2A6 60%,#FFD27A 100%);border:1.5px solid #F0C266;border-radius:13px;padding:9px 11px;margin-bottom:11px;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 3px 10px rgba(224,160,48,.2);">
+              <div style="width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 6px rgba(224,138,0,.35);"><i class="ri-price-tag-3-fill" style="font-size:17px;color:#fff;"></i></div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:12px;font-weight:900;color:#7A4A00;line-height:1.15;">⚡ Up to <span style="font-size:14px;">30% OFF</span> live now</div>
+                <div style="font-size:9px;color:#9A6A20;font-weight:600;margin-top:1px;">Happy Hour &amp; off-peak slots · 3 active deals</div>
+              </div>
+              <i class="ri-arrow-right-s-line" style="font-size:18px;color:#C07000;"></i>
+            </div>
             <!-- Inventory chips -->
             <div style="display:flex;gap:6px;margin-bottom:11px;flex-wrap:wrap;">
               <div style="flex:1;min-width:0;background:#F3EEFC;border-radius:11px;padding:8px 9px;border:1px solid #E0D4F5;text-align:center;"><div style="font-size:15px;font-weight:900;color:#3A1E6E;">4</div><div style="font-size:8px;color:#7A5BB0;margin-top:1px;font-weight:700;">CUBICLES</div></div>
@@ -7181,6 +7194,15 @@
             <span style="font-size:10px;color:#AAA;">(86 reviews)</span>
           </div>
           <div style="font-size:16px;font-weight:900;color:#3A1E6E;">Rs 150 <span style="font-size:10px;font-weight:600;color:#888;">/ 30 min</span></div>
+        </div>
+        <!-- Active discounts banner — tap to manage -->
+        <div data-go="s51b" style="display:flex;align-items:center;gap:10px;background:linear-gradient(120deg,#FFF3D6,#FFE2A6);border:1.5px solid #F0C266;border-radius:13px;padding:10px 12px;margin-top:10px;cursor:pointer;box-shadow:0 3px 10px rgba(224,160,48,.18);">
+          <div style="width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 7px rgba(224,138,0,.35);line-height:1;"><span style="font-size:15px;font-weight:900;color:#fff;">30%</span><span style="font-size:7px;font-weight:800;color:#FFF0D0;letter-spacing:.3px;">MAX OFF</span></div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:12px;font-weight:900;color:#7A4A00;">🏷️ 3 active discounts</div>
+            <div style="font-size:9px;color:#9A6A20;font-weight:600;margin-top:1px;">Highest 30% · 18 slots discounted today · tap to manage</div>
+          </div>
+          <i class="ri-arrow-right-s-line" style="font-size:20px;color:#C07000;"></i>
         </div>
         <!-- Social & Links (same set as arena) -->
         <div style="margin-top:11px;padding-top:10px;border-top:1px solid #F4F0FB;">
@@ -7395,6 +7417,93 @@
 <div class="flow-sec">
   <div class="flow-sec-label">📝  Gaming — Registration (step-by-step) · 5 screens</div>
   <div class="flow-sec-row">
+<div class="col" id="s51b">
+  <div class="page-label">51b · Manage Discounts — vendor view of all active deals</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;background:#F4F2FA;position:relative;">
+      <!-- header -->
+      <div style="background:linear-gradient(150deg,#7A4A00 0%,#C07000 55%,#E08A00 100%);padding:14px 16px 15px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.18);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
+          <div style="flex:1;"><div style="font-size:17px;font-weight:900;color:#fff;">🏷️ Discounts</div><div style="font-size:9px;color:rgba(255,240,210,.9);margin-top:1px;">Nexus Gaming Lounge · live deals</div></div>
+        </div>
+        <div style="display:flex;gap:7px;margin-top:13px;">
+          <div style="flex:1;background:rgba(255,255,255,.16);border-radius:12px;padding:9px 6px;text-align:center;"><div style="font-size:18px;font-weight:900;color:#fff;">3</div><div style="font-size:8px;font-weight:700;color:rgba(255,240,210,.85);">ACTIVE DEALS</div></div>
+          <div style="flex:1;background:rgba(255,255,255,.16);border-radius:12px;padding:9px 6px;text-align:center;"><div style="font-size:18px;font-weight:900;color:#fff;">30%</div><div style="font-size:8px;font-weight:700;color:rgba(255,240,210,.85);">HIGHEST</div></div>
+          <div style="flex:1;background:rgba(255,255,255,.16);border-radius:12px;padding:9px 6px;text-align:center;"><div style="font-size:18px;font-weight:900;color:#fff;">18</div><div style="font-size:8px;font-weight:700;color:rgba(255,240,210,.85);">SLOTS OFF</div></div>
+        </div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:13px 14px 16px;">
+        <div style="font-size:9px;font-weight:800;color:#AAA;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;">Active discounts</div>
+
+        <!-- deal 1 — Happy Hour 30% -->
+        <div style="background:#fff;border:1.5px solid #F0E2C0;border-radius:14px;padding:12px;margin-bottom:9px;box-shadow:0 2px 8px rgba(224,160,48,.1);">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:9px;">
+            <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;line-height:1;"><span style="font-size:14px;font-weight:900;color:#fff;">30%</span><span style="font-size:7px;font-weight:800;color:#FFF0D0;">OFF</span></div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:900;color:#1A0E2E;">⚡ Happy Hour</div><div style="font-size:9px;color:#888;margin-top:1px;">PC slots · 2:00–5:00 PM · 6 slots</div></div>
+            <div class="toggle on" style="background:#E08A00;"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:#FFFBF2;border:1px solid #F0E2C0;border-radius:9px;padding:7px 10px;margin-bottom:8px;">
+            <span style="font-size:10px;color:#AAA;text-decoration:line-through;">Rs 250</span>
+            <i class="ri-arrow-right-line" style="font-size:12px;color:#CCC;"></i>
+            <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 175</span>
+            <span style="margin-left:auto;font-size:9px;font-weight:800;color:#C07000;">Today only</span>
+          </div>
+          <div style="display:flex;gap:7px;">
+            <div data-go="s53" style="flex:1;text-align:center;padding:8px;background:#F2EEFB;color:#3A1E6E;font-size:11px;font-weight:800;border-radius:10px;cursor:pointer;">View slots</div>
+            <div style="flex:1;text-align:center;padding:8px;background:#FFF0F0;color:#C62828;font-size:11px;font-weight:800;border-radius:10px;cursor:pointer;">End deal</div>
+          </div>
+        </div>
+
+        <!-- deal 2 — Off-peak 20% -->
+        <div style="background:#fff;border:1.5px solid #F0E2C0;border-radius:14px;padding:12px;margin-bottom:9px;box-shadow:0 2px 8px rgba(224,160,48,.1);">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:9px;">
+            <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;line-height:1;"><span style="font-size:14px;font-weight:900;color:#fff;">20%</span><span style="font-size:7px;font-weight:800;color:#FFF0D0;">OFF</span></div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:900;color:#1A0E2E;">🎯 Off-peak</div><div style="font-size:9px;color:#888;margin-top:1px;">PS5 console · 11:00 AM–1:00 PM · 4 slots</div></div>
+            <div class="toggle on" style="background:#E08A00;"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:#FFFBF2;border:1px solid #F0E2C0;border-radius:9px;padding:7px 10px;margin-bottom:8px;">
+            <span style="font-size:10px;color:#AAA;text-decoration:line-through;">Rs 250</span>
+            <i class="ri-arrow-right-line" style="font-size:12px;color:#CCC;"></i>
+            <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 200</span>
+            <span style="margin-left:auto;font-size:9px;font-weight:800;color:#C07000;">Recurring</span>
+          </div>
+          <div style="display:flex;gap:7px;">
+            <div data-go="s54" style="flex:1;text-align:center;padding:8px;background:#F2EEFB;color:#3A1E6E;font-size:11px;font-weight:800;border-radius:10px;cursor:pointer;">View slots</div>
+            <div style="flex:1;text-align:center;padding:8px;background:#FFF0F0;color:#C62828;font-size:11px;font-weight:800;border-radius:10px;cursor:pointer;">End deal</div>
+          </div>
+        </div>
+
+        <!-- deal 3 — Flash Deal 15% -->
+        <div style="background:#fff;border:1.5px solid #F0E2C0;border-radius:14px;padding:12px;margin-bottom:12px;box-shadow:0 2px 8px rgba(224,160,48,.1);">
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:9px;">
+            <div style="width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;line-height:1;"><span style="font-size:14px;font-weight:900;color:#fff;">15%</span><span style="font-size:7px;font-weight:800;color:#FFF0D0;">OFF</span></div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:900;color:#1A0E2E;">🔥 Flash Deal</div><div style="font-size:9px;color:#888;margin-top:1px;">All free PCs · 9:00–10:30 PM · 8 slots</div></div>
+            <div class="toggle on" style="background:#E08A00;"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:#FFFBF2;border:1px solid #F0E2C0;border-radius:9px;padding:7px 10px;margin-bottom:8px;">
+            <span style="font-size:10px;color:#AAA;text-decoration:line-through;">Rs 250</span>
+            <i class="ri-arrow-right-line" style="font-size:12px;color:#CCC;"></i>
+            <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 213</span>
+            <span style="margin-left:auto;font-size:9px;font-weight:800;color:#C07000;">Today only</span>
+          </div>
+          <div style="display:flex;gap:7px;">
+            <div data-go="s53" style="flex:1;text-align:center;padding:8px;background:#F2EEFB;color:#3A1E6E;font-size:11px;font-weight:800;border-radius:10px;cursor:pointer;">View slots</div>
+            <div style="flex:1;text-align:center;padding:8px;background:#FFF0F0;color:#C62828;font-size:11px;font-weight:800;border-radius:10px;cursor:pointer;">End deal</div>
+          </div>
+        </div>
+
+        <div style="background:#F4F0FB;border:1.5px dashed #C8B4F0;border-radius:13px;padding:11px;display:flex;align-items:center;gap:9px;">
+          <i class="ri-information-line" style="font-size:16px;color:#7A5BB0;"></i>
+          <div style="font-size:10px;color:#6A4BA0;font-weight:600;line-height:1.4;">To add a new discount, open <b>Schedule</b>, select free slots, then tap <b>🏷️ Offer discount</b>.</div>
+        </div>
+        <div data-go="s53" style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:7px;background:linear-gradient(135deg,#E08A00,#F4B400);border-radius:12px;padding:12px;cursor:pointer;box-shadow:0 4px 12px rgba(224,138,0,.28);"><i class="ri-add-line" style="font-size:17px;color:#fff;"></i><span style="font-size:13px;font-weight:900;color:#fff;">Create a discount in Schedule</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="col" id="s52">
   <div class="page-label">52 · Register — Step 1/5 · Zone Profile</div>
   <div class="phone">
@@ -8430,6 +8539,54 @@
 
       </div>
 
+
+      <!-- s53 discount bottom sheet -->
+      <div class="sm-bg" id="s53-disc-sheet" style="display:none;">
+        <div class="sm-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div>
+              <div style="font-size:15px;font-weight:900;color:#111;">🏷️ Offer Discount</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;"><span class="s53-disc-n">0</span> slot(s) selected · Nexus Gaming Lounge</div>
+            </div>
+            <div class="s53-disc-x" style="width:28px;height:28px;border-radius:9px;background:#F3F3F3;display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;cursor:pointer;">✕</div>
+          </div>
+          <div style="height:1px;background:#F0F0F0;margin-bottom:12px;"></div>
+          <div style="font-size:9px;font-weight:800;color:#CCC;letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;">Discount Amount</div>
+          <div style="display:flex;align-items:center;gap:10px;background:#FFFBF2;border:1.5px solid #F0E2C0;border-radius:12px;padding:11px 13px;margin-bottom:11px;">
+            <div style="display:flex;align-items:center;gap:5px;">
+              <input class="s53-disc-pct" type="number" min="1" max="80" value="20" style="border:1.5px solid #E0A030;border-radius:9px;padding:6px 8px;font-size:18px;font-weight:900;color:#C07000;width:54px;text-align:center;background:#fff;font-family:inherit;outline:none;">
+              <span style="font-size:14px;font-weight:800;color:#666;">%</span>
+            </div>
+            <i class="ri-arrow-right-line" style="font-size:15px;color:#CCC;"></i>
+            <div style="flex:1;">
+              <div style="font-size:9px;color:#AAA;margin-bottom:1px;">e.g. a Rs 250 slot becomes</div>
+              <span style="font-size:11px;color:#CCC;text-decoration:line-through;margin-right:4px;">Rs 250</span>
+              <span class="s53-disc-new" style="font-size:17px;font-weight:900;color:#1A6030;">Rs 200</span>
+            </div>
+          </div>
+          <div style="font-size:9px;font-weight:800;color:#CCC;letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;">Label (shown to players)</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px;">
+            <div class="s53-disc-tag s53-tag-on" style="font-size:10px;font-weight:800;padding:6px 11px;border-radius:20px;background:#3A1E6E;color:#fff;cursor:pointer;">⚡ Happy Hour</div>
+            <div class="s53-disc-tag" style="font-size:10px;font-weight:700;padding:6px 11px;border-radius:20px;background:#F2EEFB;color:#7A5BB0;border:1.5px solid #E0D4F5;cursor:pointer;">🎯 Off-peak</div>
+            <div class="s53-disc-tag" style="font-size:10px;font-weight:700;padding:6px 11px;border-radius:20px;background:#F2EEFB;color:#7A5BB0;border:1.5px solid #E0D4F5;cursor:pointer;">🔥 Flash Deal</div>
+            <div class="s53-disc-tag" style="font-size:10px;font-weight:700;padding:6px 11px;border-radius:20px;background:#F2EEFB;color:#7A5BB0;border:1.5px solid #E0D4F5;cursor:pointer;">🎓 Student</div>
+          </div>
+          <div style="display:flex;gap:9px;">
+            <div class="s53-disc-x" style="flex:1;text-align:center;padding:12px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border-radius:13px;cursor:pointer;">Cancel</div>
+            <div class="s53-disc-apply" style="flex:2;text-align:center;padding:12px;background:linear-gradient(135deg,#E08A00,#F4B400);color:#fff;font-size:13px;font-weight:900;border-radius:13px;cursor:pointer;">Apply Discount →</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Discount action bar (disc mode, slots picked) -->
+      <div id="s53-discbar" style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #F0E2C0;box-shadow:0 -4px 16px rgba(224,138,0,.12);display:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
+          <div><div style="font-size:9px;color:#AAA;font-weight:700;">TO DISCOUNT</div><div id="s53-discsum" style="font-size:13px;font-weight:900;color:#C07000;">0 slots</div></div>
+          <div data-disc-clear="s53" style="font-size:10px;font-weight:800;color:#999;cursor:pointer;">Clear</div>
+        </div>
+        <button data-disc-open="s53" style="width:100%;padding:12px;background:linear-gradient(135deg,#E08A00,#F4B400);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">🏷️ Offer discount on these →</button>
+      </div>
+
       <!-- Multi-slot selection bar (hidden until slots picked) -->
       <div id="s53-selbar" style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.08);display:none;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
@@ -8528,6 +8685,54 @@
           <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:00p</div><div class="sg-pr">300</div></div>
           <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:30p</div><div class="sg-pr">300</div></div>
         </div>
+      </div>
+
+
+      <!-- s54 discount bottom sheet -->
+      <div class="sm-bg" id="s54-disc-sheet" style="display:none;">
+        <div class="sm-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div>
+              <div style="font-size:15px;font-weight:900;color:#111;">🏷️ Offer Discount</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;"><span class="s54-disc-n">0</span> slot(s) selected · Console Stations</div>
+            </div>
+            <div class="s54-disc-x" style="width:28px;height:28px;border-radius:9px;background:#F3F3F3;display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;cursor:pointer;">✕</div>
+          </div>
+          <div style="height:1px;background:#F0F0F0;margin-bottom:12px;"></div>
+          <div style="font-size:9px;font-weight:800;color:#CCC;letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;">Discount Amount</div>
+          <div style="display:flex;align-items:center;gap:10px;background:#FFFBF2;border:1.5px solid #F0E2C0;border-radius:12px;padding:11px 13px;margin-bottom:11px;">
+            <div style="display:flex;align-items:center;gap:5px;">
+              <input class="s54-disc-pct" type="number" min="1" max="80" value="20" style="border:1.5px solid #E0A030;border-radius:9px;padding:6px 8px;font-size:18px;font-weight:900;color:#C07000;width:54px;text-align:center;background:#fff;font-family:inherit;outline:none;">
+              <span style="font-size:14px;font-weight:800;color:#666;">%</span>
+            </div>
+            <i class="ri-arrow-right-line" style="font-size:15px;color:#CCC;"></i>
+            <div style="flex:1;">
+              <div style="font-size:9px;color:#AAA;margin-bottom:1px;">e.g. a Rs 250 slot becomes</div>
+              <span style="font-size:11px;color:#CCC;text-decoration:line-through;margin-right:4px;">Rs 250</span>
+              <span class="s54-disc-new" style="font-size:17px;font-weight:900;color:#1A6030;">Rs 200</span>
+            </div>
+          </div>
+          <div style="font-size:9px;font-weight:800;color:#CCC;letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;">Label (shown to players)</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px;">
+            <div class="s54-disc-tag s54-tag-on" style="font-size:10px;font-weight:800;padding:6px 11px;border-radius:20px;background:#3A1E6E;color:#fff;cursor:pointer;">⚡ Happy Hour</div>
+            <div class="s54-disc-tag" style="font-size:10px;font-weight:700;padding:6px 11px;border-radius:20px;background:#F2EEFB;color:#7A5BB0;border:1.5px solid #E0D4F5;cursor:pointer;">🎯 Off-peak</div>
+            <div class="s54-disc-tag" style="font-size:10px;font-weight:700;padding:6px 11px;border-radius:20px;background:#F2EEFB;color:#7A5BB0;border:1.5px solid #E0D4F5;cursor:pointer;">🔥 Flash Deal</div>
+            <div class="s54-disc-tag" style="font-size:10px;font-weight:700;padding:6px 11px;border-radius:20px;background:#F2EEFB;color:#7A5BB0;border:1.5px solid #E0D4F5;cursor:pointer;">🎓 Student</div>
+          </div>
+          <div style="display:flex;gap:9px;">
+            <div class="s54-disc-x" style="flex:1;text-align:center;padding:12px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border-radius:13px;cursor:pointer;">Cancel</div>
+            <div class="s54-disc-apply" style="flex:2;text-align:center;padding:12px;background:linear-gradient(135deg,#E08A00,#F4B400);color:#fff;font-size:13px;font-weight:900;border-radius:13px;cursor:pointer;">Apply Discount →</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Discount action bar -->
+      <div id="s54-discbar" style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #F0E2C0;box-shadow:0 -4px 16px rgba(224,138,0,.12);display:none;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;">
+          <div><div style="font-size:9px;color:#AAA;font-weight:700;">TO DISCOUNT</div><div id="s54-discsum" style="font-size:13px;font-weight:900;color:#C07000;">0 slots</div></div>
+          <div data-disc-clear="s54" style="font-size:10px;font-weight:800;color:#999;cursor:pointer;">Clear</div>
+        </div>
+        <button data-disc-open="s54" style="width:100%;padding:12px;background:linear-gradient(135deg,#E08A00,#F4B400);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;">🏷️ Offer discount on these →</button>
       </div>
 
       <!-- Multi-slot selection bar -->
@@ -10310,9 +10515,13 @@
             cell.classList.toggle('sg-blk'); recalc(); return;
           }
           if (mode === 'disc') {
-            if (!cell.classList.contains('sg-avail')) return;
+            if (!cell.classList.contains('sg-avail')) return;        // only free slots
+            if (cell.classList.contains('sg-disc')) {                // tap an existing deal to clear it
+              gzClearDiscount(cell); gzSyncDiscBar(scope); return;
+            }
             cell.classList.remove('sg-blk');
-            cell.classList.toggle('sg-disc'); return;
+            cell.classList.toggle('sg-gzdsel');
+            gzSyncDiscBar(scope); return;
           }
           // book mode
           if (!cell.classList.contains('sg-avail')) return; // only free slots selectable
@@ -10330,7 +10539,12 @@
         gzSchedMode[scope] = mode;
         document.querySelectorAll('.gz-sched-mode[data-scope="' + scope + '"]').forEach(function (p) { p.classList.toggle('qv-mode-on', p === pill); });
         var hint = document.getElementById(scope + '-mode-hint');
-        if (hint) hint.textContent = mode === 'block' ? 'Tap free slots to block them (walk-ins / maintenance).' : (mode === 'disc' ? 'Tap free slots to mark them discounted.' : 'Tap free slots to book them.');
+        if (hint) hint.textContent = mode === 'block' ? 'Tap free slots to block them (walk-ins / maintenance).' : (mode === 'disc' ? 'Tap free slots, then “Offer discount”.' : 'Tap free slots to book them.');
+        // leaving a mode clears its in-progress picks so bars don't collide
+        gzClearScreen(scope, scope + '-selbar');
+        var root0 = document.getElementById(scope);
+        if (root0) root0.querySelectorAll('.sg-gzdsel').forEach(function (c) { c.classList.remove('sg-gzdsel'); });
+        gzSyncDiscBar(scope);
       });
     });
 
@@ -10434,6 +10648,104 @@
       var sb = document.getElementById(selbarId);
       if (sb) sb.style.display = 'none';
     }
+
+    // ── Schedule discounts: gold-select free slots, open sheet, paint creative discounted slots ──
+    function gzParsePr(txt) {
+      txt = (txt || '').trim().toLowerCase();
+      if (txt.indexOf('k') !== -1) return Math.round((parseFloat(txt) || 0) * 1000);
+      return parseInt(txt.replace(/[^0-9]/g, ''), 10) || 0;
+    }
+    function gzClearDiscount(cell) {
+      cell.classList.remove('sg-disc');
+      var rib = cell.querySelector('.sg-ribbon'); if (rib) rib.remove();
+      var on = cell.querySelector('.sg-price-old'), nw = cell.querySelector('.sg-price-new');
+      if (on) on.remove(); if (nw) nw.remove();
+      var pr = cell.querySelector('.sg-pr'); if (pr) pr.style.display = '';
+    }
+    function gzSyncDiscBar(scope) {
+      var root = document.getElementById(scope); if (!root) return;
+      var bar = document.getElementById(scope + '-discbar');
+      var n = root.querySelectorAll('.sg-gzdsel').length;
+      var sum = document.getElementById(scope + '-discsum');
+      if (sum) sum.textContent = n + (n === 1 ? ' slot' : ' slots');
+      if (bar) bar.style.display = n ? 'block' : 'none';
+    }
+    function gzDiscSelected(scope) {
+      var root = document.getElementById(scope);
+      return root ? root.querySelectorAll('.sg-gzdsel') : [];
+    }
+    // open / close / apply for each schedule scope
+    ['s53', 's54'].forEach(function (scope) {
+      var sheet = document.getElementById(scope + '-disc-sheet');
+      function close() { if (sheet) sheet.style.display = 'none'; }
+      function preview() {
+        if (!sheet) return;
+        var pct = Math.max(1, Math.min(80, parseInt(sheet.querySelector('.' + scope + '-disc-pct').value, 10) || 0));
+        var nw = sheet.querySelector('.' + scope + '-disc-new');
+        if (nw) nw.textContent = 'Rs ' + Math.round(250 * (1 - pct / 100));
+      }
+      // open from the discbar button
+      document.querySelectorAll('[data-disc-open="' + scope + '"]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!gzDiscSelected(scope).length || !sheet) return;
+          sheet.querySelector('.' + scope + '-disc-n').textContent = gzDiscSelected(scope).length;
+          preview();
+          sheet.style.display = 'flex';
+        });
+      });
+      // clear picks
+      document.querySelectorAll('[data-disc-clear="' + scope + '"]').forEach(function (c) {
+        c.addEventListener('click', function () {
+          gzDiscSelected(scope).forEach(function (cell) { cell.classList.remove('sg-gzdsel'); });
+          gzSyncDiscBar(scope);
+        });
+      });
+      if (sheet) {
+        sheet.querySelectorAll('.' + scope + '-disc-pct').forEach(function (i) { i.addEventListener('input', preview); });
+        sheet.querySelectorAll('.' + scope + '-disc-x').forEach(function (x) { x.addEventListener('click', close); });
+        // label chips (single select)
+        var tags = sheet.querySelectorAll('.' + scope + '-disc-tag');
+        tags.forEach(function (t) {
+          t.addEventListener('click', function () {
+            tags.forEach(function (o) {
+              var on = o === t;
+              o.classList.toggle(scope + '-tag-on', on);
+              o.style.background = on ? '#3A1E6E' : '#F2EEFB';
+              o.style.color = on ? '#fff' : '#7A5BB0';
+              o.style.border = on ? 'none' : '1.5px solid #E0D4F5';
+            });
+          });
+        });
+        // apply -> paint creative discounted slots
+        sheet.querySelectorAll('.' + scope + '-disc-apply').forEach(function (a) {
+          a.addEventListener('click', function () {
+            var pct = Math.max(1, Math.min(80, parseInt(sheet.querySelector('.' + scope + '-disc-pct').value, 10) || 0));
+            Array.prototype.slice.call(gzDiscSelected(scope)).forEach(function (cell) {
+              cell.classList.remove('sg-gzdsel', 'sg-blk');
+              cell.classList.add('sg-disc');
+              var pr = cell.querySelector('.sg-pr');
+              var base = pr ? gzParsePr(pr.textContent) : 0;
+              if (pr) pr.style.display = 'none';
+              // ribbon
+              if (!cell.querySelector('.sg-ribbon')) {
+                var rib = document.createElement('div'); rib.className = 'sg-ribbon';
+                rib.textContent = '-' + pct + '%'; cell.appendChild(rib);
+              } else { cell.querySelector('.sg-ribbon').textContent = '-' + pct + '%'; }
+              // struck old + new price
+              var oldEl = cell.querySelector('.sg-price-old');
+              if (!oldEl) { oldEl = document.createElement('div'); oldEl.className = 'sg-price-old'; cell.appendChild(oldEl); }
+              oldEl.textContent = 'Rs ' + base;
+              var newEl = cell.querySelector('.sg-price-new');
+              if (!newEl) { newEl = document.createElement('div'); newEl.className = 'sg-price-new'; cell.appendChild(newEl); }
+              newEl.textContent = 'Rs ' + Math.round(base * (1 - pct / 100));
+            });
+            close();
+            gzSyncDiscBar(scope);
+          });
+        });
+      }
+    });
+
     document.querySelectorAll('#s53 .gz-cub-sw, #s53 .gz-pc-sw').forEach(function (chip) {
       chip.addEventListener('click', function () { gzClearScreen('s53', 's53-selbar'); });
     });
