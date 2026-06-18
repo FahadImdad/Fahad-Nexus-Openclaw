@@ -10204,6 +10204,645 @@ function toggleAddon(el) {
 </div>
 </div>
 
+
+<div class="section-divider" style="--sd:#5A2EA0;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">🏆</div>
+  <div class="sd-label">Gaming Tournaments</div>
+  <div class="sd-num">Browse · Register · Bracket</div>
+  <div class="sd-line"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     GAMING ZONE TOURNAMENTS (player) — Browse → Detail → Register → Bracket → Standings
+════════════════════════════════════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">GZ Tournaments</p>
+<div class="phone">
+  <div class="screen active" style="background:var(--bg);">
+
+    <div class="trn-hero">
+      <div class="trn-hero-bg"></div>
+      <h1>Tournaments 🏆</h1>
+      <p>🔥 48 active · 12 registrations open</p>
+      <div class="search-bar">
+        <span class="s-icon">🔍</span>
+        <input placeholder="Search tournaments, sports…" readonly>
+        <button class="filter-btn">⚙️</button>
+      </div>
+    </div>
+
+    <!-- Status tabs -->
+    <div class="trn-tabs">
+      <div class="trn-tab active" onclick="switchTrnTab(this)">All</div>
+      <div class="trn-tab" onclick="switchTrnTab(this)">🔓 Open</div>
+      <div class="trn-tab" onclick="switchTrnTab(this)">🔴 Live</div>
+      <div class="trn-tab" onclick="switchTrnTab(this)">✅ Completed</div>
+      <div class="trn-tab" onclick="switchTrnTab(this)">🎮 Valorant</div>
+      <div class="trn-tab" onclick="switchTrnTab(this)">🎮 Tekken</div>
+    </div>
+
+    <div class="scroll-view" style="padding:0 16px 16px;">
+
+      <!-- Card 1 — Live -->
+      <div class="trn-card anim-fade-up d1">
+        <div class="trn-banner" style="background:linear-gradient(135deg,#1A0E2E,#5A2EA0);">
+          <span>🎮</span>
+          <div class="trn-banner-overlay"></div>
+          <div class="trn-banner-sport">🎮 Valorant · 7-a-side</div>
+          <div class="trn-banner-status" style="background:#FF3A3A;color:#fff;">🔴 LIVE</div>
+          <div class="trn-banner-teams">👥 16/16 teams</div>
+        </div>
+        <div class="trn-body">
+          <div class="trn-name">National Valorant Championship 2026</div>
+          <div class="trn-meta">
+            <span class="trn-meta-item">📍 Karachi</span>
+            <span class="trn-meta-item">📅 7–15 May</span>
+            <span class="trn-meta-item">👥 16 Teams</span>
+          </div>
+          <div class="trn-footer">
+            <div class="prize-badge">🏆 Rs 50,000 Prize</div>
+            <button class="trn-join-btn full">Ongoing</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 — Open -->
+      <div class="trn-card anim-fade-up d2">
+        <div class="trn-banner" style="background:linear-gradient(135deg,#2A1550,#5A2EA0);">
+          <span>🎯</span>
+          <div class="trn-banner-overlay"></div>
+          <div class="trn-banner-sport">🎮 Tekken · T20</div>
+          <div class="trn-banner-status" style="background:var(--green-bg);color:var(--green);">🟢 Open</div>
+          <div class="trn-banner-teams">👥 6/8 teams</div>
+        </div>
+        <div class="trn-body">
+          <div class="trn-name">Karachi Premier T20 League</div>
+          <div class="trn-meta">
+            <span class="trn-meta-item">📍 Karachi</span>
+            <span class="trn-meta-item">📅 20–30 May</span>
+            <span class="trn-meta-item">⏰ Reg closes 17 May</span>
+          </div>
+          <div class="trn-footer">
+            <div class="prize-badge">🏆 Rs 75,000 Prize</div>
+            <button class="trn-join-btn">Register →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 — Open -->
+      <div class="trn-card anim-fade-up d3">
+        <div class="trn-banner" style="background:linear-gradient(135deg,#501A1A,#B03020);">
+          <span>🥊</span>
+          <div class="trn-banner-overlay"></div>
+          <div class="trn-banner-sport">🥊 Boxing · Amateur</div>
+          <div class="trn-banner-status" style="background:var(--green-bg);color:var(--green);">🟢 Open</div>
+          <div class="trn-banner-teams">👤 12/32 players</div>
+        </div>
+        <div class="trn-body">
+          <div class="trn-name">KHI Open Boxing Championship</div>
+          <div class="trn-meta">
+            <span class="trn-meta-item">📍 Defence, Karachi</span>
+            <span class="trn-meta-item">📅 1 Jun</span>
+          </div>
+          <div class="trn-footer">
+            <div class="prize-badge">🏆 Rs 30,000 Prize</div>
+            <button class="trn-join-btn">Register →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bottom-nav">
+      <div class="nav-item"><div class="nav-icon">🏠</div><div class="nav-label">Home</div></div>
+      <div class="nav-item"><div class="nav-icon">🏟️</div><div class="nav-label">Gaming Zones</div></div>
+      <div class="nav-item active"><div class="nav-icon">🏆</div><div class="nav-label">Events</div><div class="nav-dot"></div></div>
+      <div class="nav-item"><div class="nav-icon">💬</div><div class="nav-label">Chat</div></div>
+      <div class="nav-item"><div class="nav-icon">👤</div><div class="nav-label">Profile</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ 2. TOURNAMENT DETAIL ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">GZ T. Detail</p>
+<div class="phone">
+  <div class="screen active" style="background:var(--bg);">
+
+    <!-- Hero -->
+    <div class="trn-detail-hero">
+      <span>🎯</span>
+      <button class="back-btn">←</button>
+      <button class="share-btn">↗</button>
+      <!-- Countdown -->
+      <div style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.5);backdrop-filter:blur(6px);border-radius:99px;padding:6px 16px;color:#fff;font-size:12px;font-weight:700;">
+        ⏰ Reg closes in 3d 14h 22m
+      </div>
+    </div>
+
+    <!-- Info band -->
+    <div class="trn-info-band">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;">
+        <div>
+          <div style="display:flex;gap:6px;margin-bottom:6px;">
+            <span class="tag tag-blue">🎮 Tekken T20</span>
+            <span class="tag tag-green">🟢 Open</span>
+          </div>
+          <h2>Karachi Premier T20 League</h2>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:11px;color:var(--text3);font-weight:600;">Prize Pool</div>
+          <div style="font-size:18px;font-weight:900;color:var(--gold);">Rs 75,000</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;font-size:12px;color:var(--text2);margin-bottom:12px;">
+        <span>📍 Karachi</span><span>📅 20–30 May 2026</span><span>👥 6/8 Teams</span>
+      </div>
+      <div class="trn-stats-row">
+        <div class="trn-stat"><div class="sv">8</div><div class="sl">Max Teams</div></div>
+        <div class="trn-stat"><div class="sv">6</div><div class="sl">Joined</div></div>
+        <div class="trn-stat"><div class="sv">2</div><div class="sl">Slots Left</div></div>
+        <div class="trn-stat"><div class="sv">T20</div><div class="sl">Format</div></div>
+      </div>
+    </div>
+
+    <div class="scroll-view" style="padding:16px 18px;">
+
+      <!-- Prizes -->
+      <div class="card" style="padding:14px;margin-bottom:14px;">
+        <div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:12px;">🏆 Prize Distribution</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--gold-bg);border-radius:10px;border:1px solid #F0C860;">
+            <span style="font-size:22px;">🥇</span>
+            <span style="font-size:14px;font-weight:800;color:var(--text);flex:1;">1st Place</span>
+            <span style="font-size:15px;font-weight:900;color:var(--gold);">Rs 50,000</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);">
+            <span style="font-size:22px;">🥈</span>
+            <span style="font-size:14px;font-weight:800;color:var(--text);flex:1;">2nd Place</span>
+            <span style="font-size:15px;font-weight:900;color:#8A9AAA;">Rs 20,000</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--orange-bg);border-radius:10px;border:1px solid #F0C090;">
+            <span style="font-size:22px;">🥉</span>
+            <span style="font-size:14px;font-weight:800;color:var(--text);flex:1;">3rd Place</span>
+            <span style="font-size:15px;font-weight:900;color:var(--orange);">Rs 5,000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rules -->
+      <div class="card" style="padding:14px;margin-bottom:14px;">
+        <div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:10px;">📋 Rules & Format</div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="display:flex;gap:8px;font-size:13px;color:var(--text2);">✅<span>T20 format, 8 teams, knockout + group stage</span></div>
+          <div style="display:flex;gap:8px;font-size:13px;color:var(--text2);">✅<span>Each team: 11 players + 4 substitutes</span></div>
+          <div style="display:flex;gap:8px;font-size:13px;color:var(--text2);">✅<span>CNIC required for all players on match day</span></div>
+          <div style="display:flex;gap:8px;font-size:13px;color:var(--text2);">✅<span>Registration fee: Rs 5,000 per team</span></div>
+        </div>
+      </div>
+
+      <!-- Registered teams -->
+      <div class="card" style="padding:14px;margin-bottom:14px;">
+        <div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:12px;">👥 Registered Teams (6/8)</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:var(--green-bg);display:flex;align-items:center;justify-content:center;font-size:18px;">🦅</div>
+            <span style="font-size:13px;font-weight:700;color:var(--text);">KHI Eagles</span>
+            <span class="tag tag-green" style="margin-left:auto;font-size:10px;">Confirmed</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:var(--blue-bg);display:flex;align-items:center;justify-content:center;font-size:18px;">⚡</div>
+            <span style="font-size:13px;font-weight:700;color:var(--text);">Thunder Strikers</span>
+            <span class="tag tag-green" style="margin-left:auto;font-size:10px;">Confirmed</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:var(--red-bg);display:flex;align-items:center;justify-content:center;font-size:18px;">🔥</div>
+            <span style="font-size:13px;font-weight:700;color:var(--text);">Blazing Bulls</span>
+            <span class="tag tag-green" style="margin-left:auto;font-size:10px;">Confirmed</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;opacity:.4;">
+            <div style="width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1.5px dashed var(--border2);display:flex;align-items:center;justify-content:center;font-size:18px;">+</div>
+            <span style="font-size:13px;font-weight:600;color:var(--text3);">2 slots remaining</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary" style="margin-bottom:4px;">Register Your Team →</button>
+      <div style="text-align:center;padding-top:8px;">
+        <button class="btn-ghost">📤 Share Tournament</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ 3. REGISTER TEAM ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">GZ Register</p>
+<div class="phone">
+  <div class="status-bar"><span>9:41</span><div class="notch"></div><div class="status-icons">▲▲▲ 🔋</div></div>
+  <div class="screen active" style="background:var(--bg);">
+    <div class="top-nav"><div class="back-btn">←</div><h2>Register Team</h2></div>
+
+    <!-- Progress -->
+    <div style="padding:10px 18px 0;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+        <span style="font-size:12px;color:var(--text2);font-weight:600;">Step 2 of 3 — Team Details</span>
+        <span style="font-size:12px;color:var(--green);font-weight:700;">66%</span>
+      </div>
+      <div class="progress-bar" style="margin:0 0 12px;">
+        <div class="progress-fill" style="width:66%"></div>
+      </div>
+    </div>
+
+    <div class="scroll-view" style="padding:16px 18px 24px;">
+
+      <!-- Tournament badge -->
+      <div style="display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 14px;margin-bottom:16px;" class="anim-fade-up">
+        <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#2A1550,#5A2EA0);display:flex;align-items:center;justify-content:center;font-size:22px;">🎯</div>
+        <div>
+          <div style="font-size:13px;font-weight:800;color:var(--text);">Karachi Premier T20 League</div>
+          <div style="font-size:11px;color:var(--text2);">📅 20–30 May · Entry fee: Rs 5,000</div>
+        </div>
+      </div>
+
+      <!-- Team details -->
+      <div class="reg-section anim-fade-up d1">
+        <h4>Team Information</h4>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="input-group">
+            <div class="input-label">Team Name</div>
+            <div class="input-wrap"><span class="input-icon">🦅</span><input class="input-field" value="KHI Eagles FC"></div>
+          </div>
+          <div class="input-group">
+            <div class="input-label">Captain Name</div>
+            <div class="input-wrap"><span class="input-icon">👤</span><input class="input-field" placeholder="Ahmed Khan"></div>
+          </div>
+          <div class="input-group">
+            <div class="input-label">Captain Phone</div>
+            <div class="input-wrap"><span class="input-icon">📱</span><input class="input-field" type="tel" placeholder="+92 300 0000000"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Players -->
+      <div class="reg-section anim-fade-up d2">
+        <h4>Players (11 required)</h4>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--green-bg);border-radius:10px;border:1px solid var(--green);">
+            <div class="avatar" style="width:34px;height:34px;font-size:13px;">AK</div>
+            <div style="flex:1;">
+              <div style="font-size:13px;font-weight:800;color:var(--text);">Ahmed Khan</div>
+              <div style="font-size:11px;color:var(--text2);">Captain · Batsman</div>
+            </div>
+            <span class="tag tag-green" style="font-size:10px;">✓</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);">
+            <div class="avatar" style="width:34px;height:34px;font-size:13px;">SM</div>
+            <div style="flex:1;">
+              <div style="font-size:13px;font-weight:800;color:var(--text);">Sarmad Mirza</div>
+              <div style="font-size:11px;color:var(--text2);">Bowler</div>
+            </div>
+            <span class="tag tag-green" style="font-size:10px;">✓</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);">
+            <div class="avatar" style="width:34px;height:34px;font-size:13px;">ZA</div>
+            <div style="flex:1;">
+              <div style="font-size:13px;font-weight:800;color:var(--text);">Zaid Ansari</div>
+              <div style="font-size:11px;color:var(--text2);">All-Rounder</div>
+            </div>
+            <span class="tag tag-green" style="font-size:10px;">✓</span>
+          </div>
+          <button style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px;border-radius:12px;background:var(--surface2);border:1.5px dashed var(--border2);font-size:13px;font-weight:700;color:var(--green);cursor:pointer;">
+            ＋ Add Player (8 more needed)
+          </button>
+        </div>
+      </div>
+
+      <!-- Fee payment -->
+      <div class="reg-section anim-fade-up d3">
+        <h4>Registration Fee</h4>
+        <div style="background:var(--gold-bg);border:1px solid #F0C860;border-radius:12px;padding:12px;text-align:center;margin-bottom:12px;">
+          <div style="font-size:12px;color:var(--gold);font-weight:700;margin-bottom:4px;">ENTRY FEE</div>
+          <div style="font-size:28px;font-weight:900;color:var(--gold);">Rs 5,000</div>
+        </div>
+        <div class="payment-opts" style="gap:8px;">
+          <div class="pay-opt selected" onclick="selectPay(this)">
+            <div class="pay-icon" style="background:#00B050;color:#fff;width:34px;height:34px;border-radius:10px;font-size:14px;font-weight:900;">EP</div>
+            <div><div class="pay-name" style="font-size:13px;">Easypaisa</div></div>
+            <div class="pay-radio"></div>
+          </div>
+          <div class="pay-opt" onclick="selectPay(this)">
+            <div class="pay-icon" style="background:#E30000;color:#fff;width:34px;height:34px;border-radius:10px;font-size:14px;font-weight:900;">JC</div>
+            <div><div class="pay-name" style="font-size:13px;">JazzCash</div></div>
+            <div class="pay-radio"></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-primary anim-fade-up d4">Submit Registration →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ 4. BRACKET / LIVE ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">GZ Bracket</p>
+<div class="phone">
+  <div class="status-bar"><span>9:41</span><div class="notch"></div><div class="status-icons">▲▲▲ 🔋</div></div>
+  <div class="screen active" style="background:var(--bg);">
+    <div class="top-nav"><div class="back-btn">←</div><h2>Live Bracket</h2>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:4px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;animation:pulse 1.2s infinite;"></span>
+        <span style="font-size:12px;font-weight:800;color:var(--red);">LIVE</span>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div style="background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;">
+      <div class="tabs-bar" style="border:none;">
+        <div class="tab-item active" onclick="switchTab(this)">Bracket</div>
+        <div class="tab-item" onclick="switchTab(this)">Standings</div>
+        <div class="tab-item" onclick="switchTab(this)">Schedule</div>
+      </div>
+    </div>
+
+    <div class="scroll-view" style="padding:14px 16px;">
+      <!-- Round label -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <div style="font-size:14px;font-weight:800;color:var(--text);">National Valorant Championship</div>
+        <span class="tag tag-red">Semi-Finals</span>
+      </div>
+
+      <div class="bracket-wrap" style="padding:0;">
+        <div class="bracket-round-label">🏆 Semi-Final 1</div>
+        <div class="bracket-col">
+          <div class="bracket-match">
+            <div class="bracket-team winner">
+              <div class="bt-logo">🦅</div>
+              <div class="bt-name">KHI Eagles</div>
+              <div class="bt-score">3</div>
+            </div>
+            <div class="bracket-team">
+              <div class="bt-logo">⚡</div>
+              <div class="bt-name">Thunder FC</div>
+              <div class="bt-score">1</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bracket-round-label">🏆 Semi-Final 2</div>
+        <div class="bracket-col">
+          <div class="bracket-match">
+            <div class="bracket-team" style="border-bottom:1px solid var(--border);">
+              <div class="bt-logo">🔥</div>
+              <div class="bt-name">Blazing Bulls</div>
+              <div class="bt-score" style="color:var(--text3);">1</div>
+            </div>
+            <div class="bracket-team winner">
+              <div class="bt-logo">🌊</div>
+              <div class="bt-name">Sea Hawks</div>
+              <div class="bt-score">2</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bracket-round-label" style="color:var(--gold);">🥇 FINAL — 15 May, 5:00 PM</div>
+        <div class="bracket-col">
+          <div class="bracket-match" style="border:2px solid var(--gold);border-radius:14px;">
+            <div class="bracket-team" style="border-bottom:1px solid var(--border);background:var(--gold-bg);">
+              <div class="bt-logo">🦅</div>
+              <div class="bt-name" style="color:var(--gold);">KHI Eagles</div>
+              <div class="bt-score" style="color:var(--text3);">—</div>
+            </div>
+            <div class="bracket-team" style="background:var(--gold-bg);">
+              <div class="bt-logo">🌊</div>
+              <div class="bt-name" style="color:var(--gold);">Sea Hawks</div>
+              <div class="bt-score" style="color:var(--text3);">—</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quarter results -->
+        <div class="bracket-round-label" style="margin-top:6px;">Quarter-Finals (Completed)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="bracket-match">
+            <div class="bracket-team winner" style="padding:7px 10px;"><div class="bt-logo" style="width:22px;height:22px;border-radius:6px;">🦅</div><div class="bt-name" style="font-size:11px;">KHI Eagles</div><div class="bt-score" style="font-size:12px;">2</div></div>
+            <div class="bracket-team" style="padding:7px 10px;border-top:1px solid var(--border);"><div class="bt-logo" style="width:22px;height:22px;border-radius:6px;">🐯</div><div class="bt-name" style="font-size:11px;">City Tigers</div><div class="bt-score" style="font-size:12px;">0</div></div>
+          </div>
+          <div class="bracket-match">
+            <div class="bracket-team winner" style="padding:7px 10px;"><div class="bt-logo" style="width:22px;height:22px;border-radius:6px;">⚡</div><div class="bt-name" style="font-size:11px;">Thunder FC</div><div class="bt-score" style="font-size:12px;">3</div></div>
+            <div class="bracket-team" style="padding:7px 10px;border-top:1px solid var(--border);"><div class="bt-logo" style="width:22px;height:22px;border-radius:6px;">🐺</div><div class="bt-name" style="font-size:11px;">Wolves XI</div><div class="bt-score" style="font-size:12px;">1</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ 5. LEADERBOARD / STANDINGS ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">GZ Standings</p>
+<div class="phone">
+  <div class="status-bar"><span>9:41</span><div class="notch"></div><div class="status-icons">▲▲▲ 🔋</div></div>
+  <div class="screen active" style="background:var(--bg);">
+    <div class="top-nav"><div class="back-btn">←</div><h2>Standings</h2></div>
+
+    <!-- Podium -->
+    <div style="background:linear-gradient(135deg,#1A0E2E,#5A2EA0);padding:20px 18px 24px;flex-shrink:0;">
+      <div style="text-align:center;margin-bottom:16px;color:#fff;font-size:13px;font-weight:700;opacity:.8;">National Valorant Championship</div>
+      <div style="display:flex;align-items:flex-end;justify-content:center;gap:8px;">
+        <!-- 2nd -->
+        <div style="text-align:center;flex:1;">
+          <div style="width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 6px;">⚡</div>
+          <div style="font-size:11px;font-weight:800;color:#fff;">Thunder FC</div>
+          <div style="background:rgba(255,255,255,0.2);border-radius:8px 8px 0 0;height:56px;margin-top:8px;display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:22px;font-weight:900;color:rgba(255,255,255,0.7);">🥈</span>
+          </div>
+        </div>
+        <!-- 1st -->
+        <div style="text-align:center;flex:1;">
+          <div style="width:64px;height:64px;border-radius:50%;background:var(--gold-bg);border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 6px;box-shadow:0 0 20px rgba(212,134,10,.4);">🦅</div>
+          <div style="font-size:12px;font-weight:900;color:#fff;">KHI Eagles</div>
+          <div style="background:rgba(212,134,10,0.4);border-radius:8px 8px 0 0;height:72px;margin-top:8px;display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:28px;">🥇</span>
+          </div>
+        </div>
+        <!-- 3rd -->
+        <div style="text-align:center;flex:1;">
+          <div style="width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.25);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 6px;">🌊</div>
+          <div style="font-size:11px;font-weight:800;color:#fff;">Sea Hawks</div>
+          <div style="background:rgba(255,255,255,0.12);border-radius:8px 8px 0 0;height:44px;margin-top:8px;display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:20px;">🥉</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-view" style="padding:14px 16px;">
+      <div class="lb-row anim-fade-up d1">
+        <div class="lb-rank gold">🥇</div>
+        <div class="avatar" style="width:36px;height:36px;font-size:16px;">🦅</div>
+        <div class="lb-name">KHI Eagles</div>
+        <div style="text-align:right;"><div class="lb-pts">18 pts</div><div style="font-size:11px;color:var(--text3);">W6 D0 L0</div></div>
+      </div>
+      <div class="lb-row anim-fade-up d2">
+        <div class="lb-rank silver">🥈</div>
+        <div class="avatar" style="width:36px;height:36px;font-size:16px;">⚡</div>
+        <div class="lb-name">Thunder FC</div>
+        <div style="text-align:right;"><div class="lb-pts">15 pts</div><div style="font-size:11px;color:var(--text3);">W5 D0 L1</div></div>
+      </div>
+      <div class="lb-row anim-fade-up d3">
+        <div class="lb-rank bronze">🥉</div>
+        <div class="avatar" style="width:36px;height:36px;font-size:16px;">🌊</div>
+        <div class="lb-name">Sea Hawks</div>
+        <div style="text-align:right;"><div class="lb-pts">12 pts</div><div style="font-size:11px;color:var(--text3);">W4 D0 L2</div></div>
+      </div>
+      <div class="lb-row anim-fade-up d4 me">
+        <div class="lb-rank" style="color:var(--green);font-weight:900;">4</div>
+        <div class="avatar" style="width:36px;height:36px;font-size:16px;">🔥</div>
+        <div class="lb-name" style="color:var(--green);">Blazing Bulls <span style="font-size:11px;background:var(--green);color:#fff;border-radius:99px;padding:2px 6px;margin-left:4px;">You</span></div>
+        <div style="text-align:right;"><div class="lb-pts">9 pts</div><div style="font-size:11px;color:var(--text3);">W3 D0 L3</div></div>
+      </div>
+      <div class="lb-row anim-fade-up d5">
+        <div class="lb-rank" style="color:var(--text2);font-weight:900;">5</div>
+        <div class="avatar" style="width:36px;height:36px;font-size:16px;">🐯</div>
+        <div class="lb-name">City Tigers</div>
+        <div style="text-align:right;"><div class="lb-pts">6 pts</div><div style="font-size:11px;color:var(--text3);">W2 D0 L4</div></div>
+      </div>
+      <div class="lb-row anim-fade-up d6">
+        <div class="lb-rank" style="color:var(--text2);font-weight:900;">6</div>
+        <div class="avatar" style="width:36px;height:36px;font-size:16px;">🐺</div>
+        <div class="lb-name">Wolves XI</div>
+        <div style="text-align:right;"><div class="lb-pts">3 pts</div><div style="font-size:11px;color:var(--text3);">W1 D0 L5</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ 6. MY TOURNAMENTS ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">GZ My Tournaments</p>
+<div class="phone">
+  <div class="status-bar"><span>9:41</span><div class="notch"></div><div class="status-icons">▲▲▲ 🔋</div></div>
+  <div class="screen active" style="background:var(--bg);">
+    <div class="top-nav"><div class="back-btn">←</div><h2>My Tournaments</h2></div>
+
+    <div class="tabs-bar">
+      <div class="tab-item active" onclick="switchTab(this)">Active</div>
+      <div class="tab-item" onclick="switchTab(this)">Upcoming</div>
+      <div class="tab-item" onclick="switchTab(this)">Past</div>
+    </div>
+
+    <div class="scroll-view" style="padding:14px 16px;">
+
+      <!-- Active tournament -->
+      <div class="my-trn-card anim-fade-up d1">
+        <div style="height:8px;background:linear-gradient(90deg,var(--red),#FF6060);"></div>
+        <div class="my-trn-top">
+          <div class="my-trn-icon" style="background:linear-gradient(135deg,#1A0E2E,#5A2EA0);">🎮</div>
+          <div style="flex:1;">
+            <div style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:2px;">National Valorant Championship</div>
+            <div style="font-size:12px;color:var(--text2);">Team: Blazing Bulls · 4th place</div>
+          </div>
+          <span class="tag tag-red">🔴 Live</span>
+        </div>
+        <div style="padding:0 14px 12px;">
+          <div style="background:var(--surface2);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-around;border:1px solid var(--border);">
+            <div style="text-align:center;"><div style="font-size:16px;font-weight:900;color:var(--text);">3</div><div style="font-size:10px;color:var(--text3);">Wins</div></div>
+            <div style="text-align:center;"><div style="font-size:16px;font-weight:900;color:var(--red);">3</div><div style="font-size:10px;color:var(--text3);">Losses</div></div>
+            <div style="text-align:center;"><div style="font-size:16px;font-weight:900;color:var(--green);">9</div><div style="font-size:10px;color:var(--text3);">Points</div></div>
+            <div style="text-align:center;"><div style="font-size:16px;font-weight:900;color:var(--gold);">4th</div><div style="font-size:10px;color:var(--text3);">Rank</div></div>
+          </div>
+        </div>
+        <div class="my-trn-bottom">
+          <div style="font-size:12px;color:var(--text2);">🎯 Next match: Sea Hawks · 12 May</div>
+          <button style="font-size:12px;font-weight:800;color:var(--green);background:var(--green-bg);border:none;border-radius:8px;padding:5px 12px;cursor:pointer;">View →</button>
+        </div>
+      </div>
+
+      <!-- Upcoming registration -->
+      <div class="my-trn-card anim-fade-up d2">
+        <div style="height:8px;background:linear-gradient(90deg,var(--blue),#A88BFF);"></div>
+        <div class="my-trn-top">
+          <div class="my-trn-icon" style="background:linear-gradient(135deg,#2A1550,#5A2EA0);">🎯</div>
+          <div style="flex:1;">
+            <div style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:2px;">Karachi Premier T20 League</div>
+            <div style="font-size:12px;color:var(--text2);">Team: KHI Eagles · Registered</div>
+          </div>
+          <span class="tag tag-blue">Upcoming</span>
+        </div>
+        <div class="my-trn-bottom">
+          <div style="font-size:12px;color:var(--text2);">📅 Starts 20 May · Rs 75,000 prize</div>
+          <button style="font-size:12px;font-weight:800;color:var(--blue);background:var(--blue-bg);border:none;border-radius:8px;padding:5px 12px;cursor:pointer;">Details →</button>
+        </div>
+      </div>
+
+      <!-- Past -->
+      <div style="font-size:13px;font-weight:800;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin:8px 0 10px;">Past</div>
+
+      <div class="my-trn-card anim-fade-up d3">
+        <div class="my-trn-top">
+          <div class="my-trn-icon" style="background:var(--surface2);border:1px solid var(--border);">🕹️</div>
+          <div style="flex:1;">
+            <div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:2px;">DHA FIFA Cup 2025</div>
+            <div style="font-size:12px;color:var(--text2);">Finished 🥈 2nd Place</div>
+          </div>
+          <span class="tag tag-gold">🥈 Runner-Up</span>
+        </div>
+        <div class="my-trn-bottom">
+          <div style="font-size:12px;color:var(--text2);">📅 March 2026 · Won Rs 20,000</div>
+          <button style="font-size:12px;font-weight:800;color:var(--gold);background:var(--gold-bg);border:none;border-radius:8px;padding:5px 12px;cursor:pointer;">View →</button>
+        </div>
+      </div>
+
+      <!-- Stats card -->
+      <div style="background:var(--surface);border-radius:16px;border:1px solid var(--border);padding:16px;margin-top:4px;" class="anim-fade-up d4">
+        <div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:12px;">Your Tournament Stats</div>
+        <div style="display:flex;justify-content:space-around;text-align:center;">
+          <div><div style="font-size:22px;font-weight:900;color:var(--green);">8</div><div style="font-size:11px;color:var(--text3);">Played</div></div>
+          <div><div style="font-size:22px;font-weight:900;color:var(--gold);">2</div><div style="font-size:11px;color:var(--text3);">Trophies</div></div>
+          <div><div style="font-size:22px;font-weight:900;color:var(--blue);">Rs 25K</div><div style="font-size:11px;color:var(--text3);">Won</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-nav">
+      <div class="nav-item"><div class="nav-icon">🏠</div><div class="nav-label">Home</div></div>
+      <div class="nav-item"><div class="nav-icon">🏟️</div><div class="nav-label">Gaming Zones</div></div>
+      <div class="nav-item active"><div class="nav-icon">🏆</div><div class="nav-label">Events</div><div class="nav-dot"></div></div>
+      <div class="nav-item"><div class="nav-icon">💬</div><div class="nav-label">Chat</div></div>
+      <div class="nav-item"><div class="nav-icon">👤</div><div class="nav-label">Profile</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section-divider" style="--sd:#7A3EA0;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">🎭</div>
+  <div class="sd-label">Mood</div>
+  <div class="sd-num">Feed · Create · Notify</div>
+  <div class="sd-line"></div>
+</div>
+
+<!-- ═══════════════ MOOD DIVIDER ═══════════════ -->
+<div style="display:flex;align-items:center;gap:16px;align-self:center;flex-shrink:0;">
+  <div style="width:3px;height:80px;background:var(--purple);border-radius:99px;opacity:.4;"></div>
+  <div style="display:flex;flex-direction:column;gap:4px;">
+    <div style="font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(100,50,200,0.45);">Feature</div>
+    <div style="font-size:18px;font-weight:900;color:rgba(100,50,200,0.6);">Mood</div>
+  </div>
+</div>
+
+<!-- ══════════════════════ 1. MOOD FEED ══════════════════════ -->
+
+
 <script>
 function gzSelPill(el){ el.closest('.gz-pillrow').querySelectorAll('.gz-pill').forEach(p=>p.classList.remove('active')); el.classList.add('active'); }
 function gzSelChip(el){ el.closest('.gz-chiprow').querySelectorAll('.gz-chip').forEach(c=>c.classList.remove('active')); el.classList.add('active'); }
