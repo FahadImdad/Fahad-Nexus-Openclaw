@@ -2018,6 +2018,12 @@ body {
       <div class="detail-location anim-fade-up d1">
         📍 DHA Phase 6, Karachi · <strong style="color:var(--green);">2.4 km away</strong>
       </div>
+      <!-- 🏷️ arena discount banner (slim) -->
+      <div class="anim-fade-up d1" onclick="arOpenDisc(this)" style="display:flex;align-items:center;gap:9px;margin:8px 0 11px;background:linear-gradient(120deg,#FFE9BE 0%,#FFD98C 55%,#FFC95E 100%);border:1.5px solid #F0C266;border-radius:11px;padding:6px 11px;cursor:pointer;box-shadow:0 3px 11px rgba(212,134,10,.24);">
+        <span style="font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:8px;flex-shrink:0;box-shadow:0 2px 5px rgba(224,138,0,.4);">20% OFF</span>
+        <div style="flex:1;min-width:0;font-size:12px;font-weight:900;color:#7A4A00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">⚡ 20% OFF this week <span style="font-size:9px;font-weight:700;color:#9A6A20;">· 2 deals</span></div>
+        <span style="font-size:17px;color:#C07000;flex-shrink:0;">›</span>
+      </div>
 
       <!-- Stats row -->
       <div class="detail-stats anim-fade-up d2">
@@ -2064,6 +2070,32 @@ body {
     </div>
 
     <!-- CTA footer -->
+    
+      <!-- arena discount details overlay -->
+      <div class="ar-disc-sheet" style="position:absolute;inset:0;z-index:50;display:none;">
+        <div onclick="arCloseDisc(this)" style="position:absolute;inset:0;background:rgba(9,33,14,.5);"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-radius:24px 24px 0 0;padding:16px 16px 22px;max-height:80%;overflow-y:auto;box-shadow:0 -10px 40px rgba(0,0,0,.3);">
+          <div style="width:38px;height:4px;border-radius:99px;background:var(--border);margin:0 auto 12px;"></div>
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px;">
+            <div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;line-height:1;"><span style="font-size:16px;font-weight:900;color:#fff;">20%</span><span style="font-size:7px;font-weight:800;color:#FFF0D0;">MAX OFF</span></div>
+            <div style="flex:1;"><div style="font-size:17px;font-weight:900;color:var(--text);">Arena Deals</div><div style="font-size:10px;color:var(--text3);margin-top:1px;">Flex Arena — DHA Ph.6 · 2 live deals</div></div>
+            <span onclick="arCloseDisc(this)" style="width:30px;height:30px;border-radius:10px;background:#EEF2EC;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--green);cursor:pointer;flex-shrink:0;">✕</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#FFF6E2,#FFE9BE);border:1.5px solid #F0CE88;border-radius:14px;padding:11px 13px;">
+              <span style="font-size:13px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:5px 10px;border-radius:11px;flex-shrink:0;">−20%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:900;color:#5A3A00;">⚡ Weekday Mornings</div><div style="font-size:10px;color:#9A6A20;font-weight:600;">Mon–Fri before 4 PM</div></div>
+              <div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:#B98A30;text-decoration:line-through;">Rs 4,000</div><div style="font-size:15px;font-weight:900;color:#1A6030;">Rs 3,200</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#FFF6E2,#FFE9BE);border:1.5px solid #F0CE88;border-radius:14px;padding:11px 13px;">
+              <span style="font-size:13px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:5px 10px;border-radius:11px;flex-shrink:0;">−10%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:900;color:#5A3A00;">🔥 Off-peak Late Night</div><div style="font-size:10px;color:#9A6A20;font-weight:600;">After 10 PM daily</div></div>
+              <div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:#B98A30;text-decoration:line-through;">Rs 4,000</div><div style="font-size:15px;font-weight:900;color:#1A6030;">Rs 3,600</div></div>
+            </div>
+          </div>
+          <button onclick="arCloseDisc(this)" class="btn-primary" style="width:100%;margin-top:13px;">Got it</button>
+        </div>
+      </div>
     <div class="detail-cta">
       <div class="price-row">
         <div>
@@ -7906,6 +7938,18 @@ function applyPromo() {
       </div>
     </div>
 
+    <!-- Gaming Zone booking promo -->
+    <div style="padding:10px 14px 4px;background:var(--surface);flex-shrink:0;">
+      <div style="display:flex;align-items:center;gap:12px;background:linear-gradient(125deg,#1A0E2E,#3A1E6E 60%,#5A2EA0);border-radius:16px;padding:13px 14px;box-shadow:0 6px 18px rgba(58,30,110,.3);position:relative;overflow:hidden;cursor:pointer;">
+        <div style="position:absolute;top:-14px;right:-6px;font-size:62px;opacity:.16;">🎮</div>
+        <div style="width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">🎮</div>
+        <div style="flex:1;min-width:0;position:relative;">
+          <div style="font-size:15px;font-weight:900;color:#fff;">Gaming Zones — Now Bookable!</div>
+          <div style="font-size:10px;color:rgba(200,180,255,.9);font-weight:600;margin-top:2px;">Book gaming PCs &amp; PS5/PS4 by the half-hour · 🏷️ up to 30% off</div>
+        </div>
+        <span style="background:#A88BFF;color:#1A0E2E;font-size:11px;font-weight:900;padding:7px 12px;border-radius:11px;flex-shrink:0;position:relative;">Book →</span>
+      </div>
+    </div>
     <!-- Trending filter pills -->
     <div style="display:flex;gap:8px;padding:10px 14px;overflow-x:auto;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;">
       <div class="store-cat active" onclick="selStoreCat(this)" style="--chip-c:var(--feed);">🔥 Trending</div>
@@ -7998,6 +8042,11 @@ function applyPromo() {
           🏆
           <div class="explore-cell-overlay"></div>
           <div class="explore-cell-tag">🏆 Tournament</div>
+        </div>
+        <div class="explore-cell" style="background:linear-gradient(135deg,#1A0E2E,#5A2EA0);">
+          🎮
+          <div class="explore-cell-overlay"></div>
+          <div class="explore-cell-tag">🎮 Gaming Zone</div>
         </div>
       </div>
 
@@ -9321,10 +9370,10 @@ function toggleAddon(el) {
 
       <div class="detail-location anim-fade-up d1">📍 Bahadurabad, Karachi · <strong style="color:var(--gz);">1.8 km away</strong></div>
       <!-- 🏷️ compact highlighted discount banner (highest % at a glance) -->
-      <div class="anim-fade-up d1" onclick="gzOpenDisc(this)" style="display:flex;align-items:center;gap:10px;margin:2px 0 12px;background:linear-gradient(120deg,#FFE9BE 0%,#FFD98C 55%,#FFC95E 100%);border:1.5px solid #F0C266;border-radius:14px;padding:9px 12px;cursor:pointer;box-shadow:0 5px 16px rgba(212,134,10,.28);">
-        <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 9px rgba(224,138,0,.45);line-height:1;"><span style="font-size:16px;font-weight:900;color:#fff;">30%</span><span style="font-size:7px;font-weight:800;color:#FFF0D0;letter-spacing:.4px;">MAX OFF</span></div>
-        <div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:900;color:#7A4A00;line-height:1.1;">⚡ Up to 30% OFF live now</div><div style="font-size:9px;color:#9A6A20;font-weight:700;margin-top:2px;">3 deals available · tap to view</div></div>
-        <span style="font-size:20px;color:#C07000;flex-shrink:0;">›</span>
+      <div class="anim-fade-up d1" onclick="gzOpenDisc(this)" style="display:flex;align-items:center;gap:9px;margin:2px 0 11px;background:linear-gradient(120deg,#FFE9BE 0%,#FFD98C 55%,#FFC95E 100%);border:1.5px solid #F0C266;border-radius:11px;padding:6px 11px;cursor:pointer;box-shadow:0 3px 11px rgba(212,134,10,.24);">
+        <span style="font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:8px;flex-shrink:0;box-shadow:0 2px 5px rgba(224,138,0,.4);">30% OFF</span>
+        <div style="flex:1;min-width:0;font-size:12px;font-weight:900;color:#7A4A00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">⚡ Up to 30% OFF live now <span style="font-size:9px;font-weight:700;color:#9A6A20;">· 3 deals</span></div>
+        <span style="font-size:17px;color:#C07000;flex-shrink:0;">›</span>
       </div>
 
       <!-- Stats -->
@@ -9341,7 +9390,7 @@ function toggleAddon(el) {
         <div class="gz-card" style="margin-bottom:8px;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
             <div><div style="font-size:14px;font-weight:900;color:var(--text);">Cubicle A · Pro Squad</div><div style="font-size:11px;color:var(--text3);">5 PCs · seats a full team</div></div>
-            <span class="tag" style="background:var(--gz-bg);color:var(--gz);">RTX 4070</span>
+            <div style="text-align:right;flex-shrink:0;"><span class="tag" style="background:var(--gz-bg);color:var(--gz);">RTX 4070</span><div style="font-size:13px;font-weight:900;color:var(--gz);margin-top:4px;">Rs 150<span style="font-size:8px;color:var(--text3);font-weight:600;">/30m · per PC</span></div></div>
           </div>
           <div style="display:flex;gap:14px;margin-bottom:9px;">
             <div><div style="font-size:9px;color:var(--text3);font-weight:700;">SCREEN</div><div style="font-size:12px;font-weight:800;color:var(--text);">27" · 165Hz</div></div>
@@ -9351,9 +9400,9 @@ function toggleAddon(el) {
           <div class="gz-chiprow"><span class="gz-chip">Valorant</span><span class="gz-chip">CS2</span><span class="gz-chip">Dota 2</span><span class="gz-chip">PUBG</span><span class="gz-chip">FIFA 24</span></div>
         </div>
         <div style="display:flex;gap:8px;">
-          <div class="gz-card" style="flex:1;padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle B</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">5 PCs · 24.5" · 144Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4060 · i5 · 4 games</div></div>
-          <div class="gz-card" style="flex:1;padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle C</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">4 PCs · 24" · 144Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4060 · i5 · 8 games</div></div>
-          <div class="gz-card" style="flex:1;padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle D</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">4 PCs · 27" · 165Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4070 · i7 · 10 games</div></div>
+          <div class="gz-card" style="flex:1;padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle B</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">5 PCs · 24.5" · 144Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4060 · i5 · 4 games</div><div style="font-size:12px;color:var(--gz);font-weight:900;margin-top:3px;">Rs 130<span style="font-size:8px;color:var(--text3);font-weight:600;">/30m per PC</span></div></div>
+          <div class="gz-card" style="flex:1;padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle C</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">4 PCs · 24" · 144Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4060 · i5 · 8 games</div><div style="font-size:12px;color:var(--gz);font-weight:900;margin-top:3px;">Rs 130<span style="font-size:8px;color:var(--text3);font-weight:600;">/30m per PC</span></div></div>
+          <div class="gz-card" style="flex:1;padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle D</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">4 PCs · 27" · 165Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4070 · i7 · 10 games</div><div style="font-size:12px;color:var(--gz);font-weight:900;margin-top:3px;">Rs 150<span style="font-size:8px;color:var(--text3);font-weight:600;">/30m per PC</span></div></div>
         </div>
       </div>
 
@@ -9507,10 +9556,10 @@ function toggleAddon(el) {
 
       <div class="detail-location anim-fade-up d1">📍 Gulshan-e-Iqbal, Karachi · <strong style="color:var(--gz);">3.2 km away</strong></div>
       <!-- 🏷️ compact highlighted discount banner (highest % at a glance) -->
-      <div class="anim-fade-up d1" onclick="gzOpenDisc(this)" style="display:flex;align-items:center;gap:10px;margin:2px 0 12px;background:linear-gradient(120deg,#FFE9BE 0%,#FFD98C 55%,#FFC95E 100%);border:1.5px solid #F0C266;border-radius:14px;padding:9px 12px;cursor:pointer;box-shadow:0 5px 16px rgba(212,134,10,.28);">
-        <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 9px rgba(224,138,0,.45);line-height:1;"><span style="font-size:16px;font-weight:900;color:#fff;">30%</span><span style="font-size:7px;font-weight:800;color:#FFF0D0;letter-spacing:.4px;">MAX OFF</span></div>
-        <div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:900;color:#7A4A00;line-height:1.1;">⚡ Up to 30% OFF live now</div><div style="font-size:9px;color:#9A6A20;font-weight:700;margin-top:2px;">3 deals available · tap to view</div></div>
-        <span style="font-size:20px;color:#C07000;flex-shrink:0;">›</span>
+      <div class="anim-fade-up d1" onclick="gzOpenDisc(this)" style="display:flex;align-items:center;gap:9px;margin:2px 0 11px;background:linear-gradient(120deg,#FFE9BE 0%,#FFD98C 55%,#FFC95E 100%);border:1.5px solid #F0C266;border-radius:11px;padding:6px 11px;cursor:pointer;box-shadow:0 3px 11px rgba(212,134,10,.24);">
+        <span style="font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:8px;flex-shrink:0;box-shadow:0 2px 5px rgba(224,138,0,.4);">30% OFF</span>
+        <div style="flex:1;min-width:0;font-size:12px;font-weight:900;color:#7A4A00;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">⚡ Up to 30% OFF live now <span style="font-size:9px;font-weight:700;color:#9A6A20;">· 3 deals</span></div>
+        <span style="font-size:17px;color:#C07000;flex-shrink:0;">›</span>
       </div>
 
       <!-- Stats -->
@@ -9528,7 +9577,7 @@ function toggleAddon(el) {
         <div class="gz-card" style="margin-bottom:8px;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
             <div><div style="font-size:14px;font-weight:900;color:var(--text);">Cubicle A · Pro Squad</div><div style="font-size:11px;color:var(--text3);">6 PCs · seats a full team</div></div>
-            <span class="tag" style="background:var(--gz-bg);color:var(--gz);">RTX 4080</span>
+            <div style="text-align:right;flex-shrink:0;"><span class="tag" style="background:var(--gz-bg);color:var(--gz);">RTX 4080</span><div style="font-size:13px;font-weight:900;color:var(--gz);margin-top:4px;">Rs 160<span style="font-size:8px;color:var(--text3);font-weight:600;">/30m · per PC</span></div></div>
           </div>
           <div style="display:flex;gap:14px;margin-bottom:9px;">
             <div><div style="font-size:9px;color:var(--text3);font-weight:700;">SCREEN</div><div style="font-size:12px;font-weight:800;color:var(--text);">27" · 240Hz</div></div>
@@ -10164,5 +10213,6 @@ gzRenderControllers();
 function gzOpenDisc(el){var sc=el.closest('.screen');if(!sc)return;var sh=sc.querySelector('.gz-disc-sheet');if(sh)sh.style.display='block';}
 function gzCloseDisc(el){var sc=el.closest('.screen');if(!sc)return;var sh=sc.querySelector('.gz-disc-sheet');if(sh)sh.style.display='none';}
 </script>
+<script>function arOpenDisc(el){var sc=el.closest('.screen');if(sc){var sh=sc.querySelector('.ar-disc-sheet');if(sh)sh.style.display='block';}}function arCloseDisc(el){var sc=el.closest('.screen');if(sc){var sh=sc.querySelector('.ar-disc-sheet');if(sh)sh.style.display='none';}}</script>
 </body>
 </html>
