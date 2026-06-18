@@ -9320,6 +9320,12 @@ function toggleAddon(el) {
       </div>
 
       <div class="detail-location anim-fade-up d1">📍 Bahadurabad, Karachi · <strong style="color:var(--gz);">1.8 km away</strong></div>
+      <!-- 🏷️ compact highlighted discount banner (highest % at a glance) -->
+      <div class="anim-fade-up d1" onclick="gzOpenDisc(this)" style="display:flex;align-items:center;gap:10px;margin:2px 0 12px;background:linear-gradient(120deg,#FFE9BE 0%,#FFD98C 55%,#FFC95E 100%);border:1.5px solid #F0C266;border-radius:14px;padding:9px 12px;cursor:pointer;box-shadow:0 5px 16px rgba(212,134,10,.28);">
+        <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 9px rgba(224,138,0,.45);line-height:1;"><span style="font-size:16px;font-weight:900;color:#fff;">30%</span><span style="font-size:7px;font-weight:800;color:#FFF0D0;letter-spacing:.4px;">MAX OFF</span></div>
+        <div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:900;color:#7A4A00;line-height:1.1;">⚡ Up to 30% OFF live now</div><div style="font-size:9px;color:#9A6A20;font-weight:700;margin-top:2px;">3 deals available · tap to view</div></div>
+        <span style="font-size:20px;color:#C07000;flex-shrink:0;">›</span>
+      </div>
 
       <!-- Stats -->
       <div class="detail-stats anim-fade-up d2">
@@ -9402,35 +9408,6 @@ function toggleAddon(el) {
         </div>
       </div>
 
-      <!-- 🏷️ Live discounts (customer-facing) -->
-      <div class="anim-fade-up d4" style="margin-bottom:14px;">
-        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🏷️ Deals &amp; Discounts</h3></div>
-        <div style="background:linear-gradient(125deg,#FFF6E2 0%,#FFE9BE 55%,#FFDD9C 100%);border:1.5px solid #F0CE88;border-radius:18px;padding:13px 14px;box-shadow:0 6px 18px rgba(212,134,10,.18);position:relative;overflow:hidden;">
-          <div style="position:absolute;top:-18px;right:-12px;font-size:74px;opacity:.12;">🎮</div>
-          <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;position:relative;">
-            <div style="width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(224,138,0,.4);line-height:1;"><span style="font-size:18px;font-weight:900;color:#fff;">30%</span><span style="font-size:8px;font-weight:800;color:#FFF0D0;letter-spacing:.3px;">MAX OFF</span></div>
-            <div style="flex:1;min-width:0;"><div style="font-size:15px;font-weight:900;color:#7A4A00;line-height:1.1;">Up to 30% OFF today ⚡</div><div style="font-size:10px;color:#9A6A20;font-weight:600;margin-top:2px;">3 live deals · limited slots · grab them fast</div></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:7px;position:relative;">
-            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
-              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−30%</span>
-              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">⚡ Happy Hour · PCs</div><div style="font-size:9px;color:#9A6A20;">Daily 2–5 PM</div></div>
-              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 175</span></div>
-            </div>
-            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
-              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−20%</span>
-              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">🎯 Off-peak · PS5</div><div style="font-size:9px;color:#9A6A20;">Mon–Thu mornings</div></div>
-              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 200</span></div>
-            </div>
-            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
-              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−15%</span>
-              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">🔥 Flash Deal · Late night</div><div style="font-size:9px;color:#9A6A20;">9–10:30 PM</div></div>
-              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 213</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- 🥤 Snacks & Drinks -->
       <div class="anim-fade-up d4" style="margin-bottom:14px;">
         <div class="sec-hdr" style="padding:0 0 10px;"><h3>🥤 Snacks &amp; Drinks</h3></div>
@@ -9453,6 +9430,38 @@ function toggleAddon(el) {
       </div>
     </div>
 
+
+      <!-- discount details overlay sheet -->
+      <div class="gz-disc-sheet" style="position:absolute;inset:0;z-index:50;display:none;">
+        <div class="gz-disc-scrim" onclick="gzCloseDisc(this)" style="position:absolute;inset:0;background:rgba(26,14,46,.5);"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-radius:24px 24px 0 0;padding:16px 16px 22px;max-height:82%;overflow-y:auto;box-shadow:0 -10px 40px rgba(0,0,0,.3);">
+          <div style="width:38px;height:4px;border-radius:99px;background:#E0D4F5;margin:0 auto 12px;"></div>
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px;">
+            <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;line-height:1;box-shadow:0 4px 11px rgba(224,138,0,.4);"><span style="font-size:17px;font-weight:900;color:#fff;">30%</span><span style="font-size:7px;font-weight:800;color:#FFF0D0;">MAX OFF</span></div>
+            <div style="flex:1;"><div style="font-size:17px;font-weight:900;color:var(--text);">Live Deals &amp; Discounts</div><div style="font-size:10px;color:var(--text3);margin-top:1px;">3 deals · limited slots · grab them fast</div></div>
+            <span onclick="gzCloseDisc(this)" style="width:30px;height:30px;border-radius:10px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gz);cursor:pointer;flex-shrink:0;">✕</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#FFF6E2,#FFE9BE);border:1.5px solid #F0CE88;border-radius:14px;padding:11px 13px;">
+              <span style="font-size:13px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:5px 10px;border-radius:11px;flex-shrink:0;">−30%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:900;color:#5A3A00;">⚡ Happy Hour · PCs</div><div style="font-size:10px;color:#9A6A20;font-weight:600;">Every day 2:00–5:00 PM · all cubicles</div></div>
+              <div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:#B98A30;text-decoration:line-through;">Rs 250</div><div style="font-size:15px;font-weight:900;color:#1A6030;">Rs 175</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#FFF6E2,#FFE9BE);border:1.5px solid #F0CE88;border-radius:14px;padding:11px 13px;">
+              <span style="font-size:13px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:5px 10px;border-radius:11px;flex-shrink:0;">−20%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:900;color:#5A3A00;">🎯 Off-peak · PlayStation 5</div><div style="font-size:10px;color:#9A6A20;font-weight:600;">Mon–Thu, 11 AM–1 PM · recurring</div></div>
+              <div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:#B98A30;text-decoration:line-through;">Rs 250</div><div style="font-size:15px;font-weight:900;color:#1A6030;">Rs 200</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#FFF6E2,#FFE9BE);border:1.5px solid #F0CE88;border-radius:14px;padding:11px 13px;">
+              <span style="font-size:13px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:5px 10px;border-radius:11px;flex-shrink:0;">−15%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:900;color:#5A3A00;">🔥 Flash Deal · Late night</div><div style="font-size:10px;color:#9A6A20;font-weight:600;">Today only, 9:00–10:30 PM · all free slots</div></div>
+              <div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:#B98A30;text-decoration:line-through;">Rs 250</div><div style="font-size:15px;font-weight:900;color:#1A6030;">Rs 213</div></div>
+            </div>
+          </div>
+          <div style="font-size:9px;color:var(--text3);text-align:center;margin-top:12px;">Discounts apply automatically at checkout for eligible slots.</div>
+          <button onclick="gzCloseDisc(this)" class="btn-primary gz-btn" style="width:100%;margin-top:13px;">Got it</button>
+        </div>
+      </div>
     <!-- CTA footer -->
     <div class="detail-cta">
       <div class="price-row">
@@ -9497,6 +9506,12 @@ function toggleAddon(el) {
       </div>
 
       <div class="detail-location anim-fade-up d1">📍 Gulshan-e-Iqbal, Karachi · <strong style="color:var(--gz);">3.2 km away</strong></div>
+      <!-- 🏷️ compact highlighted discount banner (highest % at a glance) -->
+      <div class="anim-fade-up d1" onclick="gzOpenDisc(this)" style="display:flex;align-items:center;gap:10px;margin:2px 0 12px;background:linear-gradient(120deg,#FFE9BE 0%,#FFD98C 55%,#FFC95E 100%);border:1.5px solid #F0C266;border-radius:14px;padding:9px 12px;cursor:pointer;box-shadow:0 5px 16px rgba(212,134,10,.28);">
+        <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 9px rgba(224,138,0,.45);line-height:1;"><span style="font-size:16px;font-weight:900;color:#fff;">30%</span><span style="font-size:7px;font-weight:800;color:#FFF0D0;letter-spacing:.4px;">MAX OFF</span></div>
+        <div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:900;color:#7A4A00;line-height:1.1;">⚡ Up to 30% OFF live now</div><div style="font-size:9px;color:#9A6A20;font-weight:700;margin-top:2px;">3 deals available · tap to view</div></div>
+        <span style="font-size:20px;color:#C07000;flex-shrink:0;">›</span>
+      </div>
 
       <!-- Stats -->
       <div class="detail-stats anim-fade-up d2">
@@ -9551,35 +9566,6 @@ function toggleAddon(el) {
         </div>
       </div>
 
-      <!-- 🏷️ Live discounts (customer-facing) -->
-      <div class="anim-fade-up d4" style="margin-bottom:14px;">
-        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🏷️ Deals &amp; Discounts</h3></div>
-        <div style="background:linear-gradient(125deg,#FFF6E2 0%,#FFE9BE 55%,#FFDD9C 100%);border:1.5px solid #F0CE88;border-radius:18px;padding:13px 14px;box-shadow:0 6px 18px rgba(212,134,10,.18);position:relative;overflow:hidden;">
-          <div style="position:absolute;top:-18px;right:-12px;font-size:74px;opacity:.12;">🎮</div>
-          <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;position:relative;">
-            <div style="width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(224,138,0,.4);line-height:1;"><span style="font-size:18px;font-weight:900;color:#fff;">30%</span><span style="font-size:8px;font-weight:800;color:#FFF0D0;letter-spacing:.3px;">MAX OFF</span></div>
-            <div style="flex:1;min-width:0;"><div style="font-size:15px;font-weight:900;color:#7A4A00;line-height:1.1;">Up to 30% OFF today ⚡</div><div style="font-size:10px;color:#9A6A20;font-weight:600;margin-top:2px;">3 live deals · limited slots · grab them fast</div></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:7px;position:relative;">
-            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
-              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−30%</span>
-              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">⚡ Happy Hour · PCs</div><div style="font-size:9px;color:#9A6A20;">Daily 2–5 PM</div></div>
-              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 175</span></div>
-            </div>
-            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
-              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−20%</span>
-              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">🎯 Off-peak · PS5</div><div style="font-size:9px;color:#9A6A20;">Mon–Thu mornings</div></div>
-              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 200</span></div>
-            </div>
-            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
-              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−15%</span>
-              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">🔥 Flash Deal · Late night</div><div style="font-size:9px;color:#9A6A20;">9–10:30 PM</div></div>
-              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 213</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- 🥤 Snacks & Drinks -->
       <div class="anim-fade-up d4" style="margin-bottom:14px;">
         <div class="sec-hdr" style="padding:0 0 10px;"><h3>🥤 Snacks &amp; Drinks</h3></div>
@@ -9602,6 +9588,38 @@ function toggleAddon(el) {
       </div>
     </div>
 
+
+      <!-- discount details overlay sheet -->
+      <div class="gz-disc-sheet" style="position:absolute;inset:0;z-index:50;display:none;">
+        <div class="gz-disc-scrim" onclick="gzCloseDisc(this)" style="position:absolute;inset:0;background:rgba(26,14,46,.5);"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-radius:24px 24px 0 0;padding:16px 16px 22px;max-height:82%;overflow-y:auto;box-shadow:0 -10px 40px rgba(0,0,0,.3);">
+          <div style="width:38px;height:4px;border-radius:99px;background:#E0D4F5;margin:0 auto 12px;"></div>
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px;">
+            <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;line-height:1;box-shadow:0 4px 11px rgba(224,138,0,.4);"><span style="font-size:17px;font-weight:900;color:#fff;">30%</span><span style="font-size:7px;font-weight:800;color:#FFF0D0;">MAX OFF</span></div>
+            <div style="flex:1;"><div style="font-size:17px;font-weight:900;color:var(--text);">Live Deals &amp; Discounts</div><div style="font-size:10px;color:var(--text3);margin-top:1px;">3 deals · limited slots · grab them fast</div></div>
+            <span onclick="gzCloseDisc(this)" style="width:30px;height:30px;border-radius:10px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gz);cursor:pointer;flex-shrink:0;">✕</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#FFF6E2,#FFE9BE);border:1.5px solid #F0CE88;border-radius:14px;padding:11px 13px;">
+              <span style="font-size:13px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:5px 10px;border-radius:11px;flex-shrink:0;">−30%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:900;color:#5A3A00;">⚡ Happy Hour · PCs</div><div style="font-size:10px;color:#9A6A20;font-weight:600;">Every day 2:00–5:00 PM · all cubicles</div></div>
+              <div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:#B98A30;text-decoration:line-through;">Rs 250</div><div style="font-size:15px;font-weight:900;color:#1A6030;">Rs 175</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#FFF6E2,#FFE9BE);border:1.5px solid #F0CE88;border-radius:14px;padding:11px 13px;">
+              <span style="font-size:13px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:5px 10px;border-radius:11px;flex-shrink:0;">−20%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:900;color:#5A3A00;">🎯 Off-peak · PlayStation 5</div><div style="font-size:10px;color:#9A6A20;font-weight:600;">Mon–Thu, 11 AM–1 PM · recurring</div></div>
+              <div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:#B98A30;text-decoration:line-through;">Rs 250</div><div style="font-size:15px;font-weight:900;color:#1A6030;">Rs 200</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#FFF6E2,#FFE9BE);border:1.5px solid #F0CE88;border-radius:14px;padding:11px 13px;">
+              <span style="font-size:13px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:5px 10px;border-radius:11px;flex-shrink:0;">−15%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:900;color:#5A3A00;">🔥 Flash Deal · Late night</div><div style="font-size:10px;color:#9A6A20;font-weight:600;">Today only, 9:00–10:30 PM · all free slots</div></div>
+              <div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:#B98A30;text-decoration:line-through;">Rs 250</div><div style="font-size:15px;font-weight:900;color:#1A6030;">Rs 213</div></div>
+            </div>
+          </div>
+          <div style="font-size:9px;color:var(--text3);text-align:center;margin-top:12px;">Discounts apply automatically at checkout for eligible slots.</div>
+          <button onclick="gzCloseDisc(this)" class="btn-primary gz-btn" style="width:100%;margin-top:13px;">Got it</button>
+        </div>
+      </div>
     <!-- CTA footer -->
     <div class="detail-cta">
       <div class="price-row">
@@ -9618,6 +9636,51 @@ function toggleAddon(el) {
 </div>
 
 <!-- ══════════════════════ G3. BOOK A PC ══════════════════════ -->
+
+<!-- ══════════════════════ Gaming Zone — Discounts ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">Gaming Zone — Discounts</p>
+<div class="phone">
+  <div class="screen active bk-screen" style="flex-direction:column;background:var(--surface);">
+    <!-- header -->
+    <div style="background:linear-gradient(150deg,#7A4A00 0%,#C07000 55%,#E08A00 100%);padding:50px 16px 16px;flex-shrink:0;position:relative;">
+      <button class="detail-back" style="position:static;width:36px;height:36px;border-radius:11px;background:rgba(255,255,255,.18);border:none;color:#fff;font-size:18px;margin-bottom:12px;">←</button>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:54px;height:54px;border-radius:15px;background:rgba(255,255,255,.16);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;line-height:1;"><span style="font-size:19px;font-weight:900;color:#fff;">30%</span><span style="font-size:8px;font-weight:800;color:#FFF0D0;">MAX OFF</span></div>
+        <div style="flex:1;"><div style="font-size:19px;font-weight:900;color:#fff;">Deals &amp; Discounts</div><div style="font-size:10px;color:rgba(255,240,210,.9);margin-top:2px;">Nexus Gaming Lounge · 3 live deals today</div></div>
+      </div>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:14px 16px 18px;background:var(--bg);">
+      <div style="font-size:11px;color:var(--text3);font-weight:700;margin-bottom:11px;">⚡ Grab these before slots fill up — discounts apply automatically at checkout.</div>
+        <div style="display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#FFF6E2,#FFE9BE);border:1.5px solid #F0CE88;border-radius:15px;padding:12px 13px;margin-bottom:9px;box-shadow:0 3px 10px rgba(212,134,10,.12);">
+          <span style="font-size:14px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:6px 11px;border-radius:12px;flex-shrink:0;">−30%</span>
+          <div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:900;color:#5A3A00;">⚡ Happy Hour · PCs</div><div style="font-size:10px;color:#9A6A20;font-weight:600;margin-top:1px;">Every day 2:00–5:00 PM · all cubicles</div></div>
+          <div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:#B98A30;text-decoration:line-through;">Rs 250</div><div style="font-size:16px;font-weight:900;color:#1A6030;">Rs 175</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#FFF6E2,#FFE9BE);border:1.5px solid #F0CE88;border-radius:15px;padding:12px 13px;margin-bottom:9px;box-shadow:0 3px 10px rgba(212,134,10,.12);">
+          <span style="font-size:14px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:6px 11px;border-radius:12px;flex-shrink:0;">−20%</span>
+          <div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:900;color:#5A3A00;">🎯 Off-peak · PlayStation 5</div><div style="font-size:10px;color:#9A6A20;font-weight:600;margin-top:1px;">Mon–Thu, 11 AM–1 PM · recurring</div></div>
+          <div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:#B98A30;text-decoration:line-through;">Rs 250</div><div style="font-size:16px;font-weight:900;color:#1A6030;">Rs 200</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:11px;background:linear-gradient(120deg,#FFF6E2,#FFE9BE);border:1.5px solid #F0CE88;border-radius:15px;padding:12px 13px;margin-bottom:9px;box-shadow:0 3px 10px rgba(212,134,10,.12);">
+          <span style="font-size:14px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:6px 11px;border-radius:12px;flex-shrink:0;">−15%</span>
+          <div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:900;color:#5A3A00;">🔥 Flash Deal · Late night</div><div style="font-size:10px;color:#9A6A20;font-weight:600;margin-top:1px;">Today only, 9:00–10:30 PM · all free slots</div></div>
+          <div style="text-align:right;flex-shrink:0;"><div style="font-size:10px;color:#B98A30;text-decoration:line-through;">Rs 250</div><div style="font-size:16px;font-weight:900;color:#1A6030;">Rs 213</div></div>
+        </div>
+      <div style="background:var(--gz-bg);border:1px solid var(--gz-bg2);border-radius:14px;padding:13px;margin-top:6px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:20px;">💡</span>
+        <div style="font-size:10px;color:var(--gz);font-weight:600;line-height:1.5;">Tip: Off-peak hours have the most availability — book early to lock the lowest rate.</div>
+      </div>
+    </div>
+    <div class="detail-cta">
+      <div style="display:flex;gap:8px;">
+        <button class="btn-primary gz-btn" style="flex:1;">🖥️ Book a discounted PC →</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 <div class="phone-wrap">
 <p class="phone-label">Book a PC</p>
 <div class="phone">
@@ -10095,5 +10158,11 @@ gzConsoleRecalc();
 gzRenderControllers();
 </script>
 
+
+<script>
+/* gaming-zone discount overlay: open/close the in-phone sheet */
+function gzOpenDisc(el){var sc=el.closest('.screen');if(!sc)return;var sh=sc.querySelector('.gz-disc-sheet');if(sh)sh.style.display='block';}
+function gzCloseDisc(el){var sc=el.closest('.screen');if(!sc)return;var sh=sc.querySelector('.gz-disc-sheet');if(sh)sh.style.display='none';}
+</script>
 </body>
 </html>
