@@ -9147,5 +9147,953 @@ function toggleAddon(el) {
 }
 </script>
 
+<!-- ════════════════════════════════════════════════════
+     GAMING ZONE — PLAYER BOOKING SECTION
+     Discovery → Detail → Book PC → Book Console → Confirmed
+     Purple theme, mirrors the vendor gaming module (s50–s57)
+════════════════════════════════════════════════════ -->
+<style>
+:root{
+  --gz:#3A1E6E; --gz-d:#1A0E2E; --gz-l:#7C5BE0; --gz-xl:#A88BFF;
+  --gz-bg:#F2EEFB; --gz-bg2:#FAF8FE; --gz-bd:#E0D4F5; --gz-tx:#5A3B9A;
+}
+.gz-hero{ background:linear-gradient(135deg,#0E0820 0%,#1A0E2E 45%,#3A1E6E 80%,#5A2EA0 100%); padding:52px 16px 18px; flex-shrink:0; position:relative; overflow:hidden; }
+.gz-pillrow{ display:flex; gap:7px; overflow-x:auto; padding:0 18px; }
+.gz-pillrow::-webkit-scrollbar{ display:none; }
+.gz-pill{ flex-shrink:0; white-space:nowrap; font-size:12px; font-weight:700; padding:8px 14px; border-radius:99px; background:var(--gz-bg); color:var(--gz-tx); border:1.5px solid var(--gz-bd); cursor:pointer; transition:transform .1s; }
+.gz-pill:active{ transform:scale(.94); }
+.gz-pill.active{ background:var(--gz); color:#fff; border-color:var(--gz); box-shadow:0 4px 14px rgba(58,30,110,.3); }
+.gz-chiprow{ display:flex; flex-wrap:wrap; gap:6px; }
+.gz-chip{ font-size:11px; font-weight:700; padding:5px 11px; border-radius:99px; background:var(--gz-bg); color:var(--gz); border:1px solid var(--gz-bd); cursor:pointer; }
+.gz-chip.active{ background:var(--gz); color:#fff; border-color:var(--gz); }
+.gz-slot-grid{ display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:7px; padding:0 18px 14px; }
+.gz-slot{ background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:8px 3px; text-align:center; cursor:pointer; transition:transform .1s; }
+.gz-slot:active{ transform:scale(.93); }
+.gz-slot .gs-t{ font-size:11px; font-weight:800; color:var(--text); }
+.gz-slot .gs-p{ font-size:9.5px; font-weight:700; color:var(--gz); margin-top:2px; }
+.gz-slot.sel{ background:linear-gradient(135deg,var(--gz),var(--gz-l)); border-color:var(--gz); box-shadow:0 4px 12px rgba(58,30,110,.28); }
+.gz-slot.sel .gs-t,.gz-slot.sel .gs-p{ color:#fff; }
+.gz-slot.booked{ background:var(--surface2); border-color:var(--border); opacity:.5; pointer-events:none; }
+.gz-slot.booked .gs-t{ color:var(--text3); }
+.gz-slot.booked .gs-p{ color:var(--red); font-size:9px; }
+.gz-card{ background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:14px; box-shadow:var(--shadow-s); }
+.gz-btn{ background:linear-gradient(135deg,var(--gz),var(--gz-l))!important; box-shadow:0 6px 20px rgba(58,30,110,.3)!important; }
+.gz-zone-card{ background:var(--surface); border:1px solid var(--border); border-radius:18px; overflow:hidden; box-shadow:var(--shadow-s); cursor:pointer; }
+.gz-spec{ flex:1; min-width:0; background:var(--gz-bg2); border:1px solid var(--gz-bd); border-radius:12px; padding:9px 6px; text-align:center; }
+.gz-spec .v{ font-size:15px; font-weight:900; color:var(--gz); }
+.gz-spec .l{ font-size:8.5px; font-weight:700; color:var(--gz-tx); margin-top:1px; }
+.gz-pass{ background:linear-gradient(135deg,#1A0E2E,#3A1E6E 60%,#5A2EA0); border-radius:20px; padding:20px; color:#fff; position:relative; overflow:hidden; box-shadow:0 16px 40px rgba(58,30,110,.4); }
+.gz-squad-row{ display:flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--border); border-radius:13px; padding:9px 11px; }
+.gz-av{ width:34px; height:34px; border-radius:11px; background:var(--gz); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; flex-shrink:0; }
+.gz-av-me{ background:linear-gradient(135deg,var(--gz),var(--gz-l)); }
+.gz-pcn{ font-size:10px; font-weight:800; color:var(--gz); text-transform:uppercase; letter-spacing:.4px; }
+.gz-pnm{ font-size:13px; font-weight:800; color:var(--text); }
+.gz-mebadge{ font-size:9px; font-weight:800; color:var(--gz); background:var(--gz-bg); padding:3px 8px; border-radius:99px; white-space:nowrap; }
+.gz-rm{ width:24px; height:24px; border-radius:8px; background:var(--red-bg); color:var(--red); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; cursor:pointer; flex-shrink:0; }
+</style>
+
+<!-- ══════════════════════ G1. GAMING ZONES (discovery) ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">Gaming Zones</p>
+<div class="phone">
+  <div class="status-bar"><span>9:41</span><div class="notch"></div><div class="status-icons">▲▲▲ 🔋</div></div>
+  <div class="screen active" style="background:var(--bg);">
+
+    <!-- Hero header -->
+    <div class="gz-hero">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <div>
+          <div style="font-size:12px;color:rgba(200,180,255,.8);font-weight:600;">📍 Karachi · 6 nearby</div>
+          <div style="font-size:24px;font-weight:900;color:#fff;letter-spacing:-.3px;">🎮 Gaming Zones</div>
+        </div>
+        <div style="width:42px;height:42px;border-radius:13px;background:rgba(255,255,255,.13);display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid rgba(168,139,255,.3);">🕹️</div>
+      </div>
+      <!-- search -->
+      <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.13);border:1px solid rgba(168,139,255,.25);border-radius:14px;padding:11px 14px;">
+        <span style="font-size:15px;">🔍</span>
+        <span style="font-size:13px;color:rgba(200,180,255,.7);">Search PC cafés, PS5 lounges…</span>
+      </div>
+    </div>
+
+    <!-- Filter pills -->
+    <div style="padding:13px 0 11px;background:var(--surface);border-bottom:1px solid var(--border);">
+      <div class="gz-pillrow">
+        <div class="gz-pill active" onclick="gzSelPill(this)">All</div>
+        <div class="gz-pill" onclick="gzSelPill(this)">🖥️ PC Cubicles</div>
+        <div class="gz-pill" onclick="gzSelPill(this)">🎮 PS5 / PS4</div>
+        <div class="gz-pill" onclick="gzSelPill(this)">⭐ Top Rated</div>
+        <div class="gz-pill" onclick="gzSelPill(this)">📍 Nearest</div>
+      </div>
+    </div>
+
+    <div class="scroll-view" style="padding:14px 16px 90px;">
+
+      <!-- Zone 1 -->
+      <div class="gz-zone-card" style="margin-bottom:14px;">
+        <div style="position:relative;height:104px;background:linear-gradient(135deg,#2A1550,#5A2EA0);display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:42px;opacity:.9;">🎮</span>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(20,8,40,.82) 100%);"></div>
+          <div style="position:absolute;left:14px;bottom:9px;">
+            <div style="font-size:16px;font-weight:900;color:#fff;">Nexus Gaming Lounge</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.78);margin-top:1px;">📍 Bahadurabad · 1.8 km away</div>
+          </div>
+          <div style="position:absolute;right:11px;top:10px;display:flex;align-items:center;gap:3px;background:rgba(0,0,0,.45);border-radius:99px;padding:3px 9px;"><span style="font-size:11px;color:#FFC83D;">★</span><span style="font-size:11px;font-weight:800;color:#fff;">4.7</span><span style="font-size:9px;color:rgba(255,255,255,.6);">(86)</span></div>
+          <div style="position:absolute;right:11px;bottom:9px;background:rgba(112,216,128,.22);border:1px solid rgba(144,238,112,.4);border-radius:99px;padding:3px 9px;font-size:10px;font-weight:800;color:#9CF08A;">● Open</div>
+        </div>
+        <div style="padding:12px 13px;">
+          <div style="display:flex;gap:6px;margin-bottom:10px;">
+            <div class="gz-spec"><div class="v">18</div><div class="l">PCs</div></div>
+            <div class="gz-spec"><div class="v">4</div><div class="l">CUBICLES</div></div>
+            <div class="gz-spec"><div class="v">6</div><div class="l">CONSOLES</div></div>
+            <div class="gz-spec" style="background:var(--green-bg);border-color:var(--green);"><div class="v" style="color:var(--green);">150</div><div class="l" style="color:var(--green);">FROM/30M</div></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;">
+            <span class="gz-chip">RTX 4070</span><span class="gz-chip">Valorant</span><span class="gz-chip">PS5 · FC 24</span><span class="gz-chip">❄️ AC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zone 2 -->
+      <div class="gz-zone-card" style="margin-bottom:14px;">
+        <div style="position:relative;height:104px;background:linear-gradient(135deg,#0E1E2E,#1E4A6E);display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:42px;opacity:.9;">🕹️</span>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(8,16,30,.82) 100%);"></div>
+          <div style="position:absolute;left:14px;bottom:9px;">
+            <div style="font-size:16px;font-weight:900;color:#fff;">GameOver Arena</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.78);margin-top:1px;">📍 Gulshan-e-Iqbal · 3.2 km away</div>
+          </div>
+          <div style="position:absolute;right:11px;top:10px;display:flex;align-items:center;gap:3px;background:rgba(0,0,0,.45);border-radius:99px;padding:3px 9px;"><span style="font-size:11px;color:#FFC83D;">★</span><span style="font-size:11px;font-weight:800;color:#fff;">4.9</span><span style="font-size:9px;color:rgba(255,255,255,.6);">(142)</span></div>
+          <div style="position:absolute;right:11px;bottom:9px;background:rgba(112,216,128,.22);border:1px solid rgba(144,238,112,.4);border-radius:99px;padding:3px 9px;font-size:10px;font-weight:800;color:#9CF08A;">● Open</div>
+        </div>
+        <div style="padding:12px 13px;">
+          <div style="display:flex;gap:6px;margin-bottom:10px;">
+            <div class="gz-spec"><div class="v">30</div><div class="l">PCs</div></div>
+            <div class="gz-spec"><div class="v">6</div><div class="l">CUBICLES</div></div>
+            <div class="gz-spec"><div class="v">9</div><div class="l">CONSOLES</div></div>
+            <div class="gz-spec" style="background:var(--green-bg);border-color:var(--green);"><div class="v" style="color:var(--green);">120</div><div class="l" style="color:var(--green);">FROM/30M</div></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;">
+            <span class="gz-chip">RTX 4080</span><span class="gz-chip">CS2</span><span class="gz-chip">PS5 · Tekken 8</span><span class="gz-chip">🎧 Headsets</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bottom-nav">
+      <div class="nav-item"><div class="nav-icon">🏠</div><div class="nav-label">Home</div></div>
+      <div class="nav-item"><div class="nav-icon">🏟️</div><div class="nav-label">Arenas</div></div>
+      <div class="nav-item active"><div class="nav-icon">🎮</div><div class="nav-label">Gaming</div><div class="nav-dot"></div></div>
+      <div class="nav-item"><div class="nav-icon">🏆</div><div class="nav-label">Events</div></div>
+      <div class="nav-item"><div class="nav-icon">👤</div><div class="nav-label">Profile</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ G2. GAMING ZONE DETAIL ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">Gaming Zone Detail</p>
+<div class="phone">
+  <div class="screen active bk-screen" style="flex-direction:column;background:var(--surface);">
+
+    <!-- Photo hero -->
+    <div class="detail-photos" style="background:linear-gradient(135deg,#1A0E2E,#3A1E6E 55%,#5A2EA0);">
+      <span>🎮</span>
+      <div class="detail-photo-overlay"></div>
+      <div class="photo-dots"><div class="photo-dot active"></div><div class="photo-dot"></div><div class="photo-dot"></div></div>
+      <button class="detail-back">←</button>
+      <button class="detail-share">↗</button>
+    </div>
+
+    <div class="detail-body">
+      <div class="detail-title-row anim-fade-up">
+        <div>
+          <div class="detail-title">Nexus Gaming Lounge</div>
+          <div style="display:flex;gap:6px;margin-top:4px;">
+            <span class="tag" style="background:var(--gz-bg);color:var(--gz);">🖥️ PC Cubicles</span>
+            <span class="tag" style="background:var(--gz-bg);color:var(--gz);">🎮 PS5 · PS4</span>
+            <span class="tag tag-green">● Open</span>
+          </div>
+        </div>
+        <div class="detail-price-big" style="color:var(--gz);">Rs 150<small>/30 min</small></div>
+      </div>
+
+      <div class="detail-location anim-fade-up d1">📍 Bahadurabad, Karachi · <strong style="color:var(--gz);">1.8 km away</strong></div>
+
+      <!-- Stats -->
+      <div class="detail-stats anim-fade-up d2">
+        <div class="dstat"><div class="val">⭐ 4.7</div><div class="lbl">Rating</div></div>
+        <div class="dstat"><div class="val">18</div><div class="lbl">PCs</div></div>
+        <div class="dstat"><div class="val">6</div><div class="lbl">Consoles</div></div>
+        <div class="dstat"><div class="val">❄️</div><div class="lbl">A/C</div></div>
+      </div>
+
+      <!-- Cubicles & PCs -->
+      <div class="anim-fade-up d2" style="margin-bottom:10px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🖥️ Cubicles & PCs</h3></div>
+        <div class="gz-card" style="margin-bottom:8px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <div><div style="font-size:14px;font-weight:900;color:var(--text);">Cubicle A · Pro Squad</div><div style="font-size:11px;color:var(--text3);">5 PCs · seats a full team</div></div>
+            <span class="tag" style="background:var(--gz-bg);color:var(--gz);">RTX 4070</span>
+          </div>
+          <div style="display:flex;gap:14px;margin-bottom:9px;">
+            <div><div style="font-size:9px;color:var(--text3);font-weight:700;">SCREEN</div><div style="font-size:12px;font-weight:800;color:var(--text);">27" · 165Hz</div></div>
+            <div><div style="font-size:9px;color:var(--text3);font-weight:700;">CPU</div><div style="font-size:12px;font-weight:800;color:var(--text);">i7 · 32GB</div></div>
+            <div><div style="font-size:9px;color:var(--text3);font-weight:700;">GEAR</div><div style="font-size:12px;font-weight:800;color:var(--text);">Mech · 240Hz</div></div>
+          </div>
+          <div class="gz-chiprow"><span class="gz-chip">Valorant</span><span class="gz-chip">CS2</span><span class="gz-chip">Dota 2</span><span class="gz-chip">PUBG</span><span class="gz-chip">FIFA 24</span></div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <div class="gz-card" style="flex:1;padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle B</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">5 PCs · 24.5" · 144Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4060 · i5 · 4 games</div></div>
+          <div class="gz-card" style="flex:1;padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle C</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">4 PCs · 24" · 144Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4060 · i5 · 8 games</div></div>
+          <div class="gz-card" style="flex:1;padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle D</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">4 PCs · 27" · 165Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4070 · i7 · 10 games</div></div>
+        </div>
+      </div>
+
+      <!-- Consoles -->
+      <div class="anim-fade-up d3" style="margin-bottom:10px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🎮 Consoles</h3></div>
+
+        <!-- PS5 -->
+        <div class="gz-card" style="margin-bottom:8px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:11px;">
+            <div style="width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,#0A1E3E,#1E5AC0);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🎮</div>
+            <div style="flex:1;"><div style="font-size:15px;font-weight:900;color:var(--text);">PlayStation 5 <span style="font-size:11px;color:var(--gz);font-weight:800;background:var(--gz-bg);padding:1px 7px;border-radius:99px;">3 units</span></div><div style="font-size:11px;color:var(--green);font-weight:700;margin-top:2px;">● 2 available now</div></div>
+            <div style="text-align:right;"><div style="font-size:15px;font-weight:900;color:var(--gz);">Rs 250</div><div style="font-size:9px;color:var(--text3);">/30 min</div></div>
+          </div>
+          <!-- spec strip: TV size emphasised -->
+          <div style="display:flex;gap:7px;margin-bottom:11px;">
+            <div class="gz-spec" style="background:var(--gz-bg2);"><div class="v" style="font-size:13px;">55"</div><div class="l">4K HDR TV</div></div>
+            <div class="gz-spec" style="background:var(--gz-bg2);"><div class="v" style="font-size:13px;">120Hz</div><div class="l">REFRESH</div></div>
+            <div class="gz-spec" style="background:var(--gz-bg2);"><div class="v" style="font-size:13px;">4</div><div class="l">CONTROLLERS</div></div>
+          </div>
+          <!-- games available -->
+          <div style="font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">🎯 Games available <span style="color:var(--text3);">· 5 titles</span></div>
+          <div class="gz-chiprow">
+            <span class="gz-chip">⚽ EA FC 24</span><span class="gz-chip">🥊 Tekken 8</span><span class="gz-chip">🥊 Mortal Kombat 1</span><span class="gz-chip">🔫 Call of Duty MW3</span><span class="gz-chip">🚗 GTA V</span>
+          </div>
+        </div>
+
+        <!-- PS4 -->
+        <div class="gz-card">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:11px;">
+            <div style="width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,#1E2A4E,#2E4A8E);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🎮</div>
+            <div style="flex:1;"><div style="font-size:15px;font-weight:900;color:var(--text);">PlayStation 4 <span style="font-size:11px;color:var(--gz);font-weight:800;background:var(--gz-bg);padding:1px 7px;border-radius:99px;">3 units</span></div><div style="font-size:11px;color:var(--green);font-weight:700;margin-top:2px;">● 3 available now</div></div>
+            <div style="text-align:right;"><div style="font-size:15px;font-weight:900;color:var(--gz);">Rs 180</div><div style="font-size:9px;color:var(--text3);">/30 min</div></div>
+          </div>
+          <div style="display:flex;gap:7px;margin-bottom:11px;">
+            <div class="gz-spec" style="background:var(--gz-bg2);"><div class="v" style="font-size:13px;">43"</div><div class="l">FULL HD TV</div></div>
+            <div class="gz-spec" style="background:var(--gz-bg2);"><div class="v" style="font-size:13px;">60Hz</div><div class="l">REFRESH</div></div>
+            <div class="gz-spec" style="background:var(--gz-bg2);"><div class="v" style="font-size:13px;">4</div><div class="l">CONTROLLERS</div></div>
+          </div>
+          <div style="font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">🎯 Games available <span style="color:var(--text3);">· 4 titles</span></div>
+          <div class="gz-chiprow">
+            <span class="gz-chip">⚽ FIFA 23</span><span class="gz-chip">🥊 Tekken 7</span><span class="gz-chip">🪓 God of War</span><span class="gz-chip">🕷️ Spider-Man</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Facilities -->
+      <div class="anim-fade-up d4" style="margin-bottom:8px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>Facilities</h3></div>
+        <div class="fac-row">
+          <span class="fac-chip">❄️ AC</span><span class="fac-chip">🌐 1Gbps Fiber</span><span class="fac-chip">🎧 Headsets</span><span class="fac-chip">🥤 Snack Bar</span><span class="fac-chip">🅿️ Parking</span><span class="fac-chip">🚻 Washrooms</span>
+        </div>
+      </div>
+
+      <!-- 🏷️ Live discounts (customer-facing) -->
+      <div class="anim-fade-up d4" style="margin-bottom:14px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🏷️ Deals &amp; Discounts</h3></div>
+        <div style="background:linear-gradient(125deg,#FFF6E2 0%,#FFE9BE 55%,#FFDD9C 100%);border:1.5px solid #F0CE88;border-radius:18px;padding:13px 14px;box-shadow:0 6px 18px rgba(212,134,10,.18);position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-18px;right:-12px;font-size:74px;opacity:.12;">🎮</div>
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;position:relative;">
+            <div style="width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(224,138,0,.4);line-height:1;"><span style="font-size:18px;font-weight:900;color:#fff;">30%</span><span style="font-size:8px;font-weight:800;color:#FFF0D0;letter-spacing:.3px;">MAX OFF</span></div>
+            <div style="flex:1;min-width:0;"><div style="font-size:15px;font-weight:900;color:#7A4A00;line-height:1.1;">Up to 30% OFF today ⚡</div><div style="font-size:10px;color:#9A6A20;font-weight:600;margin-top:2px;">3 live deals · limited slots · grab them fast</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;position:relative;">
+            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
+              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−30%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">⚡ Happy Hour · PCs</div><div style="font-size:9px;color:#9A6A20;">Daily 2–5 PM</div></div>
+              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 175</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
+              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−20%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">🎯 Off-peak · PS5</div><div style="font-size:9px;color:#9A6A20;">Mon–Thu mornings</div></div>
+              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 200</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
+              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−15%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">🔥 Flash Deal · Late night</div><div style="font-size:9px;color:#9A6A20;">9–10:30 PM</div></div>
+              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 213</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🥤 Snacks & Drinks -->
+      <div class="anim-fade-up d4" style="margin-bottom:14px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🥤 Snacks &amp; Drinks</h3></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">
+          <div style="display:flex;align-items:center;gap:9px;padding:9px 11px;background:var(--gz-bg2);border-radius:12px;"><span style="font-size:17px;">🍟</span><div style="flex:1;font-size:12px;font-weight:700;color:var(--text);">Chips</div><div style="font-size:12px;font-weight:900;color:var(--gz);">Rs 120</div></div><div style="display:flex;align-items:center;gap:9px;padding:9px 11px;background:var(--gz-bg2);border-radius:12px;"><span style="font-size:17px;">🥤</span><div style="flex:1;font-size:12px;font-weight:700;color:var(--text);">Soft Drink</div><div style="font-size:12px;font-weight:900;color:var(--gz);">Rs 80</div></div><div style="display:flex;align-items:center;gap:9px;padding:9px 11px;background:var(--gz-bg2);border-radius:12px;"><span style="font-size:17px;">🍫</span><div style="flex:1;font-size:12px;font-weight:700;color:var(--text);">Chocolate</div><div style="font-size:12px;font-weight:900;color:var(--gz);">Rs 100</div></div><div style="display:flex;align-items:center;gap:9px;padding:9px 11px;background:var(--gz-bg2);border-radius:12px;"><span style="font-size:17px;">🍔</span><div style="flex:1;font-size:12px;font-weight:700;color:var(--text);">Zinger Burger</div><div style="font-size:12px;font-weight:900;color:var(--gz);">Rs 350</div></div>
+        </div>
+      </div>
+
+      <!-- 🔗 Social & Links -->
+      <div class="anim-fade-up d4" style="margin-bottom:8px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🔗 Follow &amp; Connect</h3></div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;">
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">📺</span><span style="font-size:8px;color:var(--text3);font-weight:700;">YouTube</span></a>
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">📘</span><span style="font-size:8px;color:var(--text3);font-weight:700;">Facebook</span></a>
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">📸</span><span style="font-size:8px;color:var(--text3);font-weight:700;">Instagram</span></a>
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">🌐</span><span style="font-size:8px;color:var(--text3);font-weight:700;">Website</span></a>
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">✖️</span><span style="font-size:8px;color:var(--text3);font-weight:700;">X</span></a>
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">👻</span><span style="font-size:8px;color:var(--text3);font-weight:700;">Snapchat</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA footer -->
+    <div class="detail-cta">
+      <div class="price-row">
+        <div><div class="p-label">Starting from</div></div>
+        <div class="p-val" style="color:var(--gz);">Rs 150 <span style="font-size:13px;color:var(--text3);font-weight:600;">/30 min</span></div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn-primary gz-btn" style="flex:1;">🖥️ Book a PC →</button>
+        <button class="btn-primary gz-btn" style="flex:1;">🎮 Book Console →</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ G2b. GAMING ZONE DETAIL — 6 CUBICLES (visualize larger zone) ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">Detail · 6 Cubicles</p>
+<div class="phone">
+  <div class="screen active bk-screen" style="flex-direction:column;background:var(--surface);">
+
+    <!-- Photo hero -->
+    <div class="detail-photos" style="background:linear-gradient(135deg,#0E1E2E,#1E4A6E 55%,#2E6AAA);">
+      <span>🕹️</span>
+      <div class="detail-photo-overlay"></div>
+      <div class="photo-dots"><div class="photo-dot active"></div><div class="photo-dot"></div><div class="photo-dot"></div></div>
+      <button class="detail-back">←</button>
+      <button class="detail-share">↗</button>
+    </div>
+
+    <div class="detail-body">
+      <div class="detail-title-row anim-fade-up">
+        <div>
+          <div class="detail-title">GameOver Arena</div>
+          <div style="display:flex;gap:6px;margin-top:4px;">
+            <span class="tag" style="background:var(--gz-bg);color:var(--gz);">🖥️ 6 Cubicles</span>
+            <span class="tag" style="background:var(--gz-bg);color:var(--gz);">🎮 9 Consoles</span>
+            <span class="tag tag-green">● Open</span>
+          </div>
+        </div>
+        <div class="detail-price-big" style="color:var(--gz);">Rs 120<small>/30 min</small></div>
+      </div>
+
+      <div class="detail-location anim-fade-up d1">📍 Gulshan-e-Iqbal, Karachi · <strong style="color:var(--gz);">3.2 km away</strong></div>
+
+      <!-- Stats -->
+      <div class="detail-stats anim-fade-up d2">
+        <div class="dstat"><div class="val">⭐ 4.9</div><div class="lbl">Rating</div></div>
+        <div class="dstat"><div class="val">30</div><div class="lbl">PCs</div></div>
+        <div class="dstat"><div class="val">6</div><div class="lbl">Cubicles</div></div>
+        <div class="dstat"><div class="val">9</div><div class="lbl">Consoles</div></div>
+      </div>
+
+      <!-- Cubicles & PCs — 6 total -->
+      <div class="anim-fade-up d2" style="margin-bottom:10px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🖥️ Cubicles & PCs <span class="see-all" style="text-transform:none;">6 cubicles · 30 PCs</span></h3></div>
+        <!-- Featured cubicle A -->
+        <div class="gz-card" style="margin-bottom:8px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <div><div style="font-size:14px;font-weight:900;color:var(--text);">Cubicle A · Pro Squad</div><div style="font-size:11px;color:var(--text3);">6 PCs · seats a full team</div></div>
+            <span class="tag" style="background:var(--gz-bg);color:var(--gz);">RTX 4080</span>
+          </div>
+          <div style="display:flex;gap:14px;margin-bottom:9px;">
+            <div><div style="font-size:9px;color:var(--text3);font-weight:700;">SCREEN</div><div style="font-size:12px;font-weight:800;color:var(--text);">27" · 240Hz</div></div>
+            <div><div style="font-size:9px;color:var(--text3);font-weight:700;">CPU</div><div style="font-size:12px;font-weight:800;color:var(--text);">i9 · 32GB</div></div>
+            <div><div style="font-size:9px;color:var(--text3);font-weight:700;">GEAR</div><div style="font-size:12px;font-weight:800;color:var(--text);">Mech · 240Hz</div></div>
+          </div>
+          <div class="gz-chiprow"><span class="gz-chip">Valorant</span><span class="gz-chip">CS2</span><span class="gz-chip">Apex</span><span class="gz-chip">PUBG</span><span class="gz-chip">FC 24</span></div>
+        </div>
+        <!-- Remaining cubicles B–F as a clean 2-col grid -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="gz-card" style="padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle B</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">5 PCs · 24.5" · 144Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4060 · i5 · 5 games</div></div>
+          <div class="gz-card" style="padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle C</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">5 PCs · 24" · 144Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4060 · i5 · 6 games</div></div>
+          <div class="gz-card" style="padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle D</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">5 PCs · 27" · 165Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4070 · i7 · 8 games</div></div>
+          <div class="gz-card" style="padding:11px;border-color:var(--gold);background:var(--gold-bg);"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle E 👑</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">5 PCs · 32" curved · 165Hz</div><div style="font-size:10px;color:var(--gold);font-weight:800;margin-top:3px;">RTX 4080 · i9 · VIP</div></div>
+          <div class="gz-card" style="padding:11px;"><div style="font-size:13px;font-weight:900;color:var(--text);">Cubicle F</div><div style="font-size:10px;color:var(--text3);margin-top:2px;">4 PCs · 24" · 144Hz</div><div style="font-size:10px;color:var(--gz);font-weight:700;margin-top:3px;">RTX 4060 · i5 · 5 games</div></div>
+          <div class="gz-card" style="padding:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-style:dashed;border-color:var(--gz-bd);background:var(--gz-bg2);"><div style="font-size:20px;">🖥️</div><div style="font-size:11px;font-weight:800;color:var(--gz);margin-top:2px;">30 PCs total</div><div style="font-size:9px;color:var(--text3);">across 6 cubicles</div></div>
+        </div>
+      </div>
+
+      <!-- Consoles (9) -->
+      <div class="anim-fade-up d3" style="margin-bottom:10px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🎮 Consoles <span class="see-all" style="text-transform:none;">9 units</span></h3></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div class="gz-card" style="padding:11px;text-align:center;"><div style="font-size:22px;">🎮</div><div style="font-size:12px;font-weight:900;color:var(--text);margin-top:3px;">PS5 ×4</div><div style="font-size:9px;color:var(--text3);">55–65" 4K</div><div style="font-size:10px;font-weight:800;color:var(--gz);margin-top:2px;">Rs 250</div></div>
+          <div class="gz-card" style="padding:11px;text-align:center;"><div style="font-size:22px;">🎮</div><div style="font-size:12px;font-weight:900;color:var(--text);margin-top:3px;">PS4 ×3</div><div style="font-size:9px;color:var(--text3);">40–49" FHD</div><div style="font-size:10px;font-weight:800;color:var(--gz);margin-top:2px;">Rs 180</div></div>
+          <div class="gz-card" style="padding:11px;text-align:center;"><div style="font-size:22px;">🟢</div><div style="font-size:12px;font-weight:900;color:var(--text);margin-top:3px;">Xbox ×2</div><div style="font-size:9px;color:var(--text3);">55" 4K</div><div style="font-size:10px;font-weight:800;color:var(--gz);margin-top:2px;">Rs 220</div></div>
+        </div>
+      </div>
+
+      <!-- Facilities -->
+      <div class="anim-fade-up d4" style="margin-bottom:8px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>Facilities</h3></div>
+        <div class="fac-row">
+          <span class="fac-chip">❄️ AC</span><span class="fac-chip">🌐 1Gbps Fiber</span><span class="fac-chip">🎧 Headsets</span><span class="fac-chip">📹 Streaming Setup</span><span class="fac-chip">🥤 Café</span><span class="fac-chip">🅿️ Parking</span>
+        </div>
+      </div>
+
+      <!-- 🏷️ Live discounts (customer-facing) -->
+      <div class="anim-fade-up d4" style="margin-bottom:14px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🏷️ Deals &amp; Discounts</h3></div>
+        <div style="background:linear-gradient(125deg,#FFF6E2 0%,#FFE9BE 55%,#FFDD9C 100%);border:1.5px solid #F0CE88;border-radius:18px;padding:13px 14px;box-shadow:0 6px 18px rgba(212,134,10,.18);position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-18px;right:-12px;font-size:74px;opacity:.12;">🎮</div>
+          <div style="display:flex;align-items:center;gap:11px;margin-bottom:12px;position:relative;">
+            <div style="width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#E08A00,#F4B400);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(224,138,0,.4);line-height:1;"><span style="font-size:18px;font-weight:900;color:#fff;">30%</span><span style="font-size:8px;font-weight:800;color:#FFF0D0;letter-spacing:.3px;">MAX OFF</span></div>
+            <div style="flex:1;min-width:0;"><div style="font-size:15px;font-weight:900;color:#7A4A00;line-height:1.1;">Up to 30% OFF today ⚡</div><div style="font-size:10px;color:#9A6A20;font-weight:600;margin-top:2px;">3 live deals · limited slots · grab them fast</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px;position:relative;">
+            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
+              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−30%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">⚡ Happy Hour · PCs</div><div style="font-size:9px;color:#9A6A20;">Daily 2–5 PM</div></div>
+              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 175</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
+              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−20%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">🎯 Off-peak · PS5</div><div style="font-size:9px;color:#9A6A20;">Mon–Thu mornings</div></div>
+              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 200</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.7);border:1px solid #F0DCB0;border-radius:11px;padding:8px 11px;">
+              <span style="font-size:9px;font-weight:900;color:#fff;background:linear-gradient(135deg,#E08A00,#F4B400);padding:3px 8px;border-radius:99px;flex-shrink:0;">−15%</span>
+              <div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:800;color:#5A3A00;">🔥 Flash Deal · Late night</div><div style="font-size:9px;color:#9A6A20;">9–10:30 PM</div></div>
+              <div style="text-align:right;flex-shrink:0;"><span style="font-size:9px;color:#B98A30;text-decoration:line-through;">Rs 250</span> <span style="font-size:13px;font-weight:900;color:#1A6030;">Rs 213</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🥤 Snacks & Drinks -->
+      <div class="anim-fade-up d4" style="margin-bottom:14px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🥤 Snacks &amp; Drinks</h3></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">
+          <div style="display:flex;align-items:center;gap:9px;padding:9px 11px;background:var(--gz-bg2);border-radius:12px;"><span style="font-size:17px;">🍟</span><div style="flex:1;font-size:12px;font-weight:700;color:var(--text);">Chips</div><div style="font-size:12px;font-weight:900;color:var(--gz);">Rs 120</div></div><div style="display:flex;align-items:center;gap:9px;padding:9px 11px;background:var(--gz-bg2);border-radius:12px;"><span style="font-size:17px;">🥤</span><div style="flex:1;font-size:12px;font-weight:700;color:var(--text);">Soft Drink</div><div style="font-size:12px;font-weight:900;color:var(--gz);">Rs 80</div></div><div style="display:flex;align-items:center;gap:9px;padding:9px 11px;background:var(--gz-bg2);border-radius:12px;"><span style="font-size:17px;">☕</span><div style="flex:1;font-size:12px;font-weight:700;color:var(--text);">Coffee</div><div style="font-size:12px;font-weight:900;color:var(--gz);">Rs 150</div></div><div style="display:flex;align-items:center;gap:9px;padding:9px 11px;background:var(--gz-bg2);border-radius:12px;"><span style="font-size:17px;">🍕</span><div style="flex:1;font-size:12px;font-weight:700;color:var(--text);">Pizza Slice</div><div style="font-size:12px;font-weight:900;color:var(--gz);">Rs 250</div></div>
+        </div>
+      </div>
+
+      <!-- 🔗 Social & Links -->
+      <div class="anim-fade-up d4" style="margin-bottom:8px;">
+        <div class="sec-hdr" style="padding:0 0 10px;"><h3>🔗 Follow &amp; Connect</h3></div>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;">
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">📺</span><span style="font-size:8px;color:var(--text3);font-weight:700;">YouTube</span></a>
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">📘</span><span style="font-size:8px;color:var(--text3);font-weight:700;">Facebook</span></a>
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">📸</span><span style="font-size:8px;color:var(--text3);font-weight:700;">Instagram</span></a>
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">🌐</span><span style="font-size:8px;color:var(--text3);font-weight:700;">Website</span></a>
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">✖️</span><span style="font-size:8px;color:var(--text3);font-weight:700;">X</span></a>
+          <a style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;"><span style="width:42px;height:42px;border-radius:13px;background:var(--gz-bg);display:flex;align-items:center;justify-content:center;font-size:20px;">👻</span><span style="font-size:8px;color:var(--text3);font-weight:700;">Snapchat</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA footer -->
+    <div class="detail-cta">
+      <div class="price-row">
+        <div><div class="p-label">Starting from</div></div>
+        <div class="p-val" style="color:var(--gz);">Rs 120 <span style="font-size:13px;color:var(--text3);font-weight:600;">/30 min</span></div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn-primary gz-btn" style="flex:1;">🖥️ Book a PC →</button>
+        <button class="btn-primary gz-btn" style="flex:1;">🎮 Book Console →</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ G3. BOOK A PC ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">Book a PC</p>
+<div class="phone">
+  <div class="status-bar"><span>9:41</span><div class="notch"></div><div class="status-icons">▲▲▲ 🔋</div></div>
+  <div class="screen active bk-screen">
+    <div class="top-nav">
+      <div class="back-btn">←</div>
+      <h2>Book a PC</h2>
+    </div>
+
+    <!-- Mini zone row -->
+    <div style="display:flex;align-items:center;gap:12px;padding:11px 18px;background:var(--surface);border-bottom:1px solid var(--border);">
+      <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#2A1550,#5A2EA0);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🖥️</div>
+      <div><div style="font-size:14px;font-weight:800;color:var(--text);">Nexus Gaming Lounge</div><div style="font-size:12px;color:var(--text2);">📍 1.8 km · 30-min slots</div></div>
+    </div>
+
+    <div class="scroll-view" style="padding-bottom:150px;">
+      <!-- Step 1: cubicle -->
+      <div style="padding:14px 18px 6px;font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;">1 · Pick a cubicle</div>
+      <div class="gz-pillrow" style="padding-bottom:6px;">
+        <div class="gz-pill active" onclick="gzSelPill(this)">Cubicle A</div>
+        <div class="gz-pill" onclick="gzSelPill(this)">Cubicle B</div>
+        <div class="gz-pill" onclick="gzSelPill(this)">Cubicle C</div>
+        <div class="gz-pill" onclick="gzSelPill(this)">Cubicle D</div>
+      </div>
+      <!-- Step 2: Browse PCs — tap a PC to view its slots; book any. The first PC you book is yours. -->
+      <div style="padding:10px 18px 6px;font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;">2 · Browse PCs <span style="color:var(--text3);font-weight:600;text-transform:none;">· view every PC's slots · book any</span></div>
+      <div class="gz-pillrow" id="g3-stations" style="padding-bottom:8px;"></div>
+      <!-- Status of the PC you're viewing (who it's for / how to book) -->
+      <div id="g3-active-label" class="gz-squad-row" style="margin:0 18px 8px;"></div>
+      <!-- Games installed on the PC you're viewing (per-PC, like its specs) -->
+      <div id="g3-active-games" style="margin:0 18px 8px;"></div>
+      <!-- Buddy search panel (revealed only when you try to book an extra PC after claiming yours) -->
+      <div id="g3-buddy" style="display:none;padding:0 18px 8px;">
+        <div class="gz-card" style="background:var(--gz-bg2);border-color:var(--gz-bd);">
+          <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:2px;">👥 Booking <span id="g3-buddy-pc">PC 2</span> for a buddy</div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:9px;">You've already got your own PC. Name the friend who'll use this one — search your buddy list.</div>
+          <input id="g3-buddy-search" oninput="gzBuddySearch(this.value)" placeholder="🔍 Search buddies by name…" autocomplete="off" style="width:100%;box-sizing:border-box;padding:11px 13px;border:1.5px solid var(--gz-bd);border-radius:12px;background:var(--surface);font-size:13px;color:var(--text);outline:none;margin-bottom:8px;">
+          <div id="g3-buddy-results"></div>
+        </div>
+      </div>
+
+      <!-- Step 3: date -->
+      <div style="padding:10px 18px 6px;font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;">3 · Date</div>
+      <div class="date-strip">
+        <div class="date-pill disabled"><div class="d-day">MON</div><div class="d-num">5</div><div class="d-mon">May</div></div>
+        <div class="date-pill"><div class="d-day">TUE</div><div class="d-num">6</div><div class="d-mon">May</div></div>
+        <div class="date-pill active" style="background:var(--gz);border-color:var(--gz);box-shadow:0 4px 14px rgba(58,30,110,.3);"><div class="d-day" style="color:#fff;">WED</div><div class="d-num" style="color:#fff;">7</div><div class="d-mon" style="color:#fff;">May</div></div>
+        <div class="date-pill"><div class="d-day">THU</div><div class="d-num">8</div><div class="d-mon">May</div></div>
+        <div class="date-pill"><div class="d-day">FRI</div><div class="d-num">9</div><div class="d-mon">May</div></div>
+        <div class="date-pill"><div class="d-day">SAT</div><div class="d-num">10</div><div class="d-mon">May</div></div>
+        <div class="date-pill"><div class="d-day">SUN</div><div class="d-num">11</div><div class="d-mon">May</div></div>
+      </div>
+
+      <!-- Step 4: slots for the ACTIVE PC — each PC keeps its own slots (accumulative) -->
+      <div id="g3-gridwrap">
+        <div style="padding:12px 18px 6px;">
+          <div style="font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;">4 · Tap slots for <span id="g3-grid-for" style="color:var(--gz);">PC 1 · You</span></div>
+        </div>
+        <div style="padding:0 18px 8px;font-size:11px;color:var(--text3);display:flex;gap:14px;">
+          <span style="color:var(--gz);font-weight:700;">■ Selected</span><span>■ Available</span><span style="color:var(--red);">■ Booked</span>
+        </div>
+        <div class="gz-slot-grid" id="g3grid">
+          <div class="gz-slot booked"><div class="gs-t">11:00a</div><div class="gs-p">Booked</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">11:30a</div><div class="gs-p">150</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">12:00p</div><div class="gs-p">150</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">12:30p</div><div class="gs-p">150</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">1:00p</div><div class="gs-p">150</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">1:30p</div><div class="gs-p">150</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">2:00p</div><div class="gs-p">150</div></div>
+          <div class="gz-slot booked"><div class="gs-t">2:30p</div><div class="gs-p">Booked</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">3:00p</div><div class="gs-p">200</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">3:30p</div><div class="gs-p">200</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">4:00p</div><div class="gs-p">200</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">4:30p</div><div class="gs-p">200</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">5:00p</div><div class="gs-p">250</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">5:30p</div><div class="gs-p">250</div></div>
+          <div class="gz-slot booked"><div class="gs-t">6:00p</div><div class="gs-p">Booked</div></div>
+          <div class="gz-slot booked"><div class="gs-t">6:30p</div><div class="gs-p">Booked</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">7:00p</div><div class="gs-p">250</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">7:30p</div><div class="gs-p">250</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">8:00p</div><div class="gs-p">250</div></div>
+          <div class="gz-slot" onclick="gzSlotClick(this)"><div class="gs-t">8:30p</div><div class="gs-p">250</div></div>
+        </div>
+      </div>
+      <!-- Accumulative group booking breakdown (all PCs + their players) -->
+      <div style="padding:6px 18px 4px;font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;">Your group booking</div>
+      <div id="g3-breakdown" style="padding:0 18px 6px;display:flex;flex-direction:column;gap:7px;"></div>
+    </div>
+
+    <!-- Sticky summary + CTA -->
+    <div style="position:absolute;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);padding:12px 16px 22px;box-shadow:0 -6px 20px rgba(0,0,0,.06);">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+        <div><div id="g3-sumtitle" style="font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;">Cubicle A · 1 PC</div><div id="g3grid-sum" style="font-size:14px;font-weight:800;color:var(--text);">2 slots · 1 hr selected</div></div>
+        <div style="text-align:right;"><div style="font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;">Total</div><div id="g3grid-tot" style="font-size:18px;font-weight:900;color:var(--gz);">Rs 300</div></div>
+      </div>
+      <button class="btn-primary gz-btn">Continue to Review →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ G4. BOOK A CONSOLE ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">Book a Console</p>
+<div class="phone">
+  <div class="status-bar"><span>9:41</span><div class="notch"></div><div class="status-icons">▲▲▲ 🔋</div></div>
+  <div class="screen active bk-screen">
+    <div class="top-nav">
+      <div class="back-btn">←</div>
+      <h2>Book a Console</h2>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px;padding:11px 18px;background:var(--surface);border-bottom:1px solid var(--border);">
+      <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#0A1E3E,#1E5AC0);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🎮</div>
+      <div><div style="font-size:14px;font-weight:800;color:var(--text);">Nexus Gaming Lounge</div><div style="font-size:12px;color:var(--text2);">📍 1.8 km · 30-min slots</div></div>
+    </div>
+
+    <div class="scroll-view" style="padding-bottom:150px;">
+      <!-- console (no screen size here — units differ) -->
+      <div style="padding:14px 18px 6px;font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;">1 · Console</div>
+      <div class="gz-pillrow" id="g4-consoles" style="padding-bottom:6px;">
+        <div class="gz-pill active" onclick="gzPickConsole(this,'g4-units-ps5')">🎮 PlayStation 5</div>
+        <div class="gz-pill" onclick="gzPickConsole(this,'g4-units-ps4')">🎮 PlayStation 4</div>
+      </div>
+      <!-- unit (screen size shown PER unit) -->
+      <div style="padding:10px 18px 6px;font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;">2 · Unit <span style="color:var(--text3);font-weight:600;text-transform:none;">· each unit has its own TV & games</span></div>
+      <div class="gz-pillrow" id="g4-units-ps5" style="padding-bottom:6px;">
+        <div class="gz-pill active" onclick="gzPickUnit(this)" data-screen='55" 4K HDR' data-hz="120Hz" data-games="EA FC 24|Tekken 8|Mortal Kombat 1|Call of Duty MW3">Unit 1 · 55"</div>
+        <div class="gz-pill" onclick="gzPickUnit(this)" data-screen='50" 4K' data-hz="60Hz" data-games="EA FC 24|GTA V|Spider-Man 2">Unit 2 · 50"</div>
+        <div class="gz-pill" onclick="gzPickUnit(this)" data-screen='65" 4K HDR' data-hz="120Hz" data-games="Call of Duty MW3|Mortal Kombat 1|GTA V|EA FC 24">Unit 3 · 65"</div>
+      </div>
+      <div class="gz-pillrow" id="g4-units-ps4" style="padding-bottom:6px;display:none;">
+        <div class="gz-pill active" onclick="gzPickUnit(this)" data-screen='43" Full HD' data-hz="60Hz" data-games="FIFA 23|Tekken 7|God of War">Unit 1 · 43"</div>
+        <div class="gz-pill" onclick="gzPickUnit(this)" data-screen='40" Full HD' data-hz="60Hz" data-games="FIFA 23|Spider-Man|God of War">Unit 2 · 40"</div>
+        <div class="gz-pill" onclick="gzPickUnit(this)" data-screen='49" Full HD' data-hz="60Hz" data-games="Tekken 7|God of War|FIFA 23">Unit 3 · 49"</div>
+      </div>
+      <!-- Selected-unit details (screen size + games for THIS unit) -->
+      <div style="padding:2px 18px 8px;">
+        <div class="gz-card" style="border-color:var(--gz-bd);background:var(--gz-bg2);padding:11px 13px;">
+          <div style="font-size:12px;font-weight:800;color:var(--gz);margin-bottom:8px;">📺 <span id="g4-unit-detail">55" 4K HDR · 120Hz · 4 controllers</span></div>
+          <div style="font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">🎯 Games on this unit — pick one</div>
+          <div class="gz-chiprow" id="g4-games">
+            <div class="gz-chip active" onclick="gzSelChip(this)">EA FC 24</div>
+            <div class="gz-chip" onclick="gzSelChip(this)">Tekken 8</div>
+            <div class="gz-chip" onclick="gzSelChip(this)">Mortal Kombat 1</div>
+            <div class="gz-chip" onclick="gzSelChip(this)">Call of Duty MW3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- date -->
+      <div style="padding:10px 18px 6px;font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;">4 · Date</div>
+      <div class="date-strip">
+        <div class="date-pill disabled"><div class="d-day">MON</div><div class="d-num">5</div><div class="d-mon">May</div></div>
+        <div class="date-pill"><div class="d-day">TUE</div><div class="d-num">6</div><div class="d-mon">May</div></div>
+        <div class="date-pill active" style="background:var(--gz);border-color:var(--gz);box-shadow:0 4px 14px rgba(58,30,110,.3);"><div class="d-day" style="color:#fff;">WED</div><div class="d-num" style="color:#fff;">7</div><div class="d-mon" style="color:#fff;">May</div></div>
+        <div class="date-pill"><div class="d-day">THU</div><div class="d-num">8</div><div class="d-mon">May</div></div>
+        <div class="date-pill"><div class="d-day">FRI</div><div class="d-num">9</div><div class="d-mon">May</div></div>
+        <div class="date-pill"><div class="d-day">SAT</div><div class="d-num">10</div><div class="d-mon">May</div></div>
+        <div class="date-pill"><div class="d-day">SUN</div><div class="d-num">11</div><div class="d-mon">May</div></div>
+      </div>
+
+      <!-- slots -->
+      <div style="padding:12px 18px 6px;font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;">5 · Tap slots <span style="color:var(--text3);font-weight:600;text-transform:none;">· pick multiple</span></div>
+      <div style="padding:0 18px 8px;font-size:11px;color:var(--text3);display:flex;gap:14px;">
+        <span style="color:var(--gz);font-weight:700;">■ Selected</span><span>■ Available</span><span style="color:var(--red);">■ Booked</span>
+      </div>
+      <div class="gz-slot-grid" id="g4grid">
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">12:00p</div><div class="gs-p">250</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">12:30p</div><div class="gs-p">250</div></div>
+        <div class="gz-slot booked"><div class="gs-t">1:00p</div><div class="gs-p">Booked</div></div>
+        <div class="gz-slot booked"><div class="gs-t">1:30p</div><div class="gs-p">Booked</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">2:00p</div><div class="gs-p">250</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">2:30p</div><div class="gs-p">250</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">3:00p</div><div class="gs-p">300</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">3:30p</div><div class="gs-p">300</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">4:00p</div><div class="gs-p">300</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">4:30p</div><div class="gs-p">300</div></div>
+        <div class="gz-slot sel" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">5:00p</div><div class="gs-p">350</div></div>
+        <div class="gz-slot sel" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">5:30p</div><div class="gs-p">350</div></div>
+        <div class="gz-slot booked"><div class="gs-t">6:00p</div><div class="gs-p">Booked</div></div>
+        <div class="gz-slot booked"><div class="gs-t">6:30p</div><div class="gs-p">Booked</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">7:00p</div><div class="gs-p">350</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">7:30p</div><div class="gs-p">350</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">8:00p</div><div class="gs-p">350</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">8:30p</div><div class="gs-p">350</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">9:00p</div><div class="gs-p">300</div></div>
+        <div class="gz-slot" onclick="gzToggleSlot(this,'g4grid')"><div class="gs-t">9:30p</div><div class="gs-p">300</div></div>
+      </div>
+
+      <!-- Controllers — Controller 1 = you; add a controller -> name a buddy first -->
+      <div style="padding:6px 18px;font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;">Controllers <span style="color:var(--text3);font-weight:600;text-transform:none;">· who's playing? · <span id="g4-ctrl-count">1 controller</span></span></div>
+      <div id="g4-controllers" style="padding:0 18px 4px;display:flex;flex-direction:column;gap:8px;"></div>
+      <!-- Buddy search (shown when adding a controller) -->
+      <div id="g4-buddy" style="display:none;padding:4px 18px 6px;">
+        <div class="gz-card" style="background:var(--gz-bg2);border-color:var(--gz-bd);">
+          <div style="font-size:13px;font-weight:800;color:var(--text);margin-bottom:2px;">🎮 Add a controller — name your buddy</div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:9px;">Search your buddy list so we track who you're playing with. +Rs 50/hr per extra pad.</div>
+          <input id="g4-buddy-search" oninput="gzCtrlSearch(this.value)" placeholder="🔍 Search buddies by name…" autocomplete="off" style="width:100%;box-sizing:border-box;padding:11px 13px;border:1.5px solid var(--gz-bd);border-radius:12px;background:var(--surface);font-size:13px;color:var(--text);outline:none;margin-bottom:8px;">
+          <div id="g4-buddy-results"></div>
+        </div>
+      </div>
+
+      <!-- add-ons -->
+      <div style="padding:6px 18px;font-size:12px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;">Add-ons</div>
+      <div style="padding:0 18px;display:flex;flex-direction:column;gap:8px;">
+        <div class="addon-card" onclick="toggleAddon(this)">
+          <div class="addon-icon" style="background:var(--gold-bg);">🥤</div>
+          <div><div class="addon-name">Snack combo</div><div style="font-size:11px;color:var(--text3);">Chips + drink</div></div>
+          <div class="addon-price">+Rs 250</div><div class="addon-check"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticky summary + CTA -->
+    <div style="position:absolute;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);padding:12px 16px 22px;box-shadow:0 -6px 20px rgba(0,0,0,.06);">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+        <div><div style="font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;">PS5 · Unit 1 · FC 24</div><div id="g4grid-sum" style="font-size:14px;font-weight:800;color:var(--text);">2 slots · 1 hr selected</div></div>
+        <div style="text-align:right;"><div style="font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;">Total</div><div id="g4grid-tot" style="font-size:18px;font-weight:900;color:var(--gz);">Rs 700</div></div>
+      </div>
+      <button class="btn-primary gz-btn">Proceed to Payment →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════ G5. GAMING BOOKING CONFIRMED ══════════════════════ -->
+<div class="phone-wrap">
+<p class="phone-label">Booking Confirmed</p>
+<div class="phone">
+  <div class="screen active" style="background:var(--bg);">
+    <div class="status-bar" style="background:var(--surface);"><div style="font-weight:800;font-size:12px;">9:41</div><div class="notch"></div><div class="status-icons">▶▶ 100%</div></div>
+
+    <div class="scroll-view" style="padding:20px 16px 40px;">
+      <!-- Success -->
+      <div style="text-align:center;margin-bottom:20px;" class="anim-scale-in">
+        <div style="width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 14px;box-shadow:0 10px 32px rgba(58,30,110,.4);animation:bounceIn .6s cubic-bezier(.34,1.56,.64,1) both;">🎮</div>
+        <div style="font-size:22px;font-weight:900;color:var(--text);margin-bottom:5px;">Station Booked! 🕹️</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.5;">Your gaming slot is confirmed.<br>Show this pass at the counter.</div>
+      </div>
+
+      <!-- Gaming pass -->
+      <div class="gz-pass anim-fade-up d2" style="margin-bottom:16px;">
+        <div style="position:absolute;right:-20px;top:-20px;width:110px;height:110px;background:rgba(168,139,255,.14);border-radius:50%;"></div>
+        <div style="font-size:11px;font-weight:700;color:rgba(200,180,255,.85);letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px;">🎮 Gaming Pass</div>
+        <div style="font-size:20px;font-weight:900;margin-bottom:2px;">Nexus Gaming Lounge</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.65);margin-bottom:14px;">📍 Bahadurabad, Karachi</div>
+        <div style="display:flex;gap:14px;margin-bottom:14px;">
+          <div style="flex:1;"><div style="font-size:10px;color:rgba(200,180,255,.7);font-weight:700;text-transform:uppercase;">Station</div><div style="font-size:14px;font-weight:800;">Cubicle A · PC 1</div></div>
+          <div style="flex:1;"><div style="font-size:10px;color:rgba(200,180,255,.7);font-weight:700;text-transform:uppercase;">Date</div><div style="font-size:14px;font-weight:800;">Wed, 7 May</div></div>
+        </div>
+        <div style="display:flex;gap:14px;margin-bottom:16px;">
+          <div style="flex:1;"><div style="font-size:10px;color:rgba(200,180,255,.7);font-weight:700;text-transform:uppercase;">Time</div><div style="font-size:14px;font-weight:800;">1:00 – 2:00 PM</div></div>
+          <div style="flex:1;"><div style="font-size:10px;color:rgba(200,180,255,.7);font-weight:700;text-transform:uppercase;">Paid</div><div style="font-size:14px;font-weight:800;">Rs 300</div></div>
+        </div>
+        <!-- QR -->
+        <div style="background:#fff;border-radius:14px;padding:12px;display:flex;align-items:center;gap:12px;">
+          <div style="width:62px;height:62px;border-radius:10px;background:repeating-conic-gradient(#1A0E2E 0% 25%,#fff 0% 50%) 50%/12px 12px;flex-shrink:0;"></div>
+          <div><div style="font-size:13px;font-weight:900;color:var(--gz-d);">Booking #NX-3920</div><div style="font-size:11px;color:var(--text3);margin-top:2px;">Scan at the front counter to start your session</div></div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;">
+        <button class="btn-primary" style="flex:1;background:var(--surface)!important;color:var(--gz)!important;border:1.5px solid var(--gz-bd)!important;box-shadow:none!important;">Add to Calendar</button>
+        <button class="btn-primary gz-btn" style="flex:1;">View Booking</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function gzSelPill(el){ el.closest('.gz-pillrow').querySelectorAll('.gz-pill').forEach(p=>p.classList.remove('active')); el.classList.add('active'); }
+function gzSelChip(el){ el.closest('.gz-chiprow').querySelectorAll('.gz-chip').forEach(c=>c.classList.remove('active')); el.classList.add('active'); }
+function gzGamesHtml(attr, sel){
+  return (attr||'').split('|').filter(Boolean).map(function(g,i){
+    return '<div class="gz-chip'+(sel&&i===0?' active':'')+'" onclick="gzSelChip(this)">'+g+'</div>';
+  }).join('');
+}
+/* Book a PC — show the picked PC's own specs + games */
+function gzPickPc(el){
+  gzSelPill(el);
+  var nm=el.textContent.replace(/[⭐👑]/g,'').trim();
+  var set=function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
+  set('g3-pc-name', nm);
+  set('g3-pc-screen', el.getAttribute('data-screen'));
+  set('g3-pc-cpu', el.getAttribute('data-cpu'));
+  set('g3-pc-gear', el.getAttribute('data-gear'));
+  var g=document.getElementById('g3-pc-games'); if(g) g.innerHTML=gzGamesHtml(el.getAttribute('data-games'), false);
+}
+/* Book a Console — show the picked unit's own screen size + games */
+function gzPickUnit(el){
+  gzSelPill(el);
+  var d=document.getElementById('g4-unit-detail');
+  if(d) d.textContent = el.getAttribute('data-screen')+' · '+el.getAttribute('data-hz')+' · 4 controllers';
+  var g=document.getElementById('g4-games'); if(g) g.innerHTML=gzGamesHtml(el.getAttribute('data-games'), true);
+}
+/* Console switch — swap which unit row is shown, then load that console's first unit */
+function gzPickConsole(el, unitRowId){
+  gzSelPill(el);
+  ['g4-units-ps5','g4-units-ps4'].forEach(function(id){ var r=document.getElementById(id); if(r) r.style.display = (id===unitRowId)?'flex':'none'; });
+  var row=document.getElementById(unitRowId);
+  if(row){ var first=row.querySelector('.gz-pill'); if(first) gzPickUnit(first); }
+}
+/* ════ Console grid (single shared session — one selection set) ════ */
+function gzToggleSlot(el, gridId){ if(el.classList.contains('booked')) return; el.classList.toggle('sel'); gzConsoleRecalc(); }
+function gzConsoleRecalc(){
+  var g=document.getElementById('g4grid'); if(!g) return;
+  var sel=g.querySelectorAll('.gz-slot.sel'); var n=sel.length, total=0;
+  sel.forEach(function(c){ var p=c.querySelector('.gs-p'); if(p) total+=parseInt(p.textContent.replace(/[^0-9]/g,''),10)||0; });
+  var s=document.getElementById('g4grid-sum'), t=document.getElementById('g4grid-tot');
+  if(s) s.textContent = n ? (n+' slot'+(n>1?'s':'')+' · '+(n*0.5)+' hr selected') : 'Tap slots to book';
+  if(t) t.textContent='Rs '+total.toLocaleString();
+}
+
+/* ════ Buddy list — searchable, not suggested ════ */
+var GZ_BUDDIES=['Bilal Khan','Hamza Ali','Usman Tariq','Zaid Sheikh','Sara Cozi','Faraz Iqbal','Rafay Noor','Ahsan Malik','Daniyal Sheikh','Owais Raza','Talha Javed','Maira Khan','Hassan Raza','Imran Qureshi','Noman Aziz'];
+function gzInitials(name){ return name.split(' ').map(function(s){return s[0];}).join('').slice(0,2).toUpperCase(); }
+function gzBuddyRows(query, exclude, pickFn){
+  var q=(query||'').trim().toLowerCase();
+  var pool=GZ_BUDDIES.filter(function(n){ return exclude.indexOf(n)===-1; });
+  var list = q==='' ? pool.slice(0,3) : pool.filter(function(n){ return n.toLowerCase().indexOf(q)!==-1; }).slice(0,6);
+  if(!list.length) return '<div style="font-size:12px;color:var(--text3);padding:6px 2px;">No buddies found'+(q?' for "'+query+'"':'')+'.</div>';
+  var hint = q==='' ? '<div style="font-size:10px;color:var(--text3);font-weight:700;margin:0 2px 4px;">Recent buddies</div>' : '';
+  return hint + list.map(function(n){
+    return '<div onclick="'+pickFn+'(\''+n+'\')" style="display:flex;align-items:center;gap:10px;padding:9px 4px;border-bottom:1px solid var(--border);cursor:pointer;">'
+      +'<div class="gz-av">'+gzInitials(n)+'</div>'
+      +'<div style="flex:1;font-size:13px;font-weight:700;color:var(--text);">'+n+'</div>'
+      +'<div style="font-size:12px;font-weight:800;color:var(--gz);">+ Add</div></div>';
+  }).join('');
+}
+
+/* ════ BOOK A PC — all PCs viewable; first PC you book becomes yours;
+       extra PCs need a buddy name to BOOK (viewing always allowed) ════ */
+var GZ_PCSPEC=[
+  {scr:'27" · 165Hz', cpu:'RTX 4070 · i7', games:['Valorant','CS2','Dota 2','FIFA 24']},
+  {scr:'24.5" · 144Hz', cpu:'RTX 4060 · i5', games:['Valorant','Fortnite','Apex']},
+  {scr:'27" · 240Hz', cpu:'RTX 4070 Ti · i7', games:['Valorant','CS2','PUBG','Apex']},
+  {scr:'32" curved · 165Hz', cpu:'RTX 4080 · i9', games:['Cyberpunk 2077','GTA V','Elden Ring']},
+  {scr:'24" · 144Hz', cpu:'RTX 4060 · i5', games:['Valorant','Rocket League','Tekken 8']}
+];
+var GZ_TIMES=['11:00a','11:30a','12:00p','12:30p','1:00p','1:30p','2:00p','2:30p','3:00p','3:30p','4:00p','4:30p','5:00p','5:30p','6:00p','6:30p','7:00p','7:30p','8:00p','8:30p','9:00p','9:30p','10:00p','10:30p'];
+function gzPrice(i){ return i<=7?150 : i<=11?200 : i<=21?250 : 200; }
+/* venue-booked (already taken) slots differ per PC, so the user can see which PC is free when */
+var GZ_VBOOK=[
+  ['11:00a','2:30p','6:00p','6:30p'],
+  ['12:00p','12:30p','5:00p'],
+  ['3:00p','3:30p','7:00p','7:30p'],
+  ['11:30a','8:00p','8:30p','9:00p'],
+  []
+];
+/* one station per real PC; player: null | 'me' | buddyName */
+var gzStations=[{player:null,slots:{}},{player:null,slots:{}},{player:null,slots:{}},{player:null,slots:{}},{player:null,slots:{}}];
+var gzActive=0;
+function gzUserHasPc(){ return gzStations.some(function(s){ return s.player==='me'; }); }
+function gzAssigned(){ var a=[]; gzStations.forEach(function(s){ if(s.player && s.player!=='me') a.push(s.player); }); gzCtrls.forEach(function(c){ a.push(c); }); return a; }
+
+function gzRenderStations(){
+  var row=document.getElementById('g3-stations'); if(!row) return;
+  row.innerHTML=gzStations.map(function(s,i){
+    var who = s.player==='me' ? '· You' : (s.player ? ('· '+s.player.split(' ')[0]) : '');
+    return '<div class="gz-pill'+(i===gzActive?' active':'')+'" onclick="gzSwitchStation('+i+')">PC '+(i+1)+' '+who+'</div>';
+  }).join('');
+}
+function gzRenderActiveLabel(){
+  var lab=document.getElementById('g3-active-label'); if(!lab) return;
+  var s=gzStations[gzActive], spec=GZ_PCSPEC[gzActive], n=Object.keys(s.slots).length;
+  var specLine='<div style="font-size:10px;color:var(--text3);">'+spec.scr+' · '+spec.cpu+'</div>';
+  if(s.player==='me'){
+    lab.innerHTML='<div class="gz-av gz-av-me">A</div><div style="flex:1;min-width:0;"><div class="gz-pcn">PC '+(gzActive+1)+' · YOU</div><div class="gz-pnm">You · Ahmed Khan</div>'+specLine+'</div>'
+      +'<span class="gz-mebadge">Your station</span><div style="font-size:12px;color:var(--gz);font-weight:800;margin-left:8px;white-space:nowrap;">'+n+' slot'+(n!==1?'s':'')+'</div>';
+  } else if(s.player){
+    lab.innerHTML='<div class="gz-av">'+gzInitials(s.player)+'</div><div style="flex:1;min-width:0;"><div class="gz-pcn">PC '+(gzActive+1)+' · BUDDY</div><div class="gz-pnm">'+s.player+'</div>'+specLine+'</div>'
+      +'<span class="gz-rm" onclick="gzClearPc('+gzActive+')">✕</span><div style="font-size:12px;color:var(--gz);font-weight:800;margin-left:8px;white-space:nowrap;">'+n+' slot'+(n!==1?'s':'')+'</div>';
+  } else if(gzUserHasPc()){
+    // viewable but booking gated — needs a buddy
+    lab.innerHTML='<div class="gz-av" style="background:var(--gz-bg);color:var(--gz);">👁️</div><div style="flex:1;min-width:0;"><div class="gz-pcn">PC '+(gzActive+1)+' · VIEW ONLY</div><div class="gz-pnm" style="font-size:12px;">Free slots shown — add a buddy to book</div>'+specLine+'</div>'
+      +'<div onclick="gzRevealBuddy()" style="font-size:11px;font-weight:800;color:#fff;background:var(--gz);padding:7px 11px;border-radius:99px;cursor:pointer;white-space:nowrap;">+ Buddy</div>';
+  } else {
+    // user hasn't booked anything yet — this PC is free to claim
+    lab.innerHTML='<div class="gz-av" style="background:var(--green-bg);color:var(--green);">🎮</div><div style="flex:1;min-width:0;"><div class="gz-pcn">PC '+(gzActive+1)+' · AVAILABLE</div><div class="gz-pnm" style="font-size:12px;">Tap a slot to book this as your PC</div>'+specLine+'</div>';
+  }
+}
+function gzRenderGrid(){
+  var grid=document.getElementById('g3grid'); if(!grid) return;
+  var s=gzStations[gzActive], vb=GZ_VBOOK[gzActive]||[];
+  grid.innerHTML=GZ_TIMES.map(function(t,i){
+    if(vb.indexOf(t)!==-1) return '<div class="gz-slot booked"><div class="gs-t">'+t+'</div><div class="gs-p">Booked</div></div>';
+    var sel = s.slots[t]!==undefined;
+    return '<div class="gz-slot'+(sel?' sel':'')+'" onclick="gzSlotClick(this)"><div class="gs-t">'+t+'</div><div class="gs-p">'+gzPrice(i)+'</div></div>';
+  }).join('');
+  var gf=document.getElementById('g3-grid-for');
+  if(gf) gf.textContent='PC '+(gzActive+1)+(s.player==='me'?' · You':(s.player?(' · '+s.player.split(' ')[0]):' · available'));
+}
+function gzRenderActiveGames(){
+  var box=document.getElementById('g3-active-games'); if(!box) return;
+  var games=GZ_PCSPEC[gzActive].games||[];
+  box.innerHTML='<div style="font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;">🎯 Games on PC '+(gzActive+1)+'</div>'
+    +'<div class="gz-chiprow">'+games.map(function(g){ return '<span class="gz-chip">'+g+'</span>'; }).join('')+'</div>';
+}
+function gzSwitchStation(i){
+  gzActive=i;
+  document.getElementById('g3-buddy').style.display='none';
+  gzRenderStations(); gzRenderActiveLabel(); gzRenderActiveGames(); gzRenderGrid(); gzRenderTotals();
+}
+function gzRevealBuddy(){
+  var p=document.getElementById('g3-buddy'); if(p) p.style.display='block';
+  document.getElementById('g3-buddy-pc').textContent='PC '+(gzActive+1);
+  var sr=document.getElementById('g3-buddy-search'); if(sr) sr.value='';
+  gzBuddySearch('');
+  if(p) p.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function gzBuddySearch(q){ var box=document.getElementById('g3-buddy-results'); if(box) box.innerHTML=gzBuddyRows(q, gzAssigned(), 'gzAssignBuddy'); }
+function gzAssignBuddy(name){
+  gzStations[gzActive].player=name;
+  document.getElementById('g3-buddy').style.display='none';
+  gzRenderStations(); gzRenderActiveLabel(); gzRenderGrid(); gzRenderTotals();
+}
+function gzClearPc(i){ gzStations[i].player=null; gzStations[i].slots={}; gzSwitchStation(i); }
+function gzSlotClick(el){
+  if(el.classList.contains('booked')) return;
+  var s=gzStations[gzActive];
+  if(!s.player){
+    if(gzUserHasPc()){ gzRevealBuddy(); return; }  // already have your PC → need a buddy to book this one (slot NOT selected)
+    s.player='me';                                  // first booking → this PC is yours
+  }
+  var t=el.querySelector('.gs-t').textContent;
+  var price=parseInt(el.querySelector('.gs-p').textContent.replace(/[^0-9]/g,''),10)||0;
+  if(s.slots[t]!==undefined){ delete s.slots[t]; el.classList.remove('sel'); }
+  else { s.slots[t]=price; el.classList.add('sel'); }
+  if(s.player==='me' && Object.keys(s.slots).length===0) s.player=null; // emptied your PC → free to claim another first
+  gzRenderStations(); gzRenderActiveLabel(); gzRenderTotals();
+}
+function gzRenderTotals(){
+  var grand=0, totalSlots=0, bookedPcs=0, rows='';
+  gzStations.forEach(function(s,i){
+    var keys=Object.keys(s.slots), n=keys.length, sub=0;
+    keys.forEach(function(k){ sub+=s.slots[k]; });
+    totalSlots+=n; grand+=sub;
+    if(s.player && n){
+      bookedPcs++;
+      rows+='<div class="gz-squad-row" style="padding:8px 11px;"><div class="gz-av'+(s.player==='me'?' gz-av-me':'')+'">'+(s.player==='me'?'A':gzInitials(s.player))+'</div>'
+        +'<div style="flex:1;min-width:0;"><div class="gz-pcn">PC '+(i+1)+'</div><div class="gz-pnm">'+(s.player==='me'?'You · Ahmed Khan':s.player)+'</div></div>'
+        +'<div style="text-align:right;"><div style="font-size:12px;font-weight:800;color:var(--text);">'+n+' slot'+(n!==1?'s':'')+'</div><div style="font-size:11px;font-weight:800;color:var(--gz);">Rs '+sub.toLocaleString()+'</div></div></div>';
+    }
+  });
+  var bd=document.getElementById('g3-breakdown'); if(bd) bd.innerHTML = rows || '<div style="font-size:12px;color:var(--text3);">No PCs booked yet — tap a slot on any PC to start.</div>';
+  var names=[]; gzStations.forEach(function(s){ if(s.player && Object.keys(s.slots).length) names.push(s.player==='me'?'You':s.player.split(' ')[0]); });
+  var st=document.getElementById('g3-sumtitle'); if(st) st.textContent = bookedPcs ? (bookedPcs+' PC'+(bookedPcs>1?'s':'')+' · '+names.join(', ')) : 'No PC booked yet';
+  var sum=document.getElementById('g3grid-sum'); if(sum) sum.textContent = totalSlots ? (totalSlots+' slot'+(totalSlots>1?'s':'')+' · '+(totalSlots*0.5)+' hr · '+bookedPcs+' PC'+(bookedPcs>1?'s':'')) : 'Tap slots to book';
+  var tot=document.getElementById('g3grid-tot'); if(tot) tot.textContent='Rs '+grand.toLocaleString();
+}
+
+/* ════ BOOK A CONSOLE — Controller 1 = you; add controller -> name a buddy first ════ */
+var gzCtrls=[];
+function gzRenderControllers(){
+  var box=document.getElementById('g4-controllers'); if(!box) return;
+  var html='<div class="gz-squad-row"><div class="gz-av gz-av-me">A</div><div style="flex:1;"><div class="gz-pcn">Controller 1</div><div class="gz-pnm">You · Ahmed Khan</div></div><span class="gz-mebadge">You</span></div>';
+  gzCtrls.forEach(function(name,i){
+    html+='<div class="gz-squad-row"><div class="gz-av">'+gzInitials(name)+'</div><div style="flex:1;"><div class="gz-pcn">Controller '+(i+2)+' · +Rs 50/hr</div><div class="gz-pnm">'+name+'</div></div><span class="gz-rm" onclick="gzRemoveCtrl('+i+')">✕</span></div>';
+  });
+  if(gzCtrls.length<3) html+='<div class="gz-pill" style="border-style:dashed;align-self:flex-start;" onclick="gzShowCtrlSearch()">+ Add controller · name a buddy</div>';
+  box.innerHTML=html;
+  var c=document.getElementById('g4-ctrl-count'); if(c){ var n=1+gzCtrls.length; c.textContent=n+' controller'+(n>1?'s':''); }
+}
+function gzShowCtrlSearch(){ var p=document.getElementById('g4-buddy'); if(p) p.style.display='block'; var s=document.getElementById('g4-buddy-search'); if(s) s.value=''; gzCtrlSearch(''); }
+function gzCtrlSearch(q){ var box=document.getElementById('g4-buddy-results'); if(box) box.innerHTML=gzBuddyRows(q, gzAssigned(), 'gzAddCtrl'); }
+function gzAddCtrl(name){ if(gzCtrls.length<3 && gzCtrls.indexOf(name)===-1) gzCtrls.push(name); var p=document.getElementById('g4-buddy'); if(p) p.style.display='none'; gzRenderControllers(); }
+function gzRemoveCtrl(i){ gzCtrls.splice(i,1); gzRenderControllers(); }
+
+/* init (script is at end of body, so elements exist) */
+gzSwitchStation(0);
+gzConsoleRecalc();
+gzRenderControllers();
+</script>
+
 </body>
 </html>
