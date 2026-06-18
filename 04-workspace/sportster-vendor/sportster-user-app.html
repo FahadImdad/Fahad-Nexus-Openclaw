@@ -1571,9 +1571,24 @@ body {
   border:1px solid rgba(10,122,138,.2);
 }
 
+  /* Module section divider (visible vertical label in the gallery row) */
+  .section-divider { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; align-self:stretch; min-width:60px; padding:0 6px; }
+  .section-divider .sd-line { flex:1; width:3px; border-radius:3px; background:linear-gradient(180deg,var(--sd,#2E5A14),transparent); }
+  .section-divider .sd-line.top { background:linear-gradient(0deg,var(--sd,#2E5A14),transparent); }
+  .section-divider .sd-label { writing-mode:vertical-rl; transform:rotate(180deg); font-size:15px; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--sd,#2E5A14); white-space:nowrap; }
+  .section-divider .sd-emoji { font-size:30px; }
+  .section-divider .sd-num { writing-mode:vertical-rl; transform:rotate(180deg); font-size:9px; font-weight:700; letter-spacing:1px; color:rgba(0,0,0,.35); white-space:nowrap; }
 </style>
 </head>
 <body>
+
+<div class="section-divider" style="--sd:#2E5A14;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">🔐</div>
+  <div class="sd-label">Auth & Onboarding</div>
+  <div class="sd-num">Splash · Login · Sign-up</div>
+  <div class="sd-line"></div>
+</div>
 
 <!-- ══════════════════════ SPLASH ══════════════════════ -->
 <div class="phone-wrap">
@@ -1843,6 +1858,14 @@ body {
     </div>
   </div>
 </div>
+</div>
+
+<div class="section-divider" style="--sd:#2E5A14;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">🏟️</div>
+  <div class="sd-label">Arena Booking</div>
+  <div class="sd-num">Browse · Book · Pay · Confirm</div>
+  <div class="sd-line"></div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -2588,6 +2611,14 @@ function switchTrnTab(el) {
 }
 </script>
 
+<div class="section-divider" style="--sd:#8B6A00;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">🏆</div>
+  <div class="sd-label">Tournaments</div>
+  <div class="sd-num">Browse · Register · Bracket</div>
+  <div class="sd-line"></div>
+</div>
+
 <!-- ════════════════════════════════════════════════════
      TOURNAMENT SECTION DIVIDER
 ════════════════════════════════════════════════════ -->
@@ -3205,6 +3236,14 @@ function switchTrnTab(el) {
     </div>
   </div>
 </div>
+</div>
+
+<div class="section-divider" style="--sd:#7A3EA0;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">🎭</div>
+  <div class="sd-label">Mood</div>
+  <div class="sd-num">Feed · Create · Notify</div>
+  <div class="sd-line"></div>
 </div>
 
 <!-- ═══════════════ MOOD DIVIDER ═══════════════ -->
@@ -3875,6 +3914,14 @@ function switchTrnTab(el) {
 </div>
 </div>
 
+<div class="section-divider" style="--sd:#0A6A8A;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">👥</div>
+  <div class="sd-label">Teams</div>
+  <div class="sd-num">My teams · Challenges</div>
+  <div class="sd-line"></div>
+</div>
+
 <!-- ═══════════════ TEAMS DIVIDER ═══════════════ -->
 <div style="display:flex;align-items:center;gap:16px;align-self:center;flex-shrink:0;">
   <div style="width:3px;height:80px;background:var(--team);border-radius:99px;opacity:.45;"></div>
@@ -4522,6 +4569,14 @@ function switchTrnTab(el) {
     </div>
   </div>
 </div>
+</div>
+
+<div class="section-divider" style="--sd:#0A6A8A;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">🤝</div>
+  <div class="sd-label">Buddies</div>
+  <div class="sd-num">Find · Connect · Profile</div>
+  <div class="sd-line"></div>
 </div>
 
 <!-- ═══════════════ BUDDIES DIVIDER ═══════════════ -->
@@ -5397,6 +5452,14 @@ function switchTrnTab(el) {
   padding: 2px 7px; border-radius: 99px; gap: 3px; margin-left: 4px;
 }
 </style>
+
+<div class="section-divider" style="--sd:#2E5A14;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">👤</div>
+  <div class="sd-label">Profile</div>
+  <div class="sd-num">Me · Edit · Achievements</div>
+  <div class="sd-line"></div>
+</div>
 
 <!-- ════════════════════════════════════════════════════
      PROFILE SECTION DIVIDER
@@ -6384,6 +6447,14 @@ function selSkill(el) {
 .tracking-sub    { font-size: 12px; color: var(--text3); margin-top: 2px; }
 </style>
 
+<div class="section-divider" style="--sd:#B05A00;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">🛍️</div>
+  <div class="sd-label">Store</div>
+  <div class="sd-num">Shop · Cart · Checkout</div>
+  <div class="sd-line"></div>
+</div>
+
 <!-- ════════════════════════════════════════════════════
      STORE SECTION DIVIDER
 ════════════════════════════════════════════════════ -->
@@ -7300,6 +7371,14 @@ function applyPromo() {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 </style>
+
+<div class="section-divider" style="--sd:#7A3EA0;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">📰</div>
+  <div class="sd-label">Social Feed</div>
+  <div class="sd-num">Feed · Posts · Explore</div>
+  <div class="sd-line"></div>
+</div>
 
 <!-- ════════════════════════════════════════════════════
      NEWSFEED SECTION DIVIDER
@@ -8289,6 +8368,14 @@ function toggleLike(btn) {
 }
 </style>
 
+<div class="section-divider" style="--sd:#1A6A30;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">🏋️</div>
+  <div class="sd-label">Gym Booking</div>
+  <div class="sd-num">Browse · Machines · Book</div>
+  <div class="sd-line"></div>
+</div>
+
 <!-- ════════════════════════════════════════════════════
      GYM BOOKING SECTION DIVIDER
 ════════════════════════════════════════════════════ -->
@@ -9240,6 +9327,14 @@ function toggleAddon(el) {
 .gz-mebadge{ font-size:9px; font-weight:800; color:var(--gz); background:var(--gz-bg); padding:3px 8px; border-radius:99px; white-space:nowrap; }
 .gz-rm{ width:24px; height:24px; border-radius:8px; background:var(--red-bg); color:var(--red); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; cursor:pointer; flex-shrink:0; }
 </style>
+
+<div class="section-divider" style="--sd:#5A2EA0;">
+  <div class="sd-line top"></div>
+  <div class="sd-emoji">🎮</div>
+  <div class="sd-label">Gaming Zones</div>
+  <div class="sd-num">Discover · Detail · Book · Pay</div>
+  <div class="sd-line"></div>
+</div>
 
 <!-- ══════════════════════ G1. GAMING ZONES (discovery) ══════════════════════ -->
 <div class="phone-wrap">
