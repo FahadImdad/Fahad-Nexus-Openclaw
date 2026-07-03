@@ -576,6 +576,39 @@ function Billing({ client, calls, invoices }) {
   );
 }
 
+/* ============ ADMIN INBOX: all client chats in one place ============ */
+function AdminInbox() {
+  const [rows, setRows] = useState(null);
+  const [sel, setSel] = useState(null);
+  useEffect(() => {
+    supabase.from("clients").select("id,business_name,email,status,trade").order("created_at", { ascending: false })
+      .then(({ data }) => { setRows(data || []); if (data?.length) setSel(data[0].id); });
+  }, []);
+  if (!rows) return <Empty title="Loading clients…" hint="" />;
+  if (rows.length === 0) return <div className="dz-card"><Empty title="No clients yet" hint="When someone signs up, their conversation thread appears here." /></div>;
+  const active = rows.find((r) => r.id === sel);
+  return (
+    <div className="lz" style={{ gridTemplateColumns: "290px 1fr" }}>
+      <motion.div className="lz-col" variants={rise} initial="hidden" animate="show">
+        <div className="lz-items" style={{ maxHeight: 640 }}>
+          {rows.map((r) => (
+            <div key={r.id} className={`lz-item ${sel === r.id ? "sel" : ""}`} onClick={() => setSel(r.id)}>
+              <b>{r.business_name || r.email || "Client"}</b>
+              <p>{r.trade || "—"} · {r.email}</p>
+              <div className="lz-item-meta">
+                <span className={`dz-badge ${r.status === "live" ? "green" : r.status === "rejected" ? "red" : ""}`}>{r.status || "pending_review"}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+      <motion.div className="lz-col" key={sel} variants={rise} custom={1} initial="hidden" animate="show" style={{ padding: 20 }}>
+        {sel && <Messages clientId={sel} me="admin" title={`${active?.business_name || "Client"} · ${active?.email || ""}`} />}
+      </motion.div>
+    </div>
+  );
+}
+
 /* ============ nav icons ============ */
 const I = {
   grid: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>,
@@ -597,24 +630,32 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
   const status = client?.status || (isAdmin ? "live" : "pending_review");
   const isPending = !isAdmin && status !== "live";
 
-  const nav = [
-    { k: "overview", l: "Home", ic: I.grid },
-    ...(!isAdmin ? [{ k: "messages", l: "Messages", ic: I.chat }] : []),
-    { k: "leads", l: "Calls & Leads", ic: I.users },
-    { k: "config", l: "My AI Setup", ic: I.sliders },
-    { k: "billing", l: "Billing", ic: I.card },
-    ...(isAdmin ? [{ k: "signups", l: "Signups", ic: I.shield }] : []),
-  ];
+  const nav = isAdmin
+    ? [
+        { k: "signups", l: "Clients", ic: I.shield },
+        { k: "inbox", l: "Inbox", ic: I.chat },
+        { k: "leads", l: "All Calls", ic: I.users },
+      ]
+    : [
+        { k: "overview", l: "Home", ic: I.grid },
+        { k: "messages", l: "Messages", ic: I.chat },
+        { k: "leads", l: "Calls & Leads", ic: I.users },
+        { k: "config", l: "My AI Setup", ic: I.sliders },
+        { k: "billing", l: "Billing", ic: I.card },
+      ];
 
   const titles = {
     overview: isPending
       ? [`Welcome, ${firstName} 👋`, `Here's exactly where ${bizName} is in the setup process.`]
       : [`Good ${new Date().getHours() < 12 ? "morning" : new Date().getHours() < 18 ? "afternoon" : "evening"}, ${firstName} 👋`, `Live performance for ${bizName}.`],
     messages: ["Messages", "Talk directly with your Answup account manager. We reply fast."],
-    leads: ["Calls & Leads", "Every call your AI answers, transcribed and scored."],
+    leads: isAdmin
+      ? ["All calls", "Every call answered across all your clients."]
+      : ["Calls & Leads", "Every call your AI answers, transcribed and scored."],
     config: ["My AI Setup", "What your receptionist knows. Change anything, we apply it within 24h."],
     billing: ["Billing & Usage", "Your plan, real usage, and invoices. No card needed, we invoice you."],
-    signups: ["Client pipeline", "Review signups, build agents, attach Vapi, manage billing."],
+    signups: ["Clients", "Your pipeline: review signups, build agents, attach Vapi, chat, invoice."],
+    inbox: ["Inbox", "Every client conversation in one place. This is where you gather requirements."],
   };
 
   return (
@@ -656,6 +697,7 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
         {tab === "config" && <Config client={client} />}
         {tab === "billing" && <Billing client={client} calls={calls} invoices={invoices} />}
         {tab === "signups" && isAdmin && <Admin />}
+        {tab === "inbox" && isAdmin && <AdminInbox />}
       </main>
     </div>
   );

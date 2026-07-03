@@ -48,10 +48,10 @@ export default function Messages({ clientId, me, compact = false, title }) {
     <div className={`msg-wrap ${compact ? "compact" : ""}`}>
       {!compact && (
         <div className="msg-head">
-          <div className="st-mgr-av">MF</div>
+          <div className="st-mgr-av">{me === "admin" ? "👤" : "MF"}</div>
           <div>
             <b>{title || "Muhammad Fahad · Answup"}</b>
-            <small>Your account manager. Ask anything about your AI receptionist.</small>
+            <small>{me === "admin" ? "Ask discovery questions, share updates, confirm go-live." : "Your account manager. Ask anything about your AI receptionist."}</small>
           </div>
         </div>
       )}
