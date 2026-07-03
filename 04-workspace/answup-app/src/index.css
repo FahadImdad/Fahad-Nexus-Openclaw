@@ -621,3 +621,21 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .st-number { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; letter-spacing: .02em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 8px; }
 @media (max-width: 900px) { .st-steps { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .st-steps { grid-template-columns: 1fr; } }
+
+/* ---------- Messages (client <-> Answup chat) ---------- */
+.msg-wrap { display: flex; flex-direction: column; }
+.msg-head { display: flex; align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.msg-head b { font-size: 14.5px; display: block; }
+.msg-head small { color: var(--muted); font-size: 12px; }
+.msg-list { display: flex; flex-direction: column; gap: 4px; max-height: 440px; overflow-y: auto; padding: 10px 2px; }
+.msg-wrap.compact .msg-list { max-height: 260px; }
+.msg-row { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 8px; }
+.msg-row.mine { align-items: flex-end; }
+.msg-row .bub { max-width: 85%; }
+.msg-time { color: var(--muted); font-size: 10.5px; margin-top: 3px; padding: 0 4px; }
+.msg-hint { color: var(--muted); font-size: 13px; line-height: 1.6; background: var(--bg-soft); border: 1px dashed var(--line); border-radius: 12px; padding: 14px 16px; }
+.msg-compose { display: flex; gap: 10px; align-items: flex-end; margin-top: 10px; }
+.msg-input { flex: 1; border: 1px solid var(--line); background: var(--bg-soft); border-radius: 13px; padding: 11px 14px; font-size: 14px; font-family: inherit; color: var(--ink); resize: none; }
+.msg-input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--glow); }
+.msg-send { padding: 11px 22px; border: none; border-radius: 12px; background: var(--grad); color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; box-shadow: 0 8px 20px var(--glow); font-family: inherit; }
+.msg-send:disabled { opacity: .5; cursor: default; }

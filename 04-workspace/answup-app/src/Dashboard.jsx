@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { supabase } from "./lib/supabase";
 import { Logo, ThemeToggle, Equalizer } from "./brand.jsx";
 import Admin from "./Admin.jsx";
+import Messages from "./Messages.jsx";
 
 const ease = [0.22, 0.61, 0.36, 1];
 const rise = { hidden: { opacity: 0, y: 22 }, show: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.55, delay: i * 0.06, ease } }) };
@@ -100,7 +101,7 @@ function SetupTracker({ client }) {
           </p>
           <div className="st-todo">
             <b>What you need to do</b>
-            <span>{client?.answup_number ? "Call your Answup number above, hear your AI, and tell us what to tweak." : "Nothing. Sit back, we handle everything. We'll email you when it's time to hear your AI."}</span>
+            <span>{client?.answup_number ? "Call your Answup number above, hear your AI, then tell us what to tweak in Messages." : "Just one thing: open the Messages tab and tell us how you want your AI to greet callers. Everything else is on us."}</span>
           </div>
         </motion.div>
 
@@ -581,6 +582,7 @@ const I = {
   users: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="9" cy="8" r="3.4"/><path d="M2.8 20c.7-3.4 3.2-5.2 6.2-5.2s5.5 1.8 6.2 5.2"/><circle cx="17.2" cy="9.4" r="2.6"/><path d="M15.4 14.9c2.8-.4 5.3 1.2 5.9 4.1"/></svg>,
   sliders: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 8h9M17 8h3M4 16h3M11 16h9"/><circle cx="15" cy="8" r="2.4"/><circle cx="9" cy="16" r="2.4"/></svg>,
   card: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19"/></svg>,
+  chat: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-2.9-.38-4.1-1.05L3 20l1.05-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>,
   shield: <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l7.5 3v5.2c0 4.8-3.2 8.2-7.5 9.8-4.3-1.6-7.5-5-7.5-9.8V6z"/></svg>,
 };
 
@@ -597,6 +599,7 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
 
   const nav = [
     { k: "overview", l: "Home", ic: I.grid },
+    ...(!isAdmin ? [{ k: "messages", l: "Messages", ic: I.chat }] : []),
     { k: "leads", l: "Calls & Leads", ic: I.users },
     { k: "config", l: "My AI Setup", ic: I.sliders },
     { k: "billing", l: "Billing", ic: I.card },
@@ -607,6 +610,7 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
     overview: isPending
       ? [`Welcome, ${firstName} 👋`, `Here's exactly where ${bizName} is in the setup process.`]
       : [`Good ${new Date().getHours() < 12 ? "morning" : new Date().getHours() < 18 ? "afternoon" : "evening"}, ${firstName} 👋`, `Live performance for ${bizName}.`],
+    messages: ["Messages", "Talk directly with your Answup account manager. We reply fast."],
     leads: ["Calls & Leads", "Every call your AI answers, transcribed and scored."],
     config: ["My AI Setup", "What your receptionist knows. Change anything, we apply it within 24h."],
     billing: ["Billing & Usage", "Your plan, real usage, and invoices. No card needed, we invoice you."],
@@ -645,6 +649,9 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
               {!isAdmin && <ForwardCard client={client} />}
               <Overview calls={calls} client={client} isPending={isPending} onOpenLead={() => setTab("leads")} />
             </>)}
+        {tab === "messages" && !isAdmin && (client?.id
+          ? <motion.div className="dz-card" variants={rise} initial="hidden" animate="show" style={{ maxWidth: 720 }}><Messages clientId={client.id} me="client" /></motion.div>
+          : <Empty title="Finish onboarding first" hint="Once your application is in, your direct line to us opens here." />)}
         {tab === "leads" && <Leads calls={calls} setCalls={setCalls} />}
         {tab === "config" && <Config client={client} />}
         {tab === "billing" && <Billing client={client} calls={calls} invoices={invoices} />}

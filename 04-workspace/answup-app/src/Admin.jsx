@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { supabase } from "./lib/supabase";
+import Messages from "./Messages.jsx";
 
 const ease = [0.22, 0.61, 0.36, 1];
 
@@ -169,6 +170,9 @@ export default function Admin() {
                   <input value={open.vapi_assistant_id || ""} placeholder="0394e019-…" onChange={(e) => setOpen({ ...open, vapi_assistant_id: e.target.value })} /></div>
                 <div className="ad-field"><label>Answup phone number (shown to client with forwarding steps)</label>
                   <input value={open.answup_number || ""} placeholder="+1 (573) 400-3795" onChange={(e) => setOpen({ ...open, answup_number: e.target.value })} /></div>
+
+                <div className="ad-sep">💬 Chat with this client</div>
+                <Messages clientId={open.id} me="admin" compact />
 
                 <div className="ad-sep">Private admin notes</div>
                 <textarea className="ad-notes" rows={5} value={open.admin_notes || ""} placeholder="Called them Mon, agent built, waiting on first invoice…" onChange={(e) => setOpen({ ...open, admin_notes: e.target.value })} />

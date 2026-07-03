@@ -4,14 +4,15 @@ import './index.css'
 import App from './App.jsx'
 import Dashboard from './Dashboard.jsx'
 import Login from './Login.jsx'
+import AdminLogin from './AdminLogin.jsx'
 import Onboard from './Onboard.jsx'
 import { supabase } from './lib/supabase'
 import { initTheme } from './brand.jsx'
 
 initTheme()
 
-// Fahad's admin email — this account sees the admin review panel
-const ADMIN_EMAILS = ['fahadimdad966@gmail.com']
+// Admin accounts: Google (Fahad) + the email/password console account
+const ADMIN_EMAILS = ['fahadimdad966@gmail.com', 'admin@answup.com']
 
 function Root() {
   const [route, setRoute] = useState(window.location.pathname)
@@ -50,6 +51,14 @@ function Root() {
   }, [session])
 
   const signOut = async () => { await supabase.auth.signOut(); setClient(null); go('/') }
+
+  // ---- Admin portal (/admin): email + password entry for Answup staff ----
+  if (route.startsWith('/admin')) {
+    if (loading) return <div className="boot">Loading…</div>
+    const isAdminSession = session && ADMIN_EMAILS.includes((session.user.email || '').toLowerCase())
+    if (!isAdminSession) return <AdminLogin />
+    return <Dashboard user={session.user} client={client} isAdmin={true} onBack={() => go('/')} onSignOut={signOut} />
+  }
 
   // ---- Public marketing site ----
   if (!route.startsWith('/dashboard')) {
