@@ -24,6 +24,12 @@ const fmtTime = (iso) => {
   return today ? d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) : d.toLocaleDateString([], { month: "short", day: "numeric" });
 };
 const moneyOf = (v) => { const n = parseFloat(String(v || "").replace(/[^0-9.]/g, "")); return isNaN(n) ? 0 : n; };
+// minutes count against the CURRENT billing month only
+const monthStart = () => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), 1); };
+const monthMinutes = (calls) => Math.round(
+  (calls || []).filter((c) => new Date(c.created_at) >= monthStart())
+    .reduce((s, c) => s + (c.duration_seconds || 0), 0) / 60
+);
 
 /* ============ Real data hooks ============ */
 function useCalls(client, isAdmin) {
@@ -175,14 +181,14 @@ function Overview({ calls, client, isPending, onOpenLead }) {
   const totalCalls = calls.length;
   const leads = calls.filter((c) => c.caller_phone).length;
   const revenue = calls.reduce((s, c) => s + moneyOf(c.est_value), 0);
-  const minutes = Math.round(calls.reduce((s, c) => s + (c.duration_seconds || 0), 0) / 60);
+  const minutes = monthMinutes(calls);
   const planMin = PLAN_MIN[client?.plan] || 1000;
   const pct = Math.min(100, Math.round((minutes / planMin) * 100));
   const stats = [
     { l: "Total Calls", v: totalCalls.toLocaleString(), ic: "📞", s: "answered by AI" },
     { l: "Leads Captured", v: leads.toLocaleString(), ic: "👤", s: "with contact details" },
     { l: "Est. Job Value", v: `$${revenue.toLocaleString()}`, ic: "💰", s: "from captured leads" },
-    { l: "Minutes Used", v: minutes.toLocaleString(), vs: `/${planMin}`, ic: "⏱️", s: `${pct}% of plan`, bar: pct },
+    { l: "Minutes This Month", v: minutes.toLocaleString(), vs: `/${planMin}`, ic: "⏱️", s: `${pct}% of plan`, bar: pct },
   ];
   return (
     <>
@@ -258,7 +264,7 @@ function Overview({ calls, client, isPending, onOpenLead }) {
 }
 
 /* ============ LEADS (real transcripts) ============ */
-function Leads({ calls, setCalls }) {
+function Leads({ calls, setCalls, bizMap }) {
   const [sel, setSel] = useState(null);
   const [filter, setFilter] = useState("All");
   const [q, setQ] = useState("");
@@ -306,6 +312,7 @@ function Leads({ calls, setCalls }) {
               <p>{c.issue || c.summary || "Call answered"}</p>
               <div className="lz-item-meta">
                 <span className={`dz-badge ${u(c).cls}`}>{u(c).label}</span>
+                {bizMap && <span className="dz-badge">{bizMap[c.client_id] || "?"}</span>}
                 <span className="lz-time">{fmtTime(c.created_at)}</span>
               </div>
             </div>
@@ -315,7 +322,7 @@ function Leads({ calls, setCalls }) {
 
       <motion.div className="lz-col" key={lead.id} variants={rise} custom={1} initial="hidden" animate="show">
         <div className="lz-mid-head">
-          <div><h2>{lead.caller_name || lead.caller_phone || "Caller"}</h2><small>{lead.caller_address || "Address not captured"}</small></div>
+          <div><h2>{lead.caller_name || lead.caller_phone || "Caller"}</h2><small>{bizMap ? `${bizMap[lead.client_id] || "Client"} · ` : ""}{lead.caller_address || "Address not captured"}</small></div>
           <span className={`dz-badge ${u(lead).cls}`}>{u(lead).label}</span>
         </div>
         {lead.summary && <div className="lz-summary">✨ <b>AI Summary</b> — {lead.summary}</div>}
@@ -408,7 +415,7 @@ function Config({ client, refreshClient }) {
     <div className="cf">
       <motion.div className="dz-card" variants={rise} initial="hidden" animate="show">
         <div className="dz-card-head"><div className="cf-row" style={{ margin: 0 }}><span className="cf-ic">📡</span><h3>Phone Routing</h3></div></div>
-        <label style={{ fontSize: 12.5, fontWeight: 700, color: "var(--muted)" }}>Forwarding phone number</label>
+        <label style={{ fontSize: 12.5, fontWeight: 700, color: "var(--muted)" }}>Your business phone (the line you'll forward to your AI)</label>
         <div className="cf-row" style={{ marginTop: 6 }}>
           <input className="cf-input" placeholder="+1 (555) 123-4567" value={f.forward_number} onChange={(e) => setF({ ...f, forward_number: e.target.value })} />
         </div>
@@ -485,7 +492,7 @@ function Config({ client, refreshClient }) {
 function Billing({ client, calls, invoices }) {
   const planName = client?.plan ? (planLabel[client.plan] || client.plan) : "No plan yet";
   const planMin = PLAN_MIN[client?.plan] || 1000;
-  const minutes = Math.round((calls || []).reduce((s, c) => s + (c.duration_seconds || 0), 0) / 60);
+  const minutes = monthMinutes(calls);
   const pct = Math.min(100, Math.round((minutes / planMin) * 100));
 
   // daily usage, last 14 days, from real calls
@@ -510,7 +517,7 @@ function Billing({ client, calls, invoices }) {
               <h2>{planName}</h2>
               <small>Billed monthly by invoice · managed by your account manager</small>
               <div className="bl-mins">
-                <div className="bl-min"><b>{minutes}</b><small>minutes used</small></div>
+                <div className="bl-min"><b>{minutes}</b><small>used this month</small></div>
                 <div className="bl-min"><b>{Math.max(0, planMin - minutes)}</b><small>remaining</small></div>
               </div>
             </div>
@@ -580,10 +587,19 @@ function Billing({ client, calls, invoices }) {
 function AdminInbox() {
   const [rows, setRows] = useState(null);
   const [sel, setSel] = useState(null);
+  const [unreadMap, setUnreadMap] = useState({});
+  const loadUnread = () =>
+    supabase.from("messages").select("client_id").eq("sender", "client").eq("read", false)
+      .then(({ data }) => {
+        const m = {}; (data || []).forEach((r) => { m[r.client_id] = (m[r.client_id] || 0) + 1; });
+        setUnreadMap(m);
+      });
   useEffect(() => {
     supabase.from("clients").select("id,business_name,email,status,trade").order("created_at", { ascending: false })
       .then(({ data }) => { setRows(data || []); if (data?.length) setSel(data[0].id); });
+    loadUnread();
   }, []);
+  useEffect(() => { if (sel) { const t = setTimeout(loadUnread, 900); return () => clearTimeout(t); } }, [sel]);
   if (!rows) return <Empty title="Loading clients…" hint="" />;
   if (rows.length === 0) return <div className="dz-card"><Empty title="No clients yet" hint="When someone signs up, their conversation thread appears here." /></div>;
   const active = rows.find((r) => r.id === sel);
@@ -593,7 +609,7 @@ function AdminInbox() {
         <div className="lz-items" style={{ maxHeight: 640 }}>
           {rows.map((r) => (
             <div key={r.id} className={`lz-item ${sel === r.id ? "sel" : ""}`} onClick={() => setSel(r.id)}>
-              <b>{r.business_name || r.email || "Client"}</b>
+              <b>{r.business_name || r.email || "Client"} {unreadMap[r.id] > 0 && <span className="dz-unread">{unreadMap[r.id]}</span>}</b>
               <p>{r.trade || "—"} · {r.email}</p>
               <div className="lz-item-meta">
                 <span className={`dz-badge ${r.status === "live" ? "green" : r.status === "rejected" ? "red" : ""}`}>{r.status || "pending_review"}</span>
@@ -624,6 +640,26 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
   const [tab, setTab] = useState(isAdmin ? "signups" : "overview");
   const [calls, setCalls] = useCalls(client, isAdmin);
   const invoices = useInvoices(client, isAdmin);
+
+  // unread messages from Answup → red dot on the client's Messages tab
+  const [unread, setUnread] = useState(0);
+  useEffect(() => {
+    if (isAdmin || !client?.id) return;
+    if (tab === "messages") { setUnread(0); return; }
+    supabase.from("messages").select("id", { count: "exact", head: true })
+      .eq("client_id", client.id).eq("sender", "admin").eq("read", false)
+      .then(({ count }) => setUnread(count || 0));
+  }, [client?.id, isAdmin, tab]);
+
+  // admin: map client_id → business name for the All Calls view
+  const [bizMap, setBizMap] = useState(null);
+  useEffect(() => {
+    if (!isAdmin) return;
+    supabase.from("clients").select("id,business_name").then(({ data }) => {
+      const m = {}; (data || []).forEach((r) => { m[r.id] = r.business_name || "Client"; });
+      setBizMap(m);
+    });
+  }, [isAdmin]);
 
   const bizName = client?.business_name || (isAdmin ? "Answup HQ" : "Your business");
   const firstName = (user?.user_metadata?.full_name || user?.email || "there").split(" ")[0].split("@")[0];
@@ -665,7 +701,10 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
         <div className="dz-role">{isAdmin ? "Admin console" : "AI Receptionist"}</div>
         <nav className="dz-nav">
           {nav.map((n) => (
-            <a key={n.k} className={tab === n.k ? "on" : ""} onClick={() => setTab(n.k)}>{n.ic} {n.l}</a>
+            <a key={n.k} className={tab === n.k ? "on" : ""} onClick={() => setTab(n.k)}>
+              {n.ic} {n.l}
+              {n.k === "messages" && unread > 0 && <span className="dz-unread">{unread}</span>}
+            </a>
           ))}
         </nav>
         <div className="dz-foot">
@@ -693,7 +732,7 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
         {tab === "messages" && !isAdmin && (client?.id
           ? <motion.div className="dz-card" variants={rise} initial="hidden" animate="show" style={{ maxWidth: 720 }}><Messages clientId={client.id} me="client" /></motion.div>
           : <Empty title="Finish onboarding first" hint="Once your application is in, your direct line to us opens here." />)}
-        {tab === "leads" && <Leads calls={calls} setCalls={setCalls} />}
+        {tab === "leads" && <Leads calls={calls} setCalls={setCalls} bizMap={isAdmin ? bizMap : null} />}
         {tab === "config" && <Config client={client} />}
         {tab === "billing" && <Billing client={client} calls={calls} invoices={invoices} />}
         {tab === "signups" && isAdmin && <Admin />}

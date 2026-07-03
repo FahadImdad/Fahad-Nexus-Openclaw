@@ -12,9 +12,15 @@ export default function Messages({ clientId, me, compact = false, title }) {
   const [busy, setBusy] = useState(false);
   const endRef = useRef(null);
 
+  // mark the OTHER side's messages as read (I'm looking at them now)
+  const markRead = () =>
+    supabase.from("messages").update({ read: true })
+      .eq("client_id", clientId).eq("sender", me === "admin" ? "client" : "admin").eq("read", false)
+      .then(() => {});
+
   const load = () =>
     supabase.from("messages").select("*").eq("client_id", clientId).order("created_at", { ascending: true }).limit(200)
-      .then(({ data }) => setMsgs(data || []));
+      .then(({ data }) => { setMsgs(data || []); markRead(); });
 
   useEffect(() => {
     if (!clientId) return;
@@ -22,7 +28,10 @@ export default function Messages({ clientId, me, compact = false, title }) {
     const ch = supabase
       .channel(`msgs-${clientId}`)
       .on("postgres_changes", { event: "INSERT", schema: "public", table: "messages", filter: `client_id=eq.${clientId}` },
-        (payload) => setMsgs((m) => (m || []).some((x) => x.id === payload.new.id) ? m : [...(m || []), payload.new]))
+        (payload) => {
+          setMsgs((m) => (m || []).some((x) => x.id === payload.new.id) ? m : [...(m || []), payload.new]);
+          if (payload.new.sender !== me) markRead();
+        })
       .subscribe();
     return () => { supabase.removeChannel(ch); };
   }, [clientId]);

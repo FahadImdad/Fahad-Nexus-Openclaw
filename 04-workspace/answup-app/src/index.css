@@ -639,3 +639,7 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .msg-input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--glow); }
 .msg-send { padding: 11px 22px; border: none; border-radius: 12px; background: var(--grad); color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; box-shadow: 0 8px 20px var(--glow); font-family: inherit; }
 .msg-send:disabled { opacity: .5; cursor: default; }
+
+/* unread message badge */
+.dz-unread { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; margin-left: auto; border-radius: 10px; background: var(--red); color: #fff; font-size: 11px; font-weight: 800; line-height: 1; }
+.dz-nav a .dz-unread { margin-left: auto; }
