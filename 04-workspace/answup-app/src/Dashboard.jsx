@@ -58,6 +58,85 @@ function Empty({ title, hint }) {
   );
 }
 
+/* ============ SETUP TRACKER (client home until live) ============ */
+function SetupTracker({ client }) {
+  const status = client?.status || "pending_review";
+  // stage: 1 received, 2 building, 3 test & approve, 4 live
+  const stage = status === "live" ? 4 : status === "building" ? 2 : status === "rejected" ? 0 : 1;
+  const steps = [
+    { n: 1, t: "Application received", d: "Your business details are with our team." },
+    { n: 2, t: "We build your AI", d: "We create and train your receptionist on your business. Usually under 24 hours." },
+    { n: 3, t: "Test & approve", d: "You call your new number, hear your AI, and request any tweaks." },
+    { n: 4, t: "You're live", d: "Forward your business line and never miss a call again." },
+  ];
+  if (status === "rejected") {
+    return (
+      <motion.div className="dz-card" variants={rise} initial="hidden" animate="show">
+        <Empty title="We couldn't approve this application" hint="This usually means we're not the right fit for your trade or region yet. Reply to our email and we'll explain, or re-apply anytime." />
+      </motion.div>
+    );
+  }
+  return (
+    <>
+      <ForwardCard client={client} />
+      <motion.div className="dz-card st-wrap" variants={rise} initial="hidden" animate="show">
+        <div className="dz-card-head"><h3>Your receptionist is being set up</h3><span className="dz-badge">{stage < 2 ? "In review" : "Building"}</span></div>
+        <div className="st-steps">
+          {steps.map((s) => (
+            <div key={s.n} className={`st-step ${stage > s.n ? "done" : stage === s.n ? "now" : ""}`}>
+              <div className="st-dot">{stage > s.n ? "✓" : s.n}</div>
+              <div><b>{s.t}</b><small>{s.d}</small></div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      <div className="dz-grid" style={{ marginTop: 16 }}>
+        <motion.div className="dz-card" variants={rise} custom={1} initial="hidden" animate="show">
+          <div className="dz-card-head"><h3>What we're doing right now</h3></div>
+          <p style={{ fontSize: 14.5, color: "var(--ink2)", lineHeight: 1.65 }}>
+            {stage === 1 && <>Our team is reviewing <b>{client?.business_name || "your business"}</b>. We check your trade, service area, and call volume fit, then start building your AI receptionist. You'll get an email from us within a few hours.</>}
+            {stage === 2 && <>We're building the AI for <b>{client?.business_name}</b>: your greeting, your service area ({client?.service_area || "as provided"}), emergency rules for {client?.trade || "your trade"}, and lead capture. Next you'll get a number to test-call.</>}
+          </p>
+          <div className="st-todo">
+            <b>What you need to do</b>
+            <span>{client?.answup_number ? "Call your Answup number above, hear your AI, and tell us what to tweak." : "Nothing. Sit back, we handle everything. We'll email you when it's time to hear your AI."}</span>
+          </div>
+        </motion.div>
+
+        <motion.div className="dz-card" variants={rise} custom={2} initial="hidden" animate="show">
+          <div className="dz-card-head"><h3>Your submission</h3></div>
+          <div className="lz-row"><span>Business</span><b>{client?.business_name || "—"}</b></div>
+          <div className="lz-row"><span>Trade</span><b>{client?.trade || "—"}</b></div>
+          <div className="lz-row"><span>Phone</span><b>{client?.phone || "—"}</b></div>
+          <div className="lz-row"><span>Area</span><b style={{ maxWidth: 170 }}>{client?.service_area || "—"}</b></div>
+          <div className="lz-row"><span>Coverage</span><b>{client?.hours || "—"}</b></div>
+          <div className="lz-row"><span>Plan</span><b>{planLabel[client?.plan] || "—"}</b></div>
+          <div className="st-manager">
+            <div className="st-mgr-av">MF</div>
+            <div style={{ flex: 1 }}><b>Muhammad Fahad</b><small>Your account manager · replies within hours</small></div>
+            <a href="mailto:fahadimdad966@gmail.com" className="cf-btn" style={{ padding: "9px 14px", fontSize: 12.5 }}>Contact</a>
+          </div>
+        </motion.div>
+      </div>
+    </>
+  );
+}
+
+/* ============ Go-live number + forwarding instructions ============ */
+function ForwardCard({ client }) {
+  if (!client?.answup_number) return null;
+  return (
+    <motion.div className="dz-card st-fwd" variants={rise} initial="hidden" animate="show" style={{ marginBottom: 16 }}>
+      <div className="dz-card-head"><h3>📞 Your Answup number</h3><span className="dz-badge green">Assigned</span></div>
+      <div className="st-number">{client.answup_number}</div>
+      <p style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.6 }}>
+        Forward your business line to this number. We recommend conditional forwarding (rings us only when you can't answer): dial <b>*71 + this number</b> on most US carriers. Not sure? <a href="mailto:fahadimdad966@gmail.com" style={{ color: "var(--blue)", fontWeight: 700 }}>Message us</a>, we'll set it up with you in 2 minutes.
+      </p>
+    </motion.div>
+  );
+}
+
 /* ============ Live area chart from real calls ============ */
 function AreaChart({ calls }) {
   const days = 30;
@@ -517,19 +596,21 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
   const isPending = !isAdmin && status !== "live";
 
   const nav = [
-    { k: "overview", l: "Dashboard", ic: I.grid },
-    { k: "leads", l: "Leads", ic: I.users },
-    { k: "config", l: "Configuration", ic: I.sliders },
+    { k: "overview", l: "Home", ic: I.grid },
+    { k: "leads", l: "Calls & Leads", ic: I.users },
+    { k: "config", l: "My AI Setup", ic: I.sliders },
     { k: "billing", l: "Billing", ic: I.card },
     ...(isAdmin ? [{ k: "signups", l: "Signups", ic: I.shield }] : []),
   ];
 
   const titles = {
-    overview: [`Good ${new Date().getHours() < 12 ? "morning" : new Date().getHours() < 18 ? "afternoon" : "evening"}, ${firstName} 👋`, `Live performance for ${bizName}.`],
-    leads: ["Leads & Transcripts", "Every call, transcribed and scored by your AI."],
-    config: ["Configure your AI receptionist", "Tune voice, routing, and notifications. Saved to your account."],
-    billing: ["Billing & Usage", "Your plan, real usage, and invoices."],
-    signups: ["Client pipeline", "Review signups, build agents, manage billing."],
+    overview: isPending
+      ? [`Welcome, ${firstName} 👋`, `Here's exactly where ${bizName} is in the setup process.`]
+      : [`Good ${new Date().getHours() < 12 ? "morning" : new Date().getHours() < 18 ? "afternoon" : "evening"}, ${firstName} 👋`, `Live performance for ${bizName}.`],
+    leads: ["Calls & Leads", "Every call your AI answers, transcribed and scored."],
+    config: ["My AI Setup", "What your receptionist knows. Change anything, we apply it within 24h."],
+    billing: ["Billing & Usage", "Your plan, real usage, and invoices. No card needed, we invoice you."],
+    signups: ["Client pipeline", "Review signups, build agents, attach Vapi, manage billing."],
   };
 
   return (
@@ -558,14 +639,12 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
           <div className="dz-live"><Equalizer bars={4} /> {isPending ? "Setting up your receptionist" : "Answup is answering"}</div>
         </header>
 
-        {isPending && tab !== "signups" && (
-          <motion.div className="dz-banner" variants={rise} initial="hidden" animate="show">
-            <b>🚀 We're building your receptionist.</b>
-            <span>Thanks for signing up, {firstName}! Our team is setting up your AI agent for {bizName} now. You'll get an email the moment it's live — then every real call lands right here.</span>
-          </motion.div>
-        )}
-
-        {tab === "overview" && <Overview calls={calls} client={client} isPending={isPending} onOpenLead={() => setTab("leads")} />}
+        {tab === "overview" && (isPending
+          ? <SetupTracker client={client} />
+          : <>
+              {!isAdmin && <ForwardCard client={client} />}
+              <Overview calls={calls} client={client} isPending={isPending} onOpenLead={() => setTab("leads")} />
+            </>)}
         {tab === "leads" && <Leads calls={calls} setCalls={setCalls} />}
         {tab === "config" && <Config client={client} />}
         {tab === "billing" && <Billing client={client} calls={calls} invoices={invoices} />}

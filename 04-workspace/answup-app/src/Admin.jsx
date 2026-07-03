@@ -40,11 +40,22 @@ export default function Admin() {
       business_name: open.business_name, phone: open.phone, trade: open.trade,
       city: open.city, state: open.state, service_area: open.service_area,
       plan: open.plan, amount: open.amount, admin_notes: open.admin_notes,
+      vapi_assistant_id: open.vapi_assistant_id || null,
+      answup_number: open.answup_number || null,
       updated_at: new Date().toISOString(),
     }).eq("id", open.id);
     setClients((cs) => cs.map((c) => (c.id === open.id ? { ...c, ...open } : c)));
     setSaving(false);
     setOpen(null);
+  };
+
+  const addInvoice = async () => {
+    if (!open) return;
+    const amount = prompt("Invoice amount (e.g. $697.00):", open.amount || "$697.00");
+    if (!amount) return;
+    const invoice_no = `INV-${new Date().getFullYear()}-${String(Date.now()).slice(-5)}`;
+    const { error } = await supabase.from("invoices").insert({ client_id: open.id, invoice_no, amount, status: "pending" });
+    alert(error ? "Failed: " + error.message : `Invoice ${invoice_no} created (pending). Client sees it in Billing.`);
   };
 
   if (!clients) return <div className="ad-loading">Loading your clients…</div>;
@@ -151,6 +162,13 @@ export default function Admin() {
                   <input type="checkbox" checked={!!open.paid} onChange={(e) => patch(open.id, { paid: e.target.checked })} />
                   <span>Client has paid this month</span>
                 </label>
+                <button className="ad-btn" style={{ width: "100%", marginTop: 10, padding: "10px" }} onClick={addInvoice}>＋ Create invoice for this client</button>
+
+                <div className="ad-sep">Vapi wiring (makes calls flow to their dashboard)</div>
+                <div className="ad-field"><label>Vapi assistant ID (set metadata.clientId = {open.id?.slice(0, 8)}…)</label>
+                  <input value={open.vapi_assistant_id || ""} placeholder="0394e019-…" onChange={(e) => setOpen({ ...open, vapi_assistant_id: e.target.value })} /></div>
+                <div className="ad-field"><label>Answup phone number (shown to client with forwarding steps)</label>
+                  <input value={open.answup_number || ""} placeholder="+1 (573) 400-3795" onChange={(e) => setOpen({ ...open, answup_number: e.target.value })} /></div>
 
                 <div className="ad-sep">Private admin notes</div>
                 <textarea className="ad-notes" rows={5} value={open.admin_notes || ""} placeholder="Called them Mon, agent built, waiting on first invoice…" onChange={(e) => setOpen({ ...open, admin_notes: e.target.value })} />

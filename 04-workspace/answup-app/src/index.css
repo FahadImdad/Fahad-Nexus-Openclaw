@@ -599,3 +599,25 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .dz-empty-ic .eq { height: 18px; }
 .dz-empty b { font-size: 15.5px; }
 .dz-empty small { color: var(--muted); font-size: 13px; max-width: 380px; line-height: 1.55; }
+
+/* ---------- Setup tracker (client journey until live) ---------- */
+.st-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.st-step { display: flex; gap: 12px; align-items: flex-start; padding: 16px 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--bg-soft); opacity: .55; transition: .25s; }
+.st-step b { font-size: 13.8px; display: block; margin-bottom: 3px; }
+.st-step small { color: var(--muted); font-size: 12px; line-height: 1.5; }
+.st-dot { width: 30px; height: 30px; border-radius: 50%; background: var(--line); color: var(--muted); font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.st-step.done { opacity: 1; }
+.st-step.done .st-dot { background: var(--green); color: #fff; }
+.st-step.now { opacity: 1; border-color: var(--blue); background: linear-gradient(140deg, rgba(42,107,255,.09), rgba(25,184,255,.05)); box-shadow: 0 10px 30px var(--glow); }
+.st-step.now .st-dot { background: var(--grad); color: #fff; animation: pulse 2s infinite; }
+.st-todo { margin-top: 16px; background: var(--bg-soft); border: 1px solid var(--line); border-left: 3px solid var(--blue); border-radius: 12px; padding: 13px 16px; }
+.st-todo b { display: block; font-size: 13px; margin-bottom: 3px; }
+.st-todo span { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.st-manager { display: flex; align-items: center; gap: 12px; margin-top: 16px; padding: 13px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 14px; }
+.st-mgr-av { width: 40px; height: 40px; border-radius: 12px; background: var(--grad); color: #fff; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.st-manager b { font-size: 13.8px; display: block; }
+.st-manager small { color: var(--muted); font-size: 11.5px; }
+.st-fwd { border: 1.5px solid rgba(15,191,127,.35); }
+.st-number { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; letter-spacing: .02em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 8px; }
+@media (max-width: 900px) { .st-steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .st-steps { grid-template-columns: 1fr; } }
