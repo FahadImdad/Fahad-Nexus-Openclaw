@@ -88,3 +88,4 @@ TRASH/
 02-builds/active/*
 # Completed builds
 02-builds/complete/*
+.mcp.json

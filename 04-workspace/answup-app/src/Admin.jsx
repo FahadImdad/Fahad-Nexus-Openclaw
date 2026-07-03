@@ -1,0 +1,175 @@
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { supabase } from "./lib/supabase";
+
+const ease = [0.22, 0.61, 0.36, 1];
+
+// The pipeline columns, in order
+const COLUMNS = [
+  { key: "pending_review", label: "New", hint: "Just signed up", color: "#4f7cff" },
+  { key: "building", label: "Building", hint: "Setting up agent", color: "#9b5cff" },
+  { key: "live", label: "Live", hint: "Answering calls", color: "#18b26b" },
+  { key: "paused", label: "Paused", hint: "On hold / churned", color: "#94a0bd" },
+  { key: "rejected", label: "Rejected", hint: "Not a fit", color: "#ff5c7a" },
+];
+
+const planName = { "after-hours": "After-Hours $397", "always-on": "Always-On $697", growth: "Growth $1,197" };
+const nextStatus = { pending_review: "building", building: "live", live: "paused" };
+const nextLabel = { pending_review: "Accept → Building", building: "Set Live", live: "Pause" };
+
+export default function Admin() {
+  const [clients, setClients] = useState(null);
+  const [open, setOpen] = useState(null); // client being edited in the drawer
+  const [saving, setSaving] = useState(false);
+
+  const load = () =>
+    supabase.from("clients").select("*").order("created_at", { ascending: false })
+      .then(({ data }) => setClients(data || []));
+  useEffect(() => { load(); }, []);
+
+  const patch = async (id, fields) => {
+    setClients((cs) => cs.map((c) => (c.id === id ? { ...c, ...fields } : c)));
+    if (open?.id === id) setOpen((o) => ({ ...o, ...fields }));
+    await supabase.from("clients").update({ ...fields, updated_at: new Date().toISOString() }).eq("id", id);
+  };
+
+  const saveDrawer = async () => {
+    if (!open) return;
+    setSaving(true);
+    await supabase.from("clients").update({
+      business_name: open.business_name, phone: open.phone, trade: open.trade,
+      city: open.city, state: open.state, service_area: open.service_area,
+      plan: open.plan, amount: open.amount, admin_notes: open.admin_notes,
+      updated_at: new Date().toISOString(),
+    }).eq("id", open.id);
+    setClients((cs) => cs.map((c) => (c.id === open.id ? { ...c, ...open } : c)));
+    setSaving(false);
+    setOpen(null);
+  };
+
+  if (!clients) return <div className="ad-loading">Loading your clients…</div>;
+
+  const counts = COLUMNS.map((col) => clients.filter((c) => (c.status || "pending_review") === col.key).length);
+  const total = clients.length;
+  const paidCount = clients.filter((c) => c.paid).length;
+  const liveCount = clients.filter((c) => c.status === "live").length;
+
+  return (
+    <div className="ad">
+      <div className="ad-top">
+        <div />
+        <div className="ad-kpis">
+          <div className="ad-kpi"><b>{total}</b><small>Total clients</small></div>
+          <div className="ad-kpi"><b>{liveCount}</b><small>Live</small></div>
+          <div className="ad-kpi"><b>{paidCount}</b><small>Paid</small></div>
+        </div>
+      </div>
+
+      <div className="ad-board">
+        {COLUMNS.map((col, ci) => {
+          const items = clients.filter((c) => (c.status || "pending_review") === col.key);
+          return (
+            <div className="ad-col" key={col.key}>
+              <div className="ad-col-head">
+                <span className="ad-dot" style={{ background: col.color }} />
+                <b>{col.label}</b>
+                <span className="ad-count">{counts[ci]}</span>
+              </div>
+              <div className="ad-col-hint">{col.hint}</div>
+              <div className="ad-cards">
+                {items.length === 0 && <div className="ad-empty">Nothing here yet</div>}
+                {items.map((c) => (
+                  <motion.div
+                    layout key={c.id} className="ad-card" onClick={() => setOpen(c)}
+                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, ease }}
+                  >
+                    <div className="ad-card-top">
+                      <b>{c.business_name || "(no name)"}</b>
+                      {c.paid ? <span className="ad-paid">PAID</span> : <span className="ad-unpaid">unpaid</span>}
+                    </div>
+                    <small className="ad-card-sub">{c.trade || "—"} · {c.city || "—"}{c.state ? ", " + c.state : ""}</small>
+                    <small className="ad-card-sub">{planName[c.plan] || c.plan || "no plan"}</small>
+                    <div className="ad-card-actions" onClick={(e) => e.stopPropagation()}>
+                      {nextStatus[c.status || "pending_review"] && (
+                        <button className="ad-btn go" onClick={() => patch(c.id, { status: nextStatus[c.status || "pending_review"] })}>
+                          {nextLabel[c.status || "pending_review"]}
+                        </button>
+                      )}
+                      {(c.status || "pending_review") === "pending_review" && (
+                        <button className="ad-btn rej" onClick={() => patch(c.id, { status: "rejected" })}>Reject</button>
+                      )}
+                      {c.status === "rejected" && (
+                        <button className="ad-btn" onClick={() => patch(c.id, { status: "pending_review" })}>Restore</button>
+                      )}
+                      {c.status === "paused" && (
+                        <button className="ad-btn go" onClick={() => patch(c.id, { status: "live" })}>Reactivate</button>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Client detail drawer */}
+      <AnimatePresence>
+        {open && (
+          <>
+            <motion.div className="ad-scrim" onClick={() => setOpen(null)} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
+            <motion.div className="ad-drawer" initial={{ x: 440 }} animate={{ x: 0 }} exit={{ x: 440 }} transition={{ duration: 0.35, ease }}>
+              <div className="ad-drawer-head">
+                <h2>{open.business_name || "Client"}</h2>
+                <button className="ad-x" onClick={() => setOpen(null)}>×</button>
+              </div>
+              <div className="ad-drawer-body">
+                <div className="ad-field"><label>Business name</label><input value={open.business_name || ""} onChange={(e) => setOpen({ ...open, business_name: e.target.value })} /></div>
+                <div className="ad-two">
+                  <div className="ad-field"><label>Trade</label><input value={open.trade || ""} onChange={(e) => setOpen({ ...open, trade: e.target.value })} /></div>
+                  <div className="ad-field"><label>Phone</label><input value={open.phone || ""} onChange={(e) => setOpen({ ...open, phone: e.target.value })} /></div>
+                </div>
+                <div className="ad-two">
+                  <div className="ad-field"><label>City</label><input value={open.city || ""} onChange={(e) => setOpen({ ...open, city: e.target.value })} /></div>
+                  <div className="ad-field"><label>State</label><input value={open.state || ""} onChange={(e) => setOpen({ ...open, state: e.target.value })} /></div>
+                </div>
+                <div className="ad-field"><label>Service area</label><input value={open.service_area || ""} onChange={(e) => setOpen({ ...open, service_area: e.target.value })} /></div>
+                <div className="ad-field"><label>Email</label><input value={open.email || ""} disabled /></div>
+
+                <div className="ad-sep">Billing</div>
+                <div className="ad-two">
+                  <div className="ad-field"><label>Plan</label>
+                    <select value={open.plan || "always-on"} onChange={(e) => setOpen({ ...open, plan: e.target.value })}>
+                      <option value="after-hours">After-Hours $397</option>
+                      <option value="always-on">Always-On $697</option>
+                      <option value="growth">Growth $1,197</option>
+                    </select>
+                  </div>
+                  <div className="ad-field"><label>Monthly amount</label><input value={open.amount || ""} placeholder="$697" onChange={(e) => setOpen({ ...open, amount: e.target.value })} /></div>
+                </div>
+                <label className="ad-check">
+                  <input type="checkbox" checked={!!open.paid} onChange={(e) => patch(open.id, { paid: e.target.checked })} />
+                  <span>Client has paid this month</span>
+                </label>
+
+                <div className="ad-sep">Private admin notes</div>
+                <textarea className="ad-notes" rows={5} value={open.admin_notes || ""} placeholder="Called them Mon, agent built, waiting on first invoice…" onChange={(e) => setOpen({ ...open, admin_notes: e.target.value })} />
+
+                <div className="ad-status-row">
+                  <span>Status</span>
+                  <select value={open.status || "pending_review"} onChange={(e) => patch(open.id, { status: e.target.value })}>
+                    {COLUMNS.map((col) => <option key={col.key} value={col.key}>{col.label}</option>)}
+                  </select>
+                </div>
+              </div>
+              <div className="ad-drawer-foot">
+                <button className="ad-cancel" onClick={() => setOpen(null)}>Close</button>
+                <button className="ad-save" onClick={saveDrawer} disabled={saving}>{saving ? "Saving…" : "Save changes"}</button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
