@@ -14292,6 +14292,10 @@
     document.body.style.cssText='margin:0;padding:0;background:transparent;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100vw;height:100vh;';
     phone.style.margin='0'; phone.style.flexShrink='0';
     phone.style.position='relative'; phone.style.overflow='hidden';
+    phone.style.boxShadow='0 0 0 7px #0c0d10, 0 22px 48px rgba(0,0,0,.4)';
+    var hs=document.createElement('style');
+    hs.textContent='*{scrollbar-width:none!important;-ms-overflow-style:none!important;}*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;}';
+    document.head.appendChild(hs);
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){setTimeout(run,120);});
   else setTimeout(run,120);
