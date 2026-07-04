@@ -802,3 +802,15 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .ph-chat { flex: 1 1 0; }
 .ph-pill { margin-bottom: 10px; }
 .ic-screen { min-height: 0; overflow: hidden; }
+
+/* ---------- Phone v5: bigger, cleaner, no side stickers ---------- */
+.chip-float { display: none; }
+.hero { padding: 110px 0 46px; }
+.phone { width: clamp(300px, 37vh, 375px); }
+.phone-island { width: 92px; height: 25px; z-index: 3; }
+.ph-status { position: relative; z-index: 4; padding: 16px 24px 0; }
+.ph-chat .bub { font-size: 13.2px; }
+.ph-pill { white-space: nowrap; font-size: 11px; padding: 6px 14px; }
+.ph-callinfo b { font-size: 24px; }
+.ph-ctl-btn { width: 54px; height: 54px; }
+.ic-name { font-size: 30px; }

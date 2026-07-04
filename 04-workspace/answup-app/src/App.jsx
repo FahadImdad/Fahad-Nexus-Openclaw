@@ -267,14 +267,6 @@ export default function App({ onDashboard, onStart }) {
           </div>
 
           <motion.div className="stage" style={{ y: panelY, rotateX: panelRot, scale: panelScale }}>
-            <motion.div className="chip-float c1" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.7, duration: .7, ease }}>
-              <span className="chip-ic">👤</span>
-              <span>Lead captured<small>John Carter · (214) 555-0182</small></span>
-            </motion.div>
-            <motion.div className="chip-float c2" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 2.2, duration: .7, ease }}>
-              <span className="chip-ic">🚨</span>
-              <span>Emergency flagged<small>No heat · priority dispatch</small></span>
-            </motion.div>
             <motion.div className="phone" initial={{ opacity: 0, y: 60, rotateX: 12 }} animate={{ opacity: 1, y: 0, rotateX: 0 }} transition={{ duration: 1, delay: 0.5, ease }}>
               <div className="phone-island" />
               <div className="phone-screen">
