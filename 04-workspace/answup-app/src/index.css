@@ -662,3 +662,51 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
   .hero-grid .hero-eq { justify-content: center; }
   .hero-grid .stage { max-width: 640px; margin: 0 auto; }
 }
+
+/* ---------- iPhone-style live call demo ---------- */
+.phone { width: min(375px, 100%); margin: 0 auto; border-radius: 52px; padding: 11px;
+  background: linear-gradient(160deg, #2a3558, #0b1024); border: 1px solid rgba(150,170,230,.22);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.12); position: relative; }
+.phone-island { position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+  width: 108px; height: 27px; border-radius: 16px; background: #000; z-index: 6; }
+.phone-screen { border-radius: 42px; overflow: hidden; background: var(--card); position: relative; }
+.phone-body { min-height: 560px; display: flex; flex-direction: column; }
+
+/* incoming-call screen (iOS style) */
+.ic-screen { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 84px 22px 34px; background:
+  radial-gradient(120% 60% at 50% 0%, rgba(63,125,255,.35), transparent 60%),
+  linear-gradient(180deg, #0e1734, #131d42 60%, #0c1430); color: #fff; }
+.ic-label { font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: rgba(220,230,255,.65); font-weight: 600; }
+.ic-avatar { width: 92px; height: 92px; border-radius: 50%; margin: 26px 0 16px;
+  background: linear-gradient(140deg, #3f7dff, #22c3ff); display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 700; color: #fff;
+  box-shadow: 0 14px 40px rgba(63,125,255,.45); }
+.ic-name { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -.02em; }
+.ic-num { font-size: 14px; color: rgba(220,230,255,.65); margin-top: 5px; }
+.ic-actions { display: flex; gap: 84px; margin-top: auto; padding-top: 40px; }
+.ic-btn { width: 66px; height: 66px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; }
+.ic-btn.decline { background: #ff3b30; box-shadow: 0 10px 26px rgba(255,59,48,.4); }
+.ic-btn.accept { background: #30d158; box-shadow: 0 10px 26px rgba(48,209,88,.45); transition: transform .25s cubic-bezier(.22,.61,.36,1); }
+.ic-btn.accept.pressed { transform: scale(.82); filter: brightness(1.25); }
+.ic-ring { position: absolute; inset: -6px; border: 2px solid rgba(48,209,88,.8); border-radius: 50%; opacity: 0; animation: ringw 1.5s ease-out infinite; }
+.ic-ring.r2 { animation-delay: .5s; }
+.ic-hint { margin-top: 30px; font-size: 12.5px; color: rgba(220,230,255,.7); display: flex; align-items: center; gap: 9px; font-weight: 600; }
+.ic-hint .eq i { background: #30d158; }
+
+/* in-call conversation screen */
+.call-screen { flex: 1; display: flex; flex-direction: column; }
+.call-head { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 66px 18px 12px; border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+.call-who { display: flex; align-items: center; gap: 10px; text-align: left; }
+.call-av { width: 36px; height: 36px; border-radius: 11px; background: var(--grad); display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px var(--glow); flex-shrink: 0; }
+.call-who b { font-size: 14px; display: block; line-height: 1.2; }
+.call-who small { font-size: 11px; color: var(--muted); }
+.call-timer { display: flex; align-items: center; gap: 7px; font-family: 'Space Grotesk', sans-serif; font-size: 13.5px; font-weight: 700; color: var(--green); background: rgba(15,191,127,.1); border: 1px solid rgba(15,191,127,.25); padding: 6px 12px; border-radius: 20px; }
+.call-timer i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 1.6s infinite; }
+.call-screen .chat { min-height: 0; flex: 1; padding: 16px 16px 20px; }
+.call-screen .bub { font-size: 13.5px; max-width: 86%; }
+
+.hero-grid .chip-float.c1 { top: 158px; left: -30px; }
+.hero-grid .chip-float.c2 { bottom: 26px; right: -30px; }
+@media (max-width: 1080px) { .phone { width: min(360px, 92vw); } }

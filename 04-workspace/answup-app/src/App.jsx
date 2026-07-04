@@ -94,43 +94,77 @@ function LiveChat() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
 
+  const [accepted, setAccepted] = useState(false);
+  const [secs, setSecs] = useState(0);
+
+  // ring for ~2.6s: green button "presses" at 2.1s, call connects at 2.6s
+  // (?ring=1 freezes the incoming-call screen for design checks)
   useEffect(() => {
-    if (!inView) return;
-    if (phase === "ring") { const t = setTimeout(() => setPhase("chat"), 2200); return () => clearTimeout(t); }
+    if (!inView || phase !== "ring") return;
+    if (new URLSearchParams(window.location.search).has("ring")) return;
+    const t1 = setTimeout(() => setAccepted(true), 2100);
+    const t2 = setTimeout(() => setPhase("chat"), 2600);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [inView, phase]);
+
+  // conversation plays + call timer runs
+  useEffect(() => {
+    if (phase !== "chat") return;
+    const tick = setInterval(() => setSecs((s) => s + 1), 1000);
+    return () => clearInterval(tick);
+  }, [phase]);
 
   useEffect(() => {
     if (phase !== "chat") return;
-    if (shown < chat.length) { const t = setTimeout(() => setShown((s) => s + 1), shown === 0 ? 400 : 1100); return () => clearTimeout(t); }
+    if (shown < chat.length) { const t = setTimeout(() => setShown((s) => s + 1), shown === 0 ? 500 : 1300); return () => clearTimeout(t); }
   }, [phase, shown]);
 
+  const clock = `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, "0")}`;
+
   return (
-    <div className="chat" ref={ref}>
+    <div className="phone-body" ref={ref}>
       {phase === "ring" && (
-        <motion.div className="ring-stage" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <div className="ring-ico">
-            <span className="ring-w w1"></span><span className="ring-w w2"></span>
-            <motion.div className="ring-phone" animate={{ rotate: [0, -12, 12, -12, 12, 0] }} transition={{ duration: 1, repeat: Infinity, repeatDelay: 0.3 }}>
-              <LogoMark size={30} light />
-            </motion.div>
+        <motion.div className="ic-screen" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <div className="ic-label">incoming call</div>
+          <motion.div className="ic-avatar" animate={{ scale: [1, 1.04, 1] }} transition={{ duration: 1.2, repeat: Infinity }}>JC</motion.div>
+          <div className="ic-name">John Carter</div>
+          <div className="ic-num">(214) 555-0182 · Dallas, TX</div>
+          <div className="ic-actions">
+            <div className="ic-btn decline">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.29-.7.29-.28 0-.53-.11-.71-.29L.29 13.08c-.18-.17-.29-.42-.29-.7 0-.28.11-.53.29-.71C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.7l-2.48 2.49c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28-.79-.74-1.69-1.37-2.67-1.86-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/></svg>
+            </div>
+            <div className={`ic-btn accept ${accepted ? "pressed" : ""}`}>
+              <span className="ic-ring r1" /><span className="ic-ring r2" />
+              <motion.svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" animate={accepted ? { rotate: 0 } : { rotate: [0, -14, 14, -14, 14, 0] }} transition={{ duration: 1, repeat: accepted ? 0 : Infinity, repeatDelay: 0.4 }}>
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </motion.svg>
+            </div>
           </div>
-          <div className="ring-txt">Incoming call…</div>
-          <div className="ring-sub">Answup is answering</div>
+          <div className="ic-hint"><Equalizer bars={4} /> Answup picks up before the second ring</div>
         </motion.div>
       )}
       {phase === "chat" && (
-        <>
-          {chat.slice(0, shown).map((m, i) => (
-            <motion.div key={i} className={`bub ${m.who}`} initial={{ opacity: 0, y: 12, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.4, ease }}>
-              {m.text}
-            </motion.div>
-          ))}
-          {shown < chat.length && (
-            <motion.div className="bub ai typing" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <span></span><span></span><span></span>
-            </motion.div>
-          )}
-        </>
+        <motion.div className="call-screen" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
+          <div className="call-head">
+            <div className="call-who">
+              <div className="call-av"><LogoMark size={17} light /></div>
+              <div><b>Answup</b><small>answering for Rapid Comfort HVAC</small></div>
+            </div>
+            <div className="call-timer"><i />{clock}</div>
+          </div>
+          <div className="chat">
+            {chat.slice(0, shown).map((m, i) => (
+              <motion.div key={i} className={`bub ${m.who}`} initial={{ opacity: 0, y: 12, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.4, ease }}>
+                {m.text}
+              </motion.div>
+            ))}
+            {shown < chat.length && (
+              <motion.div className="bub ai typing" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <span></span><span></span><span></span>
+              </motion.div>
+            )}
+          </div>
+        </motion.div>
       )}
     </div>
   );
@@ -208,15 +242,11 @@ export default function App({ onDashboard, onStart }) {
               <span className="chip-ic">🚨</span>
               <span>Emergency flagged<small>No heat · priority dispatch</small></span>
             </motion.div>
-            <motion.div className="panel" initial={{ opacity: 0, y: 60, rotateX: 12 }} animate={{ opacity: 1, y: 0, rotateX: 0 }} transition={{ duration: 1, delay: 0.5, ease }}>
-              <div className="ptop">
-                <div className="who">
-                  <div className="av"><LogoMark size={22} light /></div>
-                  <div><div className="nm">Answup</div><div className="st"><i></i> Live call · answering now</div></div>
-                </div>
-                <Equalizer bars={5} />
+            <motion.div className="phone" initial={{ opacity: 0, y: 60, rotateX: 12 }} animate={{ opacity: 1, y: 0, rotateX: 0 }} transition={{ duration: 1, delay: 0.5, ease }}>
+              <div className="phone-island" />
+              <div className="phone-screen">
+                <LiveChat />
               </div>
-              <LiveChat />
             </motion.div>
           </motion.div>
         </div>
