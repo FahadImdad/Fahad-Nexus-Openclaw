@@ -765,3 +765,18 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
   background: rgba(255,255,255,.17); border: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(12px); }
 .ph-ctl-btn.end { background: #ff453a; box-shadow: 0 8px 24px rgba(255,69,58,.45); }
 .ph-ctl small { font-size: 11.5px; color: rgba(255,255,255,.85); font-weight: 500; }
+
+/* ---------- Phone v3: fixed real-iPhone dimensions + glass badges ---------- */
+/* 19.5:9 like a real iPhone — screen never grows, chat scrolls inside */
+.phone-body { height: 754px; min-height: 0; }
+@media (max-height: 900px) and (min-width: 1081px) {
+  .phone { width: 348px; }
+  .phone-body { height: 700px; }
+}
+
+/* floating badges become frosted glass — screen stays visible through them */
+.chip-float { background: var(--glass); backdrop-filter: blur(18px) saturate(170%);
+  border: 1px solid rgba(255,255,255,.28); box-shadow: 0 10px 34px rgba(10,23,53,.18); }
+:root[data-theme="dark"] .chip-float { border-color: rgba(146,166,226,.25); box-shadow: 0 10px 34px rgba(0,0,0,.35); }
+.chip-ic { background: rgba(255,255,255,.25); backdrop-filter: blur(6px); }
+:root[data-theme="dark"] .chip-ic { background: rgba(146,166,226,.14); }
