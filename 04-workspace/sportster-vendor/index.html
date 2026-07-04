@@ -14274,5 +14274,27 @@
   </div>
 </div>
 </div><!-- #flow-row -->
+<script>
+/* ?only=<screenId> : isolate one phone screen full-viewport (used by the brochure embeds). No param = normal gallery. */
+(function(){
+  var m = location.search.match(/[?&]only=([A-Za-z0-9_]+)/);
+  if(!m) return;
+  function run(){
+    var col = document.getElementById(m[1]);
+    var phone = col && col.querySelector('.phone');
+    if(!phone){ setTimeout(run,120); return; }
+    var scr = phone.querySelector('.screen');
+    if(scr) scr.classList.add('active');
+    var fr = document.getElementById('flow-row');
+    document.body.appendChild(phone);
+    if(fr && fr.parentNode) fr.remove();
+    document.documentElement.style.cssText='margin:0;padding:0;background:transparent;';
+    document.body.style.cssText='margin:0;padding:0;background:transparent;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100vw;height:100vh;';
+    phone.style.margin='0'; phone.style.flexShrink='0';
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){setTimeout(run,120);});
+  else setTimeout(run,120);
+})();
+</script>
 </body>
 </html>
