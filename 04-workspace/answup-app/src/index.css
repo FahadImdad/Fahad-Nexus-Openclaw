@@ -643,3 +643,22 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 /* unread message badge */
 .dz-unread { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; margin-left: auto; border-radius: 10px; background: var(--red); color: #fff; font-size: 11px; font-weight: 800; line-height: 1; }
 .dz-nav a .dz-unread { margin-left: auto; }
+
+/* ---------- Split hero: copy left, live demo right ---------- */
+.hero { padding: 150px 0 90px; }
+.hero-grid { display: grid; grid-template-columns: 1.06fr .94fr; gap: 56px; align-items: center; text-align: left; }
+.hero-grid h1 { font-size: clamp(38px, 4.4vw, 62px); }
+.hero-grid .hero-sub { margin: 0 0 32px; max-width: 540px; font-size: 18px; }
+.hero-grid .hero-cta { justify-content: flex-start; margin-bottom: 30px; }
+.hero-grid .hero-eq { justify-content: flex-start; margin: 0; }
+.hero-grid .stage { max-width: none; margin: 0; }
+.hero-grid .chip-float.c1 { top: -34px; left: -34px; }
+.hero-grid .chip-float.c2 { bottom: -28px; right: -28px; }
+@media (max-width: 1080px) {
+  .hero { padding-top: 140px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 44px; text-align: center; }
+  .hero-grid .hero-sub { margin: 0 auto 32px; }
+  .hero-grid .hero-cta { justify-content: center; }
+  .hero-grid .hero-eq { justify-content: center; }
+  .hero-grid .stage { max-width: 640px; margin: 0 auto; }
+}

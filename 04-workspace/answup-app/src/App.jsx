@@ -178,25 +178,26 @@ export default function App({ onDashboard, onStart }) {
         </div>
       </nav>
 
-      {/* HERO */}
+      {/* HERO — pitch left, live demo right */}
       <section className="hero" ref={heroRef}>
-        <div className="wrap">
-          <motion.div className="pill" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
-            <span className="dot" /> Answering calls 24/7 for home-service pros
-          </motion.div>
-          <h1>
-            <Words text="Never miss a call." base={0.15} /><br />
-            <Words text="Never lose a customer." grad base={0.55} />
-          </h1>
-          <motion.p className="hero-sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: 1.0, ease }}>
-            Answup is the AI receptionist for the trades. It answers every call, captures every lead, and texts you the details, so you win the job while your competitors are still ringing.
-          </motion.p>
-          <motion.div className="hero-cta" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: 1.15, ease }}>
-            <Magnetic><a onClick={() => onStart()} className="btn btn-grad" style={{ cursor: "pointer" }}>Get Started Free →</a></Magnetic>
-            <Magnetic><a href="#contact" className="btn btn-soft">Book a Demo</a></Magnetic>
-          </motion.div>
-
-          <HeroEq />
+        <div className="wrap hero-grid">
+          <div className="hero-copy">
+            <motion.div className="pill" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
+              <span className="dot" /> Answering calls 24/7 for home-service pros
+            </motion.div>
+            <h1>
+              <Words text="Never miss a call." base={0.15} /><br />
+              <Words text="Never lose a customer." grad base={0.55} />
+            </h1>
+            <motion.p className="hero-sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: 1.0, ease }}>
+              Answup is the AI receptionist for the trades. It answers every call, captures every lead, and texts you the details, so you win the job while your competitors are still ringing.
+            </motion.p>
+            <motion.div className="hero-cta" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: 1.15, ease }}>
+              <Magnetic><a onClick={() => onStart()} className="btn btn-grad" style={{ cursor: "pointer" }}>Get Started Free →</a></Magnetic>
+              <Magnetic><a href="#contact" className="btn btn-soft">Book a Demo</a></Magnetic>
+            </motion.div>
+            <HeroEq />
+          </div>
 
           <motion.div className="stage" style={{ y: panelY, rotateX: panelRot, scale: panelScale }}>
             <motion.div className="chip-float c1" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.7, duration: .7, ease }}>
