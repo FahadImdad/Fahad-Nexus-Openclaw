@@ -1,18 +1,14 @@
-// Vapi end-of-call webhook → writes REAL calls into Supabase.
-// Point each Vapi assistant's "Server URL" at: https://answup.com/api/vapi
-// Required Vercel env vars: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
-// Optional: VAPI_WEBHOOK_SECRET (set the same value in Vapi server settings),
-//           DEFAULT_CLIENT_ID (fallback client for the demo assistant)
+// Vapi end-of-call webhook -> Supabase, WITHOUT the service-role key.
+// Writes go through the vapi_ingest() SECURITY DEFINER function, which is
+// guarded by VAPI_INGEST_SECRET (set in Vercel). The anon key below is the
+// same public key the frontend ships with.
 import { createClient } from "@supabase/supabase-js";
+
+const SUPABASE_URL = "https://tfuszoexspoqcowawidm.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_kA9yaJIzCtwRiE9YlkA65g_4TobJAqs";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
-
-  // Optional shared-secret check
-  const secret = process.env.VAPI_WEBHOOK_SECRET;
-  if (secret && req.headers["x-vapi-secret"] !== secret) {
-    return res.status(401).json({ error: "bad secret" });
-  }
 
   const msg = req.body?.message;
   if (!msg || msg.type !== "end-of-call-report") {
@@ -20,18 +16,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
-
-    // Which client does this assistant belong to?
     const meta = msg.assistant?.metadata || msg.call?.assistantOverrides?.metadata || {};
     const clientId = meta.clientId || meta.client_id || process.env.DEFAULT_CLIENT_ID;
     if (!clientId) return res.status(200).json({ ok: false, reason: "no clientId metadata on assistant" });
 
-    // Structured data captured by the agent's analysis plan
     const sd = msg.analysis?.structuredData || {};
     const summary = msg.analysis?.summary || msg.summary || null;
 
-    // Transcript → [{who, t}]
     const rawMsgs = msg.artifact?.messages || msg.messages || [];
     const transcript = rawMsgs
       .filter((m) => ["assistant", "bot", "user", "customer"].includes(m.role) && (m.message || m.content))
@@ -42,7 +33,6 @@ export default async function handler(req, res) {
     );
     const phone = sd.phone || sd.phone_number || sd.callback_number || msg.call?.customer?.number || null;
 
-    // Simple lead score
     let score = 40;
     if (phone) score += 30;
     if (sd.address || sd.service_address) score += 15;
@@ -65,7 +55,8 @@ export default async function handler(req, res) {
       vapi_call_id: msg.call?.id || null,
     };
 
-    const { error } = await supabase.from("calls").upsert(row, { onConflict: "vapi_call_id" });
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const { error } = await supabase.rpc("vapi_ingest", { s: process.env.VAPI_INGEST_SECRET, r: row });
     if (error) throw error;
 
     return res.status(200).json({ ok: true });
