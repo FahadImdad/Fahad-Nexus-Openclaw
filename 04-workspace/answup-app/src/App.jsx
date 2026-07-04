@@ -81,11 +81,11 @@ function HeroEq() {
 
 /* ---- Live ringing call demo ---- */
 const chat = [
-  { who: "ai", text: "Thanks for calling Rapid Comfort Heating & Cooling! This is Ava. Is it a heating or cooling issue?" },
-  { who: "user", text: "Hi, my heater stopped working and it's freezing in here." },
-  { who: "ai", text: "Oh no, sorry to hear that! Let me get your details so a technician can call you right back. What's your name?" },
-  { who: "user", text: "It's John Carter." },
-  { who: "ai", text: "Got it, John. And the best number to reach you?" },
+  { who: "ai", text: "Thanks for calling Rapid Comfort! Is this heating or cooling?" },
+  { who: "user", text: "My heater just died. It's freezing in here." },
+  { who: "ai", text: "Sorry to hear that! What's your name?" },
+  { who: "user", text: "John Carter." },
+  { who: "ai", text: "Got it, John. A tech will call you right back — best number?" },
 ];
 
 function LiveChat() {

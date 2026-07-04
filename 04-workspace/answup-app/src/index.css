@@ -814,3 +814,10 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .ph-callinfo b { font-size: 24px; }
 .ph-ctl-btn { width: 54px; height: 54px; }
 .ic-name { font-size: 30px; }
+/* fit the full 5-message conversation on screen */
+.ph-callinfo { margin: 2px 0 2px; }
+.ph-callinfo b { font-size: 21px; }
+.ph-callinfo small { font-size: 13px; }
+.ph-chat { gap: 8px; padding: 8px 4px; }
+.ph-chat .bub { padding: 10px 14px; line-height: 1.4; }
+.ph-pill { margin-bottom: 8px; }
