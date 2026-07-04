@@ -780,3 +780,25 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 :root[data-theme="dark"] .chip-float { border-color: rgba(146,166,226,.25); box-shadow: 0 10px 34px rgba(0,0,0,.35); }
 .chip-ic { background: rgba(255,255,255,.25); backdrop-filter: blur(6px); }
 :root[data-theme="dark"] .chip-ic { background: rgba(146,166,226,.14); }
+
+/* ---------- Phone v4: always fits inside the first screen ---------- */
+.hero { padding: 122px 0 64px; }
+/* size follows viewport height so the whole phone stays above the fold */
+.phone { width: clamp(262px, 34vh, 348px); }
+.phone-body { aspect-ratio: 9 / 19.3; height: auto !important; min-height: 0 !important; }
+/* tighter internals for the smaller frame */
+.ph-ctl-btn { width: 50px; height: 50px; }
+.ph-controls { gap: 10px 6px; padding: 0 10px; }
+.ph-ctl small { font-size: 10.5px; }
+.ph-chat .bub { font-size: 12.5px; }
+.ph-callinfo b { font-size: 22px; }
+.ic-btn { width: 58px; height: 58px; }
+.ic-name { font-size: 28px; }
+/* badges anchored to the phone's center — always inside the layout frame */
+.hero-grid .chip-float.c1 { top: 165px; left: 50%; margin-left: -252px; }
+.hero-grid .chip-float.c2 { bottom: 140px; right: 50%; margin-right: -252px; }
+/* ensure controls always visible: chat pane yields space first */
+.call-screen { min-height: 0; overflow: hidden; padding-bottom: 16px; }
+.ph-chat { flex: 1 1 0; }
+.ph-pill { margin-bottom: 10px; }
+.ic-screen { min-height: 0; overflow: hidden; }
