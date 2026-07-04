@@ -707,6 +707,61 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .call-screen .chat { min-height: 0; flex: 1; padding: 16px 16px 20px; }
 .call-screen .bub { font-size: 13.5px; max-width: 86%; }
 
-.hero-grid .chip-float.c1 { top: 158px; left: -30px; }
-.hero-grid .chip-float.c2 { bottom: 26px; right: -30px; }
+.hero-grid .chip-float.c1 { top: 200px; left: -118px; }
+.hero-grid .chip-float.c2 { bottom: 190px; right: -108px; }
 @media (max-width: 1080px) { .phone { width: min(360px, 92vw); } }
+
+/* ---------- iPhone demo v2: Apple-real in-call screen ---------- */
+.phone { padding: 9px; border-radius: 56px;
+  background: linear-gradient(160deg, #e8ebf2, #b9bfcc 45%, #878e9e);
+  border: 1px solid rgba(255,255,255,.5);
+  box-shadow: var(--shadow-lg), 0 2px 6px rgba(0,0,0,.35); }
+.phone::before { content: ""; position: absolute; right: -2.5px; top: 150px; width: 3px; height: 64px; border-radius: 2px; background: linear-gradient(90deg,#9aa1b0,#6f7686); }
+.phone::after { content: ""; position: absolute; left: -2.5px; top: 120px; width: 3px; height: 100px; border-radius: 2px; background: linear-gradient(90deg,#6f7686,#9aa1b0); }
+.phone-screen { border-radius: 47px; background: #000; padding: 4px; box-shadow: none; }
+.phone-island { top: 20px; width: 100px; height: 26px; }
+.phone-island::after { content: ""; position: absolute; right: 9px; top: 50%; transform: translateY(-50%); width: 9px; height: 9px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #1e3a5f, #000 70%); }
+.phone-body { min-height: 600px; border-radius: 43px; overflow: hidden; position: relative;
+  background:
+    radial-gradient(90% 45% at 70% 0%, rgba(38,180,180,.55), transparent 65%),
+    radial-gradient(80% 50% at 20% 30%, rgba(30,120,160,.5), transparent 70%),
+    linear-gradient(175deg, #0d5c66 0%, #14527b 45%, #10294b 100%); }
+
+/* status bar */
+.ph-status { display: flex; justify-content: space-between; align-items: center; padding: 17px 26px 0; position: relative; z-index: 2; }
+.ph-time { color: #fff; font-size: 14px; font-weight: 700; letter-spacing: .01em; }
+.ph-sig { display: inline-flex; align-items: center; gap: 6px; }
+
+/* incoming call (over gradient, no own bg) */
+.ic-screen { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 34px 22px 40px; background: none; color: #fff; }
+.ic-label { font-size: 12.5px; letter-spacing: .2em; }
+.ic-name { font-size: 32px; margin-top: 6px; }
+.ic-num { font-size: 14.5px; }
+.ic-avatar { margin: 34px 0 0; }
+.ic-actions { gap: 78px; }
+.ic-a { display: flex; flex-direction: column; align-items: center; gap: 9px; }
+.ic-a small { color: rgba(255,255,255,.85); font-size: 12.5px; font-weight: 500; }
+.ic-btn.decline { background: #ff453a; }
+.ic-btn.accept { background: #32d74b; }
+
+/* in-call screen */
+.call-screen { flex: 1; display: flex; flex-direction: column; padding: 6px 14px 22px; color: #fff; }
+.ph-callinfo { text-align: center; margin: 8px 0 6px; }
+.ph-callinfo small { display: block; font-size: 14px; color: rgba(255,255,255,.75); font-variant-numeric: tabular-nums; }
+.ph-callinfo b { font-family: 'Space Grotesk', sans-serif; font-size: 25px; font-weight: 600; letter-spacing: -.01em; }
+.ph-chat { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 9px; padding: 10px 4px; overflow: hidden; min-height: 0; }
+.ph-chat .bub { font-size: 13.5px; line-height: 1.45; max-width: 86%; border-radius: 17px;
+  background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(14px); color: #fff; box-shadow: 0 4px 18px rgba(0,0,0,.12); }
+.ph-chat .bub.ai { align-self: flex-start; border-bottom-left-radius: 6px; }
+.ph-chat .bub.user { align-self: flex-end; border-bottom-right-radius: 6px; background: rgba(255,255,255,.26); }
+.ph-chat .bub.typing span { background: #fff; }
+.ph-pill { align-self: center; display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; font-weight: 600; color: rgba(255,255,255,.92);
+  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.16); backdrop-filter: blur(12px);
+  border-radius: 20px; padding: 6px 13px; margin-bottom: 14px; }
+.ph-controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 8px; padding: 0 16px; }
+.ph-ctl { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.ph-ctl-btn { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.17); border: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(12px); }
+.ph-ctl-btn.end { background: #ff453a; box-shadow: 0 8px 24px rgba(255,69,58,.45); }
+.ph-ctl small { font-size: 11.5px; color: rgba(255,255,255,.85); font-weight: 500; }
