@@ -17,3 +17,4 @@
 - 2026-06-18 _userdetail.js â€” temp Node script: add Deals/Snacks/Social sections to user-app Gaming Zone Detail screens. Safe to purge.
 - 2026-06-18 _disc2.js,_discscreen.js,_check.js,_dealblock.txt - temp scripts: user-app compact discount banner + overlay sheet + standalone Discounts screen. Safe to purge.
 - 2026-07-05: moved 'iphone call.mp3' (duplicate of answup-app/public/audio/demo-call.mp3) to TRASH
+- answup-sound-always-ON.reg (Desktop copy), answup-sound-always-ON-repo.reg, answup-sound-always-UNDO.reg — machine-specific Chrome autoplay policy files, obsoleted 2026-07-05 by user's 'no biased actions' instruction (universal ring-until-touch solution shipped instead)

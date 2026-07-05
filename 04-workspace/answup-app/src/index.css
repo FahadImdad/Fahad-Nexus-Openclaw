@@ -835,7 +835,7 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .ph-ctl-btn { width: 47px; height: 47px; }
 .ph-ctl small { font-size: 10px; }
 .ph-controls { gap: 8px 6px; }
-.ph-status { padding: 14px 22px 0; }
+.ph-status { padding: 9px 22px 0; }   /* clock + icons vertically centered with the island */
 .ph-time { font-size: 13px; }
 /* smaller transcript v2 */
 .ph-chat .bub { font-size: 10.5px; padding: 8px 11px; line-height: 1.38; border-radius: 14px; }
