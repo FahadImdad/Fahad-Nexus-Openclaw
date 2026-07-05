@@ -1,0 +1,19 @@
+﻿- 2026-06-16 gen-quick.js â€” one-off generator that baked the s56/s57 quick-view booking grids into sportster-vendor/index.html as static HTML; no longer needed after generation.
+- 2026-06-18 _s52.html / _splice52.js â€” one-off scaffold + splice for the s52 registration-wizard rebuild; no longer needed.
+- 2026-06-18 _s52.html / _splice52.js (v2) â€” scaffold + splice for the 5-screen registration; no longer needed.
+- 2026-06-18 _rebalance.js - one-off fix for 28 mis-nested .col screens so the vendor gallery aligns horizontally.
+- 2026-06-18 _buildreg.js â€” generated the registered-detail + edit-flow gaming screens (s58â€“s69).
+- 2026-06-18 _apply.js/_flowboard.js - flow-board reorder + edit-console controllers + add-PC; one-off.
+- 2026-06-18 _apply_gz.js â€” temp Node script used to apply Gaming Zone vendor changes (controller /30m, s66 price, s67b merge, quick-view block/discount). Safe to purge.
+- 2026-06-18 _merge_s58.js, _s58_cssjs.js â€” temp Node scripts: merged s58 overview+s65+s67 into one tabbed editor, removed s65/s67, added s58 tab CSS/JS. Safe to purge.
+- 2026-06-18 _disc_feature.js â€” temp Node script: schedule discount feature (s53/s54 select->sheet->creative slot, s50 banner, s51 badge, s51b Manage Discounts). Safe to purge.
+- 2026-06-18 _accordion.js,_build_s58.js,_popups.js,_extract.json â€” temp Node scripts: rebuilt s58 PCs/Consoles tabs as accordions with center edit popups. Safe to purge.
+- 2026-06-18 _addpc.js,_addpc_js.js â€” temp Node scripts: s58 add-PC popup w/ cubicle selector + New cubicle, rename icon, live add/remove for PCs & consoles. Safe to purge.
+- 2026-06-18 _cleanup.js â€” temp Node script: shrink s50 discount banner, delete s55/s59-62/s66/s69, remove pricing entry points, remove s58 add-cubicle. Safe to purge.
+- 2026-06-18 _s51.js,_s51popups.js â€” temp Node scripts: delete s63/s52e, make s51 inventory view-only, add Social/Facilities/Snacks manage popups. Safe to purge.
+- 2026-06-18 _fix.js â€” temp Node script: delete s64/s68, remove s58 Profile btn, recolor s50 chip orange, fix s51 social to 6 fixed links. Safe to purge.
+- 2026-06-18 _gamingmgmt.js â€” temp Node script: copy arena mgmt screens s10-s20 into purple gaming versions s70-s79, wire s50 action strip. Safe to purge.
+- 2026-06-18 _unify*.js,_blocks.json â€” temp scripts: delete s78, unify s53/54/56/57 block+discount into one Manage-Slots popup. Safe to purge.
+- 2026-06-18 _userdetail.js â€” temp Node script: add Deals/Snacks/Social sections to user-app Gaming Zone Detail screens. Safe to purge.
+- 2026-06-18 _disc2.js,_discscreen.js,_check.js,_dealblock.txt - temp scripts: user-app compact discount banner + overlay sheet + standalone Discounts screen. Safe to purge.
+- 2026-07-05: moved 'iphone call.mp3' (duplicate of answup-app/public/audio/demo-call.mp3) to TRASH
