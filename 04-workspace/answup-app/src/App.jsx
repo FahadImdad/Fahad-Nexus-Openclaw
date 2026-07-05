@@ -81,10 +81,10 @@ function HeroEq() {
 
 /* ---- Live ringing call demo ---- */
 const chat = [
-  { who: "ai", text: "Rapid Comfort, this is Ava! How can I help you tonight?" },
-  { who: "user", text: "My AC just died and it's 100° in here. Can someone come out?" },
+  { who: "ai", text: "Thanks for calling Rapid Comfort, this is Ava! How can I help you tonight?" },
+  { who: "user", text: "My AC just died and it's extreme heat in here. Can someone come out?" },
   { who: "ai", text: "Yes, we have an emergency slot tonight at 8 PM. Your name and address?" },
-  { who: "user", text: "John Carter, 415 Oak Street, Dallas." },
+  { who: "user", text: "John Carter, 415 Maple Drive, Dallas." },
   { who: "ai", text: "Booked, John! Tech arrives at 8 tonight. Confirmation text sent." },
 ];
 
