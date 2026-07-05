@@ -861,3 +861,5 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .ph-callinfo b { font-size: 16px; }
 .ph-callinfo small { font-size: 10.5px; }
 .ph-pill { font-size: 9px; margin-bottom: 6px; }
+/* bigger nav logo */
+.site-nav .logo-word { font-size: 27px; }

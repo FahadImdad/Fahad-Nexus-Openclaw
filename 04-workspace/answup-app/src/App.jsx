@@ -235,7 +235,7 @@ export default function App({ onDashboard, onStart }) {
 
       <nav className="site-nav">
         <div className="wrap nav-in">
-          <Logo size={26} />
+          <Logo size={38} />
           <div className="nav-links">
             <a href="#features">Features</a><a href="#how">How it works</a><a href="#pricing">Pricing</a>
             <a onClick={onDashboard}>Sign in</a><a href="#contact">Contact</a>
