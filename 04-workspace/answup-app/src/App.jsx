@@ -108,33 +108,57 @@ function LiveChat() {
   const inViewRef = useRef(false);
   const pendingRestart = useRef(false);
   const visibleNow = () => inViewRef.current && !document.hidden;
-  const safePlay = () => { if (visibleNow()) playAudio(); else pendingRestart.current = true; };
+  const safePlay = () => { if (visibleNow()) playAudio().catch(() => {}); else pendingRestart.current = true; };
 
   const hungUp = useRef(false);
+  const soundOnRef = useRef(false);
+  const [soundOn, setSoundOn] = useState(false);
   const playAudio = () => {
     const a = audioRef.current;
-    if (!a) return;
+    if (!a) return Promise.reject();
     hungUp.current = false;
+    a.muted = !soundOnRef.current;   // muted until the visitor's first tap (browser law)
     a.currentTime = 0;
-    a.play().then(() => {
+    const p = a.play();
+    p.then(() => {
       setAudioMode(true); setAudioEnded(false); setAudioDone(false);
       setPhase("ring"); setShown(0); setAccepted(false); setSecs(0);
-    }).catch(() => {});
+    });
+    return p;
+  };
+  const enableSound = () => {
+    soundOnRef.current = true;
+    setSoundOn(true);
+    const a = audioRef.current;
+    if (a) a.muted = false;
+    playAudio().catch(() => {});     // restart from the ring, now audible
   };
 
-  // Sound ON by default: try instantly; if the browser blocks it,
-  // start on the visitor's first interaction anywhere on the page.
+  // ALWAYS playing: try unmuted first (works if the browser trusts the site);
+  // otherwise play MUTED immediately (always allowed) and switch sound on at
+  // the visitor's first click/keypress anywhere.
   const armed = useRef(false);
   useEffect(() => {
     if (!inView || armed.current) return;
     armed.current = true;
+    const unlock = () => { enableSound(); cleanup(); };
+    const cleanup = () => {
+      window.removeEventListener("pointerdown", unlock);
+      window.removeEventListener("keydown", unlock);
+    };
     const a = audioRef.current;
-    if (a) { a.play().then(() => { a.pause(); a.currentTime = 0; playAudio(); }).catch(() => {
-      const unlock = () => { safePlay(); window.removeEventListener("pointerdown", unlock); window.removeEventListener("keydown", unlock); window.removeEventListener("scroll", unlock); };
-      window.addEventListener("pointerdown", unlock, { once: true });
-      window.addEventListener("keydown", unlock, { once: true });
-      window.addEventListener("scroll", unlock, { once: true });
-    }); }
+    if (!a) return;
+    a.muted = false;
+    a.play().then(() => {
+      soundOnRef.current = true; setSoundOn(true);
+      a.pause(); a.currentTime = 0;
+      playAudio().catch(() => {});
+    }).catch(() => {
+      playAudio().catch(() => {});   // muted autoplay — runs in all conditions
+      window.addEventListener("pointerdown", unlock);
+      window.addEventListener("keydown", unlock);
+    });
+    return cleanup;
   }, [inView]);
 
   // Pause when the phone scrolls out of view; resume where it left off when back
@@ -225,6 +249,7 @@ function LiveChat() {
     <div className="phone-body" ref={ref}>
       <PhStatus />
       <audio ref={audioRef} src="/audio/demo-call.mp3" preload="auto" onTimeUpdate={onAudioTime} onEnded={() => { setAudioEnded(true); }} />
+      {!soundOn && <div className="ph-hint">🔊 tap anywhere for sound</div>}
       {phase === "home" && <HomeScreen />}
       {phase === "ring" && (
         <motion.div className="ic-screen" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
