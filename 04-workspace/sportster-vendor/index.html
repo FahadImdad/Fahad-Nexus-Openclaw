@@ -14295,12 +14295,12 @@
     phone.style.position='relative';
     if(scrollable){
       // Embedded in the brochure (which draws its own black frame): no inner ring,
-      // let the screen scroll with a slim overlay scrollbar that doesn't steal width.
+      // keep the screen scrollable (wheel/drag) but hide the scrollbar entirely for a clean look.
       phone.style.boxShadow='none';
       phone.style.overflow='hidden';
       if(scr){ scr.style.overflowY='auto'; scr.style.height='100%'; }
       var ss=document.createElement('style');
-      ss.textContent='.screen,.screen *{scrollbar-width:thin!important;-ms-overflow-style:auto!important;}.screen ::-webkit-scrollbar,.screen::-webkit-scrollbar{width:4px!important;height:4px!important;display:block!important;}.screen ::-webkit-scrollbar-track,.screen ::-webkit-scrollbar-track{background:transparent!important;}.screen ::-webkit-scrollbar-thumb,.screen::-webkit-scrollbar-thumb{background:rgba(0,0,0,.22);border-radius:4px;}';
+      ss.textContent='*{scrollbar-width:none!important;-ms-overflow-style:none!important;}*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;background:transparent!important;}';
       document.head.appendChild(ss);
     } else {
       phone.style.boxShadow='0 0 0 7px #0c0d10, 0 22px 48px rgba(0,0,0,.4)';
