@@ -915,3 +915,14 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 /* ---------- Status bar: island scales with the phone so icons never collide ---------- */
 .phone-island { width: 24%; min-width: 66px; max-width: 92px; }
 .ph-status { padding: 9px 18px 0; }
+
+/* ---------- "tap anywhere to answer" cue on the ringing screen ---------- */
+.tap-answer { margin-top: 22px; font-size: 11px; font-weight: 600; letter-spacing: .05em;
+  color: rgba(255,255,255,.92); white-space: nowrap;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22);
+  padding: 7px 16px; border-radius: 999px;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  animation: tapGlow 2s ease-in-out infinite; }
+@keyframes tapGlow {
+  0%, 100% { opacity: .68; box-shadow: 0 0 0 0 rgba(94,234,158,0); }
+  50% { opacity: 1; box-shadow: 0 0 22px 3px rgba(94,234,158,.28); } }

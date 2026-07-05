@@ -175,6 +175,26 @@ function LiveChat() {
     });
   };
 
+  // First tap = ANSWER: skip the ringtone, jump straight into the conversation
+  // with sound (used by the page-wide first tap AND the green Accept button).
+  const answerWithSound = () => {
+    const a = audioRef.current;
+    if (!a) return Promise.reject();
+    hungUp.current = false;
+    clearTimeout(restartT.current);
+    soundOnRef.current = true;
+    a.muted = userMutedRef.current;
+    a.volume = 1;
+    a.currentTime = AUDIO.connect;
+    const p = a.paused ? a.play() : Promise.resolve();
+    p.then(() => {
+      setSoundOn(true);
+      setAudioMode(true); setAudioEnded(false); setAudioDone(false);
+      setAccepted(true); setPhase("chat");
+    }).catch(() => { soundOnRef.current = false; });
+    return p;
+  };
+
   // ALWAYS playing: try unmuted first (works if the browser trusts the site);
   // otherwise play MUTED immediately (always allowed) and switch sound on at
   // the visitor's first COMPLETED tap/click/keypress. Listeners stay armed
@@ -195,9 +215,10 @@ function LiveChat() {
       if (soundOnRef.current) { cleanup(); return; }   // a phone button already enabled it
       if (userMutedRef.current) return;                // visitor chose mute — respect it
       if (e?.target?.closest?.(".snd-wrap")) return;   // taps on the toggle decide for themselves
-      enableSound().then(() => {
+      if (e?.target?.closest?.(".decline")) return;    // declining shouldn't start the call
+      answerWithSound().then(() => {                   // first tap ANSWERS the call
         cleanup();
-        // unlocked while the phone is off-screen: hold it, play audibly when it appears
+        // answered while the phone is off-screen: hold it, play audibly when it appears
         if (!visibleNow()) { const a = audioRef.current; if (a) a.pause(); pendingRestart.current = true; }
       }).catch(() => {});                               // keep listeners until success
     };
@@ -290,20 +311,8 @@ function LiveChat() {
     setAudioDone(t >= AUDIO.booked);
   };
 
-  // Green Accept: skip the rest of the ringtone, jump straight into the call
-  const acceptCall = () => {
-    const a = audioRef.current;
-    if (!a) return;
-    soundOnRef.current = true; setSoundOn(true);
-    hungUp.current = false;
-    a.muted = userMutedRef.current;   // Accept respects the visitor's mute switch
-    a.volume = 1;
-    clearTimeout(restartT.current);
-    a.currentTime = AUDIO.connect;
-    if (a.paused) {
-      a.play().then(() => { setAudioMode(true); setAudioEnded(false); setAudioDone(false); }).catch(() => {});
-    }
-  };
+  // Green Accept: same as the page-wide first tap — answer with sound
+  const acceptCall = () => { answerWithSound().catch(() => {}); };
 
   // (The old silent auto-play mode is gone: the phone rings until the visitor's
   // first touch, so the demo call is ALWAYS heard, never watched on mute.)
@@ -353,6 +362,11 @@ function LiveChat() {
           <div className="ic-name">John Carter</div>
           <div className="ic-num">mobile · Chicago, IL</div>
           <motion.div className="ic-avatar" animate={{ scale: [1, 1.04, 1] }} transition={{ duration: 1.2, repeat: Infinity }}>JC</motion.div>
+          {!soundOn && !userMuted && (
+            <motion.div className="tap-answer" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.5 }}>
+              👆 tap anywhere to answer
+            </motion.div>
+          )}
           <div className="ic-actions">
             <div className="ic-a">
               <div className="ic-btn decline" onClick={endCall} style={{ cursor: "pointer" }} title="Decline (rings again in 5s)">
