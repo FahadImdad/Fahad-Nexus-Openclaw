@@ -128,7 +128,7 @@ function LiveChat() {
         <motion.div className="ic-screen" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <div className="ic-label">incoming call</div>
           <div className="ic-name">John Carter</div>
-          <div className="ic-num">mobile · Dallas, TX</div>
+          <div className="ic-num">mobile · Chicago, IL</div>
           <motion.div className="ic-avatar" animate={{ scale: [1, 1.04, 1] }} transition={{ duration: 1.2, repeat: Infinity }}>JC</motion.div>
           <div className="ic-actions">
             <div className="ic-a">
