@@ -83,9 +83,9 @@ function HeroEq() {
 const chat = [
   { who: "ai", text: "Rapid Comfort, this is Ava! How can I help you tonight?" },
   { who: "user", text: "My AC just died and it's 100° in here. Can someone come out?" },
-  { who: "ai", text: "That sounds urgent, let's get you help fast. Your name and address?" },
+  { who: "ai", text: "Yes, we have an emergency slot tonight at 8 PM. Your name and address?" },
   { who: "user", text: "John Carter, 415 Oak Street, Dallas." },
-  { who: "ai", text: "Got it, John. A tech will call you within 5 minutes. Help is on the way!" },
+  { who: "ai", text: "Booked, John! Tech arrives at 8 tonight. Confirmation text sent." },
 ];
 
 function LiveChat() {
@@ -170,7 +170,7 @@ function LiveChat() {
           </div>
           {shown >= chat.length ? (
             <motion.div className="ph-pill done" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4 }}>
-              ✓ Lead captured · details texted to you
+              ✓ Job booked · owner notified
             </motion.div>
           ) : (
             <div className="ph-pill"><LogoMark size={13} light /> Answup AI · answering this call</div>
