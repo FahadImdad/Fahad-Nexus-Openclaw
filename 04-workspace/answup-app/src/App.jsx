@@ -180,10 +180,6 @@ function LiveChat() {
   return (
     <div className="phone-body" ref={ref}>
       <PhStatus />
-      <button className={`ph-sound ${audioMode && !audioEnded ? "live" : ""}`} onClick={playAudio}
-        title={audioMode && !audioEnded ? "Playing real call audio" : "Hear the real call"}>
-        {audioMode ? (audioEnded ? "↻ Replay" : <Equalizer bars={3} />) : "🔊 Hear it"}
-      </button>
       <audio ref={audioRef} src="/audio/demo-call.mp3" preload="auto" onTimeUpdate={onAudioTime} onEnded={() => setAudioEnded(true)} />
       {phase === "ring" && (
         <motion.div className="ic-screen" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
