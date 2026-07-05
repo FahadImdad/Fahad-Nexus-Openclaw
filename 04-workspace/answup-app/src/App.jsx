@@ -275,7 +275,6 @@ function LiveChat() {
     <div className="phone-body" ref={ref}>
       <PhStatus />
       <audio ref={audioRef} src="/audio/demo-call.mp3" preload="auto" onTimeUpdate={onAudioTime} onEnded={() => { setAudioEnded(true); }} />
-      {!soundOn && <div className="ph-hint">🔊 tap anywhere for sound</div>}
       {phase === "home" && <HomeScreen />}
       {phase === "ring" && (
         <motion.div className="ic-screen" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
