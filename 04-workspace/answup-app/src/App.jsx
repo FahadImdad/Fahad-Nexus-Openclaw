@@ -129,11 +129,19 @@ function LiveChat() {
   const enableSound = () => {
     const a = audioRef.current;
     if (!a) return Promise.reject();
-    a.muted = false;
+    const wasAt = a.currentTime;
+    const wasPlaying = !a.paused;
+    soundOnRef.current = true;        // BEFORE playAudio — it reads this ref to set muted
     a.volume = 1;
     return playAudio().then(() => {   // restart from the ring, now audible
-      soundOnRef.current = true;
       setSoundOn(true);
+    }).catch((e) => {
+      // browser refused sound: silently resume the muted loop exactly where it was
+      soundOnRef.current = false;
+      a.muted = true;
+      a.currentTime = wasAt;
+      if (wasPlaying) a.play().catch(() => {});
+      throw e;
     });
   };
 
@@ -145,14 +153,21 @@ function LiveChat() {
   useEffect(() => {
     if (!inView || armed.current) return;
     armed.current = true;
+    // every event any browser accepts as a sound-granting gesture, at its earliest:
+    // Chrome grants on pointerdown/mousedown/keydown, Safari on touchend/click
+    const EVTS = ["pointerdown", "mousedown", "touchstart", "pointerup", "touchend", "click", "keydown"];
+    let pollT = null;
     const cleanup = () => {
-      window.removeEventListener("click", unlock);
-      window.removeEventListener("touchend", unlock);
-      window.removeEventListener("keydown", unlock);
+      EVTS.forEach((e) => window.removeEventListener(e, unlock, true));
+      if (pollT) { clearInterval(pollT); pollT = null; }
     };
     const unlock = () => {
       if (soundOnRef.current) { cleanup(); return; }   // a phone button already enabled it
-      enableSound().then(cleanup).catch(() => {});      // keep listeners until success
+      enableSound().then(() => {
+        cleanup();
+        // unlocked while scrolled away: hold it, resume audibly when back in view
+        if (!visibleNow()) { const a = audioRef.current; if (a) a.pause(); pendingRestart.current = true; }
+      }).catch(() => {});                               // keep listeners until success
     };
     const a = audioRef.current;
     if (!a) return;
@@ -163,9 +178,13 @@ function LiveChat() {
       playAudio().catch(() => {});
     }).catch(() => {
       playAudio().catch(() => {});   // muted autoplay — runs in all conditions
-      window.addEventListener("click", unlock);
-      window.addEventListener("touchend", unlock);
-      window.addEventListener("keydown", unlock);
+      EVTS.forEach((e) => window.addEventListener(e, unlock, true));  // capture: fires before any stopPropagation
+      // safety net: Chrome keeps sound permission after ANY interaction, even ones
+      // window listeners never see (scrollbar drag, autofill, browser UI) — poll for it
+      pollT = setInterval(() => {
+        if (soundOnRef.current) { cleanup(); return; }
+        if (navigator.userActivation?.hasBeenActive) unlock();
+      }, 700);
     });
     return cleanup;
   }, [inView]);
