@@ -853,3 +853,11 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .ph-msg .bub { max-width: 100%; }
 .ph-who { display: flex; align-items: center; gap: 4px; font-size: 8.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.65); margin: 0 0 3px 8px; }
 .ph-pill.done { background: rgba(48,209,88,.22); border-color: rgba(48,209,88,.45); color: #d8ffe3; font-weight: 700; }
+/* smaller transcript v3 (AI labels added height, compensate) */
+.ph-chat .bub { font-size: 9.5px; padding: 7px 10px; line-height: 1.35; }
+.ph-who { font-size: 7.5px; margin: 0 0 2px 7px; }
+.ph-chat { gap: 5px; }
+.ph-callinfo { margin: 0; }
+.ph-callinfo b { font-size: 16px; }
+.ph-callinfo small { font-size: 10.5px; }
+.ph-pill { font-size: 9px; margin-bottom: 6px; }
