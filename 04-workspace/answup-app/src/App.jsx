@@ -127,24 +127,32 @@ function LiveChat() {
     return p;
   };
   const enableSound = () => {
-    soundOnRef.current = true;
-    setSoundOn(true);
     const a = audioRef.current;
-    if (a) a.muted = false;
-    playAudio().catch(() => {});     // restart from the ring, now audible
+    if (!a) return Promise.reject();
+    a.muted = false;
+    a.volume = 1;
+    return playAudio().then(() => {   // restart from the ring, now audible
+      soundOnRef.current = true;
+      setSoundOn(true);
+    });
   };
 
   // ALWAYS playing: try unmuted first (works if the browser trusts the site);
   // otherwise play MUTED immediately (always allowed) and switch sound on at
-  // the visitor's first click/keypress anywhere.
+  // the visitor's first COMPLETED tap/click/keypress. Listeners stay armed
+  // until an unlock actually SUCCEEDS (some browsers reject early attempts).
   const armed = useRef(false);
   useEffect(() => {
     if (!inView || armed.current) return;
     armed.current = true;
-    const unlock = () => { enableSound(); cleanup(); };
     const cleanup = () => {
-      window.removeEventListener("pointerdown", unlock);
+      window.removeEventListener("click", unlock);
+      window.removeEventListener("touchend", unlock);
       window.removeEventListener("keydown", unlock);
+    };
+    const unlock = () => {
+      if (soundOnRef.current) { cleanup(); return; }   // a phone button already enabled it
+      enableSound().then(cleanup).catch(() => {});      // keep listeners until success
     };
     const a = audioRef.current;
     if (!a) return;
@@ -155,7 +163,8 @@ function LiveChat() {
       playAudio().catch(() => {});
     }).catch(() => {
       playAudio().catch(() => {});   // muted autoplay — runs in all conditions
-      window.addEventListener("pointerdown", unlock);
+      window.addEventListener("click", unlock);
+      window.addEventListener("touchend", unlock);
       window.addEventListener("keydown", unlock);
     });
     return cleanup;
@@ -229,6 +238,7 @@ function LiveChat() {
     soundOnRef.current = true; setSoundOn(true);
     hungUp.current = false;
     a.muted = false;
+    a.volume = 1;
     clearTimeout(restartT.current);
     a.currentTime = AUDIO.connect;
     if (a.paused) {
