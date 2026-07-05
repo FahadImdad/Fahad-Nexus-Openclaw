@@ -136,6 +136,18 @@ function LiveChat() {
     return () => clearTimeout(t);
   }, [audioEnded]);
 
+  // Red End button: hang up now, ring again in 5 seconds
+  const restartT = useRef(null);
+  const endCall = () => {
+    const a = audioRef.current;
+    if (a) a.pause();
+    setAudioMode(true); setAudioEnded(false); setAudioDone(false);
+    setPhase("ring"); setShown(0); setAccepted(false); setSecs(0);
+    clearTimeout(restartT.current);
+    restartT.current = setTimeout(() => playAudio(), 5000);
+  };
+  useEffect(() => () => clearTimeout(restartT.current), []);
+
   // Silent version also loops until sound unlocks
   useEffect(() => {
     if (audioMode || phase !== "chat" || shown < chat.length) return;
@@ -242,7 +254,8 @@ function LiveChat() {
               ["pad", "Keypad", <svg key="k" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><circle cx="6" cy="5" r="1.7"/><circle cx="12" cy="5" r="1.7"/><circle cx="18" cy="5" r="1.7"/><circle cx="6" cy="11" r="1.7"/><circle cx="12" cy="11" r="1.7"/><circle cx="18" cy="11" r="1.7"/><circle cx="6" cy="17" r="1.7"/><circle cx="12" cy="17" r="1.7"/><circle cx="18" cy="17" r="1.7"/></svg>],
             ].map(([k, label, icon]) => (
               <div className="ph-ctl" key={k}>
-                <div className={`ph-ctl-btn ${k === "end" ? "end" : ""}`}>{icon}</div>
+                <div className={`ph-ctl-btn ${k === "end" ? "end" : ""}`} onClick={k === "end" ? endCall : undefined}
+                  style={k === "end" ? { cursor: "pointer" } : undefined} title={k === "end" ? "End call (rings again in 5s)" : undefined}>{icon}</div>
                 <small>{label}</small>
               </div>
             ))}
