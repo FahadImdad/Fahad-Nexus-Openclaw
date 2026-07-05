@@ -107,11 +107,41 @@ function LiveChat() {
   const playAudio = () => {
     const a = audioRef.current;
     if (!a) return;
-    setAudioMode(true); setAudioEnded(false); setAudioDone(false);
-    setPhase("ring"); setShown(0); setAccepted(false); setSecs(0);
     a.currentTime = 0;
-    a.play().catch(() => {});
+    a.play().then(() => {
+      setAudioMode(true); setAudioEnded(false); setAudioDone(false);
+      setPhase("ring"); setShown(0); setAccepted(false); setSecs(0);
+    }).catch(() => {});
   };
+
+  // Sound ON by default: try instantly; if the browser blocks it,
+  // start on the visitor's first interaction anywhere on the page.
+  const armed = useRef(false);
+  useEffect(() => {
+    if (!inView || armed.current) return;
+    armed.current = true;
+    const a = audioRef.current;
+    if (a) { a.play().then(() => { a.pause(); a.currentTime = 0; playAudio(); }).catch(() => {
+      const unlock = () => { playAudio(); window.removeEventListener("pointerdown", unlock); window.removeEventListener("keydown", unlock); window.removeEventListener("scroll", unlock); };
+      window.addEventListener("pointerdown", unlock, { once: true });
+      window.addEventListener("keydown", unlock, { once: true });
+      window.addEventListener("scroll", unlock, { once: true });
+    }); }
+  }, [inView]);
+
+  // Loop forever: audio version restarts after a short pause
+  useEffect(() => {
+    if (!audioEnded) return;
+    const t = setTimeout(() => playAudio(), 1500);
+    return () => clearTimeout(t);
+  }, [audioEnded]);
+
+  // Silent version also loops until sound unlocks
+  useEffect(() => {
+    if (audioMode || phase !== "chat" || shown < chat.length) return;
+    const t = setTimeout(() => { setPhase("ring"); setShown(0); setAccepted(false); setSecs(0); }, 4000);
+    return () => clearTimeout(t);
+  }, [audioMode, phase, shown]);
 
   const onAudioTime = () => {
     const t = audioRef.current ? audioRef.current.currentTime : 0;
@@ -154,7 +184,7 @@ function LiveChat() {
         title={audioMode && !audioEnded ? "Playing real call audio" : "Hear the real call"}>
         {audioMode ? (audioEnded ? "↻ Replay" : <Equalizer bars={3} />) : "🔊 Hear it"}
       </button>
-      <audio ref={audioRef} src="/audio/demo-call.mp3" preload="none" onTimeUpdate={onAudioTime} onEnded={() => setAudioEnded(true)} />
+      <audio ref={audioRef} src="/audio/demo-call.mp3" preload="auto" onTimeUpdate={onAudioTime} onEnded={() => setAudioEnded(true)} />
       {phase === "ring" && (
         <motion.div className="ic-screen" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <div className="ic-label">incoming call</div>
