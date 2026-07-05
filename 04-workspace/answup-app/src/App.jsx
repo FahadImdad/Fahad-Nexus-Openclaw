@@ -110,9 +110,11 @@ function LiveChat() {
   const visibleNow = () => inViewRef.current && !document.hidden;
   const safePlay = () => { if (visibleNow()) playAudio(); else pendingRestart.current = true; };
 
+  const hungUp = useRef(false);
   const playAudio = () => {
     const a = audioRef.current;
     if (!a) return;
+    hungUp.current = false;
     a.currentTime = 0;
     a.play().then(() => {
       setAudioMode(true); setAudioEnded(false); setAudioDone(false);
@@ -142,7 +144,7 @@ function LiveChat() {
     if (inView && !document.hidden && pendingRestart.current) { pendingRestart.current = false; playAudio(); return; }
     if (!audioMode || !a) return;
     if (!inView) { if (!a.paused) a.pause(); }
-    else if (a.paused && !audioEnded && !document.hidden) a.play().catch(() => {});
+    else if (a.paused && !audioEnded && !hungUp.current && !document.hidden) a.play().catch(() => {});
   }, [inView, audioMode, audioEnded]);
 
   // Pause when the tab is hidden; resume when it's active again
@@ -151,26 +153,28 @@ function LiveChat() {
       const a = audioRef.current;
       if (document.hidden) { if (a && !a.paused) a.pause(); return; }
       if (pendingRestart.current && inViewRef.current) { pendingRestart.current = false; playAudio(); return; }
-      if (audioMode && a && a.paused && !audioEnded && inViewRef.current) a.play().catch(() => {});
+      if (audioMode && a && a.paused && !audioEnded && !hungUp.current && inViewRef.current) a.play().catch(() => {});
     };
     document.addEventListener("visibilitychange", onVis);
     return () => document.removeEventListener("visibilitychange", onVis);
   }, [audioMode, audioEnded]);
 
-  // Loop forever: audio version restarts after a short pause (only if visible)
+  // Loop forever: after the call ends → home screen → rings again (only if visible)
   useEffect(() => {
     if (!audioEnded) return;
-    const t = setTimeout(() => safePlay(), 1500);
+    setPhase("home");
+    const t = setTimeout(() => safePlay(), 4000);
     return () => clearTimeout(t);
   }, [audioEnded]);
 
-  // Red End button: hang up now, ring again in 5 seconds (only if visible)
+  // Red End button: hang up → home screen → rings again in 5 seconds (only if visible)
   const restartT = useRef(null);
   const endCall = () => {
+    hungUp.current = true;
     const a = audioRef.current;
     if (a) a.pause();
     setAudioMode(true); setAudioEnded(false); setAudioDone(false);
-    setPhase("ring"); setShown(0); setAccepted(false); setSecs(0);
+    setPhase("home"); setShown(0); setAccepted(false); setSecs(0);
     clearTimeout(restartT.current);
     restartT.current = setTimeout(() => safePlay(), 5000);
   };
@@ -220,7 +224,8 @@ function LiveChat() {
   return (
     <div className="phone-body" ref={ref}>
       <PhStatus />
-      <audio ref={audioRef} src="/audio/demo-call.mp3" preload="auto" onTimeUpdate={onAudioTime} onEnded={() => setAudioEnded(true)} />
+      <audio ref={audioRef} src="/audio/demo-call.mp3" preload="auto" onTimeUpdate={onAudioTime} onEnded={() => { setAudioEnded(true); }} />
+      {phase === "home" && <HomeScreen />}
       {phase === "ring" && (
         <motion.div className="ic-screen" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <div className="ic-label">incoming call</div>
@@ -294,11 +299,41 @@ function LiveChat() {
   );
 }
 
+/* live clock helpers — the phone shows the visitor's real time */
+function useClock() {
+  const [now, setNow] = useState(new Date());
+  useEffect(() => { const t = setInterval(() => setNow(new Date()), 10000); return () => clearInterval(t); }, []);
+  const h = now.getHours() % 12 || 12;
+  const m = String(now.getMinutes()).padStart(2, "0");
+  return { time: `${h}:${m}`, date: now.toLocaleDateString([], { weekday: "long", month: "long", day: "numeric" }) };
+}
+
+/* iPhone home screen (shown after hanging up) */
+function HomeScreen() {
+  const { time, date } = useClock();
+  const apps = [["📞", "Phone"], ["💬", "Messages"], ["📅", "Calendar"], ["📷", "Camera"], ["🗺️", "Maps"], ["🎵", "Music"], ["✉️", "Mail"], ["⚙️", "Settings"]];
+  return (
+    <motion.div className="hs-screen" initial={{ opacity: 0, scale: 1.06 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.35 }}>
+      <div className="hs-clock">{time}</div>
+      <div className="hs-date">{date}</div>
+      <div className="hs-grid">
+        {apps.map(([ic, name]) => (
+          <div className="hs-app" key={name}><div className="hs-ic">{ic}</div><small>{name}</small></div>
+        ))}
+      </div>
+      <div className="hs-dock">
+        {["📞", "💬", "🌐", "✉️"].map((ic, i) => <div className="hs-ic" key={i}>{ic}</div>)}
+      </div>
+    </motion.div>
+  );
+}
+
 /* iOS status bar (time + signal/wifi/battery) */
 function PhStatus() {
+  const { time } = useClock();
   return (
     <div className="ph-status">
-      <span className="ph-time">9:41</span>
+      <span className="ph-time">{time}</span>
       <span className="ph-sig">
         <svg width="17" height="11" viewBox="0 0 17 11" fill="#fff"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
         <svg width="16" height="11" viewBox="0 0 16 12" fill="#fff"><path d="M8 9.5a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2zM8 5.6c-1.8 0-3.4.73-4.57 1.9l1.42 1.42A4.43 4.43 0 0 1 8 7.6c1.22 0 2.33.5 3.15 1.32l1.42-1.42A6.43 6.43 0 0 0 8 5.6zM8 1.5A10.5 10.5 0 0 0 .57 4.57L2 6a8.5 8.5 0 0 1 12 0l1.43-1.43A10.5 10.5 0 0 0 8 1.5z" transform="translate(0,-1)"/></svg>
