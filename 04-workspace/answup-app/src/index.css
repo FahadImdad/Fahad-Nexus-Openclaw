@@ -847,3 +847,9 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .ph-ctl-btn svg { width: 19px; height: 19px; }
 .ph-ctl small { font-size: 9.5px; }
 .ph-controls { gap: 7px 6px; }
+/* AI identity on every AI message + completed-call pill */
+.ph-msg { display: flex; flex-direction: column; align-items: flex-start; max-width: 86%; }
+.ph-msg.user { align-self: flex-end; align-items: flex-end; }
+.ph-msg .bub { max-width: 100%; }
+.ph-who { display: flex; align-items: center; gap: 4px; font-size: 8.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.65); margin: 0 0 3px 8px; }
+.ph-pill.done { background: rgba(48,209,88,.22); border-color: rgba(48,209,88,.45); color: #d8ffe3; font-weight: 700; }

@@ -157,8 +157,9 @@ function LiveChat() {
           </div>
           <div className="ph-chat">
             {chat.slice(0, shown).map((m, i) => (
-              <motion.div key={i} className={`bub ${m.who}`} initial={{ opacity: 0, y: 12, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.4, ease }}>
-                {m.text}
+              <motion.div key={i} className={`ph-msg ${m.who}`} initial={{ opacity: 0, y: 12, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.4, ease }}>
+                {m.who === "ai" && <div className="ph-who"><LogoMark size={9} light /> Answup AI</div>}
+                <div className={`bub ${m.who}`}>{m.text}</div>
               </motion.div>
             ))}
             {shown < chat.length && (
@@ -167,7 +168,13 @@ function LiveChat() {
               </motion.div>
             )}
           </div>
-          <div className="ph-pill"><LogoMark size={13} light /> Answup AI · answering this call</div>
+          {shown >= chat.length ? (
+            <motion.div className="ph-pill done" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4 }}>
+              ✓ Lead captured · details texted to you
+            </motion.div>
+          ) : (
+            <div className="ph-pill"><LogoMark size={13} light /> Answup AI · answering this call</div>
+          )}
           <div className="ph-controls">
             {[
               ["spk", "Speaker", <svg key="s" width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1-3.29-2.5-4.03v8.05c1.5-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>],
