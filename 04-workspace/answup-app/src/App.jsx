@@ -92,7 +92,7 @@ function LiveChat() {
   const [phase, setPhase] = useState("ring");
   const [shown, setShown] = useState(0);
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const inView = useInView(ref, { amount: 0.35 });
 
   const [accepted, setAccepted] = useState(false);
   const [secs, setSecs] = useState(0);
@@ -103,6 +103,12 @@ function LiveChat() {
   const [audioEnded, setAudioEnded] = useState(false);
   const [audioDone, setAudioDone] = useState(false);
   const AUDIO = { press: 3.05, connect: 3.6, starts: [4.1, 9.79, 15.08, 21.15, 25.93], booked: 30.5 };
+
+  // visibility guards: never play sound while the phone is off-screen or the tab is hidden
+  const inViewRef = useRef(false);
+  const pendingRestart = useRef(false);
+  const visibleNow = () => inViewRef.current && !document.hidden;
+  const safePlay = () => { if (visibleNow()) playAudio(); else pendingRestart.current = true; };
 
   const playAudio = () => {
     const a = audioRef.current;
@@ -122,21 +128,43 @@ function LiveChat() {
     armed.current = true;
     const a = audioRef.current;
     if (a) { a.play().then(() => { a.pause(); a.currentTime = 0; playAudio(); }).catch(() => {
-      const unlock = () => { playAudio(); window.removeEventListener("pointerdown", unlock); window.removeEventListener("keydown", unlock); window.removeEventListener("scroll", unlock); };
+      const unlock = () => { safePlay(); window.removeEventListener("pointerdown", unlock); window.removeEventListener("keydown", unlock); window.removeEventListener("scroll", unlock); };
       window.addEventListener("pointerdown", unlock, { once: true });
       window.addEventListener("keydown", unlock, { once: true });
       window.addEventListener("scroll", unlock, { once: true });
     }); }
   }, [inView]);
 
-  // Loop forever: audio version restarts after a short pause
+  // Pause when the phone scrolls out of view; resume where it left off when back
+  useEffect(() => {
+    inViewRef.current = inView;
+    const a = audioRef.current;
+    if (inView && !document.hidden && pendingRestart.current) { pendingRestart.current = false; playAudio(); return; }
+    if (!audioMode || !a) return;
+    if (!inView) { if (!a.paused) a.pause(); }
+    else if (a.paused && !audioEnded && !document.hidden) a.play().catch(() => {});
+  }, [inView, audioMode, audioEnded]);
+
+  // Pause when the tab is hidden; resume when it's active again
+  useEffect(() => {
+    const onVis = () => {
+      const a = audioRef.current;
+      if (document.hidden) { if (a && !a.paused) a.pause(); return; }
+      if (pendingRestart.current && inViewRef.current) { pendingRestart.current = false; playAudio(); return; }
+      if (audioMode && a && a.paused && !audioEnded && inViewRef.current) a.play().catch(() => {});
+    };
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
+  }, [audioMode, audioEnded]);
+
+  // Loop forever: audio version restarts after a short pause (only if visible)
   useEffect(() => {
     if (!audioEnded) return;
-    const t = setTimeout(() => playAudio(), 1500);
+    const t = setTimeout(() => safePlay(), 1500);
     return () => clearTimeout(t);
   }, [audioEnded]);
 
-  // Red End button: hang up now, ring again in 5 seconds
+  // Red End button: hang up now, ring again in 5 seconds (only if visible)
   const restartT = useRef(null);
   const endCall = () => {
     const a = audioRef.current;
@@ -144,7 +172,7 @@ function LiveChat() {
     setAudioMode(true); setAudioEnded(false); setAudioDone(false);
     setPhase("ring"); setShown(0); setAccepted(false); setSecs(0);
     clearTimeout(restartT.current);
-    restartT.current = setTimeout(() => playAudio(), 5000);
+    restartT.current = setTimeout(() => safePlay(), 5000);
   };
   useEffect(() => () => clearTimeout(restartT.current), []);
 
