@@ -863,3 +863,14 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .ph-pill { font-size: 9px; margin-bottom: 6px; }
 /* bigger nav logo */
 .site-nav .logo-word { font-size: 27px; }
+/* real-call audio button on the phone */
+.phone-body { position: relative; }
+.ph-sound { position: absolute; top: 44px; right: 12px; z-index: 6; min-width: 64px; height: 28px;
+  border: 1px solid rgba(255,255,255,.25); border-radius: 20px; padding: 0 11px;
+  background: rgba(255,255,255,.16); backdrop-filter: blur(12px); color: #fff;
+  font-size: 10.5px; font-weight: 700; font-family: 'Inter', sans-serif; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25); transition: .2s; }
+.ph-sound:hover { background: rgba(255,255,255,.28); transform: translateY(-1px); }
+.ph-sound.live { border-color: rgba(48,209,88,.6); }
+.ph-sound .eq i { background: #30d158; }

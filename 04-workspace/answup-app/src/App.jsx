@@ -97,33 +97,64 @@ function LiveChat() {
   const [accepted, setAccepted] = useState(false);
   const [secs, setSecs] = useState(0);
 
+  // ---- Real-audio mode: synced to the recorded call (timestamps from the audio file) ----
+  const audioRef = useRef(null);
+  const [audioMode, setAudioMode] = useState(false);
+  const [audioEnded, setAudioEnded] = useState(false);
+  const [audioDone, setAudioDone] = useState(false);
+  const AUDIO = { press: 3.05, connect: 3.6, starts: [4.1, 9.79, 15.08, 21.15, 25.93], booked: 30.5 };
+
+  const playAudio = () => {
+    const a = audioRef.current;
+    if (!a) return;
+    setAudioMode(true); setAudioEnded(false); setAudioDone(false);
+    setPhase("ring"); setShown(0); setAccepted(false); setSecs(0);
+    a.currentTime = 0;
+    a.play().catch(() => {});
+  };
+
+  const onAudioTime = () => {
+    const t = audioRef.current ? audioRef.current.currentTime : 0;
+    setAccepted(t >= AUDIO.press);
+    setPhase(t >= AUDIO.connect ? "chat" : "ring");
+    setShown(AUDIO.starts.filter((s) => t >= s).length);
+    setSecs(Math.max(0, Math.floor(t - AUDIO.connect)));
+    setAudioDone(t >= AUDIO.booked);
+  };
+
+  // ---- Silent auto mode (default until the visitor presses play) ----
   // ring for ~2.6s: green button "presses" at 2.1s, call connects at 2.6s
   // (?ring=1 freezes the incoming-call screen for design checks)
   useEffect(() => {
-    if (!inView || phase !== "ring") return;
+    if (audioMode || !inView || phase !== "ring") return;
     if (new URLSearchParams(window.location.search).has("ring")) return;
     const t1 = setTimeout(() => setAccepted(true), 2100);
     const t2 = setTimeout(() => setPhase("chat"), 2600);
     return () => { clearTimeout(t1); clearTimeout(t2); };
-  }, [inView, phase]);
+  }, [audioMode, inView, phase]);
 
   // conversation plays + call timer runs
   useEffect(() => {
-    if (phase !== "chat") return;
+    if (audioMode || phase !== "chat") return;
     const tick = setInterval(() => setSecs((s) => s + 1), 1000);
     return () => clearInterval(tick);
-  }, [phase]);
+  }, [audioMode, phase]);
 
   useEffect(() => {
-    if (phase !== "chat") return;
+    if (audioMode || phase !== "chat") return;
     if (shown < chat.length) { const t = setTimeout(() => setShown((s) => s + 1), shown === 0 ? 900 : 2100); return () => clearTimeout(t); }
-  }, [phase, shown]);
+  }, [audioMode, phase, shown]);
 
   const clock = `${String(Math.floor(secs / 60)).padStart(2, "0")}:${String(secs % 60).padStart(2, "0")}`;
 
   return (
     <div className="phone-body" ref={ref}>
       <PhStatus />
+      <button className={`ph-sound ${audioMode && !audioEnded ? "live" : ""}`} onClick={playAudio}
+        title={audioMode && !audioEnded ? "Playing real call audio" : "Hear the real call"}>
+        {audioMode ? (audioEnded ? "↻ Replay" : <Equalizer bars={3} />) : "🔊 Hear it"}
+      </button>
+      <audio ref={audioRef} src="/audio/demo-call.mp3" preload="none" onTimeUpdate={onAudioTime} onEnded={() => setAudioEnded(true)} />
       {phase === "ring" && (
         <motion.div className="ic-screen" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <div className="ic-label">incoming call</div>
@@ -168,7 +199,7 @@ function LiveChat() {
               </motion.div>
             )}
           </div>
-          {shown >= chat.length ? (
+          {(audioMode ? audioDone : shown >= chat.length) ? (
             <motion.div className="ph-pill done" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.4 }}>
               ✓ Job booked · owner notified
             </motion.div>
