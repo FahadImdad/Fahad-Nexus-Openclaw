@@ -837,3 +837,13 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .ph-controls { gap: 8px 6px; }
 .ph-status { padding: 14px 22px 0; }
 .ph-time { font-size: 13px; }
+/* smaller transcript v2 */
+.ph-chat .bub { font-size: 10.5px; padding: 8px 11px; line-height: 1.38; border-radius: 14px; }
+.ph-chat { gap: 6px; padding: 5px 2px; }
+.ph-callinfo b { font-size: 17px; }
+.ph-callinfo small { font-size: 11px; }
+.ph-pill { font-size: 9.5px; padding: 4px 11px; margin-bottom: 7px; }
+.ph-ctl-btn { width: 44px; height: 44px; }
+.ph-ctl-btn svg { width: 19px; height: 19px; }
+.ph-ctl small { font-size: 9.5px; }
+.ph-controls { gap: 7px 6px; }
