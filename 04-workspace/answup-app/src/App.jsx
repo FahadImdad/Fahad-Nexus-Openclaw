@@ -118,7 +118,11 @@ function LiveChat() {
   const userMutedRef = useRef(false);
   const [userMuted, setUserMuted] = useState(false);
   const [sndHint, setSndHint] = useState(true);
-  useEffect(() => { const t = setTimeout(() => setSndHint(false), 9500); return () => clearTimeout(t); }, []);
+  useEffect(() => {
+    if (!audioMode) return;   // hint shows once the call is actually playing
+    const t = setTimeout(() => setSndHint(false), 9500);
+    return () => clearTimeout(t);
+  }, [audioMode]);
   const toggleMute = () => {
     setSndHint(false);
     const a = audioRef.current;
@@ -134,8 +138,16 @@ function LiveChat() {
   const playAudio = () => {
     const a = audioRef.current;
     if (!a) return Promise.reject();
+    if (!soundOnRef.current && !userMutedRef.current) {
+      // No sound permission yet: the call NEVER plays silently — the phone just
+      // rings (visual only) until the visitor's first tap starts it WITH sound.
+      hungUp.current = false;
+      setAudioMode(false); setAudioEnded(false); setAudioDone(false);
+      setPhase("ring"); setShown(0); setAccepted(false); setSecs(0);
+      return Promise.reject(new Error("waiting-for-first-tap"));
+    }
     hungUp.current = false;
-    a.muted = userMutedRef.current || !soundOnRef.current;   // muted until the visitor's first tap (browser law) or by choice
+    a.muted = userMutedRef.current;   // silent only if the visitor muted on purpose
     a.currentTime = 0;
     const p = a.play();
     p.then(() => {
@@ -200,8 +212,9 @@ function LiveChat() {
     return cleanup;
   }, []);
 
-  // First time the phone is on screen: try instant sound (trusted browsers / policy),
-  // otherwise start the muted loop — the armed gestures above turn sound on.
+  // First time the phone is on screen: try instant sound (trusted browsers / policy
+  // machines get the call immediately). If the browser wants a gesture first, the
+  // phone keeps ringing — the visitor's first touch starts the call WITH sound.
   const armed = useRef(false);
   useEffect(() => {
     if (!inView || armed.current) return;
@@ -213,9 +226,7 @@ function LiveChat() {
       soundOnRef.current = true; setSoundOn(true);
       a.pause(); a.currentTime = 0;
       playAudio().catch(() => {});
-    }).catch(() => {
-      playAudio().catch(() => {});   // muted autoplay — always allowed
-    });
+    }).catch(() => {});   // no permission yet → stay on the ringing screen and wait
   }, [inView]);
 
   // Pause when the phone scrolls out of view; resume where it left off when back
@@ -294,18 +305,10 @@ function LiveChat() {
     }
   };
 
-  // ---- Silent auto mode (default until the visitor presses play) ----
-  // ring for ~2.6s: green button "presses" at 2.1s, call connects at 2.6s
-  // (?ring=1 freezes the incoming-call screen for design checks)
-  useEffect(() => {
-    if (audioMode || !inView || phase !== "ring") return;
-    if (new URLSearchParams(window.location.search).has("ring")) return;
-    const t1 = setTimeout(() => setAccepted(true), 2100);
-    const t2 = setTimeout(() => setPhase("chat"), 2600);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
-  }, [audioMode, inView, phase]);
+  // (The old silent auto-play mode is gone: the phone rings until the visitor's
+  // first touch, so the demo call is ALWAYS heard, never watched on mute.)
 
-  // conversation plays + call timer runs
+  // conversation plays + call timer runs (fallback if audio can't load)
   useEffect(() => {
     if (audioMode || phase !== "chat") return;
     const tick = setInterval(() => setSecs((s) => s + 1), 1000);
@@ -324,7 +327,7 @@ function LiveChat() {
       <PhStatus />
       {/* sound switch — on by default; tap to mute/unmute. Hint points it out, then fades. */}
       <div className="snd-wrap">
-        {sndHint && !userMuted && (
+        {sndHint && !userMuted && audioMode && (
           <motion.div className="snd-hint" initial={{ opacity: 0, x: 12 }}
             animate={{ opacity: [0, 1, 1, 0], x: 0 }}
             transition={{ delay: 1.6, duration: 7, times: [0, 0.06, 0.88, 1] }}>
