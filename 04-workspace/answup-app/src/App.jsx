@@ -167,14 +167,14 @@ function LiveChat() {
   // otherwise play MUTED immediately (always allowed) and switch sound on at
   // the visitor's first COMPLETED tap/click/keypress. Listeners stay armed
   // until an unlock actually SUCCEEDS (some browsers reject early attempts).
-  const armed = useRef(false);
+  // Gesture listeners arm at PAGE LOAD (not when the phone scrolls in) — any click,
+  // tap, or keypress anywhere on the page grants sound, even before the phone is seen.
   useEffect(() => {
-    if (!inView || armed.current) return;
-    armed.current = true;
     // every event any browser accepts as a sound-granting gesture, at its earliest:
     // Chrome grants on pointerdown/mousedown/keydown, Safari on touchend/click
     const EVTS = ["pointerdown", "mousedown", "touchstart", "pointerup", "touchend", "click", "keydown"];
     let pollT = null;
+    let tries = 0;
     const cleanup = () => {
       EVTS.forEach((e) => window.removeEventListener(e, unlock, true));
       if (pollT) { clearInterval(pollT); pollT = null; }
@@ -185,30 +185,37 @@ function LiveChat() {
       if (e?.target?.closest?.(".snd-wrap")) return;   // taps on the toggle decide for themselves
       enableSound().then(() => {
         cleanup();
-        // unlocked while scrolled away: hold it, resume audibly when back in view
+        // unlocked while the phone is off-screen: hold it, play audibly when it appears
         if (!visibleNow()) { const a = audioRef.current; if (a) a.pause(); pendingRestart.current = true; }
       }).catch(() => {});                               // keep listeners until success
     };
+    EVTS.forEach((e) => window.addEventListener(e, unlock, true));  // capture: fires before any stopPropagation
+    // safety net: Chrome keeps sound permission after ANY interaction, even ones
+    // window listeners never see (scrollbar drag, autofill, browser UI) — poll for it
+    // (capped: some browsers report activation yet still refuse; gestures remain armed)
+    pollT = setInterval(() => {
+      if (soundOnRef.current || tries >= 8) { clearInterval(pollT); pollT = null; return; }
+      if (navigator.userActivation?.hasBeenActive) { tries++; unlock(); }
+    }, 700);
+    return cleanup;
+  }, []);
+
+  // First time the phone is on screen: try instant sound (trusted browsers / policy),
+  // otherwise start the muted loop — the armed gestures above turn sound on.
+  const armed = useRef(false);
+  useEffect(() => {
+    if (!inView || armed.current) return;
+    armed.current = true;
     const a = audioRef.current;
-    if (!a) return;
+    if (!a || soundOnRef.current) return;   // a pre-scroll gesture already unlocked it
     a.muted = false;
     a.play().then(() => {
       soundOnRef.current = true; setSoundOn(true);
       a.pause(); a.currentTime = 0;
       playAudio().catch(() => {});
     }).catch(() => {
-      playAudio().catch(() => {});   // muted autoplay — runs in all conditions
-      EVTS.forEach((e) => window.addEventListener(e, unlock, true));  // capture: fires before any stopPropagation
-      // safety net: Chrome keeps sound permission after ANY interaction, even ones
-      // window listeners never see (scrollbar drag, autofill, browser UI) — poll for it
-      // (capped: some browsers report activation yet still refuse; gestures remain armed)
-      let tries = 0;
-      pollT = setInterval(() => {
-        if (soundOnRef.current || tries >= 8) { clearInterval(pollT); pollT = null; return; }
-        if (navigator.userActivation?.hasBeenActive) { tries++; unlock(); }
-      }, 700);
+      playAudio().catch(() => {});   // muted autoplay — always allowed
     });
-    return cleanup;
   }, [inView]);
 
   // Pause when the phone scrolls out of view; resume where it left off when back
