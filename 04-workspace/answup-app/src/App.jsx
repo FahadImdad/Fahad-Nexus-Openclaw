@@ -523,8 +523,8 @@ export default function App({ onDashboard, onStart }) {
               <span className="dot" /> Answering calls 24/7 for home-service pros
             </motion.div>
             <h1>
-              <Words text="Never miss a call." base={0.15} /><br />
-              <Words text="Never lose a customer." grad base={0.55} />
+              <Words text="Never miss a call" base={0.15} /><br />
+              <Words text="Never lose a customer" grad base={0.55} />
             </h1>
             <motion.p className="hero-sub" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: 1.0, ease }}>
               Answup is the AI receptionist for the trades. It answers every call, captures every lead, and texts you the details, so you win the job while your competitors are still ringing.
