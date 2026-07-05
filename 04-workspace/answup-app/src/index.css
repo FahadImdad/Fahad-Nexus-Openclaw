@@ -911,3 +911,7 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
   padding: 4px 9px; border-radius: 999px; box-shadow: 0 6px 18px rgba(0,0,0,.4); }
 .snd-arrow { display: inline-block; font-size: 11px; line-height: 1; animation: sndnudge 1s ease-in-out infinite; }
 @keyframes sndnudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(3.5px); } }
+
+/* ---------- Status bar: island scales with the phone so icons never collide ---------- */
+.phone-island { width: 24%; min-width: 66px; max-width: 92px; }
+.ph-status { padding: 9px 18px 0; }
