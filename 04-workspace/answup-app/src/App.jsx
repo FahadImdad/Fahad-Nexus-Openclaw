@@ -215,13 +215,8 @@ const tiers = [
 const TRADES = ["HVAC", "Plumbing", "Electrical", "Roofing", "Garage Doors", "Appliance Repair", "Landscaping", "Pest Control"];
 
 export default function App({ onDashboard, onStart }) {
-  const heroRef = useRef(null);
   const { scrollYProgress: pageProgress } = useScroll();
   const progressX = useSpring(pageProgress, { stiffness: 140, damping: 26, mass: 0.4 });
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const panelY = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const panelRot = useTransform(scrollYProgress, [0, 1], [0, -4]);
-  const panelScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
 
   const marq = TRADES.map((t, i) => <b key={i}>●</b>).flatMap((dot, i) => [<em key={`t${i}`} style={{ fontStyle: "normal" }}>{TRADES[i]}</em>, dot]);
 
@@ -246,7 +241,7 @@ export default function App({ onDashboard, onStart }) {
       </nav>
 
       {/* HERO — pitch left, live demo right */}
-      <section className="hero" ref={heroRef}>
+      <section className="hero">
         <div className="wrap hero-grid">
           <div className="hero-copy">
             <motion.div className="pill" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
@@ -266,14 +261,14 @@ export default function App({ onDashboard, onStart }) {
             <HeroEq />
           </div>
 
-          <motion.div className="stage" style={{ y: panelY, rotateX: panelRot, scale: panelScale }}>
+          <div className="stage">
             <motion.div className="phone" initial={{ opacity: 0, y: 60, rotateX: 12 }} animate={{ opacity: 1, y: 0, rotateX: 0 }} transition={{ duration: 1, delay: 0.5, ease }}>
               <div className="phone-island" />
               <div className="phone-screen">
                 <LiveChat />
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
