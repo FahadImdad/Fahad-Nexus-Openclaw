@@ -116,7 +116,7 @@ function LiveChat() {
 
   useEffect(() => {
     if (phase !== "chat") return;
-    if (shown < chat.length) { const t = setTimeout(() => setShown((s) => s + 1), shown === 0 ? 500 : 1300); return () => clearTimeout(t); }
+    if (shown < chat.length) { const t = setTimeout(() => setShown((s) => s + 1), shown === 0 ? 900 : 2100); return () => clearTimeout(t); }
   }, [phase, shown]);
 
   const clock = `${String(Math.floor(secs / 60)).padStart(2, "0")}:${String(secs % 60).padStart(2, "0")}`;

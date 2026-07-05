@@ -821,3 +821,5 @@ footer { border-top: 1px solid var(--line); padding: 60px 0 130px; position: rel
 .ph-chat { gap: 8px; padding: 8px 4px; }
 .ph-chat .bub { padding: 10px 14px; line-height: 1.4; }
 .ph-pill { margin-bottom: 8px; }
+/* messages fill top-down: nothing shifts upward as the call plays */
+.ph-chat { justify-content: flex-start; }
