@@ -4487,6 +4487,965 @@
     </div>
   </div>
 </div>
+
+<!-- ═══════ TEST SCREEN s9g (venue-switch prototype, originals untouched) ═══════ -->
+<div class="col" id="s9g">
+  <div class="page-label">9g · TEST — Merged Schedule · flat venue bar built into bottom chrome</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" id="mg-s9g" data-mg-idx="0" data-mg-names="Arena|PCs|Consoles" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<div class="mg-panes"><div class="mg-pane" style="display:flex;background:#F4F7F2;">
+
+      <!-- Header -->
+      <div style="padding:10px 16px 10px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;color:#111;">Elite Sports Arena</div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5 · Hourly slots</div>
+          </div>
+          <div id="s9-holiday-btn-M9G0" style="width:32px;height:32px;background:#FFF3F3;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-calendar-close-line" style="font-size:16px;color:#E53935;line-height:1;"></i></div>
+          <div data-go="s18" style="width:32px;height:32px;background:#09210E;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;margin-left:4px;"><i class="ri-settings-3-line" style="font-size:16px;color:#fff;line-height:1;"></i></div>
+        </div>
+
+      <!-- Arena switcher + slot type -->
+      <div style="background:#fff;border-bottom:1px solid #EFEFEF;padding:7px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-shrink:0;">
+        <div style="display:flex;gap:5px;overflow-x:auto;flex:1;">
+          <div class="arena-sw arena-sw-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:5px 10px;border-radius:20px;background:#09210E;color:#fff;cursor:pointer;flex-shrink:0;border:1.5px solid #09210E;">Elite Sports</div>
+          <div class="arena-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;background:#FAFAFA;color:#555;cursor:pointer;flex-shrink:0;border:1.5px solid #E0E0E0;">Champions</div>
+          <div class="arena-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;background:#FAFAFA;color:#CCC;cursor:pointer;flex-shrink:0;border:1.5px solid #E8E8E8;opacity:.6;">Victory</div>
+        </div>
+      </div>
+
+      <!-- DATE STRIP -->
+      <div class="dt-strip" style="background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
+        <div class="dt-day"><div class="dd-name">MON</div><div class="dd-num">21</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+        <div class="dt-day"><div class="dd-name">TUE</div><div class="dd-num">22</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">WED</div><div class="dd-num">23</div><div class="dd-tag">3 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">THU</div><div class="dd-num">24</div><div class="dd-tag">5 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">FRI</div><div class="dd-num">25</div><div class="dd-tag">6 bkgs</div></div>
+        <div class="dt-day today"><div class="dd-name">TODAY</div><div class="dd-num">26</div><div class="dd-tag">8 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">SUN</div><div class="dd-num">27</div><div class="dd-tag">4 bkgs</div></div>
+        <div class="dt-day has-pending"><div class="dd-name">MON</div><div class="dd-num">28</div><div class="dd-tag"><i class="ri-camera-line" style="font-size:9px;"></i>2</div></div>
+        <div class="dt-day"><div class="dd-name">TUE</div><div class="dd-num">29</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+        <div class="dt-day"><div class="dd-name">WED</div><div class="dd-num">30</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+      </div>
+
+      <!-- DAY SUMMARY + LEGEND -->
+      <div style="background:#fff; border-bottom:1.5px solid #EFEFEF; flex-shrink:0;">
+        <div class="day-sum">
+          <div class="ds"><div class="dv" style="color:#1A6030;">6</div><div class="dl">Confirmed</div></div>
+          <div style="width:1px;background:#EFEFEF;"></div>
+          <div class="ds"><div class="dv" style="color:#E65100;">2</div><div class="dl"><i class="ri-camera-line" style="font-size:10px;margin-right:2px;"></i>Pending</div></div>
+          <div style="width:1px;background:#EFEFEF;"></div>
+          <div class="ds"><div class="dv" style="color:#7AAB50;">8</div><div class="dl">Available</div></div>
+          <div style="width:1px;background:#EFEFEF;"></div>
+          <div class="ds"><div class="dv" style="color:#78909C;">2</div><div class="dl">Blocked</div></div>
+        </div>
+        <!-- Compact legend -->
+        <div style="display:flex;gap:10px;padding:5px 14px 7px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#09210E,#163F1E);"></div>Confirmed</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending <i class="ri-camera-line" style="font-size:9px;"></i></div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Available</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#EBEBEB;"></div>Closed</div>
+        </div>
+      </div>
+
+      <!-- 24-HOUR SLOT GRID -->
+      <div style="flex:1; overflow-y:auto; position:relative;">
+        <!-- Holiday overlay: shown when a closed day is tapped in the date strip -->
+        <div id="s9-holiday-overlay-M9G0" style="display:none;position:absolute;inset:0;background:rgba(255,243,243,.97);z-index:10;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:20px;">
+          <div style="font-size:48px;margin-bottom:4px;">🚫</div>
+          <div style="font-size:17px;font-weight:900;color:#C62828;">Arena Closed</div>
+          <div style="font-size:12px;color:#888;max-width:190px;line-height:1.6;">This day has been marked as a holiday or day off. No bookings accepted.</div>
+          <div id="s9-hol-edit-btn-M9G0" style="margin-top:12px;padding:10px 22px;background:#C62828;border-radius:20px;font-size:12px;font-weight:800;color:#fff;cursor:pointer;">✏️ Edit Off Days</div>
+        </div>
+        <div class="slot-grid">
+          <!-- Row 1: 12am–3am (closed) -->
+          <div class="sg-cell sg-closed"><div class="sg-hr">12am</div></div>
+          <div class="sg-cell sg-closed"><div class="sg-hr">1am</div></div>
+          <div class="sg-cell sg-closed"><div class="sg-hr">2am</div></div>
+          <div class="sg-cell sg-closed"><div class="sg-hr">3am</div></div>
+          <!-- Row 2: 4am–7am (closed / opening) -->
+          <div class="sg-cell sg-closed"><div class="sg-hr">4am</div></div>
+          <div class="sg-cell sg-closed"><div class="sg-hr">5am</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">6am</div><div class="sg-pr">Rs 1.2k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">7am</div><div class="sg-pr">Rs 1.2k</div></div>
+          <!-- Row 3: 8am–11am -->
+          <div class="sg-cell sg-done"><div class="sg-hr">8am</div><div class="sg-nm">W.Warriors</div><div class="sg-pr">Rs 2k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">9am</div><div class="sg-nm">Umar F.</div><div class="sg-pr">Rs 2k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">10am</div><div class="sg-nm">Ali H.</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">11am</div><div class="sg-nm">Ali H.</div><div class="sg-pr">Rs 2.5k</div></div>
+          <!-- Row 4: 12pm–3pm -->
+          <div class="sg-cell sg-avail"><div class="sg-hr">12pm</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">1pm</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">2pm</div><div class="sg-nm">Zain &amp;T.</div><div class="sg-pr">Rs 3k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">3pm</div><div class="sg-nm">Zain &amp;T.</div><div class="sg-pr">Rs 3k</div></div>
+          <!-- Row 5: 4pm–7pm (all booked/confirmed) -->
+          <div class="sg-cell sg-ok"><div class="sg-hr">4pm</div><div class="sg-nm">K.Kings</div><div class="sg-pr">Rs 3.5k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">5pm</div><div class="sg-nm">K.Kings</div><div class="sg-pr">Rs 3.5k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">6pm</div><div class="sg-nm">Ahmed G.</div><div class="sg-pr">Rs 3.5k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">7pm</div><div class="sg-nm">Ahmed G.</div><div class="sg-pr">Rs 3.5k</div></div>
+          <!-- Row 6: 8pm–11pm (blocked / available) -->
+          <div class="sg-cell sg-blk"><div class="sg-hr">8pm</div><div class="sg-ico" style="font-size:13px; margin-top:6px;"><i class="ri-lock-2-fill"></i></div></div>
+          <div class="sg-cell sg-blk"><div class="sg-hr">9pm</div><div class="sg-ico" style="font-size:13px; margin-top:6px;"><i class="ri-lock-2-fill"></i></div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">10pm</div><div class="sg-pr">Rs 2k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">11pm</div><div class="sg-pr">Rs 2k</div></div>
+        </div>
+      </div>
+
+      <!-- ═══ HOLIDAY CALENDAR BOTTOM SHEET ═══ -->
+      <div id="s9-holiday-sheet-M9G0" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;max-height:88%;overflow-y:auto;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 18px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Mark Days Off</div>
+              <div style="font-size:11px;color:#999;margin-top:3px;">Tap a date to block · tap again to unblock</div>
+            </div>
+            <div id="s9-cal-close-x-M9G0" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
+              <i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;margin-bottom:16px;">
+            <div id="s9-cal-prev-M9G0" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-left-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
+            <div id="s9-cal-month-lbl-M9G0" style="flex:1;text-align:center;font-size:16px;font-weight:900;color:#111;"></div>
+            <div id="s9-cal-next-M9G0" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-right-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:8px;text-align:center;">
+            <div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">M</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">W</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">F</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div>
+          </div>
+          <div id="s9-cal-grid-M9G0" style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:16px;"></div>
+          <div id="s9-cal-summary-M9G0" style="display:none;background:#FFF3F3;border-radius:12px;padding:11px 13px;margin-bottom:16px;border:1.5px solid #FFCDD2;">
+            <div style="font-size:10px;font-weight:900;color:#C62828;margin-bottom:4px;">🚫 Days Blocked</div>
+            <div id="s9-cal-sum-text-M9G0" style="font-size:11px;color:#666;line-height:1.8;"></div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button id="s9-cal-cancel-M9G0" style="flex:1;padding:13px;border:1.5px solid #E0E0E0;border-radius:12px;font-size:13px;font-weight:700;color:#555;background:#fff;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button id="s9-cal-confirm-M9G0" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Confirm</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blocked Dates Management Sheet -->
+      <div id="s9-hol-mgmt-M9G0" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 16px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Blocked Dates</div>
+              <div style="font-size:11px;color:#999;margin-top:2px;">Tap × to unblock · tap <b style="color:#09210E;">Mark More</b> to add</div>
+            </div>
+            <div id="s9-hol-mgmt-close-M9G0" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i></div>
+          </div>
+          <div id="s9-hol-mgmt-list-M9G0" style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;margin-bottom:16px;"></div>
+          <div style="display:flex;gap:8px;">
+            <button id="s9-hol-mgmt-add-M9G0" style="flex:1;padding:12px;border:1.5px solid #09210E;border-radius:12px;font-size:12px;font-weight:800;color:#09210E;background:#fff;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;"><i class="ri-calendar-close-line" style="font-size:14px;"></i>Mark More</button>
+            <button id="s9-hol-mgmt-done-M9G0" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Done</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item active"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
+    </div>
+  </div><div class="mg-pane" style="display:none;background:#F4F2FA;">
+
+      <!-- Header -->
+      <div style="padding:10px 16px 10px;background:#fff;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div data-back style="width:30px;height:30px;background:#F2EEFB;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;color:#3A1E6E;pointer-events:none;"></i></div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;color:#1A0E2E;">Nexus Gaming Lounge</div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;">Bahadurabad · <b style="color:#3A1E6E;">30-min slots</b></div>
+          </div>
+          <div data-go="s56" style="background:#3A1E6E;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:3px;"><i class="ri-layout-grid-line" style="font-size:12px;"></i>All PCs</div>
+          <div data-go="s54" style="background:#F2EEFB;border-radius:9px;padding:7px 10px;font-size:10px;font-weight:800;color:#3A1E6E;cursor:pointer;flex-shrink:0;">🎮</div>
+        </div>
+      </div>
+
+      <!-- Cubicle + PC selector strip -->
+      <div style="background:#fff;border-bottom:1px solid #EFEFEF;padding:8px 14px 9px;flex-shrink:0;">
+        <div id="s53-sel-label-M9G1" style="font-size:9px;font-weight:800;color:#AAA;letter-spacing:.4px;margin-bottom:6px;">SELECT CUBICLE, THEN PC</div>
+        <div style="display:flex;gap:5px;overflow-x:auto;margin-bottom:6px;">
+          <div class="gz-cub-sw gz-cub-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;background:#3A1E6E;color:#fff;cursor:pointer;flex-shrink:0;">Cubicle A</div>
+          <div class="gz-cub-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 11px;border-radius:20px;background:#FAF8FE;color:#7A5BB0;cursor:pointer;flex-shrink:0;border:1.5px solid #E0D4F5;">Cubicle B</div>
+          <div class="gz-cub-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 11px;border-radius:20px;background:#FAF8FE;color:#7A5BB0;cursor:pointer;flex-shrink:0;border:1.5px solid #E0D4F5;">Cubicle C</div>
+          <div class="gz-cub-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 11px;border-radius:20px;background:#FAF8FE;color:#7A5BB0;cursor:pointer;flex-shrink:0;border:1.5px solid #E0D4F5;">Cubicle D</div>
+        </div>
+        <!-- PC chips (hidden in cubicle mode) -->
+        <div id="s53-pc-row-M9G1" style="display:flex;gap:5px;overflow-x:auto;">
+          <div class="gz-pc-sw gz-pc-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:4px 10px;border-radius:8px;background:#7C5BE0;color:#fff;cursor:pointer;flex-shrink:0;">PC 1</div>
+          <div class="gz-pc-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">PC 2</div>
+          <div class="gz-pc-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">PC 3</div>
+          <div class="gz-pc-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">PC 4</div>
+          <div class="gz-pc-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">PC 5</div>
+        </div>
+      </div>
+
+      <!-- DATE STRIP -->
+      <div class="dt-strip" style="background:#fff;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+        <div class="dt-day"><div class="dd-name">WED</div><div class="dd-num">23</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">THU</div><div class="dd-num">24</div><div class="dd-tag">9 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">FRI</div><div class="dd-num">25</div><div class="dd-tag">14 bkgs</div></div>
+        <div class="dt-day today"><div class="dd-name">TODAY</div><div class="dd-num">26</div><div class="dd-tag">11 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">SUN</div><div class="dd-num">27</div><div class="dd-tag">7 bkgs</div></div>
+        <div class="dt-day has-pending"><div class="dd-name">MON</div><div class="dd-num">28</div><div class="dd-tag"><i class="ri-camera-line" style="font-size:9px;"></i>3</div></div>
+      </div>
+
+      <!-- Legend -->
+      <div style="background:#fff;border-bottom:1.5px solid #EFEFEF;flex-shrink:0;display:flex;gap:10px;padding:6px 14px 7px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#09210E,#163F1E);"></div>Booked</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending 📸</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Free</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#7C5BE0,#A88BFF);"></div>Selected</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#FFE0A0,#FFD080);border:1px solid #E0A030;"></div>% Off</div>
+      </div>
+
+
+      <!-- Mode context banner (changes with Per PC / Per Cubicle) -->
+      <div id="s53-ctx-M9G1" style="flex-shrink:0;background:#F2EEFB;border-bottom:1px solid #E0D4F5;padding:7px 14px;display:flex;align-items:center;gap:7px;">
+        <i class="ri-computer-line" style="font-size:14px;color:#3A1E6E;"></i>
+        <div style="font-size:10px;color:#5A3B9A;font-weight:600;line-height:1.3;">Booking <b>individual PCs</b> in Cubicle A — pick a PC above, then tap slots. Each seat priced on its own.</div>
+      </div>
+
+      <!-- HALF-HOUR SLOT GRIDS -->
+      <div style="flex:1;overflow-y:auto;">
+
+        <!-- PER-PC GRID (one PC at a time) -->
+        <div class="slot-grid s53-grid">
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:00a</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:30a</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-done sg-half"><div class="sg-hr">12:00p</div><div class="sg-nm">Bilal</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-done sg-half"><div class="sg-hr">12:30p</div><div class="sg-nm">Bilal</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">1:00p</div><div class="sg-nm">Hamza</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">1:30p</div><div class="sg-nm">Hamza</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">2:00p</div><div class="sg-nm">Hamza</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">2:30p</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:00p</div><div class="sg-nm">Zaid</div><div class="sg-pr">200</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:30p</div><div class="sg-nm">Zaid</div><div class="sg-pr">200</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">4:00p</div><div class="sg-pr">200</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">4:30p</div><div class="sg-pr">200</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">5:00p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">5:30p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:00p</div><div class="sg-nm">Clan X</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:30p</div><div class="sg-nm">Clan X</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:00p</div><div class="sg-nm">Clan X</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:30p</div><div class="sg-nm">Clan X</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">8:00p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">8:30p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:00p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:30p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:00p</div><div class="sg-pr">200</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:30p</div><div class="sg-pr">200</div></div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+      <!-- s53 manage action bar (enabled once slots selected) -->
+      <div id="s53-selbar-M9G1" style="display:none;"><span id="s53-selsum-M9G1"></span><span id="s53-seltot-M9G1"></span></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.08);">
+        <button class="gz-manage-btn gz-manage-off" data-manage="s53" style="width:100%;padding:12px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;"><i class="ri-settings-4-line" style="font-size:15px;"></i><span class="gz-manage-label">Select slots to manage</span></button>
+      </div>
+      <!-- s53 unified Manage-Slots popup -->
+      <div class="sm-bg gz-manage-sheet" id="s53-manage-sheet-M9G1" style="display:none;">
+        <div class="sm-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;">
+            <div>
+              <div style="font-size:15px;font-weight:900;color:#1A0E2E;">⚙️ Manage Slots</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;"><span class="gz-mn">0</span> slot(s) selected · Nexus Gaming Lounge</div>
+            </div>
+            <div class="gz-manage-x" style="width:28px;height:28px;border-radius:9px;background:#F3F3F3;display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;cursor:pointer;">✕</div>
+          </div>
+          <div style="display:flex;gap:0;background:#F2EEFB;border-radius:11px;padding:3px;margin-bottom:11px;">
+            <div class="gz-status-seg gz-seg-on" data-status="open" style="flex:1;padding:8px 6px;text-align:center;border-radius:9px;font-size:12px;font-weight:800;color:#fff;background:#3A1E6E;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;"><i class="ri-checkbox-circle-line" style="font-size:13px;"></i> Open</div>
+            <div class="gz-status-seg" data-status="block" style="flex:1;padding:8px 6px;text-align:center;border-radius:9px;font-size:12px;font-weight:700;color:#7A5BB0;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;"><i class="ri-lock-2-fill" style="font-size:13px;"></i> Block</div>
+          </div>
+          <div class="gz-open-only">
+            <div style="height:1px;background:#F0F0F0;margin-bottom:11px;"></div>
+            <div style="font-size:9px;font-weight:800;color:#C8B4F0;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;">Slot Pricing</div>
+            <div style="display:flex;align-items:stretch;gap:0;margin-bottom:5px;">
+              <button class="gz-price-dn" style="width:38px;border:1.5px solid #E0D4F5;background:#F4F0FB;border-radius:10px 0 0 10px;font-size:22px;color:#3A1E6E;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">−</button>
+              <div class="gz-price-val" style="flex:1;height:38px;border-top:1.5px solid #E0D4F5;border-bottom:1.5px solid #E0D4F5;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#1A0E2E;">Rs 250</div>
+              <button class="gz-price-up" style="width:38px;border:1.5px solid #E0D4F5;background:#F4F0FB;border-radius:0 10px 10px 0;font-size:22px;color:#3A1E6E;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">+</button>
+            </div>
+            <div style="font-size:9px;color:#C8B4F0;text-align:center;margin-bottom:10px;">adjusts by Rs 50 per tap</div>
+            <div style="background:#FFFBF2;border-radius:10px;padding:9px 12px;margin-bottom:11px;border:1.5px solid #F0E2C0;">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div style="display:flex;align-items:center;gap:6px;"><i class="ri-price-tag-3-line" style="font-size:14px;color:#E08A00;"></i><span style="font-size:12px;font-weight:700;color:#111;">Offer Discount</span></div>
+                <div class="toggle gz-disc-toggle on" style="background:#E08A00;"></div>
+              </div>
+              <div class="gz-disc-detail" style="display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid #F0E2C0;">
+                <div style="display:flex;align-items:center;gap:4px;">
+                  <input class="gz-disc-pct" type="number" min="1" max="80" value="20" style="border:1.5px solid #E0A030;border-radius:8px;padding:4px 7px;font-size:15px;font-weight:900;color:#C07000;width:46px;text-align:center;background:#fff;font-family:inherit;outline:none;">
+                  <span style="font-size:12px;font-weight:700;color:#666;">%</span>
+                </div>
+                <i class="ri-arrow-right-line" style="font-size:13px;color:#CCC;flex-shrink:0;"></i>
+                <div style="flex:1;">
+                  <span style="font-size:10px;color:#CCC;text-decoration:line-through;margin-right:3px;">Rs 250</span>
+                  <span class="gz-disc-new" style="font-size:15px;font-weight:900;color:#1A6030;">Rs 200</span>
+                </div>
+                <div style="font-size:8px;color:#9A6A20;text-align:right;line-height:1.3;">Players<br>see this</div>
+              </div>
+            </div>
+          </div>
+          <div style="height:1px;background:#F0F0F0;margin-bottom:10px;"></div>
+          <div style="font-size:9px;font-weight:800;color:#C8B4F0;letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;">Apply To</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:13px;">
+            <div class="gz-apply-opt gz-apply-on" style="display:flex;align-items:center;gap:7px;border:1.5px solid #3A1E6E;border-radius:10px;padding:8px 9px;background:#F4F0FB;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #3A1E6E;background:#3A1E6E;box-shadow:inset 0 0 0 2.5px #fff;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#111;">Today only</div><div style="font-size:9px;color:#AAA;">These slots</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Every day</div><div style="font-size:9px;color:#AAA;">Recurring</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Weekends</div><div style="font-size:9px;color:#AAA;">Sat &amp; Sun</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Off-peak</div><div style="font-size:9px;color:#AAA;">Mon–Thu</div></div></div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="gz-manage-x" style="flex:1;padding:11px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button class="gz-manage-apply" data-scope="s53" style="flex:1.6;padding:11px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Apply →</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="mg-pane" style="display:none;background:#F4F2FA;">
+
+      <!-- Header -->
+      <div style="padding:10px 16px 10px;background:#fff;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div data-back style="width:30px;height:30px;background:#F2EEFB;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;color:#3A1E6E;pointer-events:none;"></i></div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;color:#1A0E2E;">Console Stations</div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;">Nexus Gaming Lounge · <b style="color:#3A1E6E;">30-min slots</b></div>
+          </div>
+          <div data-go="s57" style="background:#3A1E6E;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:3px;"><i class="ri-layout-grid-line" style="font-size:12px;"></i>All Consoles</div>
+          <div data-go="s53" style="background:#F2EEFB;border-radius:9px;padding:7px 10px;font-size:10px;font-weight:800;color:#3A1E6E;cursor:pointer;flex-shrink:0;">🖥️</div>
+        </div>
+      </div>
+
+      <!-- Console + unit selector -->
+      <div style="background:#fff;border-bottom:1px solid #EFEFEF;padding:8px 14px 9px;flex-shrink:0;">
+        <div style="font-size:9px;font-weight:800;color:#AAA;letter-spacing:.4px;margin-bottom:6px;">SELECT CONSOLE</div>
+        <div style="display:flex;gap:5px;overflow-x:auto;margin-bottom:6px;">
+          <div class="gz-con-sw gz-con-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;background:linear-gradient(135deg,#0A1E3E,#1E5AC0);color:#fff;cursor:pointer;flex-shrink:0;">🎮 PS5</div>
+          <div class="gz-con-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 11px;border-radius:20px;background:#FAF8FE;color:#7A5BB0;cursor:pointer;flex-shrink:0;border:1.5px solid #E0D4F5;">🎮 PS4</div>
+          <div class="gz-con-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 11px;border-radius:20px;background:#FAF8FE;color:#BBB;cursor:pointer;flex-shrink:0;border:1.5px solid #EEE;opacity:.6;">+ Xbox</div>
+        </div>
+        <!-- Unit chips -->
+        <div style="display:flex;gap:5px;overflow-x:auto;">
+          <div class="gz-unit-sw gz-unit-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:4px 10px;border-radius:8px;background:#1E5AC0;color:#fff;cursor:pointer;flex-shrink:0;">Unit 1 · 55" TV</div>
+          <div class="gz-unit-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">Unit 2 · 55"</div>
+          <div class="gz-unit-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">Unit 3 · 55"</div>
+        </div>
+      </div>
+
+      <!-- DATE STRIP -->
+      <div class="dt-strip" style="background:#fff;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+        <div class="dt-day"><div class="dd-name">WED</div><div class="dd-num">23</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">THU</div><div class="dd-num">24</div><div class="dd-tag">5 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">FRI</div><div class="dd-num">25</div><div class="dd-tag">8 bkgs</div></div>
+        <div class="dt-day today"><div class="dd-name">TODAY</div><div class="dd-num">26</div><div class="dd-tag">6 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">SUN</div><div class="dd-num">27</div><div class="dd-tag">4 bkgs</div></div>
+        <div class="dt-day has-pending"><div class="dd-name">MON</div><div class="dd-num">28</div><div class="dd-tag"><i class="ri-camera-line" style="font-size:9px;"></i>2</div></div>
+      </div>
+
+      <!-- Legend -->
+      <div style="background:#fff;border-bottom:1.5px solid #EFEFEF;flex-shrink:0;display:flex;gap:10px;padding:6px 14px 7px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#09210E,#163F1E);"></div>Booked</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending 📸</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Free</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#7C5BE0,#A88BFF);"></div>Selected</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#FFE0A0,#FFD080);border:1px solid #E0A030;"></div>% Off</div>
+      </div>
+
+
+      <!-- HALF-HOUR SLOT GRID -->
+      <div style="flex:1;overflow-y:auto;">
+        <div class="slot-grid s54-grid">
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:00p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:30p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">1:00p</div><div class="sg-nm">Asad</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">1:30p</div><div class="sg-nm">Asad</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">2:00p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">2:30p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:00p</div><div class="sg-nm">Faraz</div><div class="sg-pr">300</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:30p</div><div class="sg-nm">Faraz</div><div class="sg-pr">300</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">4:00p</div><div class="sg-pr">300</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">4:30p</div><div class="sg-pr">300</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">5:00p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">5:30p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:00p</div><div class="sg-nm">Bros</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:30p</div><div class="sg-nm">Bros</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">7:00p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">7:30p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">8:00p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">8:30p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:00p</div><div class="sg-pr">300</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:30p</div><div class="sg-pr">300</div></div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <!-- s54 manage action bar (enabled once slots selected) -->
+      <div id="s54-selbar-M9G2" style="display:none;"><span id="s54-selsum-M9G2"></span><span id="s54-seltot-M9G2"></span></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.08);">
+        <button class="gz-manage-btn gz-manage-off" data-manage="s54" style="width:100%;padding:12px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;"><i class="ri-settings-4-line" style="font-size:15px;"></i><span class="gz-manage-label">Select slots to manage</span></button>
+      </div>
+      <!-- s54 unified Manage-Slots popup -->
+      <div class="sm-bg gz-manage-sheet" id="s54-manage-sheet-M9G2" style="display:none;">
+        <div class="sm-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;">
+            <div>
+              <div style="font-size:15px;font-weight:900;color:#1A0E2E;">⚙️ Manage Slots</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;"><span class="gz-mn">0</span> slot(s) selected · Nexus Gaming Lounge</div>
+            </div>
+            <div class="gz-manage-x" style="width:28px;height:28px;border-radius:9px;background:#F3F3F3;display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;cursor:pointer;">✕</div>
+          </div>
+          <div style="display:flex;gap:0;background:#F2EEFB;border-radius:11px;padding:3px;margin-bottom:11px;">
+            <div class="gz-status-seg gz-seg-on" data-status="open" style="flex:1;padding:8px 6px;text-align:center;border-radius:9px;font-size:12px;font-weight:800;color:#fff;background:#3A1E6E;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;"><i class="ri-checkbox-circle-line" style="font-size:13px;"></i> Open</div>
+            <div class="gz-status-seg" data-status="block" style="flex:1;padding:8px 6px;text-align:center;border-radius:9px;font-size:12px;font-weight:700;color:#7A5BB0;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;"><i class="ri-lock-2-fill" style="font-size:13px;"></i> Block</div>
+          </div>
+          <div class="gz-open-only">
+            <div style="height:1px;background:#F0F0F0;margin-bottom:11px;"></div>
+            <div style="font-size:9px;font-weight:800;color:#C8B4F0;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;">Slot Pricing</div>
+            <div style="display:flex;align-items:stretch;gap:0;margin-bottom:5px;">
+              <button class="gz-price-dn" style="width:38px;border:1.5px solid #E0D4F5;background:#F4F0FB;border-radius:10px 0 0 10px;font-size:22px;color:#3A1E6E;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">−</button>
+              <div class="gz-price-val" style="flex:1;height:38px;border-top:1.5px solid #E0D4F5;border-bottom:1.5px solid #E0D4F5;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#1A0E2E;">Rs 250</div>
+              <button class="gz-price-up" style="width:38px;border:1.5px solid #E0D4F5;background:#F4F0FB;border-radius:0 10px 10px 0;font-size:22px;color:#3A1E6E;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">+</button>
+            </div>
+            <div style="font-size:9px;color:#C8B4F0;text-align:center;margin-bottom:10px;">adjusts by Rs 50 per tap</div>
+            <div style="background:#FFFBF2;border-radius:10px;padding:9px 12px;margin-bottom:11px;border:1.5px solid #F0E2C0;">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div style="display:flex;align-items:center;gap:6px;"><i class="ri-price-tag-3-line" style="font-size:14px;color:#E08A00;"></i><span style="font-size:12px;font-weight:700;color:#111;">Offer Discount</span></div>
+                <div class="toggle gz-disc-toggle on" style="background:#E08A00;"></div>
+              </div>
+              <div class="gz-disc-detail" style="display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid #F0E2C0;">
+                <div style="display:flex;align-items:center;gap:4px;">
+                  <input class="gz-disc-pct" type="number" min="1" max="80" value="20" style="border:1.5px solid #E0A030;border-radius:8px;padding:4px 7px;font-size:15px;font-weight:900;color:#C07000;width:46px;text-align:center;background:#fff;font-family:inherit;outline:none;">
+                  <span style="font-size:12px;font-weight:700;color:#666;">%</span>
+                </div>
+                <i class="ri-arrow-right-line" style="font-size:13px;color:#CCC;flex-shrink:0;"></i>
+                <div style="flex:1;">
+                  <span style="font-size:10px;color:#CCC;text-decoration:line-through;margin-right:3px;">Rs 250</span>
+                  <span class="gz-disc-new" style="font-size:15px;font-weight:900;color:#1A6030;">Rs 200</span>
+                </div>
+                <div style="font-size:8px;color:#9A6A20;text-align:right;line-height:1.3;">Players<br>see this</div>
+              </div>
+            </div>
+          </div>
+          <div style="height:1px;background:#F0F0F0;margin-bottom:10px;"></div>
+          <div style="font-size:9px;font-weight:800;color:#C8B4F0;letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;">Apply To</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:13px;">
+            <div class="gz-apply-opt gz-apply-on" style="display:flex;align-items:center;gap:7px;border:1.5px solid #3A1E6E;border-radius:10px;padding:8px 9px;background:#F4F0FB;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #3A1E6E;background:#3A1E6E;box-shadow:inset 0 0 0 2.5px #fff;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#111;">Today only</div><div style="font-size:9px;color:#AAA;">These slots</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Every day</div><div style="font-size:9px;color:#AAA;">Recurring</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Weekends</div><div style="font-size:9px;color:#AAA;">Sat &amp; Sun</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Off-peak</div><div style="font-size:9px;color:#AAA;">Mon–Thu</div></div></div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="gz-manage-x" style="flex:1;padding:11px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button class="gz-manage-apply" data-scope="s54" style="flex:1.6;padding:11px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Apply →</button>
+          </div>
+        </div>
+      </div>
+    </div></div><div class="mg-chromebar" style="bottom:152px;"><div class="mg-seg"><button data-mgseg class="mg-on" onclick="mgTo('mg-s9g',0)"><i class="ri-building-4-line"></i>Arena</button><button data-mgseg onclick="mgTo('mg-s9g',1)"><i class="ri-computer-line"></i>PCs</button><button data-mgseg onclick="mgTo('mg-s9g',2)"><i class="ri-gamepad-line"></i>Consoles</button></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ TEST SCREEN s9h (venue-switch prototype, originals untouched) ═══════ -->
+<div class="col" id="s9h">
+  <div class="page-label">9h · TEST — Merged Schedule · speed-dial FAB (tap, pick venue)</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" id="mg-s9h" data-mg-idx="0" data-mg-names="Arena|PCs|Consoles" data-mg-icons="ri-building-4-line|ri-computer-line|ri-gamepad-line" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<div class="mg-panes"><div class="mg-pane" style="display:flex;background:#F4F7F2;">
+
+      <!-- Header -->
+      <div style="padding:10px 16px 10px; background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;color:#111;">Elite Sports Arena</div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;">DHA Phase 5 · Hourly slots</div>
+          </div>
+          <div id="s9-holiday-btn-M9H0" style="width:32px;height:32px;background:#FFF3F3;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-calendar-close-line" style="font-size:16px;color:#E53935;line-height:1;"></i></div>
+          <div data-go="s18" style="width:32px;height:32px;background:#09210E;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;margin-left:4px;"><i class="ri-settings-3-line" style="font-size:16px;color:#fff;line-height:1;"></i></div>
+        </div>
+
+      <!-- Arena switcher + slot type -->
+      <div style="background:#fff;border-bottom:1px solid #EFEFEF;padding:7px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-shrink:0;">
+        <div style="display:flex;gap:5px;overflow-x:auto;flex:1;">
+          <div class="arena-sw arena-sw-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:5px 10px;border-radius:20px;background:#09210E;color:#fff;cursor:pointer;flex-shrink:0;border:1.5px solid #09210E;">Elite Sports</div>
+          <div class="arena-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;background:#FAFAFA;color:#555;cursor:pointer;flex-shrink:0;border:1.5px solid #E0E0E0;">Champions</div>
+          <div class="arena-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;background:#FAFAFA;color:#CCC;cursor:pointer;flex-shrink:0;border:1.5px solid #E8E8E8;opacity:.6;">Victory</div>
+        </div>
+      </div>
+
+      <!-- DATE STRIP -->
+      <div class="dt-strip" style="background:#fff; border-bottom:1px solid #F0F0F0; flex-shrink:0;">
+        <div class="dt-day"><div class="dd-name">MON</div><div class="dd-num">21</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+        <div class="dt-day"><div class="dd-name">TUE</div><div class="dd-num">22</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">WED</div><div class="dd-num">23</div><div class="dd-tag">3 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">THU</div><div class="dd-num">24</div><div class="dd-tag">5 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">FRI</div><div class="dd-num">25</div><div class="dd-tag">6 bkgs</div></div>
+        <div class="dt-day today"><div class="dd-name">TODAY</div><div class="dd-num">26</div><div class="dd-tag">8 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">SUN</div><div class="dd-num">27</div><div class="dd-tag">4 bkgs</div></div>
+        <div class="dt-day has-pending"><div class="dd-name">MON</div><div class="dd-num">28</div><div class="dd-tag"><i class="ri-camera-line" style="font-size:9px;"></i>2</div></div>
+        <div class="dt-day"><div class="dd-name">TUE</div><div class="dd-num">29</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+        <div class="dt-day"><div class="dd-name">WED</div><div class="dd-num">30</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+      </div>
+
+      <!-- DAY SUMMARY + LEGEND -->
+      <div style="background:#fff; border-bottom:1.5px solid #EFEFEF; flex-shrink:0;">
+        <div class="day-sum">
+          <div class="ds"><div class="dv" style="color:#1A6030;">6</div><div class="dl">Confirmed</div></div>
+          <div style="width:1px;background:#EFEFEF;"></div>
+          <div class="ds"><div class="dv" style="color:#E65100;">2</div><div class="dl"><i class="ri-camera-line" style="font-size:10px;margin-right:2px;"></i>Pending</div></div>
+          <div style="width:1px;background:#EFEFEF;"></div>
+          <div class="ds"><div class="dv" style="color:#7AAB50;">8</div><div class="dl">Available</div></div>
+          <div style="width:1px;background:#EFEFEF;"></div>
+          <div class="ds"><div class="dv" style="color:#78909C;">2</div><div class="dl">Blocked</div></div>
+        </div>
+        <!-- Compact legend -->
+        <div style="display:flex;gap:10px;padding:5px 14px 7px;flex-wrap:wrap;">
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#09210E,#163F1E);"></div>Confirmed</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending <i class="ri-camera-line" style="font-size:9px;"></i></div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Available</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#EBEBEB;"></div>Closed</div>
+        </div>
+      </div>
+
+      <!-- 24-HOUR SLOT GRID -->
+      <div style="flex:1; overflow-y:auto; position:relative;">
+        <!-- Holiday overlay: shown when a closed day is tapped in the date strip -->
+        <div id="s9-holiday-overlay-M9H0" style="display:none;position:absolute;inset:0;background:rgba(255,243,243,.97);z-index:10;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:20px;">
+          <div style="font-size:48px;margin-bottom:4px;">🚫</div>
+          <div style="font-size:17px;font-weight:900;color:#C62828;">Arena Closed</div>
+          <div style="font-size:12px;color:#888;max-width:190px;line-height:1.6;">This day has been marked as a holiday or day off. No bookings accepted.</div>
+          <div id="s9-hol-edit-btn-M9H0" style="margin-top:12px;padding:10px 22px;background:#C62828;border-radius:20px;font-size:12px;font-weight:800;color:#fff;cursor:pointer;">✏️ Edit Off Days</div>
+        </div>
+        <div class="slot-grid">
+          <!-- Row 1: 12am–3am (closed) -->
+          <div class="sg-cell sg-closed"><div class="sg-hr">12am</div></div>
+          <div class="sg-cell sg-closed"><div class="sg-hr">1am</div></div>
+          <div class="sg-cell sg-closed"><div class="sg-hr">2am</div></div>
+          <div class="sg-cell sg-closed"><div class="sg-hr">3am</div></div>
+          <!-- Row 2: 4am–7am (closed / opening) -->
+          <div class="sg-cell sg-closed"><div class="sg-hr">4am</div></div>
+          <div class="sg-cell sg-closed"><div class="sg-hr">5am</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">6am</div><div class="sg-pr">Rs 1.2k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">7am</div><div class="sg-pr">Rs 1.2k</div></div>
+          <!-- Row 3: 8am–11am -->
+          <div class="sg-cell sg-done"><div class="sg-hr">8am</div><div class="sg-nm">W.Warriors</div><div class="sg-pr">Rs 2k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">9am</div><div class="sg-nm">Umar F.</div><div class="sg-pr">Rs 2k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">10am</div><div class="sg-nm">Ali H.</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">11am</div><div class="sg-nm">Ali H.</div><div class="sg-pr">Rs 2.5k</div></div>
+          <!-- Row 4: 12pm–3pm -->
+          <div class="sg-cell sg-avail"><div class="sg-hr">12pm</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">1pm</div><div class="sg-pr">Rs 2.5k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">2pm</div><div class="sg-nm">Zain &amp;T.</div><div class="sg-pr">Rs 3k</div></div>
+          <div class="sg-cell sg-pend"><div class="sg-hr">3pm</div><div class="sg-nm">Zain &amp;T.</div><div class="sg-pr">Rs 3k</div></div>
+          <!-- Row 5: 4pm–7pm (all booked/confirmed) -->
+          <div class="sg-cell sg-ok"><div class="sg-hr">4pm</div><div class="sg-nm">K.Kings</div><div class="sg-pr">Rs 3.5k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">5pm</div><div class="sg-nm">K.Kings</div><div class="sg-pr">Rs 3.5k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">6pm</div><div class="sg-nm">Ahmed G.</div><div class="sg-pr">Rs 3.5k</div></div>
+          <div class="sg-cell sg-ok"><div class="sg-hr">7pm</div><div class="sg-nm">Ahmed G.</div><div class="sg-pr">Rs 3.5k</div></div>
+          <!-- Row 6: 8pm–11pm (blocked / available) -->
+          <div class="sg-cell sg-blk"><div class="sg-hr">8pm</div><div class="sg-ico" style="font-size:13px; margin-top:6px;"><i class="ri-lock-2-fill"></i></div></div>
+          <div class="sg-cell sg-blk"><div class="sg-hr">9pm</div><div class="sg-ico" style="font-size:13px; margin-top:6px;"><i class="ri-lock-2-fill"></i></div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">10pm</div><div class="sg-pr">Rs 2k</div></div>
+          <div class="sg-cell sg-avail"><div class="sg-hr">11pm</div><div class="sg-pr">Rs 2k</div></div>
+        </div>
+      </div>
+
+      <!-- ═══ HOLIDAY CALENDAR BOTTOM SHEET ═══ -->
+      <div id="s9-holiday-sheet-M9H0" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;max-height:88%;overflow-y:auto;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 18px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Mark Days Off</div>
+              <div style="font-size:11px;color:#999;margin-top:3px;">Tap a date to block · tap again to unblock</div>
+            </div>
+            <div id="s9-cal-close-x-M9H0" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
+              <i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;margin-bottom:16px;">
+            <div id="s9-cal-prev-M9H0" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-left-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
+            <div id="s9-cal-month-lbl-M9H0" style="flex:1;text-align:center;font-size:16px;font-weight:900;color:#111;"></div>
+            <div id="s9-cal-next-M9H0" style="width:36px;height:36px;border-radius:10px;background:#F5F5F5;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-right-s-line" style="font-size:22px;color:#444;pointer-events:none;"></i></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:8px;text-align:center;">
+            <div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">M</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">W</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">T</div><div style="font-size:10px;font-weight:800;color:#BBB;padding:3px 0;">F</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div><div style="font-size:10px;font-weight:800;color:#999;padding:3px 0;">S</div>
+          </div>
+          <div id="s9-cal-grid-M9H0" style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:16px;"></div>
+          <div id="s9-cal-summary-M9H0" style="display:none;background:#FFF3F3;border-radius:12px;padding:11px 13px;margin-bottom:16px;border:1.5px solid #FFCDD2;">
+            <div style="font-size:10px;font-weight:900;color:#C62828;margin-bottom:4px;">🚫 Days Blocked</div>
+            <div id="s9-cal-sum-text-M9H0" style="font-size:11px;color:#666;line-height:1.8;"></div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button id="s9-cal-cancel-M9H0" style="flex:1;padding:13px;border:1.5px solid #E0E0E0;border-radius:12px;font-size:13px;font-weight:700;color:#555;background:#fff;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button id="s9-cal-confirm-M9H0" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Confirm</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blocked Dates Management Sheet -->
+      <div id="s9-hol-mgmt-M9H0" class="bs-bg" style="display:none;">
+        <div class="bs-card" style="padding:20px 16px 28px;">
+          <div style="width:40px;height:4px;background:#EBEBEB;border-radius:2px;margin:0 auto 16px;"></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+            <div>
+              <div style="font-size:16px;font-weight:900;color:#111;">Blocked Dates</div>
+              <div style="font-size:11px;color:#999;margin-top:2px;">Tap × to unblock · tap <b style="color:#09210E;">Mark More</b> to add</div>
+            </div>
+            <div id="s9-hol-mgmt-close-M9H0" style="width:30px;height:30px;background:#F2F2F2;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-close-line" style="font-size:16px;color:#666;pointer-events:none;"></i></div>
+          </div>
+          <div id="s9-hol-mgmt-list-M9H0" style="display:flex;flex-direction:column;gap:8px;max-height:240px;overflow-y:auto;margin-bottom:16px;"></div>
+          <div style="display:flex;gap:8px;">
+            <button id="s9-hol-mgmt-add-M9H0" style="flex:1;padding:12px;border:1.5px solid #09210E;border-radius:12px;font-size:12px;font-weight:800;color:#09210E;background:#fff;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;"><i class="ri-calendar-close-line" style="font-size:14px;"></i>Mark More</button>
+            <button id="s9-hol-mgmt-done-M9H0" style="flex:2;padding:13px;border:none;border-radius:12px;font-size:13px;font-weight:900;color:#fff;background:#09210E;cursor:pointer;font-family:inherit;">Done</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
+      <div class="nav-item active"><i class="ri-calendar-2-line ni"></i>Schedule</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
+      <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
+      <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
+    </div>
+  </div><div class="mg-pane" style="display:none;background:#F4F2FA;">
+
+      <!-- Header -->
+      <div style="padding:10px 16px 10px;background:#fff;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div data-back style="width:30px;height:30px;background:#F2EEFB;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;color:#3A1E6E;pointer-events:none;"></i></div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;color:#1A0E2E;">Nexus Gaming Lounge</div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;">Bahadurabad · <b style="color:#3A1E6E;">30-min slots</b></div>
+          </div>
+          <div data-go="s56" style="background:#3A1E6E;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:3px;"><i class="ri-layout-grid-line" style="font-size:12px;"></i>All PCs</div>
+          <div data-go="s54" style="background:#F2EEFB;border-radius:9px;padding:7px 10px;font-size:10px;font-weight:800;color:#3A1E6E;cursor:pointer;flex-shrink:0;">🎮</div>
+        </div>
+      </div>
+
+      <!-- Cubicle + PC selector strip -->
+      <div style="background:#fff;border-bottom:1px solid #EFEFEF;padding:8px 14px 9px;flex-shrink:0;">
+        <div id="s53-sel-label-M9H1" style="font-size:9px;font-weight:800;color:#AAA;letter-spacing:.4px;margin-bottom:6px;">SELECT CUBICLE, THEN PC</div>
+        <div style="display:flex;gap:5px;overflow-x:auto;margin-bottom:6px;">
+          <div class="gz-cub-sw gz-cub-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;background:#3A1E6E;color:#fff;cursor:pointer;flex-shrink:0;">Cubicle A</div>
+          <div class="gz-cub-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 11px;border-radius:20px;background:#FAF8FE;color:#7A5BB0;cursor:pointer;flex-shrink:0;border:1.5px solid #E0D4F5;">Cubicle B</div>
+          <div class="gz-cub-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 11px;border-radius:20px;background:#FAF8FE;color:#7A5BB0;cursor:pointer;flex-shrink:0;border:1.5px solid #E0D4F5;">Cubicle C</div>
+          <div class="gz-cub-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 11px;border-radius:20px;background:#FAF8FE;color:#7A5BB0;cursor:pointer;flex-shrink:0;border:1.5px solid #E0D4F5;">Cubicle D</div>
+        </div>
+        <!-- PC chips (hidden in cubicle mode) -->
+        <div id="s53-pc-row-M9H1" style="display:flex;gap:5px;overflow-x:auto;">
+          <div class="gz-pc-sw gz-pc-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:4px 10px;border-radius:8px;background:#7C5BE0;color:#fff;cursor:pointer;flex-shrink:0;">PC 1</div>
+          <div class="gz-pc-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">PC 2</div>
+          <div class="gz-pc-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">PC 3</div>
+          <div class="gz-pc-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">PC 4</div>
+          <div class="gz-pc-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">PC 5</div>
+        </div>
+      </div>
+
+      <!-- DATE STRIP -->
+      <div class="dt-strip" style="background:#fff;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+        <div class="dt-day"><div class="dd-name">WED</div><div class="dd-num">23</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">THU</div><div class="dd-num">24</div><div class="dd-tag">9 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">FRI</div><div class="dd-num">25</div><div class="dd-tag">14 bkgs</div></div>
+        <div class="dt-day today"><div class="dd-name">TODAY</div><div class="dd-num">26</div><div class="dd-tag">11 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">SUN</div><div class="dd-num">27</div><div class="dd-tag">7 bkgs</div></div>
+        <div class="dt-day has-pending"><div class="dd-name">MON</div><div class="dd-num">28</div><div class="dd-tag"><i class="ri-camera-line" style="font-size:9px;"></i>3</div></div>
+      </div>
+
+      <!-- Legend -->
+      <div style="background:#fff;border-bottom:1.5px solid #EFEFEF;flex-shrink:0;display:flex;gap:10px;padding:6px 14px 7px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#09210E,#163F1E);"></div>Booked</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending 📸</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Free</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#7C5BE0,#A88BFF);"></div>Selected</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#FFE0A0,#FFD080);border:1px solid #E0A030;"></div>% Off</div>
+      </div>
+
+
+      <!-- Mode context banner (changes with Per PC / Per Cubicle) -->
+      <div id="s53-ctx-M9H1" style="flex-shrink:0;background:#F2EEFB;border-bottom:1px solid #E0D4F5;padding:7px 14px;display:flex;align-items:center;gap:7px;">
+        <i class="ri-computer-line" style="font-size:14px;color:#3A1E6E;"></i>
+        <div style="font-size:10px;color:#5A3B9A;font-weight:600;line-height:1.3;">Booking <b>individual PCs</b> in Cubicle A — pick a PC above, then tap slots. Each seat priced on its own.</div>
+      </div>
+
+      <!-- HALF-HOUR SLOT GRIDS -->
+      <div style="flex:1;overflow-y:auto;">
+
+        <!-- PER-PC GRID (one PC at a time) -->
+        <div class="slot-grid s53-grid">
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:00a</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">11:30a</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-done sg-half"><div class="sg-hr">12:00p</div><div class="sg-nm">Bilal</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-done sg-half"><div class="sg-hr">12:30p</div><div class="sg-nm">Bilal</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">1:00p</div><div class="sg-nm">Hamza</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">1:30p</div><div class="sg-nm">Hamza</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">2:00p</div><div class="sg-nm">Hamza</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">2:30p</div><div class="sg-pr">150</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:00p</div><div class="sg-nm">Zaid</div><div class="sg-pr">200</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:30p</div><div class="sg-nm">Zaid</div><div class="sg-pr">200</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">4:00p</div><div class="sg-pr">200</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">4:30p</div><div class="sg-pr">200</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">5:00p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">5:30p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:00p</div><div class="sg-nm">Clan X</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:30p</div><div class="sg-nm">Clan X</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:00p</div><div class="sg-nm">Clan X</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">7:30p</div><div class="sg-nm">Clan X</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">8:00p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">8:30p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:00p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:30p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:00p</div><div class="sg-pr">200</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">10:30p</div><div class="sg-pr">200</div></div>
+        </div>
+
+      </div>
+
+
+
+
+
+
+      <!-- s53 manage action bar (enabled once slots selected) -->
+      <div id="s53-selbar-M9H1" style="display:none;"><span id="s53-selsum-M9H1"></span><span id="s53-seltot-M9H1"></span></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.08);">
+        <button class="gz-manage-btn gz-manage-off" data-manage="s53" style="width:100%;padding:12px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;"><i class="ri-settings-4-line" style="font-size:15px;"></i><span class="gz-manage-label">Select slots to manage</span></button>
+      </div>
+      <!-- s53 unified Manage-Slots popup -->
+      <div class="sm-bg gz-manage-sheet" id="s53-manage-sheet-M9H1" style="display:none;">
+        <div class="sm-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;">
+            <div>
+              <div style="font-size:15px;font-weight:900;color:#1A0E2E;">⚙️ Manage Slots</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;"><span class="gz-mn">0</span> slot(s) selected · Nexus Gaming Lounge</div>
+            </div>
+            <div class="gz-manage-x" style="width:28px;height:28px;border-radius:9px;background:#F3F3F3;display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;cursor:pointer;">✕</div>
+          </div>
+          <div style="display:flex;gap:0;background:#F2EEFB;border-radius:11px;padding:3px;margin-bottom:11px;">
+            <div class="gz-status-seg gz-seg-on" data-status="open" style="flex:1;padding:8px 6px;text-align:center;border-radius:9px;font-size:12px;font-weight:800;color:#fff;background:#3A1E6E;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;"><i class="ri-checkbox-circle-line" style="font-size:13px;"></i> Open</div>
+            <div class="gz-status-seg" data-status="block" style="flex:1;padding:8px 6px;text-align:center;border-radius:9px;font-size:12px;font-weight:700;color:#7A5BB0;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;"><i class="ri-lock-2-fill" style="font-size:13px;"></i> Block</div>
+          </div>
+          <div class="gz-open-only">
+            <div style="height:1px;background:#F0F0F0;margin-bottom:11px;"></div>
+            <div style="font-size:9px;font-weight:800;color:#C8B4F0;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;">Slot Pricing</div>
+            <div style="display:flex;align-items:stretch;gap:0;margin-bottom:5px;">
+              <button class="gz-price-dn" style="width:38px;border:1.5px solid #E0D4F5;background:#F4F0FB;border-radius:10px 0 0 10px;font-size:22px;color:#3A1E6E;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">−</button>
+              <div class="gz-price-val" style="flex:1;height:38px;border-top:1.5px solid #E0D4F5;border-bottom:1.5px solid #E0D4F5;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#1A0E2E;">Rs 250</div>
+              <button class="gz-price-up" style="width:38px;border:1.5px solid #E0D4F5;background:#F4F0FB;border-radius:0 10px 10px 0;font-size:22px;color:#3A1E6E;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">+</button>
+            </div>
+            <div style="font-size:9px;color:#C8B4F0;text-align:center;margin-bottom:10px;">adjusts by Rs 50 per tap</div>
+            <div style="background:#FFFBF2;border-radius:10px;padding:9px 12px;margin-bottom:11px;border:1.5px solid #F0E2C0;">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div style="display:flex;align-items:center;gap:6px;"><i class="ri-price-tag-3-line" style="font-size:14px;color:#E08A00;"></i><span style="font-size:12px;font-weight:700;color:#111;">Offer Discount</span></div>
+                <div class="toggle gz-disc-toggle on" style="background:#E08A00;"></div>
+              </div>
+              <div class="gz-disc-detail" style="display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid #F0E2C0;">
+                <div style="display:flex;align-items:center;gap:4px;">
+                  <input class="gz-disc-pct" type="number" min="1" max="80" value="20" style="border:1.5px solid #E0A030;border-radius:8px;padding:4px 7px;font-size:15px;font-weight:900;color:#C07000;width:46px;text-align:center;background:#fff;font-family:inherit;outline:none;">
+                  <span style="font-size:12px;font-weight:700;color:#666;">%</span>
+                </div>
+                <i class="ri-arrow-right-line" style="font-size:13px;color:#CCC;flex-shrink:0;"></i>
+                <div style="flex:1;">
+                  <span style="font-size:10px;color:#CCC;text-decoration:line-through;margin-right:3px;">Rs 250</span>
+                  <span class="gz-disc-new" style="font-size:15px;font-weight:900;color:#1A6030;">Rs 200</span>
+                </div>
+                <div style="font-size:8px;color:#9A6A20;text-align:right;line-height:1.3;">Players<br>see this</div>
+              </div>
+            </div>
+          </div>
+          <div style="height:1px;background:#F0F0F0;margin-bottom:10px;"></div>
+          <div style="font-size:9px;font-weight:800;color:#C8B4F0;letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;">Apply To</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:13px;">
+            <div class="gz-apply-opt gz-apply-on" style="display:flex;align-items:center;gap:7px;border:1.5px solid #3A1E6E;border-radius:10px;padding:8px 9px;background:#F4F0FB;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #3A1E6E;background:#3A1E6E;box-shadow:inset 0 0 0 2.5px #fff;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#111;">Today only</div><div style="font-size:9px;color:#AAA;">These slots</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Every day</div><div style="font-size:9px;color:#AAA;">Recurring</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Weekends</div><div style="font-size:9px;color:#AAA;">Sat &amp; Sun</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Off-peak</div><div style="font-size:9px;color:#AAA;">Mon–Thu</div></div></div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="gz-manage-x" style="flex:1;padding:11px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button class="gz-manage-apply" data-scope="s53" style="flex:1.6;padding:11px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Apply →</button>
+          </div>
+        </div>
+      </div>
+    </div><div class="mg-pane" style="display:none;background:#F4F2FA;">
+
+      <!-- Header -->
+      <div style="padding:10px 16px 10px;background:#fff;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div data-back style="width:30px;height:30px;background:#F2EEFB;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;color:#3A1E6E;pointer-events:none;"></i></div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;color:#1A0E2E;">Console Stations</div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;">Nexus Gaming Lounge · <b style="color:#3A1E6E;">30-min slots</b></div>
+          </div>
+          <div data-go="s57" style="background:#3A1E6E;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:3px;"><i class="ri-layout-grid-line" style="font-size:12px;"></i>All Consoles</div>
+          <div data-go="s53" style="background:#F2EEFB;border-radius:9px;padding:7px 10px;font-size:10px;font-weight:800;color:#3A1E6E;cursor:pointer;flex-shrink:0;">🖥️</div>
+        </div>
+      </div>
+
+      <!-- Console + unit selector -->
+      <div style="background:#fff;border-bottom:1px solid #EFEFEF;padding:8px 14px 9px;flex-shrink:0;">
+        <div style="font-size:9px;font-weight:800;color:#AAA;letter-spacing:.4px;margin-bottom:6px;">SELECT CONSOLE</div>
+        <div style="display:flex;gap:5px;overflow-x:auto;margin-bottom:6px;">
+          <div class="gz-con-sw gz-con-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:5px 11px;border-radius:20px;background:linear-gradient(135deg,#0A1E3E,#1E5AC0);color:#fff;cursor:pointer;flex-shrink:0;">🎮 PS5</div>
+          <div class="gz-con-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 11px;border-radius:20px;background:#FAF8FE;color:#7A5BB0;cursor:pointer;flex-shrink:0;border:1.5px solid #E0D4F5;">🎮 PS4</div>
+          <div class="gz-con-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 11px;border-radius:20px;background:#FAF8FE;color:#BBB;cursor:pointer;flex-shrink:0;border:1.5px solid #EEE;opacity:.6;">+ Xbox</div>
+        </div>
+        <!-- Unit chips -->
+        <div style="display:flex;gap:5px;overflow-x:auto;">
+          <div class="gz-unit-sw gz-unit-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:4px 10px;border-radius:8px;background:#1E5AC0;color:#fff;cursor:pointer;flex-shrink:0;">Unit 1 · 55" TV</div>
+          <div class="gz-unit-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">Unit 2 · 55"</div>
+          <div class="gz-unit-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:4px 10px;border-radius:8px;background:#F2EEFB;color:#7A5BB0;cursor:pointer;flex-shrink:0;">Unit 3 · 55"</div>
+        </div>
+      </div>
+
+      <!-- DATE STRIP -->
+      <div class="dt-strip" style="background:#fff;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+        <div class="dt-day"><div class="dd-name">WED</div><div class="dd-num">23</div><div class="dd-tag" style="color:#DDD;">—</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">THU</div><div class="dd-num">24</div><div class="dd-tag">5 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">FRI</div><div class="dd-num">25</div><div class="dd-tag">8 bkgs</div></div>
+        <div class="dt-day today"><div class="dd-name">TODAY</div><div class="dd-num">26</div><div class="dd-tag">6 bkgs</div></div>
+        <div class="dt-day has-bkg"><div class="dd-name">SUN</div><div class="dd-num">27</div><div class="dd-tag">4 bkgs</div></div>
+        <div class="dt-day has-pending"><div class="dd-name">MON</div><div class="dd-num">28</div><div class="dd-tag"><i class="ri-camera-line" style="font-size:9px;"></i>2</div></div>
+      </div>
+
+      <!-- Legend -->
+      <div style="background:#fff;border-bottom:1.5px solid #EFEFEF;flex-shrink:0;display:flex;gap:10px;padding:6px 14px 7px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#09210E,#163F1E);"></div>Booked</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#BF5500,#F08A00);"></div>Pending 📸</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#F0F9E8;border:1.5px dashed #90C850;"></div>Free</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#7C5BE0,#A88BFF);"></div>Selected</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:#37474F;"></div>Blocked</div>
+        <div style="display:flex;align-items:center;gap:4px;font-size:9px;color:#555;"><div style="width:10px;height:10px;border-radius:3px;background:linear-gradient(145deg,#FFE0A0,#FFD080);border:1px solid #E0A030;"></div>% Off</div>
+      </div>
+
+
+      <!-- HALF-HOUR SLOT GRID -->
+      <div style="flex:1;overflow-y:auto;">
+        <div class="slot-grid s54-grid">
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:00p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">12:30p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">1:00p</div><div class="sg-nm">Asad</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">1:30p</div><div class="sg-nm">Asad</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">2:00p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">2:30p</div><div class="sg-pr">250</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:00p</div><div class="sg-nm">Faraz</div><div class="sg-pr">300</div></div>
+          <div class="sg-cell sg-pend sg-half"><div class="sg-hr">3:30p</div><div class="sg-nm">Faraz</div><div class="sg-pr">300</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">4:00p</div><div class="sg-pr">300</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">4:30p</div><div class="sg-pr">300</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">5:00p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">5:30p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:00p</div><div class="sg-nm">Bros</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-ok sg-half"><div class="sg-hr">6:30p</div><div class="sg-nm">Bros</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">7:00p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">7:30p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">8:00p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">8:30p</div><div class="sg-pr">350</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:00p</div><div class="sg-pr">300</div></div>
+          <div class="sg-cell sg-avail sg-half"><div class="sg-hr">9:30p</div><div class="sg-pr">300</div></div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <!-- s54 manage action bar (enabled once slots selected) -->
+      <div id="s54-selbar-M9H2" style="display:none;"><span id="s54-selsum-M9H2"></span><span id="s54-seltot-M9H2"></span></div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;padding:11px 14px 14px;border-top:1px solid #ECE4F8;box-shadow:0 -4px 16px rgba(0,0,0,.08);">
+        <button class="gz-manage-btn gz-manage-off" data-manage="s54" style="width:100%;padding:12px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:12px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px;"><i class="ri-settings-4-line" style="font-size:15px;"></i><span class="gz-manage-label">Select slots to manage</span></button>
+      </div>
+      <!-- s54 unified Manage-Slots popup -->
+      <div class="sm-bg gz-manage-sheet" id="s54-manage-sheet-M9H2" style="display:none;">
+        <div class="sm-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;">
+            <div>
+              <div style="font-size:15px;font-weight:900;color:#1A0E2E;">⚙️ Manage Slots</div>
+              <div style="font-size:10px;color:#AAA;margin-top:1px;"><span class="gz-mn">0</span> slot(s) selected · Nexus Gaming Lounge</div>
+            </div>
+            <div class="gz-manage-x" style="width:28px;height:28px;border-radius:9px;background:#F3F3F3;display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;cursor:pointer;">✕</div>
+          </div>
+          <div style="display:flex;gap:0;background:#F2EEFB;border-radius:11px;padding:3px;margin-bottom:11px;">
+            <div class="gz-status-seg gz-seg-on" data-status="open" style="flex:1;padding:8px 6px;text-align:center;border-radius:9px;font-size:12px;font-weight:800;color:#fff;background:#3A1E6E;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;"><i class="ri-checkbox-circle-line" style="font-size:13px;"></i> Open</div>
+            <div class="gz-status-seg" data-status="block" style="flex:1;padding:8px 6px;text-align:center;border-radius:9px;font-size:12px;font-weight:700;color:#7A5BB0;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;"><i class="ri-lock-2-fill" style="font-size:13px;"></i> Block</div>
+          </div>
+          <div class="gz-open-only">
+            <div style="height:1px;background:#F0F0F0;margin-bottom:11px;"></div>
+            <div style="font-size:9px;font-weight:800;color:#C8B4F0;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;">Slot Pricing</div>
+            <div style="display:flex;align-items:stretch;gap:0;margin-bottom:5px;">
+              <button class="gz-price-dn" style="width:38px;border:1.5px solid #E0D4F5;background:#F4F0FB;border-radius:10px 0 0 10px;font-size:22px;color:#3A1E6E;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">−</button>
+              <div class="gz-price-val" style="flex:1;height:38px;border-top:1.5px solid #E0D4F5;border-bottom:1.5px solid #E0D4F5;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#1A0E2E;">Rs 250</div>
+              <button class="gz-price-up" style="width:38px;border:1.5px solid #E0D4F5;background:#F4F0FB;border-radius:0 10px 10px 0;font-size:22px;color:#3A1E6E;cursor:pointer;font-weight:300;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;">+</button>
+            </div>
+            <div style="font-size:9px;color:#C8B4F0;text-align:center;margin-bottom:10px;">adjusts by Rs 50 per tap</div>
+            <div style="background:#FFFBF2;border-radius:10px;padding:9px 12px;margin-bottom:11px;border:1.5px solid #F0E2C0;">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <div style="display:flex;align-items:center;gap:6px;"><i class="ri-price-tag-3-line" style="font-size:14px;color:#E08A00;"></i><span style="font-size:12px;font-weight:700;color:#111;">Offer Discount</span></div>
+                <div class="toggle gz-disc-toggle on" style="background:#E08A00;"></div>
+              </div>
+              <div class="gz-disc-detail" style="display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid #F0E2C0;">
+                <div style="display:flex;align-items:center;gap:4px;">
+                  <input class="gz-disc-pct" type="number" min="1" max="80" value="20" style="border:1.5px solid #E0A030;border-radius:8px;padding:4px 7px;font-size:15px;font-weight:900;color:#C07000;width:46px;text-align:center;background:#fff;font-family:inherit;outline:none;">
+                  <span style="font-size:12px;font-weight:700;color:#666;">%</span>
+                </div>
+                <i class="ri-arrow-right-line" style="font-size:13px;color:#CCC;flex-shrink:0;"></i>
+                <div style="flex:1;">
+                  <span style="font-size:10px;color:#CCC;text-decoration:line-through;margin-right:3px;">Rs 250</span>
+                  <span class="gz-disc-new" style="font-size:15px;font-weight:900;color:#1A6030;">Rs 200</span>
+                </div>
+                <div style="font-size:8px;color:#9A6A20;text-align:right;line-height:1.3;">Players<br>see this</div>
+              </div>
+            </div>
+          </div>
+          <div style="height:1px;background:#F0F0F0;margin-bottom:10px;"></div>
+          <div style="font-size:9px;font-weight:800;color:#C8B4F0;letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;">Apply To</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:13px;">
+            <div class="gz-apply-opt gz-apply-on" style="display:flex;align-items:center;gap:7px;border:1.5px solid #3A1E6E;border-radius:10px;padding:8px 9px;background:#F4F0FB;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #3A1E6E;background:#3A1E6E;box-shadow:inset 0 0 0 2.5px #fff;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#111;">Today only</div><div style="font-size:9px;color:#AAA;">These slots</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Every day</div><div style="font-size:9px;color:#AAA;">Recurring</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Weekends</div><div style="font-size:9px;color:#AAA;">Sat &amp; Sun</div></div></div>
+            <div class="gz-apply-opt" style="display:flex;align-items:center;gap:7px;border:1.5px solid #E5E5E5;border-radius:10px;padding:8px 9px;background:#FAFAFA;cursor:pointer;"><div class="gz-radio" style="width:13px;height:13px;border-radius:50%;border:2px solid #CCC;flex-shrink:0;"></div><div><div style="font-size:11px;font-weight:700;color:#333;">Off-peak</div><div style="font-size:9px;color:#AAA;">Mon–Thu</div></div></div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="gz-manage-x" style="flex:1;padding:11px;background:#F2EEFB;color:#3A1E6E;font-size:13px;font-weight:800;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Cancel</button>
+            <button class="gz-manage-apply" data-scope="s54" style="flex:1.6;padding:11px;background:linear-gradient(135deg,#3A1E6E,#7C5BE0);color:#fff;font-size:13px;font-weight:900;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Apply →</button>
+          </div>
+        </div>
+      </div>
+    </div></div><div class="mg-dial">
+    <div class="mg-dialopts">
+      <div class="mg-dialopt mg-on" data-mgseg onclick="mgTo('mg-s9h',0)"><i class="ri-building-4-line"></i>Arena</div>
+      <div class="mg-dialopt" data-mgseg onclick="mgTo('mg-s9h',1)"><i class="ri-computer-line"></i>PCs</div>
+      <div class="mg-dialopt" data-mgseg onclick="mgTo('mg-s9h',2)"><i class="ri-gamepad-line"></i>Consoles</div>
+    </div>
+    <div class="mg-dialfab" onclick="mgDial('mg-s9h')"><i class="ri-building-4-line"></i><span class="mg-swapbadge"><i class="ri-arrow-left-right-line"></i></span></div>
+  </div>
+    </div>
+  </div>
+</div>
 <div class="col" id="s10">
   <div class="page-label">10 · Slot Detail Sheet — tap booked cell</div>
   <div class="phone">
@@ -6056,6 +7015,299 @@
     <div class="mg-seg"><button data-mgseg class="mg-on" onclick="mgTo('mg-s12e',0)"><i class="ri-building-4-line"></i>Arena<span class="mg-badge">4</span></button><button data-mgseg onclick="mgTo('mg-s12e',1)"><i class="ri-gamepad-line"></i>Gaming<span class="mg-badge">2</span></button>
     </div>
   </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ TEST SCREEN s12f (venue-switch prototype, originals untouched) ═══════ -->
+<div class="col" id="s12f">
+  <div class="page-label">12f · TEST — Merged Requests · full-width bottom venue bar</div>
+  <div class="phone">
+    <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
+    <div class="screen active" id="mg-s12f" data-mg-idx="0" data-mg-names="Arena|Gaming" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;position:relative;">
+<div class="mg-panes"><div class="mg-pane" style="display:flex;background:#F4F7F2;">
+
+      <!-- Header -->
+      <div style="padding:12px 16px 0;background:#fff;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;color:#111;">Booking Requests</div>
+            <div style="font-size:10px;color:#AAA;">Elite Sports Arena · Sun, 26 Apr</div>
+          </div>
+          <div style="font-size:20px;">🔍</div>
+        </div>
+        <!-- Tab bar -->
+        <div data-tab-bar style="display:flex;gap:0;border-bottom:2px solid #EFEFEF;margin:0 -16px;padding:0 16px;">
+          <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:800;color:#09210E;border-bottom:2.5px solid #09210E;margin-bottom:-2px;cursor:pointer;">All <span style="background:#EFEFEF;color:#555;border-radius:20px;padding:1px 6px;font-size:10px;">8</span></div>
+          <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:800;color:#E65100;border-bottom:2.5px solid #E65100;margin-bottom:-2px;cursor:pointer;">Pending <span style="background:#FFE0B2;color:#E65100;border-radius:20px;padding:1px 6px;font-size:10px;">2</span></div>
+          <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;">Confirmed <span style="background:#EFEFEF;color:#AAA;border-radius:20px;padding:1px 6px;font-size:10px;">4</span></div>
+          <div style="padding:8px 0;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;">Cancelled <span style="background:#EFEFEF;color:#AAA;border-radius:20px;padding:1px 6px;font-size:10px;">2</span></div>
+        </div>
+      </div>
+
+      <!-- Stats strip -->
+      <div style="background:#F2F7F3;border-bottom:1.5px solid #E0EDD5;padding:9px 16px;display:flex;flex-shrink:0;">
+        <div style="flex:1;text-align:center;border-right:1px solid #DDE8D0;padding-right:6px;">
+          <div style="font-size:15px;font-weight:900;color:#09210E;">Rs 40k</div>
+          <div style="font-size:8px;color:#7AA878;margin-top:1px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Today Revenue</div>
+        </div>
+        <div style="flex:1;text-align:center;border-right:1px solid #DDE8D0;">
+          <div style="font-size:15px;font-weight:900;color:#1A6030;">6</div>
+          <div style="font-size:8px;color:#7AA878;margin-top:1px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Confirmed</div>
+        </div>
+        <div style="flex:1;text-align:center;padding-left:6px;">
+          <div style="font-size:15px;font-weight:900;color:#E65100;display:flex;align-items:center;justify-content:center;gap:3px;"><span style="display:inline-block;width:6px;height:6px;background:#E65100;border-radius:50%;"></span>2</div>
+          <div style="font-size:8px;color:#7AA878;margin-top:1px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Pending</div>
+        </div>
+      </div>
+
+      <!-- Booking cards list -->
+      <div style="flex:1;overflow-y:auto;background:#F5F7F4;padding:10px 0 12px;">
+
+        <!-- ─── PENDING 1: Ali Hassan ─── -->
+        <div class="bmc pend">
+          <div class="bmc-bar"></div>
+          <div class="bmc-body">
+            <div class="bmc-top">
+              <div class="bmc-av" style="background:#E65100;">A</div>
+              <div class="bmc-info">
+                <h4>Ali Hassan</h4>
+                <p>⚽ Football · 10:00 AM – 12:00 PM · Rs 4,000</p>
+              </div>
+              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;"><i class="ri-camera-line"></i> New</div>
+            </div>
+            <div class="bmc-note"><i class="ri-camera-line"></i> Screenshot submitted 2h ago — review before approving</div>
+            <div class="bmc-acts">
+              <button class="bmc-btn msg" data-back><i class="ri-message-3-line"></i> Chat</button>
+              <button class="bmc-btn approve" style="flex:2;" data-go="s13"><i class="ri-camera-line"></i> Review</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── PENDING 2: Zain ─── -->
+        <div class="bmc pend">
+          <div class="bmc-bar"></div>
+          <div class="bmc-body">
+            <div class="bmc-top">
+              <div class="bmc-av" style="background:#BF360C;">Z</div>
+              <div class="bmc-info">
+                <h4>Zain & Team</h4>
+                <p>🏀 Basketball · 2:00 PM – 4:00 PM · Rs 6,000</p>
+              </div>
+              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;"><i class="ri-camera-line"></i> New</div>
+            </div>
+            <div class="bmc-note"><i class="ri-camera-line"></i> Screenshot submitted 1h ago — review before approving</div>
+            <div class="bmc-acts">
+              <button class="bmc-btn msg" data-back><i class="ri-message-3-line"></i> Chat</button>
+              <button class="bmc-btn approve" style="flex:2;" data-go="s13"><i class="ri-camera-line"></i> Review</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── CONFIRMED 1: Umar ─── -->
+        <div class="bmc conf">
+          <div class="bmc-bar"></div>
+          <div class="bmc-body">
+            <div class="bmc-top">
+              <div class="bmc-av" style="background:#09210E;">U</div>
+              <div class="bmc-info">
+                <h4>Umar Farooq</h4>
+                <p>⚽ Football · 9:00 AM – 11:00 AM · Rs 4,000</p>
+              </div>
+              <span class="bk-badge confirmed" style="white-space:nowrap;"><i class="ri-check-line"></i> Confirmed</span>
+            </div>
+            <div class="bmc-note"><i class="ri-check-line"></i> Payment verified · JazzCash · Today 7:15 AM</div>
+            <div class="bmc-acts">
+              <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Message</button>
+              <button class="bmc-btn cancel-bk" data-back>Cancel Booking</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── CONFIRMED 2: Karachi Kings ─── -->
+        <div class="bmc conf">
+          <div class="bmc-bar"></div>
+          <div class="bmc-body">
+            <div class="bmc-top">
+              <div class="bmc-av" style="background:#09210E;">K</div>
+              <div class="bmc-info">
+                <h4>Karachi Kings</h4>
+                <p>🏀 Basketball · 4:00 PM – 6:00 PM · Rs 6,000</p>
+              </div>
+              <span class="bk-badge confirmed" style="white-space:nowrap;"><i class="ri-check-line"></i> Confirmed</span>
+            </div>
+            <div class="bmc-note"><i class="ri-check-line"></i> Payment verified · Bank Transfer · Yesterday</div>
+            <div class="bmc-acts">
+              <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Message</button>
+              <button class="bmc-btn cancel-bk" data-back>Cancel Booking</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── CANCELLED 1: Sara ─── -->
+        <div class="bmc canc">
+          <div class="bmc-bar"></div>
+          <div class="bmc-body">
+            <div class="bmc-top">
+              <div class="bmc-av" style="background:#163F1E;">S</div>
+              <div class="bmc-info">
+                <h4>Sara Malik</h4>
+                <p>🏏 Cricket · 12:00 PM – 2:00 PM · Rs 3,000</p>
+              </div>
+              <span style="font-size:11px;background:#FDECEA;color:#C62828;padding:3px 8px;border-radius:20px;font-weight:700;white-space:nowrap;">Cancelled</span>
+            </div>
+            <div class="bmc-note"><i class="ri-close-line"></i> Cancelled by customer · 3 hours ago</div>
+            <div style="background:#F4FAEE;border-radius:10px;padding:8px 12px;font-size:11px;font-weight:700;color:#1A6030;display:flex;align-items:center;gap:6px;">
+              <span>🟢</span> Slot is now FREE — available for new bookings
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><div class="mg-pane" style="display:none;background:#F4F7F2;">
+
+      <!-- Header -->
+      <div style="padding:12px 16px 0;background:#fff;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:800;color:#111;">Booking Requests</div>
+            <div style="font-size:10px;color:#AAA;">Nexus Gaming Lounge · Sun, 26 Apr</div>
+          </div>
+          <div style="font-size:20px;">🔍</div>
+        </div>
+        <!-- Tab bar -->
+        <div data-tab-bar style="display:flex;gap:0;border-bottom:2px solid #EFEFEF;margin:0 -16px;padding:0 16px;">
+          <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:800;color:#1A0E2E;border-bottom:2.5px solid #1A0E2E;margin-bottom:-2px;cursor:pointer;">All <span style="background:#EFEFEF;color:#555;border-radius:20px;padding:1px 6px;font-size:10px;">8</span></div>
+          <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:800;color:#E65100;border-bottom:2.5px solid #E65100;margin-bottom:-2px;cursor:pointer;">Pending <span style="background:#FFE0B2;color:#E65100;border-radius:20px;padding:1px 6px;font-size:10px;">2</span></div>
+          <div style="padding:8px 0;margin-right:18px;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;">Confirmed <span style="background:#EFEFEF;color:#AAA;border-radius:20px;padding:1px 6px;font-size:10px;">4</span></div>
+          <div style="padding:8px 0;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;">Cancelled <span style="background:#EFEFEF;color:#AAA;border-radius:20px;padding:1px 6px;font-size:10px;">2</span></div>
+        </div>
+      </div>
+
+      <!-- Stats strip -->
+      <div style="background:#F4F2FA;border-bottom:1.5px solid #E0D4F5;padding:9px 16px;display:flex;flex-shrink:0;">
+        <div style="flex:1;text-align:center;border-right:1px solid #E0D4F5;padding-right:6px;">
+          <div style="font-size:15px;font-weight:900;color:#1A0E2E;">Rs 40k</div>
+          <div style="font-size:8px;color:#9A86C0;margin-top:1px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Today Revenue</div>
+        </div>
+        <div style="flex:1;text-align:center;border-right:1px solid #E0D4F5;">
+          <div style="font-size:15px;font-weight:900;color:#3A1E6E;">6</div>
+          <div style="font-size:8px;color:#9A86C0;margin-top:1px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Confirmed</div>
+        </div>
+        <div style="flex:1;text-align:center;padding-left:6px;">
+          <div style="font-size:15px;font-weight:900;color:#E65100;display:flex;align-items:center;justify-content:center;gap:3px;"><span style="display:inline-block;width:6px;height:6px;background:#E65100;border-radius:50%;"></span>2</div>
+          <div style="font-size:8px;color:#9A86C0;margin-top:1px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;">Pending</div>
+        </div>
+      </div>
+
+      <!-- Booking cards list -->
+      <div style="flex:1;overflow-y:auto;background:#F4F2FA;padding:10px 0 12px;">
+
+        <!-- ─── PENDING 1: Ali Hassan ─── -->
+        <div class="bmc pend">
+          <div class="bmc-bar"></div>
+          <div class="bmc-body">
+            <div class="bmc-top">
+              <div class="bmc-av" style="background:#E65100;">A</div>
+              <div class="bmc-info">
+                <h4>Ali Hassan</h4>
+                <p>🖥️ PC Squad · 7:00 PM – 8:00 PM · Rs 300</p>
+              </div>
+              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;"><i class="ri-camera-line"></i> New</div>
+            </div>
+            <div class="bmc-note"><i class="ri-camera-line"></i> Screenshot submitted 2h ago — review before approving</div>
+            <div class="bmc-acts">
+              <button class="bmc-btn msg" data-back><i class="ri-message-3-line"></i> Chat</button>
+              <button class="bmc-btn approve" style="flex:2;" data-go="s73"><i class="ri-camera-line"></i> Review</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── PENDING 2: Zain ─── -->
+        <div class="bmc pend">
+          <div class="bmc-bar"></div>
+          <div class="bmc-body">
+            <div class="bmc-top">
+              <div class="bmc-av" style="background:#BF360C;">Z</div>
+              <div class="bmc-info">
+                <h4>Zain & Team</h4>
+                <p>🎮 PS5 Session · 8:00 PM – 9:00 PM · Rs 500</p>
+              </div>
+              <div style="font-size:11px;font-weight:700;color:#E65100;background:#FFE0B2;padding:3px 8px;border-radius:20px;white-space:nowrap;"><i class="ri-camera-line"></i> New</div>
+            </div>
+            <div class="bmc-note"><i class="ri-camera-line"></i> Screenshot submitted 1h ago — review before approving</div>
+            <div class="bmc-acts">
+              <button class="bmc-btn msg" data-back><i class="ri-message-3-line"></i> Chat</button>
+              <button class="bmc-btn approve" style="flex:2;" data-go="s73"><i class="ri-camera-line"></i> Review</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── CONFIRMED 1: Umar ─── -->
+        <div class="bmc conf">
+          <div class="bmc-bar"></div>
+          <div class="bmc-body">
+            <div class="bmc-top">
+              <div class="bmc-av" style="background:#1A0E2E;">U</div>
+              <div class="bmc-info">
+                <h4>Umar Farooq</h4>
+                <p>🖥️ PC Squad · 6:00 PM – 7:00 PM · Rs 300</p>
+              </div>
+              <span class="bk-badge confirmed" style="white-space:nowrap;"><i class="ri-check-line"></i> Confirmed</span>
+            </div>
+            <div class="bmc-note"><i class="ri-check-line"></i> Payment verified · JazzCash · Today 7:15 AM</div>
+            <div class="bmc-acts">
+              <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Message</button>
+              <button class="bmc-btn cancel-bk" data-back>Cancel Booking</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── CONFIRMED 2: Karachi Kings ─── -->
+        <div class="bmc conf">
+          <div class="bmc-bar"></div>
+          <div class="bmc-body">
+            <div class="bmc-top">
+              <div class="bmc-av" style="background:#1A0E2E;">K</div>
+              <div class="bmc-info">
+                <h4>Karachi Kings</h4>
+                <p>🎮 PS5 Session · 4:00 PM – 6:00 PM · Rs 500</p>
+              </div>
+              <span class="bk-badge confirmed" style="white-space:nowrap;"><i class="ri-check-line"></i> Confirmed</span>
+            </div>
+            <div class="bmc-note"><i class="ri-check-line"></i> Payment verified · Bank Transfer · Yesterday</div>
+            <div class="bmc-acts">
+              <button class="bmc-btn msg"><i class="ri-message-3-line"></i> Message</button>
+              <button class="bmc-btn cancel-bk" data-back>Cancel Booking</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── CANCELLED 1: Sara ─── -->
+        <div class="bmc canc">
+          <div class="bmc-bar"></div>
+          <div class="bmc-body">
+            <div class="bmc-top">
+              <div class="bmc-av" style="background:#3A1E6E;">S</div>
+              <div class="bmc-info">
+                <h4>Sara Malik</h4>
+                <p>🕹️ Tournament · 12:00 PM – 2:00 PM · Rs 3,000</p>
+              </div>
+              <span style="font-size:11px;background:#FDECEA;color:#C62828;padding:3px 8px;border-radius:20px;font-weight:700;white-space:nowrap;">Cancelled</span>
+            </div>
+            <div class="bmc-note"><i class="ri-close-line"></i> Cancelled by customer · 3 hours ago</div>
+            <div style="background:#F4FAEE;border-radius:10px;padding:8px 12px;font-size:11px;font-weight:700;color:#3A1E6E;display:flex;align-items:center;gap:6px;">
+              <span>🟢</span> Slot is now FREE — available for new bookings
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div></div><div class="mg-chromebar" style="bottom:0;padding-bottom:14px;"><div class="mg-seg"><button data-mgseg class="mg-on" onclick="mgTo('mg-s12f',0)"><i class="ri-building-4-line"></i>Arena<span class="mg-badge">4</span></button><button data-mgseg onclick="mgTo('mg-s12f',1)"><i class="ri-gamepad-line"></i>Gaming<span class="mg-badge">2</span></button></div></div>
     </div>
   </div>
 </div>
@@ -17446,6 +18698,18 @@
 .mg-segfloat{position:absolute;left:14px;right:14px;bottom:158px;z-index:90;background:#fff;border:1px solid #E3E8E2;border-radius:15px;padding:4px;box-shadow:0 12px 30px rgba(7,41,25,.30),0 3px 10px rgba(0,0,0,.14);}
 .mg-segfloat .mg-seg{background:#EEF1ED;}
 .mg-segfloat.mg-low{bottom:16px;}
+
+.mg-chromebar{position:absolute;left:0;right:0;z-index:90;background:#fff;border-top:1px solid #EEEEEA;padding:7px 12px 6px;}
+.mg-dial{position:absolute;right:14px;bottom:166px;z-index:95;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.mg-dialopts{display:flex;flex-direction:column;align-items:flex-end;gap:7px;opacity:0;transform:translateY(10px);pointer-events:none;transition:all .22s ease;}
+.mg-dial.mg-open .mg-dialopts{opacity:1;transform:none;pointer-events:auto;}
+.mg-dialopt{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #E3E8E2;border-radius:999px;padding:8px 13px;font-size:11px;font-weight:800;color:#233A28;box-shadow:0 8px 20px rgba(7,41,25,.22);cursor:pointer;font-family:inherit;}
+.mg-dialopt i{font-size:14px;line-height:1;}
+.mg-dialopt.mg-on{background:#0B2B12;color:#fff;border-color:#0B2B12;}
+.mg-dialfab{position:relative;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#0E4027,#072919);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(7,41,25,.4);cursor:pointer;}
+.mg-dialfab>i{color:#fff;font-size:21px;line-height:1;}
+.mg-swapbadge{position:absolute;right:-3px;bottom:-3px;width:19px;height:19px;border-radius:50%;background:#2FB463;border:2px solid #fff;display:flex;align-items:center;justify-content:center;}
+.mg-swapbadge i{font-size:10px;color:#fff;line-height:1;}
 </style>
 <script>
 /* TEST merged-screen switchers */
@@ -17463,12 +18727,24 @@ function mgTo(rootId, idx){
   var cur=root.querySelector('.mg-cur');
   var names=(root.getAttribute('data-mg-names')||'').split('|');
   if(cur&&names[idx]) cur.textContent=names[idx];
+  var dial=root.querySelector('.mg-dial');
+  if(dial){
+    dial.classList.remove('mg-open');
+    var icons=(root.getAttribute('data-mg-icons')||'').split('|');
+    var fi=dial.querySelector('.mg-dialfab>i');
+    if(fi&&icons[idx]) fi.className=icons[idx];
+  }
 }
 function mgCycle(rootId){
   var root=document.getElementById(rootId); if(!root) return;
   var names=(root.getAttribute('data-mg-names')||'').split('|');
   var i=((parseInt(root.getAttribute('data-mg-idx')||'0',10))+1)%names.length;
   mgTo(rootId,i);
+}
+
+function mgDial(rootId){
+  var root=document.getElementById(rootId); if(!root) return;
+  var d=root.querySelector('.mg-dial'); if(d) d.classList.toggle('mg-open');
 }
 </script>
 </body>
