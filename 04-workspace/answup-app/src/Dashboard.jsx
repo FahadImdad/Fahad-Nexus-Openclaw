@@ -73,8 +73,8 @@ function SetupTracker({ client }) {
   const steps = [
     { n: 1, t: "Application received", d: "Your business details are with our team." },
     { n: 2, t: "We build your AI", d: "We create and train your receptionist on your business. Usually under 24 hours." },
-    { n: 3, t: "Test & approve", d: "You call your new number, hear your AI, and request any tweaks." },
-    { n: 4, t: "You're live", d: "Forward your business line and never miss a call again." },
+    { n: 3, t: "Test, approve & activate", d: "You call and hear your AI, request any tweaks, then pay your first invoice to activate." },
+    { n: 4, t: "You're live", d: "We assign your dedicated number — forward your business line and never miss a call again." },
   ];
   if (status === "rejected") {
     return (
@@ -103,7 +103,7 @@ function SetupTracker({ client }) {
           <div className="dz-card-head"><h3>What we're doing right now</h3></div>
           <p style={{ fontSize: 14.5, color: "var(--ink2)", lineHeight: 1.65 }}>
             {stage === 1 && <>Our team is reviewing <b>{client?.business_name || "your business"}</b>. We check your trade, service area, and call volume fit, then start building your AI receptionist. You'll get an email from us within a few hours.</>}
-            {stage === 2 && <>We're building the AI for <b>{client?.business_name}</b>: your greeting, your service area ({client?.service_area || "as provided"}), emergency rules for {client?.trade || "your trade"}, and lead capture. Next you'll get a number to test-call.</>}
+            {stage === 2 && <>We're building the AI for <b>{client?.business_name}</b>: your greeting, your service area ({client?.service_area || "as provided"}), emergency rules for {client?.trade || "your trade"}, and lead capture. Next you'll test-call it, and once your first invoice is paid we switch it live on your dedicated number.</>}
           </p>
           <div className="st-todo">
             <b>What you need to do</b>

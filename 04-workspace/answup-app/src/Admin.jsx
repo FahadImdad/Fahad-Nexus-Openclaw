@@ -103,9 +103,16 @@ export default function Admin() {
                     <small className="ad-card-sub">{planName[c.plan] || c.plan || "no plan"}</small>
                     <div className="ad-card-actions" onClick={(e) => e.stopPropagation()}>
                       {nextStatus[c.status || "pending_review"] && (
-                        <button className="ad-btn go" onClick={() => patch(c.id, { status: nextStatus[c.status || "pending_review"] })}>
-                          {nextLabel[c.status || "pending_review"]}
-                        </button>
+                        c.status === "building" && !c.paid ? (
+                          <button className="ad-btn" disabled style={{ opacity: 0.55, cursor: "not-allowed" }}
+                            title="Payment gate: create the invoice, receive payment, tick 'Client has paid' in the drawer — then Set Live unlocks.">
+                            🔒 Set Live · awaiting payment
+                          </button>
+                        ) : (
+                          <button className="ad-btn go" onClick={() => patch(c.id, { status: nextStatus[c.status || "pending_review"] })}>
+                            {nextLabel[c.status || "pending_review"]}
+                          </button>
+                        )
                       )}
                       {(c.status || "pending_review") === "pending_review" && (
                         <button className="ad-btn rej" onClick={() => patch(c.id, { status: "rejected" })}>Reject</button>
