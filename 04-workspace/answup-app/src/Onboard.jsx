@@ -45,6 +45,7 @@ export default function Onboard({ user, onDone }) {
       },
       { onConflict: "user_id" }
     );
+    if (!error) await supabase.rpc("onboarding_complete");   // auto-accept + auto-kickoff message
     setSaving(false);
     if (error) {
       alert("Could not save: " + error.message);

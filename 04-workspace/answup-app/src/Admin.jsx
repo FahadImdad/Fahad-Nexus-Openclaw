@@ -27,9 +27,9 @@ const nextStep = (c) => {
   if (s === "paused") return { n: "On hold", t: "Paused. Reactivate when they're ready", ok: false };
   if (s === "live") return { n: "All done", t: "Live and answering calls. Nothing to do", ok: true };
   if (!c.vapi_assistant_id || !c.answup_number)
-    return { n: "Step 2 of 5", t: "Chat their requirements, build the agent in Vapi, paste assistant ID + number here", ok: false };
+    return { n: "Step 2 of 5", t: "Kickoff questions auto-sent — read their answers in Inbox, build the agent in Vapi, paste assistant ID + number here", ok: false };
   if (!c.paid)
-    return { n: "Step 3 of 5", t: "Tell them to test-call it, create the invoice, tick Paid when the money lands", ok: false };
+    return { n: "Step 3 of 5", t: "They're testing. Their invoice auto-creates when they click Activate — tick Paid when the money lands", ok: false };
   return { n: "Step 4 of 5", t: "Payment received — click Set Live, then buy their dedicated number", ok: false };
 };
 

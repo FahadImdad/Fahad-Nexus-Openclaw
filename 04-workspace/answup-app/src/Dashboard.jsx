@@ -109,6 +109,16 @@ function SetupTracker({ client }) {
             <b>What you need to do</b>
             <span>{client?.answup_number ? "Call your Answup number above, hear your AI, then tell us what to tweak in Messages." : "Just one thing: open the Messages tab and tell us how you want your AI to greet callers. Everything else is on us."}</span>
           </div>
+          {client?.answup_number && client?.status === "building" && (
+            <button className="btn btn-grad" style={{ width: "100%", marginTop: 12 }}
+              onClick={async () => {
+                const { data, error } = await supabase.rpc("request_activation");
+                alert(error ? "Something went wrong: " + error.message
+                  : `Done! Invoice ${data} is in your Billing tab. Pay it and we switch you live on your own dedicated number the same day.`);
+              }}>
+              ✓ It sounds great — activate my receptionist
+            </button>
+          )}
         </motion.div>
 
         <motion.div className="dz-card" variants={rise} custom={2} initial="hidden" animate="show">
