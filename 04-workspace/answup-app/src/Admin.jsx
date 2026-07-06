@@ -18,6 +18,21 @@ const planName = { "after-hours": "After-Hours $397", "always-on": "Always-On $6
 const nextStatus = { pending_review: "building", building: "live", live: "paused" };
 const nextLabel = { pending_review: "Accept → Building", building: "Set Live", live: "Pause" };
 
+// What YOU do next for this client — computed from their actual state,
+// shown on every card and at the top of the drawer. Kills the guesswork.
+const nextStep = (c) => {
+  const s = c.status || "pending_review";
+  if (s === "pending_review") return { n: "Step 1 of 5", t: "Review their details, then click Accept → Building", ok: false };
+  if (s === "rejected") return { n: "Closed", t: "Rejected. Restore if that was a mistake", ok: false };
+  if (s === "paused") return { n: "On hold", t: "Paused. Reactivate when they're ready", ok: false };
+  if (s === "live") return { n: "All done", t: "Live and answering calls. Nothing to do", ok: true };
+  if (!c.vapi_assistant_id || !c.answup_number)
+    return { n: "Step 2 of 5", t: "Chat their requirements, build the agent in Vapi, paste assistant ID + number here", ok: false };
+  if (!c.paid)
+    return { n: "Step 3 of 5", t: "Tell them to test-call it, create the invoice, tick Paid when the money lands", ok: false };
+  return { n: "Step 4 of 5", t: "Payment received — click Set Live, then buy their dedicated number", ok: false };
+};
+
 export default function Admin() {
   const [clients, setClients] = useState(null);
   const [open, setOpen] = useState(null); // client being edited in the drawer
@@ -101,6 +116,7 @@ export default function Admin() {
                     </div>
                     <small className="ad-card-sub">{c.trade || "—"} · {c.city || "—"}{c.state ? ", " + c.state : ""}</small>
                     <small className="ad-card-sub">{planName[c.plan] || c.plan || "no plan"}</small>
+                    <div className={`ad-next-mini ${nextStep(c).ok ? "ok" : ""}`}>→ {nextStep(c).t}</div>
                     <div className="ad-card-actions" onClick={(e) => e.stopPropagation()}>
                       {nextStatus[c.status || "pending_review"] && (
                         c.status === "building" && !c.paid ? (
@@ -143,6 +159,10 @@ export default function Admin() {
                 <button className="ad-x" onClick={() => setOpen(null)}>×</button>
               </div>
               <div className="ad-drawer-body">
+                <div className={`ad-next ${nextStep(open).ok ? "ok" : ""}`}>
+                  <b>{nextStep(open).n}</b>
+                  <span>{nextStep(open).t}</span>
+                </div>
                 <div className="ad-field"><label>Business name</label><input value={open.business_name || ""} onChange={(e) => setOpen({ ...open, business_name: e.target.value })} /></div>
                 <div className="ad-two">
                   <div className="ad-field"><label>Trade</label><input value={open.trade || ""} onChange={(e) => setOpen({ ...open, trade: e.target.value })} /></div>

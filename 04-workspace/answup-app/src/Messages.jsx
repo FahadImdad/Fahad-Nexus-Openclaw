@@ -36,7 +36,12 @@ export default function Messages({ clientId, me, compact = false, title }) {
     return () => { supabase.removeChannel(ch); };
   }, [clientId]);
 
-  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [msgs?.length]);
+  // scroll ONLY the message list to its bottom — touching scrollIntoView here
+  // yanks parent containers (like the admin drawer) down to the chat on open
+  useEffect(() => {
+    const list = endRef.current?.parentElement;
+    if (list) list.scrollTop = list.scrollHeight;
+  }, [msgs?.length]);
 
   const send = async () => {
     const body = text.trim();
