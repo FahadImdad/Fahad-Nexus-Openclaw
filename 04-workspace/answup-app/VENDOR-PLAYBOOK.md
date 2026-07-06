@@ -35,11 +35,15 @@ Your tools: **answup.com/admin** (console), **Vapi dashboard** (agents), **Twili
 
 ---
 
-## AUTOMATION ROADMAP (stage 2, not yet built)
-- **Auto-build**: Vapi assistant created by API from their onboarding + chat answers (kills manual action 1's Vapi work).
-- **In-dashboard web test call**: "Call your AI" button on their dashboard (no shared phone number juggling).
-- **Email alerts to you**: new signup, new message, activation clicked (kills the need to check /admin daily). Needs a free Resend account key.
-- **Auto number provisioning**: Twilio number bought by API the moment you tick Paid.
+## AUTOMATION STAGE 2 — BUILT AND DEPLOYED, needs 3 keys to switch on
+All code is live. Three one-time pastes by Fahad activate it (security policy forbids the AI from handling these keys):
+
+1. **Auto-build** (assistant creates itself on signup). Get the PRIVATE key at dashboard.vapi.ai → Organization Settings → API Keys. Then in a terminal:
+   `cd 04-workspace\answup-app` then `vercel env add VAPI_PRIVATE_KEY production` (paste key when prompted), then `vercel deploy --prod --yes` (or tell Claude to redeploy).
+2. **In-browser client test call** ("Call your AI" button). Copy the PUBLIC key from the same Vapi page and paste it between the quotes in `src/lib/vapiWeb.js` (`VAPI_PUBLIC_KEY = "..."`). Publishable by design, safe in code. Rebuild + deploy.
+3. **Email alerts** (signup / client message / new call → your inbox). Create a free account at resend.com, copy the API key, then `vercel env add RESEND_API_KEY production` + redeploy. Skippable: without it alerts silently no-op.
+
+- **Auto number provisioning** (Twilio number bought by API when you tick Paid): planned, blocked until Twilio voice verification clears.
 
 ## CURRENT TEMPORARY LIMITS
 - Twilio voice verification pending: test via web calls until approved.
