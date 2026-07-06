@@ -45,7 +45,14 @@ export default function Onboard({ user, onDone }) {
       },
       { onConflict: "user_id" }
     );
-    if (!error) await supabase.rpc("onboarding_complete");   // auto-accept + auto-kickoff message
+    if (!error) {
+      await supabase.rpc("onboarding_complete");   // auto-accept + auto-kickoff message
+      // auto-build their Vapi assistant in the background (fire and forget)
+      supabase.auth.getSession().then(({ data }) => {
+        const t = data?.session?.access_token;
+        if (t) fetch("/api/autobuild", { method: "POST", headers: { Authorization: `Bearer ${t}` } }).catch(() => {});
+      });
+    }
     setSaving(false);
     if (error) {
       alert("Could not save: " + error.message);

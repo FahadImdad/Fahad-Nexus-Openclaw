@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "./lib/supabase";
+import { VAPI_PUBLIC_KEY, startWebCall, stopWebCall } from "./lib/vapiWeb.js";
 import { Logo, ThemeToggle, Equalizer } from "./brand.jsx";
 import Admin from "./Admin.jsx";
 import Messages from "./Messages.jsx";
@@ -67,6 +68,7 @@ function Empty({ title, hint }) {
 
 /* ============ SETUP TRACKER (client home until live) ============ */
 function SetupTracker({ client }) {
+  const [testCall, setTestCall] = useState("idle"); // idle | connecting | live
   const status = client?.status || "pending_review";
   // stage: 1 received, 2 building, 3 test & approve, 4 live
   const stage = status === "live" ? 4 : status === "building" ? 2 : status === "rejected" ? 0 : 1;
@@ -107,9 +109,30 @@ function SetupTracker({ client }) {
           </p>
           <div className="st-todo">
             <b>What you need to do</b>
-            <span>{client?.answup_number ? "Call your Answup number above, hear your AI, then tell us what to tweak in Messages." : "Just one thing: open the Messages tab and tell us how you want your AI to greet callers. Everything else is on us."}</span>
+            <span>{client?.vapi_assistant_id
+              ? "Your AI is already built. Test-call it right here in your browser, then tell us any tweaks in Messages."
+              : client?.answup_number
+                ? "Call your Answup number above, hear your AI, then tell us what to tweak in Messages."
+                : "Just one thing: open the Messages tab and tell us how you want your AI to greet callers. Everything else is on us."}</span>
           </div>
-          {client?.answup_number && client?.status === "building" && (
+          {client?.vapi_assistant_id && VAPI_PUBLIC_KEY && client?.status === "building" && (
+            <button className={`btn ${testCall === "live" ? "btn-soft" : "btn-grad"}`} style={{ width: "100%", marginTop: 12 }}
+              disabled={testCall === "connecting"}
+              onClick={async () => {
+                if (testCall === "live") { stopWebCall(); setTestCall("idle"); return; }
+                setTestCall("connecting");
+                try {
+                  await startWebCall(client.vapi_assistant_id, {
+                    onStart: () => setTestCall("live"),
+                    onEnd: () => setTestCall("idle"),
+                    onError: () => setTestCall("idle"),
+                  });
+                } catch { setTestCall("idle"); alert("Could not start the test call. Check your mic permission and try again."); }
+              }}>
+              {testCall === "live" ? "■ End test call" : testCall === "connecting" ? "Connecting…" : "📞 Call your AI right now (in browser)"}
+            </button>
+          )}
+          {client?.vapi_assistant_id && client?.status === "building" && (
             <button className="btn btn-grad" style={{ width: "100%", marginTop: 12 }}
               onClick={async () => {
                 const { data, error } = await supabase.rpc("request_activation");
