@@ -86,18 +86,18 @@
   .toggle::after { content: ''; position: absolute; width: 22px; height: 22px; border-radius: 50%; background: #fff; top: 2px; left: 2px; transition: left .2s; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
   .toggle.on::after { left: 20px; }
 
-  /* Gaming Zone toggle switch (checkbox based) */
+  /* Gaming Arena toggle switch (checkbox based) */
   .gz-slider { position:absolute; inset:0; background:#E0D4F5; border-radius:21px; cursor:pointer; transition:background .2s; }
   .gz-slider::before { content:''; position:absolute; width:16px; height:16px; border-radius:50%; background:#fff; top:2.5px; left:3px; transition:left .2s; box-shadow:0 1px 3px rgba(0,0,0,.25); }
   .gz-toggle:checked + .gz-slider { background:#3A1E6E; }
   .gz-toggle:checked + .gz-slider::before { left:19px; }
-  /* Gaming Zone selected slot cell */
+  /* Gaming Arena selected slot cell */
   .sg-cell.sg-gzsel { background:linear-gradient(145deg,#7C5BE0,#A88BFF)!important; border:none!important; }
   .sg-cell.sg-gzsel .sg-hr, .sg-cell.sg-gzsel .sg-pr, .sg-cell.sg-gzsel .sg-nm { color:#fff!important; }
   /* Gaming schedules (s53/s54): re-theme arena-green accents to purple so the boards read as one zone */
   #s53 .dt-day.today, #s54 .dt-day.today { background:#3A1E6E; }
   #s53 .sg-cell.sg-ok, #s54 .sg-cell.sg-ok { background:linear-gradient(145deg,#2A1550,#5A2EA0); }
-  /* Gaming Zone save toast */
+  /* Gaming Arena save toast */
   .gz-toast { position:absolute; left:50%; bottom:78px; transform:translateX(-50%) translateY(8px); background:#1A0E2E; color:#fff; font-size:11px; font-weight:800; padding:9px 16px; border-radius:22px; box-shadow:0 6px 18px rgba(26,14,46,.4); opacity:0; pointer-events:none; transition:opacity .25s, transform .25s; z-index:30; white-space:nowrap; }
   .gz-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
   /* Quick-view (s56/s57) vendor block & discount states */
@@ -212,7 +212,7 @@
   .arena-pill { padding:7px 14px; border-radius:20px; border:1.5px solid #E5E5E5; font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap; color:#666; background:#FAFAFA; }
   .arena-pill.active { background:#09210E; color:#fff; border-color:#09210E; }
 
-  /* Arena card (My Arenas list) */
+  /* Arena card (Sports Arenas list) */
   .arena-card { margin:0 16px 12px; border:1px solid #EFEFEF; border-radius:16px; background:#fff; overflow:hidden; }
   .arena-card .ac-color-bar { height:5px; }
   .arena-card .ac-body { padding:14px 16px; }
@@ -526,7 +526,7 @@
             </div>
             <div data-go="s8" style="background:#F4FAEE;border-radius:13px;padding:12px 11px;display:flex;align-items:center;gap:8px;cursor:pointer;border:1.5px solid #C5DFAA;">
               <div style="width:33px;height:33px;background:#DFF0C8;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-building-4-line" style="font-size:16px;color:#09210E;"></i></div>
-              <div><div style="font-size:12px;font-weight:800;color:#09210E;">My Arenas</div><div style="font-size:9px;color:#4A7A30;margin-top:1px;">3 arenas</div></div>
+              <div><div style="font-size:12px;font-weight:800;color:#09210E;">Sports Arenas</div><div style="font-size:9px;color:#4A7A30;margin-top:1px;">3 arenas</div></div>
             </div>
             <div data-go="s20" style="background:#F4FAEE;border-radius:13px;padding:12px 11px;display:flex;align-items:center;gap:8px;cursor:pointer;border:1.5px solid #C5DFAA;">
               <div style="width:33px;height:33px;background:#DFF0C8;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-bar-chart-2-line" style="font-size:16px;color:#09210E;"></i></div>
@@ -542,13 +542,13 @@
               </div>
               <div style="background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:3px 9px;font-size:9px;font-weight:800;color:rgba(255,255,255,.8);flex-shrink:0;display:flex;align-items:center;gap:4px;"><span style="width:5px;height:5px;background:#70D880;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;"></span>3 Live</div>
             </div>
-            <!-- Gaming Zones — full-width card -->
+            <!-- Gaming Arenas — full-width card -->
             <div data-go="s50" style="grid-column:span 2;background:linear-gradient(135deg,#1A0E2E 0%,#3A1E6E 100%);border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:11px;cursor:pointer;position:relative;overflow:hidden;">
               <div style="position:absolute;right:-10px;top:-10px;width:70px;height:70px;background:rgba(120,90,255,.12);border-radius:50%;"></div>
               <div style="width:36px;height:36px;background:rgba(255,255,255,.14);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">🎮</div>
               <div style="flex:1;">
-                <div style="font-size:12px;font-weight:900;color:#fff;">Gaming Zones</div>
-                <div style="font-size:9px;color:rgba(255,255,255,.6);margin-top:1px;">2 zones · PCs, PS5 & consoles booking</div>
+                <div style="font-size:12px;font-weight:900;color:#fff;">Gaming Arenas</div>
+                <div style="font-size:9px;color:rgba(255,255,255,.6);margin-top:1px;">2 arenas · PCs, PS5 & consoles booking</div>
               </div>
               <div style="background:rgba(255,255,255,.13);border:1px solid rgba(160,130,255,.3);border-radius:20px;padding:3px 9px;font-size:9px;font-weight:800;color:rgba(200,180,255,.95);flex-shrink:0;display:flex;align-items:center;gap:4px;"><span style="width:5px;height:5px;background:#A88BFF;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;"></span>Manage</div>
             </div>
@@ -601,7 +601,7 @@
   </div>
 </div>
 <div class="col" id="s8">
-  <div class="page-label">8 · My Arenas — from: 🏟️ Arenas nav</div>
+  <div class="page-label">8 · Sports Arenas — from: 🏟️ Arenas nav</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;">
@@ -611,7 +611,7 @@
         <div style="font-size:10px;color:rgba(255,255,255,.45);font-weight:600;letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px;">Sun, 26 Apr · 9:41 AM</div>
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
           <div>
-            <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-.3px;">My Arenas</div>
+            <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-.3px;">Sports Arenas</div>
             <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:2px;">Play Pakistan Org.</div>
           </div>
           <!-- Today revenue card -->
@@ -893,10 +893,10 @@
 
 <!-- ═══════ TEST SCREEN s8b (merged venues list, originals untouched) ═══════ -->
 <div class="col" id="s8b">
-  <div class="page-label">8b · TEST — Merged Venues: My Arenas + My Gaming Zones · bottom venue bar</div>
+  <div class="page-label">8b · TEST — Merged Venues: Sports Arenas + My Gaming Arenas · bottom venue bar</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
-    <div class="screen active" id="mg-s8b" data-mg-idx="0" data-mg-names="Arenas|Gaming Zones" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;position:relative;">
+    <div class="screen active" id="mg-s8b" data-mg-idx="0" data-mg-names="Sports Arenas|Gaming Arenas" style="background:#F4F7F2;display:flex;flex-direction:column;overflow:hidden;position:relative;">
 <div class="mg-panes"><div class="mg-pane" style="display:flex;background:#F4F7F2;">
 
       <!-- ── GRADIENT HEADER DASHBOARD ── -->
@@ -904,7 +904,7 @@
         <div style="font-size:10px;color:rgba(255,255,255,.45);font-weight:600;letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px;">Sun, 26 Apr · 9:41 AM</div>
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;">
           <div>
-            <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-.3px;">My Arenas</div>
+            <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-.3px;">Sports Arenas</div>
             <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:2px;">Play Pakistan Org.</div>
           </div>
           <!-- Today revenue card -->
@@ -1180,7 +1180,7 @@
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
           <div data-back style="width:30px;height:30px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
           <div style="flex:1;">
-            <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-.3px;">🎮 Gaming Zones</div>
+            <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-.3px;">🎮 Gaming Arenas</div>
             <div style="font-size:11px;color:rgba(200,180,255,.7);margin-top:1px;">Play Pakistan Org.</div>
           </div>
           <div style="background:rgba(255,255,255,.12);border-radius:14px;padding:8px 12px;text-align:right;border:1px solid rgba(160,130,255,.2);">
@@ -1300,14 +1300,14 @@
           </div>
         </div>
 
-        <!-- ════ ADD NEW GAMING ZONE ════ -->
+        <!-- ════ ADD NEW GAMING ARENA ════ -->
         <div data-go="s52" style="margin:0 14px 8px;border-radius:18px;border:2px dashed #C8B4F0;background:#F7F3FE;padding:18px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;">
           <div style="width:38px;height:38px;background:linear-gradient(135deg,#7C5BE0,#A88BFF);border-radius:11px;display:flex;align-items:center;justify-content:center;"><i class="ri-add-line" style="font-size:20px;color:#fff;"></i></div>
-          <div><div style="font-size:13px;font-weight:900;color:#3A1E6E;">Add New Gaming Zone</div><div style="font-size:10px;color:#8A6BC0;margin-top:1px;">Set up cubicles, PCs & consoles</div></div>
+          <div><div style="font-size:13px;font-weight:900;color:#3A1E6E;">Add New Gaming Arena</div><div style="font-size:10px;color:#8A6BC0;margin-top:1px;">Set up cubicles, PCs & consoles</div></div>
         </div>
 
       </div>
-    </div></div><div class="mg-chromebar" style="bottom:0;padding-bottom:14px;"><div class="mg-seg"><button data-mgseg class="mg-on" onclick="mgTo('mg-s8b',0)"><i class="ri-building-4-line"></i>Arenas</button><button data-mgseg onclick="mgTo('mg-s8b',1)"><i class="ri-gamepad-line"></i>Gaming Zones</button></div></div>
+    </div></div><div class="mg-chromebar" style="bottom:0;padding-bottom:14px;"><div class="mg-seg"><button data-mgseg class="mg-on" onclick="mgTo('mg-s8b',0)"><i class="ri-building-4-line"></i>Sports Arenas</button><button data-mgseg onclick="mgTo('mg-s8b',1)"><i class="ri-gamepad-line"></i>Gaming Arenas</button></div></div>
     </div>
   </div>
 </div>
@@ -2552,7 +2552,7 @@
           <i class="ri-time-line" style="margin-right:6px;"></i>Track Approval Status
         </button>
         <button data-go="s8" style="width:100%;padding:11px;background:#F0F0F0;color:#555;font-size:12px;font-weight:700;border:none;border-radius:13px;cursor:pointer;font-family:inherit;">
-          Back to My Arenas
+          Back to Sports Arenas
         </button>
       </div>
 
@@ -11350,7 +11350,7 @@
           <!-- Arenas -->
           <div style="background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #E8E8E8;">
             <div style="padding:10px 14px;font-size:10px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid #F5F5F5;">Arenas</div>
-            <div data-go="s8" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-building-4-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">My Arenas</div><div style="font-size:10px;font-weight:800;color:#09210E;background:#E8F5E0;padding:2px 8px;border-radius:20px;margin-right:4px;">3 Active</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
+            <div data-go="s8" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid #F8F8F8;cursor:pointer;"><div style="width:32px;height:32px;background:#E8F5E0;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-building-4-line" style="font-size:15px;color:#09210E;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Sports Arenas</div><div style="font-size:10px;font-weight:800;color:#09210E;background:#E8F5E0;padding:2px 8px;border-radius:20px;margin-right:4px;">3 Active</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
             <div data-go="s28" style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;"><div style="width:32px;height:32px;background:#F0F4FF;border-radius:9px;display:flex;align-items:center;justify-content:center;"><i class="ri-time-line" style="font-size:15px;color:#4A6CF7;"></i></div><div style="flex:1;font-size:13px;font-weight:700;color:#111;">Approval Status</div><div style="font-size:10px;font-weight:800;color:#4A6CF7;background:#F0F4FF;padding:2px 8px;border-radius:20px;margin-right:4px;">1 Pending</div><i class="ri-arrow-right-s-line" style="font-size:16px;color:#CCC;"></i></div>
           </div>
           <!-- Support -->
@@ -11892,7 +11892,7 @@
   <div class="flow-sec-label">🎮  Gaming — Discover & Detail · 2 screens</div>
   <div class="flow-sec-row">
 <div class="col" id="s50">
-  <div class="page-label">50 · My Gaming Zones — from: Home 🎮 card</div>
+  <div class="page-label">50 · My Gaming Arenas — from: Home 🎮 card</div>
   <div class="phone">
     <div class="status-bar"><span>9:41</span><span>●●● 100%</span></div>
     <div class="screen active" style="display:flex;flex-direction:column;overflow:hidden;">
@@ -11902,7 +11902,7 @@
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
           <div data-back style="width:30px;height:30px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
           <div style="flex:1;">
-            <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-.3px;">🎮 Gaming Zones</div>
+            <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-.3px;">🎮 Gaming Arenas</div>
             <div style="font-size:11px;color:rgba(200,180,255,.7);margin-top:1px;">Play Pakistan Org.</div>
           </div>
           <div style="background:rgba(255,255,255,.12);border-radius:14px;padding:8px 12px;text-align:right;border:1px solid rgba(160,130,255,.2);">
@@ -12022,10 +12022,10 @@
           </div>
         </div>
 
-        <!-- ════ ADD NEW GAMING ZONE ════ -->
+        <!-- ════ ADD NEW GAMING ARENA ════ -->
         <div data-go="s52" style="margin:0 14px 8px;border-radius:18px;border:2px dashed #C8B4F0;background:#F7F3FE;padding:18px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;">
           <div style="width:38px;height:38px;background:linear-gradient(135deg,#7C5BE0,#A88BFF);border-radius:11px;display:flex;align-items:center;justify-content:center;"><i class="ri-add-line" style="font-size:20px;color:#fff;"></i></div>
-          <div><div style="font-size:13px;font-weight:900;color:#3A1E6E;">Add New Gaming Zone</div><div style="font-size:10px;color:#8A6BC0;margin-top:1px;">Set up cubicles, PCs & consoles</div></div>
+          <div><div style="font-size:13px;font-weight:900;color:#3A1E6E;">Add New Gaming Arena</div><div style="font-size:10px;color:#8A6BC0;margin-top:1px;">Set up cubicles, PCs & consoles</div></div>
         </div>
 
       </div>
@@ -12040,7 +12040,7 @@
   </div>
 </div>
 <div class="col" id="s51">
-  <div class="page-label">51 · Gaming Zone Detail — cubicles, PCs & consoles</div>
+  <div class="page-label">51 · Gaming Arena Detail — cubicles, PCs & consoles</div>
   <div class="phone">
     <div class="status-bar" style="position:absolute;top:0;left:0;right:0;z-index:10;background:transparent;"><span style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5);">9:41</span><span style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5);">●●● 100%</span></div>
     <div class="screen active" style="background:#F4F2FA;display:flex;flex-direction:column;overflow:hidden;position:relative;">
@@ -12275,7 +12275,7 @@
             <div class="s51-open" data-sheet="s51-fac-sheet" style="font-size:10px;font-weight:700;color:#3A1E6E;cursor:pointer;background:#F4F0FB;padding:4px 10px;border-radius:20px;border:1px solid #D8C8F0;"><i class="ri-pencil-line" style="margin-right:3px;font-size:10px;"></i>Edit</div>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
-            <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;background:#F4F0FB;border-radius:9px;border:1px solid #E0D4F5;"><span style="font-size:13px;">❄️</span><div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#1A0E2E;">Air Conditioned</div><div style="font-size:8px;color:#7A5BB0;">Full zone</div></div><div style="width:14px;height:14px;background:#3A1E6E;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div></div>
+            <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;background:#F4F0FB;border-radius:9px;border:1px solid #E0D4F5;"><span style="font-size:13px;">❄️</span><div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#1A0E2E;">Air Conditioned</div><div style="font-size:8px;color:#7A5BB0;">Full arena</div></div><div style="width:14px;height:14px;background:#3A1E6E;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div></div>
             <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;background:#F4F0FB;border-radius:9px;border:1px solid #E0D4F5;"><span style="font-size:13px;">🌐</span><div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#1A0E2E;">High-Speed Net</div><div style="font-size:8px;color:#7A5BB0;">1 Gbps fiber</div></div><div style="width:14px;height:14px;background:#3A1E6E;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div></div>
             <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;background:#F4F0FB;border-radius:9px;border:1px solid #E0D4F5;"><span style="font-size:13px;">🥤</span><div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#1A0E2E;">Snack Bar</div><div style="font-size:8px;color:#7A5BB0;">On site</div></div><div style="width:14px;height:14px;background:#3A1E6E;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div></div>
             <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;background:#F4F0FB;border-radius:9px;border:1px solid #E0D4F5;"><span style="font-size:13px;">🎧</span><div style="flex:1;min-width:0;"><div style="font-size:10px;font-weight:700;color:#1A0E2E;">Gaming Headsets</div><div style="font-size:8px;color:#7A5BB0;">Per station</div></div><div style="width:14px;height:14px;background:#3A1E6E;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-check-line" style="font-size:9px;color:#fff;"></i></div></div>
@@ -12630,7 +12630,7 @@
       <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:13px 16px 13px;flex-shrink:0;">
         <div style="display:flex;align-items:center;gap:10px;">
           <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
-          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 1 of 5 · Zone Profile</div></div>
+          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Arena</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 1 of 5 · Zone Profile</div></div>
         </div>
         <div style="display:flex;gap:4px;margin-top:11px;">
           <div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
@@ -12683,7 +12683,7 @@
       <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:13px 16px 13px;flex-shrink:0;">
         <div style="display:flex;align-items:center;gap:10px;">
           <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
-          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 2 of 5 · Cubicles &amp; PCs</div></div>
+          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Arena</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 2 of 5 · Cubicles &amp; PCs</div></div>
         </div>
         <div style="display:flex;gap:4px;margin-top:11px;">
           <div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
@@ -12772,7 +12772,7 @@
       <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:13px 16px 13px;flex-shrink:0;">
         <div style="display:flex;align-items:center;gap:10px;">
           <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
-          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 3 of 5 · Consoles</div></div>
+          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Arena</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 3 of 5 · Consoles</div></div>
         </div>
         <div style="display:flex;gap:4px;margin-top:11px;">
           <div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
@@ -12805,7 +12805,7 @@
       <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:13px 16px 13px;flex-shrink:0;">
         <div style="display:flex;align-items:center;gap:10px;">
           <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
-          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Zone</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 4 of 5 · Snacks &amp; Facilities</div></div>
+          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">New Gaming Arena</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Step 4 of 5 · Snacks &amp; Facilities</div></div>
         </div>
         <div style="display:flex;gap:4px;margin-top:11px;">
           <div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:#A88BFF;"></div><div style="flex:1;height:4px;border-radius:3px;background:rgba(255,255,255,.2);"></div>
@@ -12871,7 +12871,7 @@
 <div style="background:linear-gradient(150deg,#1A0E2E 0%,#3A1E6E 100%);padding:13px 16px 13px;flex-shrink:0;">
         <div style="display:flex;align-items:center;gap:10px;">
           <div data-back style="width:32px;height:32px;background:rgba(255,255,255,.13);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-left-s-line" style="font-size:18px;color:#fff;line-height:1;pointer-events:none;"></i></div>
-          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">Edit Gaming Zone</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Nexus Gaming Lounge · everything in one place</div></div>
+          <div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">Edit Gaming Arena</div><div style="font-size:9px;color:rgba(200,180,255,.85);margin-top:1px;">Nexus Gaming Lounge · everything in one place</div></div>
           
         </div>
       </div>
@@ -15178,7 +15178,7 @@
     }
   })();
 
-  // ── GAMING ZONE: steppers, mode toggles, slot multi-select, pricing tabs ──
+  // ── GAMING ARENA: steppers, mode toggles, slot multi-select, pricing tabs ──
   (function () {
     // Generic +/- steppers (delegated so cloned rows work). Count = .gz-count sibling, or data-target id.
     document.addEventListener('click', function (e) {
@@ -16211,7 +16211,7 @@
     <div class="bottom-nav">
       <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item active"><i class="ri-calendar-2-line ni"></i>Schedule</div>
-      <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
@@ -16366,7 +16366,7 @@
     <div class="bottom-nav">
       <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
-      <div class="nav-item active"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item active"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
@@ -16472,7 +16472,7 @@
     <div class="bottom-nav">
       <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
-      <div class="nav-item active"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item active"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
@@ -16541,7 +16541,7 @@
         <!-- Per-zone setting note -->
         <div style="margin:0 16px; background:#FFF8E1; border:1px solid #FFD54F; border-radius:12px; padding:12px 14px;">
           <div style="font-size:12px; font-weight:700; color:#7A5A00; margin-bottom:4px;">🏟️ Per-Zone Setting</div>
-          <div style="font-size:12px; color:#7A5A00; line-height:1.5;">When Payment Gateway launches, you can set a different payment mode for each of your zones independently.</div>
+          <div style="font-size:12px; color:#7A5A00; line-height:1.5;">When Payment Gateway launches, you can set a different payment mode for each of your arenas independently.</div>
         </div>
 
       </div>
@@ -16550,7 +16550,7 @@
     <div class="bottom-nav">
       <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
-      <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
       <div class="nav-item active"><span class="ni">⚙️</span>Settings</div>
     </div>
@@ -16771,7 +16771,7 @@
           <div data-go="s76" style="background:#1A3A78;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;">
             <div style="font-size:22px;">📊</div>
             <div style="flex:1;">
-              <div style="font-size:12px;font-weight:800;color:#fff;">View All Zones Analytics</div>
+              <div style="font-size:12px;font-weight:800;color:#fff;">View All Arenas Analytics</div>
               <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px;">Compare Elite, Champions &amp; Victory side by side</div>
             </div>
             <div style="font-size:13px;font-weight:800;color:rgba(255,255,255,.8);white-space:nowrap;">View →</div>
@@ -16784,7 +16784,7 @@
     <div class="bottom-nav">
       <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
-      <div class="nav-item active"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item active"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
@@ -16955,7 +16955,7 @@
             </div>
             <div style="background:#F4FAEE;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:10px;">
               <div style="font-size:16px;"><i class="ri-checkbox-circle-line" style="color:#3A1E6E;"></i></div>
-              <div><div style="font-size:12px;font-weight:800;color:#1A0E2E;">GameOver Zone</div><div style="font-size:10px;color:#888;margin-top:1px;">Open · 64% occupancy this week</div></div>
+              <div><div style="font-size:12px;font-weight:800;color:#1A0E2E;">GameOver Arena</div><div style="font-size:10px;color:#888;margin-top:1px;">Open · 64% occupancy this week</div></div>
             </div>
             <div style="background:#FFF3CD;border-radius:11px;padding:11px 14px;display:flex;align-items:center;gap:10px;">
               <div style="font-size:16px;"><i class="ri-tools-line" style="color:#FFD600;"></i></div>
@@ -17012,7 +17012,7 @@
 
       <!-- Zone colour legend -->
       <div style="background:#fff;padding:7px 16px;border-bottom:1px solid #EFEFEF;display:flex;align-items:center;gap:12px;flex-shrink:0;overflow-x:auto;">
-        <div style="font-size:8px;font-weight:700;color:#BBB;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;">Zones</div>
+        <div style="font-size:8px;font-weight:700;color:#BBB;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;">Arenas</div>
         <div style="display:flex;align-items:center;gap:4px;flex-shrink:0;"><div style="width:8px;height:8px;border-radius:50%;background:#1A0E2E;"></div><span style="font-size:9px;color:#333;font-weight:700;white-space:nowrap;">Elite Gaming</span></div>
         <div style="display:flex;align-items:center;gap:4px;flex-shrink:0;"><div style="width:8px;height:8px;border-radius:50%;background:#0A6B7A;"></div><span style="font-size:9px;color:#333;font-weight:700;white-space:nowrap;">Champions</span></div>
         <div style="display:flex;align-items:center;gap:4px;flex-shrink:0;"><div style="width:8px;height:8px;border-radius:50%;background:#7A5800;"></div><span style="font-size:9px;color:#333;font-weight:700;white-space:nowrap;">Victory</span></div>
@@ -17105,14 +17105,14 @@
           </div>
         </div>
 
-        <!-- PENDING 3: Imran Ali · GameOver Zone (TEAL) -->
+        <!-- PENDING 3: Imran Ali · GameOver Arena (TEAL) -->
         <div style="margin:0 14px 9px;background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07);">
           <div style="height:3px;background:linear-gradient(90deg,#0A6B7A,#12A0B4);"></div>
           <div style="padding:10px 13px 11px;">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
               <div style="display:flex;align-items:center;gap:5px;">
                 <div style="width:7px;height:7px;border-radius:50%;background:#0A6B7A;flex-shrink:0;"></div>
-                <span style="font-size:9px;font-weight:800;color:#0A6B7A;text-transform:uppercase;letter-spacing:.3px;">GameOver Zone</span>
+                <span style="font-size:9px;font-weight:800;color:#0A6B7A;text-transform:uppercase;letter-spacing:.3px;">GameOver Arena</span>
               </div>
               <div style="background:#FFE0B2;color:#E65100;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;"><i class="ri-camera-line"></i> New</div>
             </div>
@@ -17131,14 +17131,14 @@
           </div>
         </div>
 
-        <!-- PENDING 4: Saad Khan · GameOver Zone (TEAL) -->
+        <!-- PENDING 4: Saad Khan · GameOver Arena (TEAL) -->
         <div style="margin:0 14px 9px;background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07);">
           <div style="height:3px;background:linear-gradient(90deg,#0A6B7A,#12A0B4);"></div>
           <div style="padding:10px 13px 11px;">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
               <div style="display:flex;align-items:center;gap:5px;">
                 <div style="width:7px;height:7px;border-radius:50%;background:#0A6B7A;flex-shrink:0;"></div>
-                <span style="font-size:9px;font-weight:800;color:#0A6B7A;text-transform:uppercase;letter-spacing:.3px;">GameOver Zone</span>
+                <span style="font-size:9px;font-weight:800;color:#0A6B7A;text-transform:uppercase;letter-spacing:.3px;">GameOver Arena</span>
               </div>
               <div style="background:#FFE0B2;color:#E65100;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;"><i class="ri-camera-line"></i> New</div>
             </div>
@@ -17215,14 +17215,14 @@
           </div>
         </div>
 
-        <!-- CONFIRMED 3: Raza Ahmed · GameOver Zone (TEAL) -->
+        <!-- CONFIRMED 3: Raza Ahmed · GameOver Arena (TEAL) -->
         <div style="margin:0 14px 9px;background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 1px 5px rgba(0,0,0,.05);">
           <div style="height:3px;background:linear-gradient(90deg,#0A6B7A,#12A0B4);"></div>
           <div style="padding:10px 13px 11px;">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
               <div style="display:flex;align-items:center;gap:5px;">
                 <div style="width:7px;height:7px;border-radius:50%;background:#0A6B7A;flex-shrink:0;"></div>
-                <span style="font-size:9px;font-weight:800;color:#0A6B7A;text-transform:uppercase;letter-spacing:.3px;">GameOver Zone</span>
+                <span style="font-size:9px;font-weight:800;color:#0A6B7A;text-transform:uppercase;letter-spacing:.3px;">GameOver Arena</span>
               </div>
               <span class="bk-badge confirmed"><i class="ri-check-line"></i> Confirmed</span>
             </div>
@@ -17241,14 +17241,14 @@
           </div>
         </div>
 
-        <!-- CONFIRMED 4: Hassan Ali · GameOver Zone (TEAL) -->
+        <!-- CONFIRMED 4: Hassan Ali · GameOver Arena (TEAL) -->
         <div style="margin:0 14px 9px;background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 1px 5px rgba(0,0,0,.05);">
           <div style="height:3px;background:linear-gradient(90deg,#0A6B7A,#12A0B4);"></div>
           <div style="padding:10px 13px 11px;">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
               <div style="display:flex;align-items:center;gap:5px;">
                 <div style="width:7px;height:7px;border-radius:50%;background:#0A6B7A;flex-shrink:0;"></div>
-                <span style="font-size:9px;font-weight:800;color:#0A6B7A;text-transform:uppercase;letter-spacing:.3px;">GameOver Zone</span>
+                <span style="font-size:9px;font-weight:800;color:#0A6B7A;text-transform:uppercase;letter-spacing:.3px;">GameOver Arena</span>
               </div>
               <span class="bk-badge confirmed"><i class="ri-check-line"></i> Confirmed</span>
             </div>
@@ -17295,14 +17295,14 @@
           </div>
         </div>
 
-        <!-- CANCELLED 2: Hassan Javed · GameOver Zone (muted) -->
+        <!-- CANCELLED 2: Hassan Javed · GameOver Arena (muted) -->
         <div style="margin:0 14px 9px;background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04);opacity:.75;">
           <div style="height:3px;background:#CCCCCC;"></div>
           <div style="padding:10px 13px 11px;">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
               <div style="display:flex;align-items:center;gap:5px;">
                 <div style="width:7px;height:7px;border-radius:50%;background:#0A6B7A;flex-shrink:0;opacity:.35;"></div>
-                <span style="font-size:9px;font-weight:800;color:#AAA;text-transform:uppercase;letter-spacing:.3px;">GameOver Zone</span>
+                <span style="font-size:9px;font-weight:800;color:#AAA;text-transform:uppercase;letter-spacing:.3px;">GameOver Arena</span>
               </div>
               <span class="bk-badge cancelled">Cancelled</span>
             </div>
@@ -17323,7 +17323,7 @@
       <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
       <div class="nav-item active"><i class="ri-inbox-line ni"></i>Bookings</div>
-      <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
@@ -17362,7 +17362,7 @@
             <div style="width:40px;height:40px;background:rgba(255,255,255,.14);border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="ri-bar-chart-2-line" style="font-size:20px;color:#fff;"></i></div>
             <div>
               <div style="font-size:14px;font-weight:800;color:#fff;">Business Overview</div>
-              <div style="font-size:10px;color:rgba(255,255,255,.55);margin-top:2px;">All zones combined · Revenue &amp; trends</div>
+              <div style="font-size:10px;color:rgba(255,255,255,.55);margin-top:2px;">All arenas combined · Revenue &amp; trends</div>
             </div>
             <div style="margin-left:auto;font-size:18px;color:rgba(255,255,255,.4);">›</div>
           </div>
@@ -17436,7 +17436,7 @@
       <div class="nav-item"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
-      <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item active"><i class="ri-bar-chart-2-line ni"></i>Analytics</div>
     </div>
   </div>
@@ -17554,7 +17554,7 @@
                 <div style="width:44px;height:44px;background:#E0F7FA;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🎮</div>
                 <div>
                   <div style="font-size:13px;font-weight:900;color:#111;letter-spacing:-.2px;">Karachi Valorant League</div>
-                  <div style="font-size:10px;color:#888;margin-top:2px;">Round-Robin · 12 Teams · GameOver Zone</div>
+                  <div style="font-size:10px;color:#888;margin-top:2px;">Round-Robin · 12 Teams · GameOver Arena</div>
                 </div>
               </div>
               <div style="background:#E0F7FA;color:#0A6B7A;font-size:9px;font-weight:900;padding:3px 9px;border-radius:20px;border:1px solid #9DD8E0;flex-shrink:0;">Reg. Open</div>
@@ -17635,7 +17635,7 @@
       <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
-      <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
@@ -17999,7 +17999,7 @@
       <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
-      <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
@@ -18134,7 +18134,7 @@
       <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
-      <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
@@ -18214,7 +18214,7 @@
       <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
-      <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
@@ -18350,7 +18350,7 @@
       <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
-      <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
@@ -18435,7 +18435,7 @@
       <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
-      <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
@@ -18519,7 +18519,7 @@
       <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
       <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
       <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
-      <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+      <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
       <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
     </div>
   </div>
@@ -18619,7 +18619,7 @@
         <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
         <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
         <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
-        <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+        <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
         <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
       </div>
     </div>
@@ -18750,7 +18750,7 @@
         <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
         <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
         <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
-        <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+        <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
         <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
       </div>
     </div>
@@ -19034,7 +19034,7 @@
         <div class="nav-item active"><i class="ri-home-5-line ni"></i>Home</div>
         <div class="nav-item"><i class="ri-calendar-2-line ni"></i>Schedule</div>
         <div class="nav-item"><i class="ri-inbox-line ni"></i>Bookings</div>
-        <div class="nav-item"><i class="ri-building-4-line ni"></i>Zones</div>
+        <div class="nav-item"><i class="ri-building-4-line ni"></i>Arenas</div>
         <div class="nav-item"><i class="ri-user-3-line ni"></i>Profile</div>
       </div>
     </div>
