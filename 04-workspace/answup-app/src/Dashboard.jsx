@@ -716,7 +716,7 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
       : ["Calls & Leads", "Every call your AI answers, transcribed and scored."],
     config: ["My AI Setup", "What your receptionist knows. Change anything, we apply it within 24h."],
     billing: ["Billing & Usage", "Your plan, real usage, and invoices. No card needed, we invoice you."],
-    signups: ["Clients", "Your pipeline: review signups, build agents, attach Vapi, chat, invoice."],
+    signups: ["Clients", "Everyone who signed up. Open a card to see their next step."],
     inbox: ["Inbox", "Every client conversation in one place. This is where you gather requirements."],
   };
 

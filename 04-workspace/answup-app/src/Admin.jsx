@@ -22,15 +22,15 @@ const nextLabel = { pending_review: "Accept → Building", building: "Set Live",
 // shown on every card and at the top of the drawer. Kills the guesswork.
 const nextStep = (c) => {
   const s = c.status || "pending_review";
-  if (s === "pending_review") return { n: "Step 1 of 5", t: "Review their details, then click Accept → Building", ok: false };
-  if (s === "rejected") return { n: "Closed", t: "Rejected. Restore if that was a mistake", ok: false };
-  if (s === "paused") return { n: "On hold", t: "Paused. Reactivate when they're ready", ok: false };
-  if (s === "live") return { n: "All done", t: "Live and answering calls. Nothing to do", ok: true };
-  if (!c.vapi_assistant_id || !c.answup_number)
-    return { n: "Step 2 of 5", t: "Kickoff questions auto-sent — read their answers in Inbox, build the agent in Vapi, paste assistant ID + number here", ok: false };
+  if (s === "rejected") return { n: "Closed", t: "Rejected. Restore if that was a mistake.", ok: false };
+  if (s === "paused") return { n: "On hold", t: "Paused. Reactivate when they're ready.", ok: false };
+  if (s === "live") return { n: "Live ✓", t: "Answering calls. Nothing to do here.", ok: true };
+  // Everything before "live":
+  if (!c.vapi_assistant_id)
+    return { n: "Action needed", t: "Their AI didn't auto-build. Click \"Build their AI now\" below.", ok: false };
   if (!c.paid)
-    return { n: "Step 3 of 5", t: "They're testing. Their invoice auto-creates when they click Activate — tick Paid when the money lands", ok: false };
-  return { n: "Step 4 of 5", t: "Payment received — click Set Live, then buy their dedicated number", ok: false };
+    return { n: "Waiting on them", t: "AI is built. They're testing it. When they pay, tick \"Paid\" below — nothing to do until then.", ok: true };
+  return { n: "Ready to launch", t: "Paid ✓ Now click \"Set Live\" and give them their phone number.", ok: false };
 };
 
 export default function Admin() {
@@ -211,16 +211,23 @@ export default function Admin() {
                 </label>
                 <button className="ad-btn" style={{ width: "100%", marginTop: 10, padding: "10px" }} onClick={addInvoice}>＋ Create invoice for this client</button>
 
-                <div className="ad-sep">Vapi wiring (makes calls flow to their dashboard)</div>
-                {!open.vapi_assistant_id && (
+                <div className="ad-sep">Their AI receptionist</div>
+                {open.vapi_assistant_id ? (
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12, fontSize: 13.5, color: "#18b26b", fontWeight: 600 }}>
+                    ✓ Built and ready. The client can test-call it from their dashboard.
+                  </div>
+                ) : (
                   <button className="ad-btn go" style={{ width: "100%", marginBottom: 10, padding: "10px" }} onClick={() => autoBuild(open)}>
-                    ⚙ Auto-build their AI now (one click)
+                    ⚙ Build their AI now (one click)
                   </button>
                 )}
-                <div className="ad-field"><label>Vapi assistant ID (set metadata.clientId = {open.id?.slice(0, 8)}…)</label>
-                  <input value={open.vapi_assistant_id || ""} placeholder="0394e019-…" onChange={(e) => setOpen({ ...open, vapi_assistant_id: e.target.value })} /></div>
-                <div className="ad-field"><label>Answup phone number (shown to client with forwarding steps)</label>
-                  <input value={open.answup_number || ""} placeholder="+1 (573) 400-3795" onChange={(e) => setOpen({ ...open, answup_number: e.target.value })} /></div>
+                <div className="ad-field"><label>Their phone number (only needed at go-live)</label>
+                  <input value={open.answup_number || ""} placeholder="Add when you set them live" onChange={(e) => setOpen({ ...open, answup_number: e.target.value })} /></div>
+                <details style={{ marginTop: 4 }}>
+                  <summary style={{ fontSize: 12, color: "var(--muted)", cursor: "pointer" }}>Advanced: assistant ID</summary>
+                  <div className="ad-field" style={{ marginTop: 6 }}>
+                    <input value={open.vapi_assistant_id || ""} placeholder="auto-filled when the AI is built" onChange={(e) => setOpen({ ...open, vapi_assistant_id: e.target.value })} /></div>
+                </details>
 
                 <div className="ad-sep">💬 Chat with this client</div>
                 <Messages clientId={open.id} me="admin" compact />
