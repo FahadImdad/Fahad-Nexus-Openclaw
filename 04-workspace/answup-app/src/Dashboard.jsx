@@ -67,7 +67,7 @@ function Empty({ title, hint }) {
 }
 
 /* ============ SETUP TRACKER (client home until live) ============ */
-function SetupTracker({ client }) {
+function SetupTracker({ client, onGoToMessages }) {
   const [testCall, setTestCall] = useState("idle"); // idle | connecting | live
   const status = client?.status || "pending_review";
   // stage: 1 received, 2 building, 3 test & approve, 4 live
@@ -102,19 +102,14 @@ function SetupTracker({ client }) {
 
       <div className="dz-grid" style={{ marginTop: 16 }}>
         <motion.div className="dz-card" variants={rise} custom={1} initial="hidden" animate="show">
-          <div className="dz-card-head"><h3>What we're doing right now</h3></div>
-          <p style={{ fontSize: 14.5, color: "var(--ink2)", lineHeight: 1.65 }}>
-            {stage === 1 && <>Our team is reviewing <b>{client?.business_name || "your business"}</b>. We check your trade, service area, and call volume fit, then start building your AI receptionist. You'll get an email from us within a few hours.</>}
-            {stage === 2 && <>We're building the AI for <b>{client?.business_name}</b>: your greeting, your service area ({client?.service_area || "as provided"}), emergency rules for {client?.trade || "your trade"}, and lead capture. Next you'll test-call it, and once your first invoice is paid we switch it live on your dedicated number.</>}
+          <div className="dz-card-head"><h3>Your next step</h3></div>
+          <p style={{ fontSize: 14.5, color: "var(--ink2)", lineHeight: 1.6, marginBottom: 4 }}>
+            {client?.vapi_assistant_id && client?.status === "building"
+              ? "Your AI is ready. Hear it, then activate it."
+              : stage === 1
+                ? "We're on it. You'll hear from us within a few hours."
+                : "Answer our question in the chat — that's all we need."}
           </p>
-          <div className="st-todo">
-            <b>What you need to do</b>
-            <span>{client?.vapi_assistant_id
-              ? "Your AI is already built. Test-call it right here in your browser, then tell us any tweaks in Messages."
-              : client?.answup_number
-                ? "Call your Answup number above, hear your AI, then tell us what to tweak in Messages."
-                : "Just one thing: open the Messages tab and tell us how you want your AI to greet callers. Everything else is on us."}</span>
-          </div>
           {client?.vapi_assistant_id && VAPI_PUBLIC_KEY && client?.status === "building" && (
             <button className={`btn ${testCall === "live" ? "btn-soft" : "btn-grad"}`} style={{ width: "100%", marginTop: 12 }}
               disabled={testCall === "connecting"}
@@ -144,20 +139,11 @@ function SetupTracker({ client }) {
           )}
         </motion.div>
 
-        <motion.div className="dz-card" variants={rise} custom={2} initial="hidden" animate="show">
-          <div className="dz-card-head"><h3>Your submission</h3></div>
-          <div className="lz-row"><span>Business</span><b>{client?.business_name || "—"}</b></div>
-          <div className="lz-row"><span>Trade</span><b>{client?.trade || "—"}</b></div>
-          <div className="lz-row"><span>Phone</span><b>{client?.phone || "—"}</b></div>
-          <div className="lz-row"><span>Area</span><b style={{ maxWidth: 170 }}>{client?.service_area || "—"}</b></div>
-          <div className="lz-row"><span>Coverage</span><b>{client?.hours || "—"}</b></div>
-          <div className="lz-row"><span>Plan</span><b>{planLabel[client?.plan] || "—"}</b></div>
-          <div className="st-manager">
-            <div className="st-mgr-av">MF</div>
-            <div style={{ flex: 1 }}><b>Muhammad Fahad</b><small>Your account manager · replies within hours</small></div>
-            <a href="mailto:fahadimdad966@gmail.com" className="cf-btn" style={{ padding: "9px 14px", fontSize: 12.5 }}>Contact</a>
-          </div>
-        </motion.div>
+        {client?.id && (
+          <motion.div className="dz-card" variants={rise} custom={2} initial="hidden" animate="show">
+            <Messages clientId={client.id} me="client" />
+          </motion.div>
+        )}
       </div>
     </>
   );
@@ -699,11 +685,18 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
   const status = client?.status || (isAdmin ? "live" : "pending_review");
   const isPending = !isAdmin && status !== "live";
 
+  // During setup, clients get ONE simple screen (chat lives on it) + Billing.
+  // The full workspace appears only once they're live and have real data.
   const nav = isAdmin
     ? [
         { k: "signups", l: "Clients", ic: I.shield },
         { k: "inbox", l: "Inbox", ic: I.chat },
         { k: "leads", l: "All Calls", ic: I.users },
+      ]
+    : isPending
+    ? [
+        { k: "overview", l: "Home", ic: I.grid },
+        { k: "billing", l: "Billing", ic: I.card },
       ]
     : [
         { k: "overview", l: "Home", ic: I.grid },
@@ -757,7 +750,7 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
         </header>
 
         {tab === "overview" && (isPending
-          ? <SetupTracker client={client} />
+          ? <SetupTracker client={client} onGoToMessages={() => setTab("messages")} />
           : <>
               {!isAdmin && <ForwardCard client={client} />}
               <Overview calls={calls} client={client} isPending={isPending} onOpenLead={() => setTab("leads")} />
