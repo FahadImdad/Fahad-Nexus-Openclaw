@@ -46,7 +46,26 @@ export default function Admin() {
   const patch = async (id, fields) => {
     setClients((cs) => cs.map((c) => (c.id === id ? { ...c, ...fields } : c)));
     if (open?.id === id) setOpen((o) => ({ ...o, ...fields }));
-    await supabase.from("clients").update({ ...fields, updated_at: new Date().toISOString() }).eq("id", id);
+    const { error } = await supabase.from("clients").update({ ...fields, updated_at: new Date().toISOString() }).eq("id", id);
+    if (error) { alert("Save failed: " + error.message); load(); }
+  };
+
+  // one click builds this client's Vapi assistant via the automation endpoint
+  const autoBuild = async (c) => {
+    const { data: s } = await supabase.auth.getSession();
+    const t = s?.session?.access_token;
+    if (!t) return alert("No session — sign in again.");
+    const r = await fetch("/api/autobuild", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${t}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ clientId: c.id }),
+    });
+    const j = await r.json().catch(() => ({}));
+    if (j.ok) {
+      setClients((cs) => cs.map((x) => (x.id === c.id ? { ...x, vapi_assistant_id: j.assistantId } : x)));
+      if (open?.id === c.id) setOpen((o) => ({ ...o, vapi_assistant_id: j.assistantId }));
+      alert(j.existing ? "Already built — assistant is attached." : "Done! Their AI receptionist is built and wired. They can test-call it from their dashboard now.");
+    } else alert("Auto-build failed: " + (j.reason || j.error || "unknown"));
   };
 
   const saveDrawer = async () => {
@@ -193,6 +212,11 @@ export default function Admin() {
                 <button className="ad-btn" style={{ width: "100%", marginTop: 10, padding: "10px" }} onClick={addInvoice}>＋ Create invoice for this client</button>
 
                 <div className="ad-sep">Vapi wiring (makes calls flow to their dashboard)</div>
+                {!open.vapi_assistant_id && (
+                  <button className="ad-btn go" style={{ width: "100%", marginBottom: 10, padding: "10px" }} onClick={() => autoBuild(open)}>
+                    ⚙ Auto-build their AI now (one click)
+                  </button>
+                )}
                 <div className="ad-field"><label>Vapi assistant ID (set metadata.clientId = {open.id?.slice(0, 8)}…)</label>
                   <input value={open.vapi_assistant_id || ""} placeholder="0394e019-…" onChange={(e) => setOpen({ ...open, vapi_assistant_id: e.target.value })} /></div>
                 <div className="ad-field"><label>Answup phone number (shown to client with forwarding steps)</label>

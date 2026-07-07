@@ -47,7 +47,17 @@ export default async function handler(req, res) {
     const user = userData?.user;
     if (userErr || !user) return res.status(401).json({ error: "invalid token" });
 
-    const { data: client } = await sb.from("clients").select("*").eq("user_id", user.id).single();
+    // Admins can trigger a build for any client (drawer button); clients build their own
+    const ADMIN_EMAILS = ["fahadimdad966@gmail.com", "admin@answup.com"];
+    const clientId = req.body?.clientId;
+    let q = sb.from("clients").select("*");
+    if (clientId) {
+      if (!ADMIN_EMAILS.includes(user.email)) return res.status(403).json({ error: "admins only" });
+      q = q.eq("id", clientId);
+    } else {
+      q = q.eq("user_id", user.id);
+    }
+    const { data: client } = await q.single();
     if (!client) return res.status(404).json({ error: "no client profile" });
     if (client.vapi_assistant_id)
       return res.status(200).json({ ok: true, assistantId: client.vapi_assistant_id, existing: true });
