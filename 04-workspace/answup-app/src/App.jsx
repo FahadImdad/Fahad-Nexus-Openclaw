@@ -114,9 +114,10 @@ function LiveChat() {
   const soundOnRef = useRef(false);
   const [soundOn, setSoundOn] = useState(false);
 
-  // visitor's own mute switch — ON by default, only off if they tap the speaker
-  const userMutedRef = useRef(false);
-  const [userMuted, setUserMuted] = useState(false);
+  // visitor's own mute switch — ON by default, only off if they tap the speaker.
+  // Their choice PERSISTS across refreshes and visits until they unmute.
+  const userMutedRef = useRef(typeof localStorage !== "undefined" && localStorage.getItem("answup-demo-muted") === "1");
+  const [userMuted, setUserMuted] = useState(userMutedRef.current);
   const [sndHint, setSndHint] = useState(true);
   useEffect(() => {
     if (!audioMode) return;   // hint shows once the call is actually playing
@@ -129,6 +130,7 @@ function LiveChat() {
     if (!a) return;
     const next = !userMutedRef.current;
     userMutedRef.current = next; setUserMuted(next);
+    try { localStorage.setItem("answup-demo-muted", next ? "1" : "0"); } catch {}
     if (next) { a.muted = true; return; }           // OFF: animation keeps running, silent
     a.volume = 1;
     if (soundOnRef.current) a.muted = false;        // back ON: unmute right where it is
@@ -242,6 +244,7 @@ function LiveChat() {
     armed.current = true;
     const a = audioRef.current;
     if (!a || soundOnRef.current) return;   // a pre-scroll gesture already unlocked it
+    if (userMutedRef.current) { playAudio().catch(() => {}); return; }  // they chose mute: run the demo silently
     a.muted = false;
     a.play().then(() => {
       soundOnRef.current = true; setSoundOn(true);
