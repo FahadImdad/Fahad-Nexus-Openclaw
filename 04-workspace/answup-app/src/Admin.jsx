@@ -234,6 +234,23 @@ export default function Admin() {
                     {COLUMNS.map((col) => <option key={col.key} value={col.key}>{col.label}</option>)}
                   </select>
                 </div>
+
+                <button className="ad-btn rej" style={{ width: "100%", marginTop: 16, padding: "10px" }}
+                  onClick={async () => {
+                    if (!window.confirm(`PERMANENTLY delete ${open.business_name || "this client"}? This wipes their calls, messages, invoices, AI assistant, and login. Cannot be undone.`)) return;
+                    const { data: s } = await supabase.auth.getSession();
+                    const t = s?.session?.access_token;
+                    const r = await fetch("/api/admin-client", {
+                      method: "POST",
+                      headers: { Authorization: `Bearer ${t}`, "Content-Type": "application/json" },
+                      body: JSON.stringify({ action: "delete", clientId: open.id }),
+                    });
+                    const j = await r.json().catch(() => ({}));
+                    if (j.ok) { alert("Client fully removed."); setOpen(null); load(); }
+                    else alert("Delete failed: " + (j.error || "unknown"));
+                  }}>
+                  🗑 Delete client permanently
+                </button>
               </div>
               <div className="ad-drawer-foot">
                 <button className="ad-cancel" onClick={() => setOpen(null)}>Close</button>
