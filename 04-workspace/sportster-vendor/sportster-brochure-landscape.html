@@ -176,6 +176,9 @@ body{background:#20221f;background-image:radial-gradient(1000px 460px at 50% -6%
 .b2b .nums{gap:7px!important;}
 .b2b .numdev .dev .scr{height:196px!important;}
 .b2b .salesif{transform:scale(.2373)!important;}
+
+/* Brochure 2 embedded screens are static previews (no wheel hijack / partial scroll) */
+.b2f .fan iframe,.b2b .vshot iframe,.b2b .vshot .gymscr,.b2b .numdev iframe{pointer-events:none;/*b2preview*/}
 </style></head><body>
 <div class="toolbar"><span class="tt"><b>Sportster Business</b> vendor brochure, A4 landscape, front and back</span><button class="printbtn" onclick="window.print()">Print or Save as PDF</button></div>
 <div class="stage" id="stage">
