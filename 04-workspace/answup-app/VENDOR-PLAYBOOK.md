@@ -35,15 +35,12 @@ Your tools: **answup.com/admin** (console), **Vapi dashboard** (agents), **Twili
 
 ---
 
-## AUTOMATION STAGE 2 — BUILT AND DEPLOYED, needs 3 keys to switch on
-All code is live. Three one-time pastes by Fahad activate it (security policy forbids the AI from handling these keys):
-
-1. **Auto-build** (assistant creates itself on signup). Get the PRIVATE key at dashboard.vapi.ai → Organization Settings → API Keys. Then in a terminal:
-   `cd 04-workspace\answup-app` then `vercel env add VAPI_PRIVATE_KEY production` (paste key when prompted), then `vercel deploy --prod --yes` (or tell Claude to redeploy).
-2. **In-browser client test call** ("Call your AI" button). Copy the PUBLIC key from the same Vapi page and paste it between the quotes in `src/lib/vapiWeb.js` (`VAPI_PUBLIC_KEY = "..."`). Publishable by design, safe in code. Rebuild + deploy.
-3. **Email alerts** (signup / client message / new call → your inbox). Create a free account at resend.com, copy the API key, then `vercel env add RESEND_API_KEY production` + redeploy. Skippable: without it alerts silently no-op.
-
+## AUTOMATION STAGE 2 — LIVE since 2026-07-07
+1. **Auto-build**: ACTIVE. VAPI_PRIVATE_KEY is in Vercel env; every signup builds its own assistant via /api/autobuild (verified: key authenticates + can create assistants).
+2. **In-browser client test call**: ACTIVE. Public key wired in `src/lib/vapiWeb.js` (file is gitignored; if the repo is cloned fresh, re-add the public key there).
+3. **Email alerts**: code deployed, dormant. To activate: free account at resend.com, copy API key, then in `04-workspace\answup-app`: `vercel env add RESEND_API_KEY production` + `vercel deploy --prod --yes`.
 - **Auto number provisioning** (Twilio number bought by API when you tick Paid): planned, blocked until Twilio voice verification clears.
+- Hygiene note: the Vapi keys passed through a local Claude chat once; rotate them in the Vapi dashboard whenever convenient (then rerun ACTIVATE-AUTOBUILD.bat and update vapiWeb.js).
 
 ## CURRENT TEMPORARY LIMITS
 - Twilio voice verification pending: test via web calls until approved.
