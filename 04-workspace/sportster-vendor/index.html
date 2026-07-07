@@ -14216,6 +14216,10 @@
 .rvw-st{color:#F2A93B;font-size:9.5px;letter-spacing:.5px;}
 .rvw-t{font-size:9.8px;color:#444;line-height:1.45;margin-top:3px;}
 .rvw-m{font-size:8.5px;color:#AAA;margin-top:4px;font-weight:700;}
+
+/* hide scrollbars inside phone screens (content stays scrollable) */
+.phone *{scrollbar-width:none!important;-ms-overflow-style:none!important;}
+.phone *::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;background:transparent!important;}
 </style>
 <script>
 /* TEST merged-screen switchers */
