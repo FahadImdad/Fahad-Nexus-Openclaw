@@ -14778,6 +14778,7 @@
   var m = location.search.match(/[?&]only=([A-Za-z0-9_]+)/);
   if(!m) return;
   var scrollable = /[?&]scroll=1/.test(location.search);
+  var flow = /[?&]flow=1/.test(location.search);
   function run(){
     var col = document.getElementById(m[1]);
     var phone = col && col.querySelector('.phone');
@@ -14788,6 +14789,20 @@
     document.body.appendChild(phone);
     if(fr && fr.parentNode) fr.remove();
     document.documentElement.style.cssText='margin:0;padding:0;background:transparent;';
+    if(flow){
+      // Whole screen becomes one tall, top-anchored scrollable page (releases inner scroll bands).
+      document.body.style.cssText='margin:0;padding:0;background:#fff;overflow-x:hidden;overflow-y:auto;width:100vw;';
+      phone.style.margin='0'; phone.style.position='relative'; phone.style.boxShadow='none';
+      var fst=document.createElement('style');
+      fst.textContent=
+        '.phone{height:auto!important;min-height:0!important;overflow:visible!important;width:375px!important;}'+
+        '.phone .screen{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;display:block!important;}'+
+        '.phone .screen [style*="overflow-y:auto"],.phone .screen [style*="overflow-y: auto"],.phone .screen [style*="overflow:auto"],.phone .screen [style*="overflow: auto"],.phone .screen [style*="overflow-y:scroll"]{overflow:visible!important;height:auto!important;max-height:none!important;flex:0 0 auto!important;}'+
+        '.phone .status-bar,.phone .bottom-nav{position:static!important;}'+
+        '*{scrollbar-width:none!important;-ms-overflow-style:none!important;}*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;}';
+      document.head.appendChild(fst);
+      return;
+    }
     document.body.style.cssText='margin:0;padding:0;background:transparent;overflow:hidden;display:flex;align-items:center;justify-content:center;width:100vw;height:100vh;';
     phone.style.margin='0'; phone.style.flexShrink='0';
     phone.style.position='relative';
