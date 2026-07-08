@@ -5117,6 +5117,19 @@
         </div>
 
         <div class="form-group">
+          <label>Arena <span style="color:#E53935;">*</span> <span style="font-weight:600;color:#AAA;font-size:10px;">— required · pick from your registered arenas</span></label>
+          <div class="chips">
+            <span class="chip selected">🏟️ Elite Sports Arena</span>
+            <span class="chip">Champions Ground</span>
+            <span class="chip">Victory Park</span>
+            <span class="chip">Falcon Turf</span>
+            <span class="chip">Sky Sports</span>
+            <span class="chip">Gladiator Ground</span>
+          </div>
+          <div style="font-size:10px;color:#AAA;margin-top:6px;line-height:1.4;">All matches are hosted at this venue — players see it on the tournament page. You can't publish without one.</div>
+        </div>
+
+        <div class="form-group">
           <label>Sport</label>
           <div class="chips">
             <span class="chip">⚽ Football</span>
@@ -6772,6 +6785,14 @@
           <div style="margin-bottom:11px;">
             <div style="font-size:11px;font-weight:800;color:#333;margin-bottom:5px;">Tournament Name</div>
             <input type="text" value="City Basketball League 2026" style="width:100%;padding:9px 11px;font-size:12px;font-family:inherit;border:1.5px solid #E0E0E0;border-radius:10px;outline:none;color:#333;background:#FAFAFA;box-sizing:border-box;" />
+          </div>
+          <div style="margin-bottom:11px;">
+            <div style="font-size:11px;font-weight:800;color:#333;margin-bottom:5px;">Arena <span style="color:#E53935;">*</span></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:9px 11px;background:#F4F7F2;border-radius:10px;border:1.5px solid #E8EEE0;">
+              <span style="font-size:16px;">🏟️</span>
+              <span style="font-size:12px;font-weight:700;color:#333;">Elite Sports Arena</span>
+              <span style="font-size:10px;font-weight:800;color:#1A6030;margin-left:auto;cursor:pointer;">Change ›</span>
+            </div>
           </div>
           <div style="margin-bottom:11px;">
             <div style="font-size:11px;font-weight:800;color:#333;margin-bottom:5px;">Sport</div>
@@ -10191,8 +10212,11 @@
 .gym-mod-ref .grp h3.gm-grp{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#334;border-bottom:2px solid var(--gm-navy);display:inline-block;padding-bottom:6px;margin:0}
 
 /* ---- Device frame ---- */
-.gym-mod-ref .device{width:380px;background:var(--gm-page);border-radius:34px;overflow:hidden;border:10px solid #10151b;box-shadow:0 18px 40px rgba(20,32,48,.18);position:relative}
-.gym-mod-ref .device .scr{position:relative;display:flex;flex-direction:column;min-height:300px}
+.gym-mod-ref .device{width:380px;height:812px;background:var(--gm-page);border-radius:34px;overflow:hidden;border:10px solid #10151b;box-shadow:0 18px 40px rgba(20,32,48,.18);position:relative}
+.gym-mod-ref .device .scr{position:relative;display:flex;flex-direction:column;height:100%}
+.gym-mod-ref .scr>div:not(.gbody){flex-shrink:0}
+.gym-mod-ref .device *{scrollbar-width:none;-ms-overflow-style:none}
+.gym-mod-ref .device *::-webkit-scrollbar{display:none;width:0;height:0}
 
 /* Faux android status bar */
 .gym-mod-ref .statusbar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px 4px;font-size:11px;font-weight:700;color:var(--gm-ink);background:var(--gm-page)}
@@ -10215,7 +10239,7 @@
 .gym-mod-ref .hstatus.danger{color:#fff;background:var(--gm-danger);border-color:var(--gm-danger)}
 
 /* Body */
-.gym-mod-ref .gbody{background:var(--gm-page);padding:14px;display:flex;flex-direction:column;gap:12px;flex:1}
+.gym-mod-ref .gbody{background:var(--gm-page);padding:14px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;overflow-y:auto}
 .gym-mod-ref .gbody.surface{background:var(--gm-surface)}
 .gym-mod-ref .gbody.pb{padding-bottom:20px}
 
@@ -10334,6 +10358,8 @@
 
 /* Slot manager states */
 .gym-mod-ref .slot{position:relative}
+.gym-mod-ref .slot.pend{background:linear-gradient(145deg,#BF5500,#F08A00);border-color:transparent;color:#fff}
+.gym-mod-ref .slot.pend .t{color:#fff}
 .gym-mod-ref .slot.sel{background:linear-gradient(145deg,#1E3A5F,#2E6AAA);border-color:transparent;color:#fff}
 .gym-mod-ref .slot.sel .t{color:#fff}
 .gym-mod-ref .slot.disc{background:linear-gradient(145deg,#FFE0A0,#FFD080);border-color:#E0A030;color:#7A5200}
@@ -10410,7 +10436,7 @@
     <a href="#gm-s04">Add Gym 1</a><a href="#gm-s05">Add Gym 2</a><a href="#gm-s06">Add Gym 3</a><a href="#gm-s07">Add Gym 4</a>
     <a href="#gm-s08">View Gym</a><a href="#gm-s09">Edit Gym</a>
     <a href="#gm-s10">Bookings</a><a href="#gm-s11">Booking Detail</a><a href="#gm-s12">Booking Confirmation</a>
-    <a href="#gm-s13">Slot Manager</a><a href="#gm-s13b">Manage Sheet</a><a href="#gm-s13c">Slot Settings</a><a href="#gm-s13d">Hourly Packages</a><a href="#gm-s20">Members</a><a href="#gm-s21">Requests</a><a href="#gm-s22">Add Member</a><a href="#gm-s23">Plans</a><a href="#gm-s14">Analytics</a><a href="#gm-s15">Reviews</a>
+    <a href="#gm-s13">Schedule + Slots</a><a href="#gm-s13b">Manage Sheet</a><a href="#gm-s13c">Slot Settings</a><a href="#gm-s13d">Hourly Packages</a><a href="#gm-s20">Members</a><a href="#gm-s21">Requests</a><a href="#gm-s22">Add Member</a><a href="#gm-s23">Plans</a><a href="#gm-s14">Analytics</a><a href="#gm-s15">Reviews</a>
     <a href="#gm-s16">Notifications</a><a href="#gm-s17">Alerts Hub</a><a href="#gm-s18">Manage</a><a href="#gm-s19">Components</a>
   </div>
 </header>
@@ -10532,6 +10558,14 @@
           <span class="chip">👩 Women only</span><span class="chip">🧘 Yoga</span><span class="chip">🅿️ Parking</span>
         </div>
       </div>
+    </div>
+    <div class="gnav">
+      <div class="item on"><span class="pillbg"></span><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item"><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
     </div>
   </div></div>
 </section>
@@ -11275,6 +11309,14 @@
       <div class="btn primary block" style="margin-top:8px;height:52px;letter-spacing:.04em">✎ Edit Gym</div>
       <div class="fs11 muted" style="text-align:center;margin-top:4px">Last updated 2h ago</div>
     </div>
+    <div class="gnav">
+      <div class="item"><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item"><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item on"><span class="pillbg"></span><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
+    </div>
   </div></div>
 </section>
 <!-- ============ S09 · EditGym — single-screen form editor ============ -->
@@ -11649,17 +11691,17 @@
     </div>
   </div></div>
 </section>
-<!-- ============ S13 · GymSlotManagerActivity — hourly slot manager ============ -->
+<!-- ============ S13 · GymScheduleActivity — Schedule | Slots toggle ============ -->
 <section class="gm-screen" id="gm-s13">
-  <h3 class="s-title"><span class="flow-badge">Hourly</span> Slot Manager</h3>
-  <p class="s-sub">Select free slots, then block, re-price or discount them · same model as arenas · activity_gym_slot_grid.xml</p>
+  <h3 class="s-title"><span class="flow-badge">Hourly</span> Schedule + Slots</h3>
+  <p class="s-sub">One screen, two modes — Schedule shows the day's bookings; Slots is the manage view (block · re-price · discount). Toggle is live, try it.</p>
   <div class="device"><div class="scr">
     <div class="ghead">
       <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
       <div class="ghead-top">
         <div class="hbtn"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
         <div class="grow">
-          <div class="eyebrow">🏋️ Slot Manager</div>
+          <div class="eyebrow">🏋️ SCHEDULE</div>
           <div class="title hero">IronCore Fitness · Fri 25 Apr</div>
         </div>
         <span class="gm-managebtn"><svg class="ic i16"><use href="#gm-i-sliders"/></svg>Manage 3</span>
@@ -11677,51 +11719,116 @@
         <div class="dchip"><div>Fri</div><div class="n">2</div><div>May</div></div>
         <div class="dchip"><div>Sat</div><div class="n">3</div><div>May</div></div>
         <div class="dchip"><div>Sun</div><div class="n">4</div><div>May</div></div>
-        <div class="dchip"><div>Mon</div><div class="n">5</div><div>May</div></div>
-        <div class="dchip"><div>Tue</div><div class="n">6</div><div>May</div></div>
       </div>
     </div>
 
-    <div class="gbody surface pb">
-      <!-- counts + legend + hint -->
+    <!-- SELECT GYM (matches arena/PC selector pattern) -->
+    <div style="background:var(--gm-page);border-bottom:1px solid var(--gm-stroke);padding:8px 14px 9px;flex-shrink:0">
+      <div style="font-size:9px;font-weight:800;color:var(--gm-muted);letter-spacing:.4px;margin-bottom:6px">SELECT GYM</div>
+      <div class="wrap">
+        <span class="chip on">IronCore Fitness</span>
+        <span class="chip">PowerHouse</span>
+        <span class="chip">FlexZone Ladies</span>
+      </div>
+    </div>
+
+    <!-- ── PANE 1 · SCHEDULE (bookings view) ── -->
+    <div class="gbody surface pb" id="gym-pane-sched">
+      <div class="stats">
+        <div class="stat"><div class="k">Confirmed</div><div class="v" style="color:var(--gm-live)">6</div></div>
+        <div class="stat"><div class="k">Pending</div><div class="v" style="color:#E65100">2</div></div>
+        <div class="stat"><div class="k">Available</div><div class="v">8</div></div>
+        <div class="stat"><div class="k">Blocked</div><div class="v" style="color:#78909C">2</div></div>
+      </div>
+
+      <div class="card tight plain">
+        <div class="legendrow">
+          <span><span class="d" style="background:var(--gm-live)"></span>Confirmed</span>
+          <span><span class="d" style="background:linear-gradient(145deg,#BF5500,#F08A00)"></span>Pending 📸</span>
+          <span><span class="d" style="background:var(--gm-chip-on);border:1px solid var(--gm-accent)"></span>Available</span>
+          <span><span class="d" style="background:#37474F"></span>Blocked</span>
+        </div>
+        <div class="help" style="margin-top:8px">Tap a booked slot for the booking detail · switch to <b style="color:var(--gm-navy)">Slots</b> below to block, re-price or discount.</div>
+      </div>
+
+      <div class="slotgrid">
+        <div class="slot avail"><div class="t">6 AM</div>Rs 250</div>
+        <div class="slot avail"><div class="t">7 AM</div>Rs 250</div>
+        <div class="slot booked"><div class="t">8 AM</div>Ayesha K.</div>
+        <div class="slot booked"><div class="t">9 AM</div>Bilal A.</div>
+
+        <div class="slot pend"><div class="t">10 AM</div>Usman T. 📸</div>
+        <div class="slot pend"><div class="t">11 AM</div>Usman T. 📸</div>
+        <div class="slot avail"><div class="t">12 PM</div>Rs 250</div>
+        <div class="slot booked"><div class="t">1 PM</div>Hamza S.</div>
+
+        <div class="slot avail"><div class="t">2 PM</div>Rs 250</div>
+        <div class="slot blocked"><div class="t">3 PM</div>Closed</div>
+        <div class="slot avail"><div class="t">4 PM</div>Rs 250</div>
+        <div class="slot booked"><div class="t">5 PM</div>Fatima N.</div>
+
+        <div class="slot booked"><div class="t">6 PM</div>Zain &amp; T.</div>
+        <div class="slot avail"><div class="t">7 PM</div>Rs 300</div>
+        <div class="slot avail"><div class="t">8 PM</div>Rs 300</div>
+        <div class="slot blocked"><div class="t">9 PM</div>Closed</div>
+      </div>
+    </div>
+
+    <!-- ── PANE 2 · SLOTS (manage view) ── -->
+    <div class="gbody surface pb" id="gym-pane-slots" style="display:none">
       <div class="card tight plain">
         <div class="legendrow">
           <span><span class="d" style="background:var(--gm-chip-on);border:1px solid var(--gm-accent)"></span>8 available</span>
-          <span><span class="d" style="background:var(--gm-live)"></span>3 booked</span>
+          <span><span class="d" style="background:var(--gm-live)"></span>5 booked</span>
           <span><span class="d" style="background:linear-gradient(145deg,#1E3A5F,#2E6AAA)"></span>3 selected</span>
-          <span><span class="d" style="background:#37474F"></span>1 blocked</span>
+          <span><span class="d" style="background:#37474F"></span>2 blocked</span>
           <span><span class="d" style="background:linear-gradient(145deg,#FFE0A0,#FFD080);border:1px solid #E0A030"></span>1 % off</span>
         </div>
         <div class="help" style="margin-top:8px">Tap free slots to select · then <b style="color:var(--gm-navy)">Manage</b> to block, re-price or offer a discount. Booked slots can't be edited.</div>
       </div>
 
-      <!-- hourly slot grid with selection + discount states -->
       <div class="slotgrid">
         <div class="slot avail"><div class="t">6 AM</div>Rs 250</div>
         <div class="slot avail"><div class="t">7 AM</div>Rs 250</div>
         <div class="slot booked"><div class="t">8 AM</div>Booked</div>
-        <div class="slot avail"><div class="t">9 AM</div>Rs 250</div>
+        <div class="slot booked"><div class="t">9 AM</div>Booked</div>
 
         <div class="slot sel"><div class="t">10 AM</div>Selected</div>
         <div class="slot sel"><div class="t">11 AM</div>Selected</div>
-        <div class="slot booked"><div class="t">12 PM</div>Booked</div>
-        <div class="slot avail"><div class="t">1 PM</div>Rs 250</div>
+        <div class="slot avail"><div class="t">12 PM</div>Rs 250</div>
+        <div class="slot booked"><div class="t">1 PM</div>Booked</div>
 
         <div class="slot avail"><div class="t">2 PM</div>Rs 250</div>
         <div class="slot blocked"><div class="t">3 PM</div>Closed</div>
         <div class="slot sel"><div class="t">4 PM</div>Selected</div>
-        <div class="slot avail"><div class="t">5 PM</div>Rs 300</div>
+        <div class="slot booked"><div class="t">5 PM</div>Booked</div>
 
         <div class="slot booked"><div class="t">6 PM</div>Booked</div>
         <div class="slot disc"><span class="off-badge">-20%</span><div class="t">7 PM</div>Rs 240</div>
         <div class="slot avail"><div class="t">8 PM</div>Rs 300</div>
-        <div class="slot avail"><div class="t">9 PM</div>Rs 250</div>
+        <div class="slot blocked"><div class="t">9 PM</div>Closed</div>
       </div>
 
-      <!-- base price note -->
       <div class="card" style="background:var(--gm-chip-on);border-color:#cfe0f2">
-        <div class="fs11" style="color:var(--gm-navy-2)">💡 Prices shown are the <b>Basic package</b> base rate for this day type. Change day pricing in <b>Slot Settings</b> · richer packages are managed in <b>Hourly Packages</b>.</div>
+        <div class="fs11" style="color:var(--gm-navy-2)">💡 Prices shown are the <b>Basic package</b> base rate for this day type. Change day pricing in <b>Slot Settings</b> · richer packages in <b>Hourly Packages</b>.</div>
       </div>
+    </div>
+
+    <!-- Schedule | Slots toggle -->
+    <div style="background:var(--gm-page);border-top:1px solid var(--gm-stroke);padding:8px 14px;flex-shrink:0">
+      <div style="display:flex;background:var(--gm-surface-alt);border-radius:12px;padding:3px">
+        <button id="gym-tog-sched" onclick="gymTog(0)" style="flex:1;border:none;border-radius:10px;padding:8px 6px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;background:#1E3A5F;color:#fff">📅 Schedule</button>
+        <button id="gym-tog-slots" onclick="gymTog(1)" style="flex:1;border:none;border-radius:10px;padding:8px 6px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;background:transparent;color:#3E6491">⚙️ Slots</button>
+      </div>
+    </div>
+
+    <div class="gnav">
+      <div class="item"><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item on"><span class="pillbg"></span><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item"><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
     </div>
   </div></div>
 </section>
@@ -11931,6 +12038,14 @@
 
       <div class="btn outline block"><svg class="ic i16"><use href="#gm-i-plus"/></svg> Add Package</div>
       <div class="fs11 muted" style="text-align:center">Add services to a package to justify a higher hourly rate.</div>
+    </div>
+    <div class="gnav">
+      <div class="item"><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item"><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item on"><span class="pillbg"></span><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
     </div>
   </div></div>
 </section>
@@ -12232,6 +12347,14 @@
 
       <div class="btn outline block"><svg class="ic i16"><use href="#gm-i-plus"/></svg> Add Plan · any duration</div>
     </div>
+    <div class="gnav">
+      <div class="item"><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item on"><span class="pillbg"></span><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item"><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
+    </div>
   </div></div>
 </section>
 
@@ -12316,6 +12439,14 @@
         </div>
       </div>
     </div>
+    <div class="gnav">
+      <div class="item"><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item"><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item on"><span class="pillbg"></span><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
+    </div>
   </div></div>
 </section>
 <!-- ============ S15 · GymReviewsActivity — Customer Reviews ============ -->
@@ -12379,6 +12510,14 @@
         <div class="fs13" style="margin-top:10px">AC wasn't working during my session. Hope they fix it soon.</div>
         <div class="btn ghost block" style="margin-top:12px;font-size:13px">+ Reply</div>
       </div>
+    </div>
+    <div class="gnav">
+      <div class="item"><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item"><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item on"><span class="pillbg"></span><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
     </div>
   </div></div>
 </section>
@@ -12453,6 +12592,14 @@
       <div class="lrow" style="align-items:flex-start"><div class="lead">❌</div><div class="grow"><div class="strong fs14">You rejected Usman Tariq</div><div class="fs12 muted" style="margin-top:2px">Sat 30 May · 9:00 PM · 2 hr · Rs 600</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ PowerHouse Gym — Clifton</span></div><span class="fs11 muted" style="flex:none">3d ago</span></div>
       <div class="lrow" style="align-items:flex-start"><div class="lead">🚫</div><div class="grow"><div class="strong fs14">Zainab Ali cancelled</div><div class="fs12 muted" style="margin-top:2px">Fri 29 May · 5:00 PM · 1 hr · Rs 200</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ FlexZone Ladies Only</span></div><span class="fs11 muted" style="flex:none">4d ago</span></div>
       <div class="lrow" style="align-items:flex-start"><div class="lead navy">⭐</div><div class="grow"><div class="strong fs14">Fatima Noor left a review</div><div class="fs12 muted ell" style="margin-top:2px">★★★★★ · Loved the ladies-only hours.</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ FlexZone Ladies Only</span></div><span class="fs11 muted" style="flex:none">2d ago</span></div>
+    </div>
+    <div class="gnav">
+      <div class="item"><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item on"><span class="pillbg"></span><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
     </div>
   </div></div>
 </section>
@@ -12578,6 +12725,17 @@
   Sportster Business · Gym module UI reference — generated from the app's Android layouts for design handoff.
 </footer>
 </div>
+<script>
+/* gym module: Schedule|Slots toggle */
+function gymTog(idx){
+  var p=[document.getElementById('gym-pane-sched'),document.getElementById('gym-pane-slots')];
+  var b=[document.getElementById('gym-tog-sched'),document.getElementById('gym-tog-slots')];
+  for(var i=0;i<2;i++){
+    if(p[i])p[i].style.display=(i===idx)?'flex':'none';
+    if(b[i]){b[i].style.background=(i===idx)?'#1E3A5F':'transparent';b[i].style.color=(i===idx)?'#fff':'#3E6491';}
+  }
+}
+</script>
 <!-- ============ END GYM MODULE UI REFERENCE ============ -->
 
 
@@ -17218,6 +17376,14 @@
           <div style="margin-bottom:11px;">
             <div style="font-size:11px;font-weight:800;color:#333;margin-bottom:5px;">Tournament Name</div>
             <input type="text" value="City FIFA League 2026" style="width:100%;padding:9px 11px;font-size:12px;font-family:inherit;border:1.5px solid #E0E0E0;border-radius:10px;outline:none;color:#333;background:#FAFAFA;box-sizing:border-box;" />
+          </div>
+          <div style="margin-bottom:11px;">
+            <div style="font-size:11px;font-weight:800;color:#333;margin-bottom:5px;">Gaming Arena <span style="color:#E53935;">*</span></div>
+            <div style="display:flex;align-items:center;gap:8px;padding:9px 11px;background:#F4F2FA;border-radius:10px;border:1.5px solid #E0D4F5;">
+              <span style="font-size:16px;">🕹️</span>
+              <span style="font-size:12px;font-weight:700;color:#333;">Nexus Gaming Lounge</span>
+              <span style="font-size:10px;font-weight:800;color:#7C5BE0;margin-left:auto;cursor:pointer;">Change ›</span>
+            </div>
           </div>
           <div style="margin-bottom:11px;">
             <div style="font-size:11px;font-weight:800;color:#333;margin-bottom:5px;">Game</div>
