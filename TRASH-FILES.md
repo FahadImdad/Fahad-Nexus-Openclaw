@@ -19,3 +19,4 @@
 - 2026-07-05: moved 'iphone call.mp3' (duplicate of answup-app/public/audio/demo-call.mp3) to TRASH
 - answup-sound-always-ON.reg (Desktop copy), answup-sound-always-ON-repo.reg, answup-sound-always-UNDO.reg — machine-specific Chrome autoplay policy files, obsoleted 2026-07-05 by user's 'no biased actions' instruction (universal ring-until-touch solution shipped instead)
 - 2026-07-08  sportster-brochure-2.html — standalone copy; merged into sportster-brochure-landscape.html (4 sheets) so both brochures share one link
+- 2026-07-08: TRASH/tryinstantfit-extract/ - PDF extraction intermediates (page refs, layer images, text dump) from building tryinstantfit-brochure; final renders kept in 04-workspace/tryinstantfit-brochure/assets
