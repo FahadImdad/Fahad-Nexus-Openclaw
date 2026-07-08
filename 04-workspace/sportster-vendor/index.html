@@ -18206,19 +18206,32 @@ function gymTog(idx){
 <script>
 /* ?only=<screenId> : isolate one phone screen full-viewport (used by the brochure embeds). No param = normal gallery. */
 (function(){
-  var m = location.search.match(/[?&]only=([A-Za-z0-9_]+)/);
+  var m = location.search.match(/[?&]only=([A-Za-z0-9_-]+)/);
   if(!m) return;
   var scrollable = /[?&]scroll=1/.test(location.search);
   var flow = /[?&]flow=1/.test(location.search);
   var paneM = location.search.match(/[?&]pane=(\d+)/);
   function run(){
     var col = document.getElementById(m[1]);
-    var phone = col && col.querySelector('.phone');
+    var phone = col && (col.querySelector('.phone') || col.querySelector('.device'));
     if(!phone){ setTimeout(run,120); return; }
-    var scr = phone.querySelector('.screen');
-    if(scr) scr.classList.add('active');
+    var isGym = phone.classList.contains('device');
+    var scr = phone.querySelector('.screen') || (isGym ? phone.querySelector('.scr') : null);
+    if(scr && !isGym) scr.classList.add('active');
     var fr = document.getElementById('flow-row');
-    document.body.appendChild(phone);
+    if(isGym){
+      // gym-module screens live in a namespaced wrapper whose <style> must survive isolation
+      var gw = phone.closest('.gym-mod-ref');
+      if(gw){ var gst = gw.querySelector('style'); if(gst) document.head.appendChild(gst); }
+      var wrap = document.createElement('div');
+      wrap.className = 'gym-mod-ref';
+      wrap.style.cssText = 'background:transparent;padding:0;margin:0;';
+      wrap.appendChild(phone);
+      document.body.appendChild(wrap);
+      if(gw && gw.parentNode) gw.remove();
+    } else {
+      document.body.appendChild(phone);
+    }
     if(fr && fr.parentNode) fr.remove();
     if(paneM){ (function(pn){ setTimeout(function(){ try{ var root=phone.querySelector('[data-mg-names]')||document.querySelector('[data-mg-names]'); if(root&&root.id&&typeof mgTo==='function') mgTo(root.id, pn); }catch(e){} }, 260); })(parseInt(paneM[1],10)); }
     document.documentElement.style.cssText='margin:0;padding:0;background:transparent;';
@@ -18232,6 +18245,9 @@ function gymTog(idx){
         '.phone .screen{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;display:block!important;}'+
         '.phone .screen [style*="overflow-y:auto"],.phone .screen [style*="overflow-y: auto"],.phone .screen [style*="overflow:auto"],.phone .screen [style*="overflow: auto"],.phone .screen [style*="overflow-y:scroll"]{overflow:visible!important;height:auto!important;max-height:none!important;flex:0 0 auto!important;}'+
         '.phone .status-bar,.phone .bottom-nav{position:static!important;}'+
+        '.gym-mod-ref .device{height:auto!important;overflow:visible!important;}'+
+        '.gym-mod-ref .device .scr{height:auto!important;}'+
+        '.gym-mod-ref .gbody{overflow:visible!important;flex:0 0 auto!important;}'+
         '*{scrollbar-width:none!important;-ms-overflow-style:none!important;}*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important;}';
       document.head.appendChild(fst);
       return;
