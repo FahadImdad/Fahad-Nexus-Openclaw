@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Try Instant Fit — Brochure (HTML Edition)</title>
+<meta name="description" content="Try Instant Fit — AI-powered virtual try-on for modern fashion businesses. Fully coded HTML brochure.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237b5cf0'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='bold' fill='white' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1d1b4f; --body:#4b4864; --mut:#6b6885;
+  --vio:#7a5cf5; --vio-d:#6248d8; --blue:#4d7cf6;
+  --grad:linear-gradient(105deg,#7a5cf5 15%,#4d7cf6 85%);
+  --line:#e6e0f4; --card:#ffffff;
+  --ser:"Playfair Display",Georgia,serif; --san:"Poppins","Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#191722;background-image:radial-gradient(1100px 500px at 50% -8%,#2a2540,transparent 62%);font-family:var(--san);color:#e7e4f2;-webkit-font-smoothing:antialiased;padding:24px 14px 60px;min-height:100vh}
+.toolbar{max-width:1123px;margin:0 auto 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.toolbar .tt{font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:#a49fc0}
+.toolbar .tt b{color:#fff}
+.printbtn{font-family:var(--san);font-weight:700;font-size:13px;color:#fff;background:linear-gradient(135deg,#7a5cf5,#4d7cf6);border:none;border-radius:10px;padding:10px 18px;cursor:pointer;box-shadow:0 6px 18px rgba(102,80,220,.45)}
+.stage{max-width:1123px;margin:0 auto;width:100%}
+.frame{width:100%;margin:0 auto 28px;position:relative}
+.frame .cap{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:#8f89ad;margin:0 0 8px 2px}
+.sheet{width:1123px;height:794px;transform-origin:top left;position:relative;overflow:hidden;border-radius:6px;box-shadow:0 28px 70px rgba(0,0,0,.55);background:#fff;color:var(--ink)}
+.sheet a{color:inherit;text-decoration:none}
+.abs{position:absolute}
+img{display:block}
+
+/* ============ SHEET 1 — TRI-FOLD FRONT ============ */
+.panel{position:absolute;top:0;bottom:0;overflow:hidden}
+.pL{left:0;width:338px;background:
+  radial-gradient(420px 260px at -10% 6%,rgba(216,202,240,.38),transparent 60%),
+  radial-gradient(360px 300px at 110% 55%,rgba(228,217,246,.22),transparent 65%),
+  linear-gradient(175deg,#faf8fd 0%,#f5f1fb 55%,#f8f5fc 100%)}
+.pC{left:342px;width:444px;background:
+  radial-gradient(400px 240px at 50% -6%,rgba(228,219,248,.35),transparent 65%),
+  linear-gradient(180deg,#fbf9fe 0%,#f6f2fc 60%,#f8f6fd 100%)}
+.pR{left:790px;width:333px;background:
+  radial-gradient(380px 300px at 115% 30%,rgba(225,209,244,.35),transparent 60%),
+  linear-gradient(180deg,#faf8fd 0%,#f5f1fb 58%,#f8f5fc 100%)}
+
+/* left panel */
+.for{font-family:var(--ser);font-style:italic;font-weight:600;font-size:27px;color:var(--ink);left:60px;top:10px}
+.fr{font-family:var(--ser);font-weight:700;font-size:45px;line-height:.94;letter-spacing:.005em;color:var(--ink);left:46px;top:42px;margin:0}
+.sub1{left:47px;top:130px;font-size:12.6px;font-weight:500;color:#33304e;margin:0}
+.sub2{left:47px;top:149px;font-size:12.6px;font-weight:500;color:#33304e;margin:0}
+.sub2 b{color:var(--vio);font-weight:600}
+.prod{border-radius:11px;overflow:hidden;box-shadow:0 6px 18px rgba(60,45,110,.14)}
+.prod img{width:100%;height:100%;object-fit:cover}
+.plabel{font-size:11px;font-weight:600;color:#242143;text-align:center;line-height:1.25}
+.chev{color:var(--vio)}
+.scanttl{left:21px;top:358px;font-size:12.5px;font-weight:700;color:var(--vio)}
+.qrbig{left:33px;top:383px;width:95px;height:95px;border-radius:8px}
+.linkrow{left:141px;top:391px;display:flex;align-items:center;gap:7px;font-size:11px;font-weight:600;color:#242143}
+.pill{left:139px;top:412px;width:168px;height:29px;background:#fff;border:1px solid #ddd5f0;border-radius:14px;box-shadow:0 3px 9px rgba(70,50,140,.10);display:flex;align-items:center;justify-content:center;font-size:9.6px;font-weight:600;color:var(--vio)}
+.sharerow{left:141px;top:451px;display:flex;align-items:center;gap:14px;font-size:10.3px;font-weight:500;color:#33304e}
+.sharerow span{display:flex;align-items:center;gap:5px}
+.laptop{left:50px;top:479px;width:288px;border-radius:6px;mix-blend-mode:multiply}
+.shield{left:57px;top:713px}
+.priv1{left:88px;top:714px;font-family:var(--ser);font-weight:700;font-size:13.5px;color:var(--ink)}
+.priv2{left:88px;top:735px;font-size:9.8px;font-weight:500;color:#57546f}
+.flowersL{left:0;bottom:0;width:96px;mix-blend-mode:multiply;-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent 98%);mask-image:linear-gradient(90deg,#000 55%,transparent 98%)}
+
+/* center panel — positions relative to .pC */
+.hlogo{left:50%;transform:translateX(-50%);top:16px;height:50px;mix-blend-mode:multiply}
+.kick{left:0;width:100%;text-align:center;font-size:9px;font-weight:600;letter-spacing:.30em;color:var(--ink)}
+.kick b{color:var(--vio);font-weight:600}
+.k1{top:78px}.k2{top:94px}
+.spk{left:0;width:100%;text-align:center;color:var(--vio);font-size:9px;top:112px}
+.let{left:0;width:100%;text-align:center;font-family:var(--ser);font-weight:700;font-size:47px;line-height:1;color:var(--ink);top:124px}
+.try{left:0;width:100%;text-align:center;font-family:var(--ser);font-weight:800;font-size:64px;line-height:1;top:167px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bef{left:0;width:100%;text-align:center;font-family:var(--ser);font-weight:700;font-size:33px;line-height:1;color:var(--ink);top:226px}
+.phone{left:131px;top:262px;width:174px;border-radius:26px;box-shadow:0 18px 40px rgba(50,35,110,.25)}
+.co{background:rgba(255,255,255,.92);border:1px solid #ece7f8;border-radius:12px;box-shadow:0 6px 16px rgba(70,50,140,.10);padding:9px 10px}
+.co h5{margin:0 0 3px;font-size:9.3px;font-weight:700;color:var(--ink);letter-spacing:.02em;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.co h5 svg{flex:0 0 auto}
+.co p{margin:0;font-size:8.6px;line-height:1.38;font-weight:500;color:#55526e}
+.co.icontop h5{display:block;white-space:normal}
+.co.icontop h5 svg{margin-bottom:4px}
+.cnx{background:#b9a8ef;height:1px}
+.how{left:0;width:100%;text-align:center;top:593px;font-family:var(--ser);font-weight:800;font-size:20px;color:var(--ink)}
+.how i{font-style:normal;color:var(--vio);font-size:11px;position:relative;top:-3px}
+.stepimg{border-radius:9px;overflow:hidden;box-shadow:0 5px 14px rgba(60,45,110,.16)}
+.stepimg img{width:100%;height:100%;object-fit:cover}
+.s2card{position:relative;background:#fff;border:1px solid #eee9f9;border-radius:9px;box-shadow:0 5px 14px rgba(60,45,110,.14);padding:4px 5px;text-align:center}
+.s2card .t{font-size:6.5px;font-weight:700;color:var(--vio);white-space:nowrap}
+.s2card img{width:48px;height:48px;margin:1px auto 2px}
+.s2card .l{font-weight:600;color:#33304e;white-space:nowrap;line-height:1.1}
+.s2card .l span{display:inline-block;font-size:8px;transform:scale(.68);transform-origin:center;white-space:nowrap}
+.s2card .l svg{vertical-align:middle;margin-right:1px}
+.s2card .p{margin-top:2px;background:#fff;border:1px solid #e4dcf5;border-radius:7px;font-weight:600;color:var(--vio);padding:1px 0;white-space:nowrap;overflow:hidden;line-height:1}
+.s2card .p span{display:inline-block;font-size:8px;transform:scale(.56);transform-origin:center;letter-spacing:0}
+.schev{color:var(--vio)}
+.scap{position:absolute;display:flex;gap:5px;align-items:flex-start}
+.scap .n{width:13px;height:13px;border-radius:50%;background:var(--vio);color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:0 0 auto;margin-top:1px}
+.scap .x{font-size:9px;line-height:1.3;font-weight:500;color:#2c2947;white-space:nowrap}
+
+/* right panel — positions relative to .pR */
+.rack{right:0;top:455px;width:98px;mix-blend-mode:multiply;-webkit-mask-image:linear-gradient(270deg,#000 60%,transparent 100%);mask-image:linear-gradient(270deg,#000 60%,transparent 100%)}
+.bagimg{right:0;bottom:0;width:194px;mix-blend-mode:multiply;-webkit-mask-image:linear-gradient(0deg,#000 78%,transparent 100%);mask-image:linear-gradient(0deg,#000 78%,transparent 100%)}
+.turn{left:31px;top:34px;font-family:var(--ser);font-weight:700;font-size:23.5px;line-height:1.1;color:var(--ink);margin:0}
+.buyers{left:29px;top:90px;font-family:var(--ser);font-weight:800;font-size:56px;line-height:1;margin:0;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.spk2{left:0;width:100%;text-align:center;top:150px;color:var(--vio);font-size:12px}
+.ben{position:absolute;left:29px;display:flex;gap:13px;align-items:flex-start;width:285px}
+.ben .ic{width:52px;height:52px;border-radius:50%;background:#efeafb;border:1px solid #e2d9f6;display:flex;align-items:center;justify-content:center;flex:0 0 auto;color:var(--vio)}
+.ben h4{margin:0 0 3px;font-size:12.3px;font-weight:700;color:var(--ink);letter-spacing:.01em}
+.ben p{margin:0;font-size:9.8px;line-height:1.42;font-weight:500;color:#55526e}
+.fdbk{left:13px;top:362px;width:268px;background:rgba(255,255,255,.85);border:1.4px solid #8d70ee;border-radius:13px;padding:10px 12px 10px 54px;box-shadow:0 6px 16px rgba(80,55,170,.10)}
+.fdbk .ic{position:absolute;left:12px;top:16px;color:var(--vio)}
+.fdbk h4{margin:0 0 3px;font-size:11px;font-weight:700;color:var(--ink)}
+.fdbk p{margin:0;font-size:9.2px;line-height:1.4;font-weight:500;color:#55526e}
+.simple{left:31px;top:446px;font-family:var(--ser);font-weight:800;font-size:16.5px;color:var(--ink)}
+.run{position:absolute;left:31px;display:flex;align-items:center;gap:9px;font-size:10px;font-weight:500;color:#2c2947}
+.run svg{color:var(--vio);flex:0 0 auto}
+.gs{left:10px;top:578px;width:274px;height:162px;background:rgba(255,255,255,.92);border:1.4px solid #8d70ee;border-radius:13px;box-shadow:0 6px 16px rgba(80,55,170,.10)}
+.gs h4{position:absolute;left:14px;top:9px;margin:0;font-size:13px;font-weight:700;color:var(--ink)}
+.gs .row{position:absolute;left:14px;display:flex;align-items:center;gap:8px;font-size:9.8px;font-weight:500;color:#2c2947}
+.gs .qrl{position:absolute;left:191px;top:10px;width:70px;text-align:center;font-size:7.2px;font-weight:700;color:var(--vio);line-height:1.3}
+.gs .qri{position:absolute;left:194px;top:33px;width:64px;height:64px;border-radius:6px}
+.gs .qrt{position:absolute;left:191px;top:101px;width:70px;text-align:center;font-size:7.2px;font-weight:600;color:var(--vio)}
+.loved{left:10px;top:748px;width:212px;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.75);border-radius:11px;padding:6px 10px}
+.loved svg{color:var(--vio);flex:0 0 auto}
+.loved span{font-size:8.6px;line-height:1.35;font-weight:500;color:#44415e}
+
+/* social mini icons */
+.smi{width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.smi svg{display:block}
+.smi.wa{background:#25D366}.smi.fb{background:#1877F2}.smi.xx{background:#000}
+.smi.ig{background:radial-gradient(circle at 30% 110%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);border-radius:4.5px}
+.smi.gl{background:#efeafb;color:var(--vio)}
+
+/* ============ SHEET 2 — BRAND POSTER ============ */
+.s2bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.p2logo{left:483px;top:299px;width:126px}
+.p2word{left:344px;top:424px;width:437px}
+.see{left:9px;width:1123px;text-align:center;top:493px;font-size:15px;font-weight:700;letter-spacing:.40em;color:var(--ink)}
+.see b{color:var(--vio);font-weight:700}
+.aip1{left:9px;width:1123px;text-align:center;top:525px;font-size:11.4px;font-weight:700;letter-spacing:.28em;color:var(--ink)}
+.aip2{left:9px;width:1123px;text-align:center;top:547px;font-size:11.4px;font-weight:700;letter-spacing:.28em;color:var(--ink)}
+.aip2 b{background:linear-gradient(100deg,#b44df6 5%,#7a5cf5 60%,#4d7cf6 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+.ico{position:absolute;top:566px;width:150px;text-align:center;color:var(--vio)}
+.ico .ih{height:42px;display:flex;align-items:center;justify-content:center}
+.ico .lb{margin-top:7px;font-size:9.4px;font-weight:600;letter-spacing:.09em;color:#312e52;line-height:1.45}
+.icodv{position:absolute;top:572px;width:1px;height:66px;background:#d8d0ec}
+.strip{left:70px;top:655px;width:1018px;height:88px;background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(70,50,140,.13);display:flex;align-items:center;padding:0 12px}
+.strip .ft{flex:1;display:flex;align-items:center;gap:10px;padding:0 12px;color:var(--vio)}
+.strip .ft+.ft{border-left:1px solid #eeeaf8}
+.strip .ft svg{flex:0 0 auto}
+.strip h5{margin:0 0 2px;font-size:10.6px;font-weight:700;letter-spacing:.04em;color:var(--ink)}
+.strip p{margin:0;font-size:8.4px;line-height:1.35;font-weight:500;letter-spacing:.03em;color:#6b6885;text-transform:uppercase}
+.urlbar{left:9px;width:1123px;top:750px;display:flex;align-items:center;justify-content:center;gap:11px;color:var(--ink)}
+.urlbar .ln{width:130px;height:1px;background:linear-gradient(90deg,transparent,#b9aede)}
+.urlbar .ln.r{background:linear-gradient(270deg,transparent,#b9aede)}
+.urlbar .sp{color:var(--vio);font-size:9px}
+.urlbar .u{font-size:13px;font-weight:600;letter-spacing:.32em}
+.urlbar svg{color:var(--ink)}
+
+.foot{max-width:1123px;margin:6px auto 0;text-align:center;font-size:11px;color:#736d92;letter-spacing:.08em}
+.foot a{color:#a79ef0;text-decoration:none}
+
+@media print{
+  body{background:#fff;padding:0}
+  .toolbar,.frame .cap,.foot{display:none}
+  .stage{max-width:none}
+  .frame{margin:0;height:auto!important}
+  .sheet{transform:none!important;border-radius:0;box-shadow:none;page-break-after:always;break-after:page}
+  @page{size:A4 landscape;margin:0}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="tt"><b>Try Instant Fit</b> &mdash; Scan &amp; Wear Brochure &middot; HTML Edition &middot; 2 Pages</div>
+  <button class="printbtn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="stage">
+
+<!-- ================= SHEET 1 : FRONT ================= -->
+<div class="frame">
+  <p class="cap">Front &mdash; Tri-Fold Spread (coded in HTML)</p>
+  <div class="sheet">
+
+    <!-- LEFT PANEL -->
+    <div class="panel pL">
+      <img class="abs flowersL" src="assets/flowers-left.jpg" alt="">
+      <div class="abs for">For</div>
+      <h1 class="abs fr">FASHION<br>RETAILERS</h1>
+      <p class="abs sub1">Add virtual try-on to your store.</p>
+      <p class="abs sub2"><b>No app. No sign-up.</b> Just results.</p>
+
+      <div class="abs prod" style="left:37px;top:176px;width:128px;height:158px"><img src="assets/product1.jpg" alt="Your product photo"></div>
+      <svg class="abs chev" style="left:168px;top:247px" width="14" height="16" viewBox="0 0 14 16" fill="none"><path d="M4 2l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="abs prod" style="left:188px;top:178px;width:134px;height:157px;background:#fff"><img src="assets/product2.jpg" alt="AI processed try-on ready"></div>
+      <div class="abs plabel" style="left:37px;top:342px;width:128px">Your Product</div>
+      <div class="abs plabel" style="left:188px;top:342px;width:134px">AI Processed<br>Try-On Ready</div>
+
+      <div class="abs scanttl">Scan &amp; Try It Now</div>
+      <svg class="abs" style="left:22px;top:375px" width="22" height="26" viewBox="0 0 22 26" fill="none"><path d="M4 2c-2 8 1 15 9 18" stroke="#7a5cf5" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M8 21.5l5.5-.5-3 4z" fill="#7a5cf5"/></svg>
+      <a href="https://tryinstantfit.com/scan/zJCHQ3nBfQ" target="_blank" rel="noopener"><img class="abs qrbig" src="assets/qr-big.png" alt="Try-on QR code"></a>
+      <div class="abs linkrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7a5cf5" stroke-width="2.2" stroke-linecap="round"><path d="M10 14a5 5 0 007.07 0l3.18-3.18a5 5 0 00-7.07-7.07L11.5 5.4"/><path d="M14 10a5 5 0 00-7.07 0l-3.18 3.18a5 5 0 007.07 7.07l1.68-1.65"/></svg>
+        Your Try-On Link
+      </div>
+      <a class="abs pill" href="https://tryinstantfit.com/scan/zJCHQ3nBfQ" target="_blank" rel="noopener" style="color:var(--vio)">tryinstantfit.com/scan/zJCHQ3nBfQ</a>
+      <div class="abs sharerow">
+        <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7a5cf5" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21M12 3c-2.5 2.6-3.8 5.7-3.8 9s1.3 6.4 3.8 9"/></svg> Share online</span>
+        <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7a5cf5" stroke-width="2"><path d="M4 9l1.2-5h13.6L20 9M4 9v11h16V9M4 9h16M9.5 20v-6h5v6"/></svg> Place in-store</span>
+      </div>
+
+      <img class="abs laptop" src="assets/laptop.jpg" alt="Vendor dashboard on a laptop">
+
+      <svg class="abs shield" width="24" height="27" viewBox="0 0 24 27" fill="none"><path d="M12 1.5l10 3.6v7.2c0 6.3-4.3 10.9-10 13.2C6.3 23.2 2 18.6 2 12.3V5.1L12 1.5z" stroke="#7a5cf5" stroke-width="1.8" fill="rgba(122,92,245,.08)"/><path d="M12 8.2l1.2 2.5 2.8.4-2 2 .5 2.7L12 14.5l-2.5 1.3.5-2.7-2-2 2.8-.4L12 8.2z" fill="#7a5cf5"/></svg>
+      <div class="abs priv1">Private. Secure. Built for fashion.</div>
+      <div class="abs priv2">Your customer&rsquo;s photos are never stored.</div>
+    </div>
+
+    <!-- CENTER PANEL -->
+    <div class="panel pC">
+      <img class="abs hlogo" src="assets/header-logo.jpg" alt="Try Instant Fit logo">
+      <div class="abs kick k1">AI-POWERED <b>SCAN &amp; WEAR</b></div>
+      <div class="abs kick k2">FOR MODERN FASHION BUSINESSES</div>
+      <div class="abs spk">&#10022;</div>
+      <div class="abs let">Let Customers</div>
+      <div class="abs try">try it on</div>
+      <div class="abs bef">before they buy.</div>
+
+      <img class="abs phone" src="assets/phone.jpg" alt="AI try-on result on a phone">
+
+      <div class="abs co" style="left:24px;top:320px;width:99px">
+        <h5><svg width="12" height="12" viewBox="0 0 24 24" fill="#7a5cf5"><path d="M13 2L4.5 13.5H11L9.5 22 19 10h-6.5L13 2z"/></svg> IN SECONDS</h5>
+        <p>AI try-on<br>in just a few<br>seconds.</p>
+      </div>
+      <div class="abs co" style="left:24px;top:436px;width:99px">
+        <h5><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7a5cf5" stroke-width="2"><path d="M3 8V5a2 2 0 012-2h3M16 3h3a2 2 0 012 2v3M21 16v3a2 2 0 01-2 2h-3M8 21H5a2 2 0 01-2-2v-3"/><circle cx="12" cy="10.5" r="2.6"/><path d="M7.5 17c.9-1.9 2.5-3 4.5-3s3.6 1.1 4.5 3"/></svg> REAL YOU</h5>
+        <p>Keeps your<br>face, pose and<br>background.</p>
+      </div>
+      <div class="abs co icontop" style="left:314px;top:286px;width:110px">
+        <h5><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7a5cf5" stroke-width="2"><rect x="5" y="2.5" width="14" height="19" rx="3"/><path d="M12 7v6m0 0l-2.6-2.6M12 13l2.6-2.6M8.5 17.5h7"/></svg>DOWNLOAD<br>&amp; SHARE</h5>
+        <p>Download and share your try-on results with friends and family for a second opinion before buying.</p>
+      </div>
+      <div class="abs co" style="left:314px;top:437px;width:99px">
+        <h5><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7a5cf5" stroke-width="2"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 5h4M11 18.5h2"/></svg> NO APP</h5>
+        <p>No app to<br>download.</p>
+      </div>
+      <div class="abs co" style="left:314px;top:506px;width:99px">
+        <h5><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#7a5cf5" stroke-width="2"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.4 3.8-5 7-5s5.8 1.6 7 5"/></svg> NO SIGN-UP</h5>
+        <p>Open the link<br>and try.</p>
+      </div>
+      <!-- connectors -->
+      <div class="abs cnx" style="left:123px;top:368px;width:8px"></div>
+      <div class="abs cnx" style="left:123px;top:486px;width:8px"></div>
+      <div class="abs cnx" style="left:305px;top:356px;width:9px"></div>
+      <div class="abs cnx" style="left:305px;top:466px;width:9px"></div>
+      <div class="abs cnx" style="left:305px;top:536px;width:9px"></div>
+
+      <div class="abs how"><i>&#10022;</i>&nbsp; How Scan &amp; Wear Works &nbsp;<i>&#10022;</i></div>
+
+      <div class="abs stepimg" style="left:19px;top:620px;width:115px;height:117px"><img src="assets/step1.jpg" alt="Vendor uploads the product"></div>
+      <svg class="abs schev" style="left:137px;top:670px" width="11" height="13" viewBox="0 0 14 16" fill="none"><path d="M4 2l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="abs s2card" style="left:150px;top:623px;width:74px">
+        <div class="t">Scan &amp; Try It Now</div>
+        <img src="assets/step-qr.png" alt="QR code">
+        <div class="l"><span><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#7a5cf5" stroke-width="2.4"><path d="M10 14a5 5 0 007.07 0l3.18-3.18a5 5 0 00-7.07-7.07L11.5 5.4"/><path d="M14 10a5 5 0 00-7.07 0l-3.18 3.18a5 5 0 007.07 7.07l1.68-1.65"/></svg> Your Try-On Link</span></div>
+        <div class="p"><span>tryinstantfit.com/scan/zJCHQ3nBfQ</span></div>
+      </div>
+      <svg class="abs schev" style="left:229px;top:670px" width="11" height="13" viewBox="0 0 14 16" fill="none"><path d="M4 2l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="abs stepimg" style="left:242px;top:620px;width:93px;height:117px"><img src="assets/step3.jpg" alt="Customer uploads a selfie"></div>
+      <svg class="abs schev" style="left:338px;top:670px" width="11" height="13" viewBox="0 0 14 16" fill="none"><path d="M4 2l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="abs stepimg" style="left:351px;top:620px;width:93px;height:117px"><img src="assets/step4.jpg" alt="See it on you in seconds"></div>
+
+      <div class="scap" style="left:24px;top:745px;width:110px"><span class="n">1</span><span class="x">Vendor uploads<br>the product</span></div>
+      <div class="scap" style="left:152px;top:745px;width:80px"><span class="n">2</span><span class="x">Get QR code<br>and link</span></div>
+      <div class="scap" style="left:246px;top:745px;width:98px"><span class="n">3</span><span class="x">Customer uploads<br>a selfie</span></div>
+      <div class="scap" style="left:355px;top:745px;width:92px"><span class="n">4</span><span class="x">See it on you<br>in seconds</span></div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="panel pR">
+      <img class="abs rack" src="assets/rack.jpg" alt="">
+      <img class="abs bagimg" src="assets/bag.jpg" alt="">
+
+      <h2 class="abs turn">TURN BROWSING<br>CUSTOMERS INTO</h2>
+      <h2 class="abs buyers">BUYERS</h2>
+      <div class="abs spk2">&#10022;</div>
+
+      <div class="ben" style="top:163px">
+        <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6.5 8.5V7a5.5 5.5 0 0111 0v1.5M4.5 8.5h15l-1 12h-13l-1-12z"/><circle cx="15.7" cy="16.2" r="3.4" fill="#7a5cf5" stroke="none"/><path d="M14.2 16.2l1.1 1.1 2-2" stroke="#fff" stroke-width="1.5" fill="none"/></svg></span>
+        <div><h4>HIGHER CONFIDENCE</h4><p>Customers see it on themselves<br>and buy with more confidence.</p></div>
+      </div>
+      <div class="ben" style="top:236px">
+        <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2.5l8 4.5v9l-8 4.5L4 16V7l8-4.5zM4 7l8 4.5M12 11.5L20 7M12 11.5V20"/><circle cx="17.5" cy="17.5" r="3.2" fill="#efeafb"/><path d="M16 17.5h3M17.5 16v3" transform="rotate(45 17.5 17.5)"/></svg></span>
+        <div><h4>FEWER RETURNS</h4><p>Seeing it first means fewer<br>orders come back.</p></div>
+      </div>
+      <div class="ben" style="top:308px">
+        <span class="ic"><svg width="26" height="24" viewBox="0 0 26 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="8" cy="8" r="3"/><path d="M2.5 19c.9-3 3-4.6 5.5-4.6s4.6 1.6 5.5 4.6"/><circle cx="18" cy="8" r="3"/><path d="M14.8 19c.9-3 3-4.6 5.5-4.6 1.2 0 2.3.4 3.2 1"/></svg></span>
+        <div><h4>MORE BRAND REACH</h4><p>Customers share their try-on,<br>bringing more eyes to your brand.</p></div>
+      </div>
+
+      <div class="abs fdbk">
+        <span class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="7" r="2.6"/><circle cx="16.5" cy="6" r="2.2"/><path d="M3.5 15.5c.8-2.6 2.9-4 5.5-4 1.1 0 2.1.25 3 .75M13 14.5l2.5 1.2 2.5-1.2v3l-2.5 2.3-2.5-2.3v-3z"/></svg></span>
+        <h4>GET FEEDBACK BEFORE YOU BUY</h4>
+        <p>Download and share your try-on results with friends and family for a second opinion before buying.</p>
+      </div>
+
+      <div class="abs simple">SIMPLE TO RUN</div>
+      <div class="run" style="top:473px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M10 14a5 5 0 007.07 0l3.18-3.18a5 5 0 00-7.07-7.07L11.5 5.4"/><path d="M14 10a5 5 0 00-7.07 0l-3.18 3.18a5 5 0 007.07 7.07l1.68-1.65"/></svg> A Link + a QR for every product</div>
+      <div class="run" style="top:497px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v6c0 5.2-3.6 9-8 11-4.4-2-8-5.8-8-11V5l8-3z"/><path d="M8.8 12l2.2 2.2 4.2-4.4" stroke-linecap="round"/></svg> Turn codes on/off, set limits, add a passcode</div>
+      <div class="run" style="top:521px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 20V13M10 20V9M16 20v-5M22 20V4M4 20h18" /></svg> Dashboard shows try-ons per product</div>
+      <div class="run" style="top:545px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 5h4M11 18.5h2"/></svg> No photoshoots, no app to install</div>
+
+      <div class="abs gs">
+        <h4>Get Started Today</h4>
+        <a class="row" style="top:36px" href="https://tryinstantfit.com" target="_blank" rel="noopener"><span class="smi gl"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21M12 3c-2.5 2.6-3.8 5.7-3.8 9s1.3 6.4 3.8 9"/></svg></span> tryinstantfit.com</a>
+        <a class="row" style="top:61px" href="https://wa.me/923223146800" target="_blank" rel="noopener"><span class="smi wa"><svg width="9" height="9" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5.1-1.3A10 10 0 1012 2zm5.5 13.9c-.25.7-1.4 1.3-2 1.4-.5.1-1.2.15-1.9-.1a17 17 0 01-1.75-.65c-3.1-1.34-5.1-4.45-5.25-4.66-.15-.2-1.25-1.66-1.25-3.16 0-1.5.8-2.24 1.05-2.55.25-.3.55-.36.75-.36h.55c.15 0 .4-.05.6.5.25.6.85 2.1.9 2.24.05.15.1.33 0 .53-.1.2-.15.32-.3.5l-.45.53c-.15.15-.3.3-.15.6.15.3.75 1.24 1.6 2 1.1 1 2 1.3 2.3 1.44.3.15.5.13.65-.07.15-.2.75-.87.95-1.17.2-.3.4-.25.65-.15.25.1 1.65.8 1.95.94.3.15.5.2.55.3.05.15.05.7-.2 1.4z"/></svg></span> +92 322 3146800</a>
+        <a class="row" style="top:86px" href="https://instagram.com/tryinstantfit" target="_blank" rel="noopener"><span class="smi ig"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="#fff" stroke="none"/></svg></span> instagram.com/tryinstantfit</a>
+        <a class="row" style="top:111px" href="https://facebook.com/tryinstantfit" target="_blank" rel="noopener"><span class="smi fb"><svg width="9" height="9" viewBox="0 0 24 24" fill="#fff"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.55-1.5h1.65V4.6c-.3-.04-1.3-.12-2.4-.12-2.4 0-4 1.45-4 4.1v2.32H7.6V14h2.7v8h3.2z"/></svg></span> facebook.com/tryinstantfit</a>
+        <a class="row" style="top:136px" href="https://x.com/tryinstantfit" target="_blank" rel="noopener"><span class="smi xx"><svg width="8" height="8" viewBox="0 0 24 24" fill="#fff"><path d="M17.7 3H21l-7.3 8.3L22.2 21h-6.7l-5.2-6.1L4.3 21H1l7.8-8.9L1.5 3h6.9l4.7 5.5L17.7 3zm-1.2 16h1.9L6.7 4.9H4.7L16.5 19z"/></svg></span> x.com/tryinstantfit</a>
+        <div class="qrl">Scan &amp; Visit<br>Website now</div>
+        <a href="https://tryinstantfit.com" target="_blank" rel="noopener"><img class="qri" src="assets/qr-visit.png" alt="Website QR code"></a>
+        <div class="qrt">tryinstantfit.com</div>
+      </div>
+
+      <div class="abs loved">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20.5S3.5 15 3.5 9.2C3.5 6.3 5.7 4 8.5 4c1.5 0 2.7.7 3.5 1.8C12.8 4.7 14 4 15.5 4c2.8 0 5 2.3 5 5.2 0 5.8-8.5 11.3-8.5 11.3z"/></svg>
+        <span>Loved by fashion retailers<br>who care about experience.</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= SHEET 2 : BACK POSTER ================= -->
+<div class="frame">
+  <p class="cap">Back &mdash; Brand Poster (HTML over artwork)</p>
+  <div class="sheet">
+    <img class="s2bg" src="assets/p2-bg.jpg" alt="Models wearing formal fashion, AI generated">
+
+    <img class="abs p2logo" src="assets/p2-logo.jpg" alt="Try Instant Fit icon">
+    <img class="abs p2word" src="assets/p2-wordmark.jpg" alt="Try Instant Fit">
+
+    <div class="abs see">SEE IT. <b>LOVE IT.</b> WEAR IT.</div>
+    <div class="abs aip1">AI-POWERED VIRTUAL TRY-ON</div>
+    <div class="abs aip2">FOR <b>MODERN FASHION BUSINESSES</b></div>
+
+    <div class="ico" style="left:310px">
+      <div class="ih"><svg width="38" height="34" viewBox="0 0 34 30" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="7" width="30" height="21" rx="4"/><path d="M11 7l2.5-4h7L23 7"/><circle cx="17" cy="17" r="6"/><circle cx="17" cy="17" r="2.6"/></svg></div>
+      <div class="lb">SMART SELFIE<br>CAPTURE</div>
+    </div>
+    <div class="icodv" style="left:437px"></div>
+    <div class="ico" style="left:417px">
+      <div class="ih"><svg width="30" height="36" viewBox="0 0 26 30" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M10 2h6l-1 4c3 1 5 3 5.5 6L13 14 5.5 12C6 9 8 7 11 6l-1-4zM6 13l-3.5 13h21L20 13"/></svg></div>
+      <div class="lb">INSTANT<br>TRY-ON</div>
+    </div>
+    <div class="icodv" style="left:552px"></div>
+    <div class="ico" style="left:540px">
+      <div class="ih"><svg width="38" height="36" viewBox="0 0 32 30" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="7" y="5" width="18" height="18" rx="3"/><rect x="12" y="10" width="8" height="8" rx="1.5" fill="#7a5cf5" stroke="none"/><text x="16" y="16.8" font-size="6" font-weight="700" fill="#fff" text-anchor="middle" font-family="Poppins,Arial">AI</text><path d="M11 2v3M16 2v3M21 2v3M11 23v3M16 23v3M21 23v3M4 9h3M4 14h3M4 19h3M25 9h3M25 14h3M25 19h3"/></svg></div>
+      <div class="lb">AI-POWERED<br>FITTING</div>
+    </div>
+    <div class="icodv" style="left:700px"></div>
+    <div class="ico" style="left:712px">
+      <div class="ih"><svg width="38" height="36" viewBox="0 0 32 30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M29 3L3 13l9 3.5L29 3zM29 3l-7 22-6.5-9M12 16.5V25l4.5-4.5"/></svg></div>
+      <div class="lb">DOWNLOAD<br>&amp; SHARE</div>
+    </div>
+
+    <div class="abs strip">
+      <div class="ft">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2l2.2 8.8L24 13l-8.8 2.2L13 24l-2.2-8.8L2 13l8.8-2.2L13 2z"/><path d="M21 3l.8 3.2L25 7l-3.2.8L21 11l-.8-3.2L17 7l3.2-.8L21 3z" fill="#7a5cf5" stroke="none"/></svg>
+        <div><h5>WIDE RANGE</h5><p>Endless styles<br>for every taste</p></div>
+      </div>
+      <div class="ft">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3h12l4 6-10 14L3 9l4-6zM3 9h20M10 9l3 14M16 9l-3 14M7 3l3 6M19 3l-3 6"/></svg>
+        <div><h5>PREMIUM QUALITY</h5><p>Only the best,<br>always</p></div>
+      </div>
+      <div class="ft">
+        <svg width="24" height="26" viewBox="0 0 24 26" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7.5 8V6.5a4.5 4.5 0 019 0V8M3.5 8h17l-1.2 15H4.7L3.5 8z"/></svg>
+        <div><h5>EMPOWERING VENDORS</h5><p>Smarter fittings,<br>higher conversions</p></div>
+      </div>
+      <div class="ft">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 23v-6M9.5 23V12M15 23v-8M20.5 23V8M3 23h20"/></svg>
+        <div><h5>BOOST SALES</h5><p>Better experience,<br>more orders</p></div>
+      </div>
+      <div class="ft">
+        <svg width="26" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20.5S3.5 15 3.5 9.2C3.5 6.3 5.7 4 8.5 4c1.5 0 2.7.7 3.5 1.8C12.8 4.7 14 4 15.5 4c2.8 0 5 2.3 5 5.2 0 5.8-8.5 11.3-8.5 11.3z"/></svg>
+        <div><h5>CUSTOMER LOVE</h5><p>Perfect fit.<br>Every time.</p></div>
+      </div>
+    </div>
+
+    <a class="abs urlbar" href="https://tryinstantfit.com" target="_blank" rel="noopener">
+      <span class="ln"></span><span class="sp">&#10022;</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21M12 3c-2.5 2.6-3.8 5.7-3.8 9s1.3 6.4 3.8 9"/></svg>
+      <span class="u">WWW.TRYINSTANTFIT.COM</span>
+      <span class="sp">&#10022;</span><span class="ln r"></span>
+    </a>
+  </div>
+</div>
+
+</div>
+
+<p class="foot">Fully coded HTML brochure &middot; text is selectable &middot; links are clickable &middot; <a href="https://tryinstantfit.com" target="_blank" rel="noopener">tryinstantfit.com</a></p>
+
+<script>
+function fit(){
+  document.querySelectorAll('.frame').forEach(function(f){
+    var sh=f.querySelector('.sheet'); if(!sh) return;
+    var cap=f.querySelector('.cap');
+    var s=Math.min(1,f.clientWidth/1123);
+    sh.style.transform='scale('+s+')';
+    f.style.height=(794*s+(cap?cap.offsetHeight+8:0))+'px';
+  });
+}
+window.addEventListener('resize',fit);window.addEventListener('load',fit);fit();
+</script>
+</body>
+</html>
