@@ -2514,19 +2514,26 @@
           <div style="width:30px;height:30px;background:#F0F0F0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;"></i></div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:14px;font-weight:800;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Elite Sports Arena</div>
-            <div style="font-size:10px;color:#AAA;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">DHA Phase 5 · Hourly slots</div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">DHA Phase 5</div>
+            <div style="font-size:10px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><b style="color:#09210E;">Hourly slots</b></div>
           </div>
-          <div id="s9-holiday-btn-M9G0" style="width:32px;height:32px;background:#FFF3F3;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-calendar-close-line" style="font-size:16px;color:#E53935;line-height:1;"></i></div>
           <div data-go="s56a" style="background:#09210E;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:3px;"><i class="ri-layout-grid-line" style="font-size:12px;"></i>All Arenas</div>
           <button class="gz-manage-btn gz-manage-mini gz-mini-green gz-manage-off" data-manage="s9ga"><i class="ri-settings-4-line" style="font-size:12px;"></i><span class="gz-manage-label">Manage</span></button>
         </div>
 
-      <!-- Arena switcher + slot type -->
-      <div style="background:#fff;border-bottom:1px solid #EFEFEF;padding:7px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-shrink:0;">
-        <div style="display:flex;gap:5px;overflow-x:auto;flex:1;">
-          <div class="arena-sw arena-sw-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:5px 10px;border-radius:20px;background:#09210E;color:#fff;cursor:pointer;flex-shrink:0;border:1.5px solid #09210E;">Elite Sports</div>
-          <div class="arena-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;background:#FAFAFA;color:#555;cursor:pointer;flex-shrink:0;border:1.5px solid #E0E0E0;">Champions</div>
-          <div class="arena-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;background:#FAFAFA;color:#CCC;cursor:pointer;flex-shrink:0;border:1.5px solid #E8E8E8;opacity:.6;">Victory</div>
+      <!-- Arena selector (matches PC pane's SELECT CUBICLE section) -->
+      <div style="background:#fff;border-bottom:1px solid #EFEFEF;padding:8px 14px 9px;flex-shrink:0;">
+        <div style="font-size:9px;font-weight:800;color:#AAA;letter-spacing:.4px;margin-bottom:6px;">SELECT ARENA</div>
+        <div style="position:relative;">
+          <div id="s9ga-arena-wrap" style="display:flex;flex-wrap:wrap;gap:5px;max-height:57px;overflow:hidden;padding-right:32px;">
+            <div class="arena-sw arena-sw-active" style="white-space:nowrap;font-size:10px;font-weight:800;padding:5px 10px;border-radius:20px;background:#09210E;color:#fff;cursor:pointer;flex-shrink:0;border:1.5px solid #09210E;">Elite Sports</div>
+            <div class="arena-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;background:#FAFAFA;color:#555;cursor:pointer;flex-shrink:0;border:1.5px solid #E0E0E0;">Champions</div>
+            <div class="arena-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;background:#FAFAFA;color:#555;cursor:pointer;flex-shrink:0;border:1.5px solid #E0E0E0;">Victory</div>
+            <div class="arena-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;background:#FAFAFA;color:#555;cursor:pointer;flex-shrink:0;border:1.5px solid #E0E0E0;">Falcon Turf</div>
+            <div class="arena-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;background:#FAFAFA;color:#555;cursor:pointer;flex-shrink:0;border:1.5px solid #E0E0E0;">Sky Sports</div>
+            <div class="arena-sw" style="white-space:nowrap;font-size:10px;font-weight:700;padding:5px 10px;border-radius:20px;background:#FAFAFA;color:#555;cursor:pointer;flex-shrink:0;border:1.5px solid #E0E0E0;">Gladiator Ground</div>
+          </div>
+          <div id="s9ga-arena-more" style="display:none;position:absolute;top:0;right:0;width:26px;height:26px;border-radius:8px;background:#F0F0F0;align-items:center;justify-content:center;cursor:pointer;"><i class="ri-arrow-down-s-line" style="font-size:16px;color:#09210E;pointer-events:none;"></i></div>
         </div>
       </div>
 
@@ -2735,7 +2742,8 @@
           <div data-back style="width:30px;height:30px;background:#F2EEFB;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;color:#3A1E6E;pointer-events:none;"></i></div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:14px;font-weight:800;color:#1A0E2E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Nexus Gaming Lounge</div>
-            <div style="font-size:10px;color:#AAA;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Bahadurabad · <b style="color:#3A1E6E;">30-min slots</b></div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Bahadurabad</div>
+            <div style="font-size:10px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><b style="color:#3A1E6E;">30-min slots</b></div>
           </div>
           <div data-go="s56" style="background:#3A1E6E;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:3px;"><i class="ri-layout-grid-line" style="font-size:12px;"></i>All PCs</div>
           <button class="gz-manage-btn gz-manage-mini gz-manage-off" data-manage="s53"><i class="ri-settings-4-line" style="font-size:12px;"></i><span class="gz-manage-label">Manage</span></button>
@@ -2892,7 +2900,8 @@
           <div data-back style="width:30px;height:30px;background:#F2EEFB;border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;"><i class="ri-arrow-left-s-line" style="font-size:20px;line-height:1;color:#3A1E6E;pointer-events:none;"></i></div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:14px;font-weight:800;color:#1A0E2E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Console Stations</div>
-            <div style="font-size:10px;color:#AAA;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Nexus Gaming Lounge · <b style="color:#3A1E6E;">30-min slots</b></div>
+            <div style="font-size:10px;color:#AAA;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Bahadurabad</div>
+            <div style="font-size:10px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><b style="color:#3A1E6E;">30-min slots</b></div>
           </div>
           <div data-go="s57" style="background:#3A1E6E;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:800;color:#fff;cursor:pointer;flex-shrink:0;display:flex;align-items:center;gap:3px;"><i class="ri-layout-grid-line" style="font-size:12px;"></i>All Consoles</div>
           <button class="gz-manage-btn gz-manage-mini gz-manage-off" data-manage="s54"><i class="ri-settings-4-line" style="font-size:12px;"></i><span class="gz-manage-label">Manage</span></button>
@@ -3185,6 +3194,8 @@
             </div>
           </div>
 
+          <!-- everything pricing-related hides when "Block Slot" is selected -->
+          <div id="s11-open-only">
           <div style="height:1px;background:#F0F0F0;margin-bottom:10px;"></div>
 
           <!-- ── PRICING ── -->
@@ -3221,6 +3232,7 @@
               <div style="font-size:8px;color:#7AAA70;text-align:right;line-height:1.3;">Customer<br>sees this</div>
             </div>
           </div>
+          </div><!-- /s11-open-only -->
 
           <div style="height:1px;background:#F0F0F0;margin-bottom:10px;"></div>
 
@@ -3248,7 +3260,7 @@
           <!-- Action buttons -->
           <div style="display:flex;gap:8px;">
             <button style="flex:1;padding:11px;background:#F0F0F0;color:#555;font-size:13px;font-weight:700;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Cancel</button>
-            <button style="flex:1.5;padding:11px;background:#09210E;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Apply Changes</button>
+            <button id="s11-apply-btn" style="flex:1.5;padding:11px;background:#09210E;color:#fff;font-size:13px;font-weight:800;border:none;border-radius:11px;cursor:pointer;font-family:inherit;">Apply Changes</button>
           </div>
         </div>
       </div>
@@ -12192,6 +12204,12 @@
             this.style.background  = '#09210E';
             this.style.color       = '#fff';
             this.style.fontWeight  = '700';
+            // Block Slot hides pricing/discount (irrelevant when blocking) and relabels the CTA
+            var isBlock = (this.textContent || '').indexOf('Block') !== -1;
+            var openOnly = s11.querySelector('#s11-open-only');
+            if (openOnly) openOnly.style.display = isBlock ? 'none' : '';
+            var applyBtn = s11.querySelector('#s11-apply-btn');
+            if (applyBtn) applyBtn.textContent = isBlock ? 'Block Slot' : 'Apply Changes';
           });
         });
       }
@@ -12381,6 +12399,29 @@
         this.style.opacity = '1';
       });
     });
+
+    // s9ga arena pills: wrap to max 2 rows; if more, show a down-arrow that expands the full pill list
+    (function () {
+      var wrap = document.getElementById('s9ga-arena-wrap');
+      var more = document.getElementById('s9ga-arena-more');
+      if (!wrap || !more) return;
+      var COLLAPSED = '57px'; // two pill rows
+      function overflowing() { return wrap.scrollHeight > wrap.clientHeight + 2; }
+      function refresh() {
+        var expanded = wrap.style.maxHeight === 'none';
+        if (!expanded) more.style.display = overflowing() ? 'flex' : 'none';
+      }
+      more.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var expanded = wrap.style.maxHeight === 'none';
+        wrap.style.maxHeight = expanded ? COLLAPSED : 'none';
+        var ic = more.querySelector('i');
+        if (ic) ic.className = expanded ? 'ri-arrow-down-s-line' : 'ri-arrow-up-s-line';
+        if (expanded) refresh();
+      });
+      refresh();
+      window.addEventListener('resize', refresh);
+    })();
   });
 
 
