@@ -9818,6 +9818,1875 @@
   </div>
 </div>
 
+<!-- ============================================================
+     SPORTSTER BUSINESS · GYM MODULE UI REFERENCE (appended block)
+     Fully namespaced under .gym-mod-ref so nothing collides with
+     the brochure's own .screen / .card / .chip / .btn classes.
+     ============================================================ -->
+<div class="gym-mod-ref">
+<style>
+/* ---- scoped design tokens ---- */
+.gym-mod-ref{
+  --gm-navy:#1E3A5F; --gm-navy-2:#3E6491; --gm-accent:#2E6AAA;
+  --gm-hdr-a:#234A78; --gm-hdr-b:#1E3A5F; --gm-hdr-c:#16304C;
+  --gm-chip-on:#E3EDF9; --gm-on-hdr:#FFFFFF; --gm-on-hdr-mut:#C2D4E8;
+  --gm-page:#FFFFFF; --gm-surface:#F7F8F5; --gm-surface-alt:#ECEEEA; --gm-stroke:#D9DEDA;
+  --gm-ink:#0B0F0E; --gm-muted:#5B6660;
+  --gm-warn-bg:#FFEDD5; --gm-warn-stroke:#FDBA74; --gm-warn-text:#7C2D12; --gm-amber:#B26000;
+  --gm-danger:#D32F2F; --gm-gold:#F5A524; --gm-live:#2E9E5B;
+  --gm-rc:14px; --gm-rp:12px;
+  background:#EEF1F4; color:var(--gm-ink);
+  font-family:'Roboto','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; line-height:1.4; display:block;
+}
+.gym-mod-ref *{box-sizing:border-box}
+.gym-mod-ref a{color:inherit;text-decoration:none}
+
+/* ---- Page chrome ---- */
+.gym-mod-ref .gm-head{max-width:1240px;margin:0 auto;padding:40px 28px 8px}
+.gym-mod-ref .gm-head .kicker{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--gm-navy);text-transform:uppercase}
+.gym-mod-ref .gm-head h2.gm-h1{margin:.35rem 0 .25rem;font-size:30px;font-weight:800;letter-spacing:-.01em;color:var(--gm-ink);border:0;padding:0}
+.gym-mod-ref .gm-head p{margin:.15rem 0;color:#4a5560;font-size:14px;max-width:760px}
+.gym-mod-ref .gm-head code{background:#e7ebef;border-radius:5px;padding:1px 5px;font-size:.9em}
+.gym-mod-ref .legend{display:flex;flex-wrap:wrap;gap:14px 22px;margin:18px 0 6px}
+.gym-mod-ref .legend .sw{display:flex;align-items:center;gap:8px;font-size:12px;color:#4a5560}
+.gym-mod-ref .legend .sw i{width:16px;height:16px;border-radius:5px;display:inline-block;border:1px solid rgba(0,0,0,.08)}
+.gym-mod-ref .toc{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 4px}
+.gym-mod-ref .toc a{font-size:12px;font-weight:600;color:var(--gm-navy);background:#fff;border:1px solid #dfe4ea;border-radius:999px;padding:6px 12px}
+.gym-mod-ref .toc a:hover{background:var(--gm-chip-on)}
+
+/* ---- Gallery of phone frames ---- */
+.gym-mod-ref .gallery{max-width:1240px;margin:0 auto;padding:22px 20px 80px;display:flex;flex-wrap:wrap;gap:34px 28px;align-items:flex-start;justify-content:flex-start}
+.gym-mod-ref .gm-screen{width:380px}
+.gym-mod-ref .gm-screen .s-title{margin:0 0 2px;font-size:15px;font-weight:800;color:#16232e;display:flex;align-items:center;gap:8px}
+.gym-mod-ref .gm-screen .s-sub{margin:0 0 12px;font-size:12px;color:#6b7580;min-height:16px}
+.gym-mod-ref .flow-badge{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gm-navy);background:var(--gm-chip-on);border:1px solid #cfe0f2;border-radius:6px;padding:2px 7px}
+.gym-mod-ref .grp{width:100%;margin:26px auto 2px;max-width:1240px;padding:0 20px}
+.gym-mod-ref .grp h3.gm-grp{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#334;border-bottom:2px solid var(--gm-navy);display:inline-block;padding-bottom:6px;margin:0}
+
+/* ---- Device frame ---- */
+.gym-mod-ref .device{width:380px;background:var(--gm-page);border-radius:34px;overflow:hidden;border:10px solid #10151b;box-shadow:0 18px 40px rgba(20,32,48,.18);position:relative}
+.gym-mod-ref .device .scr{position:relative;display:flex;flex-direction:column;min-height:300px}
+
+/* Faux android status bar */
+.gym-mod-ref .statusbar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px 4px;font-size:11px;font-weight:700;color:var(--gm-ink);background:var(--gm-page)}
+.gym-mod-ref .statusbar .r{display:flex;gap:5px;align-items:center;opacity:.75}
+.gym-mod-ref .statusbar.on-navy{color:#fff;background:var(--gm-hdr-a)}
+.gym-mod-ref .statusbar.on-navy .r{opacity:.9}
+
+/* Navy gradient header */
+.gym-mod-ref .ghead{background:linear-gradient(90deg,var(--gm-hdr-a),var(--gm-hdr-b) 55%,var(--gm-hdr-c));color:var(--gm-on-hdr);padding:2px 16px 16px}
+.gym-mod-ref .ghead .eyebrow{font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--gm-on-hdr-mut);text-transform:uppercase}
+.gym-mod-ref .ghead .title{font-size:20px;font-weight:800;margin-top:2px}
+.gym-mod-ref .ghead .title.hero{font-size:17px}
+.gym-mod-ref .ghead .sub{font-size:11px;color:var(--gm-on-hdr-mut);margin-top:3px}
+.gym-mod-ref .ghead-top{display:flex;align-items:flex-start;gap:12px}
+.gym-mod-ref .ghead-top .grow{flex:1;min-width:0}
+.gym-mod-ref .hbtn{width:38px;height:38px;border-radius:11px;background:rgba(255,255,255,.17);display:grid;place-items:center;color:#fff;position:relative;flex:none}
+.gym-mod-ref .hbtn .ic{width:19px;height:19px}
+.gym-mod-ref .hstatus{align-self:center;font-size:11px;font-weight:800;color:var(--gm-navy);background:var(--gm-chip-on);border:1px solid var(--gm-accent);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.gym-mod-ref .hstatus.pending{color:var(--gm-warn-text);background:var(--gm-warn-bg);border-color:var(--gm-warn-stroke)}
+.gym-mod-ref .hstatus.danger{color:#fff;background:var(--gm-danger);border-color:var(--gm-danger)}
+
+/* Body */
+.gym-mod-ref .gbody{background:var(--gm-page);padding:14px;display:flex;flex-direction:column;gap:12px;flex:1}
+.gym-mod-ref .gbody.surface{background:var(--gm-surface)}
+.gym-mod-ref .gbody.pb{padding-bottom:20px}
+
+/* Cards */
+.gym-mod-ref .card{background:var(--gm-surface);border:1px solid var(--gm-stroke);border-radius:var(--gm-rc);padding:14px}
+.gym-mod-ref .card.plain{background:var(--gm-page)}
+.gym-mod-ref .card.tight{padding:12px}
+.gym-mod-ref .card-row{display:flex;align-items:center;gap:12px}
+.gym-mod-ref .eyebrow{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gm-navy)}
+.gym-mod-ref .sec-title{font-size:14px;font-weight:800;color:var(--gm-ink)}
+.gym-mod-ref .muted{color:var(--gm-muted)}
+.gym-mod-ref .fs11{font-size:11px}.gym-mod-ref .fs12{font-size:12px}.gym-mod-ref .fs13{font-size:13px}.gym-mod-ref .fs14{font-size:14px}
+.gym-mod-ref .strong{font-weight:800}.gym-mod-ref .semi{font-weight:600}
+.gym-mod-ref .rowb{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.gym-mod-ref .stack{display:flex;flex-direction:column;gap:8px}
+.gym-mod-ref .wrap{display:flex;flex-wrap:wrap;gap:8px}
+.gym-mod-ref .hr{height:1px;background:var(--gm-stroke);border:0;margin:2px 0}
+.gym-mod-ref .grow{flex:1;min-width:0}
+.gym-mod-ref .chev{color:var(--gm-navy);font-size:22px;font-weight:800;line-height:1}
+.gym-mod-ref .ell{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Stat trio */
+.gym-mod-ref .stats{display:flex;background:var(--gm-surface);border:1px solid var(--gm-stroke);border-radius:var(--gm-rc);padding:14px}
+.gym-mod-ref .stats .stat{flex:1}
+.gym-mod-ref .stat .k{font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--gm-navy-2);text-transform:uppercase}
+.gym-mod-ref .stat .v{font-size:16px;font-weight:800;margin-top:2px}
+.gym-mod-ref .stat.amber .k,.gym-mod-ref .stat.amber .v{color:var(--gm-amber)}
+
+/* Chips */
+.gym-mod-ref .chips{display:flex;gap:8px;flex-wrap:wrap}
+.gym-mod-ref .chips.scroll{flex-wrap:nowrap;overflow-x:auto}
+.gym-mod-ref .chip{font-size:12px;font-weight:700;color:var(--gm-muted);background:var(--gm-surface-alt);border:1px solid var(--gm-stroke);border-radius:var(--gm-rp);padding:7px 12px;white-space:nowrap}
+.gym-mod-ref .chip.on{color:var(--gm-navy);background:var(--gm-chip-on);border-color:var(--gm-navy)}
+
+/* Pills / badges */
+.gym-mod-ref .pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:800;border-radius:999px;padding:3px 9px;white-space:nowrap}
+.gym-mod-ref .pill.live{color:var(--gm-accent);background:var(--gm-chip-on);border:1px solid var(--gm-accent)}
+.gym-mod-ref .pill.pending{color:var(--gm-warn-text);background:var(--gm-warn-bg);border:1px solid var(--gm-warn-stroke)}
+.gym-mod-ref .pill.danger{color:#fff;background:var(--gm-danger)}
+.gym-mod-ref .pill.info{color:var(--gm-navy);background:var(--gm-chip-on);border:1px solid #cfe0f2}
+.gym-mod-ref .pill.muted{color:var(--gm-muted);background:var(--gm-surface-alt);border:1px solid var(--gm-stroke)}
+
+/* Buttons */
+.gym-mod-ref .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:800;border-radius:var(--gm-rc);padding:12px 16px;cursor:default;border:1px solid transparent}
+.gym-mod-ref .btn.primary{background:var(--gm-navy);color:#fff}
+.gym-mod-ref .btn.outline{background:var(--gm-page);color:var(--gm-navy);border-color:var(--gm-navy)}
+.gym-mod-ref .btn.ghost{background:var(--gm-surface-alt);color:var(--gm-navy);border-color:var(--gm-stroke)}
+.gym-mod-ref .btn.danger{background:var(--gm-page);color:var(--gm-danger);border-color:var(--gm-danger)}
+.gym-mod-ref .btn.block{width:100%}
+.gym-mod-ref .btn.sm{font-size:12px;padding:8px 12px;border-radius:10px}
+.gym-mod-ref .btn.pillbtn{border-radius:999px}
+
+/* Inputs */
+.gym-mod-ref .field{display:flex;flex-direction:column;gap:6px}
+.gym-mod-ref .field>label{font-size:12px;font-weight:700;color:var(--gm-ink)}
+.gym-mod-ref .field .req{color:var(--gm-danger)}
+.gym-mod-ref .input{background:var(--gm-page);border:1.5px solid var(--gm-navy);border-radius:var(--gm-rp);padding:11px 12px;font-size:13px;color:var(--gm-ink);display:flex;align-items:center;gap:8px;min-height:44px}
+.gym-mod-ref .input.soft{border:1px solid var(--gm-stroke)}
+.gym-mod-ref .input .ph{color:var(--gm-muted)}
+.gym-mod-ref .input.select::after{content:"⌄";margin-left:auto;color:var(--gm-navy);font-size:13px}
+.gym-mod-ref .textarea{min-height:76px;align-items:flex-start}
+.gym-mod-ref .help{font-size:11px;color:var(--gm-muted)}
+.gym-mod-ref .upload{background:var(--gm-surface-alt);border:1.5px dashed var(--gm-navy);border-radius:var(--gm-rc);padding:22px 14px;text-align:center;color:var(--gm-muted);font-size:12px;display:flex;flex-direction:column;align-items:center;gap:6px}
+
+/* List rows */
+.gym-mod-ref .lrow{display:flex;align-items:center;gap:12px;background:var(--gm-surface);border:1px solid var(--gm-stroke);border-radius:var(--gm-rc);padding:12px 14px}
+.gym-mod-ref .lrow .lead{width:44px;height:44px;border-radius:50%;background:var(--gm-surface-alt);display:grid;place-items:center;font-size:18px;flex:none}
+.gym-mod-ref .lrow .lead.warn{background:var(--gm-warn-bg)}
+.gym-mod-ref .lrow .lead.navy{background:var(--gm-chip-on);color:var(--gm-navy)}
+
+/* Avatars / images */
+.gym-mod-ref .circ{border-radius:50%;background:var(--gm-surface-alt);display:grid;place-items:center;flex:none;overflow:hidden}
+.gym-mod-ref .circ.navy{background:var(--gm-chip-on)}
+.gym-mod-ref .thumb{background:linear-gradient(135deg,#dfe6ee,#c9d4df);display:grid;place-items:center;color:#8496a6;font-size:11px;overflow:hidden;position:relative}
+.gym-mod-ref .thumb::after{content:"🖼️";font-size:26px;opacity:.5}
+.gym-mod-ref .thumb.photo::after{content:"📷"}
+.gym-mod-ref .photo16{width:100%;aspect-ratio:16/9;border-radius:12px}
+.gym-mod-ref .mapph{width:100%;height:120px;border-radius:12px;background:repeating-linear-gradient(0deg,#e3ebf2 0 14px,#dae4ee 14px 15px),repeating-linear-gradient(90deg,#e3ebf2 0 14px,#dae4ee 14px 15px);display:grid;place-items:center;color:#6b8199;font-size:12px;font-weight:700;position:relative}
+.gym-mod-ref .mapph::before{content:"📍";font-size:22px;position:absolute}
+
+/* Stepper (wizard 1..4) */
+.gym-mod-ref .stepper{display:flex;gap:6px;align-items:center}
+.gym-mod-ref .step{flex:1;height:6px;border-radius:999px;background:var(--gm-surface-alt)}
+.gym-mod-ref .step.on{background:var(--gm-navy)}
+.gym-mod-ref .step.done{background:var(--gm-accent)}
+.gym-mod-ref .stepnums{display:flex;gap:8px}
+.gym-mod-ref .stepnum{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;background:var(--gm-surface-alt);color:var(--gm-muted)}
+.gym-mod-ref .stepnum.on{background:var(--gm-navy);color:#fff}
+.gym-mod-ref .stepnum.done{background:var(--gm-chip-on);color:var(--gm-navy);border:1px solid var(--gm-accent)}
+
+/* Grids */
+.gym-mod-ref .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gym-mod-ref .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+
+/* Stars */
+.gym-mod-ref .stars{color:var(--gm-gold);letter-spacing:1px;font-size:13px}
+.gym-mod-ref .stars .off{color:#cdd4da}
+
+/* Bar chart (analytics) */
+.gym-mod-ref .bars{display:flex;align-items:flex-end;gap:6px;height:120px}
+.gym-mod-ref .bars .bar{flex:1;background:linear-gradient(180deg,var(--gm-accent),var(--gm-navy));border-radius:5px 5px 0 0;min-height:6px}
+.gym-mod-ref .legendrow{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--gm-muted)}
+.gym-mod-ref .legendrow .d{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-1px}
+
+/* Slot grid */
+.gym-mod-ref .slotgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.gym-mod-ref .slot{border-radius:12px;padding:9px 4px;text-align:center;font-size:11px;font-weight:700;border:1px solid transparent}
+.gym-mod-ref .slot .t{font-size:12px;font-weight:800}
+.gym-mod-ref .slot.avail{background:var(--gm-chip-on);border-color:var(--gm-accent);color:var(--gm-navy)}
+.gym-mod-ref .slot.booked{background:var(--gm-live);color:#fff}
+.gym-mod-ref .slot.blocked{background:var(--gm-surface-alt);border-color:var(--gm-stroke);color:var(--gm-muted);text-decoration:line-through}
+.gym-mod-ref .datestrip{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.gym-mod-ref .dchip{flex:none;width:46px;border-radius:12px;border:1px solid var(--gm-stroke);background:var(--gm-surface);text-align:center;padding:7px 0;font-size:11px}
+.gym-mod-ref .dchip.on{background:var(--gm-navy);color:#fff;border-color:var(--gm-navy)}
+.gym-mod-ref .dchip .n{font-size:15px;font-weight:800}
+
+/* Skeleton */
+.gym-mod-ref .sk{background:var(--gm-surface-alt);border:1px solid var(--gm-stroke);border-radius:var(--gm-rc);padding:14px;display:flex;gap:12px;align-items:center}
+.gym-mod-ref .sk-bar{height:10px;border-radius:6px;background:var(--gm-stroke)}
+.gym-mod-ref .sk-c{width:56px;height:56px;border-radius:50%;background:var(--gm-stroke);flex:none}
+
+/* Bottom nav */
+.gym-mod-ref .gnav{display:flex;background:var(--gm-surface);border-top:1px solid var(--gm-stroke);padding:8px 4px 6px;box-shadow:0 -2px 10px rgba(0,0,0,.04)}
+.gym-mod-ref .gnav .item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--gm-muted);font-size:10px;font-weight:600;position:relative}
+.gym-mod-ref .gnav .item .ic{width:22px;height:22px}
+.gym-mod-ref .gnav .item.on{color:var(--gm-navy)}
+.gym-mod-ref .gnav .item.on .pillbg{position:absolute;top:-2px;width:44px;height:26px;border-radius:999px;background:var(--gm-chip-on);z-index:0}
+.gym-mod-ref .gnav .item .ic,.gym-mod-ref .gnav .item .lbl{position:relative;z-index:1}
+.gym-mod-ref .gnav .dot{position:absolute;top:-3px;right:calc(50% - 20px);min-width:15px;height:15px;border-radius:999px;background:#FF5252;border:2px solid var(--gm-surface);color:#fff;font-size:8px;font-weight:800;display:grid;place-items:center;z-index:2;padding:0 3px}
+
+/* red notif badge (header) */
+.gym-mod-ref .badge{position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;border-radius:999px;background:#FF5252;border:2px solid var(--gm-hdr-c);color:#fff;font-size:9px;font-weight:800;display:grid;place-items:center;padding:0 3px}
+
+/* icons */
+.gym-mod-ref .ic{display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.gym-mod-ref .i18{width:18px;height:18px}.gym-mod-ref .i16{width:16px;height:16px}.gym-mod-ref .i22{width:22px;height:22px}
+</style>
+
+<!-- SVG icon sprite (stroke, currentColor) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="gm-i-home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></symbol>
+  <symbol id="gm-i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></symbol>
+  <symbol id="gm-i-receipt" viewBox="0 0 24 24"><path d="M5 3v18l2-1 2 1 2-1 2 1 2-1 2 1V3l-2 1-2-1-2 1-2-1-2 1-2-1z"/><path d="M9 8h6M9 12h6"/></symbol>
+  <symbol id="gm-i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol>
+  <symbol id="gm-i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.4"/><path d="M2 21c0-3.5 3.2-5.4 7-5.4s7 1.9 7 5.4"/><path d="M16 5.5a3.4 3.4 0 010 6.4M18 21c0-2.6-.9-4.2-2.3-5.2"/></symbol>
+  <symbol id="gm-i-bell" viewBox="0 0 24 24"><path d="M6 9a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6z"/><path d="M10 20a2 2 0 004 0"/></symbol>
+  <symbol id="gm-i-sliders" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M18 18h2"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="16" cy="18" r="2"/></symbol>
+  <symbol id="gm-i-chevright" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="gm-i-back" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="gm-i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+  <symbol id="gm-i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="gm-i-check" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></symbol>
+  <symbol id="gm-i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="gm-i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="gm-i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="gm-i-edit" viewBox="0 0 24 24"><path d="M4 20h4L20 8l-4-4L4 16v4z"/><path d="M14 6l4 4"/></symbol>
+  <symbol id="gm-i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="gm-i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="gm-i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.9L6.6 19.6l1-6L3.3 9.4l6-.9z"/></symbol>
+  <symbol id="gm-i-phone" viewBox="0 0 24 24"><path d="M5 3h4l2 5-3 2a12 12 0 006 6l2-3 5 2v4a2 2 0 01-2 2A17 17 0 013 5a2 2 0 012-2z"/></symbol>
+  <symbol id="gm-i-camera" viewBox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+  <symbol id="gm-i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+  <symbol id="gm-i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M16 12h3"/><path d="M3 9h13a2 2 0 012 2"/></symbol>
+  <symbol id="gm-i-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></symbol>
+  <symbol id="gm-i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+  <symbol id="gm-i-dumbbell" viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"/></symbol>
+</svg>
+
+<header class="gm-head">
+  <div class="kicker">Sportster Business · Android</div>
+  <h2 class="gm-h1">Gym Module — UI Reference</h2>
+  <p>Every screen in the vendor-facing gym module, rebuilt as HTML phone mockups from the app's actual layouts. Navy brand palette (<code>#1E3A5F</code>) over neutral surfaces. Text, ordering, and components mirror the shipped XML — this is a design starting point, not pixel-perfect production output.</p>
+  <div class="legend">
+    <div class="sw"><i style="background:#1E3A5F"></i> Primary / navy <code>#1E3A5F</code></div>
+    <div class="sw"><i style="background:linear-gradient(90deg,#234A78,#16304C)"></i> Header gradient</div>
+    <div class="sw"><i style="background:#2E6AAA"></i> Accent <code>#2E6AAA</code></div>
+    <div class="sw"><i style="background:#E3EDF9;border-color:#2E6AAA"></i> Selected chip</div>
+    <div class="sw"><i style="background:#FFEDD5;border-color:#FDBA74"></i> Pending / warning</div>
+    <div class="sw"><i style="background:#D32F2F"></i> Danger</div>
+    <div class="sw"><i style="background:#F5A524"></i> Rating gold</div>
+  </div>
+  <div class="toc">
+    <a href="#gm-s01">Onboarding</a><a href="#gm-s02">Gym Dashboard</a><a href="#gm-s03">Gym Hub</a>
+    <a href="#gm-s04">Add Gym 1</a><a href="#gm-s05">Add Gym 2</a><a href="#gm-s06">Add Gym 3</a><a href="#gm-s07">Add Gym 4</a>
+    <a href="#gm-s08">View Gym</a><a href="#gm-s09">Edit Gym</a>
+    <a href="#gm-s10">Bookings</a><a href="#gm-s11">Booking Detail</a><a href="#gm-s12">Booking Confirmation</a>
+    <a href="#gm-s13">Slot Grid</a><a href="#gm-s14">Analytics</a><a href="#gm-s15">Reviews</a>
+    <a href="#gm-s16">Notifications</a><a href="#gm-s17">Alerts Hub</a><a href="#gm-s18">Manage</a><a href="#gm-s19">Components</a>
+  </div>
+</header>
+
+<main class="gallery">
+<div class="grp"><h3 class="gm-grp">Entry &amp; Home</h3></div>
+<!-- ============ S01 · GymOnboardingActivity — intro carousel ============ -->
+<section class="gm-screen" id="gm-s01">
+  <h3 class="s-title"><span class="flow-badge">First run</span> Gym Onboarding</h3>
+  <p class="s-sub">4-slide intro carousel shown on first launch of Gym Mode · activity_gym_onboarding.xml</p>
+  <div class="device"><div class="scr">
+    <div class="statusbar"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+
+    <div class="gbody" style="flex:1;min-height:620px;justify-content:space-between;padding:8px 24px 32px">
+      <div class="rowb" style="justify-content:flex-end">
+        <span class="chip" style="color:var(--gm-navy)">Skip</span>
+      </div>
+
+      <div class="stack" style="align-items:center;gap:0;text-align:center;flex:1;justify-content:center">
+        <div class="circ navy" style="width:150px;height:150px;font-size:68px">🏋️</div>
+        <div class="strong" style="font-size:23px;margin-top:34px;color:var(--gm-ink)">Run your gym on Sportster</div>
+        <div class="fs14 muted" style="margin-top:14px;max-width:264px;line-height:1.5">Take bookings, manage slots, and track revenue — all from one dashboard built for gym owners.</div>
+      </div>
+
+      <div class="stack" style="align-items:center;gap:22px">
+        <div class="wrap" style="gap:8px;justify-content:center">
+          <span style="width:22px;height:8px;border-radius:999px;background:var(--gm-navy);display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:999px;background:var(--gm-surface-alt);display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:999px;background:var(--gm-surface-alt);display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:999px;background:var(--gm-surface-alt);display:inline-block"></span>
+        </div>
+        <div class="btn primary block">Next</div>
+      </div>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S02 · GymsActivity — Gym Dashboard (list) ============ -->
+<section class="gm-screen" id="gm-s02">
+  <h3 class="s-title"><span class="flow-badge">Entry</span> Gym Dashboard</h3>
+  <p class="s-sub">Gym Mode home · aggregate stats + all your gyms · activity_gyms.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="grow">
+          <div class="eyebrow">🏋️ Gym Mode</div>
+          <div class="title">Gym Dashboard</div>
+          <div class="sub" style="color:#fff;font-weight:700;letter-spacing:.04em">SPORTSTER FITNESS · MON 1 JUN</div>
+          <div class="rowb" style="margin-top:4px">
+            <span class="sub">3 gyms</span>
+            <span class="chip on" style="font-size:10px;padding:4px 10px">Arena Mode ›</span>
+          </div>
+        </div>
+        <div class="hbtn"><svg class="ic i18"><use href="#gm-i-bell"/></svg><span class="badge">3</span></div>
+        <div class="hbtn"><svg class="ic i18"><use href="#gm-i-user"/></svg></div>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="stats">
+        <div class="stat"><div class="k">Today</div><div class="v">8 sessions</div></div>
+        <div class="stat"><div class="k">Revenue Today</div><div class="v">Rs 12k</div></div>
+        <div class="stat amber"><div class="k">Pending</div><div class="v">• 3</div></div>
+      </div>
+
+      <div class="lrow">
+        <div class="lead warn">🔔</div>
+        <div class="grow">
+          <div class="rowb" style="justify-content:flex-start;gap:8px">
+            <span class="sec-title">Alerts Hub</span><span class="pill live">● LIVE</span>
+          </div>
+          <div class="fs11 muted" style="margin-top:2px">Pending bookings &amp; reviews across all gyms</div>
+        </div>
+        <span class="chev">›</span>
+      </div>
+
+      <div class="rowb" style="margin-top:6px">
+        <span class="eyebrow">Your Gyms</span>
+        <span class="btn primary sm"><svg class="ic i16"><use href="#gm-i-plus"/></svg> Add Gym</span>
+      </div>
+
+      <div class="input soft"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-search"/></svg><span class="ph">Search by gym name or address</span></div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="circ thumb" style="width:56px;height:56px"></div>
+          <div class="grow">
+            <div class="rowb"><span class="strong fs14 ell">IronCore Fitness Studio</span><span class="pill live">Live</span></div>
+            <div class="fs12 muted" style="margin-top:2px">DHA Phase 5 · Rs 250/hr</div>
+          </div>
+        </div>
+        <div class="chips scroll" style="margin-top:10px">
+          <span class="chip">🏋️ Weights</span><span class="chip">🚿 Showers</span><span class="chip">🅿️ Parking</span><span class="chip">❄️ AC</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="circ thumb" style="width:56px;height:56px"></div>
+          <div class="grow">
+            <div class="rowb"><span class="strong fs14 ell">PowerHouse Gym — Clifton</span><span class="pill pending">Pending</span></div>
+            <div class="fs12 muted" style="margin-top:2px">Clifton Block 4 · Rs 300/hr</div>
+          </div>
+        </div>
+        <div class="chips scroll" style="margin-top:10px">
+          <span class="chip">🏋️ Weights</span><span class="chip">🧖 Sauna</span><span class="chip">🏃 Cardio</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-row">
+          <div class="circ thumb" style="width:56px;height:56px"></div>
+          <div class="grow">
+            <div class="rowb"><span class="strong fs14 ell">FlexZone Ladies Only</span><span class="pill muted">Suspended</span></div>
+            <div class="fs12 muted" style="margin-top:2px">Gulshan-e-Iqbal · Rs 200/hr</div>
+          </div>
+        </div>
+        <div class="chips scroll" style="margin-top:10px">
+          <span class="chip">👩 Women only</span><span class="chip">🧘 Yoga</span><span class="chip">🅿️ Parking</span>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S03 · GymHubActivity — per-gym operations hub ============ -->
+<section class="gm-screen" id="gm-s03">
+  <h3 class="s-title"><span class="flow-badge">Per-gym home</span> Gym Hub</h3>
+  <p class="s-sub">Landing screen after tapping a gym · live stats + quick actions + bottom nav · activity_gym_hub.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top" style="align-items:center">
+        <div class="circ" style="width:48px;height:48px;background:rgba(255,255,255,.15);font-size:20px">🏋️</div>
+        <div class="grow">
+          <div class="eyebrow">🏠 Gym Hub</div>
+          <div class="title hero">IronCore Fitness Studio</div>
+        </div>
+        <span class="hstatus">Live</span>
+      </div>
+    </div>
+
+    <div class="gbody pb">
+      <div class="stats">
+        <div class="stat"><div class="k">Today</div><div class="v">8 sessions</div></div>
+        <div class="stat"><div class="k">Revenue Today</div><div class="v">Rs 12k</div></div>
+        <div class="stat amber"><div class="k">Pending</div><div class="v">• 3</div></div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:4px">Quick Actions</div>
+      <div class="g2">
+        <div class="card tight">
+          <div style="font-size:22px">📡</div>
+          <div class="strong fs14" style="margin-top:6px">Live Status</div>
+          <span class="pill live" style="margin-top:4px;font-size:9px">● LIVE</span>
+        </div>
+        <div class="card tight">
+          <div style="font-size:22px">🔔</div>
+          <div class="strong fs14" style="margin-top:6px">Notifications</div>
+          <div class="fs11 muted" style="margin-top:3px">3 need action</div>
+        </div>
+      </div>
+
+      <div class="lrow">
+        <div class="lead">⏰</div>
+        <div class="grow">
+          <div class="strong fs14">Slot Schedule</div>
+          <div class="fs11 muted" style="margin-top:2px">14-day grid · open or close individual slots</div>
+        </div>
+        <span class="chev">›</span>
+      </div>
+
+      <div class="btn primary block">🚶 &nbsp;+ Create Walk-in Booking</div>
+
+      <div class="wrap" style="justify-content:center;margin-top:8px">
+        <span class="chip"><svg class="ic i16" style="color:var(--gm-navy)"><use href="#gm-i-eye"/></svg> View gym details</span>
+        <span class="chip"><svg class="ic i16" style="color:var(--gm-navy)"><use href="#gm-i-edit"/></svg> Edit gym profile</span>
+      </div>
+    </div>
+
+    <div class="gnav">
+      <div class="item on"><span class="pillbg"></span><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item"><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
+    </div>
+  </div></div>
+</section>
+<div class="grp"><h3 class="gm-grp">Add-Gym Wizard · 4 steps</h3></div>
+<!-- ============ S04 · AddGym1 — Step 1 (Profile & Amenities) ============ -->
+<section class="gm-screen" id="gm-s04">
+  <h3 class="s-title"><span class="flow-badge">Add gym 1/4</span> Add Gym · Step 1</h3>
+  <p class="s-sub">Gym profile, specs &amp; on-site amenities · activity_add_gym1.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="hbtn"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow">
+          <div class="eyebrow">STEP 1 OF 4</div>
+          <div class="title hero">Register New Gym</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gbody surface">
+      <div class="rowb">
+        <span class="eyebrow">Step 1 of 4</span>
+        <div class="stepnums">
+          <span class="stepnum on">1</span><span class="stepnum">2</span><span class="stepnum">3</span><span class="stepnum">4</span>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:18px">Gym Profile</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">Tell customers what your gym is, what it costs, and how big it is.</div>
+        <div class="field" style="margin-top:14px">
+          <label>Gym Display Name <span class="req">*</span></label>
+          <div class="help">Shown on listings and in customer search. Make it memorable and findable.</div>
+          <div class="input"><span class="ph">e.g. IronCore Fitness Studio</span></div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Short Description <span class="req">*</span></label>
+          <div class="help">One short line. Customers see this on your card before opening the listing.</div>
+          <div class="input textarea"><span class="ph">One-line tagline customers will see</span></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:18px">Gym Specs</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">Stats customers see at a glance — floor size, equipment count, trainer availability.</div>
+        <div class="field" style="margin-top:14px">
+          <label>Floor Area <span class="req">*</span></label>
+          <div class="rowb" style="gap:6px">
+            <div class="input" style="flex:1"><span class="ph">e.g. 5000</span></div>
+            <span class="chip on">sq ft</span>
+            <span class="chip">sq yd</span>
+          </div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Number of Machines <span class="req">*</span></label>
+          <div class="input"><span class="ph">e.g. 42</span></div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Number of Trainers <span class="req">*</span></label>
+          <div class="help">Total certified trainers available. Enter 0 if no on-site trainers.</div>
+          <div class="input"><span class="ph">e.g. 6</span></div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Minimum Age <span class="req">*</span></label>
+          <div class="help">Customers younger than this can't book. Use 0 if all ages are welcome.</div>
+          <div class="input"><span class="ph">e.g. 18</span></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:18px">On-Site Amenities</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">Customers filter by these on the browse screen — tap every one you offer.</div>
+        <div class="field" style="margin-top:14px">
+          <label>Amenities <span class="req">*</span></label>
+          <div class="help">Tap to toggle on.</div>
+        </div>
+        <div class="wrap" style="margin-top:8px">
+          <span class="chip on">🏋️ Weights</span><span class="chip on">🏃 Cardio</span><span class="chip on">🚿 Showers</span>
+          <span class="chip">🅿️ Parking</span><span class="chip on">❄️ AC</span><span class="chip">🧖 Sauna</span>
+          <span class="chip">🧘 Yoga</span><span class="chip on">🔒 Lockers</span><span class="chip">🥊 Boxing</span>
+          <span class="chip">🏊 Pool</span><span class="chip">💦 Steam Room</span><span class="chip">☕ Café</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--gm-stroke);background:var(--gm-page)">
+      <span class="btn ghost" style="flex:1">Cancel</span>
+      <span class="btn primary" style="flex:2">Continue · Step 2</span>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S05 · AddGym2 — Step 2 (Location, Contact & Hours) ============ -->
+<section class="gm-screen" id="gm-s05">
+  <h3 class="s-title"><span class="flow-badge">Add gym 2/4</span> Add Gym · Step 2</h3>
+  <p class="s-sub">Location, contact, gym type, operating hours &amp; booking policies · activity_add_gym2.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="hbtn"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow">
+          <div class="eyebrow">STEP 2 OF 4</div>
+          <div class="title hero">Register New Gym</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gbody surface">
+      <div class="rowb">
+        <span class="eyebrow">Step 2 of 4</span>
+        <div class="stepnums">
+          <span class="stepnum done">1</span><span class="stepnum on">2</span><span class="stepnum">3</span><span class="stepnum">4</span>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:18px">Location &amp; Contact</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">Where the gym is, and the numbers customers can reach you on.</div>
+        <div class="field" style="margin-top:14px">
+          <label>City <span class="req">*</span></label>
+          <div class="help">Start typing — pick from the suggestions. Helps locals find you quickly.</div>
+          <div class="input select"><span class="ph">Type city name…</span></div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Area / Sector <span class="req">*</span></label>
+          <div class="input"><span class="ph">e.g. DHA Phase 5</span></div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Gym Location <span class="req">*</span></label>
+          <div class="help">Tap the card below to search, use your current location, or drop a pin on the map. Pick once and the address fills automatically.</div>
+        </div>
+        <div class="lrow" style="margin-top:8px">
+          <div class="lead">📍</div>
+          <div class="grow">
+            <div class="strong fs14">Tap to pick location</div>
+            <div class="fs12 muted" style="margin-top:2px">Search, use current location, or drop a pin</div>
+          </div>
+          <span class="chev">›</span>
+        </div>
+        <div class="mapph" style="margin-top:8px">DHA Phase 5, Karachi</div>
+        <div class="field" style="margin-top:12px">
+          <label>Landmark / Building (optional)</label>
+          <div class="help">Floor number, building name, or 'opposite the white mosque' — anything that helps customers find the door.</div>
+          <div class="input"><span class="ph">e.g. 2nd floor, Imtiaz Plaza</span></div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Contact Phone <span class="req">*</span></label>
+          <div class="help">Sportster may call to verify your listing. Kept private from customers.</div>
+          <div class="input"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-phone"/></svg><span class="ph">+92 3xx xxxxxxx</span></div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>WhatsApp Number <span class="req">*</span></label>
+          <div class="help">Customers can message you here for questions before booking.</div>
+          <div class="input"><span class="ph">+92 3xx xxxxxxx</span></div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Email Address <span class="req">*</span></label>
+          <div class="help">Booking confirmations, transfer alerts, and Sportster updates land here.</div>
+          <div class="input"><span class="ph">gym@example.com</span></div>
+        </div>
+        <div class="eyebrow" style="margin-top:18px">Social Links (Optional)</div>
+        <div class="help" style="margin-top:4px">Builds customer trust and gives you extra visibility. Skip the ones you don't use.</div>
+        <div class="stack" style="margin-top:8px">
+          <div class="input"><span class="ph">📷 Instagram URL</span></div>
+          <div class="input"><span class="ph">📘 Facebook URL</span></div>
+          <div class="input"><span class="ph">✖ X (Twitter) URL</span></div>
+          <div class="input"><span class="ph">👻 Snapchat URL</span></div>
+          <div class="input"><span class="ph">▶️ YouTube URL</span></div>
+          <div class="input"><span class="ph">🌐 Website URL</span></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:18px">Gym Type</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">Who can use your gym. Picking the right type makes sure customers see the right availability.</div>
+        <div class="field" style="margin-top:14px">
+          <label>Who can attend <span class="req">*</span></label>
+          <div class="input select"><span class="ph">Pick the gym type</span></div>
+          <div class="help">Choose "Male and Female with Separate Timings" if you operate split windows for each gender on the same day.</div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:18px">Operating Hours</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">When you're open. Shown on the customer listing — e.g. "Open Now 6:00 AM – 12:00 AM".</div>
+        <div class="field" style="margin-top:14px">
+          <label>How often does your gym open? <span class="req">*</span></label>
+          <div class="rowb" style="gap:8px">
+            <span class="chip on" style="flex:1;text-align:center;justify-content:center">Once a day</span>
+            <span class="chip" style="flex:1;text-align:center;justify-content:center">Twice a day</span>
+          </div>
+          <div class="help">"Twice a day" reveals separate Morning and Evening fields below.</div>
+        </div>
+        <div class="rowb" style="margin-top:14px">
+          <span class="eyebrow" style="font-size:11px">Timings by day <span class="req">*</span></span>
+          <span class="chip">🕓 24/7</span>
+        </div>
+        <div class="help" style="margin-top:4px">Leave any field blank to mark it closed. Tap "Copy Mon–Thu" on Fri/Sat/Sun to reuse your weekday hours.</div>
+        <div class="stack" style="margin-top:10px">
+          <div class="rowb" style="gap:8px"><span class="semi fs12" style="width:34px">Mon</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>6:00 AM</span></div><span class="muted fs12">→</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>12:00 AM</span></div></div>
+          <div class="rowb" style="gap:8px"><span class="semi fs12" style="width:34px">Tue</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>6:00 AM</span></div><span class="muted fs12">→</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>12:00 AM</span></div></div>
+          <div class="rowb" style="gap:8px"><span class="semi fs12" style="width:34px">Wed</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>6:00 AM</span></div><span class="muted fs12">→</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>12:00 AM</span></div></div>
+          <div class="rowb" style="gap:8px"><span class="semi fs12" style="width:34px">Thu</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>6:00 AM</span></div><span class="muted fs12">→</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>12:00 AM</span></div></div>
+          <div class="rowb" style="gap:8px"><span class="semi fs12" style="width:34px">Fri</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><span class="muted">Closed</span></div><span class="muted fs12">→</span><span class="chip" style="font-size:10px">Copy Mon–Thu</span></div>
+          <div class="rowb" style="gap:8px"><span class="semi fs12" style="width:34px">Sat</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>8:00 AM</span></div><span class="muted fs12">→</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>11:00 PM</span></div></div>
+          <div class="rowb" style="gap:8px"><span class="semi fs12" style="width:34px">Sun</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>8:00 AM</span></div><span class="muted fs12">→</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px"><svg class="ic i16" style="color:var(--gm-muted)"><use href="#gm-i-clock"/></svg><span>11:00 PM</span></div></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:18px">Booking Policies</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:2px">How customers can cancel or reschedule</div>
+        <div class="field" style="margin-top:14px">
+          <label>Cancellation Policy <span class="req">*</span></label>
+          <div class="help">Choose how customers are refunded when they cancel.</div>
+          <div class="input select">Partial refund</div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Free-cancellation window <span class="req">*</span></label>
+          <div class="help">How long before the booking a customer must cancel to qualify for a refund.</div>
+          <div class="input select">24 hours before</div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Deduction (%) <span class="req">*</span></label>
+          <div class="help">Portion of the total you keep on an eligible cancellation. Enter 0 for a full refund.</div>
+          <div class="input"><span class="ph">e.g. 10</span></div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Rescheduling Policy <span class="req">*</span></label>
+          <div class="help">Choose whether customers can move a booking — free, for a fee, or not at all.</div>
+          <div class="input select"><span class="ph">Select rescheduling option</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--gm-stroke);background:var(--gm-page)">
+      <span class="btn ghost" style="flex:1">Back</span>
+      <span class="btn primary" style="flex:2">Continue · Step 3</span>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S06 · AddGym3 — Step 3 of 4 ============ -->
+<section class="gm-screen" id="gm-s06">
+  <h3 class="s-title"><span class="flow-badge">Add gym 3/4</span> Photos, Equipment &amp; Packages</h3>
+  <p class="s-sub">Photos · equipment · trainers · free trial · services · pricing packages · activity_add_gym3.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="hbtn"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow">
+          <div class="eyebrow">STEP 3 OF 4</div>
+          <div class="title hero">Register New Gym</div>
+        </div>
+      </div>
+      <div class="stepper" style="margin-top:14px">
+        <div class="step done"></div><div class="step done"></div><div class="step on"></div><div class="step"></div>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="rowb">
+        <span class="eyebrow">Step 3 of 4</span>
+        <div class="stepnums">
+          <span class="stepnum done">1</span><span class="stepnum done">2</span><span class="stepnum on">3</span><span class="stepnum">4</span>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:16px">Photos</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">A few clear photos so customers can see the place before they book.</div>
+        <label class="fs12 strong" style="display:block;margin-top:14px">Gym Photos <span style="color:var(--gm-gold)">★</span> (3 to 6)</label>
+        <div class="help" style="margin-top:4px">Add at least 3 clear photos — the floor, the equipment area, locker rooms, anything that helps members know what to expect. Up to 6 photos.</div>
+        <div class="wrap" style="margin-top:8px;flex-wrap:nowrap;overflow-x:auto">
+          <div class="thumb photo" style="width:104px;height:100px;border-radius:12px;flex:none"></div>
+          <div class="thumb photo" style="width:104px;height:100px;border-radius:12px;flex:none"></div>
+          <div class="thumb photo" style="width:104px;height:100px;border-radius:12px;flex:none"></div>
+          <div style="width:104px;height:100px;border:1.5px dashed var(--gm-navy);border-radius:12px;background:var(--gm-surface-alt);display:grid;place-items:center;color:var(--gm-navy);font-size:26px;flex:none">＋</div>
+        </div>
+        <div class="rowb" style="margin-top:10px">
+          <span class="btn ghost sm">📷 &nbsp;Add More</span>
+          <span class="fs12 muted">3 photos added</span>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:16px">Equipment Inventory</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">Add machines now or skip and add them later from the gym screen.</div>
+        <div class="stack" style="margin-top:12px">
+          <div class="lrow tight" style="padding:10px 12px">
+            <div class="circ navy" style="width:40px;height:40px;font-size:18px">🏋️</div>
+            <div class="grow">
+              <div class="strong fs13">Flat Bench Press</div>
+              <div class="fs11 muted" style="margin-top:2px">Tap to change status · hold for Edit / Remove</div>
+            </div>
+            <span class="pill live">● Available</span>
+          </div>
+          <div class="lrow tight" style="padding:10px 12px">
+            <div class="circ navy" style="width:40px;height:40px;font-size:18px">🚴</div>
+            <div class="grow">
+              <div class="strong fs13">Cardio Bikes ×6</div>
+              <div class="fs11 muted" style="margin-top:2px">Tap to change status · hold for Edit / Remove</div>
+            </div>
+            <span class="pill live">● Available</span>
+          </div>
+        </div>
+        <div class="btn ghost block" style="margin-top:12px">+ Add Machines</div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:16px">Trainer Roster</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">Add trainers now or skip and add them later from the gym screen.</div>
+        <div class="stack" style="margin-top:12px">
+          <div class="lrow tight" style="padding:10px 12px">
+            <div class="circ navy" style="width:44px;height:44px;font-size:16px;font-weight:800;color:var(--gm-navy)">A</div>
+            <div class="grow">
+              <div class="strong fs13">Ali Hassan</div>
+              <div class="fs11 muted" style="margin-top:2px">Rs 800/hr · Certified PT</div>
+            </div>
+            <span class="pill live">● Available</span>
+          </div>
+        </div>
+        <div class="btn ghost block" style="margin-top:12px">+ Add Trainers</div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:16px">Free Trial</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">Let new customers try your gym once for free. Each customer can claim one trial at this gym.</div>
+        <div class="rowb" style="margin-top:14px">
+          <div class="grow">
+            <div class="strong fs13">Enable Free Trial</div>
+            <div class="fs11 muted" style="margin-top:2px">One free session per customer at this gym</div>
+          </div>
+          <span style="width:46px;height:26px;border-radius:999px;background:var(--gm-stroke);position:relative;flex:none;display:inline-block">
+            <span style="position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25)"></span>
+          </span>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:16px">Services &amp; Capacity</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">How many of each facility the gym has. Set 0 for anything you don't offer. Usage limits are set per package.</div>
+        <div class="stack" style="margin-top:14px">
+          <div class="rowb" style="gap:10px"><div class="card-row grow" style="gap:10px"><div class="circ navy" style="width:40px;height:40px;font-size:18px">🛁</div><div class="grow"><div class="strong fs14">Jacuzzi</div><div class="fs11 muted">How many the gym has</div></div></div><div style="text-align:right"><div class="fs11 muted">Qty</div><div class="input soft" style="width:64px;min-height:40px;justify-content:center;padding:6px">1</div></div></div>
+          <div class="rowb" style="gap:10px"><div class="card-row grow" style="gap:10px"><div class="circ navy" style="width:40px;height:40px;font-size:18px">🚿</div><div class="grow"><div class="strong fs14">Shower</div><div class="fs11 muted">How many the gym has</div></div></div><div style="text-align:right"><div class="fs11 muted">Qty</div><div class="input soft" style="width:64px;min-height:40px;justify-content:center;padding:6px">4</div></div></div>
+          <div class="rowb" style="gap:10px"><div class="card-row grow" style="gap:10px"><div class="circ navy" style="width:40px;height:40px;font-size:18px">🔒</div><div class="grow"><div class="strong fs14">Locker</div><div class="fs11 muted">How many the gym has</div></div></div><div style="text-align:right"><div class="fs11 muted">Qty</div><div class="input soft" style="width:64px;min-height:40px;justify-content:center;padding:6px">30</div></div></div>
+          <div class="rowb" style="gap:10px"><div class="card-row grow" style="gap:10px"><div class="circ navy" style="width:40px;height:40px;font-size:18px">♨️</div><div class="grow"><div class="strong fs14">Sauna</div><div class="fs11 muted">How many the gym has</div></div></div><div style="text-align:right"><div class="fs11 muted">Qty</div><div class="input soft" style="width:64px;min-height:40px;justify-content:center;padding:6px"><span class="ph">0</span></div></div></div>
+          <div class="rowb" style="gap:10px"><div class="card-row grow" style="gap:10px"><div class="circ navy" style="width:40px;height:40px;font-size:18px">🤝</div><div class="grow"><div class="strong fs14">Trainer</div><div class="fs11 muted">How many the gym has</div></div></div><div style="text-align:right"><div class="fs11 muted">Qty</div><div class="input soft" style="width:64px;min-height:40px;justify-content:center;padding:6px">2</div></div></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:16px">Pricing &amp; Packages <span style="color:var(--gm-gold)">★</span></div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">This is where you set every price. Add at least one package — customers pick from these when they book.</div>
+
+        <div class="eyebrow" style="margin-top:16px">DAILY / PAY-PER-VISIT</div>
+        <div class="fs11 muted" style="margin-top:2px">One-off visits — per hour, per session, or a full-day pass.</div>
+        <div class="stack" style="margin-top:10px">
+          <div class="card">
+            <div class="rowb"><span class="strong fs14">Single Visit Pass</span><span class="strong" style="color:var(--gm-navy)">Rs 250</span></div>
+            <div class="fs11 muted" style="margin-top:2px">Rs 250 · Per Session · Full floor access, Cardio zone</div>
+            <div class="fs11" style="color:var(--gm-navy);margin-top:6px">🚿 1/visit&nbsp; · &nbsp;🔒 1/visit</div>
+          </div>
+          <div class="card">
+            <div class="rowb"><span class="strong fs14">Full-Day Pass</span><span class="strong" style="color:var(--gm-navy)">Rs 700</span></div>
+            <div class="fs11 muted" style="margin-top:2px">Rs 700 · Per Day · All facilities</div>
+            <div class="fs11" style="color:var(--gm-navy);margin-top:6px">🔒 1/visit&nbsp; · &nbsp;🚿 1/visit&nbsp; · &nbsp;♨️ 1/visit</div>
+          </div>
+        </div>
+        <div class="btn ghost block sm" style="margin-top:8px">+ Add Daily Package</div>
+
+        <div class="eyebrow" style="margin-top:16px">WEEKLY PLANS</div>
+        <div class="fs11 muted" style="margin-top:2px">Short-term passes billed by the week.</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:10px">No weekly plans yet.</div>
+        <div class="btn ghost block sm" style="margin-top:8px">+ Add Weekly Plan</div>
+
+        <div class="eyebrow" style="margin-top:16px">MONTHLY PLANS</div>
+        <div class="fs11 muted" style="margin-top:2px">Recurring memberships billed monthly.</div>
+        <div class="stack" style="margin-top:10px">
+          <div class="card">
+            <div class="rowb"><span class="strong fs14">Premium</span><span class="strong" style="color:var(--gm-navy)">Rs 6,000/mo</span></div>
+            <div class="fs11 muted" style="margin-top:2px">30-day cycle · Max 100 members</div>
+            <div class="fs12" style="margin-top:6px;line-height:1.5">✓ Unlimited gym access<br>✓ 1 PT session/week<br>✓ Locker included</div>
+            <div class="fs11" style="color:var(--gm-navy);margin-top:6px">🚿 ∞&nbsp; · &nbsp;🔒 1/mo&nbsp; · &nbsp;♨️ 4/mo</div>
+          </div>
+        </div>
+        <div class="btn ghost block sm" style="margin-top:8px">+ Add Monthly Plan</div>
+
+        <div class="eyebrow" style="margin-top:16px">3-MONTH PLANS</div>
+        <div class="fs11 muted" style="margin-top:2px">3-month (quarterly) memberships.</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:10px">No 3-month plans yet.</div>
+        <div class="btn ghost block sm" style="margin-top:8px">+ Add 3-Month Plan</div>
+
+        <div class="eyebrow" style="margin-top:16px">6-MONTH PLANS</div>
+        <div class="fs11 muted" style="margin-top:2px">6-month (half-year) memberships.</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:10px">No 6-month plans yet.</div>
+        <div class="btn ghost block sm" style="margin-top:8px">+ Add 6-Month Plan</div>
+
+        <div class="eyebrow" style="margin-top:16px">YEARLY PLANS</div>
+        <div class="fs11 muted" style="margin-top:2px">Annual (12-month) memberships.</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:10px">No yearly plans yet.</div>
+        <div class="btn ghost block sm" style="margin-top:8px">+ Add Yearly Plan</div>
+      </div>
+
+      <div class="card" style="background:var(--gm-warn-bg);border-color:var(--gm-warn-stroke)">
+        <div class="card-row" style="align-items:flex-start;gap:10px">
+          <span style="font-size:18px">ℹ️</span>
+          <div class="fs11" style="color:var(--gm-warn-text)">Your submission will be reviewed by the Sportster team. Typical approval time is 1–3 business days. You'll be notified once approved.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gnav" style="padding:12px 14px;gap:8px;background:var(--gm-page)">
+      <span class="btn ghost" style="flex:1">Back</span>
+      <span class="btn primary" style="flex:2">Continue · Step 4</span>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S07 · AddGym4 — Step 4 of 4 (Submit) ============ -->
+<section class="gm-screen" id="gm-s07">
+  <h3 class="s-title"><span class="flow-badge">Add gym 4/4</span> Owner, Payout &amp; Submit</h3>
+  <p class="s-sub">Owner CNIC + name · proof of ownership · bank accounts · terms · submit · activity_add_gym4.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="hbtn"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow">
+          <div class="eyebrow">STEP 4 OF 4</div>
+          <div class="title hero">Register New Gym</div>
+        </div>
+      </div>
+      <div class="stepper" style="margin-top:14px">
+        <div class="step done"></div><div class="step done"></div><div class="step done"></div><div class="step on"></div>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="rowb">
+        <span class="eyebrow">Step 4 of 4</span>
+        <div class="stepnums">
+          <span class="stepnum done">1</span><span class="stepnum done">2</span><span class="stepnum done">3</span><span class="stepnum on">4</span>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:16px">Your Details</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:4px">Your name and ID so we know it's really you. Customers never see any of this.</div>
+        <div class="field" style="margin-top:14px">
+          <label>Your CNIC number <span class="req">*</span></label>
+          <div class="help">The 13-digit number on your national ID card. We use it to confirm it's really you — customers never see it.</div>
+          <div class="input">42101-1234567-8</div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Your first name <span class="req">*</span></label>
+          <div class="help">Spelled exactly the same way as on your CNIC.</div>
+          <div class="input">Muhammad</div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Your last name <span class="req">*</span></label>
+          <div class="input">Ahmed Khan</div>
+        </div>
+        <div class="field" style="margin-top:12px">
+          <label>Proof you run this place (optional)</label>
+          <div class="help">A photo or PDF of anything that shows you're in charge — rent agreement, ownership papers, gym license. Skip this if you don't have one handy and we'll follow up.</div>
+          <div class="upload">
+            <span style="font-size:22px">📄</span>
+            <span class="strong" style="color:var(--gm-navy)">Tap to add a photo or PDF</span>
+            <span class="fs11 muted">PDF, JPG or PNG · up to 5 MB</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:16px">Bank Accounts</div>
+        <div class="fs12 muted" style="text-align:center;margin-top:2px">Where bookings money is settled</div>
+        <div class="help" style="text-align:center;margin-top:10px">Add at least 2 bank accounts so Sportster can route earnings even if one is temporarily down. Never shown to customers.</div>
+        <div class="card" style="margin-top:12px">
+          <div class="eyebrow">Bank #1 <span style="color:var(--gm-gold)">★</span></div>
+          <div class="stack" style="margin-top:8px">
+            <div class="input select">HBL — Habib Bank</div>
+            <div class="input soft">Ayesha Khan</div>
+            <div class="input soft">PK36 HABB 0000 1234 5678 90</div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:10px">
+          <div class="eyebrow">Bank #2 <span style="color:var(--gm-gold)">★</span></div>
+          <div class="stack" style="margin-top:8px">
+            <div class="input select">Meezan Bank</div>
+            <div class="input soft">Ayesha Khan</div>
+            <div class="input soft">PK24 MEZN 0000 9876 5432 10</div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:10px">
+          <div class="eyebrow">Bank #3 <span class="muted" style="font-weight:700">(optional)</span></div>
+          <div class="stack" style="margin-top:8px">
+            <div class="input select"><span class="ph">Choose bank</span></div>
+            <div class="input soft"><span class="ph">Account Title</span></div>
+            <div class="input soft"><span class="ph">Account Number / IBAN</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="card" style="background:var(--gm-chip-on);border-color:#cfe0f2">
+          <div class="card-row" style="align-items:flex-start;gap:8px">
+            <span style="width:20px;height:20px;border-radius:5px;background:var(--gm-accent);display:grid;place-items:center;color:#fff;flex:none;font-size:13px;font-weight:800">✓</span>
+            <div class="fs11" style="color:var(--gm-navy-2)">I confirm all information is accurate and I am authorised to register this gym. I agree to Sportster's Vendor Terms &amp; Conditions and understand the gym will only go live after admin approval.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="background:var(--gm-warn-bg);border-color:var(--gm-warn-stroke)">
+        <div class="card-row" style="align-items:flex-start;gap:10px">
+          <span style="font-size:18px">ℹ️</span>
+          <div class="fs11" style="color:var(--gm-warn-text)">Your submission will be reviewed by the Sportster team. Typical approval time is 1–3 business days. You'll be notified once approved.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gnav" style="padding:12px 14px;gap:8px;background:var(--gm-page)">
+      <span class="btn ghost" style="flex:1">Back</span>
+      <span class="btn primary" style="flex:2">Submit for Review →</span>
+    </div>
+  </div></div>
+</section>
+<div class="grp"><h3 class="gm-grp">Gym Profile</h3></div>
+<!-- ============ S08 · ViewGym — read-only gym profile ============ -->
+<section class="gm-screen" id="gm-s08">
+  <h3 class="s-title"><span class="flow-badge">Read-only</span> View Gym</h3>
+  <p class="s-sub">Full read-only gym detail page · every profile section customers &amp; vendor see · activity_view_gym.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top" style="align-items:center">
+        <div class="hbtn" style="background:var(--gm-page);color:var(--gm-navy)"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow"></div>
+        <span class="hstatus">Live on App</span>
+        <span class="chip" style="background:var(--gm-page);color:var(--gm-navy);border-color:var(--gm-page)">✎ Edit</span>
+      </div>
+      <div style="margin-top:16px">
+        <div class="title" style="font-size:24px">IronCore Fitness Studio</div>
+        <div class="sub" style="margin-top:6px">💪 Trainers · ❄️ AC · DHA Phase 5, Lahore</div>
+        <div class="rowb" style="margin-top:8px">
+          <span class="fs11 strong" style="font-family:monospace;color:var(--gm-on-hdr-mut)">Code: GYM-001</span>
+          <span class="pill" style="color:var(--gm-navy);background:var(--gm-chip-on);border:1px solid var(--gm-accent)">Rs 250 / hr</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="card plain">
+        <div class="rowb"><span class="eyebrow">Photos</span><span class="fs11 muted">6 photos</span></div>
+        <div class="thumb photo16" style="margin-top:10px"></div>
+        <div class="wrap" style="flex-wrap:nowrap;overflow-x:auto;margin-top:8px">
+          <div class="thumb photo" style="width:64px;height:48px;border-radius:10px;flex:none"></div>
+          <div class="thumb photo" style="width:64px;height:48px;border-radius:10px;flex:none"></div>
+          <div class="thumb photo" style="width:64px;height:48px;border-radius:10px;flex:none"></div>
+          <div class="thumb photo" style="width:64px;height:48px;border-radius:10px;flex:none"></div>
+          <div class="thumb photo" style="width:64px;height:48px;border-radius:10px;flex:none"></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Description</span>
+        <div class="fs14" style="margin-top:8px;line-height:1.5">A premium fitness studio with strength, cardio and recovery zones. Certified trainers on-site, fully air-conditioned floor, and clean showers. Walk-ins and hourly bookings welcome.</div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Gym Specs</span>
+        <div class="g2" style="margin-top:10px">
+          <div style="background:var(--gm-surface-alt);border:1px solid var(--gm-stroke);border-radius:12px;padding:12px"><div class="fs11 strong" style="letter-spacing:.08em;color:var(--gm-navy)">HOURLY RATE</div><div class="strong" style="font-size:15px;margin-top:4px">Rs 250</div></div>
+          <div style="background:var(--gm-surface-alt);border:1px solid var(--gm-stroke);border-radius:12px;padding:12px"><div class="fs11 strong" style="letter-spacing:.08em;color:var(--gm-navy)">FLOOR AREA</div><div class="strong" style="font-size:15px;margin-top:4px">3,200 sqft</div></div>
+          <div style="background:var(--gm-surface-alt);border:1px solid var(--gm-stroke);border-radius:12px;padding:12px"><div class="fs11 strong" style="letter-spacing:.08em;color:var(--gm-navy)">MACHINES</div><div class="strong" style="font-size:15px;margin-top:4px">42</div></div>
+          <div style="background:var(--gm-surface-alt);border:1px solid var(--gm-stroke);border-radius:12px;padding:12px"><div class="fs11 strong" style="letter-spacing:.08em;color:var(--gm-navy)">TRAINERS</div><div class="strong" style="font-size:15px;margin-top:4px">6</div></div>
+          <div style="background:var(--gm-surface-alt);border:1px solid var(--gm-stroke);border-radius:12px;padding:12px"><div class="fs11 strong" style="letter-spacing:.08em;color:var(--gm-navy)">MIN AGE</div><div class="strong" style="font-size:15px;margin-top:4px">16</div></div>
+          <div style="background:var(--gm-surface-alt);border:1px solid var(--gm-stroke);border-radius:12px;padding:12px"><div class="fs11 strong" style="letter-spacing:.08em;color:var(--gm-navy)">RESCHED. FEE</div><div class="strong" style="font-size:15px;margin-top:4px">10%</div></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Amenities</span>
+        <div class="fs11 muted" style="margin-top:2px">Shown to customers</div>
+        <div class="wrap" style="margin-top:8px">
+          <span class="chip">🏋️ Weights</span><span class="chip">🏃 Cardio</span><span class="chip">🚿 Showers</span>
+          <span class="chip">❄️ AC</span><span class="chip">🅿️ Parking</span><span class="chip">🧖 Sauna</span>
+          <span class="chip">🔒 Lockers</span><span class="chip">🚻 Changing Room</span><span class="chip">💧 Water</span>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Operating Hours</span>
+        <div class="stack" style="margin-top:10px">
+          <div class="rowb"><span class="fs13 semi">Monday</span><span class="fs13 muted">6:00 AM – 11:00 PM</span></div><hr class="hr">
+          <div class="rowb"><span class="fs13 semi">Tuesday</span><span class="fs13 muted">6:00 AM – 11:00 PM</span></div><hr class="hr">
+          <div class="rowb"><span class="fs13 semi">Wednesday</span><span class="fs13 muted">6:00 AM – 11:00 PM</span></div><hr class="hr">
+          <div class="rowb"><span class="fs13 semi">Thursday</span><span class="fs13 muted">6:00 AM – 11:00 PM</span></div><hr class="hr">
+          <div class="rowb"><span class="fs13 semi">Friday</span><span class="fs13 muted">2:00 PM – 11:00 PM</span></div><hr class="hr">
+          <div class="rowb"><span class="fs13 semi">Saturday</span><span class="fs13 muted">7:00 AM – 10:00 PM</span></div><hr class="hr">
+          <div class="rowb"><span class="fs13 semi">Sunday</span><span class="fs13 strong" style="color:var(--gm-danger)">Closed</span></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Booking Policies</span>
+        <div class="fs11 muted" style="margin-top:2px">Cancellation &amp; rescheduling rules customers see</div>
+        <div class="stack" style="margin-top:10px">
+          <div class="lrow" style="background:var(--gm-surface)"><div class="lead navy">🚫</div><div class="grow"><div class="fs13 strong">Cancellation</div><div class="fs11 muted" style="margin-top:2px">Free cancellation up to 6 hours before the slot. Later cancellations are non-refundable.</div></div></div>
+          <div class="lrow" style="background:var(--gm-surface)"><div class="lead navy">🔄</div><div class="grow"><div class="fs13 strong">Rescheduling</div><div class="fs11 muted" style="margin-top:2px">Reschedule once for free up to 3 hours before. A 10% fee applies afterwards.</div></div></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Free Trial</span>
+        <div class="fs13 strong" style="margin-top:6px;color:var(--gm-navy)">✓ Each customer can claim one free session at this gym.</div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Booking Packages</span>
+        <div class="fs11 muted" style="margin-top:2px">Options customers can choose at booking time</div>
+        <div class="stack" style="margin-top:10px">
+          <div class="lrow" style="background:var(--gm-surface)"><div class="grow"><div class="fs13 strong">Single Session</div><div class="fs11 muted" style="margin-top:2px">1 hour · pay as you go</div></div><span class="pill info">Rs 250</span></div>
+          <div class="lrow" style="background:var(--gm-surface)"><div class="grow"><div class="fs13 strong">10-Session Pack</div><div class="fs11 muted" style="margin-top:2px">Valid 30 days · save 12%</div></div><span class="pill info">Rs 2,200</span></div>
+          <div class="lrow" style="background:var(--gm-surface)"><div class="grow"><div class="fs13 strong">Monthly Unlimited</div><div class="fs11 muted" style="margin-top:2px">Unlimited off-peak sessions</div></div><span class="pill info">Rs 6,000</span></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Add-on Pricing</span>
+        <div class="stack" style="margin-top:10px">
+          <div class="rowb"><span class="fs13 semi">Personal Trainer (per hr)</span><span class="fs13 strong">Rs 800</span></div><hr class="hr">
+          <div class="rowb"><span class="fs13 semi">Towel &amp; Locker</span><span class="fs13 strong">Rs 100</span></div><hr class="hr">
+          <div class="rowb"><span class="fs13 semi">Protein Shake</span><span class="fs13 strong">Rs 350</span></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Location &amp; Contact</span>
+        <div class="mapph" style="margin-top:10px"></div>
+        <div class="lrow" style="background:var(--gm-surface);margin-top:10px"><div class="lead navy"><svg class="ic i18" style="color:var(--gm-navy)"><use href="#gm-i-pin"/></svg></div><div class="grow"><div class="fs13 strong">Address</div><div class="fs11 muted" style="margin-top:2px">Plot 21-C, Khayaban-e-Shahbaz, DHA Phase 5, Lahore</div></div></div>
+        <div class="lrow" style="background:var(--gm-surface);margin-top:8px"><div class="lead navy"><svg class="ic i18" style="color:var(--gm-navy)"><use href="#gm-i-phone"/></svg></div><div class="grow"><div class="fs13 strong">Phone</div><div class="fs11 muted" style="margin-top:2px">+92 300 1234567</div></div><span class="chev">›</span></div>
+        <div class="lrow" style="background:var(--gm-surface);margin-top:8px"><div class="lead" style="background:#E7F7EE">💬</div><div class="grow"><div class="fs13 strong">WhatsApp</div><div class="fs11 muted" style="margin-top:2px">+92 300 1234567</div></div><span class="chev">›</span></div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Social &amp; Links</span>
+        <div class="stack" style="margin-top:10px">
+          <div class="lrow" style="background:var(--gm-surface)"><div class="lead">📸</div><div class="grow"><div class="fs13 strong">Instagram</div><div class="fs11 muted" style="margin-top:2px">@ironcore.fitness</div></div><span class="chev">›</span></div>
+          <div class="lrow" style="background:var(--gm-surface)"><div class="lead">🌐</div><div class="grow"><div class="fs13 strong">Website</div><div class="fs11 muted" style="margin-top:2px">ironcorefitness.pk</div></div><span class="chev">›</span></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Bank Accounts</span>
+        <div class="fs11 muted" style="margin-top:2px">Where bookings money is settled · vendor-only</div>
+        <div class="lrow" style="background:var(--gm-surface);margin-top:10px"><div class="lead navy"><svg class="ic i18" style="color:var(--gm-navy)"><use href="#gm-i-wallet"/></svg></div><div class="grow"><div class="fs13 strong">Meezan Bank</div><div class="fs11 muted" style="margin-top:2px">IronCore Fitness Pvt Ltd · PK•• •••• 4821</div></div></div>
+      </div>
+
+      <div class="card plain">
+        <span class="eyebrow">Owner</span>
+        <div class="fs14 strong" style="margin-top:8px">Ahmed Khan</div>
+        <div class="fs12 muted" style="margin-top:2px">CNIC: 35202-XXXXXXX-X</div>
+      </div>
+
+      <div class="btn primary block" style="margin-top:8px;height:52px;letter-spacing:.04em">✎ Edit Gym</div>
+      <div class="fs11 muted" style="text-align:center;margin-top:4px">Last updated 2h ago</div>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S09 · EditGym — single-screen form editor ============ -->
+<section class="gm-screen" id="gm-s09">
+  <h3 class="s-title"><span class="flow-badge">Edit form</span> Edit Gym</h3>
+  <p class="s-sub">One long scrolling editor · every field the add-gym wizard collects · activity_edit_gym.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top" style="align-items:center">
+        <div class="hbtn" style="background:var(--gm-surface-alt);color:var(--gm-navy)"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow">
+          <div class="eyebrow">🏋️ EDIT PROFILE</div>
+          <div class="title hero">Edit Gym Profile</div>
+        </div>
+        <span class="hstatus pending">Pending Approval</span>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="eyebrow" style="margin-top:2px">GYM PROFILE</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px;margin-bottom:6px">Gym Profile</div>
+        <div class="stack">
+          <div class="field"><label>Gym Display Name *</label><div class="input">IronCore Fitness Studio</div></div>
+          <div class="field"><label>Short Description *</label><div class="input textarea">Strength-first studio with heavy free weights &amp; expert coaching</div></div>
+          <div class="field"><label>Floor Area *</label><div class="rowb" style="gap:6px"><div class="input" style="flex:1">5,000</div><span class="chip on">sq ft</span><span class="chip">sq yd</span></div></div>
+          <div class="g3">
+            <div class="field"><label>Machines *</label><div class="input">42</div></div>
+            <div class="field"><label>Trainers *</label><div class="input">6</div></div>
+            <div class="field"><label>Min Age *</label><div class="input">18</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">AMENITIES</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px;margin-bottom:8px">On-Site Amenities</div>
+        <label class="fs12 semi" style="margin-bottom:6px;display:block">Amenities *</label>
+        <div class="chips wrap">
+          <span class="chip on">🏋️ Weights</span><span class="chip on">🏃 Cardio</span><span class="chip on">🚿 Showers</span>
+          <span class="chip on">🔒 Lockers</span><span class="chip on">🅿️ Parking</span><span class="chip on">❄️ AC</span>
+          <span class="chip">🧖 Sauna</span><span class="chip">💨 Steam</span><span class="chip">🏊 Pool</span>
+          <span class="chip on">📶 WiFi</span><span class="chip">☕ Café</span><span class="chip">🧘 Yoga Studio</span>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">ADD-ON PRICING</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px">Booking Add-on Pricing</div>
+        <p class="fs12 muted" style="text-align:center;margin:4px 0 10px">What customers pay if they add these extras to a booking. Personal trainer pricing is set per-trainer in the roster.</p>
+        <div class="stack">
+          <div class="field"><label>🧻 Towel Service (Rs)</label><div class="input">Rs 50</div></div>
+          <div class="field"><label>🔒 Locker (Rs)</label><div class="input">Rs 100</div></div>
+          <div class="field"><label>🥤 Supplements Bar Credit (Rs)</label><div class="input">Rs 300</div></div>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">LOCATION &amp; CONTACT</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px;margin-bottom:6px">Location &amp; Contact</div>
+        <div class="stack">
+          <div class="field"><label>City *</label><div class="input select">Karachi</div></div>
+          <div class="field"><label>Area / Sector *</label><div class="input">DHA Phase 5</div></div>
+          <div class="field"><label>Gym Location *</label><div class="lrow" style="background:var(--gm-page)"><div class="lead">📍</div><div class="grow"><div class="strong fs14">Khayaban-e-Shahbaz, DHA Phase 5</div><div class="fs11 muted" style="margin-top:2px">Search, use current location, or drop a pin</div></div><span class="chev">›</span></div></div>
+          <div class="field"><label>Landmark / Building (optional)</label><div class="input">2nd floor, Imtiaz Plaza</div></div>
+          <div class="field"><label>Contact Phone *</label><div class="input">+92 321 2345678</div></div>
+          <div class="field"><label>WhatsApp Number *</label><div class="input">+92 321 2345678</div></div>
+          <div class="field"><label>Email Address *</label><div class="input">hello@ironcore.pk</div></div>
+          <div class="eyebrow fs11" style="margin-top:10px;color:var(--gm-navy-2)">SOCIAL LINKS (OPTIONAL)</div>
+          <div class="input">📷 instagram.com/ironcore.pk</div>
+          <div class="input"><span class="ph">📘 Facebook URL</span></div>
+          <div class="input"><span class="ph">✖ X (Twitter) URL</span></div>
+          <div class="input"><span class="ph">👻 Snapchat URL</span></div>
+          <div class="input"><span class="ph">▶️ YouTube URL</span></div>
+          <div class="input">🌐 ironcore.pk</div>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">GYM TYPE</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px;margin-bottom:6px">Gym Type</div>
+        <div class="field"><label>Who can attend *</label><div class="input select">Male &amp; Female — Separate Timings</div></div>
+        <p class="help" style="margin-top:6px">Choose "Male and Female with Separate Timings" if you operate split windows for each gender on the same day.</p>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">OPERATING HOURS</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px;margin-bottom:6px">Operating Hours</div>
+        <label class="fs12 semi" style="display:block;margin-bottom:6px">How often does your gym open? *</label>
+        <div class="rowb" style="gap:8px"><span class="chip on" style="flex:1;text-align:center;justify-content:center">Once a day</span><span class="chip" style="flex:1;text-align:center;justify-content:center">Twice a day</span></div>
+        <p class="help" style="margin-top:6px">"Twice a day" reveals separate Morning and Evening fields below.</p>
+        <div class="rowb" style="margin-top:12px"><span class="eyebrow fs11" style="color:var(--gm-navy-2)">TIMINGS BY DAY *</span><span class="chip">🕓 24/7</span></div>
+        <p class="help" style="margin:4px 0 8px">Leave any field blank to mark it closed. Tap "Copy Mon–Thu" on Fri/Sat/Sun to reuse your weekday hours.</p>
+        <div class="stack" style="gap:6px">
+          <div class="rowb"><span class="fs13 semi" style="width:44px">Mon</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px">6:00 AM</div><span class="muted">→</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px">11:00 PM</div></div>
+          <div class="rowb"><span class="fs13 semi" style="width:44px">Tue</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px">6:00 AM</div><span class="muted">→</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px">11:00 PM</div></div>
+          <div class="rowb"><span class="fs13 semi" style="width:44px">Wed</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px">6:00 AM</div><span class="muted">→</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px">11:00 PM</div></div>
+          <div class="rowb"><span class="fs13 semi" style="width:44px">Fri</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px">4:00 PM</div><span class="muted">→</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px">11:00 PM</div></div>
+          <div class="rowb"><span class="fs13 semi" style="width:44px">Sun</span><div class="input soft" style="flex:1;min-height:38px;padding:8px 10px;color:var(--gm-muted)">Closed</div></div>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">BOOKING POLICIES</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px">Booking Policies</div>
+        <p class="fs12 muted" style="text-align:center;margin:2px 0 8px">How customers can cancel or reschedule</p>
+        <div class="field"><label>Cancellation Policy *</label><div class="input select">Partial refund</div></div>
+        <p class="help" style="margin:4px 0 8px">Choose how customers are refunded when they cancel.</p>
+        <div class="card tight" style="background:var(--gm-surface)">
+          <div class="field"><label>Free-cancellation window *</label><div class="input select">24 hours before</div></div>
+          <div class="field" style="margin-top:8px"><label>Deduction (%) *</label><div class="input">10</div></div>
+        </div>
+        <div class="field" style="margin-top:10px"><label>Rescheduling Policy *</label><div class="input select">Free reschedule (once)</div></div>
+        <p class="help" style="margin-top:4px">Choose whether customers can move a booking — free, for a fee, or not at all.</p>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">MEDIA &amp; VERIFICATION</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px;margin-bottom:8px">Photos &amp; Documents</div>
+        <label class="fs12 semi" style="display:block;margin-bottom:6px">Gym Photos * (3 to 6)</label>
+        <div class="chips scroll" style="gap:8px">
+          <div class="thumb photo" style="width:88px;height:88px;border-radius:12px;flex:none"></div>
+          <div class="thumb photo" style="width:88px;height:88px;border-radius:12px;flex:none"></div>
+          <div class="thumb photo" style="width:88px;height:88px;border-radius:12px;flex:none"></div>
+          <div class="thumb photo" style="width:88px;height:88px;border-radius:12px;flex:none"></div>
+        </div>
+        <div class="rowb" style="margin-top:8px"><span class="btn ghost sm">📷 Add More</span><span class="fs12 muted">4 photos added</span></div>
+        <label class="fs12 semi" style="display:block;margin:12px 0 6px">Ownership document (optional)</label>
+        <div class="upload"><div style="font-size:22px">📄</div><div class="strong" style="color:var(--gm-navy-2)">gym-lease-agreement.pdf</div><div class="fs11">PDF, JPG or PNG · up to 5 MB</div></div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">OWNER VERIFICATION</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px;margin-bottom:6px">Owner Verification</div>
+        <div class="stack">
+          <div class="field"><label>Your CNIC number *</label><div class="input">42101-1234567-8</div></div>
+          <div class="g2"><div class="field"><label>First name *</label><div class="input">Muhammad</div></div><div class="field"><label>Last name *</label><div class="input">Ahmed Khan</div></div></div>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">FREE TRIAL</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px">Free Trial</div>
+        <p class="fs12 muted" style="text-align:center;margin:4px 0 10px">Let new customers try your gym once for free. Each customer can claim one trial at this gym.</p>
+        <div class="rowb">
+          <div class="grow"><div class="strong fs13">Enable Free Trial</div><div class="fs11 muted" style="margin-top:2px">One free session per customer at this gym</div></div>
+          <span style="width:44px;height:26px;border-radius:999px;background:var(--gm-surface-alt);border:1px solid var(--gm-stroke);position:relative;flex:none"><span style="position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2)"></span></span>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">EQUIPMENT &amp; CAPACITY</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px">Services &amp; Capacity</div>
+        <p class="fs12 muted" style="text-align:center;margin:4px 0 10px">How many of each facility the gym has. Set 0 for anything you don't offer. Usage limits are set per package.</p>
+        <div class="stack" style="gap:8px">
+          <div class="rowb"><span class="fs13 semi">🏃 Treadmills</span><div class="input soft" style="width:70px;min-height:38px;padding:8px;justify-content:center">8</div></div>
+          <div class="rowb"><span class="fs13 semi">🚿 Showers</span><div class="input soft" style="width:70px;min-height:38px;padding:8px;justify-content:center">4</div></div>
+          <div class="rowb"><span class="fs13 semi">🔒 Lockers</span><div class="input soft" style="width:70px;min-height:38px;padding:8px;justify-content:center">40</div></div>
+          <div class="rowb"><span class="fs13 semi">🅿️ Parking spots</span><div class="input soft" style="width:70px;min-height:38px;padding:8px;justify-content:center">20</div></div>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">PACKAGES &amp; PRICING</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px">Pricing &amp; Packages *</div>
+        <p class="fs12 muted" style="text-align:center;margin:4px 0 10px">This is where you set every price. Add at least one package — customers pick from these when they book.</p>
+        <div class="stack">
+          <div class="card tight" style="background:var(--gm-surface)">
+            <div class="rowb"><span class="strong fs13">Day Pass</span><span class="pill info">Active</span></div>
+            <div class="g2" style="margin-top:8px"><div class="field"><label>Price (Rs)</label><div class="input soft">Rs 250</div></div><div class="field"><label>Duration</label><div class="input soft select">1 day</div></div></div>
+          </div>
+          <div class="card tight" style="background:var(--gm-surface)">
+            <div class="rowb"><span class="strong fs13">Monthly Membership</span><span class="pill info">Active</span></div>
+            <div class="g2" style="margin-top:8px"><div class="field"><label>Price (Rs)</label><div class="input soft">Rs 4,500</div></div><div class="field"><label>Duration</label><div class="input soft select">30 days</div></div></div>
+          </div>
+          <span class="btn outline block sm"><svg class="ic i16"><use href="#gm-i-plus"/></svg> Add Package</span>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px">OWNER / BANK</div>
+      <div class="card plain">
+        <div class="sec-title" style="text-align:center;font-size:17px">Bank Accounts</div>
+        <p class="fs12 muted" style="text-align:center;margin:2px 0 6px">Where bookings money is settled</p>
+        <p class="help" style="text-align:center;margin-bottom:10px">Add at least 2 bank accounts so Sportster can route earnings even if one is temporarily down. Never shown to customers.</p>
+        <div class="stack">
+          <div class="lrow" style="background:var(--gm-surface)"><div class="lead navy"><svg class="ic i18"><use href="#gm-i-wallet"/></svg></div><div class="grow"><div class="strong fs13">Meezan Bank</div><div class="fs11 muted">PK36 MEZN •••• 4821 · M. Ahmed Khan</div></div><span class="chev">›</span></div>
+          <div class="lrow" style="background:var(--gm-surface)"><div class="lead navy"><svg class="ic i18"><use href="#gm-i-wallet"/></svg></div><div class="grow"><div class="strong fs13">HBL</div><div class="fs11 muted">PK22 HABB •••• 7139 · M. Ahmed Khan</div></div><span class="chev">›</span></div>
+          <span class="btn outline block sm"><svg class="ic i16"><use href="#gm-i-plus"/></svg> Add Bank Account</span>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:6px;color:var(--gm-danger)">DANGER ZONE</div>
+      <div class="card plain" style="border-color:var(--gm-warn-stroke)">
+        <div class="sec-title" style="text-align:center;font-size:17px;color:var(--gm-danger)">Danger Zone</div>
+        <p class="fs12 muted" style="text-align:center;margin:4px 0 12px">Removes the gym, its equipment, trainers, and photos. Customers stop seeing it immediately. This can't be undone.</p>
+        <span class="btn danger block" style="background:var(--gm-danger);color:#fff;border-color:var(--gm-danger)"><svg class="ic i18"><use href="#gm-i-trash"/></svg> Delete Gym</span>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;padding:12px 14px;background:var(--gm-page);border-top:1px solid var(--gm-stroke)">
+      <span class="btn ghost" style="flex:1">Back</span>
+      <span class="btn primary" style="flex:2">Save Changes</span>
+    </div>
+  </div></div>
+</section>
+<div class="grp"><h3 class="gm-grp">Bookings &amp; Slots</h3></div>
+<!-- ============ S10 · GymBookingsActivity — Bookings list ============ -->
+<section class="gm-screen" id="gm-s10">
+  <h3 class="s-title"><span class="flow-badge">Bookings</span> Bookings</h3>
+  <p class="s-sub">All customer bookings for this gym · status filter + search · activity_gym_bookings.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="grow">
+          <div class="eyebrow">🏋️ Bookings</div>
+          <div class="title">Bookings</div>
+          <div class="sub">IronCore Fitness · 12 total · 3 pending</div>
+        </div>
+        <span class="btn sm" style="background:rgba(255,255,255,.17);color:#fff;border-color:transparent;flex:none">+ Walk-in</span>
+      </div>
+      <div class="chips scroll" style="margin-top:14px">
+        <span class="chip on">All</span><span class="chip">Pending</span><span class="chip">Confirmed</span><span class="chip">Rejected</span>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="input soft"><span class="ph">🔍 &nbsp;Search by customer, phone or booking #</span></div>
+
+      <div class="card">
+        <div class="rowb" style="align-items:flex-start"><div class="grow" style="min-width:0"><div class="fs11 strong ell" style="font-family:monospace;color:var(--gm-navy)">GYM-20240601-0042</div><div class="strong ell" style="font-size:16px;margin-top:2px">Ayesha Khan</div></div><span class="pill pending">Pending</span></div>
+        <hr class="hr" style="margin-top:10px">
+        <div class="rowb" style="margin-top:8px"><span class="fs12 muted">Mon 1 Jun · 6:00 PM · 1.5 hr</span><span class="fs14 strong">Rs 375</span></div>
+        <div class="fs11 ell" style="color:var(--gm-navy-2);margin-top:4px">+ Personal Trainer · Locker</div>
+      </div>
+
+      <div class="card">
+        <div class="rowb" style="align-items:flex-start"><div class="grow" style="min-width:0"><div class="fs11 strong ell" style="font-family:monospace;color:var(--gm-navy)">GYM-20240601-0039</div><div class="strong ell" style="font-size:16px;margin-top:2px">Bilal Ahmed</div></div><span class="pill live">Confirmed</span></div>
+        <hr class="hr" style="margin-top:10px">
+        <div class="rowb" style="margin-top:8px"><span class="fs12 muted">Sun 31 May · 7:00 AM · 2 hr</span><span class="fs14 strong">Rs 500</span></div>
+      </div>
+
+      <div class="card">
+        <div class="rowb" style="align-items:flex-start"><div class="grow" style="min-width:0"><div class="fs11 strong ell" style="font-family:monospace;color:var(--gm-navy)">GYM-20240531-0036</div><div class="strong ell" style="font-size:16px;margin-top:2px">Sara Malik</div></div><span class="pill danger">Rejected</span></div>
+        <hr class="hr" style="margin-top:10px">
+        <div class="rowb" style="margin-top:8px"><span class="fs12 muted">Sat 30 May · 5:30 PM · 1 hr</span><span class="fs14 strong">Rs 250</span></div>
+        <div class="fs11 ell" style="color:var(--gm-navy-2);margin-top:4px">+ Locker</div>
+      </div>
+
+      <div class="card">
+        <div class="rowb" style="align-items:flex-start"><div class="grow" style="min-width:0"><div class="fs11 strong ell" style="font-family:monospace;color:var(--gm-navy)">GYM-20240531-0031</div><div class="strong ell" style="font-size:16px;margin-top:2px">Usman Tariq</div></div><span class="pill muted">Cancelled</span></div>
+        <hr class="hr" style="margin-top:10px">
+        <div class="rowb" style="margin-top:8px"><span class="fs12 muted">Fri 29 May · 8:00 PM · 1.5 hr</span><span class="fs14 strong">Rs 375</span></div>
+      </div>
+
+      <div class="card">
+        <div class="rowb" style="align-items:flex-start"><div class="grow" style="min-width:0"><div class="fs11 strong ell" style="font-family:monospace;color:var(--gm-navy)">GYM-20240530-0028</div><div class="strong ell" style="font-size:16px;margin-top:2px">Hina Raza</div></div><span class="pill live">Confirmed</span></div>
+        <hr class="hr" style="margin-top:10px">
+        <div class="rowb" style="margin-top:8px"><span class="fs12 muted">Thu 28 May · 6:30 AM · 1 hr</span><span class="fs14 strong">Rs 250</span></div>
+      </div>
+    </div>
+
+    <div class="gnav">
+      <div class="item"><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item on"><span class="pillbg"></span><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item"><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S11 · GymBookingDetailActivity — Booking Detail ============ -->
+<section class="gm-screen" id="gm-s11">
+  <h3 class="s-title"><span class="flow-badge">Booking</span> Booking Detail</h3>
+  <p class="s-sub">Full review of one booking · approve, reject or cancel · activity_gym_booking_detail.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top" style="align-items:center">
+        <div class="hbtn" style="background:var(--gm-surface-alt);color:var(--gm-navy)"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow"><div class="eyebrow" style="font-family:monospace;letter-spacing:.1em">GYM-20240601-0042</div><div class="title hero">Booking detail</div></div>
+        <span class="hstatus pending">Pending</span>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="card plain" style="text-align:center">
+        <span class="pill pending" style="font-size:13px;padding:6px 16px">⏳ Pending</span>
+        <div class="fs12 muted" style="margin-top:8px">Awaiting your response — approve or reject below.</div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow" style="color:var(--gm-navy-2)">Session</div>
+        <div class="strong" style="font-size:18px;margin-top:6px">Mon 1 Jun · 6:00 PM</div>
+        <div class="fs12 muted" style="margin-top:2px">1.5 hours · ends 7:30 PM</div>
+        <div class="fs12 strong" style="color:var(--gm-navy);margin-top:10px">🏋️ IronCore Fitness Studio</div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow" style="color:var(--gm-navy-2);margin-bottom:8px">Customer</div>
+        <div class="lrow" style="background:var(--gm-page)"><div class="lead navy">🤝</div><div class="grow"><div class="strong fs14">Ayesha Khan</div><div class="fs12 muted" style="margin-top:2px;color:var(--gm-navy)">+92 300 1234567</div></div><div class="hbtn" style="width:40px;height:40px;background:var(--gm-chip-on);color:var(--gm-navy)"><svg class="ic i18"><use href="#gm-i-phone"/></svg></div></div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow" style="color:var(--gm-navy-2)">Session Summary</div>
+        <div class="stack" style="margin-top:10px">
+          <div class="rowb"><span class="fs13">Session · 1.5 hr @ Rs 250/hr</span><span class="fs13 semi">Rs 375</span></div>
+          <div class="rowb"><span class="fs13 muted">＋ Personal Trainer</span><span class="fs13 muted">Included</span></div>
+          <div class="rowb"><span class="fs13 muted">＋ Locker</span><span class="fs13 muted">Included</span></div>
+        </div>
+        <hr class="hr" style="margin:12px 0">
+        <div class="rowb"><span class="fs14 strong">Total charges</span><span class="strong" style="font-size:18px;color:var(--gm-navy)">Rs 375</span></div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow" style="color:var(--gm-navy-2)">Customer Note</div>
+        <div class="fs13" style="margin-top:6px">First time at this gym — would prefer a trainer who can walk me through the chest machines.</div>
+      </div>
+
+      <div class="card">
+        <div class="rowb"><span class="eyebrow" style="color:var(--gm-navy-2)">Payment</span><span class="pill live">✓ Paid online</span></div>
+        <div class="fs11 muted" style="margin-top:8px">Payment screenshot · tap to view full size</div>
+        <div class="thumb photo16" style="margin-top:10px"></div>
+      </div>
+
+      <div class="card plain">
+        <div class="field"><label>Your note <span class="muted" style="font-weight:600">(optional — shown to customer)</span></label><div class="input textarea soft"><span class="ph">Add a note, e.g. bring your own towel, arrive 10 min early…</span></div></div>
+      </div>
+    </div>
+
+    <div class="gnav" style="gap:10px;padding:12px 14px">
+      <div class="btn danger" style="flex:1">Reject</div>
+      <div class="btn primary" style="flex:2">✓ &nbsp;Confirm booking</div>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S12 · GymBookingConfirmationActivity — Booking Confirmation ============ -->
+<section class="gm-screen" id="gm-s12">
+  <h3 class="s-title"><span class="flow-badge">Confirmation</span> Booking Confirmation</h3>
+  <p class="s-sub">Success screen after approving · pass reference + summary · activity_gym_booking_confirmation.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead" style="padding-bottom:26px">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top"><div class="hbtn" style="background:var(--gm-surface-alt);color:var(--gm-navy)"><svg class="ic i18"><use href="#gm-i-back"/></svg></div></div>
+      <div style="text-align:center;margin-top:16px">
+        <div class="circ" style="width:64px;height:64px;margin:0 auto;background:var(--gm-chip-on);color:var(--gm-accent);font-size:32px;font-weight:800">✓</div>
+        <div class="title" style="margin-top:14px">Booking confirmed</div>
+        <div class="sub" style="margin-top:4px">The customer has been notified</div>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="card" style="padding:20px">
+        <div class="eyebrow" style="color:var(--gm-navy-2);letter-spacing:.14em">Pass Reference</div>
+        <div class="strong" style="font-family:monospace;letter-spacing:.06em;font-size:22px;color:var(--gm-navy);margin-top:6px">GYM-20240601-0042</div>
+        <hr class="hr" style="margin:14px 0">
+        <div class="strong" style="font-size:18px">IronCore Fitness Studio</div>
+      </div>
+
+      <div class="card"><div class="eyebrow" style="color:var(--gm-navy-2)">Session</div><div class="strong fs14" style="font-size:16px;margin-top:6px">Mon 1 Jun · 6:00 PM</div><div class="fs12 muted" style="margin-top:2px">1.5 hours · ends 7:30 PM</div></div>
+      <div class="card"><div class="eyebrow" style="color:var(--gm-navy-2)">Customer</div><div class="strong fs14" style="font-size:16px;margin-top:6px">Ayesha Khan</div><div class="fs12" style="margin-top:2px;color:var(--gm-navy)">+92 300 1234567</div></div>
+      <div class="card"><div class="eyebrow" style="color:var(--gm-navy-2)">Add-ons</div><div class="stack" style="margin-top:8px"><div class="rowb"><span class="fs13">Personal Trainer</span><span class="fs13 muted">Included</span></div><div class="rowb"><span class="fs13">Locker</span><span class="fs13 muted">Included</span></div></div></div>
+      <div class="card"><div class="rowb"><span class="fs14 strong">Customer paid</span><span class="strong" style="font-size:20px;color:var(--gm-navy)">Rs 375</span></div></div>
+    </div>
+
+    <div class="gnav" style="gap:12px;padding:12px 14px">
+      <div class="btn outline" style="flex:1">Share Pass</div>
+      <div class="btn primary" style="flex:1">Done</div>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S13 · GymSlotGridActivity — 14-day slot schedule ============ -->
+<section class="gm-screen" id="gm-s13">
+  <h3 class="s-title"><span class="flow-badge">Slots</span> Slot Grid</h3>
+  <p class="s-sub">14-day slot schedule · tap a slot to open or close it · activity_gym_slot_grid.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="hbtn"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow"><div class="eyebrow">🏋️ Slot Schedule</div><div class="title hero">IronCore Fitness · Fri 25 Apr</div></div>
+      </div>
+      <div class="datestrip" style="margin-top:14px">
+        <div class="dchip"><div>Wed</div><div class="n">23</div><div>Apr</div></div>
+        <div class="dchip"><div>Thu</div><div class="n">24</div><div>Apr</div></div>
+        <div class="dchip on"><div>Fri</div><div class="n">25</div><div>Apr</div></div>
+        <div class="dchip"><div>Sat</div><div class="n">26</div><div>Apr</div></div>
+        <div class="dchip"><div>Sun</div><div class="n">27</div><div>Apr</div></div>
+        <div class="dchip"><div>Mon</div><div class="n">28</div><div>Apr</div></div>
+        <div class="dchip"><div>Tue</div><div class="n">29</div><div>Apr</div></div>
+        <div class="dchip"><div>Wed</div><div class="n">30</div><div>Apr</div></div>
+        <div class="dchip"><div>Thu</div><div class="n">1</div><div>May</div></div>
+        <div class="dchip"><div>Fri</div><div class="n">2</div><div>May</div></div>
+        <div class="dchip"><div>Sat</div><div class="n">3</div><div>May</div></div>
+        <div class="dchip"><div>Sun</div><div class="n">4</div><div>May</div></div>
+        <div class="dchip"><div>Mon</div><div class="n">5</div><div>May</div></div>
+        <div class="dchip"><div>Tue</div><div class="n">6</div><div>May</div></div>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="card tight plain">
+        <div class="legendrow">
+          <span><span class="d" style="background:var(--gm-chip-on);border:1px solid var(--gm-accent)"></span>11 available</span>
+          <span><span class="d" style="background:var(--gm-live)"></span>3 booked</span>
+          <span><span class="d" style="background:var(--gm-surface-alt);border:1px solid var(--gm-stroke)"></span>2 blocked</span>
+        </div>
+        <div class="help" style="margin-top:8px">Tap a slot to toggle it open or closed. Booked slots can't be blocked.</div>
+      </div>
+
+      <div class="slotgrid">
+        <div class="slot avail"><div class="t">6 AM</div>Open</div><div class="slot avail"><div class="t">7 AM</div>Open</div><div class="slot booked"><div class="t">8 AM</div>Booked</div><div class="slot avail"><div class="t">9 AM</div>Open</div>
+        <div class="slot avail"><div class="t">10 AM</div>Open</div><div class="slot avail"><div class="t">11 AM</div>Open</div><div class="slot booked"><div class="t">12 PM</div>Booked</div><div class="slot avail"><div class="t">1 PM</div>Open</div>
+        <div class="slot avail"><div class="t">2 PM</div>Open</div><div class="slot blocked"><div class="t">3 PM</div>Closed</div><div class="slot avail"><div class="t">4 PM</div>Open</div><div class="slot avail"><div class="t">5 PM</div>Open</div>
+        <div class="slot booked"><div class="t">6 PM</div>Booked</div><div class="slot avail"><div class="t">7 PM</div>Open</div><div class="slot avail"><div class="t">8 PM</div>Open</div><div class="slot blocked"><div class="t">9 PM</div>Closed</div>
+      </div>
+    </div>
+  </div></div>
+</section>
+<div class="grp"><h3 class="gm-grp">Insights &amp; Signals</h3></div>
+<!-- ============ S14 · GymAnalyticsActivity — analytics dashboard ============ -->
+<section class="gm-screen" id="gm-s14">
+  <h3 class="s-title"><span class="flow-badge">Analytics</span> Analytics</h3>
+  <p class="s-sub">Revenue, bookings &amp; membership performance by date range · activity_gym_analytics.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="hbtn"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow"><div class="eyebrow">🏋️ Analytics</div><div class="title hero">IronCore Fitness</div></div>
+      </div>
+      <div class="chips" style="margin-top:14px">
+        <span class="chip grow" style="text-align:center;justify-content:center">7 days</span>
+        <span class="chip on grow" style="text-align:center;justify-content:center">30 days</span>
+        <span class="chip grow" style="text-align:center;justify-content:center">90 days</span>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="stats">
+        <div class="stat"><div class="k">Revenue</div><div class="v">Rs 45.2k</div></div>
+        <div class="stat"><div class="k">Bookings</div><div class="v">28</div></div>
+        <div class="stat"><div class="k">Approval</div><div class="v">85%</div></div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title">Daily revenue</div>
+        <div class="fs11 muted" style="margin-top:2px">Peak day: Sat 19 Apr · Rs 9,400</div>
+        <div class="bars" style="margin-top:14px">
+          <div class="bar" style="height:38%"></div><div class="bar" style="height:52%"></div><div class="bar" style="height:44%"></div><div class="bar" style="height:66%"></div><div class="bar" style="height:58%"></div><div class="bar" style="height:80%"></div><div class="bar" style="height:100%"></div><div class="bar" style="height:47%"></div><div class="bar" style="height:61%"></div><div class="bar" style="height:55%"></div><div class="bar" style="height:73%"></div><div class="bar" style="height:64%"></div><div class="bar" style="height:42%"></div><div class="bar" style="height:70%"></div>
+        </div>
+        <div class="legendrow" style="margin-top:10px"><span><span class="d" style="background:linear-gradient(180deg,var(--gm-accent),var(--gm-navy))"></span>Revenue (Rs)</span></div>
+        <div class="fs11 muted" style="margin-top:6px">Tap a bar to see the day's revenue</div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title">Memberships</div>
+        <div class="fs11 muted" style="margin-top:2px">Rs 84k revenue in this window</div>
+        <div class="g3" style="margin-top:14px">
+          <div style="background:var(--gm-chip-on);border:1px solid #cfe0f2;border-radius:12px;padding:10px"><div class="fs11 strong" style="color:var(--gm-navy-2);letter-spacing:.06em">MRR</div><div class="strong fs14" style="margin-top:3px">Rs 84k</div></div>
+          <div style="background:var(--gm-chip-on);border:1px solid #cfe0f2;border-radius:12px;padding:10px"><div class="fs11 strong" style="color:var(--gm-navy-2);letter-spacing:.06em">SIGNUPS</div><div class="strong fs14" style="margin-top:3px">3</div></div>
+          <div style="background:var(--gm-chip-on);border:1px solid #cfe0f2;border-radius:12px;padding:10px"><div class="fs11 strong" style="color:var(--gm-navy-2);letter-spacing:.06em">RENEWALS</div><div class="strong fs14" style="margin-top:3px">11</div></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title">Booking outcomes</div>
+        <div class="fs11 muted" style="margin-top:2px">Where every request ended up in this window</div>
+        <div style="display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--gm-surface-alt);margin-top:14px">
+          <div style="width:64%;background:var(--gm-accent)"></div><div style="width:14%;background:#E07B00"></div><div style="width:11%;background:#D32F2F"></div><div style="width:11%;background:#9E9E9E"></div>
+        </div>
+        <div class="stack" style="margin-top:12px">
+          <div class="rowb fs12"><span><span class="d" style="background:var(--gm-accent);width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:8px;vertical-align:-1px"></span>Confirmed</span><span class="strong">18</span></div>
+          <div class="rowb fs12"><span><span class="d" style="background:#E07B00;width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:8px;vertical-align:-1px"></span>Pending</span><span class="strong">4</span></div>
+          <div class="rowb fs12"><span><span class="d" style="background:#D32F2F;width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:8px;vertical-align:-1px"></span>Rejected</span><span class="strong">3</span></div>
+          <div class="rowb fs12"><span><span class="d" style="background:#9E9E9E;width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:8px;vertical-align:-1px"></span>Cancelled</span><span class="strong">3</span></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title">Top add-ons</div>
+        <div class="fs11 muted" style="margin-top:2px">Sorted by revenue this window</div>
+        <div class="stack" style="margin-top:12px">
+          <div class="rowb"><div class="grow"><div class="semi fs13">🥤 Protein shake</div><div class="fs11 muted">24 booked</div></div><span class="strong fs13">Rs 4,800</span></div><hr class="hr">
+          <div class="rowb"><div class="grow"><div class="semi fs13">🧖 Sauna access</div><div class="fs11 muted">15 booked</div></div><span class="strong fs13">Rs 3,000</span></div><hr class="hr">
+          <div class="rowb"><div class="grow"><div class="semi fs13">🔒 Locker rental</div><div class="fs11 muted">20 booked</div></div><span class="strong fs13">Rs 2,000</span></div><hr class="hr">
+          <div class="rowb"><div class="grow"><div class="semi fs13">🚿 Towel service</div><div class="fs11 muted">12 booked</div></div><span class="strong fs13">Rs 1,200</span></div>
+        </div>
+      </div>
+
+      <div class="card plain">
+        <div class="sec-title">Top plans</div>
+        <div class="fs11 muted" style="margin-top:2px">Membership plans sorted by signup + renewal revenue</div>
+        <div class="stack" style="margin-top:12px">
+          <div class="rowb"><div class="grow"><div class="semi fs13">Monthly Unlimited</div><div class="fs11 muted">8 signups · 6 renewals</div></div><span class="strong fs13">Rs 48k</span></div><hr class="hr">
+          <div class="rowb"><div class="grow"><div class="semi fs13">Quarterly Pro</div><div class="fs11 muted">3 signups · 4 renewals</div></div><span class="strong fs13">Rs 27k</span></div><hr class="hr">
+          <div class="rowb"><div class="grow"><div class="semi fs13">Annual Elite</div><div class="fs11 muted">1 signup · 1 renewal</div></div><span class="strong fs13">Rs 18k</span></div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S15 · GymReviewsActivity — Customer Reviews ============ -->
+<section class="gm-screen" id="gm-s15">
+  <h3 class="s-title"><span class="flow-badge">Reviews</span> Reviews</h3>
+  <p class="s-sub">Rating summary + histogram + reply to customers · activity_gym_reviews.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="hbtn"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow"><div class="eyebrow">🏋️ REVIEWS</div><div class="title hero">IronCore Fitness Studio</div></div>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="card plain">
+        <div class="card-row" style="align-items:flex-start">
+          <div style="flex:none"><div class="strong" style="font-size:36px;line-height:1">4.6</div><div class="stars" style="font-size:16px;margin-top:2px">★★★★★</div><div class="fs11 muted" style="margin-top:2px">218 reviews</div></div>
+          <div class="grow" style="margin-left:20px">
+            <div class="rowb" style="gap:6px;margin-bottom:3px"><span class="fs11 strong muted" style="width:24px;flex:none">5★</span><span style="flex:1;height:6px;background:var(--gm-surface-alt);display:flex;overflow:hidden;border-radius:3px"><span style="width:100%;background:var(--gm-gold)"></span></span><span class="fs11 strong" style="width:22px;text-align:right;flex:none">165</span></div>
+            <div class="rowb" style="gap:6px;margin-bottom:3px"><span class="fs11 strong muted" style="width:24px;flex:none">4★</span><span style="flex:1;height:6px;background:var(--gm-surface-alt);display:flex;overflow:hidden;border-radius:3px"><span style="width:21%;background:var(--gm-gold)"></span></span><span class="fs11 strong" style="width:22px;text-align:right;flex:none">35</span></div>
+            <div class="rowb" style="gap:6px;margin-bottom:3px"><span class="fs11 strong muted" style="width:24px;flex:none">3★</span><span style="flex:1;height:6px;background:var(--gm-surface-alt);display:flex;overflow:hidden;border-radius:3px"><span style="width:6%;background:var(--gm-gold)"></span></span><span class="fs11 strong" style="width:22px;text-align:right;flex:none">10</span></div>
+            <div class="rowb" style="gap:6px;margin-bottom:3px"><span class="fs11 strong muted" style="width:24px;flex:none">2★</span><span style="flex:1;height:6px;background:var(--gm-surface-alt);display:flex;overflow:hidden;border-radius:3px"><span style="width:3%;background:var(--gm-gold)"></span></span><span class="fs11 strong" style="width:22px;text-align:right;flex:none">5</span></div>
+            <div class="rowb" style="gap:6px"><span class="fs11 strong muted" style="width:24px;flex:none">1★</span><span style="flex:1;height:6px;background:var(--gm-surface-alt);display:flex;overflow:hidden;border-radius:3px"><span style="width:2%;background:var(--gm-gold)"></span></span><span class="fs11 strong" style="width:22px;text-align:right;flex:none">3</span></div>
+          </div>
+        </div>
+        <div style="margin-top:14px;background:var(--gm-warn-bg);border:1px solid var(--gm-warn-stroke);border-radius:10px;padding:10px;color:var(--gm-warn-text);font-size:11px;font-weight:800">⚠ 3 reviews waiting for a reply</div>
+      </div>
+
+      <div class="input soft"><span class="ph">🔍 &nbsp; Search by reviewer name or comment</span></div>
+
+      <div class="chips scroll"><span class="chip on">All</span><span class="chip">Needs reply</span><span class="chip">Replied</span></div>
+
+      <div class="card plain">
+        <div class="card-row" style="align-items:flex-start"><div class="circ navy" style="width:40px;height:40px;font-size:14px;font-weight:800;color:var(--gm-navy)">A</div><div class="grow"><div class="strong fs14 ell">Ayesha Khan</div><div class="fs11 muted" style="margin-top:1px">2 days ago</div></div><span class="stars" style="font-size:14px">★★★★★</span></div>
+        <div class="fs13" style="margin-top:10px">Best-equipped gym in DHA. The live machine status saved me so much time. 10/10!</div>
+        <div style="margin-top:12px;background:var(--gm-chip-on);border-radius:10px;padding:10px"><div style="font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--gm-navy)">YOUR REPLY</div><div class="fs12" style="margin-top:3px">Thank you Ayesha — see you next session!</div><div style="font-size:10px;color:var(--gm-muted);margin-top:3px">replied 1 day ago</div></div>
+      </div>
+
+      <div class="card plain">
+        <div class="card-row" style="align-items:flex-start"><div class="circ navy" style="width:40px;height:40px;font-size:14px;font-weight:800;color:var(--gm-navy)">B</div><div class="grow"><div class="strong fs14 ell">Bilal Ahmed</div><div class="fs11 muted" style="margin-top:1px">5 days ago</div></div><span class="stars" style="font-size:14px">★★★★<span class="off">★</span></span></div>
+        <div class="fs13" style="margin-top:10px">Great trainers and clean showers. Parking gets full in the evening though.</div>
+        <div class="btn ghost block" style="margin-top:12px;font-size:13px">+ Reply</div>
+      </div>
+
+      <div class="card plain">
+        <div class="card-row" style="align-items:flex-start"><div class="circ navy" style="width:40px;height:40px;font-size:14px;font-weight:800;color:var(--gm-navy)">F</div><div class="grow"><div class="strong fs14 ell">Fatima Noor</div><div class="fs11 muted" style="margin-top:1px">3 days ago</div></div><span class="stars" style="font-size:14px">★★★★★</span></div>
+        <div class="fs13" style="margin-top:10px">Loved the ladies-only hours. Staff very helpful and the place is spotless.</div>
+        <div style="margin-top:12px;background:var(--gm-chip-on);border-radius:10px;padding:10px"><div style="font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--gm-navy)">YOUR REPLY</div><div class="fs12" style="margin-top:3px">So glad you enjoyed it, Fatima!</div><div style="font-size:10px;color:var(--gm-muted);margin-top:3px">replied 2 days ago</div></div>
+      </div>
+
+      <div class="card plain">
+        <div class="card-row" style="align-items:flex-start"><div class="circ navy" style="width:40px;height:40px;font-size:14px;font-weight:800;color:var(--gm-navy)">H</div><div class="grow"><div class="strong fs14 ell">Hamza Sheikh</div><div class="fs11 muted" style="margin-top:1px">1 week ago</div></div><span class="stars" style="font-size:14px">★★★★<span class="off">★</span></span></div>
+        <div class="fs13" style="margin-top:10px">Good value at Rs 250/hr. Could use more cardio machines during peak hours.</div>
+        <div class="btn ghost block" style="margin-top:12px;font-size:13px">+ Reply</div>
+      </div>
+
+      <div class="card plain">
+        <div class="card-row" style="align-items:flex-start"><div class="circ navy" style="width:40px;height:40px;font-size:14px;font-weight:800;color:var(--gm-navy)">S</div><div class="grow"><div class="strong fs14 ell">Sana Malik</div><div class="fs11 muted" style="margin-top:1px">6 days ago</div></div><span class="stars" style="font-size:14px">★★<span class="off">★★★</span></span></div>
+        <div class="fs13" style="margin-top:10px">AC wasn't working during my session. Hope they fix it soon.</div>
+        <div class="btn ghost block" style="margin-top:12px;font-size:13px">+ Reply</div>
+      </div>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S16 · GymNotificationsActivity — Per-gym inbox ============ -->
+<section class="gm-screen" id="gm-s16">
+  <h3 class="s-title"><span class="flow-badge">Alerts</span> Notifications</h3>
+  <p class="s-sub">Per-gym activity feed · pending · reviews · memberships · activity_gym_notifications.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="hbtn"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow"><div class="eyebrow">🏋️ NOTIFICATIONS</div><div class="title hero">IronCore Fitness Studio</div></div>
+        <span class="hstatus">● LIVE</span>
+      </div>
+      <div class="card plain" style="margin-top:12px;padding:10px;font-size:11px;font-weight:800;color:var(--gm-ink)">🔴 3 need action · 🔵 5 recent in the last 7 days</div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="rowb"><span class="eyebrow">Needs your attention</span><span class="pill danger" style="font-size:10px">3</span></div>
+
+      <div class="lrow"><div class="lead warn">⏱</div><div class="grow"><div class="strong fs14">Ayesha Khan wants to book</div><div class="fs12 muted" style="margin-top:2px">Mon 1 Jun · 6:00 PM · 2 hr · Rs 500</div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none"><span class="fs11 muted">2h ago</span><span style="width:9px;height:9px;border-radius:50%;background:#FF5252"></span></div></div>
+      <div class="lrow"><div class="lead navy">⭐</div><div class="grow"><div class="strong fs14">Bilal Ahmed left a review</div><div class="fs12 muted ell" style="margin-top:2px">★★★★ · Great trainers and clean showers.</div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none"><span class="fs11 muted">5h ago</span><span style="width:9px;height:9px;border-radius:50%;background:#FF5252"></span></div></div>
+      <div class="lrow"><div class="lead warn">⚠</div><div class="grow"><div class="strong fs14">Sana Malik left a low-star review</div><div class="fs12 muted ell" style="margin-top:2px">★★ · AC wasn't working during my session.</div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none"><span class="fs11 muted">1d ago</span><span style="width:9px;height:9px;border-radius:50%;background:#FF5252"></span></div></div>
+
+      <div class="rowb" style="margin-top:6px"><span class="eyebrow">Recent activity · 7 days</span><span class="pill info" style="font-size:10px">5</span></div>
+
+      <div class="lrow"><div class="lead">✅</div><div class="grow"><div class="strong fs14">Hamza Sheikh booked</div><div class="fs12 muted" style="margin-top:2px">Sun 31 May · 7:00 AM · 1 hr · Rs 250</div></div><span class="fs11 muted" style="flex:none">1d ago</span></div>
+      <div class="lrow"><div class="lead navy">⭐</div><div class="grow"><div class="strong fs14">Fatima Noor left a review</div><div class="fs12 muted ell" style="margin-top:2px">★★★★★ · Loved the ladies-only hours.</div></div><span class="fs11 muted" style="flex:none">2d ago</span></div>
+      <div class="lrow"><div class="lead">❌</div><div class="grow"><div class="strong fs14">You rejected Usman Tariq</div><div class="fs12 muted" style="margin-top:2px">Sat 30 May · 9:00 PM · 2 hr · Rs 500</div></div><span class="fs11 muted" style="flex:none">3d ago</span></div>
+      <div class="lrow"><div class="lead">🚫</div><div class="grow"><div class="strong fs14">Zainab Ali cancelled</div><div class="fs12 muted" style="margin-top:2px">Fri 29 May · 5:00 PM · 1 hr · Rs 250</div></div><span class="fs11 muted" style="flex:none">4d ago</span></div>
+      <div class="lrow"><div class="lead warn">⏳</div><div class="grow"><div class="strong fs14">Ali Raza's membership expiring soon</div><div class="fs12 muted" style="margin-top:2px">Monthly Unlimited · 3 days left · tap to renew</div></div><span class="fs11 muted" style="flex:none">5d ago</span></div>
+    </div>
+
+    <div class="gnav">
+      <div class="item"><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item on"><span class="pillbg"></span><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S17 · GymAlertsHubActivity — Cross-gym alerts ============ -->
+<section class="gm-screen" id="gm-s17">
+  <h3 class="s-title"><span class="flow-badge">Cross-gym</span> Alerts Hub</h3>
+  <p class="s-sub">Pending items across ALL your gyms · tagged by gym · activity_gym_alerts_hub.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="hbtn"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow"><div class="eyebrow">ALERTS HUB</div><div class="title hero">Gym Alerts</div></div>
+        <span class="hstatus">● LIVE</span>
+      </div>
+      <div class="card plain" style="margin-top:12px;padding:10px;font-size:11px;font-weight:800;color:var(--gm-ink)">🔴 5 need action across 3 gyms · 🔵 4 recent in the last 7 days</div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="rowb"><span class="eyebrow">Needs your attention</span><span class="pill danger" style="font-size:10px">5</span></div>
+
+      <div class="lrow" style="align-items:flex-start"><div class="lead warn">⏱</div><div class="grow"><div class="strong fs14">Ayesha Khan wants to book</div><div class="fs12 muted" style="margin-top:2px">Mon 1 Jun · 6:00 PM · 2 hr · Rs 500</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ IronCore Fitness Studio</span></div><span class="fs11 muted" style="flex:none">2h ago</span></div>
+      <div class="lrow" style="align-items:flex-start"><div class="lead warn">⏱</div><div class="grow"><div class="strong fs14">Kamran Shah wants to book</div><div class="fs12 muted" style="margin-top:2px">Tue 2 Jun · 8:00 AM · 1 hr · Rs 300</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ PowerHouse Gym — Clifton</span></div><span class="fs11 muted" style="flex:none">4h ago</span></div>
+      <div class="lrow" style="align-items:flex-start"><div class="lead warn">⚠</div><div class="grow"><div class="strong fs14">Sana Malik left a low-star review</div><div class="fs12 muted ell" style="margin-top:2px">★★ · AC wasn't working during my session.</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ IronCore Fitness Studio</span></div><span class="fs11 muted" style="flex:none">1d ago</span></div>
+      <div class="lrow" style="align-items:flex-start"><div class="lead navy">⭐</div><div class="grow"><div class="strong fs14">Nida Yousuf left a review</div><div class="fs12 muted ell" style="margin-top:2px">★★★★★ · Great women-only space, felt very safe.</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ FlexZone Ladies Only</span></div><span class="fs11 muted" style="flex:none">2d ago</span></div>
+      <div class="lrow" style="align-items:flex-start"><div class="lead warn">⏳</div><div class="grow"><div class="strong fs14">Ali Raza's membership expiring soon</div><div class="fs12 muted" style="margin-top:2px">Monthly Unlimited · 3 days left · tap to renew</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ PowerHouse Gym — Clifton</span></div><span class="fs11 muted" style="flex:none">1d ago</span></div>
+
+      <div class="rowb" style="margin-top:6px"><span class="eyebrow">Recent activity · 7 days</span><span class="pill info" style="font-size:10px">4</span></div>
+
+      <div class="lrow" style="align-items:flex-start"><div class="lead">✅</div><div class="grow"><div class="strong fs14">Hamza Sheikh booked</div><div class="fs12 muted" style="margin-top:2px">Sun 31 May · 7:00 AM · 1 hr · Rs 250</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ IronCore Fitness Studio</span></div><span class="fs11 muted" style="flex:none">1d ago</span></div>
+      <div class="lrow" style="align-items:flex-start"><div class="lead">❌</div><div class="grow"><div class="strong fs14">You rejected Usman Tariq</div><div class="fs12 muted" style="margin-top:2px">Sat 30 May · 9:00 PM · 2 hr · Rs 600</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ PowerHouse Gym — Clifton</span></div><span class="fs11 muted" style="flex:none">3d ago</span></div>
+      <div class="lrow" style="align-items:flex-start"><div class="lead">🚫</div><div class="grow"><div class="strong fs14">Zainab Ali cancelled</div><div class="fs12 muted" style="margin-top:2px">Fri 29 May · 5:00 PM · 1 hr · Rs 200</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ FlexZone Ladies Only</span></div><span class="fs11 muted" style="flex:none">4d ago</span></div>
+      <div class="lrow" style="align-items:flex-start"><div class="lead navy">⭐</div><div class="grow"><div class="strong fs14">Fatima Noor left a review</div><div class="fs12 muted ell" style="margin-top:2px">★★★★★ · Loved the ladies-only hours.</div><span class="pill info" style="font-size:10px;margin-top:6px">🏋️ FlexZone Ladies Only</span></div><span class="fs11 muted" style="flex:none">2d ago</span></div>
+    </div>
+  </div></div>
+</section>
+<!-- ============ S18 · GymManageActivity — Manage launchpad ============ -->
+<section class="gm-screen" id="gm-s18">
+  <h3 class="s-title"><span class="flow-badge">Manage</span> Manage</h3>
+  <p class="s-sub">Per-gym admin launchpad · grouped card grid + bottom nav · activity_gym_manage.xml</p>
+  <div class="device"><div class="scr">
+    <div class="ghead">
+      <div class="statusbar on-navy"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="grow"><div class="eyebrow">⚙️ MANAGE</div><div class="title hero">IronCore Fitness Studio</div></div>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="eyebrow" style="color:var(--gm-navy-2)">Operations</div>
+      <div class="g2">
+        <div class="card tight"><div style="font-size:22px">🏋️</div><div class="strong fs14" style="margin-top:6px">Equipment</div><div class="fs11 muted" style="margin-top:2px">Machines</div></div>
+        <div class="card tight"><div style="font-size:22px">💪</div><div class="strong fs14" style="margin-top:6px">Trainers</div><div class="fs11 muted" style="margin-top:2px">Roster + rates</div></div>
+      </div>
+      <div class="g2">
+        <div class="card tight"><div style="font-size:22px">📋</div><div class="strong fs14" style="margin-top:6px">Plans</div><div class="fs11 muted" style="margin-top:2px">Membership plans</div></div>
+        <div></div>
+      </div>
+
+      <div class="eyebrow" style="color:var(--gm-navy-2);margin-top:6px">Insights</div>
+      <div class="g2">
+        <div class="card tight"><div style="font-size:22px">📊</div><div class="strong fs14" style="margin-top:6px">Analytics</div><div class="fs11 muted" style="margin-top:2px">Revenue &amp; occupancy</div></div>
+        <div class="card tight"><div style="font-size:22px">⭐</div><div class="strong fs14" style="margin-top:6px">Reviews</div><div class="fs11 muted" style="margin-top:2px">What customers say</div></div>
+      </div>
+
+      <div class="eyebrow" style="color:var(--gm-navy-2);margin-top:6px">Signals</div>
+      <div class="g2">
+        <div class="card tight"><div style="font-size:22px">🚨</div><div class="strong fs14" style="margin-top:6px">Alerts</div><div class="fs11 muted" style="margin-top:2px">Things to handle</div></div>
+        <div class="card tight"><div style="font-size:22px">🔔</div><div class="strong fs14" style="margin-top:6px">Notifications</div><div class="fs11 muted" style="margin-top:2px">Inbox &amp; history</div></div>
+      </div>
+
+      <div class="eyebrow" style="color:var(--gm-navy-2);margin-top:6px">Gym profile</div>
+      <div class="g2">
+        <div class="card tight"><div style="font-size:22px">👁</div><div class="strong fs14" style="margin-top:6px">View profile</div><div class="fs11 muted" style="margin-top:2px">Customer-facing</div></div>
+        <div class="card tight"><div style="font-size:22px">✏️</div><div class="strong fs14" style="margin-top:6px">Edit profile</div><div class="fs11 muted" style="margin-top:2px">Hours, photos…</div></div>
+      </div>
+
+      <div class="eyebrow" style="color:var(--gm-navy-2);margin-top:6px">Help</div>
+      <div class="g2">
+        <div class="card tight"><div style="font-size:22px">🧭</div><div class="strong fs14" style="margin-top:6px">Replay tour</div><div class="fs11 muted" style="margin-top:2px">Gym walkthrough</div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <div class="gnav">
+      <div class="item"><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+      <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+      <div class="item"><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+      <div class="item on"><span class="pillbg"></span><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
+    </div>
+  </div></div>
+</section>
+<div class="grp"><h3 class="gm-grp">Shared Components</h3></div>
+<!-- ============ S19 · Components — building blocks reference ============ -->
+<section class="gm-screen" id="gm-s19">
+  <h3 class="s-title"><span class="flow-badge">Components</span> Building Blocks</h3>
+  <p class="s-sub">Shared gym-module components · bottom_nav_gym · item_gym_skeleton · layout_gym</p>
+  <div class="device"><div class="scr">
+    <div class="ghead" style="background:var(--gm-page);color:var(--gm-ink);border-bottom:1px solid var(--gm-stroke)">
+      <div class="statusbar"><span>9:41</span><span class="r">📶 &nbsp;🔋 87%</span></div>
+      <div class="ghead-top">
+        <div class="hbtn" style="background:var(--gm-surface-alt);color:var(--gm-navy)"><svg class="ic i18"><use href="#gm-i-back"/></svg></div>
+        <div class="grow"><div class="title" style="color:var(--gm-ink);font-size:17px">Building Blocks</div></div>
+      </div>
+    </div>
+
+    <div class="gbody surface pb">
+      <div class="eyebrow">Bottom Navigation · 6 tabs</div>
+      <div style="border:1px solid var(--gm-stroke);border-radius:14px;overflow:hidden">
+        <div class="gnav" style="box-shadow:none;border-top:0">
+          <div class="item on"><span class="pillbg"></span><svg class="ic i22"><use href="#gm-i-home"/></svg><span class="lbl">Home</span></div>
+          <div class="item"><svg class="ic i22"><use href="#gm-i-calendar"/></svg><span class="lbl">Schedule</span></div>
+          <div class="item"><svg class="ic i22"><use href="#gm-i-receipt"/></svg><span class="lbl">Bookings</span></div>
+          <div class="item"><svg class="ic i22"><use href="#gm-i-users"/></svg><span class="lbl">Members</span></div>
+          <div class="item"><span class="dot">3</span><svg class="ic i22"><use href="#gm-i-bell"/></svg><span class="lbl">Alerts</span></div>
+          <div class="item"><svg class="ic i22"><use href="#gm-i-sliders"/></svg><span class="lbl">Manage</span></div>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:4px">Loading Skeleton</div>
+      <div class="sk">
+        <div class="sk-c" style="width:44px;height:44px"></div>
+        <div class="grow stack" style="gap:8px"><div class="sk-bar" style="width:72%"></div><div class="sk-bar" style="width:44%;height:8px"></div></div>
+        <div class="sk-bar" style="width:56px;height:18px"></div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:4px">Gym List Card</div>
+      <div class="card plain">
+        <div class="card-row"><div class="circ thumb" style="width:56px;height:56px"></div><div class="grow"><div class="rowb"><span class="strong fs14 ell">IronCore Fitness Studio</span><span class="pill live">Live</span></div><div class="fs12 muted" style="margin-top:2px">DHA Phase 5 · Rs 250/hr</div></div></div>
+        <div class="chips scroll" style="margin-top:10px"><span class="chip">🏋️ Weights</span><span class="chip">🚿 Showers</span><span class="chip">🅿️ Parking</span><span class="chip">❄️ AC</span></div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:4px">Status Pills</div>
+      <div class="card plain">
+        <div class="wrap"><span class="pill live">Live</span><span class="pill pending">Pending</span><span class="pill info">Confirmed</span><span class="pill danger">Rejected</span><span class="pill muted">Suspended</span><span class="pill muted">Cancelled</span></div>
+      </div>
+    </div>
+  </div></div>
+</section>
+</main>
+
+<footer style="max-width:1240px;margin:0 auto;padding:10px 28px 60px;font-size:12px;color:#8b95a0">
+  Sportster Business · Gym module UI reference — generated from the app's Android layouts for design handoff.
+</footer>
+</div>
+<!-- ============ END GYM MODULE UI REFERENCE ============ -->
+
+
 <script>
 (function () {
   var hist = [], cur = 's1';
@@ -14779,6 +16648,7 @@
   if(!m) return;
   var scrollable = /[?&]scroll=1/.test(location.search);
   var flow = /[?&]flow=1/.test(location.search);
+  var paneM = location.search.match(/[?&]pane=(\d+)/);
   function run(){
     var col = document.getElementById(m[1]);
     var phone = col && col.querySelector('.phone');
@@ -14788,6 +16658,7 @@
     var fr = document.getElementById('flow-row');
     document.body.appendChild(phone);
     if(fr && fr.parentNode) fr.remove();
+    if(paneM){ (function(pn){ setTimeout(function(){ try{ var root=phone.querySelector('[data-mg-names]')||document.querySelector('[data-mg-names]'); if(root&&root.id&&typeof mgTo==='function') mgTo(root.id, pn); }catch(e){} }, 260); })(parseInt(paneM[1],10)); }
     document.documentElement.style.cssText='margin:0;padding:0;background:transparent;';
     if(flow){
       // Whole screen becomes one tall, top-anchored scrollable page (releases inner scroll bands).
