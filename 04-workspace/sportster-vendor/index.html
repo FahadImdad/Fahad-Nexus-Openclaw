@@ -18242,6 +18242,9 @@ function gymTog(idx){
       document.body.appendChild(phone);
     }
     if(fr && fr.parentNode) fr.remove();
+    // Gym devices carry a thick 10px .device border; brochure embeds (scroll/flow) should
+    // rely on the host's thin frame instead, matching the sports phones. Standalone view keeps it.
+    if(isGym && (scrollable || flow)){ phone.style.border='0'; }
     if(paneM){ (function(pn){ setTimeout(function(){ try{ var root=phone.querySelector('[data-mg-names]')||document.querySelector('[data-mg-names]'); if(root&&root.id&&typeof mgTo==='function') mgTo(root.id, pn); }catch(e){} }, 260); })(parseInt(paneM[1],10)); }
     document.documentElement.style.cssText='margin:0;padding:0;background:transparent;';
     if(flow){
