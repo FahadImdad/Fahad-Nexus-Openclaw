@@ -18204,13 +18204,16 @@ function gymTog(idx){
 </div>
 </div><!-- #flow-row -->
 <script>
-/* ?only=<screenId> : isolate one phone screen full-viewport (used by the brochure embeds). No param = normal gallery. */
+/* only=<screenId> : isolate one phone screen full-viewport (used by the brochure embeds).
+   Accepts the params via the URL hash (#only=...) so every embed loads the SAME index.html
+   (one download, shared cache) instead of a unique ?query per screen. ?query still works. */
 (function(){
-  var m = location.search.match(/[?&]only=([A-Za-z0-9_-]+)/);
+  var q = (location.hash && location.hash.indexOf('only=')!==-1) ? location.hash.slice(1) : location.search.slice(1);
+  var m = q.match(/(?:^|&)only=([A-Za-z0-9_-]+)/);
   if(!m) return;
-  var scrollable = /[?&]scroll=1/.test(location.search);
-  var flow = /[?&]flow=1/.test(location.search);
-  var paneM = location.search.match(/[?&]pane=(\d+)/);
+  var scrollable = /(?:^|&)scroll=1/.test(q);
+  var flow = /(?:^|&)flow=1/.test(q);
+  var paneM = q.match(/(?:^|&)pane=(\d+)/);
   function run(){
     var col = document.getElementById(m[1]);
     var phone = col && (col.querySelector('.phone') || col.querySelector('.device'));
