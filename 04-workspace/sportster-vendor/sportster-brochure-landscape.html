@@ -271,8 +271,8 @@ body{background:#20221f;background-image:radial-gradient(1000px 460px at 50% -6%
 /* fix "see it in action" store card overflow/overlap: let the graphic size to content */
 .demo .sgfx{height:auto !important;min-height:95px !important;}
 .demo{justify-content:flex-start !important;}
-/* logo: rounded corners, minimal white padding */
-.lg{background:#fff !important;border-radius:18px !important;padding:0.5px !important;box-sizing:border-box !important;}
+/* logo: rounded corners, no white padding (icon fills the rounded frame) */
+.lg{background:#fff !important;border-radius:16px !important;padding:0 !important;box-sizing:border-box !important;}
 /* center the stat cards' heading + big number (keep bars/rows full width) */
 .b2b .nc,.b3b .nc{text-align:center !important;}
 .b2b .nc .nt,.b3b .nc .nt,.b2b .nc .nv,.b3b .nc .nv,.b2b .nc .nd,.b3b .nc .nd{text-align:center !important;}
@@ -283,6 +283,19 @@ body{background:#20221f;background-image:radial-gradient(1000px 460px at 50% -6%
 .fan{transform:scale(1.08) !important;transform-origin:bottom right !important;}
 /* equal bottom border/spacing on the front page */
 .fbody{padding-bottom:16px !important;}
+/* ---- unify spacing/padding across BOTH pages ---- */
+/* equal side padding: front (fbody/hband) and back both 34px */
+.fbody{padding-left:34px !important;padding-right:34px !important;}
+.hband{padding-left:34px !important;padding-right:34px !important;}
+.back{padding:20px 34px !important;}
+/* equal card-grid gaps everywhere = 8px (feature grid, see-it-in-action, stat grid) */
+.b3f .cg,.b2f .cg{gap:8px !important;}
+.b3f .demos,.b2f .demos{gap:8px !important;}
+.b3b .nums,.b2b .nums{gap:8px !important;}
+.b3b .cbody,.b2b .cbody{gap:8px !important;}
+/* see-it-in-action cards: equal padding + equal height so all four match */
+.demo{padding:9px 10px !important;}
+.demo .sgfx{min-height:96px !important;}
 </style>
 </head><body>
 <div class="toolbar"><span class="tt"><b>Sportster Business</b> vendor brochure, A4 landscape, front and back</span><button class="printbtn" onclick="window.print()">Print or Save as PDF</button></div>
