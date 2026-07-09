@@ -263,23 +263,6 @@ body{background:#20221f;background-image:radial-gradient(1000px 460px at 50% -6%
 <style id="bezel-unify">.b2b .vdev,.b3b .vdev,.b2b .numdev .dev,.b3b .numdev .dev,.b2b .storedev .dev,.b3b .storedev .dev{padding:1.5px!important;border-radius:12px!important;background:#0c0d10!important;border:0!important;box-shadow:0 5px 12px rgba(0,0,0,.24)!important;}.b2b .vscr,.b3b .vscr,.b2b .numdev .scr,.b3b .numdev .scr,.b2b .storedev .scr,.b3b .storedev .scr{border-radius:10.5px!important;}</style>
 
 <style id="scroll-screens">.fan .dev{overflow:hidden !important;border-radius:17px !important;background:#0c0d10 !important;padding:2.5px !important;box-shadow:0 10px 24px rgba(0,0,0,.38) !important;}.fan .dev img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;border-radius:14px;}.b2b .vscr,.b3b .vscr,.b2b .numdev .scr,.b3b .numdev .scr,.b2b .storedev .scr,.b3b .storedev .scr{overflow-y:auto !important;overflow-x:hidden;scrollbar-width:none;-ms-overflow-style:none;}.b2b .vscr::-webkit-scrollbar,.b3b .vscr::-webkit-scrollbar,.b2b .numdev .scr::-webkit-scrollbar,.b3b .numdev .scr::-webkit-scrollbar,.b2b .storedev .scr::-webkit-scrollbar,.b3b .storedev .scr::-webkit-scrollbar{display:none;width:0;height:0;}.b2b .vscr img,.b3b .vscr img,.b2b .numdev .scr img,.b3b .numdev .scr img,.b2b .storedev .scr img,.b3b .storedev .scr img{width:100%;height:auto;display:block;vertical-align:top;}</style>
-
-<style id="fullscreen-top">
-/* Show each phone as a full screen starting from the very top (status bar + header), then scroll down */
-.b2b .vscr,.b3b .vscr,.b2b .numdev .scr,.b3b .numdev .scr,.b2b .storedev .scr,.b3b .storedev .scr{scroll-behavior:auto;}
-/* kill the legacy -24px crop that hid the analytics screen's top */
-.b2b .numdev .dev .scr img,.b3b .numdev .dev .scr img{margin-top:0 !important;}
-/* image sits flush at the top of every framed phone */
-.b2b .vscr img,.b3b .vscr img,.b2b .numdev .scr img,.b3b .numdev .scr img,.b2b .storedev .scr img,.b3b .storedev .scr img{margin:0 !important;object-position:top !important;}
-/* taller frames = fuller phone view from the top (all screens scroll, so more of the top shows at once) */
-.b3b .vscr{height:206px !important;}
-.b2b .vscr{height:206px !important;}
-.b3b .numdev .dev .scr,.b2b .numdev .dev .scr{height:250px !important;}
-.b3b .storedev .scr{height:250px !important;}
-.b3b .vshot,.b2b .vshot{flex-basis:88px !important;}
-.b3b .vdev,.b2b .vdev{width:88px !important;}
-.b3b .vscr,.b2b .vscr{width:84px !important;}
-</style>
 </head><body>
 <div class="toolbar"><span class="tt"><b>Sportster Business</b> vendor brochure, A4 landscape, front and back</span><button class="printbtn" onclick="window.print()">Print or Save as PDF</button></div>
 <div class="stage" id="stage">
