@@ -304,6 +304,8 @@ body{background:#20221f;background-image:radial-gradient(1000px 460px at 50% -6%
 .b3f .cg,.b2f .cg{gap:8px !important;}
 .b3f .demos,.b2f .demos{gap:8px !important;}
 .b3b .nums,.b2b .nums{gap:8px !important;}
+/* make both phone columns equal width (analytics left + store right) so the grid is symmetric */
+.b3b .nums,.b2b .nums{grid-template-columns:122px repeat(4,1fr) 122px !important;}
 .b3b .cbody,.b2b .cbody{gap:8px !important;}
 /* see-it-in-action cards: slightly shorter so they lift off the bottom edge */
 .demo{padding:7px 10px !important;}
