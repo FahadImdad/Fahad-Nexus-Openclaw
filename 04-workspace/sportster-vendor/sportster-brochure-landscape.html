@@ -300,7 +300,14 @@ body{background:#20221f;background-image:radial-gradient(1000px 460px at 50% -6%
 /* equal side padding: front (fbody/hband) and back both 34px */
 .fbody{padding-left:34px !important;padding-right:34px !important;}
 .hband{padding-left:34px !important;padding-right:34px !important;}
-.back{padding:20px 34px !important;}
+/* full-bleed page 2 to match page 1's edge-to-edge hero: remove the outer white frame */
+.back{padding:16px 0 0 !important;overflow:hidden !important;}
+/* readable content keeps a 34px safe inset from the side edges */
+.b3b .bhead,.b2b .bhead,.b3b .seceye,.b2b .seceye,.b3b .cols,.b2b .cols,.b3b .nums,.b2b .nums{margin-left:34px !important;margin-right:34px !important;}
+/* footer bleeds to the bottom + side edges: pinned full-width to the very bottom */
+.b3b .bfoot,.b2b .bfoot{border-radius:0 !important;position:absolute !important;left:0 !important;right:0 !important;bottom:0 !important;margin:0 !important;padding:10px 34px !important;}
+/* disclaimer note sits just above the pinned footer */
+.b3b .fnote,.b2b .fnote{margin:2px 0 96px 34px !important;}
 /* equal card-grid gaps everywhere = 8px (feature grid, see-it-in-action, stat grid) */
 .b3f .cg,.b2f .cg{gap:8px !important;}
 .b3f .demos,.b2f .demos{gap:8px !important;}
