@@ -283,6 +283,9 @@ body{background:#20221f;background-image:radial-gradient(1000px 460px at 50% -6%
 /* enlarge the hero phone deck to fill its column (without covering the headline) */
 .hero{grid-template-columns:1.02fr .98fr !important;}
 .fan{transform:scale(1.08) !important;transform-origin:bottom right !important;}
+/* deck phones: match the screen image ratio (376x812 = 2.16) so the full screen shows incl. bottom bar */
+.fan .dev{width:122px !important;height:264px !important;}
+.fan .dev img{object-fit:cover !important;object-position:top center !important;}
 /* front page: fit content within sheet with an equal bottom margin (no overflow) */
 .fbody{padding-top:8px !important;padding-bottom:12px !important;}
 /* reclaim vertical space so nothing overflows and bottom margin is equal */
