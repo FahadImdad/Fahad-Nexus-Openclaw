@@ -150,15 +150,47 @@ function SetupTracker({ client, onGoToMessages }) {
 }
 
 /* ============ Go-live number + forwarding instructions ============ */
+const CARRIERS = [
+  { k: "att", l: "AT&T", on: "**21*NUM#", off: "#21#", note: "Forwards every call. Dial from your business phone." },
+  { k: "verizon", l: "Verizon", on: "*72 NUM", off: "*73", note: "Wait for the tone, then hang up. Dial *73 to stop." },
+  { k: "tmobile", l: "T-Mobile", on: "**21*NUM#", off: "##21#", note: "Press call after dialing the code." },
+  { k: "other", l: "Landline / other", on: "*72 NUM", off: "*73", note: "Most landlines use *72 to start, *73 to stop. Not sure? We'll do it with you." },
+];
 function ForwardCard({ client }) {
-  if (!client?.answup_number) return null;
+  const [carrier, setCarrier] = useState("att");
+  const [copied, setCopied] = useState(false);
+  if (!client?.answup_number || client?.status !== "live") return null;
+  const num = client.answup_number;
+  const c = CARRIERS.find((x) => x.k === carrier) || CARRIERS[0];
+  const digits = num.replace(/[^\d+]/g, "");
+  const code = c.on.replace("NUM", digits);
+  const copy = (txt) => { navigator.clipboard?.writeText(txt); setCopied(true); setTimeout(() => setCopied(false), 1600); };
   return (
-    <motion.div className="dz-card st-fwd" variants={rise} initial="hidden" animate="show" style={{ marginBottom: 16 }}>
-      <div className="dz-card-head"><h3>📞 Your Answup number</h3><span className="dz-badge green">Assigned</span></div>
-      <div className="st-number">{client.answup_number}</div>
-      <p style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.6 }}>
-        Forward your business line to this number. We recommend conditional forwarding (rings us only when you can't answer): dial <b>*71 + this number</b> on most US carriers. Not sure? <a href="mailto:fahadimdad966@gmail.com" style={{ color: "var(--blue)", fontWeight: 700 }}>Message us</a>, we'll set it up with you in 2 minutes.
-      </p>
+    <motion.div className="dz-card fw" variants={rise} initial="hidden" animate="show" style={{ marginBottom: 16 }}>
+      <div className="dz-card-head"><h3>🎉 You're live — turn on your AI in 30 seconds</h3><span className="dz-badge green">● Ready</span></div>
+      <p className="fw-lead">Forward your business line to your Answup number below. Once you do, every call you can't answer rings your AI instead. Nothing else to install.</p>
+
+      <div className="fw-num-row">
+        <div className="fw-num">{num}</div>
+        <button className="fw-copy" onClick={() => copy(num)}>{copied ? "✓ Copied" : "Copy number"}</button>
+      </div>
+
+      <div className="fw-carriers">
+        {CARRIERS.map((x) => (
+          <button key={x.k} className={`fw-tab ${carrier === x.k ? "on" : ""}`} onClick={() => setCarrier(x.k)}>{x.l}</button>
+        ))}
+      </div>
+
+      <div className="fw-steps">
+        <div className="fw-step"><span className="fw-n">1</span><div>From your business phone, dial this code:<div className="fw-code" onClick={() => copy(code)}><b>{code}</b><span>{copied ? "✓" : "tap to copy"}</span></div></div></div>
+        <div className="fw-step"><span className="fw-n">2</span><div>{c.note}</div></div>
+        <div className="fw-step"><span className="fw-n">3</span><div>Call your own business number from another phone — your AI should answer. That's it, you're covered.</div></div>
+      </div>
+
+      <div className="fw-foot">
+        <span>To turn forwarding off later, dial <b>{c.off}</b>.</span>
+        <a href="mailto:fahadimdad966@gmail.com">Need help? Message us →</a>
+      </div>
     </motion.div>
   );
 }
