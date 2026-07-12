@@ -3,6 +3,7 @@
 // guarded by VAPI_INGEST_SECRET (set in Vercel). The anon key below is the
 // same public key the frontend ships with.
 import { createClient } from "@supabase/supabase-js";
+import { sendLeadSMS } from "./_sms.js";
 
 const SUPABASE_URL = "https://tfuszoexspoqcowawidm.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_kA9yaJIzCtwRiE9YlkA65g_4TobJAqs";
@@ -59,7 +60,23 @@ export default async function handler(req, res) {
     const { error } = await supabase.rpc("vapi_ingest", { s: process.env.VAPI_INGEST_SECRET, r: row });
     if (error) throw error;
 
-    return res.status(200).json({ ok: true });
+    // Text the owner their new lead the instant the call ends (only real leads).
+    // Dormant/no-op until Twilio env vars exist; never blocks the 200 response.
+    let sms = { sent: false, status: "skipped-no-phone" };
+    if (phone) {
+      const { data: client } = await supabase.rpc("client_for_sms", { s: process.env.VAPI_INGEST_SECRET, cid: clientId });
+      if (client) {
+        sms = await sendLeadSMS(client, row);
+        if (sms.sent) {
+          await supabase.rpc("log_sms", {
+            s: process.env.VAPI_INGEST_SECRET,
+            cid: clientId, tonum: sms.to || null, bod: sms.body || null, stat: String(sms.status),
+          }).catch(() => {});
+        }
+      }
+    }
+
+    return res.status(200).json({ ok: true, sms: sms.status });
   } catch (e) {
     console.error("vapi webhook error", e);
     return res.status(500).json({ error: String(e.message || e) });

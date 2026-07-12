@@ -553,6 +553,20 @@ function Billing({ client, calls, invoices }) {
             </div>
           </div>
           <div className="bl-tip" style={{ marginTop: 12 }}>
+            <b>How to pay:</b> send an ACH bank transfer from your business bank to the account below. Wire transfers and mailed checks are not accepted.
+          </div>
+          <div style={{ marginTop: 10, overflowX: "auto" }}>
+            <table className="dz-table">
+              <tbody>
+                <tr><td style={{ color: "var(--muted)" }}>Beneficiary</td><td><b>Muhammad Fahad Imdad</b></td></tr>
+                <tr><td style={{ color: "var(--muted)" }}>Account number</td><td><b>900100770739</b></td></tr>
+                <tr><td style={{ color: "var(--muted)" }}>Routing (ABA)</td><td><b>021606742</b></td></tr>
+                <tr><td style={{ color: "var(--muted)" }}>Account type</td><td><b>Checking</b></td></tr>
+                <tr><td style={{ color: "var(--muted)" }}>Bank name</td><td><b>Merchants Commercial Bank</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="bl-tip" style={{ marginTop: 12 }}>
             <b>Questions about billing?</b> Reply to your invoice email or contact your account manager anytime.
           </div>
         </motion.div>
@@ -700,9 +714,8 @@ export default function Dashboard({ user, client, isAdmin, onBack, onSignOut }) 
       ]
     : [
         { k: "overview", l: "Home", ic: I.grid },
+        { k: "leads", l: "Leads", ic: I.users },
         { k: "messages", l: "Messages", ic: I.chat },
-        { k: "leads", l: "Calls & Leads", ic: I.users },
-        { k: "config", l: "My AI Setup", ic: I.sliders },
         { k: "billing", l: "Billing", ic: I.card },
       ];
 

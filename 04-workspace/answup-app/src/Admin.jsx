@@ -75,6 +75,7 @@ export default function Admin() {
       business_name: open.business_name, phone: open.phone, trade: open.trade,
       city: open.city, state: open.state, service_area: open.service_area,
       plan: open.plan, amount: open.amount, admin_notes: open.admin_notes,
+      lead_sms: open.lead_sms || null,
       vapi_assistant_id: open.vapi_assistant_id || null,
       answup_number: open.answup_number || null,
       updated_at: new Date().toISOString(),
@@ -185,8 +186,10 @@ export default function Admin() {
                 <div className="ad-field"><label>Business name</label><input value={open.business_name || ""} onChange={(e) => setOpen({ ...open, business_name: e.target.value })} /></div>
                 <div className="ad-two">
                   <div className="ad-field"><label>Trade</label><input value={open.trade || ""} onChange={(e) => setOpen({ ...open, trade: e.target.value })} /></div>
-                  <div className="ad-field"><label>Phone</label><input value={open.phone || ""} onChange={(e) => setOpen({ ...open, phone: e.target.value })} /></div>
+                  <div className="ad-field"><label>Business phone</label><input value={open.phone || ""} onChange={(e) => setOpen({ ...open, phone: e.target.value })} /></div>
                 </div>
+                <div className="ad-field"><label>📱 Text new leads to this number</label>
+                  <input value={open.lead_sms || ""} placeholder="Owner's mobile — gets an SMS after every call" onChange={(e) => setOpen({ ...open, lead_sms: e.target.value })} /></div>
                 <div className="ad-two">
                   <div className="ad-field"><label>City</label><input value={open.city || ""} onChange={(e) => setOpen({ ...open, city: e.target.value })} /></div>
                   <div className="ad-field"><label>State</label><input value={open.state || ""} onChange={(e) => setOpen({ ...open, state: e.target.value })} /></div>

@@ -122,6 +122,7 @@ export default function Onboard({ user, onDone, preview = false }) {
       business_name: all.business_name || "", trade: all.trade || "",
       service_area: all.service_area || "", hours: all.hours || "",
       greeting: all.greeting || "", phone: all.lead_phone || "",
+      lead_sms: all.lead_phone || "",
       plan: localStorage.getItem("answup-plan") || "always-on",
       notes: notesBits.join(" · "),
     };
