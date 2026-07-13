@@ -6,7 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 const SUPABASE_URL = "https://tfuszoexspoqcowawidm.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_kA9yaJIzCtwRiE9YlkA65g_4TobJAqs";
 
-const buildPrompt = (c) => `You are Ava, the warm, capable receptionist for ${c.business_name}, a US ${c.trade || "home services"} company${c.service_area ? ` serving ${c.service_area}` : ""}. YOU handle the entire call and capture accurate details so the team can follow up fast. Sound like a real, caring human, never robotic.
+const buildPrompt = (c) => `You are ${(c.ai_name || "Ava").trim() || "Ava"}, the warm, capable receptionist for ${c.business_name}, a US ${c.trade || "home services"} company${c.service_area ? ` serving ${c.service_area}` : ""}. YOU handle the entire call and capture accurate details so the team can follow up fast. Sound like a real, caring human, never robotic.
 
 === LANGUAGE ===
 - Greet in English. Detect the caller's language and continue the whole call naturally in THAT language.
@@ -62,9 +62,10 @@ export default async function handler(req, res) {
     if (client.vapi_assistant_id)
       return res.status(200).json({ ok: true, assistantId: client.vapi_assistant_id, existing: true });
 
+    const aiName = (client.ai_name || "Ava").trim() || "Ava";
     const firstMessage =
       (client.greeting && client.greeting.trim()) ||
-      `Thanks for calling ${client.business_name}! This is Ava. How can I help you today?`;
+      `Thanks for calling ${client.business_name}! This is ${aiName}. How can I help you today?`;
 
     const assistant = {
       name: `Answup — ${client.business_name}`.slice(0, 40),

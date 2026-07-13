@@ -75,6 +75,7 @@ export default function Admin() {
       business_name: open.business_name, phone: open.phone, trade: open.trade,
       city: open.city, state: open.state, service_area: open.service_area,
       plan: open.plan, amount: open.amount, admin_notes: open.admin_notes,
+      ai_name: (open.ai_name || "").trim() || null,
       lead_sms: open.lead_sms || null,
       vapi_assistant_id: open.vapi_assistant_id || null,
       answup_number: open.answup_number || null,
@@ -195,6 +196,7 @@ export default function Admin() {
                   <div className="ad-field"><label>State</label><input value={open.state || ""} onChange={(e) => setOpen({ ...open, state: e.target.value })} /></div>
                 </div>
                 <div className="ad-field"><label>Service area</label><input value={open.service_area || ""} onChange={(e) => setOpen({ ...open, service_area: e.target.value })} /></div>
+                <div className="ad-field"><label>AI name (blank = Ava)</label><input value={open.ai_name || ""} placeholder="Ava" onChange={(e) => setOpen({ ...open, ai_name: e.target.value })} /></div>
                 <div className="ad-field"><label>Email</label><input value={open.email || ""} disabled /></div>
 
                 <div className="ad-sep">Billing</div>

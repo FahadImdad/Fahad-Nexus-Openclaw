@@ -55,6 +55,13 @@ const QUESTIONS = [
     skippable: true,
   },
   {
+    key: "ai_name",
+    ava: "Want to give me a name? I go by Ava by default, but I'll happily answer to anything you like.",
+    type: "text",
+    placeholder: "Ava (leave blank to keep it)",
+    skippable: true,
+  },
+  {
     key: "greeting",
     ava: "How should I greet your callers? Leave it to me if you're not sure — I'll sound warm and professional.",
     type: "text",
@@ -122,6 +129,7 @@ export default function Onboard({ user, onDone, preview = false }) {
       business_name: all.business_name || "", trade: all.trade || "",
       service_area: all.service_area || "", hours: all.hours || "",
       greeting: all.greeting || "", phone: all.lead_phone || "",
+      ai_name: (all.ai_name || "").trim() || null,
       lead_sms: all.lead_phone || "",
       plan: localStorage.getItem("answup-plan") || "always-on",
       notes: notesBits.join(" · "),
